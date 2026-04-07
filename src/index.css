@@ -1,0 +1,40 @@
+:root {
+  --font-pixel: 'Dotum', 'Malgun Gothic', sans-serif;
+  --font-pixel-mono: Consolas, 'Courier New', monospace;
+  color: #f8f3fb;
+  background-color: #000;
+  font-family: var(--font-pixel);
+  font-synthesis: none;
+  text-rendering: optimizeSpeed;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100svh;
+  margin: 0;
+  background: #000;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+#root {
+  min-height: 100svh;
+  background: #000;
+}
