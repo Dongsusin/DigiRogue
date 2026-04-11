@@ -1,4 +1,11 @@
 import { useEffect, useState } from 'react'
+import babyStageData from '../data/디지몬/유아기.json'
+import childStageData from '../data/디지몬/유년기.json'
+import growthStageData from '../data/디지몬/성장기.json'
+import matureStageData from '../data/디지몬/성숙기.json'
+import perfectStageData from '../data/디지몬/완전체.json'
+import ultimateStageData from '../data/디지몬/궁극체.json'
+import mapData from '../data/map.json'
 import './App.css'
 
 const menuItems = [
@@ -68,11 +75,36 @@ const growthStageDigimonUrls = [
 
 const growthStageDigimon = growthStageDigimonUrls.map((url) => {
   const fileName = decodeURIComponent(url.split('/').pop() ?? '')
+  const data = growthStageData.find((digimon) => digimon.이름 === fileName.replace('.png', ''))
   return {
     url,
     name: fileName.replace('.png', ''),
+    data,
   }
 })
+
+const digimonStageDataMap = {
+  유아기: babyStageData,
+  유년기: childStageData,
+  성장기: growthStageData,
+  성숙기: matureStageData,
+  완전체: perfectStageData,
+  궁극체: ultimateStageData,
+}
+
+const createDigimonImageUrl = (stage, name) =>
+  `/${encodeURIComponent('도감')}/${encodeURIComponent(stage)}/${encodeURIComponent(name)}.png`
+
+const allDigimonLookup = Object.entries(digimonStageDataMap).reduce((result, [stage, items]) => {
+  items.forEach((digimon) => {
+    result.set(digimon.이름, {
+      ...digimon,
+      stage,
+      imageUrl: createDigimonImageUrl(stage, digimon.이름),
+    })
+  })
+  return result
+}, new Map())
 
 const mapBackgrounds = [
   '/%EB%A7%B5/%EA%B0%80%EB%94%94%EC%96%B8%20%ED%8C%B0%EB%A6%AC%EC%8A%A4.png',
@@ -114,6 +146,30 @@ const mapBackgrounds = [
 
 const MAP_ROTATION_MS = 9000
 const MAP_FADE_MS = 2600
+const TOTAL_STAGE_COUNT = 200
+const STAGES_PER_MAP = 10
+const STAGE_ROUTE = [
+  '시작의마을',
+  '기어사바나',
+  '용의눈호수',
+  '네트의 바다',
+  '메탈 엠파이어',
+  '나이트메어 솔저스',
+  '코덱 유적',
+  '부트 화산',
+  '어셈블러 타워',
+  '오버델 묘지',
+  '무한산',
+  '이블 포레스트',
+  '다크 웹',
+  '코퀴토스',
+  '겐시 대륙',
+  '아시노 섬',
+  '용정궁',
+  '선공계',
+  '사규산',
+  '황천',
+]
 
 const baseDigitDrops = [
   { duration: '8.4s', delay: '-5.2s', opacity: 0.46, scale: 0.95, swap: '2.4s' },
@@ -150,6 +206,86 @@ const getRandomMapIndex = (currentIndex = -1) => {
   return nextIndex
 }
 
+const mapBackgroundByName = mapBackgrounds.reduce((result, url) => {
+  const fileName = decodeURIComponent(url.split('/').pop() ?? '')
+  result[fileName.replace('.png', '')] = url
+  return result
+}, {})
+
+const getMapNameForStage = (stage) => {
+  const safeStage = Math.min(Math.max(stage, 1), TOTAL_STAGE_COUNT)
+  const routeIndex = Math.min(STAGE_ROUTE.length - 1, Math.floor((safeStage - 1) / STAGES_PER_MAP))
+  return STAGE_ROUTE[routeIndex]
+}
+
+const getMapBackgroundUrl = (mapName) => mapBackgroundByName[mapName] ?? mapBackgrounds[0]
+
+const hashText = (text) => {
+  let hash = 0
+
+  for (const char of text) {
+    hash = (hash * 31 + char.codePointAt(0)) % 1000003
+  }
+
+  return hash
+}
+
+const getEncounterGroupForStage = (stage) => {
+  if (stage <= 20) {
+    return '1'
+  }
+
+  if (stage <= 50) {
+    return '2'
+  }
+
+  if (stage <= 90) {
+    return '3'
+  }
+
+  if (stage <= 130) {
+    return '4'
+  }
+
+  if (stage <= 170) {
+    return '5'
+  }
+
+  return '6'
+}
+
+const getEncounterCountForStage = (stage) => {
+  if (stage <= 40) {
+    return 1
+  }
+
+  if (stage <= 120) {
+    return 2
+  }
+
+  return 3
+}
+
+const buildEnemyParty = (mapName, stage, encounterPool, encounterCount) => {
+  const rankedNames = [...encounterPool].sort(
+    (left, right) =>
+      hashText(`${mapName}:${stage}:${left}`) - hashText(`${mapName}:${stage}:${right}`)
+  )
+
+  return rankedNames.slice(0, encounterCount).map((name, index) => {
+    const data = allDigimonLookup.get(name)
+    const maxHp = data?.체력 ?? 100
+
+    return {
+      id: `${name}-${index}`,
+      name,
+      imageUrl: data?.imageUrl ?? '',
+      currentHp: maxHp,
+      maxHp,
+    }
+  })
+}
+
 const createDigitDrop = (drop, index) => ({
   ...drop,
   id: index,
@@ -163,6 +299,7 @@ function App() {
   )
   const [screenMode, setScreenMode] = useState('menu')
   const [selectedGrowthIndex, setSelectedGrowthIndex] = useState(0)
+  const [gameState, setGameState] = useState(null)
   const [mapTransition, setMapTransition] = useState(() => {
     const initialIndex = getRandomMapIndex()
 
@@ -174,7 +311,7 @@ function App() {
   })
 
   useEffect(() => {
-    if (mapTransition.isFading) {
+    if (screenMode === 'adventure' || mapTransition.isFading) {
       return undefined
     }
 
@@ -189,10 +326,10 @@ function App() {
     return () => {
       window.clearTimeout(rotationId)
     }
-  }, [mapTransition.activeIndex, mapTransition.isFading])
+  }, [mapTransition.activeIndex, mapTransition.isFading, screenMode])
 
   useEffect(() => {
-    if (!mapTransition.isFading) {
+    if (screenMode === 'adventure' || !mapTransition.isFading) {
       return undefined
     }
 
@@ -207,7 +344,7 @@ function App() {
     return () => {
       window.clearTimeout(fadeId)
     }
-  }, [mapTransition.activeIndex, mapTransition.isFading])
+  }, [mapTransition.activeIndex, mapTransition.isFading, screenMode])
 
   const repositionDigitDrop = (dropId) => {
     setDigitDrops((currentDrops) =>
@@ -238,56 +375,96 @@ function App() {
   }
 
   const selectedGrowthDigimon = growthStageDigimon[selectedGrowthIndex]
-  const baseBackgroundUrl = mapBackgrounds[
-    mapTransition.isFading ? mapTransition.previousIndex : mapTransition.activeIndex
-  ]
-  const nextBackgroundUrl = mapBackgrounds[mapTransition.activeIndex]
+  const handleStartAdventure = () => {
+    const startingStage = 1
+    const mapName = getMapNameForStage(startingStage)
+    const encounterGroup = getEncounterGroupForStage(startingStage)
+    const encounterCount = getEncounterCountForStage(startingStage)
+    const mapEncounterPool = mapData[mapName]?.등장디지몬?.[encounterGroup] ?? []
+    const enemies = buildEnemyParty(mapName, startingStage, mapEncounterPool, encounterCount)
+    const maxHp = selectedGrowthDigimon.data?.체력 ?? 100
+
+    setGameState({
+      currentStage: startingStage,
+      maxStage: TOTAL_STAGE_COUNT,
+      currentMap: mapName,
+      encounterGroup,
+      encounterCount,
+      encounterPool: mapEncounterPool,
+      enemies,
+      player: {
+        name: selectedGrowthDigimon.name,
+        imageUrl: selectedGrowthDigimon.url,
+        currentHp: maxHp,
+        maxHp,
+      },
+    })
+    setScreenMode('adventure')
+  }
+
+  const activeBackgroundUrl =
+    screenMode === 'adventure' && gameState
+      ? getMapBackgroundUrl(gameState.currentMap)
+      : mapBackgrounds[
+          mapTransition.isFading ? mapTransition.previousIndex : mapTransition.activeIndex
+        ]
+  const nextBackgroundUrl =
+    screenMode === 'adventure' && gameState
+      ? activeBackgroundUrl
+      : mapBackgrounds[mapTransition.activeIndex]
+  const playerHpRatio = gameState
+    ? Math.max(0, Math.min(100, (gameState.player.currentHp / gameState.player.maxHp) * 100))
+    : 0
 
   return (
     <main className="main-screen">
       <div
         className="main-screen__background main-screen__background--base"
         aria-hidden="true"
-        style={{ backgroundImage: `url("${baseBackgroundUrl}")` }}
+        style={{ backgroundImage: `url("${activeBackgroundUrl}")` }}
       />
       <div
         className={[
           'main-screen__background',
           'main-screen__background--next',
-          mapTransition.isFading ? 'main-screen__background--visible' : '',
+          mapTransition.isFading && screenMode !== 'adventure'
+            ? 'main-screen__background--visible'
+            : '',
         ]
           .filter(Boolean)
           .join(' ')}
         aria-hidden="true"
         style={{ backgroundImage: `url("${nextBackgroundUrl}")` }}
       />
-      <div className="main-screen__veil" aria-hidden="true" />
-      <div className="digit-rain" aria-hidden="true">
-        {digitDrops.map((drop) => (
-          <div
-            key={drop.id}
-            className={[
-              'digit-drop',
-              drop.id % 2 === 1 ? 'digit-drop--invert' : '',
-            ]
-              .filter(Boolean)
-              .join(' ')}
-            onAnimationIteration={(event) => handleDigitLoop(drop.id, event)}
-            style={{
-              '--drop-left': drop.left,
-              '--drop-duration': drop.duration,
-              '--drop-delay': drop.delay,
-              '--drop-opacity': drop.opacity,
-              '--drop-scale': drop.scale,
-              '--drop-drift': drop.drift,
-              '--swap-duration': drop.swap,
-            }}
-          >
-            <span className="digit-drop__value digit-drop__value--zero">0</span>
-            <span className="digit-drop__value digit-drop__value--one">1</span>
-          </div>
-        ))}
-      </div>
+      {screenMode !== 'adventure' && <div className="main-screen__veil" aria-hidden="true" />}
+      {screenMode !== 'adventure' && (
+        <div className="digit-rain" aria-hidden="true">
+          {digitDrops.map((drop) => (
+            <div
+              key={drop.id}
+              className={[
+                'digit-drop',
+                drop.id % 2 === 1 ? 'digit-drop--invert' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              onAnimationIteration={(event) => handleDigitLoop(drop.id, event)}
+              style={{
+                '--drop-left': drop.left,
+                '--drop-duration': drop.duration,
+                '--drop-delay': drop.delay,
+                '--drop-opacity': drop.opacity,
+                '--drop-scale': drop.scale,
+                '--drop-drift': drop.drift,
+                '--swap-duration': drop.swap,
+              }}
+            >
+              <span className="digit-drop__value digit-drop__value--zero">0</span>
+              <span className="digit-drop__value digit-drop__value--one">1</span>
+            </div>
+          ))}
+        </div>
+      )}
 
       {screenMode === 'menu' && (
         <header className="title-band">
@@ -297,13 +474,18 @@ function App() {
         </header>
       )}
 
-      <section className="playfield">
-        <div className="playfield__scanline" aria-hidden="true" />
+      <section
+        className={['playfield', screenMode === 'adventure' ? 'playfield--adventure' : '']
+          .filter(Boolean)
+          .join(' ')}
+      >
+        {screenMode !== 'adventure' && <div className="playfield__scanline" aria-hidden="true" />}
 
         <div
           className={[
             'playfield__content',
             screenMode === 'new-game' ? 'playfield__content--selection' : '',
+            screenMode === 'adventure' ? 'playfield__content--adventure' : '',
           ]
             .filter(Boolean)
             .join(' ')}
@@ -333,7 +515,7 @@ function App() {
                 ))}
               </nav>
             </aside>
-          ) : (
+          ) : screenMode === 'new-game' ? (
             <section className="selection-screen" aria-label={'\uC131\uC7A5\uAE30 \uC120\uD0DD'}>
               <div className="selection-preview">
                 <div className="selection-preview__top">
@@ -356,6 +538,16 @@ function App() {
                     src={selectedGrowthDigimon.url}
                     alt={selectedGrowthDigimon.name}
                   />
+                </div>
+
+                <div className="selection-preview__actions">
+                  <button
+                    type="button"
+                    className="selection-start"
+                    onClick={handleStartAdventure}
+                  >
+                    {'\uC2DC\uC791'}
+                  </button>
                 </div>
               </div>
 
@@ -389,6 +581,85 @@ function App() {
                       <span className="selection-card__name">{digimon.name}</span>
                     </button>
                   ))}
+                </div>
+              </div>
+            </section>
+          ) : (
+            <section className="adventure-screen" aria-label={'\uAC8C\uC784 \uC2DC\uC791 \uD654\uBA74'}>
+              <div className="adventure-hud">
+                <div className="adventure-card">
+                  <p className="adventure-card__label">{'\uD604\uC7AC \uB9F5'}</p>
+                  <h2 className="adventure-card__value">{gameState?.currentMap}</h2>
+                </div>
+                <div className="adventure-card adventure-card--compact">
+                  <p className="adventure-card__label">STAGE</p>
+                  <p className="adventure-card__meta">
+                    {gameState?.currentStage} / {gameState?.maxStage}
+                  </p>
+                </div>
+              </div>
+
+              <div className="adventure-field">
+                <div className="adventure-player adventure-player--ally">
+                  <p className="adventure-player__name">{gameState?.player.name}</p>
+                  <div className="adventure-player__sprite-wrap adventure-player__sprite-wrap--ally">
+                    <img
+                      className="adventure-player__sprite adventure-player__sprite--ally"
+                      src={gameState?.player.imageUrl}
+                      alt={gameState?.player.name}
+                    />
+                  </div>
+
+                  <div className="adventure-hp" role="img" aria-label="HP bar">
+                    <div className="adventure-hp__track">
+                      <span
+                        className="adventure-hp__fill"
+                        style={{ width: `${playerHpRatio}%` }}
+                      />
+                      <p className="adventure-hp__text">
+                        {gameState?.player.currentHp} / {gameState?.player.maxHp}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="adventure-enemies" aria-label={'\uC801 \uB514\uC9C0\uBAAC'}>
+                  {gameState?.enemies?.map((enemy, index) => {
+                    const enemyHpRatio = Math.max(
+                      0,
+                      Math.min(100, (enemy.currentHp / enemy.maxHp) * 100)
+                    )
+
+                    return (
+                      <div
+                        key={enemy.id}
+                        className={`adventure-enemy adventure-enemy--${gameState.enemies.length} adventure-enemy--slot-${index + 1}`}
+                      >
+                        <p className="adventure-player__name adventure-player__name--enemy">
+                          {enemy.name}
+                        </p>
+                        <div className="adventure-player__sprite-wrap adventure-player__sprite-wrap--enemy">
+                          <img
+                            className="adventure-player__sprite adventure-player__sprite--enemy"
+                            src={enemy.imageUrl}
+                            alt={enemy.name}
+                          />
+                        </div>
+
+                        <div className="adventure-hp adventure-hp--enemy" role="img" aria-label="HP bar">
+                          <div className="adventure-hp__track">
+                            <span
+                              className="adventure-hp__fill adventure-hp__fill--enemy"
+                              style={{ width: `${enemyHpRatio}%` }}
+                            />
+                            <p className="adventure-hp__text">
+                              {enemy.currentHp} / {enemy.maxHp}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             </section>
