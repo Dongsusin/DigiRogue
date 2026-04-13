@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+﻿import { useEffect, useRef, useState } from 'react'
 import babyStageData from '../data/디지몬/유아기.json'
 import childStageData from '../data/디지몬/유년기.json'
 import growthStageData from '../data/디지몬/성장기.json'
@@ -29,66 +29,66 @@ const battleMenuItems = [
 ]
 
 const growthStageDigimonUrls = [
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EA%B0%80%EC%98%A4%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EA%B0%80%EC%A7%80%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EA%B3%A0%EB%B6%80%EB%A6%AC%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EA%B8%B8%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EB%8F%84%EB%A3%A8%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EB%93%9C%EB%9D%BC%EC%BD%94%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EB%93%9C%EB%9D%BC%ED%81%90%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EB%9D%BC%EB%9D%BC%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EB%A0%88%EB%82%98%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EB%A1%9C%ED%94%84%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EB%A3%A8%EC%B2%B4%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EB%A5%98%EC%9A%B0%EB%8B%A4%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EB%AA%A8%EB%85%B8%EB%93%9C%EB%9D%BC%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EB%B2%A0%ED%83%80%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EB%B3%B4%EB%B3%B4%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EB%B8%8C%EC%9D%B4%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EB%B8%94%EB%A3%A8%EC%BD%94%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%82%AC%EC%9D%B4%EC%BC%80%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%83%A4%EC%BD%94%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%89%AC%EB%9D%BC%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%8A%A4%EC%9C%94%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%95%84%EA%B5%AC%EB%AA%AC(%ED%9D%91).png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%95%84%EA%B5%AC%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%95%84%EA%B8%B0%EB%B2%8C%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%95%84%EB%A5%B4%EB%A7%88%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%97%90%EB%A0%89%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%98%AC%EC%B1%99%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%98%B7%EC%BD%94%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%9A%B8%ED%89%81%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%9E%84%ED%94%84%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%B6%94%EC%B6%94%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%B8%84%EC%B9%B4%EC%9D%B4%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%B9%B4%EB%A9%94%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%BC%80%EB%9D%BC%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%BD%94%ED%85%8C%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%BF%A0%EB%84%A4%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%EC%BF%A0%EB%8B%A4%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%81%AC%EB%9E%A9%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%85%8C%EB%A6%AC%EC%96%B4%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%85%90%ED%83%80%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%86%A0%EC%9D%B4%EC%95%84%EA%B5%AC%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%86%B1%EB%8B%88%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%8C%85%EC%BB%A4%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%8C%8C%EB%8B%A5%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%8C%8C%ED%94%BC%EB%AA%AC(%ED%9D%91).png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%8C%8C%ED%94%BC%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%8C%94%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%8C%94%EC%BD%94%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%8E%AD%EA%B7%84%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%8F%BC%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%94%8C%EB%A1%9C%EB%9D%BC%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%94%8C%EB%A1%AF%ED%8A%B8%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%94%BC%EC%9A%94%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%94%BC%EC%BD%94%EB%8D%B0%EB%B8%94%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%97%89%EB%AA%AC.png',
-  '/%EB%8F%84%EA%B0%90/%EC%84%B1%EC%9E%A5%EA%B8%B0/%ED%98%B8%ED%81%AC%EB%AA%AC.png',
+  '/도감/성장기/가오몬.png',
+  '/도감/성장기/가지몬.png',
+  '/도감/성장기/고부리몬.png',
+  '/도감/성장기/길몬.png',
+  '/도감/성장기/도루몬.png',
+  '/도감/성장기/드라코몬.png',
+  '/도감/성장기/드라큐몬.png',
+  '/도감/성장기/라라몬.png',
+  '/도감/성장기/레나몬.png',
+  '/도감/성장기/로프몬.png',
+  '/도감/성장기/루체몬.png',
+  '/도감/성장기/류우다몬.png',
+  '/도감/성장기/모노드라몬.png',
+  '/도감/성장기/베타몬.png',
+  '/도감/성장기/보보몬.png',
+  '/도감/성장기/브이몬.png',
+  '/도감/성장기/블루코몬.png',
+  '/도감/성장기/사이케몬.png',
+  '/도감/성장기/샤코몬.png',
+  '/도감/성장기/쉬라몬.png',
+  '/도감/성장기/스윔몬.png',
+  '/도감/성장기/아구몬(흑).png',
+  '/도감/성장기/아구몬.png',
+  '/도감/성장기/아기벌몬.png',
+  '/도감/성장기/아르마몬.png',
+  '/도감/성장기/에렉몬.png',
+  '/도감/성장기/올챙몬.png',
+  '/도감/성장기/옷코몬.png',
+  '/도감/성장기/울퉁몬.png',
+  '/도감/성장기/임프몬.png',
+  '/도감/성장기/추추몬.png',
+  '/도감/성장기/츄카이몬.png',
+  '/도감/성장기/카메몬.png',
+  '/도감/성장기/케라몬.png',
+  '/도감/성장기/코테몬.png',
+  '/도감/성장기/쿠네몬.png',
+  '/도감/성장기/쿠다몬.png',
+  '/도감/성장기/크랩몬.png',
+  '/도감/성장기/테리어몬.png',
+  '/도감/성장기/텐타몬.png',
+  '/도감/성장기/토이아구몬.png',
+  '/도감/성장기/톱니몬.png',
+  '/도감/성장기/팅커몬.png',
+  '/도감/성장기/파닥몬.png',
+  '/도감/성장기/파피몬(흑).png',
+  '/도감/성장기/파피몬.png',
+  '/도감/성장기/팔몬.png',
+  '/도감/성장기/팔코몬.png',
+  '/도감/성장기/펭귄몬.png',
+  '/도감/성장기/폼몬.png',
+  '/도감/성장기/플로라몬.png',
+  '/도감/성장기/플롯트몬.png',
+  '/도감/성장기/피요몬.png',
+  '/도감/성장기/피코데블몬.png',
+  '/도감/성장기/헉몬.png',
+  '/도감/성장기/호크몬.png',
 ]
 
 const growthStageDigimon = growthStageDigimonUrls.map((url) => {
-  const fileName = decodeURIComponent(url.split('/').pop() ?? '')
+  const fileName = url.split('/').pop() ?? ''
   const data = growthStageData.find((digimon) => digimon.이름 === fileName.replace('.png', ''))
   return {
     url,
@@ -165,43 +165,61 @@ const CLASSIC_LEVEL_CAPS = [
   10, 16, 24, 32, 38, 48, 56, 64, 74, 84, 94, 104, 114, 126, 138, 150, 162, 174, 188, 200,
 ]
 const getBattlePrompt = (name) => `${name}은 무엇을 할까?`
+const formatGold = (value) => {
+  const numericValue = Number(value ?? 0)
+
+  if (numericValue < 1000) {
+    return numericValue.toLocaleString('ko-KR')
+  }
+
+  const goldInK = numericValue / 1000
+  const formattedValue =
+    goldInK >= 10 || Number.isInteger(goldInK) ? goldInK.toFixed(0) : goldInK.toFixed(1)
+
+  return `${formattedValue}K`
+}
+const getStageClearGoldReward = (stage) => {
+  const waveSet = Math.ceil(stage / 10) - 1
+  const baseReward = (10 * stage + 175) ** (1 + 0.005 * waveSet)
+  return Math.max(20, Math.floor(baseReward / 10) * 10)
+}
 
 const mapBackgrounds = [
-  '/%EB%A7%B5/%EA%B0%80%EB%94%94%EC%96%B8%20%ED%8C%B0%EB%A6%AC%EC%8A%A4.png',
-  '/%EB%A7%B5/%EA%B2%90%EC%8B%9C%20%EB%8C%80%EB%A5%99.png',
-  '/%EB%A7%B5/%EA%B8%B0%EC%96%B4%20%ED%8F%AC%EB%A0%88%EC%8A%A4%ED%8A%B8.png',
-  '/%EB%A7%B5/%EA%B8%B0%EC%96%B4%EC%82%AC%EB%B0%94%EB%82%98.png',
-  '/%EB%A7%B5/%EB%82%98%EC%9D%B4%ED%8A%B8%EB%A9%94%EC%96%B4%20%EC%86%94%EC%A0%80%EC%8A%A4.png',
-  '/%EB%A7%B5/%EB%84%A4%ED%8A%B8%EC%9D%98%20%EB%B0%94%EB%8B%A4.png',
-  '/%EB%A7%B5/%EB%8B%A4%ED%81%AC%20%EC%97%90%EB%A6%AC%EC%96%B4.png',
-  '/%EB%A7%B5/%EB%8B%A4%ED%81%AC%20%EC%9B%B9.png',
-  '/%EB%A7%B5/%EB%8B%A4%ED%81%AC%20%ED%95%84%EB%93%9C.png',
-  '/%EB%A7%B5/%EB%A9%94%ED%83%88%20%EC%97%A0%ED%8C%8C%EC%9D%B4%EC%96%B4.png',
-  '/%EB%A7%B5/%EB%AC%B4%ED%95%9C%EC%82%B0.png',
-  '/%EB%A7%B5/%EB%AF%B8%ED%95%98%EB%9D%BC%EC%8B%9C%20%EC%82%B0.png',
-  '/%EB%A7%B5/%EB%B6%80%ED%8A%B8%20%ED%99%94%EC%82%B0.png',
-  '/%EB%A7%B5/%EB%B9%84%ED%8B%80%EB%9E%9C%EB%93%9C.png',
-  '/%EB%A7%B5/%EC%82%AC%EA%B7%9C%EC%82%B0.png',
-  '/%EB%A7%B5/%EC%84%A0%EA%B3%B5%EA%B3%84.png',
-  '/%EB%A7%B5/%EC%84%BC%ED%8A%B8%EB%9F%B4%20%ED%83%80%EC%9A%B4.png',
-  '/%EB%A7%B5/%EC%8B%9C%EC%9E%91%EC%9D%98%EB%A7%88%EC%9D%84.png',
-  '/%EB%A7%B5/%EC%93%B0%EB%A0%88%EA%B8%B0%EC%9D%98%20%EC%82%B0.png',
-  '/%EB%A7%B5/%EC%95%84%EC%8B%9C%EB%85%B8%20%EC%84%AC.png',
-  '/%EB%A7%B5/%EC%95%84%EC%9D%B4%EC%8A%A4%20%EC%83%9D%EC%B8%84%EC%96%B4%EB%A6%AC.png',
-  '/%EB%A7%B5/%EC%96%B4%EB%B9%84%EC%8A%A4%20%EC%97%90%EB%A6%AC%EC%96%B4.png',
-  '/%EB%A7%B5/%EC%96%B4%EC%85%88%EB%B8%94%EB%9F%AC%20%ED%83%80%EC%9B%8C.png',
-  '/%EB%A7%B5/%EC%98%A4%EB%B2%84%EB%8D%B8%20%EB%AC%98%EC%A7%80.png',
-  '/%EB%A7%B5/%EC%9A%A9%EC%9D%98%EB%88%88%ED%98%B8%EC%88%98.png',
-  '/%EB%A7%B5/%EC%9A%A9%EC%A0%95%EA%B6%81.png',
-  '/%EB%A7%B5/%EC%9C%88%EB%93%9C%20%EA%B0%80%EB%94%94%EC%96%B8%EC%A6%88.png',
-  '/%EB%A7%B5/%EC%9D%B4%EB%B8%94%20%ED%8F%AC%EB%A0%88%EC%8A%A4%ED%8A%B8.png',
-  '/%EB%A7%B5/%EC%A7%80%ED%95%98%20%ED%95%98%EC%88%98%EB%8F%84.png',
-  '/%EB%A7%B5/%EC%BD%94%EB%8D%B1%20%EC%9C%A0%EC%A0%81.png',
-  '/%EB%A7%B5/%EC%BD%94%EC%A6%88%EB%AF%B9%20%EC%97%90%EB%A6%AC%EC%96%B4.png',
-  '/%EB%A7%B5/%EC%BD%94%ED%80%B4%ED%86%A0%EC%8A%A4.png',
-  '/%EB%A7%B5/%ED%8C%A9%ED%86%A0%EB%A6%AC%EC%96%BC%20%EC%97%90%EB%A6%AC%EC%96%B4.png',
-  '/%EB%A7%B5/%ED%99%A9%EA%B8%88%ED%96%A5.png',
-  '/%EB%A7%B5/%ED%99%A9%EC%B2%9C.png',
+  '/맵/가디언 팰리스.png',
+  '/맵/겐시 대륙.png',
+  '/맵/기어 포레스트.png',
+  '/맵/기어사바나.png',
+  '/맵/나이트메어 솔저스.png',
+  '/맵/네트의 바다.png',
+  '/맵/다크 에리어.png',
+  '/맵/다크 웹.png',
+  '/맵/다크 필드.png',
+  '/맵/메탈 엠파이어.png',
+  '/맵/무한산.png',
+  '/맵/미하라시 산.png',
+  '/맵/부트 화산.png',
+  '/맵/비틀랜드.png',
+  '/맵/사규산.png',
+  '/맵/선공계.png',
+  '/맵/센트럴 타운.png',
+  '/맵/시작의마을.png',
+  '/맵/쓰레기의 산.png',
+  '/맵/아시노 섬.png',
+  '/맵/아이스 생츄어리.png',
+  '/맵/어비스 에리어.png',
+  '/맵/어셈블러 타워.png',
+  '/맵/오버델 묘지.png',
+  '/맵/용의눈호수.png',
+  '/맵/용정궁.png',
+  '/맵/윈드 가디언즈.png',
+  '/맵/이블 포레스트.png',
+  '/맵/지하 하수도.png',
+  '/맵/코덱 유적.png',
+  '/맵/코즈믹 에리어.png',
+  '/맵/코퀴토스.png',
+  '/맵/팩토리얼 에리어.png',
+  '/맵/황금향.png',
+  '/맵/황천.png',
 ]
 
 const MAP_ROTATION_MS = 9000
@@ -267,7 +285,7 @@ const getRandomMapIndex = (currentIndex = -1) => {
 }
 
 const mapBackgroundByName = mapBackgrounds.reduce((result, url) => {
-  const fileName = decodeURIComponent(url.split('/').pop() ?? '')
+  const fileName = url.split('/').pop() ?? ''
   result[fileName.replace('.png', '')] = url
   return result
 }, {})
@@ -775,6 +793,14 @@ function App() {
 
     const allEnemiesDefeated = nextEnemies.every((e) => e.currentHp === 0)
     const isPlayerDefeated = nextPlayer.currentHp === 0
+    const stageClearGold = allEnemiesDefeated ? getStageClearGoldReward(gameState.currentStage) : 0
+    const nextGold = (gameState.gold ?? 0) + stageClearGold
+    const nextGameState = {
+      ...gameState,
+      player: nextPlayer,
+      enemies: nextEnemies,
+      gold: nextGold,
+    }
 
     if (isPlayerDefeated) {
       logs.push('\uB208\uC55E\uC774 \uAE5C\uAE5C\uD574\uC84C\uB2E4...')
@@ -785,18 +811,15 @@ function App() {
       }, 3000)
     } else if (allEnemiesDefeated) {
       logs.push('\uC804\uD22C\uC5D0\uC11C \uC2B9\uB9AC\uD588\uB2E4!')
+      logs.push(`골드 ${formatGold(stageClearGold)}를 획득했다!`)
       setTimeout(() => {
-        handleNextStage(gameState, nextPlayer)
+        handleNextStage(nextGameState, nextPlayer)
       }, 3000)
     } else {
       logs.push(getBattlePrompt(nextPlayer.name))
     }
 
-    setGameState({
-      ...gameState,
-      player: nextPlayer,
-      enemies: nextEnemies,
-    })
+    setGameState(nextGameState)
     setCurrentLogs(createBattleLog(...logs))
 
     if (!isPlayerDefeated && !allEnemiesDefeated) {
@@ -1002,6 +1025,7 @@ function App() {
       currentStage: startingStage,
       maxStage: TOTAL_STAGE_COUNT,
       currentMap: mapName,
+      gold: 0,
       encounterGroup,
       encounterCount,
       encounterPool: mapEncounterPool,
@@ -1224,9 +1248,15 @@ function App() {
                     <h2 className="adventure-card__value">{gameState?.currentMap}</h2>
                   </div>
                   <div className="adventure-card adventure-card--compact">
-                    <p className="adventure-card__label">STAGE</p>
-                    <p className="adventure-card__meta">
-                      {gameState?.currentStage} / {gameState?.maxStage}
+                    <p className="adventure-card__line">
+                      <span className="adventure-card__label">STAGE</span>
+                      <span className="adventure-card__meta">
+                        {gameState?.currentStage} / {gameState?.maxStage}
+                      </span>
+                    </p>
+                    <p className="adventure-card__line adventure-card__line--gold">
+                      <span className="adventure-card__submeta">GOLD</span>
+                      <span className="adventure-card__gold">{formatGold(gameState?.gold ?? 0)}</span>
                     </p>
                   </div>
                 </div>

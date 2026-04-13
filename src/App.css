@@ -519,13 +519,17 @@
   right: clamp(18px, 2.8vw, 34px);
   z-index: 3;
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: space-between;
   gap: 14px;
 }
 
 .adventure-card {
   width: min(100%, 240px);
+  min-height: clamp(92px, 11vh, 116px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 14px 16px;
   border: 4px solid rgba(221, 83, 58, 0.94);
   background: rgba(37, 34, 48, 0.88);
@@ -537,6 +541,24 @@
 
 .adventure-card--compact {
   text-align: right;
+  align-items: flex-end;
+}
+
+.adventure-card__line {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+}
+
+.adventure-card__line + .adventure-card__line {
+  margin-top: 8px;
+}
+
+.adventure-card__line--gold {
+  margin-top: 8px;
 }
 
 .adventure-card__label,
@@ -550,9 +572,15 @@
 }
 
 .adventure-card__submeta {
-  margin-top: 6px;
-  font-size: clamp(0.7rem, 0.88vw, 0.82rem);
   opacity: 0.9;
+}
+
+.adventure-card__gold {
+  margin: 0;
+  color: #ffd468;
+  font-family: var(--font-pixel-mono);
+  font-size: clamp(0.82rem, 1vw, 0.94rem);
+  letter-spacing: 0.08em;
 }
 
 .adventure-card__value {
