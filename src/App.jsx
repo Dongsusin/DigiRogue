@@ -1,10 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import babyStageData from '../data/디지몬/유아기.json'
 import childStageData from '../data/디지몬/유년기.json'
 import growthStageData from '../data/디지몬/성장기.json'
 import matureStageData from '../data/디지몬/성숙기.json'
 import perfectStageData from '../data/디지몬/완전체.json'
 import ultimateStageData from '../data/디지몬/궁극체.json'
+import babySkillData from '../data/기술/유아기.json'
+import childSkillData from '../data/기술/유년기.json'
+import growthSkillData from '../data/기술/성장기.json'
+import matureSkillData from '../data/기술/성숙기.json'
+import perfectSkillData from '../data/기술/완전체.json'
+import ultimateSkillData from '../data/기술/궁극체.json'
+import superUltimateSkillData from '../data/기술/초궁극체.json'
 import mapData from '../data/map.json'
 import './App.css'
 
@@ -12,6 +19,13 @@ const menuItems = [
   { label: '\uC0C8\uB85C\uD558\uAE30', key: 'new-game', disabled: false },
   { label: '\uC774\uC5B4\uD558\uAE30', key: 'continue', disabled: true },
   { label: '\uC124\uC815', key: 'settings', disabled: false },
+]
+
+const battleMenuItems = [
+  { label: '\uACF5\uACA9', key: 'attack', active: true },
+  { label: '\uC544\uC774\uD15C', key: 'item', active: false },
+  { label: '\uAD50\uCCB4', key: 'swap', active: false },
+  { label: '\uB3C4\uB9DD', key: 'run', active: false },
 ]
 
 const growthStageDigimonUrls = [
@@ -105,6 +119,52 @@ const allDigimonLookup = Object.entries(digimonStageDataMap).reduce((result, [st
   })
   return result
 }, new Map())
+
+const allSkillLookup = [
+  ...babySkillData,
+  ...childSkillData,
+  ...growthSkillData,
+  ...matureSkillData,
+  ...perfectSkillData,
+  ...ultimateSkillData,
+  ...superUltimateSkillData,
+].reduce((result, skill) => {
+  if (!result.has(skill.기술명)) {
+    result.set(skill.기술명, skill)
+  }
+
+  return result
+}, new Map())
+
+const typeAdvantageMap = {
+  데이터: ['백신'],
+  백신: ['바이러스'],
+  바이러스: ['데이터'],
+  프리: ['불명'],
+  불명: ['프리'],
+}
+
+const attributeAdvantageMap = {
+  불: ['나무', '흙'],
+  나무: ['흙', '번개'],
+  흙: ['번개', '강철'],
+  번개: ['강철', '얼음'],
+  강철: ['얼음', '바람'],
+  얼음: ['바람', '어둠'],
+  바람: ['어둠', '빛'],
+  어둠: ['빛', '물'],
+  빛: ['물', '불'],
+  물: ['불', '나무'],
+}
+
+const BATTLE_LOG_LIMIT = 4
+const STARTING_PLAYER_LEVEL = 5
+const EXP_BAR_ANIMATION_MS = 520
+const EXP_BAR_RESET_MS = 70
+const CLASSIC_LEVEL_CAPS = [
+  10, 16, 24, 32, 38, 48, 56, 64, 74, 84, 94, 104, 114, 126, 138, 150, 162, 174, 188, 200,
+]
+const getBattlePrompt = (name) => `${name}은 무엇을 할까?`
 
 const mapBackgrounds = [
   '/%EB%A7%B5/%EA%B0%80%EB%94%94%EC%96%B8%20%ED%8C%B0%EB%A6%AC%EC%8A%A4.png',
@@ -218,16 +278,30 @@ const getMapNameForStage = (stage) => {
   return STAGE_ROUTE[routeIndex]
 }
 
-const getMapBackgroundUrl = (mapName) => mapBackgroundByName[mapName] ?? mapBackgrounds[0]
-
-const hashText = (text) => {
-  let hash = 0
-
-  for (const char of text) {
-    hash = (hash * 31 + char.codePointAt(0)) % 1000003
+const getLevelCapForStage = (stage) => {
+  if (stage <= 10) {
+    return 10
   }
 
-  return hash
+  const safeStage = Math.min(Math.max(stage, 1), TOTAL_STAGE_COUNT)
+  const capIndex = Math.min(CLASSIC_LEVEL_CAPS.length - 1, Math.floor((safeStage - 1) / STAGES_PER_MAP))
+  return CLASSIC_LEVEL_CAPS[capIndex]
+}
+
+const getMapBackgroundUrl = (mapName) => mapBackgroundByName[mapName] ?? mapBackgrounds[0]
+
+const getRandomIntInclusive = (min, max) =>
+  Math.floor(Math.random() * (Math.max(min, max) - Math.min(min, max) + 1)) + Math.min(min, max)
+
+const shuffleItems = (items) => {
+  const nextItems = [...items]
+
+  for (let index = nextItems.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1))
+    ;[nextItems[index], nextItems[randomIndex]] = [nextItems[randomIndex], nextItems[index]]
+  }
+
+  return nextItems
 }
 
 const getEncounterGroupForStage = (stage) => {
@@ -266,23 +340,298 @@ const getEncounterCountForStage = (stage) => {
   return 3
 }
 
-const buildEnemyParty = (mapName, stage, encounterPool, encounterCount) => {
-  const rankedNames = [...encounterPool].sort(
-    (left, right) =>
-      hashText(`${mapName}:${stage}:${left}`) - hashText(`${mapName}:${stage}:${right}`)
+const createBattleLog = (...lines) => lines.filter(Boolean).slice(-BATTLE_LOG_LIMIT)
+
+const getSkillData = (skillName) =>
+  allSkillLookup.get(skillName) ?? {
+    기술명: skillName,
+    데미지: 40,
+    명중률: '100%',
+    분류: '물리형',
+    속성: '무',
+  }
+
+const getChartRelation = (chart, attackValue, defendValue) => {
+  if (!attackValue || attackValue === '무' || !defendValue || defendValue === '무') {
+    return 0
+  }
+
+  const strongAgainst = chart[attackValue] ?? []
+  const counterAgainst = chart[defendValue] ?? []
+
+  if (strongAgainst.includes(defendValue)) {
+    return 1
+  }
+
+  if (counterAgainst.includes(attackValue)) {
+    return -1
+  }
+
+  return 0
+}
+
+const getFinalMultiplier = (typeRelation, attributeRelation) => {
+  const favorableCount = [typeRelation, attributeRelation].filter((value) => value > 0).length
+  const unfavorableCount = [typeRelation, attributeRelation].filter((value) => value < 0).length
+
+  if (favorableCount === 2) {
+    return 3
+  }
+
+  if (favorableCount === 1 && unfavorableCount === 0) {
+    return 2
+  }
+
+  if (favorableCount === 1 && unfavorableCount === 1) {
+    return 1
+  }
+
+  if (favorableCount === 0 && unfavorableCount === 2) {
+    return 0
+  }
+
+  if (favorableCount === 0 && unfavorableCount === 1) {
+    return 0.5
+  }
+
+  return 1
+}
+
+const getAccuracyValue = (accuracyText) => {
+  const numericValue = Number.parseInt(String(accuracyText ?? '100').replace('%', ''), 10)
+  return Number.isNaN(numericValue) ? 100 : numericValue
+}
+
+const getExperienceRatio = (combatant) => {
+  if (!combatant?.experienceToNext) {
+    return 0
+  }
+
+  return Math.max(0, Math.min(100, (combatant.experience / combatant.experienceToNext) * 100))
+}
+
+const getExperienceToNextLevel = (level) => Math.floor(20 + level * 12)
+
+const getBaseStatTotal = (data) =>
+  (data?.체력 ?? 0) +
+  (data?.공격 ?? 0) +
+  (data?.특공 ?? 0) +
+  (data?.방어 ?? 0) +
+  (data?.특방 ?? 0) +
+  (data?.스피드 ?? 0)
+
+const getScaledStat = (stat, level, perLevelRate) =>
+  Math.max(1, Math.floor((stat ?? 50) * (1 + Math.max(0, level - STARTING_PLAYER_LEVEL) * perLevelRate)))
+
+const calculateBattleStats = (data, level) => ({
+  maxHp: Math.max(10, getScaledStat(data?.체력 ?? 50, level, 0.018)),
+  attack: getScaledStat(data?.공격 ?? 50, level, 0.015),
+  specialAttack: getScaledStat(data?.특공 ?? 50, level, 0.015),
+  defense: getScaledStat(data?.방어 ?? 50, level, 0.015),
+  specialDefense: getScaledStat(data?.특방 ?? 50, level, 0.015),
+  speed: getScaledStat(data?.스피드 ?? 50, level, 0.014),
+})
+
+const getEnemyLevelForStage = (stage) => {
+  if (stage <= 10) {
+    return getRandomIntInclusive(1, 8)
+  }
+
+  const levelCap = getLevelCapForStage(stage)
+  const bandIndex = Math.floor((Math.min(Math.max(stage, 1), TOTAL_STAGE_COUNT) - 1) / STAGES_PER_MAP)
+  const previousCap = bandIndex === 0 ? STARTING_PLAYER_LEVEL : CLASSIC_LEVEL_CAPS[bandIndex - 1]
+  const stageProgress = ((stage - 1) % STAGES_PER_MAP) / Math.max(1, STAGES_PER_MAP - 1)
+  const baseLevel = previousCap + (levelCap - previousCap) * (0.45 + stageProgress * 0.55)
+  const minimumLevel = Math.max(2, Math.min(levelCap, Math.floor(baseLevel) - 1))
+  const maximumLevel = Math.max(minimumLevel, Math.min(levelCap, Math.ceil(baseLevel) + 1))
+
+  return getRandomIntInclusive(minimumLevel, maximumLevel)
+}
+
+const getExperienceReward = (enemy) =>
+  Math.max(18, Math.floor(enemy.level * 6 + enemy.baseStatTotal * 0.06))
+
+const createCombatant = ({ id, name, imageUrl, data, level = STARTING_PLAYER_LEVEL, currentHp, experience = 0 }) => {
+  const battleStats = calculateBattleStats(data, level)
+
+  return {
+    id,
+    name,
+    imageUrl: imageUrl ?? '',
+    speciesData: data,
+    level,
+    experience,
+    experienceToNext: getExperienceToNextLevel(level),
+    currentHp: currentHp ?? battleStats.maxHp,
+    maxHp: battleStats.maxHp,
+    baseStatTotal: getBaseStatTotal(data),
+    type: data?.타입 ?? '무',
+    attribute: data?.속성 ?? '무',
+    attack: battleStats.attack,
+    specialAttack: battleStats.specialAttack,
+    defense: battleStats.defense,
+    specialDefense: battleStats.specialDefense,
+    speed: battleStats.speed,
+    skills: [...(data?.기술 ?? [])].slice(0, 4),
+  }
+}
+
+const getLivingEnemyIndex = (enemies) => enemies.findIndex((enemy) => enemy.currentHp > 0)
+
+const getRandomEnemySkill = (enemy) => {
+  if (!enemy?.skills?.length) {
+    return null
+  }
+
+  return enemy.skills[Math.floor(Math.random() * enemy.skills.length)]
+}
+
+const getMatchupResult = ({ attackerType, skillAttribute, defenderType, defenderAttribute }) => {
+  const typeRelation = getChartRelation(typeAdvantageMap, attackerType, defenderType)
+  const attributeRelation = getChartRelation(
+    attributeAdvantageMap,
+    skillAttribute,
+    defenderAttribute
   )
 
-  return rankedNames.slice(0, encounterCount).map((name, index) => {
-    const data = allDigimonLookup.get(name)
-    const maxHp = data?.체력 ?? 100
+  return {
+    typeRelation,
+    attributeRelation,
+    multiplier: getFinalMultiplier(typeRelation, attributeRelation),
+  }
+}
 
+const levelUpCombatant = (combatant, nextLevel) => {
+  const previousMaxHp = combatant.maxHp
+  const nextCombatant = createCombatant({
+    id: combatant.id,
+    name: combatant.name,
+    imageUrl: combatant.imageUrl,
+    data: combatant.speciesData,
+    level: nextLevel,
+    experience: combatant.experience,
+  })
+
+  return {
+    ...nextCombatant,
+    currentHp: Math.min(nextCombatant.maxHp, combatant.currentHp + (nextCombatant.maxHp - previousMaxHp)),
+  }
+}
+
+const applyExperienceGain = ({ combatant, defeatedEnemies, levelCap }) => {
+  if (!defeatedEnemies.length) {
     return {
+      nextCombatant: combatant,
+      battleLogs: [],
+    }
+  }
+
+  let nextCombatant = { ...combatant }
+  const battleLogs = []
+
+  defeatedEnemies.forEach((enemy) => {
+    const reward = getExperienceReward(enemy)
+    nextCombatant.experience += reward
+    battleLogs.push(`${enemy.name}을(를) 쓰러뜨렸다!`)
+    battleLogs.push(`${nextCombatant.name}은(는) 경험치 ${reward}를 얻었다!`)
+  })
+
+  while (
+    nextCombatant.level < levelCap &&
+    nextCombatant.experience >= nextCombatant.experienceToNext
+  ) {
+    nextCombatant.experience -= nextCombatant.experienceToNext
+    nextCombatant = levelUpCombatant(nextCombatant, nextCombatant.level + 1)
+    battleLogs.push(`${nextCombatant.name}의 레벨이 Lv.${nextCombatant.level}이 되었다!`)
+  }
+
+  if (nextCombatant.level >= levelCap) {
+    nextCombatant.experience = Math.min(
+      nextCombatant.experience,
+      Math.max(0, nextCombatant.experienceToNext - 1)
+    )
+  }
+
+  return {
+    nextCombatant,
+    battleLogs,
+  }
+}
+
+const resolveAttackAction = ({ attacker, defender, skillName }) => {
+  const skillData = getSkillData(skillName)
+  const battleLogs = [`${attacker.name}의 ${skillData.기술명}!`]
+  const accuracyValue = getAccuracyValue(skillData.명중률)
+
+  if (Math.random() * 100 >= accuracyValue) {
+    return {
+      nextDefender: defender,
+      battleLogs: [...battleLogs, `${attacker.name}의 공격이 빗나갔다!`],
+    }
+  }
+
+  const attackStat =
+    skillData.분류 === '특수형' ? attacker.specialAttack : attacker.attack
+  const defenseStat =
+    skillData.분류 === '특수형' ? defender.specialDefense : defender.defense
+  const matchupResult = getMatchupResult({
+    attackerType: attacker.type,
+    skillAttribute: skillData.속성,
+    defenderType: defender.type,
+    defenderAttribute: defender.attribute,
+  })
+  const finalMultiplier = matchupResult.multiplier
+
+  if (finalMultiplier === 0) {
+    return {
+      nextDefender: defender,
+      battleLogs: [...battleLogs, '상성이 너무 불리해서 공격이 통하지 않았다!'],
+    }
+  }
+
+  const scaledPower =
+    (((2 * Math.max(1, attacker.level)) / 5 + 2) * (skillData.데미지 ?? 0) * Math.max(1, attackStat)) /
+    Math.max(1, defenseStat)
+  const baseDamage = Math.floor(scaledPower / 50) + 2
+  const randomFactor = 0.85 + Math.random() * 0.15
+  const damage = Math.max(1, Math.floor(baseDamage * finalMultiplier * randomFactor))
+  const nextHp = Math.max(0, defender.currentHp - damage)
+  const nextDefender = {
+    ...defender,
+    currentHp: nextHp,
+  }
+  const nextLogs = [...battleLogs, `${defender.name}에게 ${damage} 데미지!`]
+
+  if (finalMultiplier > 1) {
+    nextLogs.push('효과가 굉장했다!')
+  } else if (finalMultiplier > 0 && finalMultiplier < 1) {
+    nextLogs.push('효과가 별로인 듯하다...')
+  }
+
+  if (nextHp === 0) {
+    nextLogs.push(`${defender.name}은(는) 쓰러졌다!`)
+  }
+
+  return {
+    nextDefender,
+    battleLogs: nextLogs,
+  }
+}
+
+const buildEnemyParty = (stage, encounterPool, encounterCount) => {
+  const shuffledNames = shuffleItems(encounterPool)
+
+  return shuffledNames.slice(0, encounterCount).map((name, index) => {
+    const data = allDigimonLookup.get(name)
+    const level = getEnemyLevelForStage(stage)
+
+    return createCombatant({
       id: `${name}-${index}`,
       name,
       imageUrl: data?.imageUrl ?? '',
-      currentHp: maxHp,
-      maxHp,
-    }
+      data,
+      level,
+    })
   })
 }
 
@@ -300,6 +649,14 @@ function App() {
   const [screenMode, setScreenMode] = useState('menu')
   const [selectedGrowthIndex, setSelectedGrowthIndex] = useState(0)
   const [gameState, setGameState] = useState(null)
+  const [selectedBattleCommand, setSelectedBattleCommand] = useState('attack')
+  const [battlePanelMode, setBattlePanelMode] = useState('commands')
+  const [selectedSkillIndex, setSelectedSkillIndex] = useState(0)
+  const [currentLogs, setCurrentLogs] = useState([])
+  const [displayedPlayerExpRatio, setDisplayedPlayerExpRatio] = useState(0)
+  const [isPlayerExpTransitionInstant, setIsPlayerExpTransitionInstant] = useState(false)
+  const expAnimationTimeoutsRef = useRef([])
+  const previousPlayerProgressRef = useRef(null)
   const [mapTransition, setMapTransition] = useState(() => {
     const initialIndex = getRandomMapIndex()
 
@@ -309,6 +666,145 @@ function App() {
       isFading: false,
     }
   })
+
+  const clearExpAnimationQueue = () => {
+    expAnimationTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
+    expAnimationTimeoutsRef.current = []
+  }
+
+  const handleNextStage = (currentGameState, currentPlayer) => {
+    const nextStageNum = currentGameState.currentStage + 1
+    if (nextStageNum > TOTAL_STAGE_COUNT) {
+      setScreenMode('menu')
+      setGameState(null)
+      setCurrentLogs([])
+      return
+    }
+
+    const mapName = getMapNameForStage(nextStageNum)
+    const encounterGroup = getEncounterGroupForStage(nextStageNum)
+    const encounterCount = getEncounterCountForStage(nextStageNum)
+    const levelCap = getLevelCapForStage(nextStageNum)
+    const mapEncounterPool = mapData[mapName]?.['\uB4F1\uC7A5\uB514\uC9C0\uBAAC']?.[encounterGroup] ?? []
+    const newEnemies = buildEnemyParty(nextStageNum, mapEncounterPool, encounterCount)
+
+    setGameState({
+      ...currentGameState,
+      currentStage: nextStageNum,
+      currentMap: mapName,
+      encounterGroup,
+      encounterCount,
+      encounterPool: mapEncounterPool,
+      levelCap,
+      enemies: newEnemies,
+      player: currentPlayer,
+    })
+    setCurrentLogs(createBattleLog(getBattlePrompt(currentPlayer.name)))
+    setSelectedBattleCommand('attack')
+    setSelectedSkillIndex(0)
+    setBattlePanelMode('commands')
+  }
+
+  const handleExecuteSkill = (skillIndex) => {
+    if (!gameState || battlePanelMode !== 'attack' || gameState.player.currentHp <= 0) return
+
+    const playerSkill = battleSkillSlots[skillIndex]
+    if (!playerSkill) return
+
+    setSelectedSkillIndex(skillIndex)
+    setSelectedBattleCommand('attack')
+
+    const targetEnemyIndex = getLivingEnemyIndex(gameState.enemies)
+    if (targetEnemyIndex === -1) return
+
+    const enemy = gameState.enemies[targetEnemyIndex]
+    const enemySkill = getRandomEnemySkill(enemy)
+
+    let logs = []
+    let nextPlayer = { ...gameState.player }
+    let nextEnemies = [...gameState.enemies]
+    let nextEnemy = { ...enemy }
+
+    const playerAttacks = () => {
+      const result = resolveAttackAction({
+        attacker: nextPlayer,
+        defender: nextEnemy,
+        skillName: playerSkill,
+      })
+      nextEnemy = result.nextDefender
+      logs.push(...result.battleLogs)
+    }
+
+    const enemyAttacks = () => {
+      if (!enemySkill) return
+      const result = resolveAttackAction({
+        attacker: nextEnemy,
+        defender: nextPlayer,
+        skillName: enemySkill,
+      })
+      nextPlayer = result.nextDefender
+      logs.push(...result.battleLogs)
+    }
+
+    if (nextPlayer.speed >= nextEnemy.speed) {
+      playerAttacks()
+      if (nextEnemy.currentHp > 0) {
+        enemyAttacks()
+      }
+    } else {
+      enemyAttacks()
+      if (nextPlayer.currentHp > 0) {
+        playerAttacks()
+      }
+    }
+
+    nextEnemies[targetEnemyIndex] = nextEnemy
+    const defeatedEnemies = gameState.enemies.filter(
+      (currentEnemy, index) => currentEnemy.currentHp > 0 && nextEnemies[index].currentHp === 0
+    )
+
+    if (nextPlayer.currentHp > 0 && defeatedEnemies.length > 0) {
+      const experienceResult = applyExperienceGain({
+        combatant: nextPlayer,
+        defeatedEnemies,
+        levelCap: gameState.levelCap,
+      })
+      nextPlayer = experienceResult.nextCombatant
+      logs.push(...experienceResult.battleLogs)
+    }
+
+    const allEnemiesDefeated = nextEnemies.every((e) => e.currentHp === 0)
+    const isPlayerDefeated = nextPlayer.currentHp === 0
+
+    if (isPlayerDefeated) {
+      logs.push('\uB208\uC55E\uC774 \uAE5C\uAE5C\uD574\uC84C\uB2E4...')
+      setTimeout(() => {
+        setScreenMode('menu')
+        setGameState(null)
+        setCurrentLogs([])
+      }, 3000)
+    } else if (allEnemiesDefeated) {
+      logs.push('\uC804\uD22C\uC5D0\uC11C \uC2B9\uB9AC\uD588\uB2E4!')
+      setTimeout(() => {
+        handleNextStage(gameState, nextPlayer)
+      }, 3000)
+    } else {
+      logs.push(getBattlePrompt(nextPlayer.name))
+    }
+
+    setGameState({
+      ...gameState,
+      player: nextPlayer,
+      enemies: nextEnemies,
+    })
+    setCurrentLogs(createBattleLog(...logs))
+
+    if (!isPlayerDefeated && !allEnemiesDefeated) {
+      setBattlePanelMode('commands')
+    } else {
+      setBattlePanelMode('logs') // Prevent further actions while waiting for timeout
+    }
+  }
 
   useEffect(() => {
     if (screenMode === 'adventure' || mapTransition.isFading) {
@@ -346,6 +842,93 @@ function App() {
     }
   }, [mapTransition.activeIndex, mapTransition.isFading, screenMode])
 
+  useEffect(() => {
+    if (!gameState?.player) {
+      clearExpAnimationQueue()
+      previousPlayerProgressRef.current = null
+      setIsPlayerExpTransitionInstant(true)
+      setDisplayedPlayerExpRatio(0)
+      return undefined
+    }
+
+    const currentSnapshot = {
+      id: gameState.player.id,
+      level: gameState.player.level,
+      ratio: getExperienceRatio(gameState.player),
+    }
+    const previousSnapshot = previousPlayerProgressRef.current
+
+    clearExpAnimationQueue()
+
+    if (!previousSnapshot || previousSnapshot.id !== currentSnapshot.id) {
+      setIsPlayerExpTransitionInstant(true)
+      setDisplayedPlayerExpRatio(currentSnapshot.ratio)
+
+      const timeoutId = window.setTimeout(() => {
+        setIsPlayerExpTransitionInstant(false)
+      }, 30)
+      expAnimationTimeoutsRef.current.push(timeoutId)
+      previousPlayerProgressRef.current = currentSnapshot
+      return undefined
+    }
+
+    const levelGainCount = Math.max(0, currentSnapshot.level - previousSnapshot.level)
+
+    if (levelGainCount === 0) {
+      setIsPlayerExpTransitionInstant(false)
+      setDisplayedPlayerExpRatio(previousSnapshot.ratio)
+
+      const timeoutId = window.setTimeout(() => {
+        setDisplayedPlayerExpRatio(currentSnapshot.ratio)
+      }, 30)
+      expAnimationTimeoutsRef.current.push(timeoutId)
+      previousPlayerProgressRef.current = currentSnapshot
+      return undefined
+    }
+
+    setIsPlayerExpTransitionInstant(false)
+    setDisplayedPlayerExpRatio(previousSnapshot.ratio)
+
+    let elapsed = 30
+
+    for (let index = 0; index < levelGainCount; index += 1) {
+      const fillTimeoutId = window.setTimeout(() => {
+        setIsPlayerExpTransitionInstant(false)
+        setDisplayedPlayerExpRatio(100)
+      }, elapsed)
+      expAnimationTimeoutsRef.current.push(fillTimeoutId)
+      elapsed += EXP_BAR_ANIMATION_MS
+
+      const resetTimeoutId = window.setTimeout(() => {
+        setIsPlayerExpTransitionInstant(true)
+        setDisplayedPlayerExpRatio(0)
+      }, elapsed)
+      expAnimationTimeoutsRef.current.push(resetTimeoutId)
+      elapsed += EXP_BAR_RESET_MS
+    }
+
+    const finalTimeoutId = window.setTimeout(() => {
+      setIsPlayerExpTransitionInstant(false)
+      setDisplayedPlayerExpRatio(currentSnapshot.ratio)
+    }, elapsed)
+    expAnimationTimeoutsRef.current.push(finalTimeoutId)
+    previousPlayerProgressRef.current = currentSnapshot
+
+    return undefined
+  }, [
+    gameState?.player?.id,
+    gameState?.player?.level,
+    gameState?.player?.experience,
+    gameState?.player?.experienceToNext,
+  ])
+
+  useEffect(
+    () => () => {
+      expAnimationTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
+    },
+    []
+  )
+
   const repositionDigitDrop = (dropId) => {
     setDigitDrops((currentDrops) =>
       currentDrops.map((drop) =>
@@ -374,15 +957,46 @@ function App() {
     }
   }
 
+  const handleBattleCommandSelect = (commandKey) => {
+    if (!gameState || battlePanelMode === 'logs') {
+      return
+    }
+
+    setSelectedBattleCommand(commandKey)
+
+    if (commandKey === 'attack') {
+      setBattlePanelMode('attack')
+      setSelectedSkillIndex(0)
+      return
+    }
+
+    if (commandKey === 'item') {
+      setCurrentLogs(createBattleLog('아이템은 아직 준비 중이다.', getBattlePrompt(gameState.player.name)))
+    } else if (commandKey === 'swap') {
+      setCurrentLogs(createBattleLog('교체 기능은 다음 단계에서 구현될 예정이다.', getBattlePrompt(gameState.player.name)))
+    } else if (commandKey === 'run') {
+      setCurrentLogs(createBattleLog('지금은 도망칠 수 없다!', getBattlePrompt(gameState.player.name)))
+    }
+
+    setBattlePanelMode('commands')
+  }
+
   const selectedGrowthDigimon = growthStageDigimon[selectedGrowthIndex]
   const handleStartAdventure = () => {
     const startingStage = 1
     const mapName = getMapNameForStage(startingStage)
     const encounterGroup = getEncounterGroupForStage(startingStage)
     const encounterCount = getEncounterCountForStage(startingStage)
+    const levelCap = getLevelCapForStage(startingStage)
     const mapEncounterPool = mapData[mapName]?.등장디지몬?.[encounterGroup] ?? []
-    const enemies = buildEnemyParty(mapName, startingStage, mapEncounterPool, encounterCount)
-    const maxHp = selectedGrowthDigimon.data?.체력 ?? 100
+    const enemies = buildEnemyParty(startingStage, mapEncounterPool, encounterCount)
+    const player = createCombatant({
+      id: 'player',
+      name: selectedGrowthDigimon.name,
+      imageUrl: selectedGrowthDigimon.url,
+      data: selectedGrowthDigimon.data,
+      level: STARTING_PLAYER_LEVEL,
+    })
 
     setGameState({
       currentStage: startingStage,
@@ -391,14 +1005,14 @@ function App() {
       encounterGroup,
       encounterCount,
       encounterPool: mapEncounterPool,
+      levelCap,
       enemies,
-      player: {
-        name: selectedGrowthDigimon.name,
-        imageUrl: selectedGrowthDigimon.url,
-        currentHp: maxHp,
-        maxHp,
-      },
+      player,
     })
+    setCurrentLogs(createBattleLog(getBattlePrompt(player.name)))
+    setSelectedBattleCommand('attack')
+    setBattlePanelMode('commands')
+    setSelectedSkillIndex(0)
     setScreenMode('adventure')
   }
 
@@ -415,27 +1029,39 @@ function App() {
   const playerHpRatio = gameState
     ? Math.max(0, Math.min(100, (gameState.player.currentHp / gameState.player.maxHp) * 100))
     : 0
+  const playerSkills = gameState?.player.skills ?? []
+  const battleSkillSlots = Array.from({ length: 4 }, (_, index) => playerSkills[index] ?? null)
+  const isAttackPanelOpen = battlePanelMode === 'attack'
+  const currentTargetEnemyIndex = gameState ? getLivingEnemyIndex(gameState.enemies) : -1
+  const currentTargetEnemy =
+    currentTargetEnemyIndex >= 0 && gameState ? gameState.enemies[currentTargetEnemyIndex] : null
 
   return (
-    <main className="main-screen">
+    <main
+      className={['main-screen', screenMode === 'adventure' ? 'main-screen--adventure' : '']
+        .filter(Boolean)
+        .join(' ')}
+    >
       <div
         className="main-screen__background main-screen__background--base"
         aria-hidden="true"
-        style={{ backgroundImage: `url("${activeBackgroundUrl}")` }}
+        style={
+          screenMode === 'adventure' ? undefined : { backgroundImage: `url("${activeBackgroundUrl}")` }
+        }
       />
-      <div
-        className={[
-          'main-screen__background',
-          'main-screen__background--next',
-          mapTransition.isFading && screenMode !== 'adventure'
-            ? 'main-screen__background--visible'
-            : '',
-        ]
-          .filter(Boolean)
-          .join(' ')}
-        aria-hidden="true"
-        style={{ backgroundImage: `url("${nextBackgroundUrl}")` }}
-      />
+      {screenMode !== 'adventure' && (
+        <div
+          className={[
+            'main-screen__background',
+            'main-screen__background--next',
+            mapTransition.isFading ? 'main-screen__background--visible' : '',
+          ]
+            .filter(Boolean)
+            .join(' ')}
+          aria-hidden="true"
+          style={{ backgroundImage: `url("${nextBackgroundUrl}")` }}
+        />
+      )}
       {screenMode !== 'adventure' && <div className="main-screen__veil" aria-hidden="true" />}
       {screenMode !== 'adventure' && (
         <div className="digit-rain" aria-hidden="true">
@@ -586,81 +1212,202 @@ function App() {
             </section>
           ) : (
             <section className="adventure-screen" aria-label={'\uAC8C\uC784 \uC2DC\uC791 \uD654\uBA74'}>
-              <div className="adventure-hud">
-                <div className="adventure-card">
-                  <p className="adventure-card__label">{'\uD604\uC7AC \uB9F5'}</p>
-                  <h2 className="adventure-card__value">{gameState?.currentMap}</h2>
+              <div className="adventure-stage">
+                <div
+                  className="adventure-stage__background"
+                  aria-hidden="true"
+                  style={{ backgroundImage: `url("${activeBackgroundUrl}")` }}
+                />
+                <div className="adventure-hud">
+                  <div className="adventure-card">
+                    <p className="adventure-card__label">{'\uD604\uC7AC \uB9F5'}</p>
+                    <h2 className="adventure-card__value">{gameState?.currentMap}</h2>
+                  </div>
+                  <div className="adventure-card adventure-card--compact">
+                    <p className="adventure-card__label">STAGE</p>
+                    <p className="adventure-card__meta">
+                      {gameState?.currentStage} / {gameState?.maxStage}
+                    </p>
+                  </div>
                 </div>
-                <div className="adventure-card adventure-card--compact">
-                  <p className="adventure-card__label">STAGE</p>
-                  <p className="adventure-card__meta">
-                    {gameState?.currentStage} / {gameState?.maxStage}
-                  </p>
+
+                <div className="adventure-field">
+                  <div className="adventure-player adventure-player--ally">
+                    <p className="adventure-player__name">
+                      {gameState?.player.name} · Lv.{gameState?.player.level}
+                    </p>
+                    <div className="adventure-player__sprite-wrap adventure-player__sprite-wrap--ally">
+                      <img
+                        className="adventure-player__sprite adventure-player__sprite--ally"
+                        src={gameState?.player.imageUrl}
+                        alt={gameState?.player.name}
+                      />
+                    </div>
+
+                    <div className="adventure-hp" role="img" aria-label="HP bar">
+                      <div className="adventure-hp__track">
+                        <span
+                          className="adventure-hp__fill"
+                          style={{ width: `${playerHpRatio}%` }}
+                        />
+                        <p className="adventure-hp__text">
+                          {gameState?.player.currentHp} / {gameState?.player.maxHp}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="adventure-exp" role="img" aria-label="experience bar">
+                      <div className="adventure-exp__track">
+                        <span
+                          className={[
+                            'adventure-exp__fill',
+                            isPlayerExpTransitionInstant ? 'adventure-exp__fill--instant' : '',
+                          ]
+                            .filter(Boolean)
+                            .join(' ')}
+                          style={{ width: `${displayedPlayerExpRatio}%` }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="adventure-enemies" aria-label={'\uC801 \uB514\uC9C0\uBAAC'}>
+                    {gameState?.enemies?.map((enemy, index) => {
+                      const enemyHpRatio = Math.max(
+                        0,
+                        Math.min(100, (enemy.currentHp / enemy.maxHp) * 100)
+                      )
+
+                      return (
+                        <div
+                          key={enemy.id}
+                          className={`adventure-enemy adventure-enemy--${gameState.enemies.length} adventure-enemy--slot-${index + 1}`}
+                        >
+                          <p className="adventure-player__name">
+                            {enemy.name} · Lv.{enemy.level}
+                          </p>
+                          <div className="adventure-player__sprite-wrap adventure-player__sprite-wrap--enemy">
+                            <img
+                              className="adventure-player__sprite adventure-player__sprite--enemy"
+                              src={enemy.imageUrl}
+                              alt={enemy.name}
+                            />
+                          </div>
+
+                          <div className="adventure-hp" role="img" aria-label="HP bar">
+                            <div className="adventure-hp__track">
+                              <span
+                                className="adventure-hp__fill adventure-hp__fill--enemy"
+                                style={{ width: `${enemyHpRatio}%` }}
+                              />
+                              <p className="adventure-hp__text">
+                                {enemy.currentHp} / {enemy.maxHp}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
                 </div>
               </div>
 
-              <div className="adventure-field">
-                <div className="adventure-player adventure-player--ally">
-                  <p className="adventure-player__name">{gameState?.player.name}</p>
-                  <div className="adventure-player__sprite-wrap adventure-player__sprite-wrap--ally">
-                    <img
-                      className="adventure-player__sprite adventure-player__sprite--ally"
-                      src={gameState?.player.imageUrl}
-                      alt={gameState?.player.name}
-                    />
-                  </div>
+              <div className="battle-console" aria-label={'\uBC30\uD2C0 UI'}>
+                <section
+                  className={[
+                    'battle-console__message',
+                    isAttackPanelOpen ? 'battle-console__message--skills' : '',
+                    !isAttackPanelOpen && currentLogs.length > 0 ? 'battle-console__message--logs' : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
+                  aria-label={
+                    isAttackPanelOpen
+                      ? '\uAE30\uC220 \uBAA9\uB85D'
+                      : '\uBC30\uD2C0 \uBA54\uC2DC\uC9C0'
+                  }
+                >
+                  {isAttackPanelOpen ? (
+                    <div className="battle-skill-grid">
+                      {battleSkillSlots.map((skill, index) => {
+                        const skillData = skill ? getSkillData(skill) : null
+                        const skillMatchup =
+                          skill && currentTargetEnemy && gameState
+                            ? getMatchupResult({
+                                attackerType: gameState.player.type,
+                                skillAttribute: skillData?.속성,
+                                defenderType: currentTargetEnemy.type,
+                                defenderAttribute: currentTargetEnemy.attribute,
+                              })
+                            : null
+                        const isAdvantageous = (skillMatchup?.multiplier ?? 1) > 1
 
-                  <div className="adventure-hp" role="img" aria-label="HP bar">
-                    <div className="adventure-hp__track">
-                      <span
-                        className="adventure-hp__fill"
-                        style={{ width: `${playerHpRatio}%` }}
-                      />
-                      <p className="adventure-hp__text">
-                        {gameState?.player.currentHp} / {gameState?.player.maxHp}
-                      </p>
+                        return (
+                          <button
+                            key={`${skill ?? 'empty'}-${index}`}
+                            type="button"
+                            className={[
+                              'battle-skill',
+                              skill ? '' : 'battle-skill--empty',
+                              index === selectedSkillIndex && skill
+                                ? 'battle-skill--active'
+                                : '',
+                              isAdvantageous ? 'battle-skill--advantage' : '',
+                            ]
+                              .filter(Boolean)
+                              .join(' ')}
+                            disabled={!skill}
+                            onClick={() => {
+                              if (skill) {
+                                handleExecuteSkill(index)
+                              }
+                            }}
+                          >
+                            <span className="battle-skill__marker" aria-hidden="true">
+                              {index === selectedSkillIndex && skill ? '\u25B6' : ''}
+                            </span>
+                            <span className="battle-skill__label">{skill ?? ''}</span>
+                          </button>
+                        )
+                      })}
                     </div>
-                  </div>
-                </div>
-
-                <div className="adventure-enemies" aria-label={'\uC801 \uB514\uC9C0\uBAAC'}>
-                  {gameState?.enemies?.map((enemy, index) => {
-                    const enemyHpRatio = Math.max(
-                      0,
-                      Math.min(100, (enemy.currentHp / enemy.maxHp) * 100)
-                    )
-
-                    return (
-                      <div
-                        key={enemy.id}
-                        className={`adventure-enemy adventure-enemy--${gameState.enemies.length} adventure-enemy--slot-${index + 1}`}
-                      >
-                        <p className="adventure-player__name adventure-player__name--enemy">
-                          {enemy.name}
+                  ) : currentLogs.length > 0 ? (
+                    <div className="battle-console__log-list">
+                      {currentLogs.map((log, index) => (
+                        <p key={index} className="battle-console__message-text">
+                          {log}
                         </p>
-                        <div className="adventure-player__sprite-wrap adventure-player__sprite-wrap--enemy">
-                          <img
-                            className="adventure-player__sprite adventure-player__sprite--enemy"
-                            src={enemy.imageUrl}
-                            alt={enemy.name}
-                          />
-                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="battle-console__message-text">
+                      {gameState?.player.name}
+                      {'\uC740 \uBB34\uC5C7\uC744 \uD560\uAE4C?'}
+                    </p>
+                  )}
+                </section>
 
-                        <div className="adventure-hp adventure-hp--enemy" role="img" aria-label="HP bar">
-                          <div className="adventure-hp__track">
-                            <span
-                              className="adventure-hp__fill adventure-hp__fill--enemy"
-                              style={{ width: `${enemyHpRatio}%` }}
-                            />
-                            <p className="adventure-hp__text">
-                              {enemy.currentHp} / {enemy.maxHp}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
+                <section className="battle-console__commands" aria-label={'\uBC30\uD2C0 \uBA54\uB274'}>
+                  {battleMenuItems.map((item) => (
+                    <button
+                      key={item.key}
+                      type="button"
+                      className={[
+                        'battle-command',
+                        item.key === selectedBattleCommand ? 'battle-command--active' : '',
+                      ]
+                        .filter(Boolean)
+                        .join(' ')}
+                      disabled={battlePanelMode === 'logs'}
+                      onClick={() => handleBattleCommandSelect(item.key)}
+                    >
+                      <span className="battle-command__marker" aria-hidden="true">
+                        {item.key === selectedBattleCommand ? '\u25B6' : ''}
+                      </span>
+                      <span className="battle-command__label">{item.label}</span>
+                    </button>
+                  ))}
+                </section>
               </div>
             </section>
           )}
