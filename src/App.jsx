@@ -28,6 +28,32 @@ const battleMenuItems = [
   { label: '\uB3C4\uB9DD', key: 'run', active: false },
 ]
 
+const fixedRewardItems = [
+  { id: 'heal-20', name: '20회복', description: 'HP 20 회복 아이템', price: 120, healAmount: 20 },
+  { id: 'heal-50', name: '50회복', description: 'HP 50 회복 아이템', price: 280, healAmount: 50 },
+  { id: 'revive', name: '부활', description: '전투 불능 시 부활', price: 700 },
+]
+
+const randomRewardItemPool = [
+  { id: 'buff-attack', name: '공격력 증가', description: '10턴 동안 공격 10% 증가', buffStatKey: 'attack' },
+  { id: 'buff-defense', name: '방어력 증가', description: '10턴 동안 방어 10% 증가', buffStatKey: 'defense' },
+  {
+    id: 'buff-special-attack',
+    name: '특수공격 증가',
+    description: '10턴 동안 특수공격 10% 증가',
+    buffStatKey: 'specialAttack',
+  },
+  {
+    id: 'buff-special-defense',
+    name: '특수방어 증가',
+    description: '10턴 동안 특수방어 10% 증가',
+    buffStatKey: 'specialDefense',
+  },
+  { id: 'buff-speed', name: '스피드 증가', description: '10턴 동안 스피드 10% 증가', buffStatKey: 'speed' },
+  { id: 'heal-20', name: '20회복', description: 'HP 20 회복 아이템', healAmount: 20 },
+  { id: 'heal-50', name: '50회복', description: 'HP 50 회복 아이템', healAmount: 50 },
+]
+
 const growthStageDigimonUrls = [
   '/도감/성장기/가오몬.png',
   '/도감/성장기/가지몬.png',
@@ -159,6 +185,37 @@ const attributeAdvantageMap = {
 
 const BATTLE_LOG_LIMIT = 4
 const STARTING_PLAYER_LEVEL = 5
+const BUFF_STAGE_DURATION = 10
+const IV_MAX = 31
+const EV_PER_STAT_MAX = 252
+const EV_TOTAL_MAX = 510
+const STAT_KEYS = ['hp', 'attack', 'defense', 'specialAttack', 'specialDefense', 'speed']
+const BUFFABLE_STAT_KEYS = ['attack', 'defense', 'specialAttack', 'specialDefense', 'speed']
+const BASE_STAT_FIELD_MAP = {
+  hp: '체력',
+  attack: '공격',
+  defense: '방어',
+  specialAttack: '특공',
+  specialDefense: '특방',
+  speed: '스피드',
+}
+const STAT_LABEL_MAP = {
+  hp: '체력',
+  attack: '공격',
+  defense: '방어',
+  specialAttack: '특공',
+  specialDefense: '특방',
+  speed: '스피드',
+}
+const EV_YIELD_BY_STAGE = {
+  유아기: 1,
+  유년기: 1,
+  성장기: 1,
+  성숙기: 2,
+  완전체: 2,
+  궁극체: 3,
+  초궁극체: 3,
+}
 const EXP_BAR_ANIMATION_MS = 520
 const EXP_BAR_RESET_MS = 70
 const CLASSIC_LEVEL_CAPS = [
@@ -183,6 +240,57 @@ const getStageClearGoldReward = (stage) => {
   const baseReward = (10 * stage + 175) ** (1 + 0.005 * waveSet)
   return Math.max(20, Math.floor(baseReward / 10) * 10)
 }
+const addInventoryItem = (inventory, itemId) => ({
+  ...(inventory ?? {}),
+  [itemId]: (inventory?.[itemId] ?? 0) + 1,
+})
+const normalizeBuffState = (activeBuffs) =>
+  BUFFABLE_STAT_KEYS.reduce((result, statKey) => {
+    const nextValue = Math.max(0, Math.floor(activeBuffs?.[statKey] ?? 0))
+    result[statKey] = Math.min(BUFF_STAGE_DURATION, nextValue)
+    return result
+  }, {})
+
+const applyInstantRewardEffect = (player, rewardItem) => {
+  if (!player) {
+    return {
+      nextPlayer: player,
+      shouldStore: true,
+    }
+  }
+
+  if (rewardItem?.buffStatKey) {
+    const nextActiveBuffs = {
+      ...normalizeBuffState(player.activeBuffs),
+      [rewardItem.buffStatKey]: BUFF_STAGE_DURATION,
+    }
+
+    return {
+      nextPlayer: refreshCombatantStats(player, { activeBuffs: nextActiveBuffs }),
+      shouldStore: false,
+    }
+  }
+
+  if (!player || !rewardItem?.healAmount) {
+    return {
+      nextPlayer: player,
+      shouldStore: true,
+    }
+  }
+
+  return {
+    nextPlayer: {
+      ...player,
+      currentHp: Math.min(player.maxHp, player.currentHp + rewardItem.healAmount),
+    },
+    shouldStore: false,
+  }
+}
+const createRewardSelection = () => ({
+  randomItems: shuffleItems(randomRewardItemPool).slice(0, 3),
+  selectedRandomItemId: null,
+  isResolving: false,
+})
 
 const mapBackgrounds = [
   '/맵/가디언 팰리스.png',
@@ -430,25 +538,181 @@ const getExperienceRatio = (combatant) => {
 
 const getExperienceToNextLevel = (level) => Math.floor(20 + level * 12)
 
-const getBaseStatTotal = (data) =>
-  (data?.체력 ?? 0) +
-  (data?.공격 ?? 0) +
-  (data?.특공 ?? 0) +
-  (data?.방어 ?? 0) +
-  (data?.특방 ?? 0) +
-  (data?.스피드 ?? 0)
+const clampStatValue = (value, minimum, maximum) => Math.min(maximum, Math.max(minimum, value))
 
-const getScaledStat = (stat, level, perLevelRate) =>
-  Math.max(1, Math.floor((stat ?? 50) * (1 + Math.max(0, level - STARTING_PLAYER_LEVEL) * perLevelRate)))
+const createFlatStatBlock = (fillValue = 0) =>
+  STAT_KEYS.reduce((result, statKey) => {
+    result[statKey] = fillValue
+    return result
+  }, {})
 
-const calculateBattleStats = (data, level) => ({
-  maxHp: Math.max(10, getScaledStat(data?.체력 ?? 50, level, 0.018)),
-  attack: getScaledStat(data?.공격 ?? 50, level, 0.015),
-  specialAttack: getScaledStat(data?.특공 ?? 50, level, 0.015),
-  defense: getScaledStat(data?.방어 ?? 50, level, 0.015),
-  specialDefense: getScaledStat(data?.특방 ?? 50, level, 0.015),
-  speed: getScaledStat(data?.스피드 ?? 50, level, 0.014),
+const createBaseStats = (data) =>
+  STAT_KEYS.reduce((result, statKey) => {
+    result[statKey] = Math.max(1, data?.[BASE_STAT_FIELD_MAP[statKey]] ?? 50)
+    return result
+  }, {})
+
+const createRandomIvs = () =>
+  STAT_KEYS.reduce((result, statKey) => {
+    result[statKey] = getRandomIntInclusive(0, IV_MAX)
+    return result
+  }, {})
+
+const normalizeStatBlock = (block, fallbackBlock, maximumValue) =>
+  STAT_KEYS.reduce((result, statKey) => {
+    const rawValue = block?.[statKey]
+    const fallbackValue = fallbackBlock?.[statKey] ?? 0
+    const nextValue = Number.isFinite(rawValue) ? Math.floor(rawValue) : fallbackValue
+
+    result[statKey] = clampStatValue(nextValue, 0, maximumValue)
+    return result
+  }, {})
+
+const calculateHpStat = ({ base, iv, ev, level }) =>
+  Math.floor(((2 * base + iv + Math.floor(ev / 4)) * level) / 100) + level + 10
+
+const calculateOtherStat = ({ base, iv, ev, level }) =>
+  Math.floor((Math.floor(((2 * base + iv + Math.floor(ev / 4)) * level) / 100) + 5))
+
+const getBuffMultiplier = (activeBuffs, statKey) =>
+  BUFFABLE_STAT_KEYS.includes(statKey) && (activeBuffs?.[statKey] ?? 0) > 0 ? 1.1 : 1
+
+const calculateBattleStats = ({ baseStats, level, ivs, evs, activeBuffs }) => ({
+  maxHp: Math.max(
+    1,
+    calculateHpStat({
+      base: baseStats.hp,
+      iv: ivs.hp,
+      ev: evs.hp,
+      level,
+    })
+  ),
+  attack: Math.max(
+    1,
+    Math.floor(
+      calculateOtherStat({
+        base: baseStats.attack,
+        iv: ivs.attack,
+        ev: evs.attack,
+        level,
+      }) * getBuffMultiplier(activeBuffs, 'attack')
+    )
+  ),
+  defense: Math.max(
+    1,
+    Math.floor(
+      calculateOtherStat({
+        base: baseStats.defense,
+        iv: ivs.defense,
+        ev: evs.defense,
+        level,
+      }) * getBuffMultiplier(activeBuffs, 'defense')
+    )
+  ),
+  specialAttack: Math.max(
+    1,
+    Math.floor(
+      calculateOtherStat({
+        base: baseStats.specialAttack,
+        iv: ivs.specialAttack,
+        ev: evs.specialAttack,
+        level,
+      }) * getBuffMultiplier(activeBuffs, 'specialAttack')
+    )
+  ),
+  specialDefense: Math.max(
+    1,
+    Math.floor(
+      calculateOtherStat({
+        base: baseStats.specialDefense,
+        iv: ivs.specialDefense,
+        ev: evs.specialDefense,
+        level,
+      }) * getBuffMultiplier(activeBuffs, 'specialDefense')
+    )
+  ),
+  speed: Math.max(
+    1,
+    Math.floor(
+      calculateOtherStat({
+        base: baseStats.speed,
+        iv: ivs.speed,
+        ev: evs.speed,
+        level,
+      }) * getBuffMultiplier(activeBuffs, 'speed')
+    )
+  ),
 })
+
+const getBaseStatTotal = (baseStats) =>
+  STAT_KEYS.reduce((total, statKey) => total + (baseStats?.[statKey] ?? 0), 0)
+
+const getTotalEffortValues = (evs) =>
+  STAT_KEYS.reduce((total, statKey) => total + (evs?.[statKey] ?? 0), 0)
+
+const getDominantStatKey = (baseStats) =>
+  STAT_KEYS.reduce((bestKey, currentKey) => {
+    if (!bestKey) {
+      return currentKey
+    }
+
+    const currentValue = baseStats?.[currentKey] ?? 0
+    const bestValue = baseStats?.[bestKey] ?? 0
+
+    return currentValue > bestValue ? currentKey : bestKey
+  }, null)
+
+const createCombatant = ({
+  id,
+  name,
+  imageUrl,
+  data,
+  level = STARTING_PLAYER_LEVEL,
+  currentHp,
+  experience = 0,
+  ivs,
+  evs,
+  activeBuffs,
+  stageName,
+}) => {
+  const baseStats = createBaseStats(data)
+  const resolvedIvs = normalizeStatBlock(ivs, createRandomIvs(), IV_MAX)
+  const resolvedEvs = normalizeStatBlock(evs, createFlatStatBlock(0), EV_PER_STAT_MAX)
+  const resolvedActiveBuffs = normalizeBuffState(activeBuffs)
+  const battleStats = calculateBattleStats({
+    baseStats,
+    level,
+    ivs: resolvedIvs,
+    evs: resolvedEvs,
+    activeBuffs: resolvedActiveBuffs,
+  })
+
+  return {
+    id,
+    name,
+    imageUrl: imageUrl ?? '',
+    speciesData: data,
+    speciesStage: stageName ?? data?.stage ?? null,
+    baseStats,
+    ivs: resolvedIvs,
+    evs: resolvedEvs,
+    activeBuffs: resolvedActiveBuffs,
+    level,
+    experience,
+    experienceToNext: getExperienceToNextLevel(level),
+    currentHp: currentHp ?? battleStats.maxHp,
+    maxHp: battleStats.maxHp,
+    baseStatTotal: getBaseStatTotal(baseStats),
+    type: data?.타입 ?? '무',
+    attribute: data?.속성 ?? '무',
+    attack: battleStats.attack,
+    specialAttack: battleStats.specialAttack,
+    defense: battleStats.defense,
+    specialDefense: battleStats.specialDefense,
+    speed: battleStats.speed,
+    skills: [...(data?.기술 ?? [])].slice(0, 4),
+  }
+}
 
 const getEnemyLevelForStage = (stage) => {
   if (stage <= 10) {
@@ -468,31 +732,6 @@ const getEnemyLevelForStage = (stage) => {
 
 const getExperienceReward = (enemy) =>
   Math.max(18, Math.floor(enemy.level * 6 + enemy.baseStatTotal * 0.06))
-
-const createCombatant = ({ id, name, imageUrl, data, level = STARTING_PLAYER_LEVEL, currentHp, experience = 0 }) => {
-  const battleStats = calculateBattleStats(data, level)
-
-  return {
-    id,
-    name,
-    imageUrl: imageUrl ?? '',
-    speciesData: data,
-    level,
-    experience,
-    experienceToNext: getExperienceToNextLevel(level),
-    currentHp: currentHp ?? battleStats.maxHp,
-    maxHp: battleStats.maxHp,
-    baseStatTotal: getBaseStatTotal(data),
-    type: data?.타입 ?? '무',
-    attribute: data?.속성 ?? '무',
-    attack: battleStats.attack,
-    specialAttack: battleStats.specialAttack,
-    defense: battleStats.defense,
-    specialDefense: battleStats.specialDefense,
-    speed: battleStats.speed,
-    skills: [...(data?.기술 ?? [])].slice(0, 4),
-  }
-}
 
 const getLivingEnemyIndex = (enemies) => enemies.findIndex((enemy) => enemy.currentHp > 0)
 
@@ -519,20 +758,119 @@ const getMatchupResult = ({ attackerType, skillAttribute, defenderType, defender
   }
 }
 
-const levelUpCombatant = (combatant, nextLevel) => {
-  const previousMaxHp = combatant.maxHp
-  const nextCombatant = createCombatant({
-    id: combatant.id,
-    name: combatant.name,
-    imageUrl: combatant.imageUrl,
-    data: combatant.speciesData,
-    level: nextLevel,
-    experience: combatant.experience,
+const refreshCombatantStats = (
+  combatant,
+  {
+    level = combatant.level,
+    ivs = combatant.ivs,
+    evs = combatant.evs,
+    activeBuffs = combatant.activeBuffs,
+    preserveMaxHpDelta = false,
+  } = {}
+) => {
+  const battleStats = calculateBattleStats({
+    baseStats: combatant.baseStats,
+    level,
+    ivs,
+    evs,
+    activeBuffs,
   })
+  const maxHpDelta = battleStats.maxHp - combatant.maxHp
 
   return {
-    ...nextCombatant,
-    currentHp: Math.min(nextCombatant.maxHp, combatant.currentHp + (nextCombatant.maxHp - previousMaxHp)),
+    ...combatant,
+    ivs,
+    evs,
+    activeBuffs: normalizeBuffState(activeBuffs),
+    level,
+    experienceToNext: getExperienceToNextLevel(level),
+    currentHp: preserveMaxHpDelta
+      ? Math.min(battleStats.maxHp, combatant.currentHp + maxHpDelta)
+      : Math.min(battleStats.maxHp, combatant.currentHp),
+    maxHp: battleStats.maxHp,
+    attack: battleStats.attack,
+    specialAttack: battleStats.specialAttack,
+    defense: battleStats.defense,
+    specialDefense: battleStats.specialDefense,
+    speed: battleStats.speed,
+  }
+}
+
+const levelUpCombatant = (combatant, nextLevel) => {
+  return refreshCombatantStats(combatant, {
+    level: nextLevel,
+    preserveMaxHpDelta: true,
+  })
+}
+
+const tickCombatantBuffsByStage = (combatant) => {
+  const currentBuffs = normalizeBuffState(combatant.activeBuffs)
+  const nextBuffs = BUFFABLE_STAT_KEYS.reduce((result, statKey) => {
+    result[statKey] = Math.max(0, (currentBuffs[statKey] ?? 0) - 1)
+    return result
+  }, {})
+
+  const hasChanged = BUFFABLE_STAT_KEYS.some(
+    (statKey) => (currentBuffs[statKey] ?? 0) !== (nextBuffs[statKey] ?? 0)
+  )
+
+  if (!hasChanged) {
+    return combatant
+  }
+
+  return refreshCombatantStats(combatant, { activeBuffs: nextBuffs })
+}
+
+const applyEffortValueGain = ({ combatant, defeatedEnemies }) => {
+  if (!defeatedEnemies.length) {
+    return {
+      nextCombatant: combatant,
+      battleLogs: [],
+    }
+  }
+
+  const nextEvs = { ...combatant.evs }
+  let totalEvs = getTotalEffortValues(nextEvs)
+  const gainedStats = createFlatStatBlock(0)
+
+  defeatedEnemies.forEach((enemy) => {
+    const dominantStatKey = getDominantStatKey(enemy.baseStats)
+    const yieldAmount = EV_YIELD_BY_STAGE[enemy.speciesStage] ?? 1
+
+    if (!dominantStatKey || yieldAmount <= 0) {
+      return
+    }
+
+    const remainingStatCapacity = EV_PER_STAT_MAX - (nextEvs[dominantStatKey] ?? 0)
+    const remainingTotalCapacity = EV_TOTAL_MAX - totalEvs
+    const grantedValue = Math.max(0, Math.min(yieldAmount, remainingStatCapacity, remainingTotalCapacity))
+
+    if (grantedValue === 0) {
+      return
+    }
+
+    nextEvs[dominantStatKey] += grantedValue
+    totalEvs += grantedValue
+    gainedStats[dominantStatKey] += grantedValue
+  })
+
+  const changedStats = STAT_KEYS.filter((statKey) => gainedStats[statKey] > 0)
+
+  if (!changedStats.length) {
+    return {
+      nextCombatant: combatant,
+      battleLogs: [],
+    }
+  }
+
+  const nextCombatant = refreshCombatantStats(combatant, { evs: nextEvs })
+  const summaryText = changedStats
+    .map((statKey) => `${STAT_LABEL_MAP[statKey]} +${gainedStats[statKey]}`)
+    .join(', ')
+
+  return {
+    nextCombatant,
+    battleLogs: [`${combatant.name}의 노력치가 올랐다! (${summaryText})`],
   }
 }
 
@@ -544,8 +882,11 @@ const applyExperienceGain = ({ combatant, defeatedEnemies, levelCap }) => {
     }
   }
 
-  let nextCombatant = { ...combatant }
+  const effortValueResult = applyEffortValueGain({ combatant, defeatedEnemies })
+  let nextCombatant = effortValueResult.nextCombatant
   const battleLogs = []
+
+  battleLogs.push(...effortValueResult.battleLogs)
 
   defeatedEnemies.forEach((enemy) => {
     const reward = getExperienceReward(enemy)
@@ -649,6 +990,7 @@ const buildEnemyParty = (stage, encounterPool, encounterCount) => {
       imageUrl: data?.imageUrl ?? '',
       data,
       level,
+      stageName: data?.stage ?? null,
     })
   })
 }
@@ -671,6 +1013,7 @@ function App() {
   const [battlePanelMode, setBattlePanelMode] = useState('commands')
   const [selectedSkillIndex, setSelectedSkillIndex] = useState(0)
   const [currentLogs, setCurrentLogs] = useState([])
+  const [rewardState, setRewardState] = useState(null)
   const [displayedPlayerExpRatio, setDisplayedPlayerExpRatio] = useState(0)
   const [isPlayerExpTransitionInstant, setIsPlayerExpTransitionInstant] = useState(false)
   const expAnimationTimeoutsRef = useRef([])
@@ -695,6 +1038,7 @@ function App() {
     if (nextStageNum > TOTAL_STAGE_COUNT) {
       setScreenMode('menu')
       setGameState(null)
+      setRewardState(null)
       setCurrentLogs([])
       return
     }
@@ -721,10 +1065,11 @@ function App() {
     setSelectedBattleCommand('attack')
     setSelectedSkillIndex(0)
     setBattlePanelMode('commands')
+    setRewardState(null)
   }
 
   const handleExecuteSkill = (skillIndex) => {
-    if (!gameState || battlePanelMode !== 'attack' || gameState.player.currentHp <= 0) return
+    if (rewardState || !gameState || battlePanelMode !== 'attack' || gameState.player.currentHp <= 0) return
 
     const playerSkill = battleSkillSlots[skillIndex]
     if (!playerSkill) return
@@ -793,6 +1138,11 @@ function App() {
 
     const allEnemiesDefeated = nextEnemies.every((e) => e.currentHp === 0)
     const isPlayerDefeated = nextPlayer.currentHp === 0
+
+    if (allEnemiesDefeated && !isPlayerDefeated) {
+      nextPlayer = tickCombatantBuffsByStage(nextPlayer)
+    }
+
     const stageClearGold = allEnemiesDefeated ? getStageClearGoldReward(gameState.currentStage) : 0
     const nextGold = (gameState.gold ?? 0) + stageClearGold
     const nextGameState = {
@@ -807,14 +1157,12 @@ function App() {
       setTimeout(() => {
         setScreenMode('menu')
         setGameState(null)
+        setRewardState(null)
         setCurrentLogs([])
       }, 3000)
     } else if (allEnemiesDefeated) {
       logs.push('\uC804\uD22C\uC5D0\uC11C \uC2B9\uB9AC\uD588\uB2E4!')
-      logs.push(`골드 ${formatGold(stageClearGold)}를 획득했다!`)
-      setTimeout(() => {
-        handleNextStage(nextGameState, nextPlayer)
-      }, 3000)
+      setRewardState(createRewardSelection())
     } else {
       logs.push(getBattlePrompt(nextPlayer.name))
     }
@@ -976,12 +1324,13 @@ function App() {
 
   const handleMenuAction = (actionKey) => {
     if (actionKey === 'new-game') {
+      setRewardState(null)
       setScreenMode('new-game')
     }
   }
 
   const handleBattleCommandSelect = (commandKey) => {
-    if (!gameState || battlePanelMode === 'logs') {
+    if (rewardState || !gameState || battlePanelMode === 'logs') {
       return
     }
 
@@ -994,7 +1343,7 @@ function App() {
     }
 
     if (commandKey === 'item') {
-      setCurrentLogs(createBattleLog('아이템은 아직 준비 중이다.', getBattlePrompt(gameState.player.name)))
+      setCurrentLogs(createBattleLog('아이템창은 추후 전용 아이템으로 구현될 예정이다.', getBattlePrompt(gameState.player.name)))
     } else if (commandKey === 'swap') {
       setCurrentLogs(createBattleLog('교체 기능은 다음 단계에서 구현될 예정이다.', getBattlePrompt(gameState.player.name)))
     } else if (commandKey === 'run') {
@@ -1002,6 +1351,70 @@ function App() {
     }
 
     setBattlePanelMode('commands')
+  }
+
+  const handlePurchaseFixedRewardItem = (itemId) => {
+    if (!gameState || !rewardState || rewardState.isResolving) {
+      return
+    }
+
+    const rewardItem = fixedRewardItems.find((item) => item.id === itemId)
+    if (!rewardItem) {
+      return
+    }
+
+    if ((gameState.gold ?? 0) < rewardItem.price) {
+      return
+    }
+
+    const nextGold = (gameState.gold ?? 0) - rewardItem.price
+    const effectResult = applyInstantRewardEffect(gameState.player, rewardItem)
+    const nextInventory = effectResult.shouldStore
+      ? addInventoryItem(gameState.inventory, rewardItem.id)
+      : gameState.inventory
+
+    setGameState({
+      ...gameState,
+      gold: nextGold,
+      player: effectResult.nextPlayer,
+      inventory: nextInventory,
+    })
+  }
+
+  const handleClaimRandomRewardItem = (itemId) => {
+    if (!gameState || !rewardState || rewardState.isResolving) {
+      return
+    }
+
+    const rewardItem = rewardState.randomItems.find((item) => item.id === itemId)
+    if (!rewardItem) {
+      return
+    }
+
+    const effectResult = applyInstantRewardEffect(gameState.player, rewardItem)
+    const nextInventory = effectResult.shouldStore
+      ? addInventoryItem(gameState.inventory, rewardItem.id)
+      : gameState.inventory
+    const nextGameState = {
+      ...gameState,
+      player: effectResult.nextPlayer,
+      inventory: nextInventory,
+    }
+
+    setGameState(nextGameState)
+    setRewardState((current) =>
+      current
+        ? {
+            ...current,
+            selectedRandomItemId: rewardItem.id,
+            isResolving: true,
+          }
+        : current
+    )
+    window.setTimeout(() => {
+      setRewardState(null)
+      handleNextStage(nextGameState, nextGameState.player)
+    }, 1200)
   }
 
   const selectedGrowthDigimon = growthStageDigimon[selectedGrowthIndex]
@@ -1019,6 +1432,7 @@ function App() {
       imageUrl: selectedGrowthDigimon.url,
       data: selectedGrowthDigimon.data,
       level: STARTING_PLAYER_LEVEL,
+      stageName: '성장기',
     })
 
     setGameState({
@@ -1026,6 +1440,7 @@ function App() {
       maxStage: TOTAL_STAGE_COUNT,
       currentMap: mapName,
       gold: 0,
+      inventory: {},
       encounterGroup,
       encounterCount,
       encounterPool: mapEncounterPool,
@@ -1037,6 +1452,7 @@ function App() {
     setSelectedBattleCommand('attack')
     setBattlePanelMode('commands')
     setSelectedSkillIndex(0)
+    setRewardState(null)
     setScreenMode('adventure')
   }
 
@@ -1340,24 +1756,73 @@ function App() {
                     })}
                   </div>
                 </div>
+
+                {rewardState && (
+                  <div className="reward-screen" aria-label={'스테이지 클리어 보상'}>
+                    <div className="reward-screen__fixed">
+                      {fixedRewardItems.map((item) => {
+                        const canAfford = (gameState?.gold ?? 0) >= item.price
+
+                        return (
+                          <button
+                            key={item.id}
+                            type="button"
+                            className={[
+                              'reward-item',
+                              'reward-item--fixed',
+                              canAfford ? '' : 'reward-item--disabled',
+                            ]
+                              .filter(Boolean)
+                              .join(' ')}
+                            disabled={!canAfford || rewardState.isResolving}
+                            onClick={() => handlePurchaseFixedRewardItem(item.id)}
+                          >
+                            <strong className="reward-item__name">{item.name}</strong>
+                            <span className="reward-item__price">{formatGold(item.price)}</span>
+                          </button>
+                        )
+                      })}
+                    </div>
+
+                    <div className="reward-screen__random">
+                      {rewardState.randomItems.map((item) => (
+                        <button
+                          key={item.id}
+                          type="button"
+                          className={[
+                            'reward-item',
+                            'reward-item--random',
+                            rewardState.selectedRandomItemId === item.id ? 'reward-item--selected' : '',
+                          ]
+                            .filter(Boolean)
+                            .join(' ')}
+                          disabled={rewardState.isResolving}
+                          onClick={() => handleClaimRandomRewardItem(item.id)}
+                        >
+                          <strong className="reward-item__name">{item.name}</strong>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div className="battle-console" aria-label={'\uBC30\uD2C0 UI'}>
                 <section
                   className={[
                     'battle-console__message',
-                    isAttackPanelOpen ? 'battle-console__message--skills' : '',
+                    isAttackPanelOpen && !rewardState ? 'battle-console__message--skills' : '',
                     !isAttackPanelOpen && currentLogs.length > 0 ? 'battle-console__message--logs' : '',
                   ]
                     .filter(Boolean)
                     .join(' ')}
                   aria-label={
-                    isAttackPanelOpen
+                    isAttackPanelOpen && !rewardState
                       ? '\uAE30\uC220 \uBAA9\uB85D'
                       : '\uBC30\uD2C0 \uBA54\uC2DC\uC9C0'
                   }
                 >
-                  {isAttackPanelOpen ? (
+                  {isAttackPanelOpen && !rewardState ? (
                     <div className="battle-skill-grid">
                       {battleSkillSlots.map((skill, index) => {
                         const skillData = skill ? getSkillData(skill) : null
@@ -1428,7 +1893,7 @@ function App() {
                       ]
                         .filter(Boolean)
                         .join(' ')}
-                      disabled={battlePanelMode === 'logs'}
+                      disabled={battlePanelMode === 'logs' || Boolean(rewardState)}
                       onClick={() => handleBattleCommandSelect(item.key)}
                     >
                       <span className="battle-command__marker" aria-hidden="true">

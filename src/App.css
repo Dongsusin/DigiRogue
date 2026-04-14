@@ -136,9 +136,6 @@
   position: relative;
   z-index: 4;
   padding: clamp(8px, 1.8vw, 18px) clamp(20px, 5vw, 48px) 10px;
-  border: 0;
-  background: transparent;
-  box-shadow: none;
 }
 
 .title-band__inner {
@@ -159,9 +156,6 @@
   z-index: 4;
   min-width: 0;
   overflow: hidden;
-  border: 0;
-  background: transparent;
-  box-shadow: none;
 }
 
 .playfield--adventure {
@@ -348,8 +342,6 @@
   font-size: clamp(1.08rem, 1.55vw, 1.48rem);
   line-height: 1.1;
   white-space: nowrap;
-  overflow: visible;
-  text-overflow: clip;
   letter-spacing: -0.04em;
   text-shadow: 3px 3px 0 rgba(36, 26, 44, 0.88);
 }
@@ -479,8 +471,6 @@
   text-align: center;
   width: 100%;
   white-space: nowrap;
-  overflow: visible;
-  text-overflow: clip;
 }
 
 .adventure-screen {
@@ -599,6 +589,100 @@
   min-height: 0;
 }
 
+.reward-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  padding: 0;
+  background: linear-gradient(180deg, rgba(8, 11, 20, 0.14), rgba(8, 10, 17, 0.46));
+  pointer-events: none;
+}
+
+.reward-screen__fixed,
+.reward-screen__random {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 1.3vw, 14px);
+  pointer-events: auto;
+}
+
+.reward-screen__fixed {
+  top: clamp(104px, 14vh, 132px);
+  left: 50%;
+  width: min(100%, 960px);
+  max-width: calc(100% - clamp(200px, 24vw, 268px) * 2 - clamp(92px, 9vw, 132px));
+  transform: translateX(-50%);
+}
+
+.reward-screen__random {
+  top: 50%;
+  left: 50%;
+  width: min(100%, 760px);
+  transform: translate(-50%, -50%);
+}
+
+.reward-item {
+  position: relative;
+  display: flex;
+  min-height: clamp(84px, 12vh, 102px);
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 4px solid rgba(222, 82, 56, 0.94);
+  background: rgba(46, 39, 58, 0.92);
+  color: #fff8f0;
+  text-align: center;
+  box-shadow:
+    0 0 0 3px rgba(20, 18, 29, 0.92),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.05),
+    0 12px 26px rgba(9, 11, 18, 0.24);
+  cursor: pointer;
+}
+
+.reward-item--fixed {
+  background: linear-gradient(180deg, rgba(59, 49, 73, 0.96), rgba(41, 34, 52, 0.96));
+  min-height: clamp(72px, 10vh, 88px);
+}
+
+.reward-item--random {
+  background: linear-gradient(180deg, rgba(55, 64, 92, 0.96), rgba(36, 43, 66, 0.96));
+}
+
+.reward-item--selected {
+  box-shadow:
+    0 0 0 3px rgba(20, 18, 29, 0.92),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.08),
+    0 0 0 2px rgba(255, 215, 125, 0.3),
+    0 12px 26px rgba(9, 11, 18, 0.24);
+}
+
+.reward-item--disabled {
+  opacity: 0.52;
+  cursor: default;
+}
+
+.reward-item__name {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  font-family: var(--font-pixel);
+  font-size: clamp(1rem, 1.16vw, 1.14rem);
+  line-height: 1.1;
+  text-align: center;
+  text-shadow: 2px 2px 0 rgba(24, 19, 33, 0.92);
+  white-space: nowrap;
+  word-break: keep-all;
+}
+
+.reward-item__price {
+  color: #ffd468;
+  font-family: var(--font-pixel-mono);
+  font-size: clamp(0.84rem, 1vw, 0.94rem);
+  letter-spacing: 0.05em;
+}
+
 .adventure-player {
   position: absolute;
   z-index: 2;
@@ -618,10 +702,6 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: 0;
-  background: transparent;
-  box-shadow: none;
-  border-radius: 0;
 }
 
 .adventure-player__sprite {
@@ -629,25 +709,20 @@
   filter: drop-shadow(0 12px 26px rgba(17, 18, 28, 0.42));
 }
 
-.adventure-player__sprite-wrap--ally {
-  width: var(--battle-unit-width);
-  height: var(--battle-sprite-height);
-}
-
-.adventure-player__sprite--ally {
-  max-width: var(--battle-sprite-width);
-  max-height: var(--battle-sprite-height);
-  transform: scaleX(-1);
-}
-
+.adventure-player__sprite-wrap--ally,
 .adventure-player__sprite-wrap--enemy {
   width: var(--battle-unit-width);
   height: var(--battle-sprite-height);
 }
 
+.adventure-player__sprite--ally,
 .adventure-player__sprite--enemy {
   max-width: var(--battle-sprite-width);
   max-height: var(--battle-sprite-height);
+}
+
+.adventure-player__sprite--ally {
+  transform: scaleX(-1);
 }
 
 .adventure-hp {
@@ -1142,27 +1217,19 @@
     bottom: 6px;
   }
 
-  .adventure-player__sprite-wrap--ally {
-    width: min(36vw, 180px);
-    height: min(16vh, 110px);
-  }
-
-  .adventure-player__sprite--ally {
-    max-width: min(24vw, 94px);
-    max-height: min(16vh, 110px);
-  }
-
   .adventure-enemies {
     right: 16px;
     bottom: 6px;
     gap: 0;
   }
 
+  .adventure-player__sprite-wrap--ally,
   .adventure-player__sprite-wrap--enemy {
     width: min(36vw, 180px);
     height: min(16vh, 110px);
   }
 
+  .adventure-player__sprite--ally,
   .adventure-player__sprite--enemy {
     max-width: min(24vw, 94px);
     max-height: min(16vh, 110px);
