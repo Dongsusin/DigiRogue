@@ -186,11 +186,14 @@ const attributeAdvantageMap = {
 const BATTLE_LOG_LIMIT = 4
 const STARTING_PLAYER_LEVEL = 5
 const BUFF_STAGE_DURATION = 10
+const STATUS_DURATION_TURNS = 3
+const STATUS_EARLY_CURE_CHANCE = 30
 const IV_MAX = 31
 const EV_PER_STAT_MAX = 252
 const EV_TOTAL_MAX = 510
 const STAT_KEYS = ['hp', 'attack', 'defense', 'specialAttack', 'specialDefense', 'speed']
 const BUFFABLE_STAT_KEYS = ['attack', 'defense', 'specialAttack', 'specialDefense', 'speed']
+const STATUS_EFFECT_TYPES = ['독', '맹독', '혼란', '착란', '마비', '행동불능', '수면', '혼수상태']
 const BASE_STAT_FIELD_MAP = {
   hp: '체력',
   attack: '공격',
@@ -468,14 +471,152 @@ const getEncounterCountForStage = (stage) => {
 
 const createBattleLog = (...lines) => lines.filter(Boolean).slice(-BATTLE_LOG_LIMIT)
 
-const getSkillData = (skillName) =>
-  allSkillLookup.get(skillName) ?? {
-    기술명: skillName,
-    데미지: 40,
-    명중률: '100%',
-    분류: '물리형',
-    속성: '무',
+const normalizeStatusEffect = (statusEffect) => {
+  if (!statusEffect?.type || !STATUS_EFFECT_TYPES.includes(statusEffect.type)) {
+    return null
   }
+
+  return {
+    type: statusEffect.type,
+    turns: Math.max(0, Math.min(STATUS_DURATION_TURNS, Math.floor(statusEffect.turns ?? 0))),
+  }
+}
+
+const getStatusEffectChance = (chanceText) => {
+  const numericValue = Number.parseInt(String(chanceText ?? '0').replace('%', ''), 10)
+  return Number.isNaN(numericValue) ? 0 : numericValue
+}
+
+const getSkillStatusData = (skillData) => {
+  const statusType = skillData?.상태이상
+  if (!statusType || !STATUS_EFFECT_TYPES.includes(statusType)) {
+    return null
+  }
+
+  const chance = getStatusEffectChance(skillData?.상태이상확률)
+  if (chance <= 0) {
+    return null
+  }
+
+  return {
+    type: statusType,
+    chance,
+    label: `${statusType} ${chance}%`,
+  }
+}
+
+const STATUS_EFFECT_CLASS_MAP = {
+  독: 'poison',
+  맹독: 'toxic',
+  혼란: 'confusion',
+  착란: 'derangement',
+  마비: 'paralysis',
+  행동불능: 'disabled',
+  수면: 'sleep',
+  혼수상태: 'coma',
+}
+
+const getCombatantStatusBadge = (combatant) => {
+  const normalizedStatus = normalizeStatusEffect(combatant?.statusEffect)
+  if (!normalizedStatus) {
+    return null
+  }
+
+  const definition = getStatusEffectDefinition(normalizedStatus.type)
+  return {
+    label: definition?.label ?? normalizedStatus.type,
+    className: STATUS_EFFECT_CLASS_MAP[normalizedStatus.type] ?? 'neutral',
+  }
+}
+
+const getStatusEffectDefinition = (statusType) => {
+  switch (statusType) {
+    case '독':
+      return {
+        label: '독',
+        endTurnDamageRatio: 0.08,
+      }
+    case '맹독':
+      return {
+        label: '맹독',
+        endTurnDamageRatio: 0.14,
+      }
+    case '혼란':
+      return {
+        label: '혼란',
+        actionSuccessRate: 0.5,
+        curesOnHit: true,
+      }
+    case '착란':
+      return {
+        label: '착란',
+        actionSuccessRate: 0,
+        curesOnHit: true,
+      }
+    case '마비':
+      return {
+        label: '마비',
+        actionSuccessRate: 0.5,
+      }
+    case '행동불능':
+      return {
+        label: '행동불능',
+        actionSuccessRate: 0,
+      }
+    case '수면':
+      return {
+        label: '수면',
+        actionSuccessRate: 0.5,
+        curesOnHit: true,
+      }
+    case '혼수상태':
+      return {
+        label: '혼수상태',
+        actionSuccessRate: 0,
+        curesOnHit: true,
+      }
+    default:
+      return null
+  }
+}
+
+const getStatusBlockMessage = (combatantName, statusType) => {
+  switch (statusType) {
+    case '혼란':
+      return `${combatantName}은(는) 혼란으로 명령을 제대로 수행하지 못했다!`
+    case '착란':
+      return `${combatantName}은(는) 착란 상태라 명령을 수행할 수 없다!`
+    case '마비':
+      return `${combatantName}은(는) 마비로 몸이 굳어 움직이지 못했다!`
+    case '행동불능':
+      return `${combatantName}은(는) 행동불능 상태라 움직일 수 없다!`
+    case '수면':
+      return `${combatantName}은(는) 잠들어 있어 제대로 움직이지 못했다!`
+    case '혼수상태':
+      return `${combatantName}은(는) 혼수상태라 전혀 반응하지 않는다!`
+    default:
+      return `${combatantName}은(는) 상태이상 때문에 행동하지 못했다!`
+  }
+}
+
+const createStatusEffect = (type) => ({
+  type,
+  turns: 0,
+})
+
+const getSkillData = (skillName) => {
+  return (
+    allSkillLookup.get(skillName) ?? {
+      기술명: skillName,
+      데미지: 40,
+      명중률: '100%',
+      분류: '물리형',
+      속성: '무',
+      상태이상: null,
+      상태이상확률: null,
+    }
+  )
+}
 
 const getChartRelation = (chart, attackValue, defendValue) => {
   if (!attackValue || attackValue === '무' || !defendValue || defendValue === '무') {
@@ -673,12 +814,14 @@ const createCombatant = ({
   ivs,
   evs,
   activeBuffs,
+  statusEffect,
   stageName,
 }) => {
   const baseStats = createBaseStats(data)
   const resolvedIvs = normalizeStatBlock(ivs, createRandomIvs(), IV_MAX)
   const resolvedEvs = normalizeStatBlock(evs, createFlatStatBlock(0), EV_PER_STAT_MAX)
   const resolvedActiveBuffs = normalizeBuffState(activeBuffs)
+  const resolvedStatusEffect = normalizeStatusEffect(statusEffect)
   const battleStats = calculateBattleStats({
     baseStats,
     level,
@@ -697,6 +840,7 @@ const createCombatant = ({
     ivs: resolvedIvs,
     evs: resolvedEvs,
     activeBuffs: resolvedActiveBuffs,
+    statusEffect: resolvedStatusEffect,
     level,
     experience,
     experienceToNext: getExperienceToNextLevel(level),
@@ -765,6 +909,7 @@ const refreshCombatantStats = (
     ivs = combatant.ivs,
     evs = combatant.evs,
     activeBuffs = combatant.activeBuffs,
+    statusEffect = combatant.statusEffect,
     preserveMaxHpDelta = false,
   } = {}
 ) => {
@@ -782,6 +927,7 @@ const refreshCombatantStats = (
     ivs,
     evs,
     activeBuffs: normalizeBuffState(activeBuffs),
+    statusEffect: normalizeStatusEffect(statusEffect),
     level,
     experienceToNext: getExperienceToNextLevel(level),
     currentHp: preserveMaxHpDelta
@@ -819,6 +965,123 @@ const tickCombatantBuffsByStage = (combatant) => {
   }
 
   return refreshCombatantStats(combatant, { activeBuffs: nextBuffs })
+}
+
+const clearStatusEffect = (combatant) =>
+  refreshCombatantStats(combatant, { statusEffect: null })
+
+const clearReactiveStatusOnHit = (combatant) => {
+  const normalizedStatus = normalizeStatusEffect(combatant.statusEffect)
+  const statusDefinition = getStatusEffectDefinition(normalizedStatus?.type)
+
+  if (!normalizedStatus || !statusDefinition?.curesOnHit) {
+    return {
+      nextCombatant: combatant,
+      battleLogs: [],
+    }
+  }
+
+  return {
+    nextCombatant: clearStatusEffect(combatant),
+    battleLogs: [`${combatant.name}의 ${statusDefinition.label} 상태가 공격을 받고 풀렸다!`],
+  }
+}
+
+const resolveTurnStartStatus = (combatant) => {
+  const normalizedStatus = normalizeStatusEffect(combatant.statusEffect)
+  const statusDefinition = getStatusEffectDefinition(normalizedStatus?.type)
+
+  if (!normalizedStatus || !statusDefinition) {
+    return {
+      nextCombatant: combatant,
+      canAct: true,
+      battleLogs: [],
+    }
+  }
+
+  if (statusDefinition.actionSuccessRate == null) {
+    return {
+      nextCombatant: combatant,
+      canAct: true,
+      battleLogs: [],
+    }
+  }
+
+  if (Math.random() < statusDefinition.actionSuccessRate) {
+    return {
+      nextCombatant: combatant,
+      canAct: true,
+      battleLogs: [],
+    }
+  }
+
+  return {
+    nextCombatant: combatant,
+    canAct: false,
+    battleLogs: [getStatusBlockMessage(combatant.name, normalizedStatus.type)],
+  }
+}
+
+const resolveTurnEndStatus = (combatant) => {
+  const normalizedStatus = normalizeStatusEffect(combatant.statusEffect)
+  const statusDefinition = getStatusEffectDefinition(normalizedStatus?.type)
+
+  if (!normalizedStatus || !statusDefinition) {
+    return {
+      nextCombatant: combatant,
+      battleLogs: [],
+    }
+  }
+
+  let nextCombatant = combatant
+  const battleLogs = []
+
+  if (statusDefinition.endTurnDamageRatio && nextCombatant.currentHp > 0) {
+    const damage = Math.max(1, Math.floor(nextCombatant.maxHp * statusDefinition.endTurnDamageRatio))
+    const nextHp = Math.max(0, nextCombatant.currentHp - damage)
+    nextCombatant = {
+      ...nextCombatant,
+      currentHp: nextHp,
+    }
+    battleLogs.push(`${nextCombatant.name}은(는) ${statusDefinition.label} 때문에 ${damage} 데미지를 입었다!`)
+
+    if (nextHp === 0) {
+      battleLogs.push(`${nextCombatant.name}은(는) 쓰러졌다!`)
+    }
+  }
+
+  if (nextCombatant.currentHp === 0) {
+    return {
+      nextCombatant,
+      battleLogs,
+    }
+  }
+
+  const progressedStatus = {
+    ...normalizedStatus,
+    turns: normalizedStatus.turns + 1,
+  }
+
+  nextCombatant = refreshCombatantStats(nextCombatant, { statusEffect: progressedStatus })
+
+  if (progressedStatus.turns >= STATUS_DURATION_TURNS) {
+    return {
+      nextCombatant: clearStatusEffect(nextCombatant),
+      battleLogs: [...battleLogs, `${nextCombatant.name}의 ${statusDefinition.label} 상태가 풀렸다!`],
+    }
+  }
+
+  if (Math.random() * 100 < STATUS_EARLY_CURE_CHANCE) {
+    return {
+      nextCombatant: clearStatusEffect(nextCombatant),
+      battleLogs: [...battleLogs, `${nextCombatant.name}의 ${statusDefinition.label} 상태가 자연스럽게 풀렸다!`],
+    }
+  }
+
+  return {
+    nextCombatant,
+    battleLogs,
+  }
 }
 
 const applyEffortValueGain = ({ combatant, defeatedEnemies }) => {
@@ -864,13 +1127,10 @@ const applyEffortValueGain = ({ combatant, defeatedEnemies }) => {
   }
 
   const nextCombatant = refreshCombatantStats(combatant, { evs: nextEvs })
-  const summaryText = changedStats
-    .map((statKey) => `${STAT_LABEL_MAP[statKey]} +${gainedStats[statKey]}`)
-    .join(', ')
 
   return {
     nextCombatant,
-    battleLogs: [`${combatant.name}의 노력치가 올랐다! (${summaryText})`],
+    battleLogs: [],
   }
 }
 
@@ -919,6 +1179,7 @@ const applyExperienceGain = ({ combatant, defeatedEnemies, levelCap }) => {
 
 const resolveAttackAction = ({ attacker, defender, skillName }) => {
   const skillData = getSkillData(skillName)
+  const skillStatusData = getSkillStatusData(skillData)
   const battleLogs = [`${attacker.name}의 ${skillData.기술명}!`]
   const accuracyValue = getAccuracyValue(skillData.명중률)
 
@@ -955,11 +1216,15 @@ const resolveAttackAction = ({ attacker, defender, skillName }) => {
   const randomFactor = 0.85 + Math.random() * 0.15
   const damage = Math.max(1, Math.floor(baseDamage * finalMultiplier * randomFactor))
   const nextHp = Math.max(0, defender.currentHp - damage)
-  const nextDefender = {
+  let nextDefender = {
     ...defender,
     currentHp: nextHp,
   }
   const nextLogs = [...battleLogs, `${defender.name}에게 ${damage} 데미지!`]
+
+  const hitStatusClearResult = clearReactiveStatusOnHit(nextDefender)
+  nextDefender = hitStatusClearResult.nextCombatant
+  nextLogs.push(...hitStatusClearResult.battleLogs)
 
   if (finalMultiplier > 1) {
     nextLogs.push('효과가 굉장했다!')
@@ -969,6 +1234,13 @@ const resolveAttackAction = ({ attacker, defender, skillName }) => {
 
   if (nextHp === 0) {
     nextLogs.push(`${defender.name}은(는) 쓰러졌다!`)
+  } else if (!normalizeStatusEffect(nextDefender.statusEffect) && skillStatusData) {
+    if (Math.random() * 100 < skillStatusData.chance) {
+      nextDefender = refreshCombatantStats(nextDefender, {
+        statusEffect: createStatusEffect(skillStatusData.type),
+      })
+      nextLogs.push(`${nextDefender.name}은(는) ${skillStatusData.type} 상태가 되었다!`)
+    }
   }
 
   return {
@@ -1089,24 +1361,49 @@ function App() {
     let nextEnemy = { ...enemy }
 
     const playerAttacks = () => {
-      const result = resolveAttackAction({
-        attacker: nextPlayer,
-        defender: nextEnemy,
-        skillName: playerSkill,
-      })
-      nextEnemy = result.nextDefender
-      logs.push(...result.battleLogs)
+      const startStatusResult = resolveTurnStartStatus(nextPlayer)
+      nextPlayer = startStatusResult.nextCombatant
+      logs.push(...startStatusResult.battleLogs)
+
+      if (startStatusResult.canAct && nextPlayer.currentHp > 0 && nextEnemy.currentHp > 0) {
+        const result = resolveAttackAction({
+          attacker: nextPlayer,
+          defender: nextEnemy,
+          skillName: playerSkill,
+        })
+        nextEnemy = result.nextDefender
+        logs.push(...result.battleLogs)
+      }
+
+      if (nextPlayer.currentHp > 0) {
+        const endStatusResult = resolveTurnEndStatus(nextPlayer)
+        nextPlayer = endStatusResult.nextCombatant
+        logs.push(...endStatusResult.battleLogs)
+      }
     }
 
     const enemyAttacks = () => {
       if (!enemySkill) return
-      const result = resolveAttackAction({
-        attacker: nextEnemy,
-        defender: nextPlayer,
-        skillName: enemySkill,
-      })
-      nextPlayer = result.nextDefender
-      logs.push(...result.battleLogs)
+
+      const startStatusResult = resolveTurnStartStatus(nextEnemy)
+      nextEnemy = startStatusResult.nextCombatant
+      logs.push(...startStatusResult.battleLogs)
+
+      if (startStatusResult.canAct && nextEnemy.currentHp > 0 && nextPlayer.currentHp > 0) {
+        const result = resolveAttackAction({
+          attacker: nextEnemy,
+          defender: nextPlayer,
+          skillName: enemySkill,
+        })
+        nextPlayer = result.nextDefender
+        logs.push(...result.battleLogs)
+      }
+
+      if (nextEnemy.currentHp > 0) {
+        const endStatusResult = resolveTurnEndStatus(nextEnemy)
+        nextEnemy = endStatusResult.nextCombatant
+        logs.push(...endStatusResult.battleLogs)
+      }
     }
 
     if (nextPlayer.speed >= nextEnemy.speed) {
@@ -1116,7 +1413,7 @@ function App() {
       }
     } else {
       enemyAttacks()
-      if (nextPlayer.currentHp > 0) {
+      if (nextPlayer.currentHp > 0 && nextEnemy.currentHp > 0) {
         playerAttacks()
       }
     }
@@ -1470,6 +1767,7 @@ function App() {
     ? Math.max(0, Math.min(100, (gameState.player.currentHp / gameState.player.maxHp) * 100))
     : 0
   const playerSkills = gameState?.player.skills ?? []
+  const playerStatusBadge = getCombatantStatusBadge(gameState?.player)
   const battleSkillSlots = Array.from({ length: 4 }, (_, index) => playerSkills[index] ?? null)
   const isAttackPanelOpen = battlePanelMode === 'attack'
   const currentTargetEnemyIndex = gameState ? getLivingEnemyIndex(gameState.enemies) : -1
@@ -1680,7 +1978,20 @@ function App() {
                 <div className="adventure-field">
                   <div className="adventure-player adventure-player--ally">
                     <p className="adventure-player__name">
-                      {gameState?.player.name} · Lv.{gameState?.player.level}
+                      <span className="adventure-player__name-text">{gameState?.player.name}</span>
+                      {playerStatusBadge ? (
+                        <span
+                          className={[
+                            'adventure-player__status',
+                            `adventure-player__status--${playerStatusBadge.className}`,
+                          ]
+                            .filter(Boolean)
+                            .join(' ')}
+                        >
+                          {playerStatusBadge.label}
+                        </span>
+                      ) : null}
+                      <span className="adventure-player__level">· Lv.{gameState?.player.level}</span>
                     </p>
                     <div className="adventure-player__sprite-wrap adventure-player__sprite-wrap--ally">
                       <img
@@ -1723,6 +2034,7 @@ function App() {
                         0,
                         Math.min(100, (enemy.currentHp / enemy.maxHp) * 100)
                       )
+                      const enemyStatusBadge = getCombatantStatusBadge(enemy)
 
                       return (
                         <div
@@ -1730,7 +2042,20 @@ function App() {
                           className={`adventure-enemy adventure-enemy--${gameState.enemies.length} adventure-enemy--slot-${index + 1}`}
                         >
                           <p className="adventure-player__name">
-                            {enemy.name} · Lv.{enemy.level}
+                            <span className="adventure-player__name-text">{enemy.name}</span>
+                            {enemyStatusBadge ? (
+                              <span
+                                className={[
+                                  'adventure-player__status',
+                                  `adventure-player__status--${enemyStatusBadge.className}`,
+                                ]
+                                  .filter(Boolean)
+                                  .join(' ')}
+                              >
+                                {enemyStatusBadge.label}
+                              </span>
+                            ) : null}
+                            <span className="adventure-player__level">· Lv.{enemy.level}</span>
                           </p>
                           <div className="adventure-player__sprite-wrap adventure-player__sprite-wrap--enemy">
                             <img

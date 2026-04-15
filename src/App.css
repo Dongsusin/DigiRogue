@@ -739,8 +739,64 @@
   color: #fefbff;
   font-family: var(--font-pixel);
   font-size: clamp(0.72rem, 0.92vw, 0.92rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   text-align: center;
+  white-space: nowrap;
   text-shadow: 3px 3px 0 rgba(30, 21, 39, 0.88);
+}
+
+.adventure-player__name-text,
+.adventure-player__level {
+  flex: 0 0 auto;
+}
+
+.adventure-player__status {
+  flex: 0 0 auto;
+  padding: 2px 7px 1px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  font-size: clamp(0.56rem, 0.7vw, 0.66rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-shadow: 1px 1px 0 rgba(23, 18, 30, 0.92);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.adventure-player__status--poison {
+  background: linear-gradient(180deg, rgba(164, 92, 208, 0.96), rgba(103, 49, 143, 0.96));
+  color: #f9ebff;
+}
+
+.adventure-player__status--toxic {
+  background: linear-gradient(180deg, rgba(183, 68, 182, 0.98), rgba(118, 28, 117, 0.98));
+  color: #fff1ff;
+}
+
+.adventure-player__status--confusion,
+.adventure-player__status--derangement {
+  background: linear-gradient(180deg, rgba(255, 189, 92, 0.96), rgba(199, 111, 35, 0.96));
+  color: #fff7e6;
+}
+
+.adventure-player__status--paralysis,
+.adventure-player__status--disabled {
+  background: linear-gradient(180deg, rgba(255, 225, 97, 0.96), rgba(204, 150, 29, 0.96));
+  color: #3a2500;
+  text-shadow: none;
+}
+
+.adventure-player__status--sleep,
+.adventure-player__status--coma {
+  background: linear-gradient(180deg, rgba(108, 184, 255, 0.96), rgba(56, 104, 190, 0.96));
+  color: #f3fbff;
+}
+
+.adventure-player__status--neutral {
+  background: linear-gradient(180deg, rgba(124, 132, 148, 0.96), rgba(83, 90, 106, 0.96));
+  color: #f5f7fb;
 }
 
 .adventure-enemies {
