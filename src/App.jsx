@@ -29,29 +29,90 @@ const battleMenuItems = [
 ]
 
 const fixedRewardItems = [
-  { id: 'heal-20', name: '20회복', description: 'HP 20 회복 아이템', price: 120, healAmount: 20 },
-  { id: 'heal-50', name: '50회복', description: 'HP 50 회복 아이템', price: 280, healAmount: 50 },
-  { id: 'revive', name: '부활', description: '전투 불능 시 부활', price: 700 },
+  {
+    id: 'heal-20',
+    name: '20회복',
+    description: 'HP 20 회복 아이템',
+    price: 120,
+    healAmount: 20,
+    imageUrl: '/아이템/회복/상처약.png',
+  },
+  {
+    id: 'heal-50',
+    name: '50회복',
+    description: 'HP 50 회복 아이템',
+    price: 280,
+    healAmount: 50,
+    imageUrl: '/아이템/회복/좋은상처약.png',
+  },
+  {
+    id: 'revive-50',
+    name: '50%부활',
+    description: '전투 불능 시 HP 50%로 부활',
+    price: 500,
+    reviveRatio: 0.5,
+    imageUrl: '/아이템/회복/부활칩(50%25).png',
+  },
+  {
+    id: 'revive-100',
+    name: '100%부활',
+    description: '전투 불능 시 HP 100%로 부활',
+    price: 900,
+    reviveRatio: 1,
+    imageUrl: '/아이템/회복/부활칩(100%25).png',
+  },
 ]
 
 const randomRewardItemPool = [
-  { id: 'buff-attack', name: '공격력 증가', description: '10턴 동안 공격 10% 증가', buffStatKey: 'attack' },
-  { id: 'buff-defense', name: '방어력 증가', description: '10턴 동안 방어 10% 증가', buffStatKey: 'defense' },
+  {
+    id: 'buff-attack',
+    name: '공격력 증가',
+    description: '10턴 동안 공격 10% 증가',
+    buffStatKey: 'attack',
+    imageUrl: '/아이템/스탯업/힘.png',
+  },
+  {
+    id: 'buff-defense',
+    name: '방어력 증가',
+    description: '10턴 동안 방어 10% 증가',
+    buffStatKey: 'defense',
+    imageUrl: '/아이템/스탯업/방어.png',
+  },
   {
     id: 'buff-special-attack',
     name: '특수공격 증가',
     description: '10턴 동안 특수공격 10% 증가',
     buffStatKey: 'specialAttack',
+    imageUrl: '/아이템/스탯업/특공.png',
   },
   {
     id: 'buff-special-defense',
     name: '특수방어 증가',
     description: '10턴 동안 특수방어 10% 증가',
     buffStatKey: 'specialDefense',
+    imageUrl: '/아이템/스탯업/특방.png',
   },
-  { id: 'buff-speed', name: '스피드 증가', description: '10턴 동안 스피드 10% 증가', buffStatKey: 'speed' },
-  { id: 'heal-20', name: '20회복', description: 'HP 20 회복 아이템', healAmount: 20 },
-  { id: 'heal-50', name: '50회복', description: 'HP 50 회복 아이템', healAmount: 50 },
+  {
+    id: 'buff-speed',
+    name: '스피드 증가',
+    description: '10턴 동안 스피드 10% 증가',
+    buffStatKey: 'speed',
+    imageUrl: '/아이템/스탯업/스피드.png',
+  },
+  {
+    id: 'heal-20',
+    name: '20회복',
+    description: 'HP 20 회복 아이템',
+    healAmount: 20,
+    imageUrl: '/아이템/회복/상처약.png',
+  },
+  {
+    id: 'heal-50',
+    name: '50회복',
+    description: 'HP 50 회복 아이템',
+    healAmount: 50,
+    imageUrl: '/아이템/회복/좋은상처약.png',
+  },
 ]
 
 const growthStageDigimonUrls = [
@@ -221,6 +282,7 @@ const EV_YIELD_BY_STAGE = {
 }
 const EXP_BAR_ANIMATION_MS = 520
 const EXP_BAR_RESET_MS = 70
+const EXP_BAR_VISIBLE_AFTER_MS = 450
 const CLASSIC_LEVEL_CAPS = [
   10, 16, 24, 32, 38, 48, 56, 64, 74, 84, 94, 104, 114, 126, 138, 150, 162, 174, 188, 200,
 ]
@@ -1287,6 +1349,7 @@ function App() {
   const [currentLogs, setCurrentLogs] = useState([])
   const [rewardState, setRewardState] = useState(null)
   const [displayedPlayerExpRatio, setDisplayedPlayerExpRatio] = useState(0)
+  const [isPlayerExpBarVisible, setIsPlayerExpBarVisible] = useState(false)
   const [isPlayerExpTransitionInstant, setIsPlayerExpTransitionInstant] = useState(false)
   const expAnimationTimeoutsRef = useRef([])
   const previousPlayerProgressRef = useRef(null)
@@ -1333,6 +1396,7 @@ function App() {
       enemies: newEnemies,
       player: currentPlayer,
     })
+    setIsPlayerExpBarVisible(false)
     setCurrentLogs(createBattleLog(getBattlePrompt(currentPlayer.name)))
     setSelectedBattleCommand('attack')
     setSelectedSkillIndex(0)
@@ -1514,6 +1578,7 @@ function App() {
     if (!gameState?.player) {
       clearExpAnimationQueue()
       previousPlayerProgressRef.current = null
+      setIsPlayerExpBarVisible(false)
       setIsPlayerExpTransitionInstant(true)
       setDisplayedPlayerExpRatio(0)
       return undefined
@@ -1529,6 +1594,7 @@ function App() {
     clearExpAnimationQueue()
 
     if (!previousSnapshot || previousSnapshot.id !== currentSnapshot.id) {
+      setIsPlayerExpBarVisible(false)
       setIsPlayerExpTransitionInstant(true)
       setDisplayedPlayerExpRatio(currentSnapshot.ratio)
 
@@ -1541,8 +1607,15 @@ function App() {
     }
 
     const levelGainCount = Math.max(0, currentSnapshot.level - previousSnapshot.level)
+    const hasExperienceProgressChanged = levelGainCount > 0 || previousSnapshot.ratio !== currentSnapshot.ratio
 
     if (levelGainCount === 0) {
+      if (!hasExperienceProgressChanged) {
+        previousPlayerProgressRef.current = currentSnapshot
+        return undefined
+      }
+
+      setIsPlayerExpBarVisible(true)
       setIsPlayerExpTransitionInstant(false)
       setDisplayedPlayerExpRatio(previousSnapshot.ratio)
 
@@ -1550,10 +1623,17 @@ function App() {
         setDisplayedPlayerExpRatio(currentSnapshot.ratio)
       }, 30)
       expAnimationTimeoutsRef.current.push(timeoutId)
+
+      const hideTimeoutId = window.setTimeout(() => {
+        setIsPlayerExpBarVisible(false)
+      }, 30 + EXP_BAR_ANIMATION_MS + EXP_BAR_VISIBLE_AFTER_MS)
+      expAnimationTimeoutsRef.current.push(hideTimeoutId)
+
       previousPlayerProgressRef.current = currentSnapshot
       return undefined
     }
 
+    setIsPlayerExpBarVisible(true)
     setIsPlayerExpTransitionInstant(false)
     setDisplayedPlayerExpRatio(previousSnapshot.ratio)
 
@@ -1580,6 +1660,12 @@ function App() {
       setDisplayedPlayerExpRatio(currentSnapshot.ratio)
     }, elapsed)
     expAnimationTimeoutsRef.current.push(finalTimeoutId)
+
+    const hideTimeoutId = window.setTimeout(() => {
+      setIsPlayerExpBarVisible(false)
+    }, elapsed + EXP_BAR_ANIMATION_MS + EXP_BAR_VISIBLE_AFTER_MS)
+    expAnimationTimeoutsRef.current.push(hideTimeoutId)
+
     previousPlayerProgressRef.current = currentSnapshot
 
     return undefined
@@ -2013,7 +2099,17 @@ function App() {
                       </div>
                     </div>
 
-                    <div className="adventure-exp" role="img" aria-label="experience bar">
+                    <div
+                      className={[
+                        'adventure-exp',
+                        isPlayerExpBarVisible ? 'adventure-exp--visible' : '',
+                      ]
+                        .filter(Boolean)
+                        .join(' ')}
+                      role="img"
+                      aria-label="experience bar"
+                      aria-hidden={!isPlayerExpBarVisible}
+                    >
                       <div className="adventure-exp__track">
                         <span
                           className={[
@@ -2084,6 +2180,7 @@ function App() {
 
                 {rewardState && (
                   <div className="reward-screen" aria-label={'스테이지 클리어 보상'}>
+                    <div className="reward-screen__veil" aria-hidden="true" />
                     <div className="reward-screen__fixed">
                       {fixedRewardItems.map((item) => {
                         const canAfford = (gameState?.gold ?? 0) >= item.price
@@ -2101,7 +2198,10 @@ function App() {
                               .join(' ')}
                             disabled={!canAfford || rewardState.isResolving}
                             onClick={() => handlePurchaseFixedRewardItem(item.id)}
+                            data-tooltip={item.description}
+                            title={item.description}
                           >
+                            <img className="reward-item__image" src={item.imageUrl} alt="" />
                             <strong className="reward-item__name">{item.name}</strong>
                             <span className="reward-item__price">{formatGold(item.price)}</span>
                           </button>
@@ -2123,7 +2223,10 @@ function App() {
                             .join(' ')}
                           disabled={rewardState.isResolving}
                           onClick={() => handleClaimRandomRewardItem(item.id)}
+                          data-tooltip={item.description}
+                          title={item.description}
                         >
+                          <img className="reward-item__image" src={item.imageUrl} alt="" />
                           <strong className="reward-item__name">{item.name}</strong>
                         </button>
                       ))}
