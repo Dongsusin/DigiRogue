@@ -113,7 +113,44 @@ const randomRewardItemPool = [
     healAmount: 50,
     imageUrl: '/아이템/회복/좋은상처약.png',
   },
+  {
+    id: 'capture-net',
+    name: '포획그물',
+    description: '야생 디지몬을 포획할 수 있는 기본 그물',
+    captureTier: 'normal',
+    imageUrl: '/아이템/포획/포획그물.png',
+  },
+  {
+    id: 'capture-net-super',
+    name: '포획그물(슈퍼)',
+    description: '야생 디지몬 포획 확률이 더 높은 그물',
+    captureTier: 'super',
+    imageUrl: '/아이템/포획/포획그물(슈퍼).png',
+  },
+  {
+    id: 'capture-net-hyper',
+    name: '포획그물(하이퍼)',
+    description: '야생 디지몬 포획 확률이 크게 높은 그물',
+    captureTier: 'hyper',
+    imageUrl: '/아이템/포획/포획그물(하이퍼).png',
+  },
+  {
+    id: 'capture-net-master',
+    name: '포획그물(마스터)',
+    description: '야생 디지몬 포획에 특화된 최고 등급 그물',
+    captureTier: 'master',
+    imageUrl: '/아이템/포획/포획그물(마스터).png',
+  },
 ]
+
+const captureItemOrder = ['capture-net', 'capture-net-super', 'capture-net-hyper', 'capture-net-master']
+const captureItemLookup = new Map(randomRewardItemPool.map((item) => [item.id, item]))
+const captureChanceByTier = {
+  normal: 10,
+  super: 30,
+  hyper: 50,
+  master: 100,
+}
 
 const growthStageDigimonUrls = [
   '/도감/성장기/가오몬.png',
@@ -309,6 +346,33 @@ const addInventoryItem = (inventory, itemId) => ({
   ...(inventory ?? {}),
   [itemId]: (inventory?.[itemId] ?? 0) + 1,
 })
+const removeInventoryItem = (inventory, itemId) => {
+  const currentCount = inventory?.[itemId] ?? 0
+
+  if (currentCount <= 1) {
+    const { [itemId]: _removedItem, ...restInventory } = inventory ?? {}
+    return restInventory
+  }
+
+  return {
+    ...(inventory ?? {}),
+    [itemId]: currentCount - 1,
+  }
+}
+const syncPartyMember = (party, activePlayer) => {
+  if (!activePlayer) {
+    return party ?? []
+  }
+
+  const currentParty = Array.isArray(party) && party.length > 0 ? party : [activePlayer]
+  const activeIndex = currentParty.findIndex((member) => member.id === activePlayer.id)
+
+  if (activeIndex === -1) {
+    return [activePlayer, ...currentParty]
+  }
+
+  return currentParty.map((member, index) => (index === activeIndex ? activePlayer : member))
+}
 const normalizeBuffState = (activeBuffs) =>
   BUFFABLE_STAT_KEYS.reduce((result, statKey) => {
     const nextValue = Math.max(0, Math.floor(activeBuffs?.[statKey] ?? 0))
@@ -920,6 +984,20 @@ const createCombatant = ({
   }
 }
 
+const createCapturedPartyMember = (enemy, captureId) =>
+  refreshCombatantStats(
+    {
+      ...enemy,
+      id: captureId,
+      activeBuffs: normalizeBuffState(null),
+      statusEffect: null,
+    },
+    {
+      activeBuffs: normalizeBuffState(null),
+      statusEffect: null,
+    }
+  )
+
 const getEnemyLevelForStage = (stage) => {
   if (stage <= 10) {
     return getRandomIntInclusive(1, 8)
@@ -1311,6 +1389,47 @@ const resolveAttackAction = ({ attacker, defender, skillName }) => {
   }
 }
 
+const resolveEnemyCounterAttack = ({ enemy, player }) => {
+  const enemySkill = getRandomEnemySkill(enemy)
+  let nextEnemy = { ...enemy }
+  let nextPlayer = { ...player }
+  const battleLogs = []
+
+  if (!enemySkill || nextEnemy.currentHp <= 0 || nextPlayer.currentHp <= 0) {
+    return {
+      nextEnemy,
+      nextPlayer,
+      battleLogs,
+    }
+  }
+
+  const startStatusResult = resolveTurnStartStatus(nextEnemy)
+  nextEnemy = startStatusResult.nextCombatant
+  battleLogs.push(...startStatusResult.battleLogs)
+
+  if (startStatusResult.canAct && nextEnemy.currentHp > 0 && nextPlayer.currentHp > 0) {
+    const attackResult = resolveAttackAction({
+      attacker: nextEnemy,
+      defender: nextPlayer,
+      skillName: enemySkill,
+    })
+    nextPlayer = attackResult.nextDefender
+    battleLogs.push(...attackResult.battleLogs)
+  }
+
+  if (nextEnemy.currentHp > 0) {
+    const endStatusResult = resolveTurnEndStatus(nextEnemy)
+    nextEnemy = endStatusResult.nextCombatant
+    battleLogs.push(...endStatusResult.battleLogs)
+  }
+
+  return {
+    nextEnemy,
+    nextPlayer,
+    battleLogs,
+  }
+}
+
 const buildEnemyParty = (stage, encounterPool, encounterCount) => {
   const shuffledNames = shuffleItems(encounterPool)
 
@@ -1395,6 +1514,7 @@ function App() {
       levelCap,
       enemies: newEnemies,
       player: currentPlayer,
+      party: syncPartyMember(currentGameState.party, currentPlayer),
     })
     setIsPlayerExpBarVisible(false)
     setCurrentLogs(createBattleLog(getBattlePrompt(currentPlayer.name)))
@@ -1509,6 +1629,7 @@ function App() {
     const nextGameState = {
       ...gameState,
       player: nextPlayer,
+      party: syncPartyMember(gameState.party, nextPlayer),
       enemies: nextEnemies,
       gold: nextGold,
     }
@@ -1726,13 +1847,125 @@ function App() {
     }
 
     if (commandKey === 'item') {
-      setCurrentLogs(createBattleLog('아이템창은 추후 전용 아이템으로 구현될 예정이다.', getBattlePrompt(gameState.player.name)))
+      setBattlePanelMode('items')
+      return
     } else if (commandKey === 'swap') {
-      setCurrentLogs(createBattleLog('교체 기능은 다음 단계에서 구현될 예정이다.', getBattlePrompt(gameState.player.name)))
+      setBattlePanelMode('party')
+      return
     } else if (commandKey === 'run') {
       setCurrentLogs(createBattleLog('지금은 도망칠 수 없다!', getBattlePrompt(gameState.player.name)))
     }
 
+    setBattlePanelMode('commands')
+  }
+
+  const handleUseCaptureItem = (itemId) => {
+    if (rewardState || !gameState || battlePanelMode !== 'items' || gameState.player.currentHp <= 0) {
+      return
+    }
+
+    const captureItem = captureItemLookup.get(itemId)
+    const itemCount = gameState.inventory?.[itemId] ?? 0
+    const targetEnemyIndex = getLivingEnemyIndex(gameState.enemies)
+
+    if (!captureItem || itemCount <= 0 || targetEnemyIndex === -1) {
+      return
+    }
+
+    const targetEnemy = gameState.enemies[targetEnemyIndex]
+    const captureChance = captureChanceByTier[captureItem.captureTier] ?? 0
+    const isCaptured = Math.random() * 100 < captureChance
+    const nextInventory = removeInventoryItem(gameState.inventory, itemId)
+    let nextPlayer = { ...gameState.player }
+    let nextEnemies = [...gameState.enemies]
+    let nextParty = syncPartyMember(gameState.party, nextPlayer)
+    let nextGold = gameState.gold ?? 0
+    const logs = [`${nextPlayer.name}은(는) ${captureItem.name}을(를) 사용했다!`]
+
+    if (isCaptured) {
+      const capturedMember = createCapturedPartyMember(
+        targetEnemy,
+        `captured-${gameState.currentStage}-${targetEnemy.id}-${nextParty.length}`
+      )
+      nextEnemies[targetEnemyIndex] = {
+        ...targetEnemy,
+        currentHp: 0,
+        statusEffect: null,
+      }
+      nextParty = [...nextParty, capturedMember]
+      logs.push(`${targetEnemy.name}을(를) 포획했다!`)
+    } else {
+      logs.push(`${targetEnemy.name}은(는) 그물에서 빠져나왔다!`)
+
+      const counterAttackResult = resolveEnemyCounterAttack({
+        enemy: targetEnemy,
+        player: nextPlayer,
+      })
+      nextPlayer = counterAttackResult.nextPlayer
+      nextEnemies[targetEnemyIndex] = counterAttackResult.nextEnemy
+      logs.push(...counterAttackResult.battleLogs)
+    }
+
+    const allEnemiesDefeated = nextEnemies.every((enemy) => enemy.currentHp === 0)
+    const isPlayerDefeated = nextPlayer.currentHp === 0
+
+    if (allEnemiesDefeated && !isPlayerDefeated) {
+      nextPlayer = tickCombatantBuffsByStage(nextPlayer)
+      nextGold += getStageClearGoldReward(gameState.currentStage)
+      logs.push('전투에서 승리했다!')
+      setRewardState(createRewardSelection())
+      setBattlePanelMode('logs')
+    } else if (isPlayerDefeated) {
+      logs.push('\uB208\uC55E\uC774 \uAE5C\uAE5C\uD574\uC84C\uB2E4...')
+      setBattlePanelMode('logs')
+      window.setTimeout(() => {
+        setScreenMode('menu')
+        setGameState(null)
+        setRewardState(null)
+        setCurrentLogs([])
+      }, 3000)
+    } else {
+      logs.push(getBattlePrompt(nextPlayer.name))
+      setBattlePanelMode('commands')
+    }
+
+    nextParty = syncPartyMember(nextParty, nextPlayer)
+    setGameState({
+      ...gameState,
+      player: nextPlayer,
+      party: nextParty,
+      enemies: nextEnemies,
+      inventory: nextInventory,
+      gold: nextGold,
+    })
+    setCurrentLogs(createBattleLog(...logs))
+  }
+
+  const handleSwitchPartyMember = (memberId) => {
+    if (rewardState || !gameState || battlePanelMode !== 'party') {
+      return
+    }
+
+    const syncedParty = syncPartyMember(gameState.party, gameState.player)
+    const nextPlayer = syncedParty.find((member) => member.id === memberId)
+
+    if (!nextPlayer || nextPlayer.id === gameState.player.id || nextPlayer.currentHp <= 0) {
+      return
+    }
+
+    setGameState({
+      ...gameState,
+      player: nextPlayer,
+      party: syncedParty,
+    })
+    setCurrentLogs(
+      createBattleLog(
+        `${gameState.player.name}, 돌아와!`,
+        `${nextPlayer.name}, 부탁해!`,
+        getBattlePrompt(nextPlayer.name)
+      )
+    )
+    setSelectedBattleCommand('attack')
     setBattlePanelMode('commands')
   }
 
@@ -1760,6 +1993,7 @@ function App() {
       ...gameState,
       gold: nextGold,
       player: effectResult.nextPlayer,
+      party: syncPartyMember(gameState.party, effectResult.nextPlayer),
       inventory: nextInventory,
     })
   }
@@ -1781,6 +2015,7 @@ function App() {
     const nextGameState = {
       ...gameState,
       player: effectResult.nextPlayer,
+      party: syncPartyMember(gameState.party, effectResult.nextPlayer),
       inventory: nextInventory,
     }
 
@@ -1830,6 +2065,7 @@ function App() {
       levelCap,
       enemies,
       player,
+      party: [player],
     })
     setCurrentLogs(createBattleLog(getBattlePrompt(player.name)))
     setSelectedBattleCommand('attack')
@@ -1856,6 +2092,22 @@ function App() {
   const playerStatusBadge = getCombatantStatusBadge(gameState?.player)
   const battleSkillSlots = Array.from({ length: 4 }, (_, index) => playerSkills[index] ?? null)
   const isAttackPanelOpen = battlePanelMode === 'attack'
+  const isItemPanelOpen = battlePanelMode === 'items'
+  const isPartyPanelOpen = battlePanelMode === 'party'
+  const captureInventoryItems = captureItemOrder.map((itemId) => {
+    const item = captureItemLookup.get(itemId)
+
+    return {
+      ...item,
+      count: gameState?.inventory?.[itemId] ?? 0,
+    }
+  })
+  const partyMembers = gameState?.party?.length ? syncPartyMember(gameState.party, gameState.player) : []
+  const benchPartyMembers = partyMembers.filter((member) => member.id !== gameState?.player?.id)
+  const partyListSlots = Array.from(
+    { length: Math.max(4, benchPartyMembers.length) },
+    (_, index) => benchPartyMembers[index] ?? null
+  )
   const currentTargetEnemyIndex = gameState ? getLivingEnemyIndex(gameState.enemies) : -1
   const currentTargetEnemy =
     currentTargetEnemyIndex >= 0 && gameState ? gameState.enemies[currentTargetEnemyIndex] : null
@@ -2233,6 +2485,77 @@ function App() {
                     </div>
                   </div>
                 )}
+
+                {isPartyPanelOpen && !rewardState && gameState?.player && (
+                  <div className="party-screen" aria-label="보유 디지몬">
+                    <div className="party-screen__current" aria-label="현재 출전 디지몬">
+                      <img
+                        className="party-screen__current-image"
+                        src={gameState.player.imageUrl}
+                        alt={gameState.player.name}
+                      />
+                      <div className="party-screen__current-card">
+                        <p className="party-screen__name">{gameState.player.name}</p>
+                        <p className="party-screen__level">Lv.{gameState.player.level}</p>
+                        <div className="party-screen__hp">
+                          <span
+                            className="party-screen__hp-fill"
+                            style={{
+                              width: `${Math.max(
+                                0,
+                                Math.min(100, (gameState.player.currentHp / gameState.player.maxHp) * 100)
+                              )}%`,
+                            }}
+                          />
+                        </div>
+                        <p className="party-screen__hp-text">
+                          {gameState.player.currentHp}/{gameState.player.maxHp}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="party-screen__list" aria-label="교체 가능한 디지몬">
+                      {partyListSlots.map((member, index) => {
+                        const hpRatio = member
+                          ? Math.max(0, Math.min(100, (member.currentHp / member.maxHp) * 100))
+                          : 0
+                        const isFainted = member ? member.currentHp <= 0 : false
+
+                        return member ? (
+                          <button
+                            key={member.id}
+                            type="button"
+                            className={[
+                              'party-member',
+                              isFainted ? 'party-member--fainted' : '',
+                            ]
+                              .filter(Boolean)
+                              .join(' ')}
+                            disabled={isFainted}
+                            onClick={() => handleSwitchPartyMember(member.id)}
+                          >
+                            <img className="party-member__image" src={member.imageUrl} alt="" />
+                            <span className="party-member__name">{member.name}</span>
+                            <span className="party-member__level">Lv.{member.level}</span>
+                            <span className="party-member__hp">
+                              <span
+                                className="party-member__hp-fill"
+                                style={{ width: `${hpRatio}%` }}
+                              />
+                            </span>
+                            <span className="party-member__hp-text">
+                              {member.currentHp}/{member.maxHp}
+                            </span>
+                          </button>
+                        ) : (
+                          <div key={`empty-${index}`} className="party-member party-member--empty">
+                            <span className="party-member__empty-text">EMPTY</span>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div className="battle-console" aria-label={'\uBC30\uD2C0 UI'}>
@@ -2331,6 +2654,35 @@ function App() {
                     </button>
                   ))}
                 </section>
+
+                {isItemPanelOpen && !rewardState && (
+                  <aside className="battle-item-popover" aria-label="아이템 목록">
+                    <div className="battle-item-list">
+                      {captureInventoryItems.map((item) => {
+                        const itemCount = item.count ?? 0
+
+                        return (
+                          <button
+                            key={item.id}
+                            type="button"
+                            className={[
+                              'battle-item-row',
+                              itemCount <= 0 ? 'battle-item-row--empty' : '',
+                            ]
+                              .filter(Boolean)
+                              .join(' ')}
+                            disabled={itemCount <= 0}
+                            onClick={() => handleUseCaptureItem(item.id)}
+                          >
+                            <img className="battle-item-row__image" src={item.imageUrl} alt="" />
+                            <span className="battle-item-row__name">{item.name}</span>
+                            <span className="battle-item-row__count">X{itemCount}</span>
+                          </button>
+                        )
+                      })}
+                    </div>
+                  </aside>
+                )}
               </div>
             </section>
           )}
