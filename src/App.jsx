@@ -31,32 +31,32 @@ const battleMenuItems = [
 const fixedRewardItems = [
   {
     id: 'heal-20',
-    name: '20회복',
-    description: 'HP 20 회복 아이템',
+    name: '상처약',
+    description: 'HP 20 회복',
     price: 120,
     healAmount: 20,
     imageUrl: '/아이템/회복/상처약.png',
   },
   {
     id: 'heal-50',
-    name: '50회복',
-    description: 'HP 50 회복 아이템',
+    name: '좋은 상처약',
+    description: 'HP 50 회복',
     price: 280,
     healAmount: 50,
     imageUrl: '/아이템/회복/좋은상처약.png',
   },
   {
     id: 'revive-50',
-    name: '50%부활',
-    description: '전투 불능 시 HP 50%로 부활',
+    name: '부활칩(50%)',
+    description: '전투 불능 디지몬을 HP 50%로 부활',
     price: 500,
     reviveRatio: 0.5,
     imageUrl: '/아이템/회복/부활칩(50%25).png',
   },
   {
     id: 'revive-100',
-    name: '100%부활',
-    description: '전투 불능 시 HP 100%로 부활',
+    name: '부활칩(100%)',
+    description: '전투 불능 디지몬을 HP 100%로 부활',
     price: 900,
     reviveRatio: 1,
     imageUrl: '/아이템/회복/부활칩(100%25).png',
@@ -100,18 +100,26 @@ const randomRewardItemPool = [
     imageUrl: '/아이템/스탯업/스피드.png',
   },
   {
-    id: 'heal-20',
-    name: '20회복',
-    description: 'HP 20 회복 아이템',
-    healAmount: 20,
-    imageUrl: '/아이템/회복/상처약.png',
+    id: 'heal-200',
+    name: '고급 상처약',
+    description: 'HP 200 회복',
+    healAmount: 200,
+    imageUrl: '/아이템/회복/고급상처약.png',
   },
   {
-    id: 'heal-50',
-    name: '50회복',
-    description: 'HP 50 회복 아이템',
-    healAmount: 50,
-    imageUrl: '/아이템/회복/좋은상처약.png',
+    id: 'heal-full-hp',
+    name: '풀 회복약',
+    description: '상태이상은 유지하고 HP만 모두 회복',
+    healFull: true,
+    imageUrl: '/아이템/회복/풀회복약.png',
+  },
+  {
+    id: 'heal-full-cure',
+    name: '회복약',
+    description: 'HP를 모두 회복하고 상태이상도 치료',
+    healFull: true,
+    cureStatus: true,
+    imageUrl: '/아이템/회복/회복약.png',
   },
   {
     id: 'capture-net',
@@ -151,7 +159,6 @@ const captureChanceByTier = {
   hyper: 50,
   master: 100,
 }
-
 const growthStageDigimonUrls = [
   '/도감/성장기/가오몬.png',
   '/도감/성장기/가지몬.png',
@@ -308,6 +315,15 @@ const STAT_LABEL_MAP = {
   specialDefense: '특방',
   speed: '스피드',
 }
+const LEVEL_UP_STAT_KEYS = ['hp', 'attack', 'specialAttack', 'defense', 'specialDefense', 'speed']
+const LEVEL_UP_STAT_LABEL_MAP = {
+  hp: 'hp',
+  attack: '공격',
+  specialAttack: '특공',
+  defense: '방어',
+  specialDefense: '특방',
+  speed: '스피드',
+}
 const EV_YIELD_BY_STAGE = {
   유아기: 1,
   유년기: 1,
@@ -320,6 +336,8 @@ const EV_YIELD_BY_STAGE = {
 const EXP_BAR_ANIMATION_MS = 520
 const EXP_BAR_RESET_MS = 70
 const EXP_BAR_VISIBLE_AFTER_MS = 450
+const LEVEL_UP_STAT_ANIMATION_MS = 900
+const LEVEL_UP_STAT_VISIBLE_AFTER_MS = 1050
 const CLASSIC_LEVEL_CAPS = [
   10, 16, 24, 32, 38, 48, 56, 64, 74, 84, 94, 104, 114, 126, 138, 150, 162, 174, 188, 200,
 ]
@@ -396,6 +414,20 @@ const applyInstantRewardEffect = (player, rewardItem) => {
 
     return {
       nextPlayer: refreshCombatantStats(player, { activeBuffs: nextActiveBuffs }),
+      shouldStore: false,
+    }
+  }
+
+  if (rewardItem?.healFull) {
+    const refreshedPlayer = refreshCombatantStats(player, {
+      statusEffect: rewardItem.cureStatus ? null : player.statusEffect,
+    })
+
+    return {
+      nextPlayer: {
+        ...refreshedPlayer,
+        currentHp: refreshedPlayer.maxHp,
+      },
       shouldStore: false,
     }
   }
@@ -802,6 +834,15 @@ const getExperienceRatio = (combatant) => {
 
   return Math.max(0, Math.min(100, (combatant.experience / combatant.experienceToNext) * 100))
 }
+
+const getLevelUpStatValues = (combatant) => ({
+  hp: combatant?.maxHp ?? 0,
+  attack: combatant?.attack ?? 0,
+  specialAttack: combatant?.specialAttack ?? 0,
+  defense: combatant?.defense ?? 0,
+  specialDefense: combatant?.specialDefense ?? 0,
+  speed: combatant?.speed ?? 0,
+})
 
 const getExperienceToNextLevel = (level) => Math.floor(20 + level * 12)
 
@@ -1470,7 +1511,9 @@ function App() {
   const [displayedPlayerExpRatio, setDisplayedPlayerExpRatio] = useState(0)
   const [isPlayerExpBarVisible, setIsPlayerExpBarVisible] = useState(false)
   const [isPlayerExpTransitionInstant, setIsPlayerExpTransitionInstant] = useState(false)
+  const [levelUpStatPreview, setLevelUpStatPreview] = useState(null)
   const expAnimationTimeoutsRef = useRef([])
+  const levelUpStatTimeoutsRef = useRef([])
   const previousPlayerProgressRef = useRef(null)
   const [mapTransition, setMapTransition] = useState(() => {
     const initialIndex = getRandomMapIndex()
@@ -1485,6 +1528,70 @@ function App() {
   const clearExpAnimationQueue = () => {
     expAnimationTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
     expAnimationTimeoutsRef.current = []
+  }
+
+  const clearLevelUpStatAnimationQueue = () => {
+    levelUpStatTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
+    levelUpStatTimeoutsRef.current = []
+  }
+
+  const showLevelUpStatPreview = (previousStats, currentStats) => {
+    const statRows = LEVEL_UP_STAT_KEYS.map((statKey) => {
+      const startValue = previousStats?.[statKey] ?? currentStats?.[statKey] ?? 0
+      const endValue = currentStats?.[statKey] ?? startValue
+
+      return {
+        key: statKey,
+        label: LEVEL_UP_STAT_LABEL_MAP[statKey],
+        startValue,
+        endValue,
+        gain: Math.max(0, endValue - startValue),
+        value: startValue,
+      }
+    })
+
+    if (!statRows.some((row) => row.gain > 0)) {
+      return
+    }
+
+    clearLevelUpStatAnimationQueue()
+    setLevelUpStatPreview({
+      isExiting: false,
+      rows: statRows,
+    })
+
+    const steps = 14
+    const startDelay = 120
+
+    for (let step = 1; step <= steps; step += 1) {
+      const timeoutId = window.setTimeout(() => {
+        const progress = step / steps
+        const easedProgress = 1 - (1 - progress) ** 3
+
+        setLevelUpStatPreview((current) =>
+          current
+            ? {
+                ...current,
+                rows: statRows.map((row) => ({
+                  ...row,
+                  value: Math.round(row.startValue + (row.endValue - row.startValue) * easedProgress),
+                })),
+              }
+            : current
+        )
+      }, startDelay + (LEVEL_UP_STAT_ANIMATION_MS / steps) * step)
+      levelUpStatTimeoutsRef.current.push(timeoutId)
+    }
+
+    const exitTimeoutId = window.setTimeout(() => {
+      setLevelUpStatPreview((current) => (current ? { ...current, isExiting: true } : current))
+    }, startDelay + LEVEL_UP_STAT_ANIMATION_MS + LEVEL_UP_STAT_VISIBLE_AFTER_MS)
+    levelUpStatTimeoutsRef.current.push(exitTimeoutId)
+
+    const removeTimeoutId = window.setTimeout(() => {
+      setLevelUpStatPreview(null)
+    }, startDelay + LEVEL_UP_STAT_ANIMATION_MS + LEVEL_UP_STAT_VISIBLE_AFTER_MS + 280)
+    levelUpStatTimeoutsRef.current.push(removeTimeoutId)
   }
 
   const handleNextStage = (currentGameState, currentPlayer) => {
@@ -1698,10 +1805,12 @@ function App() {
   useEffect(() => {
     if (!gameState?.player) {
       clearExpAnimationQueue()
+      clearLevelUpStatAnimationQueue()
       previousPlayerProgressRef.current = null
       setIsPlayerExpBarVisible(false)
       setIsPlayerExpTransitionInstant(true)
       setDisplayedPlayerExpRatio(0)
+      setLevelUpStatPreview(null)
       return undefined
     }
 
@@ -1709,6 +1818,7 @@ function App() {
       id: gameState.player.id,
       level: gameState.player.level,
       ratio: getExperienceRatio(gameState.player),
+      stats: getLevelUpStatValues(gameState.player),
     }
     const previousSnapshot = previousPlayerProgressRef.current
 
@@ -1757,6 +1867,7 @@ function App() {
     setIsPlayerExpBarVisible(true)
     setIsPlayerExpTransitionInstant(false)
     setDisplayedPlayerExpRatio(previousSnapshot.ratio)
+    showLevelUpStatPreview(previousSnapshot.stats, currentSnapshot.stats)
 
     let elapsed = 30
 
@@ -1800,6 +1911,7 @@ function App() {
   useEffect(
     () => () => {
       expAnimationTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
+      levelUpStatTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
     },
     []
   )
@@ -2315,22 +2427,6 @@ function App() {
 
                 <div className="adventure-field">
                   <div className="adventure-player adventure-player--ally">
-                    <p className="adventure-player__name">
-                      <span className="adventure-player__name-text">{gameState?.player.name}</span>
-                      {playerStatusBadge ? (
-                        <span
-                          className={[
-                            'adventure-player__status',
-                            `adventure-player__status--${playerStatusBadge.className}`,
-                          ]
-                            .filter(Boolean)
-                            .join(' ')}
-                        >
-                          {playerStatusBadge.label}
-                        </span>
-                      ) : null}
-                      <span className="adventure-player__level">· Lv.{gameState?.player.level}</span>
-                    </p>
                     <div className="adventure-player__sprite-wrap adventure-player__sprite-wrap--ally">
                       <img
                         className="adventure-player__sprite adventure-player__sprite--ally"
@@ -2339,34 +2435,42 @@ function App() {
                       />
                     </div>
 
-                    <div className="adventure-hp" role="img" aria-label="HP bar">
-                      <div className="adventure-hp__track">
+                    <div className="digimon-status" role="group" aria-label="디지몬 체력과 경험치">
+                      <p className="digimon-status__name">
+                        <span className="digimon-status__name-text">{gameState?.player.name}</span>
+                        {playerStatusBadge ? (
+                          <span
+                            className={[
+                              'adventure-player__status',
+                              `adventure-player__status--${playerStatusBadge.className}`,
+                            ]
+                              .filter(Boolean)
+                              .join(' ')}
+                          >
+                            {playerStatusBadge.label}
+                          </span>
+                        ) : null}
+                        <span className="digimon-status__level">Lv.{gameState?.player.level}</span>
+                      </p>
+                      <div className="digimon-status__hp" role="img" aria-label="HP bar">
                         <span
-                          className="adventure-hp__fill"
+                          className="digimon-status__hp-fill"
                           style={{ width: `${playerHpRatio}%` }}
                         />
-                        <p className="adventure-hp__text">
+                        <p className="digimon-status__hp-text">
                           {gameState?.player.currentHp} / {gameState?.player.maxHp}
                         </p>
                       </div>
-                    </div>
-
-                    <div
-                      className={[
-                        'adventure-exp',
-                        isPlayerExpBarVisible ? 'adventure-exp--visible' : '',
-                      ]
-                        .filter(Boolean)
-                        .join(' ')}
-                      role="img"
-                      aria-label="experience bar"
-                      aria-hidden={!isPlayerExpBarVisible}
-                    >
-                      <div className="adventure-exp__track">
+                      <div
+                        className="digimon-status__exp digimon-status__exp--visible"
+                        role="img"
+                        aria-label="experience bar"
+                        aria-hidden="false"
+                      >
                         <span
                           className={[
-                            'adventure-exp__fill',
-                            isPlayerExpTransitionInstant ? 'adventure-exp__fill--instant' : '',
+                            'digimon-status__exp-fill',
+                            isPlayerExpTransitionInstant ? 'digimon-status__exp-fill--instant' : '',
                           ]
                             .filter(Boolean)
                             .join(' ')}
@@ -2389,22 +2493,6 @@ function App() {
                           key={enemy.id}
                           className={`adventure-enemy adventure-enemy--${gameState.enemies.length} adventure-enemy--slot-${index + 1}`}
                         >
-                          <p className="adventure-player__name">
-                            <span className="adventure-player__name-text">{enemy.name}</span>
-                            {enemyStatusBadge ? (
-                              <span
-                                className={[
-                                  'adventure-player__status',
-                                  `adventure-player__status--${enemyStatusBadge.className}`,
-                                ]
-                                  .filter(Boolean)
-                                  .join(' ')}
-                              >
-                                {enemyStatusBadge.label}
-                              </span>
-                            ) : null}
-                            <span className="adventure-player__level">· Lv.{enemy.level}</span>
-                          </p>
                           <div className="adventure-player__sprite-wrap adventure-player__sprite-wrap--enemy">
                             <img
                               className="adventure-player__sprite adventure-player__sprite--enemy"
@@ -2413,13 +2501,33 @@ function App() {
                             />
                           </div>
 
-                          <div className="adventure-hp" role="img" aria-label="HP bar">
-                            <div className="adventure-hp__track">
+                          <div
+                            className="digimon-status digimon-status--enemy"
+                            role="group"
+                            aria-label={`${enemy.name} 체력`}
+                          >
+                            <p className="digimon-status__name">
+                              <span className="digimon-status__name-text">{enemy.name}</span>
+                              {enemyStatusBadge ? (
+                                <span
+                                  className={[
+                                    'adventure-player__status',
+                                    `adventure-player__status--${enemyStatusBadge.className}`,
+                                  ]
+                                    .filter(Boolean)
+                                    .join(' ')}
+                                >
+                                  {enemyStatusBadge.label}
+                                </span>
+                              ) : null}
+                              <span className="digimon-status__level">Lv.{enemy.level}</span>
+                            </p>
+                            <div className="digimon-status__hp" role="img" aria-label="HP bar">
                               <span
-                                className="adventure-hp__fill adventure-hp__fill--enemy"
+                                className="digimon-status__hp-fill digimon-status__hp-fill--enemy"
                                 style={{ width: `${enemyHpRatio}%` }}
                               />
-                              <p className="adventure-hp__text">
+                              <p className="digimon-status__hp-text">
                                 {enemy.currentHp} / {enemy.maxHp}
                               </p>
                             </div>
@@ -2654,6 +2762,26 @@ function App() {
                     </button>
                   ))}
                 </section>
+
+                {levelUpStatPreview && (
+                  <aside
+                    className={[
+                      'level-up-stats',
+                      levelUpStatPreview.isExiting ? 'level-up-stats--exit' : '',
+                    ]
+                      .filter(Boolean)
+                      .join(' ')}
+                    aria-label="레벨업 스탯 상승량"
+                  >
+                    {levelUpStatPreview.rows.map((row) => (
+                      <p key={row.key} className="level-up-stats__row">
+                        <span className="level-up-stats__label">{row.label}:</span>
+                        <span className="level-up-stats__value">{row.value}</span>
+                        <span className="level-up-stats__gain">(+{row.gain})</span>
+                      </p>
+                    ))}
+                  </aside>
+                )}
 
                 {isItemPanelOpen && !rewardState && (
                   <aside className="battle-item-popover" aria-label="아이템 목록">
