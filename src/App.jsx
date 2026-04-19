@@ -28,6 +28,11 @@ const battleMenuItems = [
   { label: '\uB3C4\uB9DD', key: 'run', active: false },
 ]
 
+const DIGIMON_DETECTOR_ITEM_ID = 'digimon-detector'
+const IV_DETECTOR_ITEM_ID = 'iv-detector'
+const MAP_ITEM_ID = 'map-item'
+const GLOBE_ITEM_ID = 'globe-item'
+
 const fixedRewardItems = [
   {
     id: 'heal-20',
@@ -149,6 +154,36 @@ const randomRewardItemPool = [
     captureTier: 'master',
     imageUrl: '/아이템/포획/포획그물(마스터).png',
   },
+  {
+    id: DIGIMON_DETECTOR_ITEM_ID,
+    name: '디지몬탐지기',
+    description: '적 디지몬의 상세 정보를 확인할 수 있다',
+    unique: true,
+    imageUrl: '/아이템/탐지기/디지몬탐지기.png',
+  },
+  {
+    id: IV_DETECTOR_ITEM_ID,
+    name: '개체값탐지기',
+    description: '적 디지몬의 개체값 정보를 확인할 수 있다',
+    unique: true,
+    requiresItemId: DIGIMON_DETECTOR_ITEM_ID,
+    imageUrl: '/아이템/탐지기/개체값탐지기.png',
+  },
+  {
+    id: MAP_ITEM_ID,
+    name: '지도',
+    description: '10스테이지마다 다음 이동 맵을 직접 선택할 수 있다',
+    unique: true,
+    imageUrl: '/아이템/지도/지도.png',
+  },
+  {
+    id: GLOBE_ITEM_ID,
+    name: '지구본',
+    description: '현재 맵에 등장하는 디지몬 목록을 확인할 수 있다',
+    unique: true,
+    requiresItemId: MAP_ITEM_ID,
+    imageUrl: '/아이템/지도/지구본.png',
+  },
 ]
 
 const captureItemOrder = ['capture-net', 'capture-net-super', 'capture-net-hyper', 'capture-net-master']
@@ -240,6 +275,12 @@ const digimonStageDataMap = {
 const createDigimonImageUrl = (stage, name) =>
   `/${encodeURIComponent('도감')}/${encodeURIComponent(stage)}/${encodeURIComponent(name)}.png`
 
+const createDigimonArtworkUrl = (stage, name) => (stage && name ? `/이미지/${stage}/${name}.jpg` : '')
+
+const hideBrokenArtwork = (event) => {
+  event.currentTarget.style.visibility = 'hidden'
+}
+
 const allDigimonLookup = Object.entries(digimonStageDataMap).reduce((result, [stage, items]) => {
   items.forEach((digimon) => {
     result.set(digimon.이름, {
@@ -322,7 +363,6 @@ const DigimonTraitIcon = ({ className, src, label }) => {
   )
 }
 
-const BATTLE_LOG_LIMIT = 4
 const MAX_ACTIVE_COMBATANTS = 2
 const MAX_ENEMY_COMBATANTS = 2
 const STARTING_PLAYER_LEVEL = 5
@@ -567,8 +607,36 @@ const applyInstantRewardEffect = (player, rewardItem) => {
     shouldStore: false,
   }
 }
-const createRewardSelection = () => ({
-  randomItems: shuffleItems(randomRewardItemPool).slice(0, 3),
+
+const canRandomRewardItemAppear = (item, inventory = {}) => {
+  if (item.requiresItemId && (inventory?.[item.requiresItemId] ?? 0) <= 0) {
+    return false
+  }
+
+  if (item.unique && (inventory?.[item.id] ?? 0) > 0) {
+    return false
+  }
+
+  return true
+}
+
+const addRewardInventoryItem = (inventory, item) => {
+  if (!item?.id) {
+    return inventory ?? {}
+  }
+
+  if (item.unique) {
+    return {
+      ...(inventory ?? {}),
+      [item.id]: 1,
+    }
+  }
+
+  return addInventoryItem(inventory, item.id)
+}
+
+const createRewardSelection = (inventory = {}) => ({
+  randomItems: shuffleItems(randomRewardItemPool.filter((item) => canRandomRewardItemAppear(item, inventory))).slice(0, 3),
   selectedRandomItemId: null,
   isResolving: false,
 })
@@ -685,6 +753,26 @@ const getMapNameForStage = (stage) => {
   return STAGE_ROUTE[routeIndex]
 }
 
+const isMapMoveStage = (stage) => stage > 1 && (stage - 1) % STAGES_PER_MAP === 0
+
+const getConnectedMapNames = (mapName) => {
+  const connectedMaps = mapData[mapName]?.['이동가능한맵']
+
+  if (Array.isArray(connectedMaps) && connectedMaps.length > 0) {
+    return connectedMaps
+  }
+
+  return Object.keys(mapData).filter((nextMapName) => nextMapName !== mapName)
+}
+
+const getRandomConnectedMapName = (mapName, fallbackStage) =>
+  shuffleItems(getConnectedMapNames(mapName))[0] ?? getMapNameForStage(fallbackStage)
+
+const getMapEncounterGroups = (mapName) => mapData[mapName]?.['등장디지몬'] ?? {}
+
+const getMapEncounterNamesForStage = (mapName, stage) =>
+  getMapEncounterGroups(mapName)?.[getEncounterGroupForStage(stage)] ?? []
+
 const getLevelCapForStage = (stage) => {
   if (stage <= 10) {
     return 10
@@ -714,32 +802,32 @@ const shuffleItems = (items) => {
 }
 
 const getEncounterGroupForStage = (stage) => {
-  if (stage <= 20) {
+  if (stage <= 10) {
     return '1'
   }
 
-  if (stage <= 50) {
+  if (stage <= 30) {
     return '2'
   }
 
-  if (stage <= 90) {
+  if (stage <= 50) {
     return '3'
   }
 
-  if (stage <= 130) {
+  if (stage <= 70) {
     return '4'
   }
 
-  if (stage <= 170) {
+  if (stage <= 90) {
     return '5'
   }
 
   return '6'
 }
 
-const getEncounterCountForStage = () => MAX_ENEMY_COMBATANTS
+const getEncounterCountForStage = () => (rollPercentChance(20) ? MAX_ENEMY_COMBATANTS : 1)
 
-const createBattleLog = (...lines) => lines.filter(Boolean).slice(-BATTLE_LOG_LIMIT)
+const createBattleLog = (...lines) => lines.filter(Boolean)
 
 const normalizeStatusEffect = (statusEffect) => {
   if (!statusEffect?.type || !STATUS_EFFECT_TYPES.includes(statusEffect.type)) {
@@ -807,8 +895,17 @@ const formatInfoValue = (value, fallback = '-') => {
   return value
 }
 
-const getCombatantInfoTabs = (side) =>
-  side === 'enemy' ? [] : COMBATANT_INFO_TABS
+const getCombatantInfoTabs = (side, options = {}) => {
+  if (side !== 'enemy') {
+    return COMBATANT_INFO_TABS
+  }
+
+  if (!options.canViewEnemyInfo || !options.canViewEnemyIvs) {
+    return []
+  }
+
+  return COMBATANT_INFO_TABS.filter((tab) => tab.key === 'ivs')
+}
 
 const isClientPointInsideElement = (element, clientX, clientY) => {
   if (!element) {
@@ -970,12 +1067,19 @@ const CombatantIdentityStrip = ({ combatant }) => {
   )
 }
 
-const CombatantInfoPanel = ({ combatant, side, activeTab, onTabChange }) => {
+const CombatantInfoPanel = ({
+  combatant,
+  side,
+  activeTab,
+  onTabChange,
+  canViewEnemyInfo = false,
+  canViewEnemyIvs = false,
+}) => {
   if (!combatant) {
     return null
   }
 
-  const availableTabs = getCombatantInfoTabs(side)
+  const availableTabs = getCombatantInfoTabs(side, { canViewEnemyInfo, canViewEnemyIvs })
   const resolvedActiveTab = availableTabs.some((tab) => tab.key === activeTab)
     ? activeTab
     : availableTabs[0]?.key ?? null
@@ -1017,12 +1121,13 @@ const CombatantInfoPanel = ({ combatant, side, activeTab, onTabChange }) => {
   )
 }
 
-const CaptureInfoPreview = ({ combatant, activeTab }) => {
+const CaptureInfoPreview = ({ combatant }) => {
   if (!combatant) {
     return null
   }
 
-  const activeTabLabel = COMBATANT_INFO_TABS.find((tab) => tab.key === activeTab)?.label ?? ''
+  const activeTab = 'ivs'
+  const activeTabLabel = COMBATANT_INFO_TABS.find((tab) => tab.key === activeTab)?.label ?? '개체치'
 
   return (
     <aside className="capture-info-popover" aria-live="polite" aria-label={`${combatant.name} 포획 정보`}>
@@ -1032,20 +1137,9 @@ const CaptureInfoPreview = ({ combatant, activeTab }) => {
       </div>
       <CombatantIdentityStrip combatant={combatant} />
       <div className="capture-info-popover__steps" aria-hidden="true">
-        {COMBATANT_INFO_TABS.map((tab) => (
-          <span
-            key={tab.key}
-            className={[
-              'combatant-info__tab',
-              'capture-info-popover__step',
-              activeTab === tab.key ? 'combatant-info__tab--active' : '',
-            ]
-              .filter(Boolean)
-              .join(' ')}
-          >
-            {tab.label}
-          </span>
-        ))}
+        <span className="combatant-info__tab combatant-info__tab--active capture-info-popover__step">
+          {activeTabLabel}
+        </span>
       </div>
       <CombatantStatChart combatant={combatant} activeTab={activeTab} />
     </aside>
@@ -1914,6 +2008,7 @@ function App() {
   const [activeCombatantInfoId, setActiveCombatantInfoId] = useState(null)
   const [currentLogs, setCurrentLogs] = useState([])
   const [rewardState, setRewardState] = useState(null)
+  const [mapSelectionState, setMapSelectionState] = useState(null)
   const [capturePreview, setCapturePreview] = useState(null)
   const [displayedPlayerExpRatio, setDisplayedPlayerExpRatio] = useState(0)
   const [, setIsPlayerExpBarVisible] = useState(false)
@@ -1958,22 +2053,12 @@ function App() {
     setCapturePreview({
       combatant,
       id: previewId,
-      activeTab: COMBATANT_INFO_TABS[0].key,
-    })
-
-    COMBATANT_INFO_TABS.slice(1).forEach((tab, index) => {
-      const timeoutId = window.setTimeout(() => {
-        setCapturePreview((current) =>
-          current?.id === previewId ? { ...current, activeTab: tab.key } : current
-        )
-      }, CAPTURE_INFO_TAB_DURATION_MS * (index + 1))
-      capturePreviewTimeoutsRef.current.push(timeoutId)
     })
 
     const hideTimeoutId = window.setTimeout(() => {
       setCapturePreview(null)
       capturePreviewTimeoutsRef.current = []
-    }, CAPTURE_INFO_TAB_DURATION_MS * COMBATANT_INFO_TABS.length)
+    }, CAPTURE_INFO_TAB_DURATION_MS * 3)
     capturePreviewTimeoutsRef.current.push(hideTimeoutId)
   }
 
@@ -2146,7 +2231,7 @@ function App() {
       )
       nextGold += getStageClearGoldReward(gameState.currentStage)
       resolvedLogs.push('전투에서 승리했다!')
-      setRewardState(createRewardSelection())
+      setRewardState(createRewardSelection(gameState.inventory))
       commitBattleState({
         nextPlayer: getFirstLivingPartyMember(resolvedParty, activeAllyIds),
         battlePanel: 'logs',
@@ -2221,21 +2306,11 @@ function App() {
     commitBattleState({ nextPlayer, battlePanel: 'commands', nextActedAllyIds: [] })
   }
 
-  const handleNextStage = (currentGameState, currentPlayer) => {
-    const nextStageNum = currentGameState.currentStage + 1
-    if (nextStageNum > TOTAL_STAGE_COUNT) {
-      setScreenMode('menu')
-      setGameState(null)
-      setRewardState(null)
-      setCurrentLogs([])
-      return
-    }
-
-    const mapName = getMapNameForStage(nextStageNum)
+  const startNextStage = ({ currentGameState, currentPlayer, nextStageNum, mapName }) => {
     const encounterGroup = getEncounterGroupForStage(nextStageNum)
     const encounterCount = getEncounterCountForStage(nextStageNum)
     const levelCap = getLevelCapForStage(nextStageNum)
-    const mapEncounterPool = mapData[mapName]?.['\uB4F1\uC7A5\uB514\uC9C0\uBAAC']?.[encounterGroup] ?? []
+    const mapEncounterPool = getMapEncounterGroups(mapName)?.[encounterGroup] ?? []
     const newEnemies = buildEnemyParty(nextStageNum, mapEncounterPool, encounterCount)
     const nextParty = syncPartyMember(currentGameState.party, currentPlayer)
     const nextActiveAllyIds = getActiveAllyIdsForParty(
@@ -2271,7 +2346,62 @@ function App() {
     setSelectedEnemyTargetId(null)
     setBattlePanelMode('commands')
     setRewardState(null)
+    setMapSelectionState(null)
     setCapturePreview(null)
+  }
+
+  const handleNextStage = (currentGameState, currentPlayer) => {
+    const nextStageNum = currentGameState.currentStage + 1
+    if (nextStageNum > TOTAL_STAGE_COUNT) {
+      setScreenMode('menu')
+      setGameState(null)
+      setRewardState(null)
+      setMapSelectionState(null)
+      setCurrentLogs([])
+      return
+    }
+
+    if (isMapMoveStage(nextStageNum)) {
+      const hasMapItem = (currentGameState.inventory?.[MAP_ITEM_ID] ?? 0) > 0
+
+      if (hasMapItem) {
+        setMapSelectionState({
+          currentGameState,
+          currentPlayer,
+          nextStageNum,
+          options: getConnectedMapNames(currentGameState.currentMap),
+        })
+        setCurrentLogs(createBattleLog('지도를 펼쳤다. 다음 지역을 선택해줘!'))
+        setBattlePanelMode('logs')
+        setSelectedBattleCommand('attack')
+        setSelectedEnemyTargetId(null)
+        return
+      }
+    }
+
+    const nextMapName = isMapMoveStage(nextStageNum)
+      ? getRandomConnectedMapName(currentGameState.currentMap, nextStageNum)
+      : currentGameState.currentMap ?? getMapNameForStage(nextStageNum)
+
+    startNextStage({
+      currentGameState,
+      currentPlayer,
+      nextStageNum,
+      mapName: nextMapName,
+    })
+  }
+
+  const handleSelectMapDestination = (mapName) => {
+    if (!mapSelectionState || !mapName) {
+      return
+    }
+
+    startNextStage({
+      currentGameState: mapSelectionState.currentGameState,
+      currentPlayer: mapSelectionState.currentPlayer,
+      nextStageNum: mapSelectionState.nextStageNum,
+      mapName,
+    })
   }
 
   const handleSkillSelect = (skillIndex) => {
@@ -2293,6 +2423,13 @@ function App() {
 
     if (isSkillAreaAttack(playerSkillData)) {
       handleExecuteSkill(skillIndex)
+      return
+    }
+
+    const livingEnemies = gameState.enemies.filter((enemy) => isCombatantAbleToBattle(enemy))
+
+    if (livingEnemies.length === 1) {
+      handleExecuteSkill(skillIndex, livingEnemies[0].id)
       return
     }
 
@@ -2637,12 +2774,13 @@ function App() {
       clearCapturePreviewTimeouts()
       setCapturePreview(null)
       setRewardState(null)
+      setMapSelectionState(null)
       setScreenMode('new-game')
     }
   }
 
   const handleBattleCommandSelect = (commandKey) => {
-    if (rewardState || !gameState || battlePanelMode === 'logs') {
+    if (rewardState || mapSelectionState || !gameState || battlePanelMode === 'logs') {
       return
     }
 
@@ -2671,26 +2809,6 @@ function App() {
     setBattlePanelMode('commands')
   }
 
-  const handleEnemyTargetSelect = (enemyId) => {
-    if (rewardState || !gameState || battlePanelMode === 'logs') {
-      return
-    }
-
-    const enemy = getCombatantById(gameState.enemies, enemyId)
-
-    if (!isCombatantAbleToBattle(enemy)) {
-      return
-    }
-
-    if (battlePanelMode === 'items') {
-      setSelectedEnemyTargetId(enemyId)
-      setCurrentLogs(createBattleLog(`${enemy.name}을(를) 포획 대상으로 선택했다!`))
-      return
-    }
-
-    return
-  }
-
   const handleAttackTargetSelect = (enemyId) => {
     if (rewardState || !gameState || battlePanelMode !== 'attack-targets') {
       return
@@ -2716,21 +2834,27 @@ function App() {
 
     const captureItem = captureItemLookup.get(itemId)
     const itemCount = gameState.inventory?.[itemId] ?? 0
-    const targetEnemyIndex = gameState.enemies.findIndex(
-      (enemy) => enemy.id === selectedEnemyTargetId && isCombatantAbleToBattle(enemy)
-    )
 
-    if (!captureItem || itemCount <= 0 || targetEnemyIndex === -1) {
-      if (captureItem && itemCount > 0) {
-        setCurrentLogs(createBattleLog(`${actingAlly.name}의 포획 대상을 먼저 선택해줘!`))
-      }
+    if (!captureItem || itemCount <= 0) {
+      return
+    }
+
+    const livingEnemies = gameState.enemies.filter((enemy) => isCombatantAbleToBattle(enemy))
+    if (livingEnemies.length !== 1) {
+      setCurrentLogs(
+        createBattleLog(
+          '적 디지몬이 1마리만 남았을 때 포획할 수 있다!',
+          getBattlePrompt(actingAlly.name)
+        )
+      )
       return
     }
 
     clearCapturePreviewTimeouts()
     setCapturePreview(null)
 
-    const targetEnemy = gameState.enemies[targetEnemyIndex]
+    const targetEnemy = livingEnemies[0]
+    const targetEnemyIndex = gameState.enemies.findIndex((enemy) => enemy.id === targetEnemy.id)
     const captureChance = captureChanceByTier[captureItem.captureTier] ?? 0
     const isCaptured = rollPercentChance(captureChance)
     const nextInventory = removeInventoryItem(gameState.inventory, itemId)
@@ -2820,7 +2944,7 @@ function App() {
     const nextGold = (gameState.gold ?? 0) - rewardItem.price
     const effectResult = applyInstantRewardEffect(gameState.player, rewardItem)
     const nextInventory = effectResult.shouldStore
-      ? addInventoryItem(gameState.inventory, rewardItem.id)
+      ? addRewardInventoryItem(gameState.inventory, rewardItem)
       : gameState.inventory
 
     setGameState({
@@ -2844,7 +2968,7 @@ function App() {
 
     const effectResult = applyInstantRewardEffect(gameState.player, rewardItem)
     const nextInventory = effectResult.shouldStore
-      ? addInventoryItem(gameState.inventory, rewardItem.id)
+      ? addRewardInventoryItem(gameState.inventory, rewardItem)
       : gameState.inventory
     const nextGameState = {
       ...gameState,
@@ -2918,6 +3042,7 @@ function App() {
     setSelectedSkillIndex(0)
     setSelectedEnemyTargetId(null)
     setRewardState(null)
+    setMapSelectionState(null)
     setCapturePreview(null)
     setScreenMode('adventure')
   }
@@ -2956,23 +3081,26 @@ function App() {
       count: gameState?.inventory?.[itemId] ?? 0,
     }
   })
-  const benchPartyMembers = partyMembers.filter((member) => !activeAllyIds.includes(member.id))
+  const hasDigimonDetector = (gameState?.inventory?.[DIGIMON_DETECTOR_ITEM_ID] ?? 0) > 0
+  const hasIvDetector = hasDigimonDetector && (gameState?.inventory?.[IV_DETECTOR_ITEM_ID] ?? 0) > 0
+  const hasGlobeItem = (gameState?.inventory?.[GLOBE_ITEM_ID] ?? 0) > 0
+  const mapSelectionOptions = mapSelectionState?.options?.length
+    ? mapSelectionState.options
+    : getConnectedMapNames(gameState?.currentMap)
+  const partySwitchMembers = partyMembers.filter((member) => member.id !== actingAlly?.id)
   const partyListSlots = Array.from(
-    { length: Math.max(4, benchPartyMembers.length) },
-    (_, index) => benchPartyMembers[index] ?? null
+    { length: Math.max(4, partySwitchMembers.length) },
+    (_, index) => partySwitchMembers[index] ?? null
   )
   const currentTargetEnemyIndex = gameState ? getLivingEnemyIndex(gameState.enemies) : -1
   const selectedTargetEnemy =
     gameState?.enemies?.find(
       (enemy) => enemy.id === selectedEnemyTargetId && isCombatantAbleToBattle(enemy)
     ) ?? null
+  const visibleEnemies = gameState?.enemies?.filter((enemy) => isCombatantAbleToBattle(enemy)) ?? []
   const currentTargetEnemy =
     selectedTargetEnemy ??
     (currentTargetEnemyIndex >= 0 && gameState ? gameState.enemies[currentTargetEnemyIndex] : null)
-  const canSelectEnemyTarget =
-    Boolean(gameState) &&
-    !rewardState &&
-    isItemPanelOpen
 
   return (
     <main
@@ -3139,8 +3267,9 @@ function App() {
                     >
                       <img
                         className="selection-card__image"
-                        src={digimon.url}
+                        src={createDigimonArtworkUrl('성장기', digimon.name)}
                         alt={digimon.name}
+                        onError={hideBrokenArtwork}
                       />
                       <span className="selection-card__name">{digimon.name}</span>
                     </button>
@@ -3252,6 +3381,12 @@ function App() {
                             role="group"
                             aria-label={`${ally.name} 체력과 경험치`}
                           >
+                            <img
+                              className="digimon-status__portrait"
+                              src={createDigimonArtworkUrl(ally.speciesStage, ally.name)}
+                              alt=""
+                              onError={hideBrokenArtwork}
+                            />
                             <p className="digimon-status__name">
                               <span className="digimon-status__name-text">{ally.name}</span>
                               {allyStatusBadge ? (
@@ -3312,7 +3447,7 @@ function App() {
                   </div>
 
                   <div className="adventure-enemies" aria-label={'\uC801 \uB514\uC9C0\uBAAC'}>
-                    {gameState?.enemies?.map((enemy, index) => {
+                    {visibleEnemies.map((enemy, index) => {
                       const enemyHpRatio = Math.max(
                         0,
                         Math.min(100, (enemy.currentHp / enemy.maxHp) * 100)
@@ -3320,77 +3455,71 @@ function App() {
                       const enemyStatusBadge = getCombatantStatusBadge(enemy)
                       const enemyTypeIconUrl = getDigimonTypeIconUrl(enemy.type)
                       const enemyAttributeIconUrl = getDigimonAttributeIconUrl(enemy.attribute)
-                      const isEnemyTargetable =
-                        canSelectEnemyTarget && isCombatantAbleToBattle(enemy)
-                      const isSelectedEnemyTarget = selectedTargetEnemy?.id === enemy.id
 
                       return (
                         <div
                           key={enemy.id}
                           className={[
                             'adventure-enemy',
-                            `adventure-enemy--${gameState.enemies.length}`,
+                            `adventure-enemy--${visibleEnemies.length}`,
                             `adventure-enemy--slot-${index + 1}`,
-                            isEnemyTargetable ? 'adventure-enemy--targetable' : '',
-                            isSelectedEnemyTarget ? 'adventure-enemy--selected-target' : '',
                           ]
                             .filter(Boolean)
                             .join(' ')}
-                          role={isEnemyTargetable ? 'button' : undefined}
-                          tabIndex={isEnemyTargetable ? 0 : undefined}
-                          aria-pressed={isEnemyTargetable ? isSelectedEnemyTarget : undefined}
-                          onClick={(event) => {
-                            if (
-                              isEnemyTargetable &&
-                              !event.target.closest('.combatant-info')
-                            ) {
-                              handleEnemyTargetSelect(enemy.id)
-                            }
-                          }}
-                          onKeyDown={(event) => {
-                            if (!isEnemyTargetable || (event.key !== 'Enter' && event.key !== ' ')) {
-                              return
-                            }
-
-                            event.preventDefault()
-                            handleEnemyTargetSelect(enemy.id)
-                          }}
                         >
                           <div
                             className={[
                               'adventure-player__sprite-wrap',
                               'adventure-player__sprite-wrap--enemy',
-                              activeCombatantInfoId === `enemy-${enemy.id}`
+                              hasDigimonDetector && activeCombatantInfoId === `enemy-${enemy.id}`
                                 ? 'adventure-player__sprite-wrap--info-open'
                                 : '',
                             ]
                               .filter(Boolean)
                               .join(' ')}
-                            tabIndex={0}
-                            aria-label={`${enemy.name} 상세 정보`}
-                            onPointerEnter={(event) =>
-                              openCombatantInfo(`enemy-${enemy.id}`, event.currentTarget)
+                            tabIndex={hasDigimonDetector ? 0 : undefined}
+                            aria-label={
+                              hasDigimonDetector
+                                ? `${enemy.name} 상세 정보`
+                                : '디지몬탐지기 획득 후 적 정보를 확인할 수 있습니다'
                             }
-                            onFocus={(event) =>
-                              openCombatantInfo(`enemy-${enemy.id}`, event.currentTarget)
+                            onPointerEnter={
+                              hasDigimonDetector
+                                ? (event) =>
+                                    openCombatantInfo(`enemy-${enemy.id}`, event.currentTarget)
+                                : undefined
                             }
-                            onBlur={(event) => {
-                              if (!event.currentTarget.contains(event.relatedTarget)) {
-                                closeCombatantInfo()
-                              }
-                            }}
+                            onFocus={
+                              hasDigimonDetector
+                                ? (event) =>
+                                    openCombatantInfo(`enemy-${enemy.id}`, event.currentTarget)
+                                : undefined
+                            }
+                            onBlur={
+                              hasDigimonDetector
+                                ? (event) => {
+                                    if (!event.currentTarget.contains(event.relatedTarget)) {
+                                      closeCombatantInfo()
+                                    }
+                                  }
+                                : undefined
+                            }
                           >
                             <img
                               className="adventure-player__sprite adventure-player__sprite--enemy"
                               src={enemy.imageUrl}
                               alt={enemy.name}
                             />
-                            <CombatantInfoPanel
-                              combatant={enemy}
-                              side="enemy"
-                              activeTab={combatantInfoTab}
-                              onTabChange={setCombatantInfoTab}
-                            />
+                            {hasDigimonDetector ? (
+                              <CombatantInfoPanel
+                                combatant={enemy}
+                                side="enemy"
+                                activeTab={combatantInfoTab}
+                                onTabChange={setCombatantInfoTab}
+                                canViewEnemyInfo={hasDigimonDetector}
+                                canViewEnemyIvs={hasIvDetector}
+                              />
+                            ) : null}
                           </div>
 
                           <div
@@ -3398,6 +3527,12 @@ function App() {
                             role="group"
                             aria-label={`${enemy.name} 체력`}
                           >
+                            <img
+                              className="digimon-status__portrait"
+                              src={createDigimonArtworkUrl(enemy.speciesStage, enemy.name)}
+                              alt=""
+                              onError={hideBrokenArtwork}
+                            />
                             <p className="digimon-status__name">
                               <span className="digimon-status__name-text">{enemy.name}</span>
                               {enemyStatusBadge ? (
@@ -3496,6 +3631,52 @@ function App() {
                   </div>
                 )}
 
+                {mapSelectionState && !rewardState && (
+                  <div className="map-selection-screen" aria-label="지도 이동 선택">
+                    <div className="map-selection-screen__panel">
+                      <div className="map-selection-screen__header">
+                        <p className="map-selection-screen__eyebrow">지도</p>
+                        <h3 className="map-selection-screen__title">다음 지역을 선택해줘</h3>
+                        <span className="map-selection-screen__stage">
+                          STAGE {mapSelectionState.nextStageNum}
+                        </span>
+                      </div>
+                      <div className="map-selection-screen__list">
+                        {mapSelectionOptions.map((mapName) => {
+                    const encounterNames = getMapEncounterNamesForStage(
+                      mapName,
+                      mapSelectionState.nextStageNum
+                          )
+
+                          return (
+                            <button
+                              key={mapName}
+                              type="button"
+                              className="map-selection-screen__item"
+                              onClick={() => handleSelectMapDestination(mapName)}
+                            >
+                              <span className="map-selection-screen__marker" aria-hidden="true">
+                                ▶
+                              </span>
+                              <span className="map-selection-screen__item-body">
+                        <span className="map-selection-screen__map-name">{mapName}</span>
+                        {hasGlobeItem ? (
+                          <span className="map-selection-screen__encounters">
+                            <span className="map-selection-screen__group">등장디지몬</span>
+                            <span className="map-selection-screen__names">
+                              {encounterNames.join(', ')}
+                            </span>
+                                  </span>
+                                ) : null}
+                              </span>
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {isPartyPanelOpen && !rewardState && actingAlly && (
                   <div className="party-screen" aria-label="보유 디지몬">
                     <div className="party-screen__current" aria-label="현재 행동 디지몬">
@@ -3530,6 +3711,8 @@ function App() {
                           ? Math.max(0, Math.min(100, (member.currentHp / member.maxHp) * 100))
                           : 0
                         const isFainted = member ? member.currentHp <= 0 : false
+                        const isActiveInBattle = member ? activeAllyIds.includes(member.id) : false
+                        const isDisabled = isFainted || isActiveInBattle
 
                         return member ? (
                           <button
@@ -3538,10 +3721,11 @@ function App() {
                             className={[
                               'party-member',
                               isFainted ? 'party-member--fainted' : '',
+                              isActiveInBattle ? 'party-member--active' : '',
                             ]
                               .filter(Boolean)
                               .join(' ')}
-                            disabled={isFainted}
+                            disabled={isDisabled}
                             onClick={() => handleSwitchPartyMember(member.id)}
                           >
                             <img className="party-member__image" src={member.imageUrl} alt="" />
@@ -3645,67 +3829,15 @@ function App() {
                   ) : isAttackTargetPanelOpen && !rewardState ? (
                     <div className="battle-target-panel">
                       <div className="battle-target-list">
-                        {(gameState?.enemies ?? []).map((enemy) => {
-                          const enemyHpRatio = Math.max(
-                            0,
-                            Math.min(100, (enemy.currentHp / enemy.maxHp) * 100)
-                          )
-                          const enemyTypeIconUrl = getDigimonTypeIconUrl(enemy.type)
-                          const enemyAttributeIconUrl = getDigimonAttributeIconUrl(enemy.attribute)
-                          const matchup =
-                            selectedSkillData && actingAlly
-                              ? getMatchupResult({
-                                  attackerType: actingAlly.type,
-                                  skillAttribute: selectedSkillData.속성,
-                                  defenderType: enemy.type,
-                                  defenderAttribute: enemy.attribute,
-                                })
-                              : null
-                          const isAdvantageous = (matchup?.multiplier ?? 1) > 1
-                          const isResisted =
-                            (matchup?.multiplier ?? 1) > 0 && (matchup?.multiplier ?? 1) < 1
-                          const isUnavailable = !isCombatantAbleToBattle(enemy)
-
+                        {visibleEnemies.map((enemy) => {
                           return (
                             <button
                               key={enemy.id}
                               type="button"
-                              className={[
-                                'battle-target',
-                                isAdvantageous ? 'battle-target--advantage' : '',
-                                isResisted ? 'battle-target--resist' : '',
-                              ]
-                                .filter(Boolean)
-                                .join(' ')}
-                              disabled={isUnavailable}
+                              className="battle-target"
                               onClick={() => handleAttackTargetSelect(enemy.id)}
                             >
-                              <img className="battle-target__image" src={enemy.imageUrl} alt="" />
-                              <span className="battle-target__body">
-                                <span className="battle-target__name-row">
-                                  <span className="battle-target__name">{enemy.name}</span>
-                                  <DigimonTraitIcon
-                                    className="digimon-status__trait--type"
-                                    src={enemyTypeIconUrl}
-                                    label={`${enemy.type} 타입`}
-                                  />
-                                  <DigimonTraitIcon
-                                    className="digimon-status__trait--attribute"
-                                    src={enemyAttributeIconUrl}
-                                    label={`${enemy.attribute} 속성`}
-                                  />
-                                  <span className="battle-target__level">Lv.{enemy.level}</span>
-                                </span>
-                                <span className="battle-target__hp">
-                                  <span
-                                    className="battle-target__hp-fill"
-                                    style={{ width: `${enemyHpRatio}%` }}
-                                  />
-                                </span>
-                              </span>
-                              <span className="battle-target__marker">
-                                {isAdvantageous ? '강점' : isResisted ? '반감' : ''}
-                              </span>
+                              <span className="battle-target__name">{enemy.name}</span>
                             </button>
                           )
                         })}
@@ -3738,7 +3870,11 @@ function App() {
                       ]
                         .filter(Boolean)
                         .join(' ')}
-                      disabled={battlePanelMode === 'logs' || Boolean(rewardState)}
+                      disabled={
+                        battlePanelMode === 'logs' ||
+                        Boolean(rewardState) ||
+                        Boolean(mapSelectionState)
+                      }
                       onClick={() => handleBattleCommandSelect(item.key)}
                     >
                       <span className="battle-command__marker" aria-hidden="true">
@@ -3773,7 +3909,6 @@ function App() {
                   <CaptureInfoPreview
                     key={capturePreview.id}
                     combatant={capturePreview.combatant}
-                    activeTab={capturePreview.activeTab}
                   />
                 ) : null}
 
