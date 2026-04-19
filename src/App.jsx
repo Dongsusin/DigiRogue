@@ -495,6 +495,15 @@ const getBattleAllyLimit = (battleState) =>
   )
 const getCombatantById = (combatants, combatantId) =>
   combatants?.find((combatant) => combatant.id === combatantId) ?? null
+const replaceCombatantById = (combatants, updatedCombatant) => {
+  if (!updatedCombatant) {
+    return combatants ?? []
+  }
+
+  return (combatants ?? []).map((combatant) =>
+    combatant.id === updatedCombatant.id ? updatedCombatant : combatant
+  )
+}
 const replacePartyMember = (party, updatedMember) => {
   if (!updatedMember) {
     return party ?? []
@@ -508,6 +517,16 @@ const replacePartyMember = (party, updatedMember) => {
   }
 
   return currentParty.map((member, index) => (index === memberIndex ? updatedMember : member))
+}
+const getLivingCombatants = (combatants) => (combatants ?? []).filter(isCombatantAbleToBattle)
+const getRandomCombatant = (combatants) => {
+  const currentCombatants = combatants ?? []
+
+  if (!currentCombatants.length) {
+    return null
+  }
+
+  return currentCombatants[Math.floor(Math.random() * currentCombatants.length)]
 }
 const getActiveAllyIdsForParty = (party, preferredIds = [], limit = MAX_ACTIVE_COMBATANTS) => {
   const currentParty = party ?? []
@@ -1968,6 +1987,210 @@ const resolveEnemyPartyActions = ({ enemies, party, activeAllyIds }) => {
   }
 }
 
+const createBattleTurnAction = ({ side, actor, skillName, targetId = null, order = 0 }) => ({
+  side,
+  actorId: actor?.id ?? null,
+  skillName,
+  targetId,
+  speed: actor?.speed ?? 0,
+  order,
+  tieBreaker: Math.random(),
+})
+
+const createEnemyBattleTurnActions = ({ enemies, party, activeAllyIds, startOrder = 0 }) => {
+  const livingActiveAllies = activeAllyIds
+    .map((allyId) => getCombatantById(party, allyId))
+    .filter(isCombatantAbleToBattle)
+
+  return getLivingCombatants(enemies)
+    .map((enemy, index) => {
+      const enemySkill = getRandomEnemySkill(enemy)
+
+      if (!enemySkill || !livingActiveAllies.length) {
+        return null
+      }
+
+      return createBattleTurnAction({
+        side: 'enemy',
+        actor: enemy,
+        skillName: enemySkill,
+        targetId: getRandomCombatant(livingActiveAllies)?.id ?? null,
+        order: startOrder + index,
+      })
+    })
+    .filter(Boolean)
+}
+
+const getBattleTurnActor = ({ action, party, enemies }) =>
+  action.side === 'ally'
+    ? getCombatantById(party, action.actorId)
+    : getCombatantById(enemies, action.actorId)
+
+const replaceBattleTurnActor = ({ action, party, enemies, actor }) => {
+  if (action.side === 'ally') {
+    return {
+      party: replacePartyMember(party, actor),
+      enemies,
+    }
+  }
+
+  return {
+    party,
+    enemies: replaceCombatantById(enemies, actor),
+  }
+}
+
+const getBattleTurnTargetCandidates = ({ action, party, enemies, activeAllyIds }) => {
+  if (action.side === 'ally') {
+    return getLivingCombatants(enemies)
+  }
+
+  return activeAllyIds
+    .map((allyId) => getCombatantById(party, allyId))
+    .filter(isCombatantAbleToBattle)
+}
+
+const resolveBattleTurnActions = ({ party, enemies, activeAllyIds, actions, levelCap }) => {
+  let nextParty = [...party]
+  let nextEnemies = [...enemies]
+  const battleLogs = []
+  const sortedActions = [...actions].sort((firstAction, secondAction) => {
+    const speedDifference = (secondAction.speed ?? 0) - (firstAction.speed ?? 0)
+
+    if (speedDifference !== 0) {
+      return speedDifference
+    }
+
+    const tieDifference = (firstAction.tieBreaker ?? 0) - (secondAction.tieBreaker ?? 0)
+
+    if (tieDifference !== 0) {
+      return tieDifference
+    }
+
+    return (firstAction.order ?? 0) - (secondAction.order ?? 0)
+  })
+
+  sortedActions.forEach((action) => {
+    let actor = getBattleTurnActor({ action, party: nextParty, enemies: nextEnemies })
+
+    if (!action.skillName || !isCombatantAbleToBattle(actor)) {
+      return
+    }
+
+    const skillData = getSkillData(action.skillName)
+    const isAreaAttack = isSkillAreaAttack(skillData)
+    const defeatedEnemies = []
+    const startStatusResult = resolveTurnStartStatus(actor)
+    actor = startStatusResult.nextCombatant
+    battleLogs.push(...startStatusResult.battleLogs)
+
+    const replacedAfterStart = replaceBattleTurnActor({
+      action,
+      party: nextParty,
+      enemies: nextEnemies,
+      actor,
+    })
+    nextParty = replacedAfterStart.party
+    nextEnemies = replacedAfterStart.enemies
+
+    if (startStatusResult.canAct && isCombatantAbleToBattle(actor)) {
+      const targetCandidates = getBattleTurnTargetCandidates({
+        action,
+        party: nextParty,
+        enemies: nextEnemies,
+        activeAllyIds,
+      })
+
+      if (isAreaAttack) {
+        if (targetCandidates.length > 0) {
+          battleLogs.push(`${actor.name}의 ${skillData.기술명}!`)
+        }
+
+        targetCandidates.forEach((target) => {
+          const attackResult = resolveAttackAction({
+            attacker: actor,
+            defender: target,
+            skillName: action.skillName,
+            announce: false,
+          })
+
+          if (action.side === 'ally') {
+            nextEnemies = replaceCombatantById(nextEnemies, attackResult.nextDefender)
+
+            if (target.currentHp > 0 && attackResult.nextDefender.currentHp === 0) {
+              defeatedEnemies.push(target)
+            }
+          } else {
+            nextParty = replacePartyMember(nextParty, attackResult.nextDefender)
+          }
+
+          battleLogs.push(...attackResult.battleLogs)
+        })
+      } else {
+        const selectedTarget =
+          targetCandidates.find((target) => target.id === action.targetId) ?? targetCandidates[0]
+
+        if (selectedTarget) {
+          const attackResult = resolveAttackAction({
+            attacker: actor,
+            defender: selectedTarget,
+            skillName: action.skillName,
+          })
+
+          if (action.side === 'ally') {
+            nextEnemies = replaceCombatantById(nextEnemies, attackResult.nextDefender)
+
+            if (selectedTarget.currentHp > 0 && attackResult.nextDefender.currentHp === 0) {
+              defeatedEnemies.push(selectedTarget)
+            }
+          } else {
+            nextParty = replacePartyMember(nextParty, attackResult.nextDefender)
+          }
+
+          battleLogs.push(...attackResult.battleLogs)
+        } else {
+          battleLogs.push(`${actor.name}의 공격 대상이 없다!`)
+        }
+      }
+    }
+
+    actor = getBattleTurnActor({ action, party: nextParty, enemies: nextEnemies }) ?? actor
+
+    if (isCombatantAbleToBattle(actor)) {
+      const endStatusResult = resolveTurnEndStatus(actor)
+      actor = endStatusResult.nextCombatant
+      battleLogs.push(...endStatusResult.battleLogs)
+
+      const replacedAfterEnd = replaceBattleTurnActor({
+        action,
+        party: nextParty,
+        enemies: nextEnemies,
+        actor,
+      })
+      nextParty = replacedAfterEnd.party
+      nextEnemies = replacedAfterEnd.enemies
+    }
+
+    actor = getBattleTurnActor({ action, party: nextParty, enemies: nextEnemies }) ?? actor
+
+    if (action.side === 'ally' && isCombatantAbleToBattle(actor) && defeatedEnemies.length > 0) {
+      const experienceResult = applyExperienceGain({
+        combatant: actor,
+        defeatedEnemies,
+        levelCap,
+      })
+      nextParty = replacePartyMember(nextParty, experienceResult.nextCombatant)
+      battleLogs.push(...experienceResult.battleLogs)
+    }
+  })
+
+  return {
+    nextParty,
+    nextEnemies,
+    battleLogs,
+  }
+}
+
 const buildEnemyParty = (stage, encounterPool, encounterCount) => {
   const shuffledNames = shuffleItems(encounterPool)
 
@@ -2205,6 +2428,7 @@ function App() {
         activeAllyIds,
         actingAllyId: nextPlayer?.id ?? null,
         actedAllyIds: nextActedAllyIds,
+        pendingAllyActions: [],
       })
       setCurrentLogs(createBattleLog(...resolvedLogs))
       setBattlePanelMode(battlePanel)
@@ -2306,6 +2530,97 @@ function App() {
     commitBattleState({ nextPlayer, battlePanel: 'commands', nextActedAllyIds: [] })
   }
 
+  const finishResolvedTurn = ({
+    nextParty,
+    nextEnemies,
+    logs,
+    nextInventory = gameState?.inventory ?? {},
+    nextGold = gameState?.gold ?? 0,
+    preferredActiveAllyIds = gameState?.activeAllyIds ?? [],
+  }) => {
+    if (!gameState) {
+      return
+    }
+
+    let resolvedParty = [...nextParty]
+    let resolvedEnemies = [...nextEnemies]
+    let resolvedLogs = [...logs]
+    let activeAllyIds = getActiveAllyIdsForParty(
+      resolvedParty,
+      preferredActiveAllyIds,
+      getBattleAllyLimit(gameState)
+    )
+
+    const commitBattleState = ({ nextPlayer, battlePanel }) => {
+      setGameState({
+        ...gameState,
+        player: nextPlayer,
+        party: resolvedParty,
+        enemies: resolvedEnemies,
+        inventory: nextInventory,
+        gold: nextGold,
+        activeAllyIds,
+        actingAllyId: nextPlayer?.id ?? null,
+        actedAllyIds: [],
+        pendingAllyActions: [],
+      })
+      setCurrentLogs(createBattleLog(...resolvedLogs))
+      setBattlePanelMode(battlePanel)
+      setSelectedBattleCommand('attack')
+      setSelectedSkillIndex(0)
+      setSelectedEnemyTargetId(null)
+    }
+
+    const commitVictory = () => {
+      resolvedParty = resolvedParty.map((member) =>
+        activeAllyIds.includes(member.id) ? tickCombatantBuffsByStage(member) : member
+      )
+      activeAllyIds = getActiveAllyIdsForParty(
+        resolvedParty,
+        activeAllyIds,
+        getBattleAllyLimit(gameState)
+      )
+      nextGold += getStageClearGoldReward(gameState.currentStage)
+      resolvedLogs.push('전투에서 승리했다!')
+      setRewardState(createRewardSelection(gameState.inventory))
+      commitBattleState({
+        nextPlayer: getFirstLivingPartyMember(resolvedParty, activeAllyIds),
+        battlePanel: 'logs',
+      })
+    }
+
+    const commitDefeat = () => {
+      resolvedLogs.push('눈앞이 깜깜해졌다...')
+      commitBattleState({
+        nextPlayer:
+          getFirstLivingPartyMember(resolvedParty, activeAllyIds) ??
+          resolvedParty[0] ??
+          gameState.player,
+        battlePanel: 'logs',
+      })
+      window.setTimeout(() => {
+        setScreenMode('menu')
+        setGameState(null)
+        setRewardState(null)
+        setCurrentLogs([])
+      }, 3000)
+    }
+
+    if (resolvedEnemies.every((enemy) => !isCombatantAbleToBattle(enemy))) {
+      commitVictory()
+      return
+    }
+
+    if (!resolvedParty.some((member) => isCombatantAbleToBattle(member))) {
+      commitDefeat()
+      return
+    }
+
+    const nextPlayer = getFirstLivingPartyMember(resolvedParty, activeAllyIds)
+    resolvedLogs.push(getBattlePrompt(nextPlayer.name))
+    commitBattleState({ nextPlayer, battlePanel: 'commands' })
+  }
+
   const startNextStage = ({ currentGameState, currentPlayer, nextStageNum, mapName }) => {
     const encounterGroup = getEncounterGroupForStage(nextStageNum)
     const encounterCount = getEncounterCountForStage(nextStageNum)
@@ -2338,6 +2653,7 @@ function App() {
       activeAllyIds: nextActiveAllyIds,
       actingAllyId: nextPlayer?.id ?? null,
       actedAllyIds: [],
+      pendingAllyActions: [],
     })
     setIsPlayerExpBarVisible(false)
     setCurrentLogs(createBattleLog(getBattlePrompt(nextPlayer.name)))
@@ -2463,13 +2779,13 @@ function App() {
       setSelectedEnemyTargetId(null)
     }
 
-    const targetEnemyIndex = isAreaAttack
-      ? getLivingEnemyIndex(gameState.enemies)
-      : gameState.enemies.findIndex(
+    const targetEnemy = isAreaAttack
+      ? gameState.enemies[getLivingEnemyIndex(gameState.enemies)]
+      : gameState.enemies.find(
           (enemy) => enemy.id === targetEnemyId && isCombatantAbleToBattle(enemy)
         )
 
-    if (targetEnemyIndex === -1) {
+    if (!targetEnemy) {
       setCurrentLogs(
         createBattleLog(
           isAreaAttack
@@ -2481,78 +2797,69 @@ function App() {
       return
     }
 
-    const enemy = gameState.enemies[targetEnemyIndex]
-    let logs = []
-    let nextPlayer = { ...actingAlly }
-    let nextParty = [...battleContext.party]
-    let nextEnemies = [...gameState.enemies]
-    let nextEnemy = { ...enemy }
-
-    const startStatusResult = resolveTurnStartStatus(nextPlayer)
-    nextPlayer = startStatusResult.nextCombatant
-    logs.push(...startStatusResult.battleLogs)
-
-    if (
-      startStatusResult.canAct &&
-      isCombatantAbleToBattle(nextPlayer) &&
-      isCombatantAbleToBattle(nextEnemy)
-    ) {
-      if (isAreaAttack) {
-        logs.push(`${nextPlayer.name}의 ${playerSkillData.기술명}!`)
-        nextEnemies.forEach((targetEnemy, enemyIndex) => {
-          if (!isCombatantAbleToBattle(targetEnemy)) {
-            return
-          }
-
-          const result = resolveAttackAction({
-            attacker: nextPlayer,
-            defender: targetEnemy,
-            skillName: playerSkill,
-            announce: false,
-          })
-          nextEnemies[enemyIndex] = result.nextDefender
-          logs.push(...result.battleLogs)
-        })
-      } else {
-        const result = resolveAttackAction({
-          attacker: nextPlayer,
-          defender: nextEnemy,
-          skillName: playerSkill,
-        })
-        nextEnemy = result.nextDefender
-        logs.push(...result.battleLogs)
-      }
-    }
-
-    if (isCombatantAbleToBattle(nextPlayer)) {
-      const endStatusResult = resolveTurnEndStatus(nextPlayer)
-      nextPlayer = endStatusResult.nextCombatant
-      logs.push(...endStatusResult.battleLogs)
-    }
-
-    if (!isAreaAttack) {
-      nextEnemies[targetEnemyIndex] = nextEnemy
-    }
-    const defeatedEnemies = gameState.enemies.filter(
-      (currentEnemy, index) => currentEnemy.currentHp > 0 && nextEnemies[index].currentHp === 0
+    const livingActiveAllyIds = battleContext.activeAllyIds.filter((allyId) =>
+      isCombatantAbleToBattle(getCombatantById(battleContext.party, allyId))
     )
+    const pendingActions = (gameState.pendingAllyActions ?? []).filter(
+      (action) =>
+        livingActiveAllyIds.includes(action.actorId) &&
+        action.actorId !== actingAlly.id &&
+        action.side === 'ally'
+    )
+    const nextAllyAction = createBattleTurnAction({
+      side: 'ally',
+      actor: actingAlly,
+      skillName: playerSkill,
+      targetId: isAreaAttack ? null : targetEnemy.id,
+      order: pendingActions.length,
+    })
+    const nextPendingActions = [...pendingActions, nextAllyAction]
 
-    if (isCombatantAbleToBattle(nextPlayer) && defeatedEnemies.length > 0) {
-      const experienceResult = applyExperienceGain({
-        combatant: nextPlayer,
-        defeatedEnemies,
-        levelCap: gameState.levelCap,
+    if (nextPendingActions.length < livingActiveAllyIds.length) {
+      const nextActedAllyIds = nextPendingActions.map((action) => action.actorId)
+      const nextActingAllyId = getNextActingAllyId(
+        battleContext.party,
+        battleContext.activeAllyIds,
+        nextActedAllyIds
+      )
+      const nextPlayer =
+        getCombatantById(battleContext.party, nextActingAllyId) ??
+        getFirstLivingPartyMember(battleContext.party, battleContext.activeAllyIds)
+
+      setGameState({
+        ...gameState,
+        player: nextPlayer,
+        party: battleContext.party,
+        activeAllyIds: battleContext.activeAllyIds,
+        actingAllyId: nextPlayer?.id ?? null,
+        actedAllyIds: nextActedAllyIds,
+        pendingAllyActions: nextPendingActions,
       })
-      nextPlayer = experienceResult.nextCombatant
-      logs.push(...experienceResult.battleLogs)
+      setCurrentLogs(createBattleLog(`${actingAlly.name}의 행동을 정했다!`, getBattlePrompt(nextPlayer.name)))
+      setBattlePanelMode('commands')
+      setSelectedSkillIndex(0)
+      setSelectedEnemyTargetId(null)
+      return
     }
 
-    nextParty = replacePartyMember(nextParty, nextPlayer)
-    finishBattleAction({
-      nextParty,
-      nextEnemies,
-      logs,
-      actedAllyId: nextPlayer.id,
+    const enemyActions = createEnemyBattleTurnActions({
+      enemies: gameState.enemies,
+      party: battleContext.party,
+      activeAllyIds: battleContext.activeAllyIds,
+      startOrder: nextPendingActions.length,
+    })
+    const turnResult = resolveBattleTurnActions({
+      party: battleContext.party,
+      enemies: gameState.enemies,
+      activeAllyIds: battleContext.activeAllyIds,
+      actions: [...nextPendingActions, ...enemyActions],
+      levelCap: gameState.levelCap,
+    })
+
+    finishResolvedTurn({
+      nextParty: turnResult.nextParty,
+      nextEnemies: turnResult.nextEnemies,
+      logs: turnResult.battleLogs,
       preferredActiveAllyIds: battleContext.activeAllyIds,
     })
   }
@@ -2781,6 +3088,16 @@ function App() {
 
   const handleBattleCommandSelect = (commandKey) => {
     if (rewardState || mapSelectionState || !gameState || battlePanelMode === 'logs') {
+      return
+    }
+
+    if ((gameState.pendingAllyActions ?? []).length > 0 && commandKey !== 'attack') {
+      const currentActingAlly = getBattleContext().actingAlly ?? gameState.player
+      setSelectedBattleCommand('attack')
+      setBattlePanelMode('commands')
+      setCurrentLogs(
+        createBattleLog('남은 아군의 기술을 먼저 선택해줘!', getBattlePrompt(currentActingAlly.name))
+      )
       return
     }
 
@@ -3035,6 +3352,7 @@ function App() {
       activeAllyIds,
       actingAllyId: player.id,
       actedAllyIds: [],
+      pendingAllyActions: [],
     })
     setCurrentLogs(createBattleLog(getBattlePrompt(player.name)))
     setSelectedBattleCommand('attack')
