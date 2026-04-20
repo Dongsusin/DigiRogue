@@ -32,6 +32,11 @@ const DIGIMON_DETECTOR_ITEM_ID = 'digimon-detector'
 const IV_DETECTOR_ITEM_ID = 'iv-detector'
 const MAP_ITEM_ID = 'map-item'
 const GLOBE_ITEM_ID = 'globe-item'
+const EXP_SHARE_ITEM_ID = 'exp-share'
+const EXP_BOOSTER_ITEM_ID = 'exp-booster'
+const EXP_BOOSTER_PLUS_ITEM_ID = 'exp-booster-plus'
+const DIGIMON_TYPE_UP_TYPES = ['데이터', '바이러스', '백신', '불명', '프리']
+const TYPE_POWER_UP_MAX = 5
 
 const fixedRewardItems = [
   {
@@ -184,8 +189,42 @@ const randomRewardItemPool = [
     requiresItemId: MAP_ITEM_ID,
     imageUrl: '/아이템/지도/지구본.png',
   },
+  {
+    id: EXP_SHARE_ITEM_ID,
+    name: 'exp공유기',
+    description: '전투에 참여하지 않은 디지몬도 획득 경험치의 20%를 받는다',
+    maxOwned: 5,
+    imageUrl: '/아이템/경험치/exp공유기.png',
+  },
+  {
+    id: EXP_BOOSTER_ITEM_ID,
+    name: '경험치부스터',
+    description: '획득 경험치 10% 증가',
+    maxOwned: 5,
+    imageUrl: '/아이템/경험치/경험치부스터.png',
+  },
+  {
+    id: EXP_BOOSTER_PLUS_ITEM_ID,
+    name: '경험치부스터+',
+    description: '획득 경험치 25% 증가',
+    maxOwned: 2,
+    imageUrl: '/아이템/경험치/경험치부스터+.png',
+  },
+  ...DIGIMON_TYPE_UP_TYPES.map((type) => ({
+    id: `type-up-${type}`,
+    name: `${type} 타입업`,
+    description: `${type} 타입 디지몬의 기술 위력 10% 증가`,
+    typeUpKey: type,
+    maxOwnedPerCombatant: TYPE_POWER_UP_MAX,
+    imageUrl: `/아이템/타입업/${type}.png`,
+  })),
 ]
 
+const rewardItemLookup = new Map(
+  [...fixedRewardItems, ...randomRewardItemPool].map((item) => [item.id, item])
+)
+const buffRewardItems = randomRewardItemPool.filter((item) => item.buffStatKey)
+const typeUpRewardItems = randomRewardItemPool.filter((item) => item.typeUpKey)
 const captureItemOrder = ['capture-net', 'capture-net-super', 'capture-net-hyper', 'capture-net-master']
 const captureItemLookup = new Map(randomRewardItemPool.map((item) => [item.id, item]))
 const captureChanceByTier = {
@@ -370,8 +409,6 @@ const BUFF_STAGE_DURATION = 10
 const STATUS_DURATION_TURNS = 3
 const STATUS_EARLY_CURE_CHANCE = 30
 const IV_MAX = 31
-const EV_PER_STAT_MAX = 252
-const EV_TOTAL_MAX = 510
 const STAT_KEYS = ['hp', 'attack', 'defense', 'specialAttack', 'specialDefense', 'speed']
 const BUFFABLE_STAT_KEYS = ['attack', 'defense', 'specialAttack', 'specialDefense', 'speed']
 const STATUS_EFFECT_TYPES = ['독', '맹독', '혼란', '착란', '마비', '행동불능', '수면', '혼수상태']
@@ -403,7 +440,6 @@ const LEVEL_UP_STAT_LABEL_MAP = {
 const COMBATANT_INFO_TABS = [
   { key: 'stats', label: '스탯' },
   { key: 'ivs', label: '개체치' },
-  { key: 'evs', label: '노력치' },
 ]
 const COMBATANT_STAT_CHART_FIELDS = [
   { key: 'hp', label: 'HP' },
@@ -415,15 +451,6 @@ const COMBATANT_STAT_CHART_FIELDS = [
 ]
 const STAT_CHART_CENTER = 60
 const STAT_CHART_RADIUS = 46
-const EV_YIELD_BY_STAGE = {
-  유아기: 1,
-  유년기: 1,
-  성장기: 1,
-  성숙기: 2,
-  완전체: 2,
-  궁극체: 3,
-  초궁극체: 3,
-}
 const EXP_BAR_ANIMATION_MS = 520
 const EXP_BAR_RESET_MS = 70
 const EXP_BAR_VISIBLE_AFTER_MS = 450
@@ -577,6 +604,13 @@ const normalizeBuffState = (activeBuffs) =>
     return result
   }, {})
 
+const normalizeTypePowerUps = (typePowerUps) =>
+  DIGIMON_TYPE_UP_TYPES.reduce((result, type) => {
+    const nextValue = Math.max(0, Math.floor(typePowerUps?.[type] ?? 0))
+    result[type] = Math.min(TYPE_POWER_UP_MAX, nextValue)
+    return result
+  }, {})
+
 const applyInstantRewardEffect = (player, rewardItem) => {
   if (!player) {
     return {
@@ -593,6 +627,22 @@ const applyInstantRewardEffect = (player, rewardItem) => {
 
     return {
       nextPlayer: refreshCombatantStats(player, { activeBuffs: nextActiveBuffs }),
+      shouldStore: false,
+    }
+  }
+
+  if (rewardItem?.typeUpKey) {
+    const nextTypePowerUps = normalizeTypePowerUps(player.typePowerUps)
+    nextTypePowerUps[rewardItem.typeUpKey] = Math.min(
+      TYPE_POWER_UP_MAX,
+      (nextTypePowerUps[rewardItem.typeUpKey] ?? 0) + 1
+    )
+
+    return {
+      nextPlayer: {
+        ...player,
+        typePowerUps: nextTypePowerUps,
+      },
       shouldStore: false,
     }
   }
@@ -627,12 +677,24 @@ const applyInstantRewardEffect = (player, rewardItem) => {
   }
 }
 
-const canRandomRewardItemAppear = (item, inventory = {}) => {
+const canRandomRewardItemAppear = (item, inventory = {}, rewardTarget = null) => {
   if (item.requiresItemId && (inventory?.[item.requiresItemId] ?? 0) <= 0) {
     return false
   }
 
   if (item.unique && (inventory?.[item.id] ?? 0) > 0) {
+    return false
+  }
+
+  if (item.maxOwned != null && (inventory?.[item.id] ?? 0) >= item.maxOwned) {
+    return false
+  }
+
+  if (
+    item.maxOwnedPerCombatant != null &&
+    item.typeUpKey &&
+    (normalizeTypePowerUps(rewardTarget?.typePowerUps)[item.typeUpKey] ?? 0) >= item.maxOwnedPerCombatant
+  ) {
     return false
   }
 
@@ -651,11 +713,36 @@ const addRewardInventoryItem = (inventory, item) => {
     }
   }
 
+  if (item.maxOwned != null) {
+    return {
+      ...(inventory ?? {}),
+      [item.id]: Math.min(item.maxOwned, (inventory?.[item.id] ?? 0) + 1),
+    }
+  }
+
   return addInventoryItem(inventory, item.id)
 }
 
-const createRewardSelection = (inventory = {}) => ({
-  randomItems: shuffleItems(randomRewardItemPool.filter((item) => canRandomRewardItemAppear(item, inventory))).slice(0, 3),
+const getRewardItemMaxCount = (item) => {
+  if (item?.maxOwnedPerCombatant != null) {
+    return item.maxOwnedPerCombatant
+  }
+
+  if (item?.maxOwned != null) {
+    return item.maxOwned
+  }
+
+  if (item?.unique) {
+    return 1
+  }
+
+  return null
+}
+
+const createRewardSelection = (inventory = {}, rewardTarget = null) => ({
+  randomItems: shuffleItems(
+    randomRewardItemPool.filter((item) => canRandomRewardItemAppear(item, inventory, rewardTarget))
+  ).slice(0, 3),
   selectedRandomItemId: null,
   isResolving: false,
 })
@@ -967,9 +1054,7 @@ const getCombatantStatChartData = (combatant, activeTab) => {
   const isBattleStats = activeTab === 'stats'
   const maximumValue = isBattleStats
     ? Math.max(...COMBATANT_STAT_CHART_FIELDS.map((field) => getStatChartValue(combatant, field.key)), 1)
-    : activeTab === 'ivs'
-      ? IV_MAX
-      : EV_PER_STAT_MAX
+    : IV_MAX
 
   return COMBATANT_STAT_CHART_FIELDS.map((field) => {
     const value = isBattleStats
@@ -1328,12 +1413,6 @@ const getExperienceToNextLevel = (level) => Math.floor(20 + level * 12)
 
 const clampStatValue = (value, minimum, maximum) => Math.min(maximum, Math.max(minimum, value))
 
-const createFlatStatBlock = (fillValue = 0) =>
-  STAT_KEYS.reduce((result, statKey) => {
-    result[statKey] = fillValue
-    return result
-  }, {})
-
 const createBaseStats = (data) =>
   STAT_KEYS.reduce((result, statKey) => {
     result[statKey] = Math.max(1, data?.[BASE_STAT_FIELD_MAP[statKey]] ?? 50)
@@ -1356,22 +1435,34 @@ const normalizeStatBlock = (block, fallbackBlock, maximumValue) =>
     return result
   }, {})
 
-const calculateHpStat = ({ base, iv, ev, level }) =>
-  Math.floor(((2 * base + iv + Math.floor(ev / 4)) * level) / 100) + level + 10
+const calculateHpStat = ({ base, iv, level }) =>
+  Math.floor(((2 * base + iv) * level) / 100) + level + 10
 
-const calculateOtherStat = ({ base, iv, ev, level }) =>
-  Math.floor((Math.floor(((2 * base + iv + Math.floor(ev / 4)) * level) / 100) + 5))
+const calculateOtherStat = ({ base, iv, level }) =>
+  Math.floor((Math.floor(((2 * base + iv) * level) / 100) + 5))
 
 const getBuffMultiplier = (activeBuffs, statKey) =>
   BUFFABLE_STAT_KEYS.includes(statKey) && (activeBuffs?.[statKey] ?? 0) > 0 ? 1.1 : 1
 
-const calculateBattleStats = ({ baseStats, level, ivs, evs, activeBuffs }) => ({
+const getTypePowerMultiplier = (combatant) => {
+  const combatantType = combatant?.type
+
+  if (!combatantType) {
+    return 1
+  }
+
+  const typePowerUps = normalizeTypePowerUps(combatant.typePowerUps)
+  const boostCount = typePowerUps[combatantType] ?? 0
+
+  return 1 + boostCount * 0.1
+}
+
+const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs }) => ({
   maxHp: Math.max(
     1,
     calculateHpStat({
       base: baseStats.hp,
       iv: ivs.hp,
-      ev: evs.hp,
       level,
     })
   ),
@@ -1381,7 +1472,6 @@ const calculateBattleStats = ({ baseStats, level, ivs, evs, activeBuffs }) => ({
       calculateOtherStat({
         base: baseStats.attack,
         iv: ivs.attack,
-        ev: evs.attack,
         level,
       }) * getBuffMultiplier(activeBuffs, 'attack')
     )
@@ -1392,7 +1482,6 @@ const calculateBattleStats = ({ baseStats, level, ivs, evs, activeBuffs }) => ({
       calculateOtherStat({
         base: baseStats.defense,
         iv: ivs.defense,
-        ev: evs.defense,
         level,
       }) * getBuffMultiplier(activeBuffs, 'defense')
     )
@@ -1403,7 +1492,6 @@ const calculateBattleStats = ({ baseStats, level, ivs, evs, activeBuffs }) => ({
       calculateOtherStat({
         base: baseStats.specialAttack,
         iv: ivs.specialAttack,
-        ev: evs.specialAttack,
         level,
       }) * getBuffMultiplier(activeBuffs, 'specialAttack')
     )
@@ -1414,7 +1502,6 @@ const calculateBattleStats = ({ baseStats, level, ivs, evs, activeBuffs }) => ({
       calculateOtherStat({
         base: baseStats.specialDefense,
         iv: ivs.specialDefense,
-        ev: evs.specialDefense,
         level,
       }) * getBuffMultiplier(activeBuffs, 'specialDefense')
     )
@@ -1425,7 +1512,6 @@ const calculateBattleStats = ({ baseStats, level, ivs, evs, activeBuffs }) => ({
       calculateOtherStat({
         base: baseStats.speed,
         iv: ivs.speed,
-        ev: evs.speed,
         level,
       }) * getBuffMultiplier(activeBuffs, 'speed')
     )
@@ -1434,21 +1520,6 @@ const calculateBattleStats = ({ baseStats, level, ivs, evs, activeBuffs }) => ({
 
 const getBaseStatTotal = (baseStats) =>
   STAT_KEYS.reduce((total, statKey) => total + (baseStats?.[statKey] ?? 0), 0)
-
-const getTotalEffortValues = (evs) =>
-  STAT_KEYS.reduce((total, statKey) => total + (evs?.[statKey] ?? 0), 0)
-
-const getDominantStatKey = (baseStats) =>
-  STAT_KEYS.reduce((bestKey, currentKey) => {
-    if (!bestKey) {
-      return currentKey
-    }
-
-    const currentValue = baseStats?.[currentKey] ?? 0
-    const bestValue = baseStats?.[bestKey] ?? 0
-
-    return currentValue > bestValue ? currentKey : bestKey
-  }, null)
 
 const createCombatant = ({
   id,
@@ -1459,21 +1530,20 @@ const createCombatant = ({
   currentHp,
   experience = 0,
   ivs,
-  evs,
   activeBuffs,
+  typePowerUps,
   statusEffect,
   stageName,
 }) => {
   const baseStats = createBaseStats(data)
   const resolvedIvs = normalizeStatBlock(ivs, createRandomIvs(), IV_MAX)
-  const resolvedEvs = normalizeStatBlock(evs, createFlatStatBlock(0), EV_PER_STAT_MAX)
   const resolvedActiveBuffs = normalizeBuffState(activeBuffs)
+  const resolvedTypePowerUps = normalizeTypePowerUps(typePowerUps)
   const resolvedStatusEffect = normalizeStatusEffect(statusEffect)
   const battleStats = calculateBattleStats({
     baseStats,
     level,
     ivs: resolvedIvs,
-    evs: resolvedEvs,
     activeBuffs: resolvedActiveBuffs,
   })
 
@@ -1485,8 +1555,8 @@ const createCombatant = ({
     speciesStage: stageName ?? data?.stage ?? null,
     baseStats,
     ivs: resolvedIvs,
-    evs: resolvedEvs,
     activeBuffs: resolvedActiveBuffs,
+    typePowerUps: resolvedTypePowerUps,
     statusEffect: resolvedStatusEffect,
     level,
     experience,
@@ -1511,6 +1581,7 @@ const createCapturedPartyMember = (enemy, captureId) =>
       ...enemy,
       id: captureId,
       activeBuffs: normalizeBuffState(null),
+      typePowerUps: normalizeTypePowerUps(null),
       statusEffect: null,
     },
     {
@@ -1537,6 +1608,17 @@ const getEnemyLevelForStage = (stage) => {
 
 const getExperienceReward = (enemy) =>
   Math.max(18, Math.floor(enemy.level * 6 + enemy.baseStatTotal * 0.06))
+
+const getInventoryItemCount = (inventory, itemId) =>
+  Math.max(0, Math.floor(inventory?.[itemId] ?? 0))
+
+const getExperienceMultiplier = (inventory = {}) =>
+  1 +
+  getInventoryItemCount(inventory, EXP_BOOSTER_ITEM_ID) * 0.1 +
+  getInventoryItemCount(inventory, EXP_BOOSTER_PLUS_ITEM_ID) * 0.25
+
+const getBoostedExperienceAmount = (baseExperience, inventory = {}) =>
+  Math.max(1, Math.floor(baseExperience * getExperienceMultiplier(inventory)))
 
 const getLivingEnemyIndex = (enemies) => enemies.findIndex((enemy) => enemy.currentHp > 0)
 
@@ -1568,7 +1650,6 @@ const refreshCombatantStats = (
   {
     level = combatant.level,
     ivs = combatant.ivs,
-    evs = combatant.evs,
     activeBuffs = combatant.activeBuffs,
     statusEffect = combatant.statusEffect,
     preserveMaxHpDelta = false,
@@ -1578,7 +1659,6 @@ const refreshCombatantStats = (
     baseStats: combatant.baseStats,
     level,
     ivs,
-    evs,
     activeBuffs,
   })
   const maxHpDelta = battleStats.maxHp - combatant.maxHp
@@ -1586,7 +1666,6 @@ const refreshCombatantStats = (
   return {
     ...combatant,
     ivs,
-    evs,
     activeBuffs: normalizeBuffState(activeBuffs),
     statusEffect: normalizeStatusEffect(statusEffect),
     level,
@@ -1745,76 +1824,23 @@ const resolveTurnEndStatus = (combatant) => {
   }
 }
 
-const applyEffortValueGain = ({ combatant, defeatedEnemies }) => {
-  if (!defeatedEnemies.length) {
+const applyExperienceAmount = ({
+  combatant,
+  experienceAmount,
+  levelCap,
+}) => {
+  if (!combatant || experienceAmount <= 0) {
     return {
       nextCombatant: combatant,
       battleLogs: [],
     }
   }
 
-  const nextEvs = { ...combatant.evs }
-  let totalEvs = getTotalEffortValues(nextEvs)
-  const gainedStats = createFlatStatBlock(0)
-
-  defeatedEnemies.forEach((enemy) => {
-    const dominantStatKey = getDominantStatKey(enemy.baseStats)
-    const yieldAmount = EV_YIELD_BY_STAGE[enemy.speciesStage] ?? 1
-
-    if (!dominantStatKey || yieldAmount <= 0) {
-      return
-    }
-
-    const remainingStatCapacity = EV_PER_STAT_MAX - (nextEvs[dominantStatKey] ?? 0)
-    const remainingTotalCapacity = EV_TOTAL_MAX - totalEvs
-    const grantedValue = Math.max(0, Math.min(yieldAmount, remainingStatCapacity, remainingTotalCapacity))
-
-    if (grantedValue === 0) {
-      return
-    }
-
-    nextEvs[dominantStatKey] += grantedValue
-    totalEvs += grantedValue
-    gainedStats[dominantStatKey] += grantedValue
-  })
-
-  const changedStats = STAT_KEYS.filter((statKey) => gainedStats[statKey] > 0)
-
-  if (!changedStats.length) {
-    return {
-      nextCombatant: combatant,
-      battleLogs: [],
-    }
-  }
-
-  const nextCombatant = refreshCombatantStats(combatant, { evs: nextEvs })
-
-  return {
-    nextCombatant,
-    battleLogs: [],
-  }
-}
-
-const applyExperienceGain = ({ combatant, defeatedEnemies, levelCap }) => {
-  if (!defeatedEnemies.length) {
-    return {
-      nextCombatant: combatant,
-      battleLogs: [],
-    }
-  }
-
-  const effortValueResult = applyEffortValueGain({ combatant, defeatedEnemies })
-  let nextCombatant = effortValueResult.nextCombatant
+  let nextCombatant = { ...combatant }
   const battleLogs = []
 
-  battleLogs.push(...effortValueResult.battleLogs)
-
-  defeatedEnemies.forEach((enemy) => {
-    const reward = getExperienceReward(enemy)
-    nextCombatant.experience += reward
-    battleLogs.push(`${enemy.name}을(를) 쓰러뜨렸다!`)
-    battleLogs.push(`${nextCombatant.name}은(는) 경험치 ${reward}를 얻었다!`)
-  })
+  nextCombatant.experience += experienceAmount
+  battleLogs.push(`${nextCombatant.name}은(는) 경험치 ${experienceAmount}를 얻었다!`)
 
   while (
     nextCombatant.level < levelCap &&
@@ -1834,6 +1860,71 @@ const applyExperienceGain = ({ combatant, defeatedEnemies, levelCap }) => {
 
   return {
     nextCombatant,
+    battleLogs,
+  }
+}
+
+const applyPartyExperienceGain = ({
+  party,
+  activeAllyIds,
+  defeatedEnemies,
+  levelCap,
+  inventory = {},
+}) => {
+  if (!defeatedEnemies.length) {
+    return {
+      nextParty: party,
+      battleLogs: [],
+    }
+  }
+
+  let nextParty = [...party]
+  const battleLogs = defeatedEnemies.map((enemy) => `${enemy.name}을(를) 쓰러뜨렸다!`)
+  const totalBaseExperience = defeatedEnemies.reduce(
+    (total, enemy) => total + getExperienceReward(enemy),
+    0
+  )
+  const boostedExperience = getBoostedExperienceAmount(totalBaseExperience, inventory)
+  const activeRecipients = activeAllyIds
+    .map((allyId) => getCombatantById(nextParty, allyId))
+    .filter(isCombatantAbleToBattle)
+  const activeShareAmount = activeRecipients.length
+    ? Math.max(1, Math.floor(boostedExperience / activeRecipients.length))
+    : 0
+
+  activeRecipients.forEach((recipient) => {
+    const experienceResult = applyExperienceAmount({
+      combatant: recipient,
+      experienceAmount: activeShareAmount,
+      levelCap,
+    })
+    nextParty = replacePartyMember(nextParty, experienceResult.nextCombatant)
+    battleLogs.push(...experienceResult.battleLogs)
+  })
+
+  if (getInventoryItemCount(inventory, EXP_SHARE_ITEM_ID) > 0) {
+    const activeIdSet = new Set(activeAllyIds)
+    const sharedExperienceAmount = Math.max(1, Math.floor(boostedExperience * 0.2))
+
+    nextParty
+      .filter(
+        (member) =>
+          !activeIdSet.has(member.id) &&
+          isCombatantAbleToBattle(member)
+      )
+      .forEach((member) => {
+        const experienceResult = applyExperienceAmount({
+          combatant: member,
+          experienceAmount: sharedExperienceAmount,
+          levelCap,
+        })
+        nextParty = replacePartyMember(nextParty, experienceResult.nextCombatant)
+        battleLogs.push(...experienceResult.battleLogs)
+      })
+  }
+
+  return {
+    nextParty,
     battleLogs,
   }
 }
@@ -1870,8 +1961,9 @@ const resolveAttackAction = ({ attacker, defender, skillName, announce = true })
     }
   }
 
+  const boostedSkillPower = (skillData.데미지 ?? 0) * getTypePowerMultiplier(attacker)
   const scaledPower =
-    (((2 * Math.max(1, attacker.level)) / 5 + 2) * (skillData.데미지 ?? 0) * Math.max(1, attackStat)) /
+    (((2 * Math.max(1, attacker.level)) / 5 + 2) * boostedSkillPower * Math.max(1, attackStat)) /
     Math.max(1, defenseStat)
   const baseDamage = Math.floor(scaledPower / 50) + 2
   const randomFactor = 0.85 + Math.random() * 0.15
@@ -2050,7 +2142,14 @@ const getBattleTurnTargetCandidates = ({ action, party, enemies, activeAllyIds }
     .filter(isCombatantAbleToBattle)
 }
 
-const resolveBattleTurnActions = ({ party, enemies, activeAllyIds, actions, levelCap }) => {
+const resolveBattleTurnActions = ({
+  party,
+  enemies,
+  activeAllyIds,
+  actions,
+  levelCap,
+  inventory = {},
+}) => {
   let nextParty = [...party]
   let nextEnemies = [...enemies]
   const battleLogs = []
@@ -2173,13 +2272,15 @@ const resolveBattleTurnActions = ({ party, enemies, activeAllyIds, actions, leve
 
     actor = getBattleTurnActor({ action, party: nextParty, enemies: nextEnemies }) ?? actor
 
-    if (action.side === 'ally' && isCombatantAbleToBattle(actor) && defeatedEnemies.length > 0) {
-      const experienceResult = applyExperienceGain({
-        combatant: actor,
+    if (action.side === 'ally' && defeatedEnemies.length > 0) {
+      const experienceResult = applyPartyExperienceGain({
+        party: nextParty,
+        activeAllyIds,
         defeatedEnemies,
         levelCap,
+        inventory,
       })
-      nextParty = replacePartyMember(nextParty, experienceResult.nextCombatant)
+      nextParty = experienceResult.nextParty
       battleLogs.push(...experienceResult.battleLogs)
     }
   })
@@ -2455,9 +2556,10 @@ function App() {
       )
       nextGold += getStageClearGoldReward(gameState.currentStage)
       resolvedLogs.push('전투에서 승리했다!')
-      setRewardState(createRewardSelection(gameState.inventory))
+      const rewardTarget = getFirstLivingPartyMember(resolvedParty, activeAllyIds)
+      setRewardState(createRewardSelection(nextInventory, rewardTarget))
       commitBattleState({
-        nextPlayer: getFirstLivingPartyMember(resolvedParty, activeAllyIds),
+        nextPlayer: rewardTarget,
         battlePanel: 'logs',
         nextActedAllyIds: [],
       })
@@ -2582,9 +2684,10 @@ function App() {
       )
       nextGold += getStageClearGoldReward(gameState.currentStage)
       resolvedLogs.push('전투에서 승리했다!')
-      setRewardState(createRewardSelection(gameState.inventory))
+      const rewardTarget = getFirstLivingPartyMember(resolvedParty, activeAllyIds)
+      setRewardState(createRewardSelection(nextInventory, rewardTarget))
       commitBattleState({
-        nextPlayer: getFirstLivingPartyMember(resolvedParty, activeAllyIds),
+        nextPlayer: rewardTarget,
         battlePanel: 'logs',
       })
     }
@@ -2854,6 +2957,7 @@ function App() {
       activeAllyIds: battleContext.activeAllyIds,
       actions: [...nextPendingActions, ...enemyActions],
       levelCap: gameState.levelCap,
+      inventory: gameState.inventory,
     })
 
     finishResolvedTurn({
@@ -3310,6 +3414,27 @@ function App() {
     }, 1200)
   }
 
+  const handleInventoryTooltipPosition = (event) => {
+    const itemElement = event.currentTarget
+    const stageElement = itemElement.closest('.adventure-stage')
+
+    if (!stageElement) {
+      return
+    }
+
+    const itemRect = itemElement.getBoundingClientRect()
+    const stageRect = stageElement.getBoundingClientRect()
+    const tooltipWidth = Math.min(260, Math.max(160, stageRect.width - 24))
+    const safeInset = 12
+    const itemCenterX = itemRect.left + itemRect.width / 2
+    const minCenterX = stageRect.left + safeInset + tooltipWidth / 2
+    const maxCenterX = stageRect.right - safeInset - tooltipWidth / 2
+    const clampedCenterX = Math.min(Math.max(itemCenterX, minCenterX), maxCenterX)
+
+    itemElement.style.setProperty('--inventory-tooltip-shift', `${clampedCenterX - itemCenterX}px`)
+    itemElement.style.setProperty('--inventory-tooltip-max-width', `${tooltipWidth}px`)
+  }
+
   const selectedGrowthDigimon = growthStageDigimon[selectedGrowthIndex]
   const handleStartAdventure = () => {
     const startingStage = 1
@@ -3402,6 +3527,65 @@ function App() {
   const hasDigimonDetector = (gameState?.inventory?.[DIGIMON_DETECTOR_ITEM_ID] ?? 0) > 0
   const hasIvDetector = hasDigimonDetector && (gameState?.inventory?.[IV_DETECTOR_ITEM_ID] ?? 0) > 0
   const hasGlobeItem = (gameState?.inventory?.[GLOBE_ITEM_ID] ?? 0) > 0
+  const hudCombatant = actingAlly ?? gameState?.player ?? null
+  const inventoryHudItems = [...rewardItemLookup.values()]
+    .map((item) => {
+      const count = gameState?.inventory?.[item.id] ?? 0
+
+      if (!item || item.captureTier || count <= 0) {
+        return null
+      }
+
+      const maxCount = getRewardItemMaxCount(item)
+
+      return {
+        id: item.id,
+        name: item.name,
+        description: item.description,
+        imageUrl: item.imageUrl,
+        value: count,
+        isMaxed: maxCount != null && count >= maxCount,
+      }
+    })
+    .filter(Boolean)
+  const activeBuffHudItems = buffRewardItems
+    .map((item) => {
+      const remainingTurns = hudCombatant?.activeBuffs?.[item.buffStatKey] ?? 0
+
+      if (remainingTurns <= 0) {
+        return null
+      }
+
+      return {
+        id: item.id,
+        name: item.name,
+        description: `${item.description} · 남은 턴 ${remainingTurns}`,
+        imageUrl: item.imageUrl,
+        value: remainingTurns,
+        isBuff: true,
+      }
+    })
+    .filter(Boolean)
+  const activeTypeUpHudItems = typeUpRewardItems
+    .map((item) => {
+      const count = normalizeTypePowerUps(hudCombatant?.typePowerUps)[item.typeUpKey] ?? 0
+
+      if (count <= 0) {
+        return null
+      }
+
+      return {
+        id: item.id,
+        name: item.name,
+        description: `${item.description} · 현재 ${count}/${TYPE_POWER_UP_MAX}`,
+        imageUrl: item.imageUrl,
+        value: count,
+        isMaxed: count >= TYPE_POWER_UP_MAX,
+        isTypeUp: true,
+      }
+    })
+    .filter(Boolean)
+  const adventureHudItems = [...inventoryHudItems, ...activeBuffHudItems, ...activeTypeUpHudItems]
   const mapSelectionOptions = mapSelectionState?.options?.length
     ? mapSelectionState.options
     : getConnectedMapNames(gameState?.currentMap)
@@ -3604,20 +3788,41 @@ function App() {
                   style={{ backgroundImage: `url("${activeBackgroundUrl}")` }}
                 />
                 <div className="adventure-hud">
-                  <div className="adventure-card">
-                    <p className="adventure-card__label">{'\uD604\uC7AC \uB9F5'}</p>
-                    <h2 className="adventure-card__value">{gameState?.currentMap}</h2>
+                  <div className="adventure-inventory-strip" aria-label="획득한 아이템">
+                    {adventureHudItems.length > 0 ? (
+                      adventureHudItems.map((item) => (
+                        <div
+                          key={`${item.id}-${item.isBuff ? 'buff' : 'count'}`}
+                          className={[
+                            'adventure-inventory-item',
+                            item.isMaxed ? 'adventure-inventory-item--maxed' : '',
+                            item.isBuff ? 'adventure-inventory-item--buff' : '',
+                          ]
+                            .filter(Boolean)
+                            .join(' ')}
+                          data-tooltip={item.description}
+                          aria-label={`${item.name}: ${item.description}`}
+                          tabIndex={0}
+                          onFocus={handleInventoryTooltipPosition}
+                          onMouseEnter={handleInventoryTooltipPosition}
+                        >
+                          <img className="adventure-inventory-item__image" src={item.imageUrl} alt="" />
+                          <span className="adventure-inventory-item__count">{item.value}</span>
+                        </div>
+                      ))
+                    ) : (
+                      <span className="adventure-inventory-strip__empty">ITEM</span>
+                    )}
                   </div>
-                  <div className="adventure-card adventure-card--compact">
-                    <p className="adventure-card__line">
-                      <span className="adventure-card__label">STAGE</span>
-                      <span className="adventure-card__meta">
-                        {gameState?.currentStage} / {gameState?.maxStage}
+                  <div className="adventure-summary-card">
+                    <p className="adventure-summary-card__line adventure-summary-card__line--stage">
+                      <span>
+                        {gameState?.currentMap} - {gameState?.currentStage} / {gameState?.maxStage}
                       </span>
                     </p>
-                    <p className="adventure-card__line adventure-card__line--gold">
-                      <span className="adventure-card__submeta">GOLD</span>
-                      <span className="adventure-card__gold">{formatGold(gameState?.gold ?? 0)}</span>
+                    <p className="adventure-summary-card__line adventure-summary-card__line--gold">
+                      <span>GOLD</span>
+                      <span className="adventure-summary-card__gold">{formatGold(gameState?.gold ?? 0)}</span>
                     </p>
                   </div>
                 </div>
