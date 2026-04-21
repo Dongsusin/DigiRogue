@@ -5,6 +5,7 @@ import growthStageData from '../data/디지몬/성장기.json'
 import matureStageData from '../data/디지몬/성숙기.json'
 import perfectStageData from '../data/디지몬/완전체.json'
 import ultimateStageData from '../data/디지몬/궁극체.json'
+import superUltimateStageData from '../data/디지몬/초궁극체.json'
 import babySkillData from '../data/기술/유아기.json'
 import childSkillData from '../data/기술/유년기.json'
 import growthSkillData from '../data/기술/성장기.json'
@@ -309,6 +310,7 @@ const digimonStageDataMap = {
   성숙기: matureStageData,
   완전체: perfectStageData,
   궁극체: ultimateStageData,
+  초궁극체: superUltimateStageData,
 }
 
 const createDigimonImageUrl = (stage, name) =>
@@ -409,7 +411,18 @@ const BUFF_STAGE_DURATION = 10
 const STATUS_DURATION_TURNS = 3
 const STATUS_EARLY_CURE_CHANCE = 30
 const IV_MAX = 31
+const DIGIMON_STAGE_ORDER = ['유아기', '유년기', '성장기', '성숙기', '완전체', '궁극체', '초궁극체']
+const EVOLUTION_STAGE_REQUIREMENTS = {
+  유아기: { level: 1, stats: { hp: 8, attack: 8, specialAttack: 8, defense: 8, specialDefense: 8, speed: 8 } },
+  유년기: { level: 3, stats: { hp: 10, attack: 10, specialAttack: 10, defense: 10, specialDefense: 10, speed: 10 } },
+  성장기: { level: 5, stats: { hp: 14, attack: 14, specialAttack: 14, defense: 14, specialDefense: 14, speed: 14 } },
+  성숙기: { level: 16, stats: { hp: 24, attack: 24, specialAttack: 24, defense: 24, specialDefense: 24, speed: 24 } },
+  완전체: { level: 30, stats: { hp: 46, attack: 46, specialAttack: 46, defense: 46, specialDefense: 46, speed: 46 } },
+  궁극체: { level: 45, stats: { hp: 70, attack: 70, specialAttack: 70, defense: 70, specialDefense: 70, speed: 70 } },
+  초궁극체: { level: 65, stats: { hp: 102, attack: 102, specialAttack: 102, defense: 102, specialDefense: 102, speed: 102 } },
+}
 const STAT_KEYS = ['hp', 'attack', 'defense', 'specialAttack', 'specialDefense', 'speed']
+const EVOLUTION_REQUIREMENT_STAT_KEYS = ['hp', 'attack', 'specialAttack', 'defense', 'specialDefense', 'speed']
 const BUFFABLE_STAT_KEYS = ['attack', 'defense', 'specialAttack', 'specialDefense', 'speed']
 const STATUS_EFFECT_TYPES = ['독', '맹독', '혼란', '착란', '마비', '행동불능', '수면', '혼수상태']
 const BASE_STAT_FIELD_MAP = {
@@ -647,6 +660,25 @@ const applyInstantRewardEffect = (player, rewardItem) => {
     }
   }
 
+  if (rewardItem?.reviveRatio) {
+    if (player.currentHp > 0) {
+      return {
+        nextPlayer: player,
+        shouldStore: false,
+      }
+    }
+
+    const refreshedPlayer = refreshCombatantStats(player, { statusEffect: null })
+
+    return {
+      nextPlayer: {
+        ...refreshedPlayer,
+        currentHp: Math.max(1, Math.floor(refreshedPlayer.maxHp * rewardItem.reviveRatio)),
+      },
+      shouldStore: false,
+    }
+  }
+
   if (rewardItem?.healFull) {
     const refreshedPlayer = refreshCombatantStats(player, {
       statusEffect: rewardItem.cureStatus ? null : player.statusEffect,
@@ -677,6 +709,52 @@ const applyInstantRewardEffect = (player, rewardItem) => {
   }
 }
 
+const isTargetedRewardItem = (item) =>
+  Boolean(item?.healAmount || item?.healFull || item?.reviveRatio || item?.buffStatKey || item?.typeUpKey)
+
+const getRewardTargetCandidates = (party, fallbackPlayer = null) => {
+  const currentParty = Array.isArray(party) && party.length > 0 ? party : []
+  const candidates = currentParty.length > 0 ? currentParty : [fallbackPlayer].filter(Boolean)
+  const seenIds = new Set()
+
+  return candidates.filter((member) => {
+    if (!member?.id || seenIds.has(member.id)) {
+      return false
+    }
+
+    seenIds.add(member.id)
+    return true
+  })
+}
+
+const isRewardItemUsableByCombatant = (item, combatant) => {
+  if (!item || !combatant) {
+    return false
+  }
+
+  if (item.typeUpKey) {
+    const typePowerUps = normalizeTypePowerUps(combatant.typePowerUps)
+
+    return (
+      combatant.type === item.typeUpKey &&
+      (typePowerUps[item.typeUpKey] ?? 0) < (item.maxOwnedPerCombatant ?? TYPE_POWER_UP_MAX)
+    )
+  }
+
+  if (item.reviveRatio) {
+    return combatant.currentHp <= 0
+  }
+
+  if (item.healAmount || item.healFull || item.buffStatKey) {
+    return isCombatantAbleToBattle(combatant)
+  }
+
+  return true
+}
+
+const shouldSelectRewardTarget = (item, party, fallbackPlayer = null) =>
+  isTargetedRewardItem(item) && getRewardTargetCandidates(party, fallbackPlayer).length > 1
+
 const canRandomRewardItemAppear = (item, inventory = {}, rewardTarget = null) => {
   if (item.requiresItemId && (inventory?.[item.requiresItemId] ?? 0) <= 0) {
     return false
@@ -690,12 +768,14 @@ const canRandomRewardItemAppear = (item, inventory = {}, rewardTarget = null) =>
     return false
   }
 
-  if (
-    item.maxOwnedPerCombatant != null &&
-    item.typeUpKey &&
-    (normalizeTypePowerUps(rewardTarget?.typePowerUps)[item.typeUpKey] ?? 0) >= item.maxOwnedPerCombatant
-  ) {
-    return false
+  if (item.typeUpKey) {
+    const rewardTargets = getRewardTargetCandidates(
+      Array.isArray(rewardTarget) ? rewardTarget : [rewardTarget].filter(Boolean)
+    )
+
+    if (!rewardTargets.some((target) => isRewardItemUsableByCombatant(item, target))) {
+      return false
+    }
   }
 
   return true
@@ -1409,6 +1489,12 @@ const getLevelUpStatValues = (combatant) => ({
   speed: combatant?.speed ?? 0,
 })
 
+const getCombatantBattleStatValue = (combatant, statKey) =>
+  statKey === 'hp' ? combatant?.maxHp ?? 0 : combatant?.[statKey] ?? 0
+
+const getCombatantBattleStatTotal = (combatant) =>
+  STAT_KEYS.reduce((total, statKey) => total + getCombatantBattleStatValue(combatant, statKey), 0)
+
 const getExperienceToNextLevel = (level) => Math.floor(20 + level * 12)
 
 const clampStatValue = (value, minimum, maximum) => Math.min(maximum, Math.max(minimum, value))
@@ -1520,6 +1606,100 @@ const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs }) => ({
 
 const getBaseStatTotal = (baseStats) =>
   STAT_KEYS.reduce((total, statKey) => total + (baseStats?.[statKey] ?? 0), 0)
+
+const getDigimonStageRank = (stage) => {
+  const rank = DIGIMON_STAGE_ORDER.indexOf(stage)
+
+  return rank >= 0 ? rank : -1
+}
+
+const getEvolutionStageRequirement = (stage) =>
+  EVOLUTION_STAGE_REQUIREMENTS[stage] ?? {
+    level: 80,
+    stats: { hp: 125, attack: 125, specialAttack: 125, defense: 125, specialDefense: 125, speed: 125 },
+  }
+
+const getEvolutionRequirements = (targetData) => {
+  const customRequirement = targetData?.진화조건 ?? null
+  const stageRequirement = getEvolutionStageRequirement(targetData?.stage)
+
+  return [
+    {
+      key: 'level',
+      label: '레벨',
+      current: (combatant) => combatant?.level ?? 0,
+      required: Number(customRequirement?.레벨 ?? stageRequirement.level),
+    },
+    ...EVOLUTION_REQUIREMENT_STAT_KEYS.map((statKey) => ({
+      key: statKey,
+      label: STAT_LABEL_MAP[statKey] ?? statKey,
+      current: (combatant) => getCombatantBattleStatValue(combatant, statKey),
+      required: Number(customRequirement?.[BASE_STAT_FIELD_MAP[statKey]] ?? stageRequirement.stats?.[statKey] ?? 1),
+    })),
+  ]
+}
+
+const getEvolutionOptions = (combatant) => {
+  if (!combatant?.speciesData?.진화가능?.length) {
+    return []
+  }
+
+  const currentStageRank = getDigimonStageRank(combatant.speciesStage)
+
+  return combatant.speciesData.진화가능
+    .map((targetName) => allDigimonLookup.get(targetName))
+    .filter(Boolean)
+    .filter((targetData) => targetData.이름 !== combatant.name && getDigimonStageRank(targetData.stage) >= currentStageRank)
+    .map((targetData) => {
+      const requirements = getEvolutionRequirements(targetData).map((requirement) => {
+        const currentValue = requirement.current(combatant)
+
+        return {
+          key: requirement.key,
+          label: requirement.label,
+          current: currentValue,
+          required: requirement.required,
+          isMet: currentValue >= requirement.required,
+        }
+      })
+
+      return {
+        targetData,
+        requirements,
+        canEvolve: requirements.every((requirement) => requirement.isMet),
+      }
+    })
+}
+
+const createEvolvedCombatant = (combatant, targetData) => {
+  if (!combatant || !targetData) {
+    return combatant
+  }
+
+  const hpRatio = combatant.maxHp > 0 ? combatant.currentHp / combatant.maxHp : 1
+  const evolvedCombatant = createCombatant({
+    id: combatant.id,
+    name: targetData.이름,
+    imageUrl: targetData.imageUrl ?? '',
+    data: targetData,
+    level: combatant.level,
+    experience: combatant.experience,
+    ivs: combatant.ivs,
+    activeBuffs: combatant.activeBuffs,
+    typePowerUps: combatant.typePowerUps,
+    statusEffect: combatant.statusEffect,
+    stageName: targetData.stage,
+  })
+
+  return {
+    ...evolvedCombatant,
+    currentHp:
+      combatant.currentHp <= 0
+        ? 0
+        : Math.max(1, Math.min(evolvedCombatant.maxHp, Math.floor(evolvedCombatant.maxHp * hpRatio))),
+    evolutionHistory: [...(combatant.evolutionHistory ?? []), combatant.name],
+  }
+}
 
 const createCombatant = ({
   id,
@@ -2332,6 +2512,7 @@ function App() {
   const [activeCombatantInfoId, setActiveCombatantInfoId] = useState(null)
   const [currentLogs, setCurrentLogs] = useState([])
   const [rewardState, setRewardState] = useState(null)
+  const [evolutionState, setEvolutionState] = useState(null)
   const [mapSelectionState, setMapSelectionState] = useState(null)
   const [capturePreview, setCapturePreview] = useState(null)
   const [displayedPlayerExpRatio, setDisplayedPlayerExpRatio] = useState(0)
@@ -2557,7 +2738,7 @@ function App() {
       nextGold += getStageClearGoldReward(gameState.currentStage)
       resolvedLogs.push('전투에서 승리했다!')
       const rewardTarget = getFirstLivingPartyMember(resolvedParty, activeAllyIds)
-      setRewardState(createRewardSelection(nextInventory, rewardTarget))
+      setRewardState(createRewardSelection(nextInventory, resolvedParty))
       commitBattleState({
         nextPlayer: rewardTarget,
         battlePanel: 'logs',
@@ -2575,6 +2756,7 @@ function App() {
         setScreenMode('menu')
         setGameState(null)
         setRewardState(null)
+        setEvolutionState(null)
         setCurrentLogs([])
       }, 3000)
     }
@@ -2685,7 +2867,7 @@ function App() {
       nextGold += getStageClearGoldReward(gameState.currentStage)
       resolvedLogs.push('전투에서 승리했다!')
       const rewardTarget = getFirstLivingPartyMember(resolvedParty, activeAllyIds)
-      setRewardState(createRewardSelection(nextInventory, rewardTarget))
+      setRewardState(createRewardSelection(nextInventory, resolvedParty))
       commitBattleState({
         nextPlayer: rewardTarget,
         battlePanel: 'logs',
@@ -2705,6 +2887,7 @@ function App() {
         setScreenMode('menu')
         setGameState(null)
         setRewardState(null)
+        setEvolutionState(null)
         setCurrentLogs([])
       }, 3000)
     }
@@ -2765,6 +2948,7 @@ function App() {
     setSelectedEnemyTargetId(null)
     setBattlePanelMode('commands')
     setRewardState(null)
+    setEvolutionState(null)
     setMapSelectionState(null)
     setCapturePreview(null)
   }
@@ -2775,6 +2959,7 @@ function App() {
       setScreenMode('menu')
       setGameState(null)
       setRewardState(null)
+      setEvolutionState(null)
       setMapSelectionState(null)
       setCurrentLogs([])
       return
@@ -3348,8 +3533,215 @@ function App() {
     setSelectedBattleCommand('attack')
   }
 
+  const getRewardItemBySource = (source, itemId) =>
+    source === 'fixed'
+      ? fixedRewardItems.find((item) => item.id === itemId)
+      : rewardState?.randomItems.find((item) => item.id === itemId)
+
+  const completeRewardItemUse = ({ rewardItem, source, targetId = null }) => {
+    if (!gameState || !rewardItem) {
+      return
+    }
+
+    if (source === 'fixed' && (gameState.gold ?? 0) < (rewardItem.price ?? 0)) {
+      return
+    }
+
+    const currentParty = syncPartyMember(gameState.party, gameState.player)
+    const isTargetedItem = isTargetedRewardItem(rewardItem)
+    const targetCombatant = isTargetedItem
+      ? getCombatantById(currentParty, targetId) ?? gameState.player
+      : gameState.player
+
+    if (isTargetedItem && !isRewardItemUsableByCombatant(rewardItem, targetCombatant)) {
+      return
+    }
+
+    const effectResult = applyInstantRewardEffect(targetCombatant, rewardItem)
+    const nextParty = isTargetedItem
+      ? replacePartyMember(currentParty, effectResult.nextPlayer)
+      : syncPartyMember(currentParty, effectResult.nextPlayer)
+    const nextPlayer =
+      getCombatantById(nextParty, gameState.player?.id) ??
+      effectResult.nextPlayer ??
+      gameState.player
+    const nextInventory = effectResult.shouldStore
+      ? addRewardInventoryItem(gameState.inventory, rewardItem)
+      : gameState.inventory
+    const nextGameState = {
+      ...gameState,
+      gold: source === 'fixed' ? (gameState.gold ?? 0) - (rewardItem.price ?? 0) : gameState.gold,
+      player: nextPlayer,
+      party: nextParty,
+      inventory: nextInventory,
+    }
+
+    setGameState(nextGameState)
+
+    if (source === 'fixed') {
+      setRewardState((current) =>
+        current
+          ? {
+              ...current,
+              pendingTarget: null,
+            }
+          : current
+      )
+      return
+    }
+
+    setRewardState((current) =>
+      current
+        ? {
+            ...current,
+            selectedRandomItemId: rewardItem.id,
+            pendingTarget: null,
+            isResolving: true,
+          }
+        : current
+    )
+    window.setTimeout(() => {
+      setRewardState(null)
+      setEvolutionState(null)
+      handleNextStage(nextGameState, nextGameState.player)
+    }, 1200)
+  }
+
+  const requestRewardTargetSelection = (source, rewardItem) => {
+    setRewardState((current) =>
+      current
+        ? {
+            ...current,
+            selectedRandomItemId: source === 'random' ? rewardItem.id : current.selectedRandomItemId,
+            pendingTarget: {
+              source,
+              itemId: rewardItem.id,
+            },
+          }
+        : current
+    )
+  }
+
+  const handleSelectRewardTarget = (memberId) => {
+    const pendingTarget = rewardState?.pendingTarget
+
+    if (!pendingTarget || rewardState?.isResolving) {
+      return
+    }
+
+    const rewardItem = getRewardItemBySource(pendingTarget.source, pendingTarget.itemId)
+
+    completeRewardItemUse({
+      rewardItem,
+      source: pendingTarget.source,
+      targetId: memberId,
+    })
+  }
+
+  const handleCancelRewardTargetSelection = () => {
+    setRewardState((current) =>
+      current
+        ? {
+            ...current,
+            selectedRandomItemId:
+              current.pendingTarget?.source === 'random' ? null : current.selectedRandomItemId,
+            pendingTarget: null,
+          }
+        : current
+    )
+  }
+
+  const handleOpenEvolutionParty = () => {
+    if (!gameState || rewardState?.isResolving) {
+      return
+    }
+
+    setEvolutionState({
+      mode: 'party',
+      selectedMemberId: null,
+      confirmTargetName: null,
+    })
+  }
+
+  const handleCloseEvolutionPanel = () => {
+    setEvolutionState(null)
+  }
+
+  const handleSelectEvolutionMember = (memberId) => {
+    setEvolutionState({
+      mode: 'detail',
+      selectedMemberId: memberId,
+      confirmTargetName: null,
+    })
+  }
+
+  const handleBackToEvolutionParty = () => {
+    setEvolutionState({
+      mode: 'party',
+      selectedMemberId: null,
+      confirmTargetName: null,
+    })
+  }
+
+  const handleRequestEvolution = (targetName) => {
+    setEvolutionState((current) =>
+      current
+        ? {
+            ...current,
+            confirmTargetName: targetName,
+          }
+        : current
+    )
+  }
+
+  const handleCancelEvolutionConfirm = () => {
+    setEvolutionState((current) =>
+      current
+        ? {
+            ...current,
+            confirmTargetName: null,
+          }
+        : current
+    )
+  }
+
+  const handleConfirmEvolution = () => {
+    if (!gameState || !evolutionState?.selectedMemberId || !evolutionState.confirmTargetName) {
+      return
+    }
+
+    const currentParty = syncPartyMember(gameState.party, gameState.player)
+    const selectedMember = getCombatantById(currentParty, evolutionState.selectedMemberId)
+    const targetData = allDigimonLookup.get(evolutionState.confirmTargetName)
+    const selectedOption = getEvolutionOptions(selectedMember).find(
+      (option) => option.targetData.이름 === targetData?.이름
+    )
+
+    if (!selectedMember || !targetData || !selectedOption?.canEvolve) {
+      return
+    }
+
+    const evolvedMember = createEvolvedCombatant(selectedMember, targetData)
+    const nextParty = replacePartyMember(currentParty, evolvedMember)
+    const nextPlayer =
+      getCombatantById(nextParty, gameState.player?.id) ??
+      getFirstLivingPartyMember(nextParty, gameState.activeAllyIds) ??
+      evolvedMember
+
+    setGameState({
+      ...gameState,
+      player: nextPlayer,
+      party: nextParty,
+    })
+    setEvolutionState({
+      mode: 'detail',
+      selectedMemberId: evolvedMember.id,
+      confirmTargetName: null,
+    })
+  }
+
   const handlePurchaseFixedRewardItem = (itemId) => {
-    if (!gameState || !rewardState || rewardState.isResolving) {
+    if (!gameState || !rewardState || rewardState.isResolving || rewardState.pendingTarget) {
       return
     }
 
@@ -3362,23 +3754,21 @@ function App() {
       return
     }
 
-    const nextGold = (gameState.gold ?? 0) - rewardItem.price
-    const effectResult = applyInstantRewardEffect(gameState.player, rewardItem)
-    const nextInventory = effectResult.shouldStore
-      ? addRewardInventoryItem(gameState.inventory, rewardItem)
-      : gameState.inventory
+    if (shouldSelectRewardTarget(rewardItem, gameState.party, gameState.player)) {
+      requestRewardTargetSelection('fixed', rewardItem)
+      return
+    }
 
-    setGameState({
-      ...gameState,
-      gold: nextGold,
-      player: effectResult.nextPlayer,
-      party: syncPartyMember(gameState.party, effectResult.nextPlayer),
-      inventory: nextInventory,
+    const [targetCombatant] = getRewardTargetCandidates(gameState.party, gameState.player)
+    completeRewardItemUse({
+      rewardItem,
+      source: 'fixed',
+      targetId: targetCombatant?.id,
     })
   }
 
   const handleClaimRandomRewardItem = (itemId) => {
-    if (!gameState || !rewardState || rewardState.isResolving) {
+    if (!gameState || !rewardState || rewardState.isResolving || rewardState.pendingTarget) {
       return
     }
 
@@ -3387,31 +3777,17 @@ function App() {
       return
     }
 
-    const effectResult = applyInstantRewardEffect(gameState.player, rewardItem)
-    const nextInventory = effectResult.shouldStore
-      ? addRewardInventoryItem(gameState.inventory, rewardItem)
-      : gameState.inventory
-    const nextGameState = {
-      ...gameState,
-      player: effectResult.nextPlayer,
-      party: syncPartyMember(gameState.party, effectResult.nextPlayer),
-      inventory: nextInventory,
+    if (shouldSelectRewardTarget(rewardItem, gameState.party, gameState.player)) {
+      requestRewardTargetSelection('random', rewardItem)
+      return
     }
 
-    setGameState(nextGameState)
-    setRewardState((current) =>
-      current
-        ? {
-            ...current,
-            selectedRandomItemId: rewardItem.id,
-            isResolving: true,
-          }
-        : current
-    )
-    window.setTimeout(() => {
-      setRewardState(null)
-      handleNextStage(nextGameState, nextGameState.player)
-    }, 1200)
+    const [targetCombatant] = getRewardTargetCandidates(gameState.party, gameState.player)
+    completeRewardItemUse({
+      rewardItem,
+      source: 'random',
+      targetId: targetCombatant?.id,
+    })
   }
 
   const handleInventoryTooltipPosition = (event) => {
@@ -3485,6 +3861,7 @@ function App() {
     setSelectedSkillIndex(0)
     setSelectedEnemyTargetId(null)
     setRewardState(null)
+    setEvolutionState(null)
     setMapSelectionState(null)
     setCapturePreview(null)
     setScreenMode('adventure')
@@ -3594,6 +3971,29 @@ function App() {
     { length: Math.max(4, partySwitchMembers.length) },
     (_, index) => partySwitchMembers[index] ?? null
   )
+  const pendingRewardTarget = rewardState?.pendingTarget ?? null
+  const pendingRewardItem = pendingRewardTarget
+    ? pendingRewardTarget.source === 'fixed'
+      ? fixedRewardItems.find((item) => item.id === pendingRewardTarget.itemId)
+      : rewardState?.randomItems.find((item) => item.id === pendingRewardTarget.itemId)
+    : null
+  const rewardTargetMembers = getRewardTargetCandidates(partyMembers, gameState?.player)
+  const rewardTargetSlots = Array.from(
+    { length: Math.max(4, rewardTargetMembers.length) },
+    (_, index) => rewardTargetMembers[index] ?? null
+  )
+  const evolutionPartyMembers = partyMembers
+  const evolutionPartySlots = Array.from(
+    { length: Math.max(4, evolutionPartyMembers.length) },
+    (_, index) => evolutionPartyMembers[index] ?? null
+  )
+  const selectedEvolutionMember = evolutionState?.selectedMemberId
+    ? getCombatantById(evolutionPartyMembers, evolutionState.selectedMemberId)
+    : null
+  const evolutionOptions = selectedEvolutionMember ? getEvolutionOptions(selectedEvolutionMember) : []
+  const pendingEvolutionOption = evolutionState?.confirmTargetName
+    ? evolutionOptions.find((option) => option.targetData.이름 === evolutionState.confirmTargetName)
+    : null
   const currentTargetEnemyIndex = gameState ? getLivingEnemyIndex(gameState.enemies) : -1
   const selectedTargetEnemy =
     gameState?.enemies?.find(
@@ -4104,6 +4504,9 @@ function App() {
                     <div className="reward-screen__fixed">
                       {fixedRewardItems.map((item) => {
                         const canAfford = (gameState?.gold ?? 0) >= item.price
+                        const hasUsableTarget =
+                          !isTargetedRewardItem(item) ||
+                          rewardTargetMembers.some((member) => isRewardItemUsableByCombatant(item, member))
 
                         return (
                           <button
@@ -4112,11 +4515,16 @@ function App() {
                             className={[
                               'reward-item',
                               'reward-item--fixed',
-                              canAfford ? '' : 'reward-item--disabled',
+                              canAfford && hasUsableTarget ? '' : 'reward-item--disabled',
                             ]
                               .filter(Boolean)
                               .join(' ')}
-                            disabled={!canAfford || rewardState.isResolving}
+                            disabled={
+                              !canAfford ||
+                              !hasUsableTarget ||
+                              rewardState.isResolving ||
+                              Boolean(rewardState.pendingTarget)
+                            }
                             onClick={() => handlePurchaseFixedRewardItem(item.id)}
                             data-tooltip={item.description}
                             title={item.description}
@@ -4141,7 +4549,7 @@ function App() {
                           ]
                             .filter(Boolean)
                             .join(' ')}
-                          disabled={rewardState.isResolving}
+                          disabled={rewardState.isResolving || Boolean(rewardState.pendingTarget)}
                           onClick={() => handleClaimRandomRewardItem(item.id)}
                           data-tooltip={item.description}
                           title={item.description}
@@ -4151,6 +4559,276 @@ function App() {
                         </button>
                       ))}
                     </div>
+
+                    {pendingRewardItem ? (
+                      <div className="reward-target-screen" aria-label="아이템 대상 선택">
+                        <div className="reward-target-screen__panel">
+                          <div className="reward-target-screen__header">
+                            <img
+                              className="reward-target-screen__item-image"
+                              src={pendingRewardItem.imageUrl}
+                              alt=""
+                            />
+                            <span className="reward-target-screen__eyebrow">대상 선택</span>
+                            <strong className="reward-target-screen__title">
+                              {pendingRewardItem.name}
+                            </strong>
+                          </div>
+                          <div className="reward-target-screen__list">
+                            {rewardTargetSlots.map((member, index) => {
+                              if (!member) {
+                                return (
+                                  <div
+                                    key={`reward-target-empty-${index}`}
+                                    className="party-member party-member--empty reward-target-member"
+                                  >
+                                    <span className="party-member__empty-text">EMPTY</span>
+                                  </div>
+                                )
+                              }
+
+                              const hpRatio = Math.max(
+                                0,
+                                Math.min(100, (member.currentHp / member.maxHp) * 100)
+                              )
+                              const isUsable = isRewardItemUsableByCombatant(pendingRewardItem, member)
+                              const isInvalidTypeTarget =
+                                pendingRewardItem.typeUpKey &&
+                                (member.type !== pendingRewardItem.typeUpKey ||
+                                  (normalizeTypePowerUps(member.typePowerUps)[pendingRewardItem.typeUpKey] ?? 0) >=
+                                    (pendingRewardItem.maxOwnedPerCombatant ?? TYPE_POWER_UP_MAX))
+
+                              return (
+                                <button
+                                  key={member.id}
+                                  type="button"
+                                  className={[
+                                    'party-member',
+                                    'reward-target-member',
+                                    !isUsable ? 'reward-target-member--disabled' : '',
+                                    isInvalidTypeTarget ? 'reward-target-member--invalid-type' : '',
+                                  ]
+                                    .filter(Boolean)
+                                    .join(' ')}
+                                  disabled={!isUsable || rewardState.isResolving}
+                                  onClick={() => handleSelectRewardTarget(member.id)}
+                                >
+                                  <img className="party-member__image" src={member.imageUrl} alt="" />
+                                  <span className="party-member__name">{member.name}</span>
+                                  <span className="party-member__level">Lv.{member.level}</span>
+                                  <span className="party-member__hp">
+                                    <span
+                                      className="party-member__hp-fill"
+                                      style={{ width: `${hpRatio}%` }}
+                                    />
+                                  </span>
+                                  <span className="party-member__hp-text">
+                                    {member.currentHp}/{member.maxHp}
+                                  </span>
+                                </button>
+                              )
+                            })}
+                          </div>
+                          <button
+                            type="button"
+                            className="reward-target-screen__cancel"
+                            onClick={handleCancelRewardTargetSelection}
+                          >
+                            취소
+                          </button>
+                        </div>
+                      </div>
+                    ) : null}
+
+                    <button
+                      type="button"
+                      className="reward-screen__party-button"
+                      disabled={rewardState.isResolving || Boolean(rewardState.pendingTarget)}
+                      onClick={handleOpenEvolutionParty}
+                    >
+                      보유디지몬
+                    </button>
+
+                    {evolutionState ? (
+                      <div className="evolution-screen" aria-label="보유 디지몬 진화">
+                        <div
+                          className={[
+                            'evolution-screen__panel',
+                            evolutionState.mode === 'detail' ? 'evolution-screen__panel--detail' : '',
+                          ]
+                            .filter(Boolean)
+                            .join(' ')}
+                        >
+                          <div className="evolution-screen__header">
+                            <span className="evolution-screen__eyebrow">진화</span>
+                            <strong className="evolution-screen__title">
+                              {evolutionState.mode === 'detail' && selectedEvolutionMember
+                                ? `${selectedEvolutionMember.name} 진화 정보`
+                                : '보유 디지몬'}
+                            </strong>
+                            <button
+                              type="button"
+                              className="evolution-screen__close"
+                              onClick={handleCloseEvolutionPanel}
+                            >
+                              닫기
+                            </button>
+                          </div>
+
+                          {evolutionState.mode !== 'detail' ? (
+                            <div className="evolution-screen__party-list">
+                              {evolutionPartySlots.map((member, index) => {
+                                if (!member) {
+                                  return (
+                                    <div
+                                      key={`evolution-empty-${index}`}
+                                      className="party-member party-member--empty evolution-party-member"
+                                    >
+                                      <span className="party-member__empty-text">EMPTY</span>
+                                    </div>
+                                  )
+                                }
+
+                                const hpRatio = Math.max(
+                                  0,
+                                  Math.min(100, (member.currentHp / member.maxHp) * 100)
+                                )
+                                const evolutionCount = getEvolutionOptions(member).length
+
+                                return (
+                                  <button
+                                    key={member.id}
+                                    type="button"
+                                    className="party-member evolution-party-member"
+                                    onClick={() => handleSelectEvolutionMember(member.id)}
+                                  >
+                                    <img className="party-member__image" src={member.imageUrl} alt="" />
+                                    <span className="party-member__name">{member.name}</span>
+                                    <span className="party-member__level">Lv.{member.level}</span>
+                                    <span className="party-member__hp">
+                                      <span
+                                        className="party-member__hp-fill"
+                                        style={{ width: `${hpRatio}%` }}
+                                      />
+                                    </span>
+                                    <span className="party-member__hp-text">
+                                      진화 {evolutionCount}
+                                    </span>
+                                  </button>
+                                )
+                              })}
+                            </div>
+                          ) : selectedEvolutionMember ? (
+                            <div className="evolution-detail">
+                              <section className="evolution-detail__current">
+                                <img
+                                  className="evolution-detail__current-image"
+                                  src={selectedEvolutionMember.imageUrl}
+                                  alt={selectedEvolutionMember.name}
+                                />
+                                <div className="evolution-detail__current-info">
+                                  <p className="evolution-detail__name">{selectedEvolutionMember.name}</p>
+                                  <p className="evolution-detail__meta">
+                                    Lv.{selectedEvolutionMember.level} · {selectedEvolutionMember.speciesStage}
+                                  </p>
+                                  <div className="evolution-detail__traits">
+                                    <span>{selectedEvolutionMember.type}</span>
+                                    <span>{selectedEvolutionMember.attribute}</span>
+                                  </div>
+                                </div>
+                                <div className="evolution-detail__stats">
+                                  {LEVEL_UP_STAT_KEYS.map((statKey) => (
+                                    <span key={statKey} className="evolution-detail__stat">
+                                      <span>{LEVEL_UP_STAT_LABEL_MAP[statKey]}</span>
+                                      <strong>{getCombatantBattleStatValue(selectedEvolutionMember, statKey)}</strong>
+                                    </span>
+                                  ))}
+                                </div>
+                              </section>
+
+                              <section className="evolution-detail__options" aria-label="진화 가능 목록">
+                                {evolutionOptions.length > 0 ? (
+                                  evolutionOptions.map((option) => (
+                                    <button
+                                      key={option.targetData.이름}
+                                      type="button"
+                                      className={[
+                                        'evolution-option',
+                                        option.canEvolve ? 'evolution-option--ready' : 'evolution-option--locked',
+                                      ]
+                                        .filter(Boolean)
+                                        .join(' ')}
+                                      disabled={!option.canEvolve}
+                                      onClick={() => handleRequestEvolution(option.targetData.이름)}
+                                    >
+                                      <img
+                                        className="evolution-option__image"
+                                        src={option.targetData.imageUrl}
+                                        alt=""
+                                      />
+                                      <span className="evolution-option__body">
+                                        <strong className="evolution-option__name">
+                                          {option.targetData.이름}
+                                        </strong>
+                                        <span className="evolution-option__stage">
+                                          {option.targetData.stage}
+                                        </span>
+                                        <span className="evolution-option__requirements">
+                                          {option.requirements.map((requirement) => (
+                                            <span
+                                              key={requirement.key}
+                                              className={[
+                                                'evolution-option__requirement',
+                                                requirement.isMet
+                                                  ? 'evolution-option__requirement--met'
+                                                  : 'evolution-option__requirement--missing',
+                                              ]
+                                                .filter(Boolean)
+                                                .join(' ')}
+                                            >
+                                              {requirement.label}: {requirement.current}/{requirement.required}
+                                            </span>
+                                          ))}
+                                        </span>
+                                      </span>
+                                    </button>
+                                  ))
+                                ) : (
+                                  <p className="evolution-detail__empty">현재 진화 가능한 디지몬이 없습니다.</p>
+                                )}
+                              </section>
+
+                              <button
+                                type="button"
+                                className="evolution-screen__back"
+                                onClick={handleBackToEvolutionParty}
+                              >
+                                목록으로
+                              </button>
+                            </div>
+                          ) : null}
+
+                          {pendingEvolutionOption && selectedEvolutionMember ? (
+                            <div className="evolution-confirm" role="dialog" aria-modal="true">
+                              <div className="evolution-confirm__box">
+                                <p className="evolution-confirm__text">
+                                  {selectedEvolutionMember.name}을(를) {pendingEvolutionOption.targetData.이름}(으)로
+                                  진화하겠습니다.
+                                </p>
+                                <div className="evolution-confirm__actions">
+                                  <button type="button" onClick={handleConfirmEvolution}>
+                                    예
+                                  </button>
+                                  <button type="button" onClick={handleCancelEvolutionConfirm}>
+                                    아니요
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          ) : null}
+                        </div>
+                      </div>
+                    ) : null}
                   </div>
                 )}
 
