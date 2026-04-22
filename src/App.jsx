@@ -36,8 +36,56 @@ const GLOBE_ITEM_ID = 'globe-item'
 const EXP_SHARE_ITEM_ID = 'exp-share'
 const EXP_BOOSTER_ITEM_ID = 'exp-booster'
 const EXP_BOOSTER_PLUS_ITEM_ID = 'exp-booster-plus'
+const LEVEL_UP_ITEM_ID = 'level-up'
+const PARTY_LEVEL_UP_ITEM_ID = 'party-level-up'
+const MAX_DIGIMON_LEVEL = 200
 const DIGIMON_TYPE_UP_TYPES = ['데이터', '바이러스', '백신', '불명', '프리']
 const TYPE_POWER_UP_MAX = 5
+const DIGICLONE_MAX = 10
+const DIGICLONE_REWARD_ITEMS = [
+  {
+    id: 'digiclone-a',
+    name: '디지클론(A)',
+    description: '대상 디지몬의 스피드 10% 증가',
+    digicloneKey: 'speed',
+    imageUrl: '/아이템/디지클론/디지클론(A).png',
+  },
+  {
+    id: 'digiclone-b',
+    name: '디지클론(B)',
+    description: '대상 디지몬의 방어 10% 증가',
+    digicloneKey: 'defense',
+    imageUrl: '/아이템/디지클론/디지클론(B).png',
+  },
+  {
+    id: 'digiclone-c',
+    name: '디지클론(C)',
+    description: '대상 디지몬의 공격 10% 증가',
+    digicloneKey: 'attack',
+    imageUrl: '/아이템/디지클론/디지클론(C).png',
+  },
+  {
+    id: 'digiclone-d',
+    name: '디지클론(D)',
+    description: '대상 디지몬의 특방 10% 증가',
+    digicloneKey: 'specialDefense',
+    imageUrl: '/아이템/디지클론/디지클론(D).png',
+  },
+  {
+    id: 'digiclone-e',
+    name: '디지클론(E)',
+    description: '대상 디지몬의 특공 10% 증가',
+    digicloneKey: 'specialAttack',
+    imageUrl: '/아이템/디지클론/디지클론(E).png',
+  },
+  {
+    id: 'digiclone-s',
+    name: '디지클론(S)',
+    description: '대상 디지몬의 체력 10% 증가',
+    digicloneKey: 'hp',
+    imageUrl: '/아이템/디지클론/디지클론(S).png',
+  },
+]
 
 const fixedRewardItems = [
   {
@@ -211,6 +259,23 @@ const randomRewardItemPool = [
     maxOwned: 2,
     imageUrl: '/아이템/경험치/경험치부스터+.png',
   },
+  {
+    id: LEVEL_UP_ITEM_ID,
+    name: '에보류터',
+    description: '선택한 디지몬의 레벨 1 증가, 경험치 0으로 초기화',
+    levelUpAmount: 1,
+    ignoreLevelCap: true,
+    imageUrl: '/아이템/레벨업/에보류터.png',
+  },
+  {
+    id: PARTY_LEVEL_UP_ITEM_ID,
+    name: '에보류터(골드)',
+    description: '보유한 모든 디지몬의 레벨 1 증가, 경험치 0으로 초기화',
+    partyLevelUpAmount: 1,
+    ignoreLevelCap: true,
+    imageUrl: '/아이템/레벨업/에보류터(골드).png',
+  },
+  ...DIGICLONE_REWARD_ITEMS,
   ...DIGIMON_TYPE_UP_TYPES.map((type) => ({
     id: `type-up-${type}`,
     name: `${type} 타입업`,
@@ -226,6 +291,7 @@ const rewardItemLookup = new Map(
 )
 const buffRewardItems = randomRewardItemPool.filter((item) => item.buffStatKey)
 const typeUpRewardItems = randomRewardItemPool.filter((item) => item.typeUpKey)
+const digicloneRewardItems = randomRewardItemPool.filter((item) => item.digicloneKey)
 const captureItemOrder = ['capture-net', 'capture-net-super', 'capture-net-hyper', 'capture-net-master']
 const captureItemLookup = new Map(randomRewardItemPool.map((item) => [item.id, item]))
 const captureChanceByTier = {
@@ -624,7 +690,17 @@ const normalizeTypePowerUps = (typePowerUps) =>
     return result
   }, {})
 
-const applyInstantRewardEffect = (player, rewardItem) => {
+const normalizeDigiclones = (digiclones) =>
+  STAT_KEYS.reduce((result, statKey) => {
+    const nextValue = Math.max(0, Math.floor(digiclones?.[statKey] ?? 0))
+    result[statKey] = Math.min(DIGICLONE_MAX, nextValue)
+    return result
+  }, {})
+
+const getRewardItemLevelLimit = (item, levelCap = Infinity) =>
+  item?.ignoreLevelCap ? MAX_DIGIMON_LEVEL : levelCap
+
+const applyInstantRewardEffect = (player, rewardItem, levelCap = Infinity) => {
   if (!player) {
     return {
       nextPlayer: player,
@@ -656,6 +732,24 @@ const applyInstantRewardEffect = (player, rewardItem) => {
         ...player,
         typePowerUps: nextTypePowerUps,
       },
+      shouldStore: false,
+    }
+  }
+
+  if (rewardItem?.digicloneKey) {
+    return {
+      nextPlayer: applyDigicloneRewardEffect(player, rewardItem.digicloneKey),
+      shouldStore: false,
+    }
+  }
+
+  if (rewardItem?.levelUpAmount) {
+    return {
+      nextPlayer: applyLevelUpRewardEffect(
+        player,
+        rewardItem.levelUpAmount,
+        getRewardItemLevelLimit(rewardItem, levelCap)
+      ),
       shouldStore: false,
     }
   }
@@ -710,7 +804,15 @@ const applyInstantRewardEffect = (player, rewardItem) => {
 }
 
 const isTargetedRewardItem = (item) =>
-  Boolean(item?.healAmount || item?.healFull || item?.reviveRatio || item?.buffStatKey || item?.typeUpKey)
+  Boolean(
+    item?.healAmount ||
+      item?.healFull ||
+      item?.reviveRatio ||
+      item?.buffStatKey ||
+      item?.typeUpKey ||
+      item?.digicloneKey ||
+      item?.levelUpAmount
+  )
 
 const getRewardTargetCandidates = (party, fallbackPlayer = null) => {
   const currentParty = Array.isArray(party) && party.length > 0 ? party : []
@@ -727,9 +829,13 @@ const getRewardTargetCandidates = (party, fallbackPlayer = null) => {
   })
 }
 
-const isRewardItemUsableByCombatant = (item, combatant) => {
+const isRewardItemUsableByCombatant = (item, combatant, levelCap = Infinity) => {
   if (!item || !combatant) {
     return false
+  }
+
+  if (item.levelUpAmount) {
+    return combatant.level < getRewardItemLevelLimit(item, levelCap)
   }
 
   if (item.typeUpKey) {
@@ -739,6 +845,12 @@ const isRewardItemUsableByCombatant = (item, combatant) => {
       combatant.type === item.typeUpKey &&
       (typePowerUps[item.typeUpKey] ?? 0) < (item.maxOwnedPerCombatant ?? TYPE_POWER_UP_MAX)
     )
+  }
+
+  if (item.digicloneKey) {
+    const digiclones = normalizeDigiclones(combatant.digiclones)
+
+    return (digiclones[item.digicloneKey] ?? 0) < DIGICLONE_MAX
   }
 
   if (item.reviveRatio) {
@@ -755,7 +867,7 @@ const isRewardItemUsableByCombatant = (item, combatant) => {
 const shouldSelectRewardTarget = (item, party, fallbackPlayer = null) =>
   isTargetedRewardItem(item) && getRewardTargetCandidates(party, fallbackPlayer).length > 1
 
-const canRandomRewardItemAppear = (item, inventory = {}, rewardTarget = null) => {
+const canRandomRewardItemAppear = (item, inventory = {}, rewardTarget = null, levelCap = Infinity) => {
   if (item.requiresItemId && (inventory?.[item.requiresItemId] ?? 0) <= 0) {
     return false
   }
@@ -768,12 +880,18 @@ const canRandomRewardItemAppear = (item, inventory = {}, rewardTarget = null) =>
     return false
   }
 
-  if (item.typeUpKey) {
+  if (item.typeUpKey || item.digicloneKey || item.levelUpAmount || item.partyLevelUpAmount) {
     const rewardTargets = getRewardTargetCandidates(
       Array.isArray(rewardTarget) ? rewardTarget : [rewardTarget].filter(Boolean)
     )
+    const usableItem = item.partyLevelUpAmount
+      ? {
+          ...item,
+          levelUpAmount: item.partyLevelUpAmount,
+        }
+      : item
 
-    if (!rewardTargets.some((target) => isRewardItemUsableByCombatant(item, target))) {
+    if (!rewardTargets.some((target) => isRewardItemUsableByCombatant(usableItem, target, levelCap))) {
       return false
     }
   }
@@ -819,9 +937,11 @@ const getRewardItemMaxCount = (item) => {
   return null
 }
 
-const createRewardSelection = (inventory = {}, rewardTarget = null) => ({
+const createRewardSelection = (inventory = {}, rewardTarget = null, levelCap = Infinity) => ({
   randomItems: shuffleItems(
-    randomRewardItemPool.filter((item) => canRandomRewardItemAppear(item, inventory, rewardTarget))
+    randomRewardItemPool.filter((item) =>
+      canRandomRewardItemAppear(item, inventory, rewardTarget, levelCap)
+    )
   ).slice(0, 3),
   selectedRandomItemId: null,
   isResolving: false,
@@ -1530,6 +1650,12 @@ const calculateOtherStat = ({ base, iv, level }) =>
 const getBuffMultiplier = (activeBuffs, statKey) =>
   BUFFABLE_STAT_KEYS.includes(statKey) && (activeBuffs?.[statKey] ?? 0) > 0 ? 1.1 : 1
 
+const getDigicloneMultiplier = (digiclones, statKey) => {
+  const cloneCount = normalizeDigiclones(digiclones)[statKey] ?? 0
+
+  return 1 + cloneCount * 0.1
+}
+
 const getTypePowerMultiplier = (combatant) => {
   const combatantType = combatant?.type
 
@@ -1543,14 +1669,16 @@ const getTypePowerMultiplier = (combatant) => {
   return 1 + boostCount * 0.1
 }
 
-const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs }) => ({
+const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs, digiclones }) => ({
   maxHp: Math.max(
     1,
-    calculateHpStat({
-      base: baseStats.hp,
-      iv: ivs.hp,
-      level,
-    })
+    Math.floor(
+      calculateHpStat({
+        base: baseStats.hp,
+        iv: ivs.hp,
+        level,
+      }) * getDigicloneMultiplier(digiclones, 'hp')
+    )
   ),
   attack: Math.max(
     1,
@@ -1559,7 +1687,9 @@ const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs }) => ({
         base: baseStats.attack,
         iv: ivs.attack,
         level,
-      }) * getBuffMultiplier(activeBuffs, 'attack')
+      }) *
+        getBuffMultiplier(activeBuffs, 'attack') *
+        getDigicloneMultiplier(digiclones, 'attack')
     )
   ),
   defense: Math.max(
@@ -1569,7 +1699,9 @@ const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs }) => ({
         base: baseStats.defense,
         iv: ivs.defense,
         level,
-      }) * getBuffMultiplier(activeBuffs, 'defense')
+      }) *
+        getBuffMultiplier(activeBuffs, 'defense') *
+        getDigicloneMultiplier(digiclones, 'defense')
     )
   ),
   specialAttack: Math.max(
@@ -1579,7 +1711,9 @@ const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs }) => ({
         base: baseStats.specialAttack,
         iv: ivs.specialAttack,
         level,
-      }) * getBuffMultiplier(activeBuffs, 'specialAttack')
+      }) *
+        getBuffMultiplier(activeBuffs, 'specialAttack') *
+        getDigicloneMultiplier(digiclones, 'specialAttack')
     )
   ),
   specialDefense: Math.max(
@@ -1589,7 +1723,9 @@ const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs }) => ({
         base: baseStats.specialDefense,
         iv: ivs.specialDefense,
         level,
-      }) * getBuffMultiplier(activeBuffs, 'specialDefense')
+      }) *
+        getBuffMultiplier(activeBuffs, 'specialDefense') *
+        getDigicloneMultiplier(digiclones, 'specialDefense')
     )
   ),
   speed: Math.max(
@@ -1599,7 +1735,9 @@ const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs }) => ({
         base: baseStats.speed,
         iv: ivs.speed,
         level,
-      }) * getBuffMultiplier(activeBuffs, 'speed')
+      }) *
+        getBuffMultiplier(activeBuffs, 'speed') *
+        getDigicloneMultiplier(digiclones, 'speed')
     )
   ),
 })
@@ -1687,6 +1825,7 @@ const createEvolvedCombatant = (combatant, targetData) => {
     ivs: combatant.ivs,
     activeBuffs: combatant.activeBuffs,
     typePowerUps: combatant.typePowerUps,
+    digiclones: combatant.digiclones,
     statusEffect: combatant.statusEffect,
     stageName: targetData.stage,
   })
@@ -1712,6 +1851,7 @@ const createCombatant = ({
   ivs,
   activeBuffs,
   typePowerUps,
+  digiclones,
   statusEffect,
   stageName,
 }) => {
@@ -1719,12 +1859,14 @@ const createCombatant = ({
   const resolvedIvs = normalizeStatBlock(ivs, createRandomIvs(), IV_MAX)
   const resolvedActiveBuffs = normalizeBuffState(activeBuffs)
   const resolvedTypePowerUps = normalizeTypePowerUps(typePowerUps)
+  const resolvedDigiclones = normalizeDigiclones(digiclones)
   const resolvedStatusEffect = normalizeStatusEffect(statusEffect)
   const battleStats = calculateBattleStats({
     baseStats,
     level,
     ivs: resolvedIvs,
     activeBuffs: resolvedActiveBuffs,
+    digiclones: resolvedDigiclones,
   })
 
   return {
@@ -1737,6 +1879,7 @@ const createCombatant = ({
     ivs: resolvedIvs,
     activeBuffs: resolvedActiveBuffs,
     typePowerUps: resolvedTypePowerUps,
+    digiclones: resolvedDigiclones,
     statusEffect: resolvedStatusEffect,
     level,
     experience,
@@ -1762,6 +1905,7 @@ const createCapturedPartyMember = (enemy, captureId) =>
       id: captureId,
       activeBuffs: normalizeBuffState(null),
       typePowerUps: normalizeTypePowerUps(null),
+      digiclones: normalizeDigiclones(null),
       statusEffect: null,
     },
     {
@@ -1831,6 +1975,7 @@ const refreshCombatantStats = (
     level = combatant.level,
     ivs = combatant.ivs,
     activeBuffs = combatant.activeBuffs,
+    digiclones = combatant.digiclones,
     statusEffect = combatant.statusEffect,
     preserveMaxHpDelta = false,
   } = {}
@@ -1840,6 +1985,7 @@ const refreshCombatantStats = (
     level,
     ivs,
     activeBuffs,
+    digiclones,
   })
   const maxHpDelta = battleStats.maxHp - combatant.maxHp
 
@@ -1847,6 +1993,7 @@ const refreshCombatantStats = (
     ...combatant,
     ivs,
     activeBuffs: normalizeBuffState(activeBuffs),
+    digiclones: normalizeDigiclones(digiclones),
     statusEffect: normalizeStatusEffect(statusEffect),
     level,
     experienceToNext: getExperienceToNextLevel(level),
@@ -1867,6 +2014,39 @@ const levelUpCombatant = (combatant, nextLevel) => {
     level: nextLevel,
     preserveMaxHpDelta: true,
   })
+}
+
+const applyDigicloneRewardEffect = (combatant, digicloneKey) => {
+  if (!combatant || !digicloneKey) {
+    return combatant
+  }
+
+  const nextDigiclones = normalizeDigiclones(combatant.digiclones)
+  nextDigiclones[digicloneKey] = Math.min(DIGICLONE_MAX, (nextDigiclones[digicloneKey] ?? 0) + 1)
+  const nextCombatant = refreshCombatantStats(combatant, {
+    digiclones: nextDigiclones,
+    preserveMaxHpDelta: true,
+  })
+
+  return {
+    ...nextCombatant,
+    currentHp: combatant.currentHp <= 0 ? 0 : nextCombatant.currentHp,
+  }
+}
+
+const applyLevelUpRewardEffect = (combatant, levelUpAmount = 1, levelCap = Infinity) => {
+  if (!combatant || combatant.level >= levelCap) {
+    return combatant
+  }
+
+  const nextLevel = Math.min(levelCap, combatant.level + Math.max(1, levelUpAmount))
+  const leveledCombatant = levelUpCombatant(combatant, nextLevel)
+
+  return {
+    ...leveledCombatant,
+    currentHp: combatant.currentHp <= 0 ? 0 : leveledCombatant.currentHp,
+    experience: 0,
+  }
 }
 
 const tickCombatantBuffsByStage = (combatant) => {
@@ -2738,7 +2918,7 @@ function App() {
       nextGold += getStageClearGoldReward(gameState.currentStage)
       resolvedLogs.push('전투에서 승리했다!')
       const rewardTarget = getFirstLivingPartyMember(resolvedParty, activeAllyIds)
-      setRewardState(createRewardSelection(nextInventory, resolvedParty))
+      setRewardState(createRewardSelection(nextInventory, resolvedParty, gameState.levelCap))
       commitBattleState({
         nextPlayer: rewardTarget,
         battlePanel: 'logs',
@@ -2867,7 +3047,7 @@ function App() {
       nextGold += getStageClearGoldReward(gameState.currentStage)
       resolvedLogs.push('전투에서 승리했다!')
       const rewardTarget = getFirstLivingPartyMember(resolvedParty, activeAllyIds)
-      setRewardState(createRewardSelection(nextInventory, resolvedParty))
+      setRewardState(createRewardSelection(nextInventory, resolvedParty, gameState.levelCap))
       commitBattleState({
         nextPlayer: rewardTarget,
         battlePanel: 'logs',
@@ -3548,16 +3728,83 @@ function App() {
     }
 
     const currentParty = syncPartyMember(gameState.party, gameState.player)
+    const levelCap = gameState.levelCap ?? Infinity
+    const finishRewardUse = (nextGameState) => {
+      setGameState(nextGameState)
+
+      if (source === 'fixed') {
+        setRewardState((current) =>
+          current
+            ? {
+                ...current,
+                pendingTarget: null,
+              }
+            : current
+        )
+        return
+      }
+
+      setRewardState((current) =>
+        current
+          ? {
+              ...current,
+              selectedRandomItemId: rewardItem.id,
+              pendingTarget: null,
+              isResolving: true,
+            }
+          : current
+      )
+      window.setTimeout(() => {
+        setRewardState(null)
+        setEvolutionState(null)
+        handleNextStage(nextGameState, nextGameState.player)
+      }, 1200)
+    }
+
+    if (rewardItem.partyLevelUpAmount) {
+      const partyLevelUpItem = {
+        ...rewardItem,
+        levelUpAmount: rewardItem.partyLevelUpAmount,
+      }
+
+      if (!currentParty.some((member) => isRewardItemUsableByCombatant(partyLevelUpItem, member, levelCap))) {
+        return
+      }
+
+      const nextParty = currentParty.map((member) =>
+        isRewardItemUsableByCombatant(partyLevelUpItem, member, levelCap)
+          ? applyLevelUpRewardEffect(
+              member,
+              rewardItem.partyLevelUpAmount,
+              getRewardItemLevelLimit(partyLevelUpItem, levelCap)
+            )
+          : member
+      )
+      const nextPlayer =
+        getCombatantById(nextParty, gameState.player?.id) ??
+        getFirstLivingPartyMember(nextParty, gameState.activeAllyIds) ??
+        nextParty[0] ??
+        gameState.player
+
+      finishRewardUse({
+        ...gameState,
+        gold: source === 'fixed' ? (gameState.gold ?? 0) - (rewardItem.price ?? 0) : gameState.gold,
+        player: nextPlayer,
+        party: nextParty,
+      })
+      return
+    }
+
     const isTargetedItem = isTargetedRewardItem(rewardItem)
     const targetCombatant = isTargetedItem
       ? getCombatantById(currentParty, targetId) ?? gameState.player
       : gameState.player
 
-    if (isTargetedItem && !isRewardItemUsableByCombatant(rewardItem, targetCombatant)) {
+    if (isTargetedItem && !isRewardItemUsableByCombatant(rewardItem, targetCombatant, levelCap)) {
       return
     }
 
-    const effectResult = applyInstantRewardEffect(targetCombatant, rewardItem)
+    const effectResult = applyInstantRewardEffect(targetCombatant, rewardItem, levelCap)
     const nextParty = isTargetedItem
       ? replacePartyMember(currentParty, effectResult.nextPlayer)
       : syncPartyMember(currentParty, effectResult.nextPlayer)
@@ -3576,35 +3823,7 @@ function App() {
       inventory: nextInventory,
     }
 
-    setGameState(nextGameState)
-
-    if (source === 'fixed') {
-      setRewardState((current) =>
-        current
-          ? {
-              ...current,
-              pendingTarget: null,
-            }
-          : current
-      )
-      return
-    }
-
-    setRewardState((current) =>
-      current
-        ? {
-            ...current,
-            selectedRandomItemId: rewardItem.id,
-            pendingTarget: null,
-            isResolving: true,
-          }
-        : current
-    )
-    window.setTimeout(() => {
-      setRewardState(null)
-      setEvolutionState(null)
-      handleNextStage(nextGameState, nextGameState.player)
-    }, 1200)
+    finishRewardUse(nextGameState)
   }
 
   const requestRewardTargetSelection = (source, rewardItem) => {
@@ -3962,7 +4181,31 @@ function App() {
       }
     })
     .filter(Boolean)
-  const adventureHudItems = [...inventoryHudItems, ...activeBuffHudItems, ...activeTypeUpHudItems]
+  const activeDigicloneHudItems = digicloneRewardItems
+    .map((item) => {
+      const count = normalizeDigiclones(hudCombatant?.digiclones)[item.digicloneKey] ?? 0
+
+      if (count <= 0) {
+        return null
+      }
+
+      return {
+        id: item.id,
+        name: item.name,
+        description: `${STAT_LABEL_MAP[item.digicloneKey] ?? item.name} ${count * 10}% 증가 · 현재 ${count}/${DIGICLONE_MAX}`,
+        imageUrl: item.imageUrl,
+        value: count,
+        isMaxed: count >= DIGICLONE_MAX,
+        isDigiclone: true,
+      }
+    })
+    .filter(Boolean)
+  const adventureHudItems = [
+    ...inventoryHudItems,
+    ...activeBuffHudItems,
+    ...activeTypeUpHudItems,
+    ...activeDigicloneHudItems,
+  ]
   const mapSelectionOptions = mapSelectionState?.options?.length
     ? mapSelectionState.options
     : getConnectedMapNames(gameState?.currentMap)
@@ -4506,7 +4749,9 @@ function App() {
                         const canAfford = (gameState?.gold ?? 0) >= item.price
                         const hasUsableTarget =
                           !isTargetedRewardItem(item) ||
-                          rewardTargetMembers.some((member) => isRewardItemUsableByCombatant(item, member))
+                          rewardTargetMembers.some((member) =>
+                            isRewardItemUsableByCombatant(item, member, gameState?.levelCap ?? Infinity)
+                          )
 
                         return (
                           <button
@@ -4591,7 +4836,11 @@ function App() {
                                 0,
                                 Math.min(100, (member.currentHp / member.maxHp) * 100)
                               )
-                              const isUsable = isRewardItemUsableByCombatant(pendingRewardItem, member)
+                              const isUsable = isRewardItemUsableByCombatant(
+                                pendingRewardItem,
+                                member,
+                                gameState?.levelCap ?? Infinity
+                              )
                               const isInvalidTypeTarget =
                                 pendingRewardItem.typeUpKey &&
                                 (member.type !== pendingRewardItem.typeUpKey ||
@@ -4748,51 +4997,82 @@ function App() {
 
                               <section className="evolution-detail__options" aria-label="진화 가능 목록">
                                 {evolutionOptions.length > 0 ? (
-                                  evolutionOptions.map((option) => (
-                                    <button
-                                      key={option.targetData.이름}
-                                      type="button"
-                                      className={[
-                                        'evolution-option',
-                                        option.canEvolve ? 'evolution-option--ready' : 'evolution-option--locked',
-                                      ]
-                                        .filter(Boolean)
-                                        .join(' ')}
-                                      disabled={!option.canEvolve}
-                                      onClick={() => handleRequestEvolution(option.targetData.이름)}
-                                    >
-                                      <img
-                                        className="evolution-option__image"
-                                        src={option.targetData.imageUrl}
-                                        alt=""
-                                      />
-                                      <span className="evolution-option__body">
-                                        <strong className="evolution-option__name">
-                                          {option.targetData.이름}
-                                        </strong>
-                                        <span className="evolution-option__stage">
-                                          {option.targetData.stage}
-                                        </span>
-                                        <span className="evolution-option__requirements">
-                                          {option.requirements.map((requirement) => (
-                                            <span
-                                              key={requirement.key}
-                                              className={[
-                                                'evolution-option__requirement',
-                                                requirement.isMet
-                                                  ? 'evolution-option__requirement--met'
-                                                  : 'evolution-option__requirement--missing',
-                                              ]
-                                                .filter(Boolean)
-                                                .join(' ')}
-                                            >
-                                              {requirement.label}: {requirement.current}/{requirement.required}
+                                  evolutionOptions.map((option) => {
+                                    const [levelRequirement, ...statRequirements] = option.requirements
+
+                                    return (
+                                      <button
+                                        key={option.targetData.이름}
+                                        type="button"
+                                        className={[
+                                          'evolution-option',
+                                          option.canEvolve ? 'evolution-option--ready' : 'evolution-option--locked',
+                                        ]
+                                          .filter(Boolean)
+                                          .join(' ')}
+                                        disabled={!option.canEvolve}
+                                        onClick={() => handleRequestEvolution(option.targetData.이름)}
+                                      >
+                                        <img
+                                          className="evolution-option__image"
+                                          src={option.targetData.imageUrl}
+                                          alt=""
+                                        />
+                                        <span className="evolution-option__body">
+                                          <strong className="evolution-option__name">
+                                            {option.targetData.이름}
+                                          </strong>
+                                          <span className="evolution-option__stage">
+                                            {option.targetData.stage}
+                                          </span>
+                                          <span className="evolution-option__requirements">
+                                            {levelRequirement ? (
+                                              <span
+                                                className={[
+                                                  'evolution-option__requirement',
+                                                  'evolution-option__requirement--level',
+                                                  levelRequirement.isMet
+                                                    ? 'evolution-option__requirement--met'
+                                                    : 'evolution-option__requirement--missing',
+                                                ]
+                                                  .filter(Boolean)
+                                                  .join(' ')}
+                                              >
+                                                <span className="evolution-option__requirement-label">
+                                                  {levelRequirement.label}
+                                                </span>
+                                                <span className="evolution-option__requirement-value">
+                                                  {levelRequirement.current}/{levelRequirement.required}
+                                                </span>
+                                              </span>
+                                            ) : null}
+                                            <span className="evolution-option__stat-requirements">
+                                              {statRequirements.map((requirement) => (
+                                                <span
+                                                  key={requirement.key}
+                                                  className={[
+                                                    'evolution-option__requirement',
+                                                    requirement.isMet
+                                                      ? 'evolution-option__requirement--met'
+                                                      : 'evolution-option__requirement--missing',
+                                                  ]
+                                                  .filter(Boolean)
+                                                  .join(' ')}
+                                                >
+                                                  <span className="evolution-option__requirement-label">
+                                                    {requirement.label}
+                                                  </span>
+                                                  <span className="evolution-option__requirement-value">
+                                                    {requirement.current}/{requirement.required}
+                                                  </span>
+                                                </span>
+                                              ))}
                                             </span>
-                                          ))}
+                                          </span>
                                         </span>
-                                      </span>
-                                    </button>
-                                  ))
+                                      </button>
+                                    )
+                                  })
                                 ) : (
                                   <p className="evolution-detail__empty">현재 진화 가능한 디지몬이 없습니다.</p>
                                 )}
