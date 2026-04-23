@@ -41,7 +41,34 @@ const PARTY_LEVEL_UP_ITEM_ID = 'party-level-up'
 const MAX_DIGIMON_LEVEL = 200
 const DIGIMON_TYPE_UP_TYPES = ['데이터', '바이러스', '백신', '불명', '프리']
 const TYPE_POWER_UP_MAX = 5
+const ATTRIBUTE_POWER_UP_MAX = 10
+const ATTRIBUTE_POWER_UP_ALIAS_MAP = {
+  불: '화염',
+  전기: '번개',
+  땅: '흙',
+  금속: '강철',
+}
 const DIGICLONE_MAX = 10
+const ATTRIBUTE_POWER_UP_REWARD_ITEMS = [
+  { attribute: '화염', imageName: '불' },
+  { attribute: '빛', imageName: '빛' },
+  { attribute: '바람', imageName: '바람' },
+  { attribute: '얼음', imageName: '얼음' },
+  { attribute: '번개', imageName: '전기' },
+  { attribute: '어둠', imageName: '어둠' },
+  { attribute: '흙', imageName: '땅' },
+  { attribute: '물', imageName: '물' },
+  { attribute: '나무', imageName: '나무' },
+  { attribute: '강철', imageName: '금속' },
+  { attribute: '무', imageName: '무' },
+].map(({ attribute, imageName }) => ({
+  id: `attribute-up-${attribute}`,
+  name: `${attribute} 속성업`,
+  description: `${attribute} 속성 기술 위력 10% 증가`,
+  attributeUpKey: attribute,
+  maxOwnedPerCombatant: ATTRIBUTE_POWER_UP_MAX,
+  imageUrl: `/아이템/속성업/${imageName}.png`,
+}))
 const DIGICLONE_REWARD_ITEMS = [
   {
     id: 'digiclone-a',
@@ -276,6 +303,7 @@ const randomRewardItemPool = [
     imageUrl: '/아이템/레벨업/에보류터(골드).png',
   },
   ...DIGICLONE_REWARD_ITEMS,
+  ...ATTRIBUTE_POWER_UP_REWARD_ITEMS,
   ...DIGIMON_TYPE_UP_TYPES.map((type) => ({
     id: `type-up-${type}`,
     name: `${type} 타입업`,
@@ -291,6 +319,7 @@ const rewardItemLookup = new Map(
 )
 const buffRewardItems = randomRewardItemPool.filter((item) => item.buffStatKey)
 const typeUpRewardItems = randomRewardItemPool.filter((item) => item.typeUpKey)
+const attributeUpRewardItems = randomRewardItemPool.filter((item) => item.attributeUpKey)
 const digicloneRewardItems = randomRewardItemPool.filter((item) => item.digicloneKey)
 const captureItemOrder = ['capture-net', 'capture-net-super', 'capture-net-hyper', 'capture-net-master']
 const captureItemLookup = new Map(randomRewardItemPool.map((item) => [item.id, item]))
@@ -690,6 +719,15 @@ const normalizeTypePowerUps = (typePowerUps) =>
     return result
   }, {})
 
+const normalizeAttributePowerUps = (attributePowerUps) =>
+  ATTRIBUTE_POWER_UP_REWARD_ITEMS.reduce((result, item) => {
+    const nextValue = Math.max(0, Math.floor(attributePowerUps?.[item.attributeUpKey] ?? 0))
+    result[item.attributeUpKey] = Math.min(ATTRIBUTE_POWER_UP_MAX, nextValue)
+    return result
+  }, {})
+
+const getAttributePowerUpKey = (attribute) => ATTRIBUTE_POWER_UP_ALIAS_MAP[attribute] ?? attribute
+
 const normalizeDigiclones = (digiclones) =>
   STAT_KEYS.reduce((result, statKey) => {
     const nextValue = Math.max(0, Math.floor(digiclones?.[statKey] ?? 0))
@@ -731,6 +769,22 @@ const applyInstantRewardEffect = (player, rewardItem, levelCap = Infinity) => {
       nextPlayer: {
         ...player,
         typePowerUps: nextTypePowerUps,
+      },
+      shouldStore: false,
+    }
+  }
+
+  if (rewardItem?.attributeUpKey) {
+    const nextAttributePowerUps = normalizeAttributePowerUps(player.attributePowerUps)
+    nextAttributePowerUps[rewardItem.attributeUpKey] = Math.min(
+      ATTRIBUTE_POWER_UP_MAX,
+      (nextAttributePowerUps[rewardItem.attributeUpKey] ?? 0) + 1
+    )
+
+    return {
+      nextPlayer: {
+        ...player,
+        attributePowerUps: nextAttributePowerUps,
       },
       shouldStore: false,
     }
@@ -810,6 +864,7 @@ const isTargetedRewardItem = (item) =>
       item?.reviveRatio ||
       item?.buffStatKey ||
       item?.typeUpKey ||
+      item?.attributeUpKey ||
       item?.digicloneKey ||
       item?.levelUpAmount
   )
@@ -847,6 +902,15 @@ const isRewardItemUsableByCombatant = (item, combatant, levelCap = Infinity) => 
     )
   }
 
+  if (item.attributeUpKey) {
+    const attributePowerUps = normalizeAttributePowerUps(combatant.attributePowerUps)
+
+    return (
+      (attributePowerUps[item.attributeUpKey] ?? 0) <
+      (item.maxOwnedPerCombatant ?? ATTRIBUTE_POWER_UP_MAX)
+    )
+  }
+
   if (item.digicloneKey) {
     const digiclones = normalizeDigiclones(combatant.digiclones)
 
@@ -880,7 +944,13 @@ const canRandomRewardItemAppear = (item, inventory = {}, rewardTarget = null, le
     return false
   }
 
-  if (item.typeUpKey || item.digicloneKey || item.levelUpAmount || item.partyLevelUpAmount) {
+  if (
+    item.typeUpKey ||
+    item.attributeUpKey ||
+    item.digicloneKey ||
+    item.levelUpAmount ||
+    item.partyLevelUpAmount
+  ) {
     const rewardTargets = getRewardTargetCandidates(
       Array.isArray(rewardTarget) ? rewardTarget : [rewardTarget].filter(Boolean)
     )
@@ -1669,6 +1739,19 @@ const getTypePowerMultiplier = (combatant) => {
   return 1 + boostCount * 0.1
 }
 
+const getAttributePowerMultiplier = (combatant, skillAttribute) => {
+  const attributeKey = getAttributePowerUpKey(skillAttribute)
+
+  if (!attributeKey) {
+    return 1
+  }
+
+  const attributePowerUps = normalizeAttributePowerUps(combatant?.attributePowerUps)
+  const boostCount = attributePowerUps[attributeKey] ?? 0
+
+  return 1 + boostCount * 0.1
+}
+
 const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs, digiclones }) => ({
   maxHp: Math.max(
     1,
@@ -1825,6 +1908,7 @@ const createEvolvedCombatant = (combatant, targetData) => {
     ivs: combatant.ivs,
     activeBuffs: combatant.activeBuffs,
     typePowerUps: combatant.typePowerUps,
+    attributePowerUps: combatant.attributePowerUps,
     digiclones: combatant.digiclones,
     statusEffect: combatant.statusEffect,
     stageName: targetData.stage,
@@ -1851,6 +1935,7 @@ const createCombatant = ({
   ivs,
   activeBuffs,
   typePowerUps,
+  attributePowerUps,
   digiclones,
   statusEffect,
   stageName,
@@ -1859,6 +1944,7 @@ const createCombatant = ({
   const resolvedIvs = normalizeStatBlock(ivs, createRandomIvs(), IV_MAX)
   const resolvedActiveBuffs = normalizeBuffState(activeBuffs)
   const resolvedTypePowerUps = normalizeTypePowerUps(typePowerUps)
+  const resolvedAttributePowerUps = normalizeAttributePowerUps(attributePowerUps)
   const resolvedDigiclones = normalizeDigiclones(digiclones)
   const resolvedStatusEffect = normalizeStatusEffect(statusEffect)
   const battleStats = calculateBattleStats({
@@ -1879,6 +1965,7 @@ const createCombatant = ({
     ivs: resolvedIvs,
     activeBuffs: resolvedActiveBuffs,
     typePowerUps: resolvedTypePowerUps,
+    attributePowerUps: resolvedAttributePowerUps,
     digiclones: resolvedDigiclones,
     statusEffect: resolvedStatusEffect,
     level,
@@ -1905,6 +1992,7 @@ const createCapturedPartyMember = (enemy, captureId) =>
       id: captureId,
       activeBuffs: normalizeBuffState(null),
       typePowerUps: normalizeTypePowerUps(null),
+      attributePowerUps: normalizeAttributePowerUps(null),
       digiclones: normalizeDigiclones(null),
       statusEffect: null,
     },
@@ -1915,19 +2003,28 @@ const createCapturedPartyMember = (enemy, captureId) =>
   )
 
 const getEnemyLevelForStage = (stage) => {
-  if (stage <= 10) {
-    return getRandomIntInclusive(1, 8)
-  }
+  const safeStage = Math.min(Math.max(stage, 1), TOTAL_STAGE_COUNT)
+  const stageBand = Math.floor((safeStage - 1) / STAGES_PER_MAP)
+  const stageProgress = ((safeStage - 1) % STAGES_PER_MAP) / Math.max(1, STAGES_PER_MAP - 1)
+  const fixedLevelRanges = [
+    [1, 8],
+    [8, 12],
+    [12, 20],
+    [20, 30],
+  ]
+  const [minimumLevel, maximumLevel] =
+    fixedLevelRanges[stageBand] ??
+    [
+      Math.min(MAX_DIGIMON_LEVEL, 30 + (stageBand - fixedLevelRanges.length) * 10),
+      Math.min(MAX_DIGIMON_LEVEL, 40 + (stageBand - fixedLevelRanges.length) * 10),
+    ]
+  const levelSpan = Math.max(0, maximumLevel - minimumLevel)
+  const scaledLevel = minimumLevel + levelSpan * stageProgress
+  const variance = Math.max(1, Math.floor(levelSpan * 0.18))
+  const progressiveMinimum = Math.max(minimumLevel, Math.floor(scaledLevel) - variance)
+  const progressiveMaximum = Math.min(maximumLevel, Math.ceil(scaledLevel) + variance)
 
-  const levelCap = getLevelCapForStage(stage)
-  const bandIndex = Math.floor((Math.min(Math.max(stage, 1), TOTAL_STAGE_COUNT) - 1) / STAGES_PER_MAP)
-  const previousCap = bandIndex === 0 ? STARTING_PLAYER_LEVEL : CLASSIC_LEVEL_CAPS[bandIndex - 1]
-  const stageProgress = ((stage - 1) % STAGES_PER_MAP) / Math.max(1, STAGES_PER_MAP - 1)
-  const baseLevel = previousCap + (levelCap - previousCap) * (0.45 + stageProgress * 0.55)
-  const minimumLevel = Math.max(2, Math.min(levelCap, Math.floor(baseLevel) - 1))
-  const maximumLevel = Math.max(minimumLevel, Math.min(levelCap, Math.ceil(baseLevel) + 1))
-
-  return getRandomIntInclusive(minimumLevel, maximumLevel)
+  return getRandomIntInclusive(progressiveMinimum, progressiveMaximum)
 }
 
 const getExperienceReward = (enemy) =>
@@ -2321,7 +2418,10 @@ const resolveAttackAction = ({ attacker, defender, skillName, announce = true })
     }
   }
 
-  const boostedSkillPower = (skillData.데미지 ?? 0) * getTypePowerMultiplier(attacker)
+  const boostedSkillPower =
+    (skillData.데미지 ?? 0) *
+    getTypePowerMultiplier(attacker) *
+    getAttributePowerMultiplier(attacker, skillData.속성)
   const scaledPower =
     (((2 * Math.max(1, attacker.level)) / 5 + 2) * boostedSkillPower * Math.max(1, attackStat)) /
     Math.max(1, defenseStat)
@@ -4181,6 +4281,25 @@ function App() {
       }
     })
     .filter(Boolean)
+  const activeAttributeUpHudItems = attributeUpRewardItems
+    .map((item) => {
+      const count = normalizeAttributePowerUps(hudCombatant?.attributePowerUps)[item.attributeUpKey] ?? 0
+
+      if (count <= 0) {
+        return null
+      }
+
+      return {
+        id: item.id,
+        name: item.name,
+        description: `${item.description} · 현재 ${count}/${ATTRIBUTE_POWER_UP_MAX}`,
+        imageUrl: item.imageUrl,
+        value: count,
+        isMaxed: count >= ATTRIBUTE_POWER_UP_MAX,
+        isAttributeUp: true,
+      }
+    })
+    .filter(Boolean)
   const activeDigicloneHudItems = digicloneRewardItems
     .map((item) => {
       const count = normalizeDigiclones(hudCombatant?.digiclones)[item.digicloneKey] ?? 0
@@ -4204,6 +4323,7 @@ function App() {
     ...inventoryHudItems,
     ...activeBuffHudItems,
     ...activeTypeUpHudItems,
+    ...activeAttributeUpHudItems,
     ...activeDigicloneHudItems,
   ]
   const mapSelectionOptions = mapSelectionState?.options?.length
@@ -4454,7 +4574,7 @@ function App() {
                         </div>
                       ))
                     ) : (
-                      <span className="adventure-inventory-strip__empty">ITEM</span>
+                      <span className="adventure-inventory-strip__empty"></span>
                     )}
                   </div>
                   <div className="adventure-summary-card">
