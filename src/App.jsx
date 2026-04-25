@@ -6,6 +6,7 @@ import matureStageData from '../data/디지몬/성숙기.json'
 import perfectStageData from '../data/디지몬/완전체.json'
 import ultimateStageData from '../data/디지몬/궁극체.json'
 import superUltimateStageData from '../data/디지몬/초궁극체.json'
+import digiEggData from '../data/디지몬/디지에그.json'
 import babySkillData from '../data/기술/유아기.json'
 import childSkillData from '../data/기술/유년기.json'
 import growthSkillData from '../data/기술/성장기.json'
@@ -38,6 +39,9 @@ const EXP_BOOSTER_ITEM_ID = 'exp-booster'
 const EXP_BOOSTER_PLUS_ITEM_ID = 'exp-booster-plus'
 const LEVEL_UP_ITEM_ID = 'level-up'
 const PARTY_LEVEL_UP_ITEM_ID = 'party-level-up'
+const EVOLUTION_RETURN_ITEM_ID = 'evolution-return'
+const DIGI_EGG_STAGE = '디지에그'
+const DIGI_EGG_HATCH_STAGE_COUNT = 3
 const MAX_DIGIMON_LEVEL = 200
 const DIGIMON_TYPE_UP_TYPES = ['데이터', '바이러스', '백신', '불명', '프리']
 const TYPE_POWER_UP_MAX = 5
@@ -113,6 +117,15 @@ const DIGICLONE_REWARD_ITEMS = [
     imageUrl: '/아이템/디지클론/디지클론(S).png',
   },
 ]
+
+const DIGI_EGG_REWARD_ITEMS = digiEggData.map((egg, index) => ({
+  id: `digi-egg-${index + 1}`,
+  name: `${egg.이름} 디지에그`,
+  description: `${egg.부화가능.join(', ')} 중 한 디지몬이 3스테이지 뒤 부화`,
+  digiEggName: egg.이름,
+  hatchPool: egg.부화가능,
+  imageUrl: `/아이템/디지에그/${egg.이름}.png`,
+}))
 
 const fixedRewardItems = [
   {
@@ -302,6 +315,14 @@ const randomRewardItemPool = [
     ignoreLevelCap: true,
     imageUrl: '/아이템/레벨업/에보류터(골드).png',
   },
+  {
+    id: EVOLUTION_RETURN_ITEM_ID,
+    name: '진화리턴',
+    description: '대상 디지몬을 이전 진화 단계로 되돌린다',
+    evolutionReturn: true,
+    imageUrl: '/아이템/진화/진화리턴.png',
+  },
+  ...DIGI_EGG_REWARD_ITEMS,
   ...DIGICLONE_REWARD_ITEMS,
   ...ATTRIBUTE_POWER_UP_REWARD_ITEMS,
   ...DIGIMON_TYPE_UP_TYPES.map((type) => ({
@@ -414,7 +435,16 @@ const createDigimonImageUrl = (stage, name) =>
 const createDigimonArtworkUrl = (stage, name) => (stage && name ? `/이미지/${stage}/${name}.jpg` : '')
 
 const hideBrokenArtwork = (event) => {
-  event.currentTarget.style.visibility = 'hidden'
+  const currentTarget = event.currentTarget
+  const fallbackSrc = currentTarget.dataset.fallbackSrc
+
+  if (fallbackSrc && currentTarget.dataset.fallbackApplied !== 'true') {
+    currentTarget.dataset.fallbackApplied = 'true'
+    currentTarget.src = fallbackSrc
+    return
+  }
+
+  currentTarget.style.visibility = 'hidden'
 }
 
 const allDigimonLookup = Object.entries(digimonStageDataMap).reduce((result, [stage, items]) => {
@@ -471,6 +501,129 @@ const ATTRIBUTE_ICON_FILE_MAP = {
   번개: '전기',
   흙: '땅',
 }
+const SKILL_TOOLTIP_THEME_MAP = {
+  화염: {
+    border: 'rgba(191, 88, 52, 0.96)',
+    cardStart: 'rgba(214, 135, 104, 0.98)',
+    cardEnd: 'rgba(128, 69, 52, 0.98)',
+    headerBg: 'rgba(255, 224, 208, 0.94)',
+    sectionBg: 'rgba(150, 71, 37, 0.96)',
+    lightSurface: 'rgba(255, 244, 238, 0.98)',
+    midSurface: 'rgba(237, 194, 175, 0.96)',
+    darkText: '#3e1f13',
+    lightText: '#fff8f3',
+  },
+  빛: {
+    border: 'rgba(212, 181, 86, 0.96)',
+    cardStart: 'rgba(233, 214, 149, 0.98)',
+    cardEnd: 'rgba(157, 131, 63, 0.98)',
+    headerBg: 'rgba(255, 248, 219, 0.94)',
+    sectionBg: 'rgba(145, 120, 40, 0.96)',
+    lightSurface: 'rgba(255, 252, 240, 0.98)',
+    midSurface: 'rgba(239, 228, 178, 0.96)',
+    darkText: '#433711',
+    lightText: '#fffdf4',
+  },
+  바람: {
+    border: 'rgba(92, 176, 157, 0.96)',
+    cardStart: 'rgba(145, 208, 193, 0.98)',
+    cardEnd: 'rgba(75, 126, 117, 0.98)',
+    headerBg: 'rgba(222, 246, 241, 0.94)',
+    sectionBg: 'rgba(57, 123, 111, 0.96)',
+    lightSurface: 'rgba(242, 252, 250, 0.98)',
+    midSurface: 'rgba(194, 232, 224, 0.96)',
+    darkText: '#18362f',
+    lightText: '#f5fffc',
+  },
+  얼음: {
+    border: 'rgba(100, 171, 206, 0.96)',
+    cardStart: 'rgba(152, 207, 232, 0.98)',
+    cardEnd: 'rgba(77, 116, 141, 0.98)',
+    headerBg: 'rgba(226, 245, 252, 0.94)',
+    sectionBg: 'rgba(57, 109, 137, 0.96)',
+    lightSurface: 'rgba(243, 251, 255, 0.98)',
+    midSurface: 'rgba(195, 225, 238, 0.96)',
+    darkText: '#163142',
+    lightText: '#f5fcff',
+  },
+  번개: {
+    border: 'rgba(211, 186, 74, 0.96)',
+    cardStart: 'rgba(235, 221, 131, 0.98)',
+    cardEnd: 'rgba(151, 132, 48, 0.98)',
+    headerBg: 'rgba(255, 249, 210, 0.94)',
+    sectionBg: 'rgba(146, 123, 26, 0.96)',
+    lightSurface: 'rgba(255, 253, 236, 0.98)',
+    midSurface: 'rgba(241, 231, 173, 0.96)',
+    darkText: '#463910',
+    lightText: '#fffdf4',
+  },
+  어둠: {
+    border: 'rgba(98, 87, 127, 0.96)',
+    cardStart: 'rgba(132, 122, 167, 0.98)',
+    cardEnd: 'rgba(63, 58, 89, 0.98)',
+    headerBg: 'rgba(220, 214, 235, 0.94)',
+    sectionBg: 'rgba(69, 61, 100, 0.96)',
+    lightSurface: 'rgba(243, 241, 249, 0.98)',
+    midSurface: 'rgba(198, 191, 221, 0.96)',
+    darkText: '#241d35',
+    lightText: '#f7f5ff',
+  },
+  흙: {
+    border: 'rgba(156, 120, 77, 0.96)',
+    cardStart: 'rgba(193, 155, 110, 0.98)',
+    cardEnd: 'rgba(106, 80, 52, 0.98)',
+    headerBg: 'rgba(240, 224, 203, 0.94)',
+    sectionBg: 'rgba(119, 83, 46, 0.96)',
+    lightSurface: 'rgba(250, 244, 236, 0.98)',
+    midSurface: 'rgba(225, 204, 177, 0.96)',
+    darkText: '#372513',
+    lightText: '#fff9f2',
+  },
+  물: {
+    border: 'rgba(76, 129, 199, 0.96)',
+    cardStart: 'rgba(121, 171, 225, 0.98)',
+    cardEnd: 'rgba(55, 89, 140, 0.98)',
+    headerBg: 'rgba(219, 236, 255, 0.94)',
+    sectionBg: 'rgba(41, 82, 143, 0.96)',
+    lightSurface: 'rgba(241, 248, 255, 0.98)',
+    midSurface: 'rgba(187, 212, 241, 0.96)',
+    darkText: '#152947',
+    lightText: '#f4f9ff',
+  },
+  나무: {
+    border: 'rgba(87, 153, 88, 0.96)',
+    cardStart: 'rgba(139, 193, 130, 0.98)',
+    cardEnd: 'rgba(68, 111, 66, 0.98)',
+    headerBg: 'rgba(225, 243, 221, 0.94)',
+    sectionBg: 'rgba(56, 107, 50, 0.96)',
+    lightSurface: 'rgba(243, 250, 241, 0.98)',
+    midSurface: 'rgba(196, 224, 188, 0.96)',
+    darkText: '#173116',
+    lightText: '#f5fff4',
+  },
+  강철: {
+    border: 'rgba(125, 142, 168, 0.96)',
+    cardStart: 'rgba(173, 187, 210, 0.98)',
+    cardEnd: 'rgba(94, 104, 125, 0.98)',
+    headerBg: 'rgba(232, 238, 246, 0.94)',
+    sectionBg: 'rgba(79, 92, 115, 0.96)',
+    lightSurface: 'rgba(246, 249, 252, 0.98)',
+    midSurface: 'rgba(208, 216, 228, 0.96)',
+    darkText: '#1f2938',
+    lightText: '#f8fbff',
+  },
+  무: {
+    border: 'rgba(118, 98, 164, 0.95)',
+    cardStart: 'rgba(166, 150, 201, 0.98)',
+    cardEnd: 'rgba(126, 102, 167, 0.98)',
+    headerBg: 'rgba(210, 197, 231, 0.86)',
+    sectionBg: 'rgba(85, 59, 130, 0.94)',
+    lightSurface: 'rgba(246, 243, 250, 0.96)',
+    midSurface: 'rgba(196, 181, 224, 0.96)',
+    darkText: '#241636',
+    lightText: '#f7f2ff',
+  },
+}
 
 const createPublicAssetUrl = (...segments) =>
   `/${segments.map((segment) => encodeURIComponent(segment)).join('/')}`
@@ -483,6 +636,8 @@ const getDigimonAttributeIconUrl = (attribute) => {
 
   return iconName ? createPublicAssetUrl('속성', `${iconName}.png`) : null
 }
+
+const getSkillTooltipTheme = (attribute) => SKILL_TOOLTIP_THEME_MAP[attribute] ?? SKILL_TOOLTIP_THEME_MAP.무
 
 const DigimonTraitIcon = ({ className, src, label }) => {
   if (!src) {
@@ -502,6 +657,7 @@ const DigimonTraitIcon = ({ className, src, label }) => {
 const MAX_ACTIVE_COMBATANTS = 2
 const MAX_ENEMY_COMBATANTS = 2
 const STARTING_PLAYER_LEVEL = 5
+const DIGI_EGG_HATCH_LEVEL = STARTING_PLAYER_LEVEL
 const BUFF_STAGE_DURATION = 10
 const STATUS_DURATION_TURNS = 3
 const STATUS_EARLY_CURE_CHANCE = 30
@@ -587,6 +743,10 @@ const getStageClearGoldReward = (stage) => {
   const baseReward = (10 * stage + 175) ** (1 + 0.005 * waveSet)
   return Math.max(20, Math.floor(baseReward / 10) * 10)
 }
+const getRewardRerollBaseCost = (stage) =>
+  Math.max(80, Math.floor((getStageClearGoldReward(stage) * 0.4) / 10) * 10)
+const getRewardRerollCost = (stage, rerollCount = 0) =>
+  getRewardRerollBaseCost(stage) * (Math.max(0, rerollCount) + 1)
 const addInventoryItem = (inventory, itemId) => ({
   ...(inventory ?? {}),
   [itemId]: (inventory?.[itemId] ?? 0) + 1,
@@ -618,7 +778,9 @@ const syncPartyMember = (party, activePlayer) => {
 
   return currentParty.map((member, index) => (index === activeIndex ? activePlayer : member))
 }
-const isCombatantAbleToBattle = (combatant) => (combatant?.currentHp ?? 0) > 0
+const isCombatantEgg = (combatant) => Boolean(combatant?.isEgg)
+const isCombatantAbleToBattle = (combatant) =>
+  !isCombatantEgg(combatant) && (combatant?.currentHp ?? 0) > 0
 const getBattleAllyLimit = (battleState) =>
   Math.max(
     1,
@@ -808,6 +970,13 @@ const applyInstantRewardEffect = (player, rewardItem, levelCap = Infinity) => {
     }
   }
 
+  if (rewardItem?.evolutionReturn) {
+    return {
+      nextPlayer: createReturnedEvolutionCombatant(player),
+      shouldStore: false,
+    }
+  }
+
   if (rewardItem?.reviveRatio) {
     if (player.currentHp > 0) {
       return {
@@ -866,7 +1035,8 @@ const isTargetedRewardItem = (item) =>
       item?.typeUpKey ||
       item?.attributeUpKey ||
       item?.digicloneKey ||
-      item?.levelUpAmount
+      item?.levelUpAmount ||
+      item?.evolutionReturn
   )
 
 const getRewardTargetCandidates = (party, fallbackPlayer = null) => {
@@ -875,7 +1045,7 @@ const getRewardTargetCandidates = (party, fallbackPlayer = null) => {
   const seenIds = new Set()
 
   return candidates.filter((member) => {
-    if (!member?.id || seenIds.has(member.id)) {
+    if (!member?.id || seenIds.has(member.id) || isCombatantEgg(member)) {
       return false
     }
 
@@ -889,8 +1059,16 @@ const isRewardItemUsableByCombatant = (item, combatant, levelCap = Infinity) => 
     return false
   }
 
+  if (isCombatantEgg(combatant)) {
+    return false
+  }
+
   if (item.levelUpAmount) {
     return combatant.level < getRewardItemLevelLimit(item, levelCap)
+  }
+
+  if (item.evolutionReturn) {
+    return canReturnEvolution(combatant)
   }
 
   if (item.typeUpKey) {
@@ -936,6 +1114,10 @@ const canRandomRewardItemAppear = (item, inventory = {}, rewardTarget = null, le
     return false
   }
 
+  if (item.digiEggName && (!Array.isArray(item.hatchPool) || item.hatchPool.length <= 0)) {
+    return false
+  }
+
   if (item.unique && (inventory?.[item.id] ?? 0) > 0) {
     return false
   }
@@ -949,7 +1131,8 @@ const canRandomRewardItemAppear = (item, inventory = {}, rewardTarget = null, le
     item.attributeUpKey ||
     item.digicloneKey ||
     item.levelUpAmount ||
-    item.partyLevelUpAmount
+    item.partyLevelUpAmount ||
+    item.evolutionReturn
   ) {
     const rewardTargets = getRewardTargetCandidates(
       Array.isArray(rewardTarget) ? rewardTarget : [rewardTarget].filter(Boolean)
@@ -1007,7 +1190,13 @@ const getRewardItemMaxCount = (item) => {
   return null
 }
 
-const createRewardSelection = (inventory = {}, rewardTarget = null, levelCap = Infinity) => ({
+const createRewardSelection = (
+  inventory = {},
+  rewardTarget = null,
+  levelCap = Infinity,
+  currentStage = 1,
+  rerollCount = 0
+) => ({
   randomItems: shuffleItems(
     randomRewardItemPool.filter((item) =>
       canRandomRewardItemAppear(item, inventory, rewardTarget, levelCap)
@@ -1015,6 +1204,8 @@ const createRewardSelection = (inventory = {}, rewardTarget = null, levelCap = I
   ).slice(0, 3),
   selectedRandomItemId: null,
   isResolving: false,
+  rerollCount,
+  rerollCost: getRewardRerollCost(currentStage, rerollCount),
 })
 
 const mapBackgrounds = [
@@ -1610,6 +1801,80 @@ const getSkillData = (skillName) => {
   )
 }
 const isSkillAreaAttack = (skillData) => skillData?.전체공격 === true
+const getSkillRangeLabel = (skillData) => (isSkillAreaAttack(skillData) ? '상대 전체' : '상대 1마리')
+
+const getSkillEffectDescription = (skillData) => {
+  if (!skillData) {
+    return null
+  }
+
+  const effects = []
+
+  if (skillData.전체공격) {
+    effects.push('적 전체를 대상으로 공격한다.')
+  }
+
+  if (skillData.상태이상) {
+    const chanceText = skillData.상태이상확률 ? `${skillData.상태이상확률} 확률로 ` : ''
+    effects.push(`${chanceText}${skillData.상태이상} 상태이상을 부여한다.`)
+  }
+
+  return effects.length > 0 ? effects.join(' ') : null
+}
+
+const BattleSkillTooltip = ({ skillData }) => {
+  if (!skillData) {
+    return null
+  }
+
+  const effectDescription = getSkillEffectDescription(skillData)
+  const theme = getSkillTooltipTheme(skillData.속성)
+  const infoRows = [
+    { label: '속성', value: skillData.속성 },
+    { label: '분류', value: skillData.분류 },
+    { label: '위력', value: skillData.데미지 ?? null },
+    { label: '명중률', value: skillData.명중률 ?? null },
+    { label: '범위', value: getSkillRangeLabel(skillData) },
+  ].filter((row) => row.value !== null && row.value !== undefined && row.value !== '')
+
+  return (
+    <div className="battle-skill-tooltip" aria-hidden="true">
+      <div
+        className="battle-skill-tooltip__card"
+        style={{
+          '--skill-tooltip-border': theme.border,
+          '--skill-tooltip-card-start': theme.cardStart,
+          '--skill-tooltip-card-end': theme.cardEnd,
+          '--skill-tooltip-header-bg': theme.headerBg,
+          '--skill-tooltip-section-bg': theme.sectionBg,
+          '--skill-tooltip-light-surface': theme.lightSurface,
+          '--skill-tooltip-mid-surface': theme.midSurface,
+          '--skill-tooltip-dark-text': theme.darkText,
+          '--skill-tooltip-light-text': theme.lightText,
+        }}
+      >
+        <div className="battle-skill-tooltip__header">
+          <p className="battle-skill-tooltip__name">{skillData.기술명}</p>
+        </div>
+        <div className="battle-skill-tooltip__section">배틀</div>
+        {effectDescription ? (
+          <div className="battle-skill-tooltip__effect">
+            <div className="battle-skill-tooltip__effect-title">효과</div>
+            <p className="battle-skill-tooltip__effect-text">{effectDescription}</p>
+          </div>
+        ) : null}
+        <div className="battle-skill-tooltip__info-grid">
+          {infoRows.map((row) => (
+            <div key={row.label} className="battle-skill-tooltip__row">
+              <span className="battle-skill-tooltip__label">{row.label}</span>
+              <span className="battle-skill-tooltip__value">{row.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
 
 const getChartRelation = (chart, attackValue, defendValue) => {
   if (!attackValue || attackValue === '무' || !defendValue || defendValue === '무') {
@@ -1841,6 +2106,10 @@ const getEvolutionStageRequirement = (stage) =>
   }
 
 const getEvolutionRequirements = (targetData) => {
+  if (targetData?.stage === '유아기') {
+    return []
+  }
+
   const customRequirement = targetData?.진화조건 ?? null
   const stageRequirement = getEvolutionStageRequirement(targetData?.stage)
 
@@ -1924,6 +2193,54 @@ const createEvolvedCombatant = (combatant, targetData) => {
   }
 }
 
+const getEvolutionReturnTargetName = (combatant) => {
+  const history = Array.isArray(combatant?.evolutionHistory) ? combatant.evolutionHistory : []
+
+  return history.length > 0 ? history[history.length - 1] : null
+}
+
+const canReturnEvolution = (combatant) => {
+  const targetName = getEvolutionReturnTargetName(combatant)
+
+  return Boolean(targetName && allDigimonLookup.has(targetName))
+}
+
+const createReturnedEvolutionCombatant = (combatant) => {
+  const targetName = getEvolutionReturnTargetName(combatant)
+  const targetData = targetName ? allDigimonLookup.get(targetName) : null
+
+  if (!combatant || !targetData) {
+    return combatant
+  }
+
+  const hpRatio = combatant.maxHp > 0 ? combatant.currentHp / combatant.maxHp : 1
+  const nextHistory = (combatant.evolutionHistory ?? []).slice(0, -1)
+  const returnedCombatant = createCombatant({
+    id: combatant.id,
+    name: targetData.이름,
+    imageUrl: targetData.imageUrl ?? '',
+    data: targetData,
+    level: combatant.level,
+    experience: combatant.experience,
+    ivs: combatant.ivs,
+    activeBuffs: combatant.activeBuffs,
+    typePowerUps: combatant.typePowerUps,
+    attributePowerUps: combatant.attributePowerUps,
+    digiclones: combatant.digiclones,
+    statusEffect: combatant.statusEffect,
+    stageName: targetData.stage,
+  })
+
+  return {
+    ...returnedCombatant,
+    currentHp:
+      combatant.currentHp <= 0
+        ? 0
+        : Math.max(1, Math.min(returnedCombatant.maxHp, Math.floor(returnedCombatant.maxHp * hpRatio))),
+    evolutionHistory: nextHistory,
+  }
+}
+
 const createCombatant = ({
   id,
   name,
@@ -2001,6 +2318,100 @@ const createCapturedPartyMember = (enemy, captureId) =>
       statusEffect: null,
     }
   )
+
+const createDigiEggCombatant = ({
+  id,
+  eggName,
+  hatchPool = [],
+  stagesRemaining = DIGI_EGG_HATCH_STAGE_COUNT + 1,
+}) => ({
+  id,
+  isEgg: true,
+  eggName,
+  eggHatchPool: [...hatchPool],
+  eggStagesRemaining: Math.max(1, Math.floor(stagesRemaining)),
+  name: `${eggName} 디지에그`,
+  imageUrl: `/아이템/디지에그/${eggName}.png`,
+  speciesData: null,
+  speciesStage: DIGI_EGG_STAGE,
+  baseStats: createBaseStats(null),
+  ivs: createRandomIvs(),
+  activeBuffs: normalizeBuffState(null),
+  typePowerUps: normalizeTypePowerUps(null),
+  attributePowerUps: normalizeAttributePowerUps(null),
+  digiclones: normalizeDigiclones(null),
+  statusEffect: null,
+  level: 1,
+  experience: 0,
+  experienceToNext: getExperienceToNextLevel(1),
+  currentHp: 0,
+  maxHp: 1,
+  baseStatTotal: 0,
+  type: '무',
+  attribute: '무',
+  attack: 0,
+  specialAttack: 0,
+  defense: 0,
+  specialDefense: 0,
+  speed: 0,
+  skills: [],
+})
+
+const hatchDigiEggCombatant = (combatant) => {
+  const hatchPool = (combatant?.eggHatchPool ?? []).filter((name) => allDigimonLookup.has(name))
+
+  if (!combatant || !hatchPool.length) {
+    return {
+      nextCombatant: combatant,
+      hatchLogs: [],
+    }
+  }
+
+  const hatchName = shuffleItems(hatchPool)[0]
+  const targetData = allDigimonLookup.get(hatchName)
+
+  return {
+    nextCombatant: createCombatant({
+      id: combatant.id,
+      name: hatchName,
+      imageUrl: targetData?.imageUrl ?? combatant.imageUrl,
+      data: targetData,
+      level: DIGI_EGG_HATCH_LEVEL,
+      ivs: combatant.ivs,
+      stageName: targetData?.stage ?? null,
+    }),
+    hatchLogs: [`${combatant.name}가 ${hatchName}(으)로 부화했다!`],
+  }
+}
+
+const progressDigiEggPartyByStage = (party) => {
+  const currentParty = party ?? []
+  const hatchLogs = []
+
+  const nextParty = currentParty.map((member) => {
+    if (!isCombatantEgg(member)) {
+      return member
+    }
+
+    const nextRemaining = Math.max(0, (member.eggStagesRemaining ?? DIGI_EGG_HATCH_STAGE_COUNT) - 1)
+
+    if (nextRemaining > 0) {
+      return {
+        ...member,
+        eggStagesRemaining: nextRemaining,
+      }
+    }
+
+    const hatchResult = hatchDigiEggCombatant(member)
+    hatchLogs.push(...hatchResult.hatchLogs)
+    return hatchResult.nextCombatant
+  })
+
+  return {
+    nextParty,
+    hatchLogs,
+  }
+}
 
 const getEnemyLevelForStage = (stage) => {
   const safeStage = Math.min(Math.max(stage, 1), TOTAL_STAGE_COUNT)
@@ -3018,7 +3429,14 @@ function App() {
       nextGold += getStageClearGoldReward(gameState.currentStage)
       resolvedLogs.push('전투에서 승리했다!')
       const rewardTarget = getFirstLivingPartyMember(resolvedParty, activeAllyIds)
-      setRewardState(createRewardSelection(nextInventory, resolvedParty, gameState.levelCap))
+      setRewardState(
+        createRewardSelection(
+          nextInventory,
+          resolvedParty,
+          gameState.levelCap,
+          gameState.currentStage
+        )
+      )
       commitBattleState({
         nextPlayer: rewardTarget,
         battlePanel: 'logs',
@@ -3147,7 +3565,14 @@ function App() {
       nextGold += getStageClearGoldReward(gameState.currentStage)
       resolvedLogs.push('전투에서 승리했다!')
       const rewardTarget = getFirstLivingPartyMember(resolvedParty, activeAllyIds)
-      setRewardState(createRewardSelection(nextInventory, resolvedParty, gameState.levelCap))
+      setRewardState(
+        createRewardSelection(
+          nextInventory,
+          resolvedParty,
+          gameState.levelCap,
+          gameState.currentStage
+        )
+      )
       commitBattleState({
         nextPlayer: rewardTarget,
         battlePanel: 'logs',
@@ -3193,7 +3618,10 @@ function App() {
     const levelCap = getLevelCapForStage(nextStageNum)
     const mapEncounterPool = getMapEncounterGroups(mapName)?.[encounterGroup] ?? []
     const newEnemies = buildEnemyParty(nextStageNum, mapEncounterPool, encounterCount)
-    const nextParty = syncPartyMember(currentGameState.party, currentPlayer)
+    const eggProgressResult = progressDigiEggPartyByStage(
+      syncPartyMember(currentGameState.party, currentPlayer)
+    )
+    const nextParty = eggProgressResult.nextParty
     const nextActiveAllyIds = getActiveAllyIdsForParty(
       nextParty,
       [],
@@ -3222,7 +3650,9 @@ function App() {
       pendingAllyActions: [],
     })
     setIsPlayerExpBarVisible(false)
-    setCurrentLogs(createBattleLog(getBattlePrompt(nextPlayer.name)))
+    setCurrentLogs(
+      createBattleLog(...eggProgressResult.hatchLogs, getBattlePrompt(nextPlayer?.name ?? '디지몬'))
+    )
     setSelectedBattleCommand('attack')
     setSelectedSkillIndex(0)
     setSelectedEnemyTargetId(null)
@@ -3861,6 +4291,25 @@ function App() {
       }, 1200)
     }
 
+    if (rewardItem.digiEggName) {
+      const nextEgg = createDigiEggCombatant({
+        id: `egg-${gameState.currentStage}-${currentParty.length + 1}-${Date.now()}`,
+        eggName: rewardItem.digiEggName,
+        hatchPool: rewardItem.hatchPool ?? [],
+      })
+      const nextParty = [...currentParty, nextEgg]
+      const nextPlayer =
+        getCombatantById(nextParty, gameState.player?.id) ?? gameState.player ?? nextParty[0] ?? null
+
+      finishRewardUse({
+        ...gameState,
+        gold: source === 'fixed' ? (gameState.gold ?? 0) - (rewardItem.price ?? 0) : gameState.gold,
+        player: nextPlayer,
+        party: nextParty,
+      })
+      return
+    }
+
     if (rewardItem.partyLevelUpAmount) {
       const partyLevelUpItem = {
         ...rewardItem,
@@ -4109,6 +4558,34 @@ function App() {
     })
   }
 
+  const handleRerollRewardItems = () => {
+    if (!gameState || !rewardState || rewardState.isResolving || rewardState.pendingTarget) {
+      return
+    }
+
+    const rerollCost = rewardState.rerollCost ?? getRewardRerollCost(gameState.currentStage, 0)
+    if ((gameState.gold ?? 0) < rerollCost) {
+      return
+    }
+
+    const currentParty = syncPartyMember(gameState.party, gameState.player)
+    const nextRerollCount = (rewardState.rerollCount ?? 0) + 1
+    const nextRewardState = createRewardSelection(
+      gameState.inventory,
+      currentParty,
+      gameState.levelCap ?? Infinity,
+      gameState.currentStage,
+      nextRerollCount
+    )
+
+    setGameState({
+      ...gameState,
+      party: currentParty,
+      gold: (gameState.gold ?? 0) - rerollCost,
+    })
+    setRewardState(nextRewardState)
+  }
+
   const handleInventoryTooltipPosition = (event) => {
     const itemElement = event.currentTarget
     const stageElement = itemElement.closest('.adventure-stage')
@@ -4228,7 +4705,7 @@ function App() {
     .map((item) => {
       const count = gameState?.inventory?.[item.id] ?? 0
 
-      if (!item || item.captureTier || count <= 0) {
+      if (!item || item.captureTier || item.digiEggName || count <= 0) {
         return null
       }
 
@@ -4345,7 +4822,7 @@ function App() {
     { length: Math.max(4, rewardTargetMembers.length) },
     (_, index) => rewardTargetMembers[index] ?? null
   )
-  const evolutionPartyMembers = partyMembers
+  const evolutionPartyMembers = partyMembers.filter((member) => !isCombatantEgg(member))
   const evolutionPartySlots = Array.from(
     { length: Math.max(4, evolutionPartyMembers.length) },
     (_, index) => evolutionPartyMembers[index] ?? null
@@ -4671,6 +5148,7 @@ function App() {
                               className="digimon-status__portrait"
                               src={createDigimonArtworkUrl(ally.speciesStage, ally.name)}
                               alt=""
+                              data-fallback-src={ally.imageUrl}
                               onError={hideBrokenArtwork}
                             />
                             <p className="digimon-status__name">
@@ -4817,6 +5295,7 @@ function App() {
                               className="digimon-status__portrait"
                               src={createDigimonArtworkUrl(enemy.speciesStage, enemy.name)}
                               alt=""
+                              data-fallback-src={enemy.imageUrl}
                               onError={hideBrokenArtwork}
                             />
                             <p className="digimon-status__name">
@@ -4903,26 +5382,28 @@ function App() {
                     </div>
 
                     <div className="reward-screen__random">
-                      {rewardState.randomItems.map((item) => (
-                        <button
-                          key={item.id}
-                          type="button"
-                          className={[
-                            'reward-item',
-                            'reward-item--random',
-                            rewardState.selectedRandomItemId === item.id ? 'reward-item--selected' : '',
-                          ]
-                            .filter(Boolean)
-                            .join(' ')}
-                          disabled={rewardState.isResolving || Boolean(rewardState.pendingTarget)}
-                          onClick={() => handleClaimRandomRewardItem(item.id)}
-                          data-tooltip={item.description}
-                          title={item.description}
-                        >
-                          <img className="reward-item__image" src={item.imageUrl} alt="" />
-                          <strong className="reward-item__name">{item.name}</strong>
-                        </button>
-                      ))}
+                      <div className="reward-screen__random-list">
+                        {rewardState.randomItems.map((item) => (
+                          <button
+                            key={item.id}
+                            type="button"
+                            className={[
+                              'reward-item',
+                              'reward-item--random',
+                              rewardState.selectedRandomItemId === item.id ? 'reward-item--selected' : '',
+                            ]
+                              .filter(Boolean)
+                              .join(' ')}
+                            disabled={rewardState.isResolving || Boolean(rewardState.pendingTarget)}
+                            onClick={() => handleClaimRandomRewardItem(item.id)}
+                            data-tooltip={item.description}
+                            title={item.description}
+                          >
+                            <img className="reward-item__image" src={item.imageUrl} alt="" />
+                            <strong className="reward-item__name">{item.name}</strong>
+                          </button>
+                        ))}
+                      </div>
                     </div>
 
                     {pendingRewardItem ? (
@@ -4966,6 +5447,8 @@ function App() {
                                 (member.type !== pendingRewardItem.typeUpKey ||
                                   (normalizeTypePowerUps(member.typePowerUps)[pendingRewardItem.typeUpKey] ?? 0) >=
                                     (pendingRewardItem.maxOwnedPerCombatant ?? TYPE_POWER_UP_MAX))
+                              const isInvalidEvolutionReturnTarget =
+                                pendingRewardItem.evolutionReturn && !canReturnEvolution(member)
 
                               return (
                                 <button
@@ -4976,6 +5459,7 @@ function App() {
                                     'reward-target-member',
                                     !isUsable ? 'reward-target-member--disabled' : '',
                                     isInvalidTypeTarget ? 'reward-target-member--invalid-type' : '',
+                                    isInvalidEvolutionReturnTarget ? 'reward-target-member--invalid-return' : '',
                                   ]
                                     .filter(Boolean)
                                     .join(' ')}
@@ -5009,14 +5493,34 @@ function App() {
                       </div>
                     ) : null}
 
-                    <button
-                      type="button"
-                      className="reward-screen__party-button"
-                      disabled={rewardState.isResolving || Boolean(rewardState.pendingTarget)}
-                      onClick={handleOpenEvolutionParty}
-                    >
-                      보유디지몬
-                    </button>
+                    <div className="reward-screen__bottom-actions">
+                      <div className="reward-screen__reroll-group">
+                        <button
+                          type="button"
+                          className="reward-screen__reroll-button"
+                          disabled={
+                            rewardState.isResolving ||
+                            Boolean(rewardState.pendingTarget) ||
+                            (gameState?.gold ?? 0) < (rewardState.rerollCost ?? 0)
+                          }
+                          onClick={handleRerollRewardItems}
+                        >
+                          리롤
+                        </button>
+                        <span className="reward-screen__reroll-price">
+                          {formatGold(rewardState.rerollCost ?? 0)}
+                        </span>
+                      </div>
+
+                      <button
+                        type="button"
+                        className="reward-screen__party-button"
+                        disabled={rewardState.isResolving || Boolean(rewardState.pendingTarget)}
+                        onClick={handleOpenEvolutionParty}
+                      >
+                        보유디지몬
+                      </button>
+                    </div>
 
                     {evolutionState ? (
                       <div className="evolution-screen" aria-label="보유 디지몬 진화">
@@ -5311,9 +5815,10 @@ function App() {
                         const hpRatio = member
                           ? Math.max(0, Math.min(100, (member.currentHp / member.maxHp) * 100))
                           : 0
-                        const isFainted = member ? member.currentHp <= 0 : false
+                        const isEgg = member ? isCombatantEgg(member) : false
+                        const isFainted = member ? !isEgg && member.currentHp <= 0 : false
                         const isActiveInBattle = member ? activeAllyIds.includes(member.id) : false
-                        const isDisabled = isFainted || isActiveInBattle
+                        const isDisabled = isEgg || isFainted || isActiveInBattle
 
                         return member ? (
                           <button
@@ -5321,6 +5826,7 @@ function App() {
                             type="button"
                             className={[
                               'party-member',
+                              isEgg ? 'party-member--egg' : '',
                               isFainted ? 'party-member--fainted' : '',
                               isActiveInBattle ? 'party-member--active' : '',
                             ]
@@ -5331,16 +5837,26 @@ function App() {
                           >
                             <img className="party-member__image" src={member.imageUrl} alt="" />
                             <span className="party-member__name">{member.name}</span>
-                            <span className="party-member__level">Lv.{member.level}</span>
-                            <span className="party-member__hp">
-                              <span
-                                className="party-member__hp-fill"
-                                style={{ width: `${hpRatio}%` }}
-                              />
+                            <span className="party-member__level">
+                              {isEgg ? DIGI_EGG_STAGE : `Lv.${member.level}`}
                             </span>
-                            <span className="party-member__hp-text">
-                              {member.currentHp}/{member.maxHp}
-                            </span>
+                            {isEgg ? (
+                              <span className="party-member__egg-text">
+                                부화까지 {member.eggStagesRemaining}스테이지
+                              </span>
+                            ) : (
+                              <>
+                                <span className="party-member__hp">
+                                  <span
+                                    className="party-member__hp-fill"
+                                    style={{ width: `${hpRatio}%` }}
+                                  />
+                                </span>
+                                <span className="party-member__hp-text">
+                                  {member.currentHp}/{member.maxHp}
+                                </span>
+                              </>
+                            )}
                           </button>
                         ) : (
                           <div key={`empty-${index}`} className="party-member party-member--empty">
@@ -5423,6 +5939,7 @@ function App() {
                             </span>
                             <span className="battle-skill__label">{skill ?? ''}</span>
                             {isAreaAttack ? <span className="battle-skill__badge">전체</span> : null}
+                            {skill ? <BattleSkillTooltip skillData={skillData} /> : null}
                           </button>
                         )
                       })}
