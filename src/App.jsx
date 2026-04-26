@@ -40,12 +40,23 @@ const EXP_BOOSTER_PLUS_ITEM_ID = 'exp-booster-plus'
 const LEVEL_UP_ITEM_ID = 'level-up'
 const PARTY_LEVEL_UP_ITEM_ID = 'party-level-up'
 const EVOLUTION_RETURN_ITEM_ID = 'evolution-return'
+const GOLDEN_BANANA_ITEM_ID = 'golden-banana'
+const ACCURACY_TARGET_ITEM_ID = 'accuracy-target'
+const CONFUSION_WAVE_ITEM_ID = 'confusion-wave'
+const LIFE_FORCE_ITEM_ID = 'life-force'
 const DIGI_EGG_STAGE = '디지에그'
 const DIGI_EGG_HATCH_STAGE_COUNT = 3
 const MAX_DIGIMON_LEVEL = 200
+const GOLDEN_BANANA_MAX = 3
+const GOLDEN_BANANA_BONUS_RATE = 0.2
+const BATTLE_ACCURACY_ITEM_MAX = 3
+const BATTLE_ACCURACY_ITEM_RATE = 5
+const LIFE_FORCE_MAX = 3
+const LIFE_FORCE_ENDURE_RATE = 10
 const DIGIMON_TYPE_UP_TYPES = ['데이터', '바이러스', '백신', '불명', '프리']
 const TYPE_POWER_UP_MAX = 5
 const ATTRIBUTE_POWER_UP_MAX = 10
+const RECOVERY_PROGRAM_MAX = 2
 const ATTRIBUTE_POWER_UP_ALIAS_MAP = {
   불: '화염',
   전기: '번개',
@@ -127,22 +138,43 @@ const DIGI_EGG_REWARD_ITEMS = digiEggData.map((egg, index) => ({
   imageUrl: `/아이템/디지에그/${egg.이름}.png`,
 }))
 
+const RECOVERY_PROGRAM_REWARD_ITEMS = [
+  {
+    id: 'recovery-program-m',
+    name: '복구프로그램M',
+    description: '전투 중 전투 불능 시 HP 50%로 즉시 부활',
+    recoveryProgramKey: 'recovery-program-m',
+    recoveryRatio: 0.5,
+    maxOwnedPerCombatant: RECOVERY_PROGRAM_MAX,
+    imageUrl: '/아이템/회복/복구프로그램M.png',
+  },
+  {
+    id: 'recovery-program-d',
+    name: '복구프로그램D',
+    description: '전투 중 전투 불능 시 HP 100%로 즉시 부활',
+    recoveryProgramKey: 'recovery-program-d',
+    recoveryRatio: 1,
+    maxOwnedPerCombatant: RECOVERY_PROGRAM_MAX,
+    imageUrl: '/아이템/회복/복구프로그램D.png',
+  },
+]
+
 const fixedRewardItems = [
   {
     id: 'heal-20',
-    name: '상처약',
+    name: '회복플로피L',
     description: 'HP 20 회복',
     price: 120,
     healAmount: 20,
-    imageUrl: '/아이템/회복/상처약.png',
+    imageUrl: '/아이템/회복/회복플로피L.png',
   },
   {
     id: 'heal-50',
-    name: '좋은 상처약',
+    name: '회복플로피M',
     description: 'HP 50 회복',
     price: 280,
     healAmount: 50,
-    imageUrl: '/아이템/회복/좋은상처약.png',
+    imageUrl: '/아이템/회복/회복플로피M.png',
   },
   {
     id: 'revive-50',
@@ -200,26 +232,49 @@ const randomRewardItemPool = [
   },
   {
     id: 'heal-200',
-    name: '고급 상처약',
+    name: '회복플로피S',
     description: 'HP 200 회복',
     healAmount: 200,
-    imageUrl: '/아이템/회복/고급상처약.png',
+    imageUrl: '/아이템/회복/회복플로피S.png',
   },
   {
     id: 'heal-full-hp',
-    name: '풀 회복약',
+    name: '회복플로피D',
     description: '상태이상은 유지하고 HP만 모두 회복',
     healFull: true,
-    imageUrl: '/아이템/회복/풀회복약.png',
+    imageUrl: '/아이템/회복/회복플로피D.png',
   },
   {
     id: 'heal-full-cure',
-    name: '회복약',
+    name: '회복플로피R',
     description: 'HP를 모두 회복하고 상태이상도 치료',
     healFull: true,
     cureStatus: true,
-    imageUrl: '/아이템/회복/회복약.png',
+    imageUrl: '/아이템/회복/회복플로피R.png',
   },
+  {
+    id: 'party-heal-50',
+    name: '회복플로피MX',
+    description: '파티 전체 HP 50 회복',
+    partyHealAmount: 50,
+    imageUrl: '/아이템/회복/회복플로피MX.png',
+  },
+  {
+    id: 'party-heal-200',
+    name: '회복플로피SX',
+    description: '파티 전체 HP 200 회복',
+    partyHealAmount: 200,
+    imageUrl: '/아이템/회복/회복플로피SX.png',
+  },
+  {
+    id: 'party-heal-full-cure',
+    name: '회복플로피DX',
+    description: '파티 전체 HP를 모두 회복하고 상태이상도 치료',
+    partyHealFull: true,
+    cureStatus: true,
+    imageUrl: '/아이템/회복/회복플로피DX.png',
+  },
+  ...RECOVERY_PROGRAM_REWARD_ITEMS,
   {
     id: 'capture-net',
     name: '포획그물',
@@ -277,6 +332,34 @@ const randomRewardItemPool = [
     unique: true,
     requiresItemId: MAP_ITEM_ID,
     imageUrl: '/아이템/지도/지구본.png',
+  },
+  {
+    id: GOLDEN_BANANA_ITEM_ID,
+    name: '황금 바나나',
+    description: '매 스테이지마다 획득하는 골드 20% 증가',
+    maxOwned: GOLDEN_BANANA_MAX,
+    imageUrl: '/아이템/골드/황금바나나.png',
+  },
+  {
+    id: ACCURACY_TARGET_ITEM_ID,
+    name: '명중과녁',
+    description: '사용 기술의 명중률 5% 증가',
+    maxOwned: BATTLE_ACCURACY_ITEM_MAX,
+    imageUrl: '/아이템/배틀/명중과녁.png',
+  },
+  {
+    id: CONFUSION_WAVE_ITEM_ID,
+    name: '혼란전파',
+    description: '상대 기술의 명중률 5% 감소',
+    maxOwned: BATTLE_ACCURACY_ITEM_MAX,
+    imageUrl: '/아이템/배틀/혼란전파.png',
+  },
+  {
+    id: LIFE_FORCE_ITEM_ID,
+    name: '생명의 힘',
+    description: 'HP가 0이 될 피해를 받을 때 개당 10% 확률로 HP 1로 버틴다',
+    maxOwned: LIFE_FORCE_MAX,
+    imageUrl: '/아이템/배틀/생명의힘.png',
   },
   {
     id: EXP_SHARE_ITEM_ID,
@@ -342,6 +425,7 @@ const buffRewardItems = randomRewardItemPool.filter((item) => item.buffStatKey)
 const typeUpRewardItems = randomRewardItemPool.filter((item) => item.typeUpKey)
 const attributeUpRewardItems = randomRewardItemPool.filter((item) => item.attributeUpKey)
 const digicloneRewardItems = randomRewardItemPool.filter((item) => item.digicloneKey)
+const recoveryProgramRewardItems = randomRewardItemPool.filter((item) => item.recoveryProgramKey)
 const captureItemOrder = ['capture-net', 'capture-net-super', 'capture-net-hyper', 'capture-net-master']
 const captureItemLookup = new Map(randomRewardItemPool.map((item) => [item.id, item]))
 const captureChanceByTier = {
@@ -738,10 +822,19 @@ const formatGold = (value) => {
 
   return `${formattedValue}K`
 }
-const getStageClearGoldReward = (stage) => {
+const getGoldRewardMultiplier = (inventory = {}) => {
+  const goldenBananaCount = Math.min(
+    GOLDEN_BANANA_MAX,
+    Math.max(0, Math.floor(inventory?.[GOLDEN_BANANA_ITEM_ID] ?? 0))
+  )
+
+  return 1 + goldenBananaCount * GOLDEN_BANANA_BONUS_RATE
+}
+
+const getStageClearGoldReward = (stage, inventory = {}) => {
   const waveSet = Math.ceil(stage / 10) - 1
   const baseReward = (10 * stage + 175) ** (1 + 0.005 * waveSet)
-  return Math.max(20, Math.floor(baseReward / 10) * 10)
+  return Math.max(20, Math.floor((baseReward * getGoldRewardMultiplier(inventory)) / 10) * 10)
 }
 const getRewardRerollBaseCost = (stage) =>
   Math.max(80, Math.floor((getStageClearGoldReward(stage) * 0.4) / 10) * 10)
@@ -897,8 +990,42 @@ const normalizeDigiclones = (digiclones) =>
     return result
   }, {})
 
+const normalizeRecoveryPrograms = (recoveryPrograms) =>
+  RECOVERY_PROGRAM_REWARD_ITEMS.reduce((result, item) => {
+    const nextValue = Math.max(0, Math.floor(recoveryPrograms?.[item.recoveryProgramKey] ?? 0))
+    result[item.recoveryProgramKey] = Math.min(RECOVERY_PROGRAM_MAX, nextValue)
+    return result
+  }, {})
+
 const getRewardItemLevelLimit = (item, levelCap = Infinity) =>
   item?.ignoreLevelCap ? MAX_DIGIMON_LEVEL : levelCap
+
+const applyPartyHealRewardEffect = (party, rewardItem) =>
+  (party ?? []).map((member) => {
+    if (!isCombatantAbleToBattle(member)) {
+      return member
+    }
+
+    if (rewardItem?.partyHealFull) {
+      const refreshedMember = refreshCombatantStats(member, {
+        statusEffect: rewardItem.cureStatus ? null : member.statusEffect,
+      })
+
+      return {
+        ...refreshedMember,
+        currentHp: refreshedMember.maxHp,
+      }
+    }
+
+    if (rewardItem?.partyHealAmount) {
+      return {
+        ...member,
+        currentHp: Math.min(member.maxHp, member.currentHp + rewardItem.partyHealAmount),
+      }
+    }
+
+    return member
+  })
 
 const applyInstantRewardEffect = (player, rewardItem, levelCap = Infinity) => {
   if (!player) {
@@ -955,6 +1082,13 @@ const applyInstantRewardEffect = (player, rewardItem, levelCap = Infinity) => {
   if (rewardItem?.digicloneKey) {
     return {
       nextPlayer: applyDigicloneRewardEffect(player, rewardItem.digicloneKey),
+      shouldStore: false,
+    }
+  }
+
+  if (rewardItem?.recoveryProgramKey) {
+    return {
+      nextPlayer: applyRecoveryProgramRewardEffect(player, rewardItem.recoveryProgramKey),
       shouldStore: false,
     }
   }
@@ -1035,6 +1169,7 @@ const isTargetedRewardItem = (item) =>
       item?.typeUpKey ||
       item?.attributeUpKey ||
       item?.digicloneKey ||
+      item?.recoveryProgramKey ||
       item?.levelUpAmount ||
       item?.evolutionReturn
   )
@@ -1095,6 +1230,15 @@ const isRewardItemUsableByCombatant = (item, combatant, levelCap = Infinity) => 
     return (digiclones[item.digicloneKey] ?? 0) < DIGICLONE_MAX
   }
 
+  if (item.recoveryProgramKey) {
+    const recoveryPrograms = normalizeRecoveryPrograms(combatant.recoveryPrograms)
+
+    return (
+      (recoveryPrograms[item.recoveryProgramKey] ?? 0) <
+      (item.maxOwnedPerCombatant ?? RECOVERY_PROGRAM_MAX)
+    )
+  }
+
   if (item.reviveRatio) {
     return combatant.currentHp <= 0
   }
@@ -1130,6 +1274,7 @@ const canRandomRewardItemAppear = (item, inventory = {}, rewardTarget = null, le
     item.typeUpKey ||
     item.attributeUpKey ||
     item.digicloneKey ||
+    item.recoveryProgramKey ||
     item.levelUpAmount ||
     item.partyLevelUpAmount ||
     item.evolutionReturn
@@ -1927,6 +2072,46 @@ const getAccuracyValue = (accuracyText) => {
   return Number.isNaN(numericValue) ? 100 : numericValue
 }
 
+const getModifiedAccuracyValue = (skillData, inventory = {}, attackerSide = 'ally') => {
+  const baseAccuracy = getAccuracyValue(skillData?.명중률)
+  const accuracyBonus =
+    attackerSide === 'ally'
+      ? Math.min(BATTLE_ACCURACY_ITEM_MAX, getInventoryItemCount(inventory, ACCURACY_TARGET_ITEM_ID)) *
+        BATTLE_ACCURACY_ITEM_RATE
+      : 0
+  const accuracyPenalty =
+    attackerSide === 'enemy'
+      ? Math.min(BATTLE_ACCURACY_ITEM_MAX, getInventoryItemCount(inventory, CONFUSION_WAVE_ITEM_ID)) *
+        BATTLE_ACCURACY_ITEM_RATE
+      : 0
+
+  return Math.max(0, Math.min(100, baseAccuracy + accuracyBonus - accuracyPenalty))
+}
+
+const resolveLifeForceEndure = ({ combatant, previousHp, nextHp, inventory = {}, canEndure = true }) => {
+  const itemCount = Math.min(LIFE_FORCE_MAX, getInventoryItemCount(inventory, LIFE_FORCE_ITEM_ID))
+  const endureChance = itemCount * LIFE_FORCE_ENDURE_RATE
+
+  if (!canEndure || itemCount <= 0 || previousHp <= 1 || nextHp > 0) {
+    return {
+      nextHp,
+      battleLogs: [],
+    }
+  }
+
+  if (Math.random() * 100 >= endureChance) {
+    return {
+      nextHp,
+      battleLogs: [],
+    }
+  }
+
+  return {
+    nextHp: 1,
+    battleLogs: [`${combatant.name}은(는) 생명의 힘으로 버텼다!`],
+  }
+}
+
 const getExperienceRatio = (combatant) => {
   if (!combatant?.experienceToNext) {
     return 0
@@ -2179,6 +2364,7 @@ const createEvolvedCombatant = (combatant, targetData) => {
     typePowerUps: combatant.typePowerUps,
     attributePowerUps: combatant.attributePowerUps,
     digiclones: combatant.digiclones,
+    recoveryPrograms: combatant.recoveryPrograms,
     statusEffect: combatant.statusEffect,
     stageName: targetData.stage,
   })
@@ -2227,6 +2413,7 @@ const createReturnedEvolutionCombatant = (combatant) => {
     typePowerUps: combatant.typePowerUps,
     attributePowerUps: combatant.attributePowerUps,
     digiclones: combatant.digiclones,
+    recoveryPrograms: combatant.recoveryPrograms,
     statusEffect: combatant.statusEffect,
     stageName: targetData.stage,
   })
@@ -2254,6 +2441,7 @@ const createCombatant = ({
   typePowerUps,
   attributePowerUps,
   digiclones,
+  recoveryPrograms,
   statusEffect,
   stageName,
 }) => {
@@ -2263,6 +2451,7 @@ const createCombatant = ({
   const resolvedTypePowerUps = normalizeTypePowerUps(typePowerUps)
   const resolvedAttributePowerUps = normalizeAttributePowerUps(attributePowerUps)
   const resolvedDigiclones = normalizeDigiclones(digiclones)
+  const resolvedRecoveryPrograms = normalizeRecoveryPrograms(recoveryPrograms)
   const resolvedStatusEffect = normalizeStatusEffect(statusEffect)
   const battleStats = calculateBattleStats({
     baseStats,
@@ -2284,6 +2473,7 @@ const createCombatant = ({
     typePowerUps: resolvedTypePowerUps,
     attributePowerUps: resolvedAttributePowerUps,
     digiclones: resolvedDigiclones,
+    recoveryPrograms: resolvedRecoveryPrograms,
     statusEffect: resolvedStatusEffect,
     level,
     experience,
@@ -2311,6 +2501,7 @@ const createCapturedPartyMember = (enemy, captureId) =>
       typePowerUps: normalizeTypePowerUps(null),
       attributePowerUps: normalizeAttributePowerUps(null),
       digiclones: normalizeDigiclones(null),
+      recoveryPrograms: normalizeRecoveryPrograms(null),
       statusEffect: null,
     },
     {
@@ -2340,6 +2531,7 @@ const createDigiEggCombatant = ({
   typePowerUps: normalizeTypePowerUps(null),
   attributePowerUps: normalizeAttributePowerUps(null),
   digiclones: normalizeDigiclones(null),
+  recoveryPrograms: normalizeRecoveryPrograms(null),
   statusEffect: null,
   level: 1,
   experience: 0,
@@ -2542,6 +2734,23 @@ const applyDigicloneRewardEffect = (combatant, digicloneKey) => {
   }
 }
 
+const applyRecoveryProgramRewardEffect = (combatant, recoveryProgramKey) => {
+  if (!combatant || !recoveryProgramKey) {
+    return combatant
+  }
+
+  const nextRecoveryPrograms = normalizeRecoveryPrograms(combatant.recoveryPrograms)
+  nextRecoveryPrograms[recoveryProgramKey] = Math.min(
+    RECOVERY_PROGRAM_MAX,
+    (nextRecoveryPrograms[recoveryProgramKey] ?? 0) + 1
+  )
+
+  return {
+    ...combatant,
+    recoveryPrograms: nextRecoveryPrograms,
+  }
+}
+
 const applyLevelUpRewardEffect = (combatant, levelUpAmount = 1, levelCap = Infinity) => {
   if (!combatant || combatant.level >= levelCap) {
     return combatant
@@ -2630,7 +2839,7 @@ const resolveTurnStartStatus = (combatant) => {
   }
 }
 
-const resolveTurnEndStatus = (combatant) => {
+const resolveTurnEndStatus = (combatant, { inventory = {}, side = 'enemy' } = {}) => {
   const normalizedStatus = normalizeStatusEffect(combatant.statusEffect)
   const statusDefinition = getStatusEffectDefinition(normalizedStatus?.type)
 
@@ -2646,12 +2855,21 @@ const resolveTurnEndStatus = (combatant) => {
 
   if (statusDefinition.endTurnDamageRatio && nextCombatant.currentHp > 0) {
     const damage = Math.max(1, Math.floor(nextCombatant.maxHp * statusDefinition.endTurnDamageRatio))
-    const nextHp = Math.max(0, nextCombatant.currentHp - damage)
+    const rawNextHp = Math.max(0, nextCombatant.currentHp - damage)
+    const endureResult = resolveLifeForceEndure({
+      combatant: nextCombatant,
+      previousHp: nextCombatant.currentHp,
+      nextHp: rawNextHp,
+      inventory,
+      canEndure: side === 'ally',
+    })
+    const nextHp = endureResult.nextHp
     nextCombatant = {
       ...nextCombatant,
       currentHp: nextHp,
     }
     battleLogs.push(`${nextCombatant.name}은(는) ${statusDefinition.label} 때문에 ${damage} 데미지를 입었다!`)
+    battleLogs.push(...endureResult.battleLogs)
 
     if (nextHp === 0) {
       battleLogs.push(`${nextCombatant.name}은(는) 쓰러졌다!`)
@@ -2797,11 +3015,18 @@ const applyPartyExperienceGain = ({
   }
 }
 
-const resolveAttackAction = ({ attacker, defender, skillName, announce = true }) => {
+const resolveAttackAction = ({
+  attacker,
+  defender,
+  skillName,
+  announce = true,
+  inventory = {},
+  attackerSide = 'ally',
+}) => {
   const skillData = getSkillData(skillName)
   const skillStatusData = getSkillStatusData(skillData)
   const battleLogs = announce ? [`${attacker.name}의 ${skillData.기술명}!`] : []
-  const accuracyValue = getAccuracyValue(skillData.명중률)
+  const accuracyValue = getModifiedAccuracyValue(skillData, inventory, attackerSide)
 
   if (Math.random() * 100 >= accuracyValue) {
     return {
@@ -2839,12 +3064,21 @@ const resolveAttackAction = ({ attacker, defender, skillName, announce = true })
   const baseDamage = Math.floor(scaledPower / 50) + 2
   const randomFactor = 0.85 + Math.random() * 0.15
   const damage = Math.max(1, Math.floor(baseDamage * finalMultiplier * randomFactor))
-  const nextHp = Math.max(0, defender.currentHp - damage)
+  const rawNextHp = Math.max(0, defender.currentHp - damage)
+  const endureResult = resolveLifeForceEndure({
+    combatant: defender,
+    previousHp: defender.currentHp,
+    nextHp: rawNextHp,
+    inventory,
+    canEndure: attackerSide === 'enemy',
+  })
+  const nextHp = endureResult.nextHp
   let nextDefender = {
     ...defender,
     currentHp: nextHp,
   }
   const nextLogs = [...battleLogs, `${defender.name}에게 ${damage} 데미지!`]
+  nextLogs.push(...endureResult.battleLogs)
 
   const hitStatusClearResult = clearReactiveStatusOnHit(nextDefender)
   nextDefender = hitStatusClearResult.nextCombatant
@@ -2873,7 +3107,53 @@ const resolveAttackAction = ({ attacker, defender, skillName, announce = true })
   }
 }
 
-const resolveEnemyPartyActions = ({ enemies, party, activeAllyIds }) => {
+const resolveRecoveryProgramOnDefeat = (combatant) => {
+  if (!combatant || combatant.currentHp > 0) {
+    return {
+      nextCombatant: combatant,
+      battleLogs: [],
+    }
+  }
+
+  const recoveryPrograms = normalizeRecoveryPrograms(combatant.recoveryPrograms)
+  const recoveryItem =
+    RECOVERY_PROGRAM_REWARD_ITEMS.find(
+      (item) => item.recoveryProgramKey === 'recovery-program-d' && recoveryPrograms[item.recoveryProgramKey] > 0
+    ) ??
+    RECOVERY_PROGRAM_REWARD_ITEMS.find(
+      (item) => item.recoveryProgramKey === 'recovery-program-m' && recoveryPrograms[item.recoveryProgramKey] > 0
+    )
+
+  if (!recoveryItem) {
+    return {
+      nextCombatant: combatant,
+      battleLogs: [],
+    }
+  }
+
+  const nextRecoveryPrograms = {
+    ...recoveryPrograms,
+    [recoveryItem.recoveryProgramKey]: Math.max(
+      0,
+      (recoveryPrograms[recoveryItem.recoveryProgramKey] ?? 0) - 1
+    ),
+  }
+  const recoveredHp = Math.max(1, Math.floor(combatant.maxHp * recoveryItem.recoveryRatio))
+
+  return {
+    nextCombatant: {
+      ...combatant,
+      recoveryPrograms: nextRecoveryPrograms,
+      currentHp: Math.min(combatant.maxHp, recoveredHp),
+    },
+    battleLogs: [
+      `${combatant.name}의 ${recoveryItem.name}이 발동했다!`,
+      `${combatant.name}은(는) HP ${Math.min(combatant.maxHp, recoveredHp)}로 전투에 복귀했다!`,
+    ],
+  }
+}
+
+const resolveEnemyPartyActions = ({ enemies, party, activeAllyIds, inventory = {} }) => {
   let nextEnemies = [...enemies]
   let nextParty = [...party]
   const battleLogs = []
@@ -2918,24 +3198,32 @@ const resolveEnemyPartyActions = ({ enemies, party, activeAllyIds }) => {
             defender: currentTarget,
             skillName: enemySkill,
             announce: false,
+            inventory,
+            attackerSide: 'enemy',
           })
-          nextParty = replacePartyMember(nextParty, attackResult.nextDefender)
+          const recoveryResult = resolveRecoveryProgramOnDefeat(attackResult.nextDefender)
+          nextParty = replacePartyMember(nextParty, recoveryResult.nextCombatant)
           battleLogs.push(...attackResult.battleLogs)
+          battleLogs.push(...recoveryResult.battleLogs)
         })
       } else if (isCombatantAbleToBattle(targetAlly)) {
         const attackResult = resolveAttackAction({
           attacker: nextEnemy,
           defender: targetAlly,
           skillName: enemySkill,
+          inventory,
+          attackerSide: 'enemy',
         })
-        targetAlly = attackResult.nextDefender
+        const recoveryResult = resolveRecoveryProgramOnDefeat(attackResult.nextDefender)
+        targetAlly = recoveryResult.nextCombatant
         nextParty = replacePartyMember(nextParty, targetAlly)
         battleLogs.push(...attackResult.battleLogs)
+        battleLogs.push(...recoveryResult.battleLogs)
       }
     }
 
     if (isCombatantAbleToBattle(nextEnemy)) {
-      const endStatusResult = resolveTurnEndStatus(nextEnemy)
+      const endStatusResult = resolveTurnEndStatus(nextEnemy, { inventory, side: 'enemy' })
       nextEnemy = endStatusResult.nextCombatant
       battleLogs.push(...endStatusResult.battleLogs)
     }
@@ -3082,6 +3370,8 @@ const resolveBattleTurnActions = ({
             defender: target,
             skillName: action.skillName,
             announce: false,
+            inventory,
+            attackerSide: action.side,
           })
 
           if (action.side === 'ally') {
@@ -3091,7 +3381,11 @@ const resolveBattleTurnActions = ({
               defeatedEnemies.push(target)
             }
           } else {
-            nextParty = replacePartyMember(nextParty, attackResult.nextDefender)
+            const recoveryResult = resolveRecoveryProgramOnDefeat(attackResult.nextDefender)
+            nextParty = replacePartyMember(nextParty, recoveryResult.nextCombatant)
+            battleLogs.push(...attackResult.battleLogs)
+            battleLogs.push(...recoveryResult.battleLogs)
+            return
           }
 
           battleLogs.push(...attackResult.battleLogs)
@@ -3105,6 +3399,8 @@ const resolveBattleTurnActions = ({
             attacker: actor,
             defender: selectedTarget,
             skillName: action.skillName,
+            inventory,
+            attackerSide: action.side,
           })
 
           if (action.side === 'ally') {
@@ -3114,10 +3410,15 @@ const resolveBattleTurnActions = ({
               defeatedEnemies.push(selectedTarget)
             }
           } else {
-            nextParty = replacePartyMember(nextParty, attackResult.nextDefender)
+            const recoveryResult = resolveRecoveryProgramOnDefeat(attackResult.nextDefender)
+            nextParty = replacePartyMember(nextParty, recoveryResult.nextCombatant)
+            battleLogs.push(...attackResult.battleLogs)
+            battleLogs.push(...recoveryResult.battleLogs)
           }
 
-          battleLogs.push(...attackResult.battleLogs)
+          if (action.side === 'ally') {
+            battleLogs.push(...attackResult.battleLogs)
+          }
         } else {
           battleLogs.push(`${actor.name}의 공격 대상이 없다!`)
         }
@@ -3127,9 +3428,15 @@ const resolveBattleTurnActions = ({
     actor = getBattleTurnActor({ action, party: nextParty, enemies: nextEnemies }) ?? actor
 
     if (isCombatantAbleToBattle(actor)) {
-      const endStatusResult = resolveTurnEndStatus(actor)
+      const endStatusResult = resolveTurnEndStatus(actor, { inventory, side: action.side })
       actor = endStatusResult.nextCombatant
       battleLogs.push(...endStatusResult.battleLogs)
+
+      if (action.side === 'ally') {
+        const recoveryResult = resolveRecoveryProgramOnDefeat(actor)
+        actor = recoveryResult.nextCombatant
+        battleLogs.push(...recoveryResult.battleLogs)
+      }
 
       const replacedAfterEnd = replaceBattleTurnActor({
         action,
@@ -3426,7 +3733,7 @@ function App() {
         activeAllyIds,
         getBattleAllyLimit(gameState)
       )
-      nextGold += getStageClearGoldReward(gameState.currentStage)
+      nextGold += getStageClearGoldReward(gameState.currentStage, nextInventory)
       resolvedLogs.push('전투에서 승리했다!')
       const rewardTarget = getFirstLivingPartyMember(resolvedParty, activeAllyIds)
       setRewardState(
@@ -3483,6 +3790,7 @@ function App() {
       enemies: resolvedEnemies,
       party: resolvedParty,
       activeAllyIds,
+      inventory: nextInventory,
     })
     resolvedEnemies = enemyPhaseResult.nextEnemies
     resolvedParty = enemyPhaseResult.nextParty
@@ -3562,7 +3870,7 @@ function App() {
         activeAllyIds,
         getBattleAllyLimit(gameState)
       )
-      nextGold += getStageClearGoldReward(gameState.currentStage)
+      nextGold += getStageClearGoldReward(gameState.currentStage, nextInventory)
       resolvedLogs.push('전투에서 승리했다!')
       const rewardTarget = getFirstLivingPartyMember(resolvedParty, activeAllyIds)
       setRewardState(
@@ -4344,6 +4652,23 @@ function App() {
       return
     }
 
+    if (rewardItem.partyHealAmount || rewardItem.partyHealFull) {
+      const nextParty = applyPartyHealRewardEffect(currentParty, rewardItem)
+      const nextPlayer =
+        getCombatantById(nextParty, gameState.player?.id) ??
+        getFirstLivingPartyMember(nextParty, gameState.activeAllyIds) ??
+        nextParty[0] ??
+        gameState.player
+
+      finishRewardUse({
+        ...gameState,
+        gold: source === 'fixed' ? (gameState.gold ?? 0) - (rewardItem.price ?? 0) : gameState.gold,
+        player: nextPlayer,
+        party: nextParty,
+      })
+      return
+    }
+
     const isTargetedItem = isTargetedRewardItem(rewardItem)
     const targetCombatant = isTargetedItem
       ? getCombatantById(currentParty, targetId) ?? gameState.player
@@ -4796,12 +5121,32 @@ function App() {
       }
     })
     .filter(Boolean)
+  const activeRecoveryProgramHudItems = recoveryProgramRewardItems
+    .map((item) => {
+      const count = normalizeRecoveryPrograms(hudCombatant?.recoveryPrograms)[item.recoveryProgramKey] ?? 0
+
+      if (count <= 0) {
+        return null
+      }
+
+      return {
+        id: item.id,
+        name: item.name,
+        description: `${item.description} · 현재 ${count}/${RECOVERY_PROGRAM_MAX}`,
+        imageUrl: item.imageUrl,
+        value: count,
+        isMaxed: count >= RECOVERY_PROGRAM_MAX,
+        isRecoveryProgram: true,
+      }
+    })
+    .filter(Boolean)
   const adventureHudItems = [
     ...inventoryHudItems,
     ...activeBuffHudItems,
     ...activeTypeUpHudItems,
     ...activeAttributeUpHudItems,
     ...activeDigicloneHudItems,
+    ...activeRecoveryProgramHudItems,
   ]
   const mapSelectionOptions = mapSelectionState?.options?.length
     ? mapSelectionState.options
