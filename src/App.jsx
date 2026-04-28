@@ -39,20 +39,31 @@ const EXP_BOOSTER_ITEM_ID = 'exp-booster'
 const EXP_BOOSTER_PLUS_ITEM_ID = 'exp-booster-plus'
 const LEVEL_UP_ITEM_ID = 'level-up'
 const PARTY_LEVEL_UP_ITEM_ID = 'party-level-up'
+const EVOLUTER_UP_ITEM_ID = 'evoluter-up'
 const EVOLUTION_RETURN_ITEM_ID = 'evolution-return'
 const GOLDEN_BANANA_ITEM_ID = 'golden-banana'
 const ACCURACY_TARGET_ITEM_ID = 'accuracy-target'
 const CONFUSION_WAVE_ITEM_ID = 'confusion-wave'
 const LIFE_FORCE_ITEM_ID = 'life-force'
+const MIRACLE_RUBY_ITEM_ID = 'miracle-ruby'
+const DEATH_BONE_ITEM_ID = 'death-bone'
+const HASTE_ITEM_ID = 'haste'
 const DIGI_EGG_STAGE = '디지에그'
 const DIGI_EGG_HATCH_STAGE_COUNT = 3
 const MAX_DIGIMON_LEVEL = 200
 const GOLDEN_BANANA_MAX = 3
 const GOLDEN_BANANA_BONUS_RATE = 0.2
+const EVOLUTER_UP_MAX = 3
 const BATTLE_ACCURACY_ITEM_MAX = 3
 const BATTLE_ACCURACY_ITEM_RATE = 5
 const LIFE_FORCE_MAX = 3
 const LIFE_FORCE_ENDURE_RATE = 10
+const MIRACLE_RUBY_MAX = 4
+const MIRACLE_RUBY_HEAL_DIVISOR = 16
+const DEATH_BONE_MAX = 3
+const DEATH_BONE_FLINCH_RATE = 10
+const HASTE_MAX = 3
+const HASTE_PRIORITY_RATE = 10
 const DIGIMON_TYPE_UP_TYPES = ['데이터', '바이러스', '백신', '불명', '프리']
 const TYPE_POWER_UP_MAX = 5
 const ATTRIBUTE_POWER_UP_MAX = 10
@@ -159,6 +170,57 @@ const RECOVERY_PROGRAM_REWARD_ITEMS = [
   },
 ]
 
+const BATTLE_ITEM_REWARD_ITEMS = [
+  {
+    id: ACCURACY_TARGET_ITEM_ID,
+    name: '명중과녁',
+    description: '사용 기술의 명중률 5% 증가',
+    battleItemKey: ACCURACY_TARGET_ITEM_ID,
+    maxOwnedPerCombatant: BATTLE_ACCURACY_ITEM_MAX,
+    imageUrl: '/아이템/배틀/명중과녁.png',
+  },
+  {
+    id: CONFUSION_WAVE_ITEM_ID,
+    name: '혼란전파',
+    description: '상대 기술의 명중률 5% 감소',
+    battleItemKey: CONFUSION_WAVE_ITEM_ID,
+    maxOwnedPerCombatant: BATTLE_ACCURACY_ITEM_MAX,
+    imageUrl: '/아이템/배틀/혼란전파.png',
+  },
+  {
+    id: LIFE_FORCE_ITEM_ID,
+    name: '생명의 힘',
+    description: 'HP가 0이 될 피해를 받을 때 개당 10% 확률로 HP 1로 버틴다',
+    battleItemKey: LIFE_FORCE_ITEM_ID,
+    maxOwnedPerCombatant: LIFE_FORCE_MAX,
+    imageUrl: '/아이템/배틀/생명의힘.png',
+  },
+  {
+    id: MIRACLE_RUBY_ITEM_ID,
+    name: '기적의루비',
+    description: '매턴마다 최대 HP의 1/16만큼 회복',
+    battleItemKey: MIRACLE_RUBY_ITEM_ID,
+    maxOwnedPerCombatant: MIRACLE_RUBY_MAX,
+    imageUrl: '/아이템/배틀/기적의루비.png',
+  },
+  {
+    id: DEATH_BONE_ITEM_ID,
+    name: '죽음을부르는뼈',
+    description: '공격마다 적이 이번 턴 풀죽을 확률 10% 증가',
+    battleItemKey: DEATH_BONE_ITEM_ID,
+    maxOwnedPerCombatant: DEATH_BONE_MAX,
+    imageUrl: '/아이템/배틀/죽음을부르는뼈.png',
+  },
+  {
+    id: HASTE_ITEM_ID,
+    name: '헤이스트',
+    description: '공격이 개당 10% 확률로 선제공격',
+    battleItemKey: HASTE_ITEM_ID,
+    maxOwnedPerCombatant: HASTE_MAX,
+    imageUrl: '/아이템/배틀/헤이스트.png',
+  },
+]
+
 const fixedRewardItems = [
   {
     id: 'heal-20',
@@ -193,6 +255,65 @@ const fixedRewardItems = [
     imageUrl: '/아이템/회복/부활칩(100%25).png',
   },
 ]
+
+const REWARD_RARITY_WEIGHTS = [
+  { key: 'common', weight: 75 },
+  { key: 'good', weight: 18 },
+  { key: 'rare', weight: 4 },
+  { key: 'rogue', weight: 2.9 },
+  { key: 'master', weight: 0.1 },
+]
+
+const COMMON_DIGI_EGG_NAMES = new Set([
+  '용기',
+  '우정',
+  '순수',
+  '사랑',
+  '성실',
+  '지식',
+  '친절',
+  '희망',
+  '빛',
+  '어둠',
+])
+const ROGUE_DIGI_EGG_NAMES = new Set(['모르프몬', '옷코몬'])
+const COMMON_REWARD_ITEM_IDS = new Set(['capture-net', 'heal-20', 'heal-50', LEVEL_UP_ITEM_ID])
+const GOOD_REWARD_ITEM_IDS = new Set([
+  'capture-net-super',
+  'heal-200',
+  'party-heal-50',
+  'revive-50',
+  EXP_BOOSTER_ITEM_ID,
+  PARTY_LEVEL_UP_ITEM_ID,
+  MAP_ITEM_ID,
+  DIGIMON_DETECTOR_ITEM_ID,
+])
+const RARE_REWARD_ITEM_IDS = new Set([
+  'capture-net-hyper',
+  'heal-full-hp',
+  'heal-full-cure',
+  'party-heal-200',
+  'revive-100',
+  'recovery-program-m',
+  EXP_SHARE_ITEM_ID,
+  EXP_BOOSTER_PLUS_ITEM_ID,
+  GOLDEN_BANANA_ITEM_ID,
+  CONFUSION_WAVE_ITEM_ID,
+  ACCURACY_TARGET_ITEM_ID,
+  GLOBE_ITEM_ID,
+  EVOLUTION_RETURN_ITEM_ID,
+  IV_DETECTOR_ITEM_ID,
+  EVOLUTER_UP_ITEM_ID,
+])
+const ROGUE_REWARD_ITEM_IDS = new Set([
+  'party-heal-full-cure',
+  'recovery-program-d',
+  HASTE_ITEM_ID,
+  MIRACLE_RUBY_ITEM_ID,
+  LIFE_FORCE_ITEM_ID,
+  DEATH_BONE_ITEM_ID,
+])
+const MASTER_REWARD_ITEM_IDS = new Set(['capture-net-master'])
 
 const randomRewardItemPool = [
   {
@@ -230,6 +351,14 @@ const randomRewardItemPool = [
     buffStatKey: 'speed',
     imageUrl: '/아이템/스탯업/스피드.png',
   },
+  {
+    id: 'buff-hp',
+    name: '체력 증가',
+    description: '10턴 동안 체력 10% 증가',
+    buffStatKey: 'hp',
+    imageUrl: '/아이템/스탯업/체력.png',
+  },
+  ...fixedRewardItems,
   {
     id: 'heal-200',
     name: '회복플로피S',
@@ -340,27 +469,7 @@ const randomRewardItemPool = [
     maxOwned: GOLDEN_BANANA_MAX,
     imageUrl: '/아이템/골드/황금바나나.png',
   },
-  {
-    id: ACCURACY_TARGET_ITEM_ID,
-    name: '명중과녁',
-    description: '사용 기술의 명중률 5% 증가',
-    maxOwned: BATTLE_ACCURACY_ITEM_MAX,
-    imageUrl: '/아이템/배틀/명중과녁.png',
-  },
-  {
-    id: CONFUSION_WAVE_ITEM_ID,
-    name: '혼란전파',
-    description: '상대 기술의 명중률 5% 감소',
-    maxOwned: BATTLE_ACCURACY_ITEM_MAX,
-    imageUrl: '/아이템/배틀/혼란전파.png',
-  },
-  {
-    id: LIFE_FORCE_ITEM_ID,
-    name: '생명의 힘',
-    description: 'HP가 0이 될 피해를 받을 때 개당 10% 확률로 HP 1로 버틴다',
-    maxOwned: LIFE_FORCE_MAX,
-    imageUrl: '/아이템/배틀/생명의힘.png',
-  },
+  ...BATTLE_ITEM_REWARD_ITEMS,
   {
     id: EXP_SHARE_ITEM_ID,
     name: 'exp공유기',
@@ -399,6 +508,13 @@ const randomRewardItemPool = [
     imageUrl: '/아이템/레벨업/에보류터(골드).png',
   },
   {
+    id: EVOLUTER_UP_ITEM_ID,
+    name: '에보류터UP',
+    description: '에보류터 계열 아이템의 레벨 상승량 +1',
+    maxOwned: EVOLUTER_UP_MAX,
+    imageUrl: '/아이템/레벨업/에보류터UP.png',
+  },
+  {
     id: EVOLUTION_RETURN_ITEM_ID,
     name: '진화리턴',
     description: '대상 디지몬을 이전 진화 단계로 되돌린다',
@@ -426,6 +542,7 @@ const typeUpRewardItems = randomRewardItemPool.filter((item) => item.typeUpKey)
 const attributeUpRewardItems = randomRewardItemPool.filter((item) => item.attributeUpKey)
 const digicloneRewardItems = randomRewardItemPool.filter((item) => item.digicloneKey)
 const recoveryProgramRewardItems = randomRewardItemPool.filter((item) => item.recoveryProgramKey)
+const battleItemRewardItems = randomRewardItemPool.filter((item) => item.battleItemKey)
 const captureItemOrder = ['capture-net', 'capture-net-super', 'capture-net-hyper', 'capture-net-master']
 const captureItemLookup = new Map(randomRewardItemPool.map((item) => [item.id, item]))
 const captureChanceByTier = {
@@ -740,8 +857,11 @@ const DigimonTraitIcon = ({ className, src, label }) => {
 
 const MAX_ACTIVE_COMBATANTS = 2
 const MAX_ENEMY_COMBATANTS = 2
+const PARTY_SLOT_COUNT = 8
 const STARTING_PLAYER_LEVEL = 5
-const DIGI_EGG_HATCH_LEVEL = STARTING_PLAYER_LEVEL
+const STARTER_PARTY_COST_LIMIT = 10
+const STARTER_GROWTH_COST = 3
+const DIGI_EGG_HATCH_LEVEL = 3
 const BUFF_STAGE_DURATION = 10
 const STATUS_DURATION_TURNS = 3
 const STATUS_EARLY_CURE_CHANCE = 30
@@ -758,7 +878,7 @@ const EVOLUTION_STAGE_REQUIREMENTS = {
 }
 const STAT_KEYS = ['hp', 'attack', 'defense', 'specialAttack', 'specialDefense', 'speed']
 const EVOLUTION_REQUIREMENT_STAT_KEYS = ['hp', 'attack', 'specialAttack', 'defense', 'specialDefense', 'speed']
-const BUFFABLE_STAT_KEYS = ['attack', 'defense', 'specialAttack', 'specialDefense', 'speed']
+const BUFFABLE_STAT_KEYS = ['hp', 'attack', 'defense', 'specialAttack', 'specialDefense', 'speed']
 const STATUS_EFFECT_TYPES = ['독', '맹독', '혼란', '착란', '마비', '행동불능', '수면', '혼수상태']
 const BASE_STAT_FIELD_MAP = {
   hp: '체력',
@@ -997,6 +1117,13 @@ const normalizeRecoveryPrograms = (recoveryPrograms) =>
     return result
   }, {})
 
+const normalizeBattleItems = (battleItems) =>
+  BATTLE_ITEM_REWARD_ITEMS.reduce((result, item) => {
+    const nextValue = Math.max(0, Math.floor(battleItems?.[item.battleItemKey] ?? 0))
+    result[item.battleItemKey] = Math.min(item.maxOwnedPerCombatant ?? 0, nextValue)
+    return result
+  }, {})
+
 const getRewardItemLevelLimit = (item, levelCap = Infinity) =>
   item?.ignoreLevelCap ? MAX_DIGIMON_LEVEL : levelCap
 
@@ -1093,6 +1220,13 @@ const applyInstantRewardEffect = (player, rewardItem, levelCap = Infinity) => {
     }
   }
 
+  if (rewardItem?.battleItemKey) {
+    return {
+      nextPlayer: applyBattleItemRewardEffect(player, rewardItem.battleItemKey),
+      shouldStore: false,
+    }
+  }
+
   if (rewardItem?.levelUpAmount) {
     return {
       nextPlayer: applyLevelUpRewardEffect(
@@ -1170,6 +1304,7 @@ const isTargetedRewardItem = (item) =>
       item?.attributeUpKey ||
       item?.digicloneKey ||
       item?.recoveryProgramKey ||
+      item?.battleItemKey ||
       item?.levelUpAmount ||
       item?.evolutionReturn
   )
@@ -1239,6 +1374,15 @@ const isRewardItemUsableByCombatant = (item, combatant, levelCap = Infinity) => 
     )
   }
 
+  if (item.battleItemKey) {
+    const battleItems = normalizeBattleItems(combatant.battleItems)
+
+    return (
+      (battleItems[item.battleItemKey] ?? 0) <
+      (item.maxOwnedPerCombatant ?? 0)
+    )
+  }
+
   if (item.reviveRatio) {
     return combatant.currentHp <= 0
   }
@@ -1252,6 +1396,18 @@ const isRewardItemUsableByCombatant = (item, combatant, levelCap = Infinity) => 
 
 const shouldSelectRewardTarget = (item, party, fallbackPlayer = null) =>
   isTargetedRewardItem(item) && getRewardTargetCandidates(party, fallbackPlayer).length > 1
+
+const hasCombatantSkillAttribute = (combatant, attributeKey) => {
+  if (!combatant || !attributeKey) {
+    return false
+  }
+
+  return (combatant.skills ?? []).some((skillName) => {
+    const skillAttribute = getAttributePowerUpKey(getSkillData(skillName)?.속성)
+
+    return skillAttribute === attributeKey
+  })
+}
 
 const canRandomRewardItemAppear = (item, inventory = {}, rewardTarget = null, levelCap = Infinity) => {
   if (item.requiresItemId && (inventory?.[item.requiresItemId] ?? 0) <= 0) {
@@ -1275,8 +1431,10 @@ const canRandomRewardItemAppear = (item, inventory = {}, rewardTarget = null, le
     item.attributeUpKey ||
     item.digicloneKey ||
     item.recoveryProgramKey ||
+    item.battleItemKey ||
     item.levelUpAmount ||
     item.partyLevelUpAmount ||
+    item.reviveRatio ||
     item.evolutionReturn
   ) {
     const rewardTargets = getRewardTargetCandidates(
@@ -1288,6 +1446,13 @@ const canRandomRewardItemAppear = (item, inventory = {}, rewardTarget = null, le
           levelUpAmount: item.partyLevelUpAmount,
         }
       : item
+
+    if (
+      item.attributeUpKey &&
+      !rewardTargets.some((target) => hasCombatantSkillAttribute(target, item.attributeUpKey))
+    ) {
+      return false
+    }
 
     if (!rewardTargets.some((target) => isRewardItemUsableByCombatant(usableItem, target, levelCap))) {
       return false
@@ -1335,6 +1500,76 @@ const getRewardItemMaxCount = (item) => {
   return null
 }
 
+const getRewardItemRarity = (item) => {
+  if (!item) {
+    return 'common'
+  }
+
+  if (item.buffStatKey || COMMON_REWARD_ITEM_IDS.has(item.id) || COMMON_DIGI_EGG_NAMES.has(item.digiEggName)) {
+    return 'common'
+  }
+
+  if (item.digicloneKey || GOOD_REWARD_ITEM_IDS.has(item.id)) {
+    return 'good'
+  }
+
+  if (
+    item.attributeUpKey ||
+    item.typeUpKey ||
+    RARE_REWARD_ITEM_IDS.has(item.id)
+  ) {
+    return 'rare'
+  }
+
+  if (ROGUE_REWARD_ITEM_IDS.has(item.id) || ROGUE_DIGI_EGG_NAMES.has(item.digiEggName)) {
+    return 'rogue'
+  }
+
+  if (MASTER_REWARD_ITEM_IDS.has(item.id)) {
+    return 'master'
+  }
+
+  return 'common'
+}
+
+const selectWeightedRewardRarity = (items) => {
+  const availableWeights = REWARD_RARITY_WEIGHTS.filter(({ key }) =>
+    items.some((item) => getRewardItemRarity(item) === key)
+  )
+  const totalWeight = availableWeights.reduce((total, rarity) => total + rarity.weight, 0)
+  let roll = Math.random() * totalWeight
+
+  for (const rarity of availableWeights) {
+    roll -= rarity.weight
+
+    if (roll <= 0) {
+      return rarity.key
+    }
+  }
+
+  return availableWeights[availableWeights.length - 1]?.key ?? 'common'
+}
+
+const selectRandomRewardItemsByRarity = (items, count = 3) => {
+  const selectedItems = []
+  let candidates = [...items]
+
+  while (selectedItems.length < count && candidates.length > 0) {
+    const selectedRarity = selectWeightedRewardRarity(candidates)
+    const rarityCandidates = candidates.filter((item) => getRewardItemRarity(item) === selectedRarity)
+    const selectedItem = shuffleItems(rarityCandidates)[0] ?? shuffleItems(candidates)[0]
+
+    if (!selectedItem) {
+      break
+    }
+
+    selectedItems.push(selectedItem)
+    candidates = candidates.filter((item) => item.id !== selectedItem.id)
+  }
+
+  return selectedItems
+}
+
 const createRewardSelection = (
   inventory = {},
   rewardTarget = null,
@@ -1342,11 +1577,12 @@ const createRewardSelection = (
   currentStage = 1,
   rerollCount = 0
 ) => ({
-  randomItems: shuffleItems(
+  randomItems: selectRandomRewardItemsByRarity(
     randomRewardItemPool.filter((item) =>
       canRandomRewardItemAppear(item, inventory, rewardTarget, levelCap)
-    )
-  ).slice(0, 3),
+    ),
+    3
+  ),
   selectedRandomItemId: null,
   isResolving: false,
   rerollCount,
@@ -2072,24 +2308,24 @@ const getAccuracyValue = (accuracyText) => {
   return Number.isNaN(numericValue) ? 100 : numericValue
 }
 
-const getModifiedAccuracyValue = (skillData, inventory = {}, attackerSide = 'ally') => {
+const getModifiedAccuracyValue = (skillData, attacker, defender, attackerSide = 'ally') => {
   const baseAccuracy = getAccuracyValue(skillData?.명중률)
   const accuracyBonus =
     attackerSide === 'ally'
-      ? Math.min(BATTLE_ACCURACY_ITEM_MAX, getInventoryItemCount(inventory, ACCURACY_TARGET_ITEM_ID)) *
+      ? Math.min(BATTLE_ACCURACY_ITEM_MAX, getBattleItemCount(attacker, ACCURACY_TARGET_ITEM_ID)) *
         BATTLE_ACCURACY_ITEM_RATE
       : 0
   const accuracyPenalty =
     attackerSide === 'enemy'
-      ? Math.min(BATTLE_ACCURACY_ITEM_MAX, getInventoryItemCount(inventory, CONFUSION_WAVE_ITEM_ID)) *
+      ? Math.min(BATTLE_ACCURACY_ITEM_MAX, getBattleItemCount(defender, CONFUSION_WAVE_ITEM_ID)) *
         BATTLE_ACCURACY_ITEM_RATE
       : 0
 
   return Math.max(0, Math.min(100, baseAccuracy + accuracyBonus - accuracyPenalty))
 }
 
-const resolveLifeForceEndure = ({ combatant, previousHp, nextHp, inventory = {}, canEndure = true }) => {
-  const itemCount = Math.min(LIFE_FORCE_MAX, getInventoryItemCount(inventory, LIFE_FORCE_ITEM_ID))
+const resolveLifeForceEndure = ({ combatant, previousHp, nextHp, canEndure = true }) => {
+  const itemCount = Math.min(LIFE_FORCE_MAX, getBattleItemCount(combatant, LIFE_FORCE_ITEM_ID))
   const endureChance = itemCount * LIFE_FORCE_ENDURE_RATE
 
   if (!canEndure || itemCount <= 0 || previousHp <= 1 || nextHp > 0) {
@@ -2109,6 +2345,46 @@ const resolveLifeForceEndure = ({ combatant, previousHp, nextHp, inventory = {},
   return {
     nextHp: 1,
     battleLogs: [`${combatant.name}은(는) 생명의 힘으로 버텼다!`],
+  }
+}
+
+const rollHastePriority = (combatant) => {
+  const itemCount = Math.min(HASTE_MAX, getBattleItemCount(combatant, HASTE_ITEM_ID))
+
+  return itemCount > 0 && Math.random() * 100 < itemCount * HASTE_PRIORITY_RATE
+}
+
+const rollDeathBoneFlinch = (combatant) => {
+  const itemCount = Math.min(DEATH_BONE_MAX, getBattleItemCount(combatant, DEATH_BONE_ITEM_ID))
+
+  return itemCount > 0 && Math.random() * 100 < itemCount * DEATH_BONE_FLINCH_RATE
+}
+
+const applyMiracleRubyTurnHealing = ({ party, activeAllyIds }) => {
+  let nextParty = [...(party ?? [])]
+  const battleLogs = []
+
+  activeAllyIds.forEach((allyId) => {
+    const ally = getCombatantById(nextParty, allyId)
+    const itemCount = Math.min(MIRACLE_RUBY_MAX, getBattleItemCount(ally, MIRACLE_RUBY_ITEM_ID))
+
+    if (itemCount <= 0 || !isCombatantAbleToBattle(ally) || ally.currentHp >= ally.maxHp) {
+      return
+    }
+
+    const healAmount = Math.max(1, Math.floor((ally.maxHp * itemCount) / MIRACLE_RUBY_HEAL_DIVISOR))
+    const nextAlly = {
+      ...ally,
+      currentHp: Math.min(ally.maxHp, ally.currentHp + healAmount),
+    }
+
+    nextParty = replacePartyMember(nextParty, nextAlly)
+    battleLogs.push(`${ally.name}은(는) 기적의루비로 HP를 ${nextAlly.currentHp - ally.currentHp} 회복했다!`)
+  })
+
+  return {
+    nextParty,
+    battleLogs,
   }
 }
 
@@ -2210,7 +2486,9 @@ const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs, digiclones }
         base: baseStats.hp,
         iv: ivs.hp,
         level,
-      }) * getDigicloneMultiplier(digiclones, 'hp')
+      }) *
+        getBuffMultiplier(activeBuffs, 'hp') *
+        getDigicloneMultiplier(digiclones, 'hp')
     )
   ),
   attack: Math.max(
@@ -2365,6 +2643,7 @@ const createEvolvedCombatant = (combatant, targetData) => {
     attributePowerUps: combatant.attributePowerUps,
     digiclones: combatant.digiclones,
     recoveryPrograms: combatant.recoveryPrograms,
+    battleItems: combatant.battleItems,
     statusEffect: combatant.statusEffect,
     stageName: targetData.stage,
   })
@@ -2414,6 +2693,7 @@ const createReturnedEvolutionCombatant = (combatant) => {
     attributePowerUps: combatant.attributePowerUps,
     digiclones: combatant.digiclones,
     recoveryPrograms: combatant.recoveryPrograms,
+    battleItems: combatant.battleItems,
     statusEffect: combatant.statusEffect,
     stageName: targetData.stage,
   })
@@ -2442,6 +2722,7 @@ const createCombatant = ({
   attributePowerUps,
   digiclones,
   recoveryPrograms,
+  battleItems,
   statusEffect,
   stageName,
 }) => {
@@ -2452,6 +2733,7 @@ const createCombatant = ({
   const resolvedAttributePowerUps = normalizeAttributePowerUps(attributePowerUps)
   const resolvedDigiclones = normalizeDigiclones(digiclones)
   const resolvedRecoveryPrograms = normalizeRecoveryPrograms(recoveryPrograms)
+  const resolvedBattleItems = normalizeBattleItems(battleItems)
   const resolvedStatusEffect = normalizeStatusEffect(statusEffect)
   const battleStats = calculateBattleStats({
     baseStats,
@@ -2474,6 +2756,7 @@ const createCombatant = ({
     attributePowerUps: resolvedAttributePowerUps,
     digiclones: resolvedDigiclones,
     recoveryPrograms: resolvedRecoveryPrograms,
+    battleItems: resolvedBattleItems,
     statusEffect: resolvedStatusEffect,
     level,
     experience,
@@ -2502,6 +2785,7 @@ const createCapturedPartyMember = (enemy, captureId) =>
       attributePowerUps: normalizeAttributePowerUps(null),
       digiclones: normalizeDigiclones(null),
       recoveryPrograms: normalizeRecoveryPrograms(null),
+      battleItems: normalizeBattleItems(null),
       statusEffect: null,
     },
     {
@@ -2532,6 +2816,7 @@ const createDigiEggCombatant = ({
   attributePowerUps: normalizeAttributePowerUps(null),
   digiclones: normalizeDigiclones(null),
   recoveryPrograms: normalizeRecoveryPrograms(null),
+  battleItems: normalizeBattleItems(null),
   statusEffect: null,
   level: 1,
   experience: 0,
@@ -2635,6 +2920,35 @@ const getExperienceReward = (enemy) =>
 
 const getInventoryItemCount = (inventory, itemId) =>
   Math.max(0, Math.floor(inventory?.[itemId] ?? 0))
+
+const getEvoluterLevelUpAmount = (inventory = {}, baseAmount = 1) =>
+  Math.max(1, baseAmount) +
+  Math.min(EVOLUTER_UP_MAX, getInventoryItemCount(inventory, EVOLUTER_UP_ITEM_ID))
+
+const getRewardItemWithInventoryModifiers = (item, inventory = {}) => {
+  if (!item) {
+    return item
+  }
+
+  if (item.levelUpAmount) {
+    return {
+      ...item,
+      levelUpAmount: getEvoluterLevelUpAmount(inventory, item.levelUpAmount),
+    }
+  }
+
+  if (item.partyLevelUpAmount) {
+    return {
+      ...item,
+      partyLevelUpAmount: getEvoluterLevelUpAmount(inventory, item.partyLevelUpAmount),
+    }
+  }
+
+  return item
+}
+
+const getBattleItemCount = (combatant, itemId) =>
+  Math.max(0, Math.floor(normalizeBattleItems(combatant?.battleItems)[itemId] ?? 0))
 
 const getExperienceMultiplier = (inventory = {}) =>
   1 +
@@ -2751,6 +3065,24 @@ const applyRecoveryProgramRewardEffect = (combatant, recoveryProgramKey) => {
   }
 }
 
+const applyBattleItemRewardEffect = (combatant, battleItemKey) => {
+  if (!combatant || !battleItemKey) {
+    return combatant
+  }
+
+  const battleItem = BATTLE_ITEM_REWARD_ITEMS.find((item) => item.battleItemKey === battleItemKey)
+  const nextBattleItems = normalizeBattleItems(combatant.battleItems)
+  nextBattleItems[battleItemKey] = Math.min(
+    battleItem?.maxOwnedPerCombatant ?? 0,
+    (nextBattleItems[battleItemKey] ?? 0) + 1
+  )
+
+  return {
+    ...combatant,
+    battleItems: nextBattleItems,
+  }
+}
+
 const applyLevelUpRewardEffect = (combatant, levelUpAmount = 1, levelCap = Infinity) => {
   if (!combatant || combatant.level >= levelCap) {
     return combatant
@@ -2839,7 +3171,7 @@ const resolveTurnStartStatus = (combatant) => {
   }
 }
 
-const resolveTurnEndStatus = (combatant, { inventory = {}, side = 'enemy' } = {}) => {
+const resolveTurnEndStatus = (combatant, { side = 'enemy' } = {}) => {
   const normalizedStatus = normalizeStatusEffect(combatant.statusEffect)
   const statusDefinition = getStatusEffectDefinition(normalizedStatus?.type)
 
@@ -2860,7 +3192,6 @@ const resolveTurnEndStatus = (combatant, { inventory = {}, side = 'enemy' } = {}
       combatant: nextCombatant,
       previousHp: nextCombatant.currentHp,
       nextHp: rawNextHp,
-      inventory,
       canEndure: side === 'ally',
     })
     const nextHp = endureResult.nextHp
@@ -3026,7 +3357,7 @@ const resolveAttackAction = ({
   const skillData = getSkillData(skillName)
   const skillStatusData = getSkillStatusData(skillData)
   const battleLogs = announce ? [`${attacker.name}의 ${skillData.기술명}!`] : []
-  const accuracyValue = getModifiedAccuracyValue(skillData, inventory, attackerSide)
+  const accuracyValue = getModifiedAccuracyValue(skillData, attacker, defender, attackerSide)
 
   if (Math.random() * 100 >= accuracyValue) {
     return {
@@ -3069,7 +3400,6 @@ const resolveAttackAction = ({
     combatant: defender,
     previousHp: defender.currentHp,
     nextHp: rawNextHp,
-    inventory,
     canEndure: attackerSide === 'enemy',
   })
   const nextHp = endureResult.nextHp
@@ -3223,7 +3553,7 @@ const resolveEnemyPartyActions = ({ enemies, party, activeAllyIds, inventory = {
     }
 
     if (isCombatantAbleToBattle(nextEnemy)) {
-      const endStatusResult = resolveTurnEndStatus(nextEnemy, { inventory, side: 'enemy' })
+      const endStatusResult = resolveTurnEndStatus(nextEnemy, { side: 'enemy' })
       nextEnemy = endStatusResult.nextCombatant
       battleLogs.push(...endStatusResult.battleLogs)
     }
@@ -3312,26 +3642,50 @@ const resolveBattleTurnActions = ({
   let nextParty = [...party]
   let nextEnemies = [...enemies]
   const battleLogs = []
-  const sortedActions = [...actions].sort((firstAction, secondAction) => {
-    const speedDifference = (secondAction.speed ?? 0) - (firstAction.speed ?? 0)
+  const sortedActions = [...actions]
+    .map((action) => {
+      const priorityActor = getBattleTurnActor({ action, party: nextParty, enemies: nextEnemies })
 
-    if (speedDifference !== 0) {
-      return speedDifference
-    }
+      return {
+        ...action,
+        priority:
+          action.priority ??
+          (action.side === 'ally' && rollHastePriority(priorityActor) ? 1 : 0),
+      }
+    })
+    .sort((firstAction, secondAction) => {
+      const priorityDifference = (secondAction.priority ?? 0) - (firstAction.priority ?? 0)
 
-    const tieDifference = (firstAction.tieBreaker ?? 0) - (secondAction.tieBreaker ?? 0)
+      if (priorityDifference !== 0) {
+        return priorityDifference
+      }
 
-    if (tieDifference !== 0) {
-      return tieDifference
-    }
+      const speedDifference = (secondAction.speed ?? 0) - (firstAction.speed ?? 0)
 
-    return (firstAction.order ?? 0) - (secondAction.order ?? 0)
-  })
+      if (speedDifference !== 0) {
+        return speedDifference
+      }
 
-  sortedActions.forEach((action) => {
+      const tieDifference = (firstAction.tieBreaker ?? 0) - (secondAction.tieBreaker ?? 0)
+
+      if (tieDifference !== 0) {
+        return tieDifference
+      }
+
+      return (firstAction.order ?? 0) - (secondAction.order ?? 0)
+    })
+  const flinchedActorIds = new Set()
+
+  sortedActions.forEach((action, actionIndex) => {
     let actor = getBattleTurnActor({ action, party: nextParty, enemies: nextEnemies })
 
     if (!action.skillName || !isCombatantAbleToBattle(actor)) {
+      return
+    }
+
+    if (flinchedActorIds.has(action.actorId)) {
+      battleLogs.push(`${actor.name}은(는) 풀죽어서 움직일 수 없었다!`)
+      flinchedActorIds.delete(action.actorId)
       return
     }
 
@@ -3352,6 +3706,28 @@ const resolveBattleTurnActions = ({
     nextEnemies = replacedAfterStart.enemies
 
     if (startStatusResult.canAct && isCombatantAbleToBattle(actor)) {
+      if (action.side === 'ally' && action.priority > 0) {
+        battleLogs.push(`${actor.name}의 헤이스트가 발동했다!`)
+      }
+
+      const getDeathBoneFlinchLogs = (target) => {
+        const hasPendingTargetAction = sortedActions
+          .slice(actionIndex + 1)
+          .some((futureAction) => futureAction.side === 'enemy' && futureAction.actorId === target?.id)
+
+        if (
+          action.side !== 'ally' ||
+          !isCombatantAbleToBattle(target) ||
+          !hasPendingTargetAction ||
+          !rollDeathBoneFlinch(actor)
+        ) {
+          return []
+        }
+
+        flinchedActorIds.add(target.id)
+        return [`${target.name}은(는) 풀죽었다!`]
+      }
+
       const targetCandidates = getBattleTurnTargetCandidates({
         action,
         party: nextParty,
@@ -3380,6 +3756,8 @@ const resolveBattleTurnActions = ({
             if (target.currentHp > 0 && attackResult.nextDefender.currentHp === 0) {
               defeatedEnemies.push(target)
             }
+            battleLogs.push(...attackResult.battleLogs)
+            battleLogs.push(...getDeathBoneFlinchLogs(attackResult.nextDefender))
           } else {
             const recoveryResult = resolveRecoveryProgramOnDefeat(attackResult.nextDefender)
             nextParty = replacePartyMember(nextParty, recoveryResult.nextCombatant)
@@ -3387,8 +3765,6 @@ const resolveBattleTurnActions = ({
             battleLogs.push(...recoveryResult.battleLogs)
             return
           }
-
-          battleLogs.push(...attackResult.battleLogs)
         })
       } else {
         const selectedTarget =
@@ -3409,15 +3785,13 @@ const resolveBattleTurnActions = ({
             if (selectedTarget.currentHp > 0 && attackResult.nextDefender.currentHp === 0) {
               defeatedEnemies.push(selectedTarget)
             }
+            battleLogs.push(...attackResult.battleLogs)
+            battleLogs.push(...getDeathBoneFlinchLogs(attackResult.nextDefender))
           } else {
             const recoveryResult = resolveRecoveryProgramOnDefeat(attackResult.nextDefender)
             nextParty = replacePartyMember(nextParty, recoveryResult.nextCombatant)
             battleLogs.push(...attackResult.battleLogs)
             battleLogs.push(...recoveryResult.battleLogs)
-          }
-
-          if (action.side === 'ally') {
-            battleLogs.push(...attackResult.battleLogs)
           }
         } else {
           battleLogs.push(`${actor.name}의 공격 대상이 없다!`)
@@ -3428,7 +3802,7 @@ const resolveBattleTurnActions = ({
     actor = getBattleTurnActor({ action, party: nextParty, enemies: nextEnemies }) ?? actor
 
     if (isCombatantAbleToBattle(actor)) {
-      const endStatusResult = resolveTurnEndStatus(actor, { inventory, side: action.side })
+      const endStatusResult = resolveTurnEndStatus(actor, { side: action.side })
       actor = endStatusResult.nextCombatant
       battleLogs.push(...endStatusResult.battleLogs)
 
@@ -3462,6 +3836,13 @@ const resolveBattleTurnActions = ({
       battleLogs.push(...experienceResult.battleLogs)
     }
   })
+
+  const miracleRubyResult = applyMiracleRubyTurnHealing({
+    party: nextParty,
+    activeAllyIds,
+  })
+  nextParty = miracleRubyResult.nextParty
+  battleLogs.push(...miracleRubyResult.battleLogs)
 
   return {
     nextParty,
@@ -3501,6 +3882,9 @@ function App() {
   )
   const [screenMode, setScreenMode] = useState('menu')
   const [selectedGrowthIndex, setSelectedGrowthIndex] = useState(0)
+  const [selectedStarterNames, setSelectedStarterNames] = useState(() =>
+    growthStageDigimon[0]?.name ? [growthStageDigimon[0].name] : []
+  )
   const [gameState, setGameState] = useState(null)
   const [selectedBattleCommand, setSelectedBattleCommand] = useState('attack')
   const [battlePanelMode, setBattlePanelMode] = useState('commands')
@@ -3795,6 +4179,17 @@ function App() {
     resolvedEnemies = enemyPhaseResult.nextEnemies
     resolvedParty = enemyPhaseResult.nextParty
     resolvedLogs.push(...enemyPhaseResult.battleLogs)
+    activeAllyIds = getActiveAllyIdsForParty(
+      resolvedParty,
+      activeAllyIds,
+      getBattleAllyLimit(gameState)
+    )
+    const miracleRubyResult = applyMiracleRubyTurnHealing({
+      party: resolvedParty,
+      activeAllyIds,
+    })
+    resolvedParty = miracleRubyResult.nextParty
+    resolvedLogs.push(...miracleRubyResult.battleLogs)
     activeAllyIds = getActiveAllyIdsForParty(
       resolvedParty,
       activeAllyIds,
@@ -4567,6 +4962,7 @@ function App() {
 
     const currentParty = syncPartyMember(gameState.party, gameState.player)
     const levelCap = gameState.levelCap ?? Infinity
+    const effectiveRewardItem = getRewardItemWithInventoryModifiers(rewardItem, gameState.inventory)
     const finishRewardUse = (nextGameState) => {
       setGameState(nextGameState)
 
@@ -4618,10 +5014,10 @@ function App() {
       return
     }
 
-    if (rewardItem.partyLevelUpAmount) {
+    if (effectiveRewardItem.partyLevelUpAmount) {
       const partyLevelUpItem = {
-        ...rewardItem,
-        levelUpAmount: rewardItem.partyLevelUpAmount,
+        ...effectiveRewardItem,
+        levelUpAmount: effectiveRewardItem.partyLevelUpAmount,
       }
 
       if (!currentParty.some((member) => isRewardItemUsableByCombatant(partyLevelUpItem, member, levelCap))) {
@@ -4632,7 +5028,7 @@ function App() {
         isRewardItemUsableByCombatant(partyLevelUpItem, member, levelCap)
           ? applyLevelUpRewardEffect(
               member,
-              rewardItem.partyLevelUpAmount,
+              effectiveRewardItem.partyLevelUpAmount,
               getRewardItemLevelLimit(partyLevelUpItem, levelCap)
             )
           : member
@@ -4652,8 +5048,8 @@ function App() {
       return
     }
 
-    if (rewardItem.partyHealAmount || rewardItem.partyHealFull) {
-      const nextParty = applyPartyHealRewardEffect(currentParty, rewardItem)
+    if (effectiveRewardItem.partyHealAmount || effectiveRewardItem.partyHealFull) {
+      const nextParty = applyPartyHealRewardEffect(currentParty, effectiveRewardItem)
       const nextPlayer =
         getCombatantById(nextParty, gameState.player?.id) ??
         getFirstLivingPartyMember(nextParty, gameState.activeAllyIds) ??
@@ -4669,16 +5065,16 @@ function App() {
       return
     }
 
-    const isTargetedItem = isTargetedRewardItem(rewardItem)
+    const isTargetedItem = isTargetedRewardItem(effectiveRewardItem)
     const targetCombatant = isTargetedItem
       ? getCombatantById(currentParty, targetId) ?? gameState.player
       : gameState.player
 
-    if (isTargetedItem && !isRewardItemUsableByCombatant(rewardItem, targetCombatant, levelCap)) {
+    if (isTargetedItem && !isRewardItemUsableByCombatant(effectiveRewardItem, targetCombatant, levelCap)) {
       return
     }
 
-    const effectResult = applyInstantRewardEffect(targetCombatant, rewardItem, levelCap)
+    const effectResult = applyInstantRewardEffect(targetCombatant, effectiveRewardItem, levelCap)
     const nextParty = isTargetedItem
       ? replacePartyMember(currentParty, effectResult.nextPlayer)
       : syncPartyMember(currentParty, effectResult.nextPlayer)
@@ -4932,8 +5328,57 @@ function App() {
     itemElement.style.setProperty('--inventory-tooltip-max-width', `${tooltipWidth}px`)
   }
 
-  const selectedGrowthDigimon = growthStageDigimon[selectedGrowthIndex]
+  const selectedGrowthDigimon = growthStageDigimon[selectedGrowthIndex] ?? growthStageDigimon[0]
+  const selectedStarterCost = selectedStarterNames.length * STARTER_GROWTH_COST
+  const selectedGrowthSkills = selectedGrowthDigimon?.data?.기술 ?? []
+  const selectedGrowthSkillSlots = Array.from(
+    { length: 4 },
+    (_, index) => selectedGrowthSkills[index] ?? null
+  )
+  const selectedGrowthType = selectedGrowthDigimon?.data?.타입 ?? '무'
+  const selectedGrowthAttribute = selectedGrowthDigimon?.data?.속성 ?? '무'
+  const selectedStarterSlots = Array.from(
+    { length: PARTY_SLOT_COUNT },
+    (_, index) =>
+      selectedStarterNames[index]
+        ? growthStageDigimon.find((digimon) => digimon.name === selectedStarterNames[index]) ?? null
+        : null
+  )
+  const handleToggleStarterSelection = (digimon, index) => {
+    setSelectedGrowthIndex(index)
+    setSelectedStarterNames((currentNames) => {
+      const isSelected = currentNames.includes(digimon.name)
+
+      if (isSelected) {
+        return currentNames.filter((name) => name !== digimon.name)
+      }
+
+      if (
+        currentNames.length >= PARTY_SLOT_COUNT ||
+        currentNames.length * STARTER_GROWTH_COST + STARTER_GROWTH_COST > STARTER_PARTY_COST_LIMIT
+      ) {
+        return currentNames
+      }
+
+      return [...currentNames, digimon.name]
+    })
+  }
+  const handleRemoveStarterSelection = (digimonName) => {
+    if (!digimonName) {
+      return
+    }
+
+    setSelectedStarterNames((currentNames) => currentNames.filter((name) => name !== digimonName))
+  }
   const handleStartAdventure = () => {
+    const selectedStarterDigimon = selectedStarterNames
+      .map((name) => growthStageDigimon.find((digimon) => digimon.name === name))
+      .filter(Boolean)
+
+    if (!selectedStarterDigimon.length) {
+      return
+    }
+
     const startingStage = 1
     const mapName = getMapNameForStage(startingStage)
     const encounterGroup = getEncounterGroupForStage(startingStage)
@@ -4941,16 +5386,19 @@ function App() {
     const levelCap = getLevelCapForStage(startingStage)
     const mapEncounterPool = mapData[mapName]?.등장디지몬?.[encounterGroup] ?? []
     const enemies = buildEnemyParty(startingStage, mapEncounterPool, encounterCount)
-    const player = createCombatant({
-      id: 'player',
-      name: selectedGrowthDigimon.name,
-      imageUrl: selectedGrowthDigimon.url,
-      data: selectedGrowthDigimon.data,
-      level: STARTING_PLAYER_LEVEL,
-      stageName: '성장기',
-    })
+    const startingParty = selectedStarterDigimon.slice(0, PARTY_SLOT_COUNT).map((digimon, index) =>
+      createCombatant({
+        id: index === 0 ? 'player' : `player-${index + 1}`,
+        name: digimon.name,
+        imageUrl: digimon.url,
+        data: digimon.data,
+        level: STARTING_PLAYER_LEVEL,
+        stageName: '성장기',
+      })
+    )
+    const player = startingParty[0]
     const activeAllyIds = getActiveAllyIdsForParty(
-      [player],
+      startingParty,
       [player.id],
       getBattleAllyLimit({
         encounterCount,
@@ -4970,7 +5418,7 @@ function App() {
       levelCap,
       enemies,
       player,
-      party: [player],
+      party: startingParty,
       activeAllyIds,
       actingAllyId: player.id,
       actedAllyIds: [],
@@ -5030,7 +5478,7 @@ function App() {
     .map((item) => {
       const count = gameState?.inventory?.[item.id] ?? 0
 
-      if (!item || item.captureTier || item.digiEggName || count <= 0) {
+      if (!item || item.captureTier || item.digiEggName || item.battleItemKey || count <= 0) {
         return null
       }
 
@@ -5140,6 +5588,27 @@ function App() {
       }
     })
     .filter(Boolean)
+  const activeBattleItemHudItems = battleItemRewardItems
+    .map((item) => {
+      const count = normalizeBattleItems(hudCombatant?.battleItems)[item.battleItemKey] ?? 0
+
+      if (count <= 0) {
+        return null
+      }
+
+      const maxCount = item.maxOwnedPerCombatant ?? 0
+
+      return {
+        id: item.id,
+        name: item.name,
+        description: `${item.description} · 현재 ${count}/${maxCount}`,
+        imageUrl: item.imageUrl,
+        value: count,
+        isMaxed: maxCount > 0 && count >= maxCount,
+        isBattleItem: true,
+      }
+    })
+    .filter(Boolean)
   const adventureHudItems = [
     ...inventoryHudItems,
     ...activeBuffHudItems,
@@ -5147,13 +5616,14 @@ function App() {
     ...activeAttributeUpHudItems,
     ...activeDigicloneHudItems,
     ...activeRecoveryProgramHudItems,
+    ...activeBattleItemHudItems,
   ]
   const mapSelectionOptions = mapSelectionState?.options?.length
     ? mapSelectionState.options
     : getConnectedMapNames(gameState?.currentMap)
   const partySwitchMembers = partyMembers.filter((member) => member.id !== actingAlly?.id)
   const partyListSlots = Array.from(
-    { length: Math.max(4, partySwitchMembers.length) },
+    { length: Math.max(Math.max(0, PARTY_SLOT_COUNT - 1), partySwitchMembers.length) },
     (_, index) => partySwitchMembers[index] ?? null
   )
   const pendingRewardTarget = rewardState?.pendingTarget ?? null
@@ -5164,12 +5634,12 @@ function App() {
     : null
   const rewardTargetMembers = getRewardTargetCandidates(partyMembers, gameState?.player)
   const rewardTargetSlots = Array.from(
-    { length: Math.max(4, rewardTargetMembers.length) },
+    { length: Math.max(PARTY_SLOT_COUNT, rewardTargetMembers.length) },
     (_, index) => rewardTargetMembers[index] ?? null
   )
   const evolutionPartyMembers = partyMembers.filter((member) => !isCombatantEgg(member))
   const evolutionPartySlots = Array.from(
-    { length: Math.max(4, evolutionPartyMembers.length) },
+    { length: Math.max(PARTY_SLOT_COUNT, evolutionPartyMembers.length) },
     (_, index) => evolutionPartyMembers[index] ?? null
   )
   const selectedEvolutionMember = evolutionState?.selectedMemberId
@@ -5254,7 +5724,11 @@ function App() {
       )}
 
       <section
-        className={['playfield', screenMode === 'adventure' ? 'playfield--adventure' : '']
+        className={[
+          'playfield',
+          screenMode === 'new-game' ? 'playfield--selection' : '',
+          screenMode === 'adventure' ? 'playfield--adventure' : '',
+        ]
           .filter(Boolean)
           .join(' ')}
       >
@@ -5319,10 +5793,32 @@ function App() {
                   />
                 </div>
 
+                <div className="selection-preview__traits" aria-label="타입과 속성">
+                  <span className="selection-trait selection-trait--type">{selectedGrowthType}</span>
+                  <span className="selection-trait selection-trait--attribute">
+                    {selectedGrowthAttribute}
+                  </span>
+                </div>
+
+                <div className="selection-preview__skills" aria-label="기술 목록">
+                  {selectedGrowthSkillSlots.map((skillName, index) =>
+                    skillName ? (
+                      <span key={`${skillName}-${index}`} className="selection-skill">
+                        {skillName}
+                      </span>
+                    ) : (
+                      <span key={`empty-skill-${index}`} className="selection-skill selection-skill--empty">
+                        -
+                      </span>
+                    )
+                  )}
+                </div>
+
                 <div className="selection-preview__actions">
                   <button
                     type="button"
                     className="selection-start"
+                    disabled={selectedStarterNames.length <= 0}
                     onClick={handleStartAdventure}
                   >
                     {'\uC2DC\uC791'}
@@ -5331,37 +5827,96 @@ function App() {
               </div>
 
               <div className="selection-gallery">
-                <div className="selection-gallery__header">
-                  <p className="selection-label">{'\uC131\uC7A5\uAE30 \uBAA9\uB85D'}</p>
-                  <p className="selection-count">
-                    {selectedGrowthIndex + 1}/{growthStageDigimon.length}
-                  </p>
+                <div className="selection-gallery__main">
+                  <div className="selection-gallery__header">
+                    <p className="selection-label">{'\uC131\uC7A5\uAE30 \uBAA9\uB85D'}</p>
+                    <p className="selection-count">
+                      {selectedGrowthIndex + 1}/{growthStageDigimon.length}
+                    </p>
+                  </div>
+
+                  <div className="selection-grid">
+                    {growthStageDigimon.map((digimon, index) => {
+                      const selectedOrder = selectedStarterNames.indexOf(digimon.name)
+                      const isSelected = selectedOrder >= 0
+                      const isPreviewed = index === selectedGrowthIndex
+                      const canSelectMore =
+                        selectedStarterNames.length < PARTY_SLOT_COUNT &&
+                        selectedStarterCost + STARTER_GROWTH_COST <= STARTER_PARTY_COST_LIMIT
+                      const isDisabled = !isSelected && !canSelectMore
+
+                      return (
+                        <button
+                          key={digimon.url}
+                          type="button"
+                          className={[
+                            'selection-card',
+                            isPreviewed ? 'selection-card--active' : '',
+                            isSelected ? 'selection-card--selected' : '',
+                            isDisabled ? 'selection-card--locked' : '',
+                          ]
+                            .filter(Boolean)
+                            .join(' ')}
+                          onClick={() => handleToggleStarterSelection(digimon, index)}
+                          aria-pressed={isSelected}
+                        >
+                          <span className="selection-card__cost">{STARTER_GROWTH_COST}</span>
+                          {isSelected ? (
+                            <span className="selection-card__order">{selectedOrder + 1}</span>
+                          ) : null}
+                          <img
+                            className="selection-card__image"
+                            src={createDigimonArtworkUrl('성장기', digimon.name)}
+                            alt={digimon.name}
+                            onError={hideBrokenArtwork}
+                          />
+                          <span className="selection-card__name">{digimon.name}</span>
+                        </button>
+                      )
+                    })}
+                  </div>
                 </div>
 
-                <div className="selection-grid">
-                  {growthStageDigimon.map((digimon, index) => (
-                    <button
-                      key={digimon.url}
-                      type="button"
-                      className={[
-                        'selection-card',
-                        index === selectedGrowthIndex ? 'selection-card--active' : '',
-                      ]
-                        .filter(Boolean)
-                        .join(' ')}
-                      onClick={() => setSelectedGrowthIndex(index)}
-                      aria-pressed={index === selectedGrowthIndex}
-                    >
-                      <img
-                        className="selection-card__image"
-                        src={createDigimonArtworkUrl('성장기', digimon.name)}
-                        alt={digimon.name}
-                        onError={hideBrokenArtwork}
-                      />
-                      <span className="selection-card__name">{digimon.name}</span>
-                    </button>
-                  ))}
-                </div>
+                <aside className="selection-party" aria-label="현재 팀 구성">
+                  <div className="selection-party__header">
+                    <p className="selection-label">TEAM</p>
+                    <span className="selection-party__count">
+                      {selectedStarterNames.length}/{PARTY_SLOT_COUNT}
+                    </span>
+                  </div>
+                  <div className="selection-party__slots">
+                    {selectedStarterSlots.map((digimon, index) =>
+                      digimon ? (
+                        <button
+                          key={`starter-${digimon.name}`}
+                          type="button"
+                          className="selection-party-slot selection-party-slot--filled"
+                          onClick={() => handleRemoveStarterSelection(digimon.name)}
+                          aria-label={`${digimon.name} 선택 해제`}
+                        >
+                          <span className="selection-party-slot__order">{index + 1}</span>
+                          <img
+                            className="selection-party-slot__image"
+                            src={createDigimonArtworkUrl('성장기', digimon.name)}
+                            alt=""
+                            onError={hideBrokenArtwork}
+                          />
+                          <span className="selection-party-slot__name">{digimon.name}</span>
+                        </button>
+                      ) : (
+                        <div key={`starter-empty-${index}`} className="selection-party-slot">
+                          <span className="selection-party-slot__empty">?</span>
+                        </div>
+                      )
+                    )}
+                  </div>
+                  <div className="selection-cost selection-cost--party" aria-label="전체 코스트">
+                    <span>전체 코스트</span>
+                    <strong>
+                      {selectedStarterCost}/{STARTER_PARTY_COST_LIMIT}
+                    </strong>
+                  </div>
+                </aside>
               </div>
             </section>
           ) : (
