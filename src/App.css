@@ -2880,11 +2880,24 @@
 
 .battle-skill--advantage {
   color: #ffbf73;
-  text-shadow: 2px 2px 0 rgba(96, 47, 9, 0.9);
+  text-shadow:
+    2px 2px 0 rgba(63, 25, 2, 0.96),
+    0 0 6px rgba(255, 185, 93, 0.36);
 }
 
 .battle-skill--advantage .battle-skill__marker {
   color: #ffd299;
+}
+
+.battle-skill--active.battle-skill--advantage {
+  color: #fff0ae;
+  text-shadow:
+    2px 2px 0 rgba(6, 31, 63, 0.96),
+    0 0 6px rgba(255, 237, 142, 0.46);
+}
+
+.battle-skill--active.battle-skill--advantage .battle-skill__marker {
+  color: #fff5c8;
 }
 
 .battle-skill--empty {
@@ -3113,11 +3126,16 @@
 }
 
 .battle-target:hover,
-.battle-target:focus-visible {
+.battle-target:focus-visible,
+.battle-target--active {
   background:
     linear-gradient(180deg, rgba(120, 208, 255, 0.98), rgba(60, 147, 239, 0.98));
   color: #f8fdff;
   outline: none;
+  box-shadow:
+    0 0 0 3px rgba(22, 63, 111, 0.92),
+    inset 0 0 0 3px rgba(214, 243, 255, 0.22),
+    0 8px 16px rgba(8, 18, 33, 0.24);
 }
 
 .battle-target:disabled {
@@ -3133,6 +3151,22 @@
   line-height: 1;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.battle-target--advantage .battle-target__name {
+  color: #ffbf73;
+  text-shadow:
+    2px 2px 0 rgba(63, 25, 2, 0.96),
+    0 0 6px rgba(255, 185, 93, 0.36);
+}
+
+.battle-target--active.battle-target--advantage .battle-target__name,
+.battle-target--advantage:hover .battle-target__name,
+.battle-target--advantage:focus-visible .battle-target__name {
+  color: #fff0ae;
+  text-shadow:
+    2px 2px 0 rgba(6, 31, 63, 0.96),
+    0 0 6px rgba(255, 237, 142, 0.46);
 }
 
 .battle-item-list {

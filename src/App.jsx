@@ -30,6 +30,32 @@ const battleMenuItems = [
   { label: '\uB3C4\uB9DD', key: 'run', active: false },
 ]
 
+const bgmTracks = [
+  { title: 'Brave Heart', url: '/BGM/Brave Heart.mp4' },
+  { title: 'Butter-Fly', url: '/BGM/Butter-Fly.mp4' },
+  { title: "I've got the power", url: "/BGM/I've got the power.mp4" },
+  { title: 'Power Up', url: '/BGM/Power Up.mp4' },
+  { title: 'Stay For You', url: '/BGM/Stay For You.mp4' },
+  { title: 'To My Wish', url: '/BGM/To My Wish.mp4' },
+  { title: '날지켜줘', url: '/BGM/날지켜줘.mp4' },
+  { title: '내일을 찾아', url: '/BGM/내일을 찾아.mp4' },
+  { title: '더 프론티어', url: '/BGM/더 프론티어.mp4' },
+  { title: '미라클', url: '/BGM/미라클.mp4' },
+  { title: '새로운 진화', url: '/BGM/새로운 진화.mp4' },
+  { title: '안녕! 디지몬', url: '/BGM/안녕! 디지몬.mp4' },
+  { title: '에볼루션', url: '/BGM/에볼루션.mp4' },
+  { title: '외롭지 않아', url: '/BGM/외롭지 않아.mp4' },
+  { title: '질주', url: '/BGM/질주.mp4' },
+  { title: '찾아라 비밀의 열쇠', url: '/BGM/찾아라 비밀의 열쇠.mp4' },
+]
+const BGM_VOLUME = 0.28
+const BGM_FADE_IN_MS = 1800
+const BGM_FADE_OUT_MS = 2400
+const BGM_FADE_OUT_SECONDS = 3
+const BUTTON_CLICK_SFX_URL = '/SFX/click.mp3'
+const BUTTON_CLICK_SFX_VOLUME = 0.62
+const BUTTON_CLICK_SFX_POOL_SIZE = 4
+
 const DIGIMON_DETECTOR_ITEM_ID = 'digimon-detector'
 const IV_DETECTOR_ITEM_ID = 'iv-detector'
 const MAP_ITEM_ID = 'map-item'
@@ -853,6 +879,200 @@ const DigimonTraitIcon = ({ className, src, label }) => {
       title={label}
     />
   )
+}
+
+const createShuffledBgmQueue = (previousUrl = null) => {
+  const queue = [...bgmTracks]
+
+  for (let index = queue.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1))
+    ;[queue[index], queue[randomIndex]] = [queue[randomIndex], queue[index]]
+  }
+
+  if (queue.length > 1 && queue[0]?.url === previousUrl) {
+    ;[queue[0], queue[1]] = [queue[1], queue[0]]
+  }
+
+  return queue
+}
+
+const BackgroundMusic = () => {
+  const audioRef = useRef(null)
+  const queueRef = useRef(createShuffledBgmQueue())
+  const currentTrackRef = useRef(null)
+  const fadeFrameRef = useRef(null)
+  const hasStartedRef = useRef(false)
+  const isFadingOutRef = useRef(false)
+
+  useEffect(() => {
+    const audio = audioRef.current
+
+    if (!audio || bgmTracks.length === 0) {
+      return undefined
+    }
+
+    const cancelFade = () => {
+      if (fadeFrameRef.current) {
+        window.cancelAnimationFrame(fadeFrameRef.current)
+        fadeFrameRef.current = null
+      }
+    }
+
+    const fadeVolume = (targetVolume, durationMs) => {
+      cancelFade()
+      const startVolume = audio.volume
+      const startedAt = window.performance.now()
+
+      const tick = (currentTime) => {
+        const progress = Math.min(1, (currentTime - startedAt) / durationMs)
+        const easedProgress = 1 - (1 - progress) ** 3
+        audio.volume = startVolume + (targetVolume - startVolume) * easedProgress
+
+        if (progress < 1) {
+          fadeFrameRef.current = window.requestAnimationFrame(tick)
+        } else {
+          audio.volume = targetVolume
+          fadeFrameRef.current = null
+        }
+      }
+
+      fadeFrameRef.current = window.requestAnimationFrame(tick)
+    }
+
+    const getNextTrack = () => {
+      if (queueRef.current.length === 0) {
+        queueRef.current = createShuffledBgmQueue(currentTrackRef.current?.url)
+      }
+
+      return queueRef.current.shift() ?? bgmTracks[0]
+    }
+
+    const playNextTrack = async () => {
+      const nextTrack = getNextTrack()
+
+      currentTrackRef.current = nextTrack
+      isFadingOutRef.current = false
+      audio.pause()
+      audio.src = nextTrack.url
+      audio.volume = 0
+      audio.currentTime = 0
+
+      try {
+        await audio.play()
+        hasStartedRef.current = true
+        fadeVolume(BGM_VOLUME, BGM_FADE_IN_MS)
+      } catch {
+        hasStartedRef.current = false
+        audio.pause()
+      }
+    }
+
+    const startAfterUserGesture = () => {
+      if (hasStartedRef.current) {
+        return
+      }
+
+      playNextTrack()
+    }
+
+    const handleTimeUpdate = () => {
+      if (
+        isFadingOutRef.current ||
+        !Number.isFinite(audio.duration) ||
+        audio.duration <= BGM_FADE_OUT_SECONDS
+      ) {
+        return
+      }
+
+      if (audio.duration - audio.currentTime <= BGM_FADE_OUT_SECONDS) {
+        isFadingOutRef.current = true
+        fadeVolume(0, BGM_FADE_OUT_MS)
+      }
+    }
+
+    const handleEnded = () => {
+      playNextTrack()
+    }
+
+    const handleError = () => {
+      window.setTimeout(playNextTrack, 400)
+    }
+
+    window.addEventListener('pointerdown', startAfterUserGesture)
+    window.addEventListener('keydown', startAfterUserGesture)
+    audio.addEventListener('timeupdate', handleTimeUpdate)
+    audio.addEventListener('ended', handleEnded)
+    audio.addEventListener('error', handleError)
+
+    return () => {
+      cancelFade()
+      window.removeEventListener('pointerdown', startAfterUserGesture)
+      window.removeEventListener('keydown', startAfterUserGesture)
+      audio.removeEventListener('timeupdate', handleTimeUpdate)
+      audio.removeEventListener('ended', handleEnded)
+      audio.removeEventListener('error', handleError)
+      audio.pause()
+    }
+  }, [])
+
+  return <audio ref={audioRef} preload="auto" aria-hidden="true" />
+}
+
+const ButtonClickSound = () => {
+  const audioPoolRef = useRef([])
+  const audioIndexRef = useRef(0)
+
+  useEffect(() => {
+    audioPoolRef.current = Array.from({ length: BUTTON_CLICK_SFX_POOL_SIZE }, () => {
+      const audio = new Audio(BUTTON_CLICK_SFX_URL)
+      audio.preload = 'auto'
+      audio.volume = BUTTON_CLICK_SFX_VOLUME
+
+      return audio
+    })
+
+    const handleClick = (event) => {
+      const targetElement = event.target instanceof Element ? event.target : null
+      const clickedButton = targetElement?.closest('button,[role="button"]')
+
+      if (!clickedButton || clickedButton.getAttribute('aria-disabled') === 'true') {
+        return
+      }
+
+      if ('disabled' in clickedButton && clickedButton.disabled) {
+        return
+      }
+
+      const audioPool = audioPoolRef.current
+
+      if (audioPool.length === 0) {
+        return
+      }
+
+      const audio = audioPool[audioIndexRef.current % audioPool.length]
+      audioIndexRef.current += 1
+      audio.currentTime = 0
+      audio.volume = BUTTON_CLICK_SFX_VOLUME
+      const playPromise = audio.play()
+
+      if (playPromise?.catch) {
+        playPromise.catch(() => {})
+      }
+    }
+
+    document.addEventListener('click', handleClick, true)
+
+    return () => {
+      document.removeEventListener('click', handleClick, true)
+      audioPoolRef.current.forEach((audio) => {
+        audio.pause()
+        audio.src = ''
+      })
+      audioPoolRef.current = []
+    }
+  }, [])
+
+  return null
 }
 
 const MAX_ACTIVE_COMBATANTS = 2
@@ -3889,7 +4109,9 @@ function App() {
   const [selectedBattleCommand, setSelectedBattleCommand] = useState('attack')
   const [battlePanelMode, setBattlePanelMode] = useState('commands')
   const [selectedSkillIndex, setSelectedSkillIndex] = useState(0)
+  const [hoveredSkillIndex, setHoveredSkillIndex] = useState(null)
   const [selectedEnemyTargetId, setSelectedEnemyTargetId] = useState(null)
+  const [hoveredEnemyTargetId, setHoveredEnemyTargetId] = useState(null)
   const [combatantInfoTab, setCombatantInfoTab] = useState('stats')
   const [activeCombatantInfoId, setActiveCombatantInfoId] = useState(null)
   const [currentLogs, setCurrentLogs] = useState([])
@@ -4433,12 +4655,15 @@ function App() {
     }
 
     setSelectedSkillIndex(skillIndex)
+    setHoveredSkillIndex(skillIndex)
     setSelectedBattleCommand('attack')
     setSelectedEnemyTargetId(null)
 
     const playerSkillData = getSkillData(playerSkill)
 
     if (isSkillAreaAttack(playerSkillData)) {
+      setHoveredSkillIndex(null)
+      setHoveredEnemyTargetId(null)
       handleExecuteSkill(skillIndex)
       return
     }
@@ -4446,12 +4671,44 @@ function App() {
     const livingEnemies = gameState.enemies.filter((enemy) => isCombatantAbleToBattle(enemy))
 
     if (livingEnemies.length === 1) {
+      setHoveredSkillIndex(null)
+      setHoveredEnemyTargetId(null)
       handleExecuteSkill(skillIndex, livingEnemies[0].id)
       return
     }
 
     setBattlePanelMode('attack-targets')
+    setHoveredSkillIndex(null)
+    setHoveredEnemyTargetId(null)
     setCurrentLogs([])
+  }
+
+  const handleSkillPreview = (skillIndex) => {
+    if (rewardState || !gameState || battlePanelMode !== 'attack') {
+      return
+    }
+
+    if (!battleSkillSlots[skillIndex]) {
+      return
+    }
+
+    setHoveredSkillIndex(skillIndex)
+  }
+
+  const handleSkillPreviewClear = () => {
+    setHoveredSkillIndex(null)
+  }
+
+  const handleTargetPreview = (enemyId) => {
+    if (rewardState || !gameState || battlePanelMode !== 'attack-targets') {
+      return
+    }
+
+    setHoveredEnemyTargetId(enemyId)
+  }
+
+  const handleTargetPreviewClear = () => {
+    setHoveredEnemyTargetId(null)
   }
 
   const handleExecuteSkill = (skillIndex, targetEnemyId = null) => {
@@ -4472,6 +4729,8 @@ function App() {
     if (!playerSkill) return
 
     setSelectedSkillIndex(skillIndex)
+    setHoveredSkillIndex(null)
+    setHoveredEnemyTargetId(null)
     setSelectedBattleCommand('attack')
     const playerSkillData = getSkillData(playerSkill)
     const isAreaAttack = isSkillAreaAttack(playerSkillData)
@@ -4808,16 +5067,22 @@ function App() {
     if (commandKey === 'attack') {
       setBattlePanelMode('attack')
       setSelectedSkillIndex(0)
+      setHoveredSkillIndex(null)
+      setHoveredEnemyTargetId(null)
       setSelectedEnemyTargetId(null)
       return
     }
 
     if (commandKey === 'item') {
       setBattlePanelMode('items')
+      setHoveredSkillIndex(null)
+      setHoveredEnemyTargetId(null)
       setSelectedEnemyTargetId(null)
       return
     } else if (commandKey === 'swap') {
       setBattlePanelMode('party')
+      setHoveredSkillIndex(null)
+      setHoveredEnemyTargetId(null)
       setSelectedEnemyTargetId(null)
       return
     } else if (commandKey === 'run') {
@@ -4834,6 +5099,7 @@ function App() {
     }
 
     setSelectedEnemyTargetId(enemyId)
+    setHoveredEnemyTargetId(null)
     handleExecuteSkill(selectedSkillIndex, enemyId)
   }
 
@@ -5457,6 +5723,8 @@ function App() {
   const battleSkillSlots = Array.from({ length: 4 }, (_, index) => playerSkills[index] ?? null)
   const selectedSkill = battleSkillSlots[selectedSkillIndex]
   const selectedSkillData = selectedSkill ? getSkillData(selectedSkill) : null
+  const activePreviewSkillIndex =
+    hoveredSkillIndex !== null && battleSkillSlots[hoveredSkillIndex] ? hoveredSkillIndex : null
   const isAttackPanelOpen = battlePanelMode === 'attack'
   const isAttackTargetPanelOpen = battlePanelMode === 'attack-targets'
   const isSkillConsoleOpen = isAttackPanelOpen || isAttackTargetPanelOpen
@@ -5655,6 +5923,7 @@ function App() {
       (enemy) => enemy.id === selectedEnemyTargetId && isCombatantAbleToBattle(enemy)
     ) ?? null
   const visibleEnemies = gameState?.enemies?.filter((enemy) => isCombatantAbleToBattle(enemy)) ?? []
+  const shouldShowSkillAdvantage = visibleEnemies.length <= 1
   const currentTargetEnemy =
     selectedTargetEnemy ??
     (currentTargetEnemyIndex >= 0 && gameState ? gameState.enemies[currentTargetEnemyIndex] : null)
@@ -5665,6 +5934,8 @@ function App() {
         .filter(Boolean)
         .join(' ')}
     >
+      <BackgroundMusic />
+      <ButtonClickSound />
       <div
         className="main-screen__background main-screen__background--base"
         aria-hidden="true"
@@ -6787,7 +7058,7 @@ function App() {
                   }
                 >
                   {isAttackPanelOpen && !rewardState ? (
-                    <div className="battle-skill-grid">
+                    <div className="battle-skill-grid" onMouseLeave={handleSkillPreviewClear}>
                       {battleSkillSlots.map((skill, index) => {
                         const skillData = skill ? getSkillData(skill) : null
                         const isAreaAttack = isSkillAreaAttack(skillData)
@@ -6820,14 +7091,19 @@ function App() {
                             className={[
                               'battle-skill',
                               skill ? '' : 'battle-skill--empty',
-                              index === selectedSkillIndex && skill
+                              index === activePreviewSkillIndex && skill
                                 ? 'battle-skill--active'
                                 : '',
-                              isAdvantageous ? 'battle-skill--advantage' : '',
+                              shouldShowSkillAdvantage && isAdvantageous
+                                ? 'battle-skill--advantage'
+                                : '',
                             ]
                               .filter(Boolean)
                               .join(' ')}
                             disabled={!skill}
+                            onMouseEnter={() => handleSkillPreview(index)}
+                            onFocus={() => handleSkillPreview(index)}
+                            onBlur={handleSkillPreviewClear}
                             onClick={() => {
                               if (skill) {
                                 handleSkillSelect(index)
@@ -6835,7 +7111,7 @@ function App() {
                             }}
                           >
                             <span className="battle-skill__marker" aria-hidden="true">
-                              {index === selectedSkillIndex && skill ? '\u25B6' : ''}
+                              {index === activePreviewSkillIndex && skill ? '\u25B6' : ''}
                             </span>
                             <span className="battle-skill__label">{skill ?? ''}</span>
                             {isAreaAttack ? <span className="battle-skill__badge">전체</span> : null}
@@ -6846,13 +7122,33 @@ function App() {
                     </div>
                   ) : isAttackTargetPanelOpen && !rewardState ? (
                     <div className="battle-target-panel">
-                      <div className="battle-target-list">
+                      <div className="battle-target-list" onMouseLeave={handleTargetPreviewClear}>
                         {visibleEnemies.map((enemy) => {
+                          const targetMatchup =
+                            selectedSkillData && !isSkillAreaAttack(selectedSkillData)
+                              ? getMatchupResult({
+                                  attackerType: actingAlly?.type,
+                                  skillAttribute: selectedSkillData?.속성,
+                                  defenderType: enemy.type,
+                                  defenderAttribute: enemy.attribute,
+                                })
+                              : null
+                          const isAdvantageousTarget = (targetMatchup?.multiplier ?? 1) > 1
+
                           return (
                             <button
                               key={enemy.id}
                               type="button"
-                              className="battle-target"
+                              className={[
+                                'battle-target',
+                                hoveredEnemyTargetId === enemy.id ? 'battle-target--active' : '',
+                                isAdvantageousTarget ? 'battle-target--advantage' : '',
+                              ]
+                                .filter(Boolean)
+                                .join(' ')}
+                              onMouseEnter={() => handleTargetPreview(enemy.id)}
+                              onFocus={() => handleTargetPreview(enemy.id)}
+                              onBlur={handleTargetPreviewClear}
                               onClick={() => handleAttackTargetSelect(enemy.id)}
                             >
                               <span className="battle-target__name">{enemy.name}</span>
