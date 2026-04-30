@@ -1890,6 +1890,11 @@
   gap: 7px;
 }
 
+.evolution-option__requirements--item {
+  min-height: 72px;
+  place-items: center;
+}
+
 .evolution-option__stat-requirements {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: start;
@@ -1940,6 +1945,19 @@
 
 .evolution-option__requirement--missing {
   color: #ff8a7d;
+}
+
+.evolution-option__item-requirement {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 58px;
+  padding: 8px 10px;
+  border: 2px solid rgba(125, 112, 153, 0.78);
+  background: rgba(42, 35, 54, 0.68);
+  font-size: clamp(0.82rem, 0.98vw, 0.96rem);
+  text-align: center;
+  white-space: nowrap;
 }
 
 .evolution-detail__empty {

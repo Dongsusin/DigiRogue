@@ -340,6 +340,32 @@ const ROGUE_REWARD_ITEM_IDS = new Set([
   DEATH_BONE_ITEM_ID,
 ])
 const MASTER_REWARD_ITEM_IDS = new Set(['capture-net-master'])
+const ITEM_EVOLUTION_REQUIREMENTS = {
+  '레이브몬[버스트]': { itemName: '한지호의 디지바이스', rarity: 'rare' },
+  '로제몬[버스트]': { itemName: '유진의 디지바이스', rarity: 'rare' },
+  '루체몬[사탄]': { itemName: '게헤나', rarity: 'rare' },
+  '미라쥬가오가몬[버스트]': { itemName: '토마의 디지바이스', rarity: 'rare' },
+  '베르제브몬[블라스트]': { itemName: '장난감총', rarity: 'rare' },
+  '벨페몬[레이지]': { itemName: '자명종', rarity: 'rare' },
+  '샤인그레이몬[버스트]': { itemName: '최건우의 디지바이스', rarity: 'rare' },
+  '오파니몬[풀다운]': { itemName: '악의 근원', rarity: 'rare' },
+  카오스드라몬: { itemName: '레드디지조이드', rarity: 'rare' },
+  '황제드라몬[파이터]': { itemName: '포지트론 레이저', rarity: 'rare' },
+  '황제드라몬[팔라딘]': { itemName: '오메가 블레이드', rarity: 'rogue' },
+}
+const ITEM_EVOLUTION_REWARD_ITEMS = Object.entries(ITEM_EVOLUTION_REQUIREMENTS).map(
+  ([targetName, requirement]) => ({
+    id: `item-evolution-${requirement.itemName}`,
+    name: requirement.itemName,
+    description: `${targetName} 아이템 진화에 사용`,
+    evolutionItemFor: targetName,
+    rarity: requirement.rarity,
+    imageUrl: `/아이템/진화/${requirement.itemName}.png`,
+  })
+)
+const itemEvolutionRewardItemByTarget = new Map(
+  ITEM_EVOLUTION_REWARD_ITEMS.map((item) => [item.evolutionItemFor, item])
+)
 
 const randomRewardItemPool = [
   {
@@ -547,6 +573,7 @@ const randomRewardItemPool = [
     evolutionReturn: true,
     imageUrl: '/아이템/진화/진화리턴.png',
   },
+  ...ITEM_EVOLUTION_REWARD_ITEMS,
   ...DIGI_EGG_REWARD_ITEMS,
   ...DIGICLONE_REWARD_ITEMS,
   ...ATTRIBUTE_POWER_UP_REWARD_ITEMS,
@@ -1561,6 +1588,18 @@ const isRewardItemUsableByCombatant = (item, combatant, levelCap = Infinity) => 
     return canReturnEvolution(combatant)
   }
 
+  if (item.evolutionItemFor) {
+    const targetData = allDigimonLookup.get(item.evolutionItemFor)
+    const currentStageRank = getDigimonStageRank(combatant.speciesStage)
+
+    return Boolean(
+      targetData &&
+        combatant.speciesData?.진화가능?.includes(item.evolutionItemFor) &&
+        targetData.이름 !== combatant.name &&
+        getDigimonStageRank(targetData.stage) >= currentStageRank
+    )
+  }
+
   if (item.typeUpKey) {
     const typePowerUps = normalizeTypePowerUps(combatant.typePowerUps)
 
@@ -1607,7 +1646,18 @@ const isRewardItemUsableByCombatant = (item, combatant, levelCap = Infinity) => 
     return combatant.currentHp <= 0
   }
 
-  if (item.healAmount || item.healFull || item.buffStatKey) {
+  if (item.healAmount || item.partyHealAmount) {
+    return isCombatantAbleToBattle(combatant) && combatant.currentHp < combatant.maxHp
+  }
+
+  if (item.healFull || item.partyHealFull) {
+    return (
+      isCombatantAbleToBattle(combatant) &&
+      (combatant.currentHp < combatant.maxHp || Boolean(item.cureStatus && combatant.statusEffect))
+    )
+  }
+
+  if (item.buffStatKey) {
     return isCombatantAbleToBattle(combatant)
   }
 
@@ -1652,10 +1702,16 @@ const canRandomRewardItemAppear = (item, inventory = {}, rewardTarget = null, le
     item.digicloneKey ||
     item.recoveryProgramKey ||
     item.battleItemKey ||
+    item.healAmount ||
+    item.healFull ||
+    item.partyHealAmount ||
+    item.partyHealFull ||
+    item.buffStatKey ||
     item.levelUpAmount ||
     item.partyLevelUpAmount ||
     item.reviveRatio ||
-    item.evolutionReturn
+    item.evolutionReturn ||
+    item.evolutionItemFor
   ) {
     const rewardTargets = getRewardTargetCandidates(
       Array.isArray(rewardTarget) ? rewardTarget : [rewardTarget].filter(Boolean)
@@ -1723,6 +1779,10 @@ const getRewardItemMaxCount = (item) => {
 const getRewardItemRarity = (item) => {
   if (!item) {
     return 'common'
+  }
+
+  if (item.rarity) {
+    return item.rarity
   }
 
   if (item.buffStatKey || COMMON_REWARD_ITEM_IDS.has(item.id) || COMMON_DIGI_EGG_NAMES.has(item.digiEggName)) {
@@ -2128,7 +2188,7 @@ const getCombatantStatChartData = (combatant, activeTab) => {
       value,
       valueText:
         isBattleStats && field.key === 'hp'
-          ? `${combatant.currentHp}/${combatant.maxHp}`
+          ? String(combatant.maxHp)
           : isBattleStats
             ? String(value)
             : `${value}/${maximumValue}`,
@@ -2812,7 +2872,7 @@ const getEvolutionRequirements = (targetData) => {
   ]
 }
 
-const getEvolutionOptions = (combatant) => {
+const getEvolutionOptions = (combatant, inventory = {}) => {
   if (!combatant?.speciesData?.진화가능?.length) {
     return []
   }
@@ -2824,6 +2884,21 @@ const getEvolutionOptions = (combatant) => {
     .filter(Boolean)
     .filter((targetData) => targetData.이름 !== combatant.name && getDigimonStageRank(targetData.stage) >= currentStageRank)
     .map((targetData) => {
+      const itemRequirement = itemEvolutionRewardItemByTarget.get(targetData.이름) ?? null
+
+      if (itemRequirement) {
+        const itemCount = inventory?.[itemRequirement.id] ?? 0
+
+        return {
+          targetData,
+          evolutionType: 'item',
+          itemRequirement,
+          itemCount,
+          requirements: [],
+          canEvolve: itemCount > 0,
+        }
+      }
+
       const requirements = getEvolutionRequirements(targetData).map((requirement) => {
         const currentValue = requirement.current(combatant)
 
@@ -2838,6 +2913,7 @@ const getEvolutionOptions = (combatant) => {
 
       return {
         targetData,
+        evolutionType: 'stat',
         requirements,
         canEvolve: requirements.every((requirement) => requirement.isMet),
       }
@@ -5468,7 +5544,7 @@ function App() {
     const currentParty = syncPartyMember(gameState.party, gameState.player)
     const selectedMember = getCombatantById(currentParty, evolutionState.selectedMemberId)
     const targetData = allDigimonLookup.get(evolutionState.confirmTargetName)
-    const selectedOption = getEvolutionOptions(selectedMember).find(
+    const selectedOption = getEvolutionOptions(selectedMember, gameState.inventory).find(
       (option) => option.targetData.이름 === targetData?.이름
     )
 
@@ -5478,6 +5554,10 @@ function App() {
 
     const evolvedMember = createEvolvedCombatant(selectedMember, targetData)
     const nextParty = replacePartyMember(currentParty, evolvedMember)
+    const nextInventory =
+      selectedOption.evolutionType === 'item' && selectedOption.itemRequirement
+        ? removeInventoryItem(gameState.inventory, selectedOption.itemRequirement.id)
+        : gameState.inventory
     const nextPlayer =
       getCombatantById(nextParty, gameState.player?.id) ??
       getFirstLivingPartyMember(nextParty, gameState.activeAllyIds) ??
@@ -5485,6 +5565,7 @@ function App() {
 
     setGameState({
       ...gameState,
+      inventory: nextInventory,
       player: nextPlayer,
       party: nextParty,
     })
@@ -5913,7 +5994,9 @@ function App() {
   const selectedEvolutionMember = evolutionState?.selectedMemberId
     ? getCombatantById(evolutionPartyMembers, evolutionState.selectedMemberId)
     : null
-  const evolutionOptions = selectedEvolutionMember ? getEvolutionOptions(selectedEvolutionMember) : []
+  const evolutionOptions = selectedEvolutionMember
+    ? getEvolutionOptions(selectedEvolutionMember, gameState?.inventory)
+    : []
   const pendingEvolutionOption = evolutionState?.confirmTargetName
     ? evolutionOptions.find((option) => option.targetData.이름 === evolutionState.confirmTargetName)
     : null
@@ -6737,7 +6820,7 @@ function App() {
                                   0,
                                   Math.min(100, (member.currentHp / member.maxHp) * 100)
                                 )
-                                const evolutionCount = getEvolutionOptions(member).length
+                                const evolutionCount = getEvolutionOptions(member, gameState?.inventory).length
 
                                 return (
                                   <button
@@ -6794,6 +6877,7 @@ function App() {
                                 {evolutionOptions.length > 0 ? (
                                   evolutionOptions.map((option) => {
                                     const [levelRequirement, ...statRequirements] = option.requirements
+                                    const isItemEvolution = option.evolutionType === 'item'
 
                                     return (
                                       <button
@@ -6820,49 +6904,73 @@ function App() {
                                           <span className="evolution-option__stage">
                                             {option.targetData.stage}
                                           </span>
-                                          <span className="evolution-option__requirements">
-                                            {levelRequirement ? (
+                                          <span
+                                            className={[
+                                              'evolution-option__requirements',
+                                              isItemEvolution ? 'evolution-option__requirements--item' : '',
+                                            ]
+                                              .filter(Boolean)
+                                              .join(' ')}
+                                          >
+                                            {isItemEvolution ? (
                                               <span
                                                 className={[
-                                                  'evolution-option__requirement',
-                                                  'evolution-option__requirement--level',
-                                                  levelRequirement.isMet
+                                                  'evolution-option__item-requirement',
+                                                  option.canEvolve
                                                     ? 'evolution-option__requirement--met'
                                                     : 'evolution-option__requirement--missing',
                                                 ]
                                                   .filter(Boolean)
                                                   .join(' ')}
                                               >
-                                                <span className="evolution-option__requirement-label">
-                                                  {levelRequirement.label}
-                                                </span>
-                                                <span className="evolution-option__requirement-value">
-                                                  {levelRequirement.current}/{levelRequirement.required}
-                                                </span>
+                                                {option.itemRequirement?.name}
                                               </span>
-                                            ) : null}
-                                            <span className="evolution-option__stat-requirements">
-                                              {statRequirements.map((requirement) => (
-                                                <span
-                                                  key={requirement.key}
-                                                  className={[
-                                                    'evolution-option__requirement',
-                                                    requirement.isMet
-                                                      ? 'evolution-option__requirement--met'
-                                                      : 'evolution-option__requirement--missing',
-                                                  ]
-                                                  .filter(Boolean)
-                                                  .join(' ')}
-                                                >
-                                                  <span className="evolution-option__requirement-label">
-                                                    {requirement.label}
+                                            ) : (
+                                              <>
+                                                {levelRequirement ? (
+                                                  <span
+                                                    className={[
+                                                      'evolution-option__requirement',
+                                                      'evolution-option__requirement--level',
+                                                      levelRequirement.isMet
+                                                        ? 'evolution-option__requirement--met'
+                                                        : 'evolution-option__requirement--missing',
+                                                    ]
+                                                      .filter(Boolean)
+                                                      .join(' ')}
+                                                  >
+                                                    <span className="evolution-option__requirement-label">
+                                                      {levelRequirement.label}
+                                                    </span>
+                                                    <span className="evolution-option__requirement-value">
+                                                      {levelRequirement.current}/{levelRequirement.required}
+                                                    </span>
                                                   </span>
-                                                  <span className="evolution-option__requirement-value">
-                                                    {requirement.current}/{requirement.required}
-                                                  </span>
+                                                ) : null}
+                                                <span className="evolution-option__stat-requirements">
+                                                  {statRequirements.map((requirement) => (
+                                                    <span
+                                                      key={requirement.key}
+                                                      className={[
+                                                        'evolution-option__requirement',
+                                                        requirement.isMet
+                                                          ? 'evolution-option__requirement--met'
+                                                          : 'evolution-option__requirement--missing',
+                                                      ]
+                                                      .filter(Boolean)
+                                                      .join(' ')}
+                                                    >
+                                                      <span className="evolution-option__requirement-label">
+                                                        {requirement.label}
+                                                      </span>
+                                                      <span className="evolution-option__requirement-value">
+                                                        {requirement.current}/{requirement.required}
+                                                      </span>
+                                                    </span>
+                                                  ))}
                                                 </span>
-                                              ))}
-                                            </span>
+                                              </>
+                                            )}
                                           </span>
                                         </span>
                                       </button>
