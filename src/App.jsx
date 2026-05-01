@@ -55,8 +55,8 @@ const BGM_FADE_OUT_SECONDS = 3
 const BUTTON_CLICK_SFX_URL = '/SFX/click.mp3'
 const BUTTON_CLICK_SFX_VOLUME = 0.62
 const BUTTON_CLICK_SFX_POOL_SIZE = 4
-const EVOLUTION_SCENE_SWITCH_MS = 1800
-const EVOLUTION_SCENE_TOTAL_MS = 3400
+const EVOLUTION_SCENE_SWITCH_MS = 3000
+const EVOLUTION_SCENE_TOTAL_MS = 5000
 
 const DIGIMON_DETECTOR_ITEM_ID = 'digimon-detector'
 const IV_DETECTOR_ITEM_ID = 'iv-detector'
@@ -1124,6 +1124,11 @@ const MAX_ACTIVE_COMBATANTS = 2
 const MAX_ENEMY_COMBATANTS = 2
 const PARTY_SLOT_COUNT = 8
 const STARTING_PLAYER_LEVEL = 5
+const BOSS_STAGE_INTERVAL = 10
+const BOSS_STAT_MULTIPLIER = 1.5
+const BOSS_STAGE_NO_GATE_LIMIT = 50
+const BOSS_STAGE_ONE_GATE_LIMIT = 100
+const BOSS_STAGE_TWO_GATE_LIMIT = 150
 const STARTER_PARTY_COST_LIMIT = 10
 const STARTER_GROWTH_COST = 3
 const DIGI_EGG_HATCH_LEVEL = 3
@@ -2108,6 +2113,23 @@ const getMapEncounterGroups = (mapName) => mapData[mapName]?.['등장디지몬']
 const getMapEncounterNamesForStage = (mapName, stage) =>
   getMapEncounterGroups(mapName)?.[getEncounterGroupForStage(stage)] ?? []
 
+const getEncounterGroupNumberForStage = (stage) =>
+  Math.max(1, Math.min(6, Number.parseInt(getEncounterGroupForStage(stage), 10) || 1))
+
+const getBossEncounterGroupForStage = (stage) =>
+  String(Math.min(6, getEncounterGroupNumberForStage(stage) + 1))
+
+const getBossEncounterNamesForStage = (mapName, stage) => {
+  const encounterGroups = getMapEncounterGroups(mapName)
+  const bossPool = encounterGroups?.[getBossEncounterGroupForStage(stage)]
+
+  if (Array.isArray(bossPool) && bossPool.length > 0) {
+    return bossPool
+  }
+
+  return getMapEncounterNamesForStage(mapName, stage)
+}
+
 const getLevelCapForStage = (stage) => {
   if (stage <= 10) {
     return 10
@@ -2160,7 +2182,32 @@ const getEncounterGroupForStage = (stage) => {
   return '6'
 }
 
-const getEncounterCountForStage = () => (rollPercentChance(20) ? MAX_ENEMY_COMBATANTS : 1)
+const isBossStage = (stage) => stage > 0 && stage % BOSS_STAGE_INTERVAL === 0
+
+const getEncounterCountForStage = (stage) =>
+  isBossStage(stage) ? 1 : rollPercentChance(20) ? MAX_ENEMY_COMBATANTS : 1
+
+const getBossHpGateCountForStage = (stage) => {
+  if (!isBossStage(stage) || stage <= BOSS_STAGE_NO_GATE_LIMIT) {
+    return 0
+  }
+
+  if (stage <= BOSS_STAGE_ONE_GATE_LIMIT) {
+    return 1
+  }
+
+  if (stage <= BOSS_STAGE_TWO_GATE_LIMIT) {
+    return 2
+  }
+
+  return 3
+}
+
+const createBossHpBreakpoints = (stage) => {
+  const gateCount = getBossHpGateCountForStage(stage)
+
+  return Array.from({ length: gateCount }, (_, index) => (gateCount - index) / (gateCount + 1))
+}
 
 const createBattleLog = (...lines) => lines.filter(Boolean)
 
@@ -2735,6 +2782,74 @@ const resolveLifeForceEndure = ({ combatant, previousHp, nextHp, canEndure = tru
   }
 }
 
+const normalizeBossHpBreakpoints = (combatant) =>
+  Array.isArray(combatant?.bossHpBreakpoints)
+    ? combatant.bossHpBreakpoints.filter(
+        (breakpoint) => Number.isFinite(breakpoint) && breakpoint > 0 && breakpoint < 1
+      )
+    : []
+
+const resolveBossHpGate = ({ combatant, rawNextHp }) => {
+  const breakpoints = normalizeBossHpBreakpoints(combatant)
+
+  if (
+    !combatant?.isBoss ||
+    combatant.currentHp <= 0 ||
+    rawNextHp >= combatant.currentHp ||
+    breakpoints.length === 0
+  ) {
+    return {
+      nextCombatant: combatant,
+      nextHp: rawNextHp,
+      battleLogs: [],
+    }
+  }
+
+  const crossedBreakpointIndex = breakpoints.findIndex((breakpoint) => {
+    const thresholdHp = Math.max(1, Math.floor(combatant.maxHp * breakpoint))
+
+    return combatant.currentHp > thresholdHp && rawNextHp <= thresholdHp
+  })
+
+  if (crossedBreakpointIndex === -1) {
+    return {
+      nextCombatant: combatant,
+      nextHp: rawNextHp,
+      battleLogs: [],
+    }
+  }
+
+  const thresholdHp = Math.max(1, Math.floor(combatant.maxHp * breakpoints[crossedBreakpointIndex]))
+
+  return {
+    nextCombatant: {
+      ...combatant,
+      bossHpBreakpoints: breakpoints.slice(crossedBreakpointIndex + 1),
+    },
+    nextHp: thresholdHp,
+    battleLogs: [`${combatant.name}의 보스 체력선이 버텼다!`],
+  }
+}
+
+const resolveCombatantDamageHp = ({ combatant, rawNextHp, canEndure = true }) => {
+  const gateResult = resolveBossHpGate({ combatant, rawNextHp })
+  const endureResult = resolveLifeForceEndure({
+    combatant: gateResult.nextCombatant,
+    previousHp: combatant.currentHp,
+    nextHp: gateResult.nextHp,
+    canEndure,
+  })
+
+  return {
+    nextCombatant: {
+      ...gateResult.nextCombatant,
+      currentHp: endureResult.nextHp,
+    },
+    nextHp: endureResult.nextHp,
+    battleLogs: [...gateResult.battleLogs, ...endureResult.battleLogs],
+  }
+}
+
 const rollHastePriority = (combatant) => {
   const itemCount = Math.min(HASTE_MAX, getBattleItemCount(combatant, HASTE_ITEM_ID))
 
@@ -3227,6 +3342,10 @@ const createCapturedPartyMember = (enemy, captureId) =>
       recoveryPrograms: normalizeRecoveryPrograms(null),
       battleItems: normalizeBattleItems(null),
       statusEffect: null,
+      isBoss: false,
+      bossStage: null,
+      bossHpSegmentCount: 1,
+      bossHpBreakpoints: [],
     },
     {
       activeBuffs: normalizeBuffState(null),
@@ -3330,22 +3449,29 @@ const progressDigiEggPartyByStage = (party) => {
   }
 }
 
-const getEnemyLevelForStage = (stage) => {
+const getEnemyLevelRangeForStage = (stage) => {
   const safeStage = Math.min(Math.max(stage, 1), TOTAL_STAGE_COUNT)
   const stageBand = Math.floor((safeStage - 1) / STAGES_PER_MAP)
-  const stageProgress = ((safeStage - 1) % STAGES_PER_MAP) / Math.max(1, STAGES_PER_MAP - 1)
   const fixedLevelRanges = [
     [1, 8],
     [8, 12],
     [12, 20],
     [20, 30],
   ]
-  const [minimumLevel, maximumLevel] =
+
+  return (
     fixedLevelRanges[stageBand] ??
     [
       Math.min(MAX_DIGIMON_LEVEL, 30 + (stageBand - fixedLevelRanges.length) * 10),
       Math.min(MAX_DIGIMON_LEVEL, 40 + (stageBand - fixedLevelRanges.length) * 10),
     ]
+  )
+}
+
+const getEnemyLevelForStage = (stage) => {
+  const safeStage = Math.min(Math.max(stage, 1), TOTAL_STAGE_COUNT)
+  const [minimumLevel, maximumLevel] = getEnemyLevelRangeForStage(safeStage)
+  const stageProgress = ((safeStage - 1) % STAGES_PER_MAP) / Math.max(1, STAGES_PER_MAP - 1)
   const levelSpan = Math.max(0, maximumLevel - minimumLevel)
   const scaledLevel = minimumLevel + levelSpan * stageProgress
   const variance = Math.max(1, Math.floor(levelSpan * 0.18))
@@ -3355,8 +3481,16 @@ const getEnemyLevelForStage = (stage) => {
   return getRandomIntInclusive(progressiveMinimum, progressiveMaximum)
 }
 
+const getBossLevelForStage = (stage) => getEnemyLevelRangeForStage(stage)[1]
+
 const getExperienceReward = (enemy) =>
-  Math.max(18, Math.floor(enemy.level * 6 + enemy.baseStatTotal * 0.06))
+  Math.max(
+    18,
+    Math.floor(
+      (enemy.level * 6 + enemy.baseStatTotal * 0.06) *
+        (enemy.isBoss ? BOSS_STAT_MULTIPLIER : 1)
+    )
+  )
 
 const getInventoryItemCount = (inventory, itemId) =>
   Math.max(0, Math.floor(inventory?.[itemId] ?? 0))
@@ -3441,7 +3575,16 @@ const refreshCombatantStats = (
     activeBuffs,
     digiclones,
   })
-  const maxHpDelta = battleStats.maxHp - combatant.maxHp
+  const statMultiplier = combatant.isBoss ? BOSS_STAT_MULTIPLIER : 1
+  const resolvedBattleStats = {
+    maxHp: Math.max(1, Math.floor(battleStats.maxHp * statMultiplier)),
+    attack: Math.max(1, Math.floor(battleStats.attack * statMultiplier)),
+    specialAttack: Math.max(1, Math.floor(battleStats.specialAttack * statMultiplier)),
+    defense: Math.max(1, Math.floor(battleStats.defense * statMultiplier)),
+    specialDefense: Math.max(1, Math.floor(battleStats.specialDefense * statMultiplier)),
+    speed: Math.max(1, Math.floor(battleStats.speed * statMultiplier)),
+  }
+  const maxHpDelta = resolvedBattleStats.maxHp - combatant.maxHp
 
   return {
     ...combatant,
@@ -3452,14 +3595,14 @@ const refreshCombatantStats = (
     level,
     experienceToNext: getExperienceToNextLevel(level),
     currentHp: preserveMaxHpDelta
-      ? Math.min(battleStats.maxHp, combatant.currentHp + maxHpDelta)
-      : Math.min(battleStats.maxHp, combatant.currentHp),
-    maxHp: battleStats.maxHp,
-    attack: battleStats.attack,
-    specialAttack: battleStats.specialAttack,
-    defense: battleStats.defense,
-    specialDefense: battleStats.specialDefense,
-    speed: battleStats.speed,
+      ? Math.min(resolvedBattleStats.maxHp, combatant.currentHp + maxHpDelta)
+      : Math.min(resolvedBattleStats.maxHp, combatant.currentHp),
+    maxHp: resolvedBattleStats.maxHp,
+    attack: resolvedBattleStats.attack,
+    specialAttack: resolvedBattleStats.specialAttack,
+    defense: resolvedBattleStats.defense,
+    specialDefense: resolvedBattleStats.specialDefense,
+    speed: resolvedBattleStats.speed,
   }
 }
 
@@ -3626,21 +3769,21 @@ const resolveTurnEndStatus = (combatant, { side = 'enemy' } = {}) => {
   const battleLogs = []
 
   if (statusDefinition.endTurnDamageRatio && nextCombatant.currentHp > 0) {
+    const previousHp = nextCombatant.currentHp
     const damage = Math.max(1, Math.floor(nextCombatant.maxHp * statusDefinition.endTurnDamageRatio))
     const rawNextHp = Math.max(0, nextCombatant.currentHp - damage)
-    const endureResult = resolveLifeForceEndure({
+    const hpResult = resolveCombatantDamageHp({
       combatant: nextCombatant,
-      previousHp: nextCombatant.currentHp,
-      nextHp: rawNextHp,
+      rawNextHp,
       canEndure: side === 'ally',
     })
-    const nextHp = endureResult.nextHp
-    nextCombatant = {
-      ...nextCombatant,
-      currentHp: nextHp,
-    }
-    battleLogs.push(`${nextCombatant.name}은(는) ${statusDefinition.label} 때문에 ${damage} 데미지를 입었다!`)
-    battleLogs.push(...endureResult.battleLogs)
+    const nextHp = hpResult.nextHp
+    const appliedDamage = Math.max(0, previousHp - nextHp)
+    nextCombatant = hpResult.nextCombatant
+    battleLogs.push(
+      `${nextCombatant.name}은(는) ${statusDefinition.label} 때문에 ${appliedDamage} 데미지를 입었다!`
+    )
+    battleLogs.push(...hpResult.battleLogs)
 
     if (nextHp === 0) {
       battleLogs.push(`${nextCombatant.name}은(는) 쓰러졌다!`)
@@ -3836,19 +3979,16 @@ const resolveAttackAction = ({
   const randomFactor = 0.85 + Math.random() * 0.15
   const damage = Math.max(1, Math.floor(baseDamage * finalMultiplier * randomFactor))
   const rawNextHp = Math.max(0, defender.currentHp - damage)
-  const endureResult = resolveLifeForceEndure({
+  const hpResult = resolveCombatantDamageHp({
     combatant: defender,
-    previousHp: defender.currentHp,
-    nextHp: rawNextHp,
+    rawNextHp,
     canEndure: attackerSide === 'enemy',
   })
-  const nextHp = endureResult.nextHp
-  let nextDefender = {
-    ...defender,
-    currentHp: nextHp,
-  }
-  const nextLogs = [...battleLogs, `${defender.name}에게 ${damage} 데미지!`]
-  nextLogs.push(...endureResult.battleLogs)
+  const nextHp = hpResult.nextHp
+  const appliedDamage = Math.max(0, defender.currentHp - nextHp)
+  let nextDefender = hpResult.nextCombatant
+  const nextLogs = [...battleLogs, `${defender.name}에게 ${appliedDamage} 데미지!`]
+  nextLogs.push(...hpResult.battleLogs)
 
   const hitStatusClearResult = clearReactiveStatusOnHit(nextDefender)
   nextDefender = hitStatusClearResult.nextCombatant
@@ -4291,7 +4431,51 @@ const resolveBattleTurnActions = ({
   }
 }
 
-const buildEnemyParty = (stage, encounterPool, encounterCount) => {
+const createBossCombatant = ({ stage, name, data }) => {
+  const hpBreakpoints = createBossHpBreakpoints(stage)
+  const combatant = createCombatant({
+    id: `boss-${stage}-${name}`,
+    name,
+    imageUrl: data?.imageUrl ?? '',
+    data,
+    level: getBossLevelForStage(stage),
+    stageName: data?.stage ?? null,
+  })
+
+  return refreshCombatantStats(
+    {
+      ...combatant,
+      isBoss: true,
+      bossStage: stage,
+      bossHpSegmentCount: hpBreakpoints.length + 1,
+      bossHpBreakpoints: hpBreakpoints,
+    },
+    {
+      preserveMaxHpDelta: true,
+    }
+  )
+}
+
+const buildEnemyParty = (stage, encounterPool, encounterCount, bossEncounterPool = []) => {
+  if (isBossStage(stage)) {
+    const bossName =
+      shuffleItems(bossEncounterPool).find((name) => allDigimonLookup.has(name)) ??
+      shuffleItems(encounterPool).find((name) => allDigimonLookup.has(name)) ??
+      bossEncounterPool[0] ??
+      encounterPool[0]
+    const bossData = allDigimonLookup.get(bossName)
+
+    return bossName
+      ? [
+          createBossCombatant({
+            stage,
+            name: bossName,
+            data: bossData,
+          }),
+        ]
+      : []
+  }
+
   const shuffledNames = shuffleItems(encounterPool)
 
   return shuffledNames.slice(0, Math.min(MAX_ENEMY_COMBATANTS, encounterCount)).map((name, index) => {
@@ -4763,7 +4947,13 @@ function App() {
     const encounterCount = getEncounterCountForStage(nextStageNum)
     const levelCap = getLevelCapForStage(nextStageNum)
     const mapEncounterPool = getMapEncounterGroups(mapName)?.[encounterGroup] ?? []
-    const newEnemies = buildEnemyParty(nextStageNum, mapEncounterPool, encounterCount)
+    const bossEncounterPool = getBossEncounterNamesForStage(mapName, nextStageNum)
+    const newEnemies = buildEnemyParty(
+      nextStageNum,
+      mapEncounterPool,
+      encounterCount,
+      bossEncounterPool
+    )
     const eggProgressResult = progressDigiEggPartyByStage(
       syncPartyMember(currentGameState.party, currentPlayer)
     )
@@ -5995,7 +6185,8 @@ function App() {
     const encounterCount = getEncounterCountForStage(startingStage)
     const levelCap = getLevelCapForStage(startingStage)
     const mapEncounterPool = mapData[mapName]?.등장디지몬?.[encounterGroup] ?? []
-    const enemies = buildEnemyParty(startingStage, mapEncounterPool, encounterCount)
+    const bossEncounterPool = getBossEncounterNamesForStage(mapName, startingStage)
+    const enemies = buildEnemyParty(startingStage, mapEncounterPool, encounterCount, bossEncounterPool)
     const startingParty = selectedStarterDigimon.slice(0, PARTY_SLOT_COUNT).map((digimon, index) =>
       createCombatant({
         id: index === 0 ? 'player' : `player-${index + 1}`,
@@ -6807,7 +6998,13 @@ function App() {
                           </div>
 
                           <div
-                            className="digimon-status digimon-status--enemy"
+                            className={[
+                              'digimon-status',
+                              'digimon-status--enemy',
+                              enemy.isBoss ? 'digimon-status--boss' : '',
+                            ]
+                              .filter(Boolean)
+                              .join(' ')}
                             role="group"
                             aria-label={`${enemy.name} 체력`}
                           >
@@ -6819,6 +7016,9 @@ function App() {
                               onError={hideBrokenArtwork}
                             />
                             <p className="digimon-status__name">
+                              {enemy.isBoss ? (
+                                <span className="digimon-status__boss-label">BOSS</span>
+                              ) : null}
                               <span className="digimon-status__name-text">{enemy.name}</span>
                               {enemyStatusBadge ? (
                                 <span
@@ -6849,6 +7049,21 @@ function App() {
                                 className="digimon-status__hp-fill digimon-status__hp-fill--enemy"
                                 style={{ width: `${enemyHpRatio}%` }}
                               />
+                              {enemy.isBoss && (enemy.bossHpSegmentCount ?? 1) > 1 ? (
+                                <span className="digimon-status__hp-segments" aria-hidden="true">
+                                  {Array.from({
+                                    length: Math.max(0, (enemy.bossHpSegmentCount ?? 1) - 1),
+                                  }).map((_, segmentIndex) => (
+                                    <span
+                                      key={segmentIndex}
+                                      className="digimon-status__hp-segment"
+                                      style={{
+                                        left: `${((segmentIndex + 1) / (enemy.bossHpSegmentCount ?? 1)) * 100}%`,
+                                      }}
+                                    />
+                                  ))}
+                                </span>
+                              ) : null}
                               <p className="digimon-status__hp-text">
                                 {enemy.currentHp} / {enemy.maxHp}
                               </p>

@@ -2137,11 +2137,11 @@
 }
 
 .evolution-cutscene--before .evolution-cutscene__digimon {
-  animation: evolution-charge 1.8s ease-in-out forwards;
+  animation: evolution-charge 3s ease-in-out forwards;
 }
 
 .evolution-cutscene--after .evolution-cutscene__digimon {
-  animation: evolution-reveal 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: evolution-reveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .evolution-cutscene__flash {
@@ -2155,11 +2155,11 @@
 }
 
 .evolution-cutscene--before .evolution-cutscene__flash {
-  animation: evolution-flash-before 1.8s ease-in forwards;
+  animation: evolution-flash-before 3s ease-in forwards;
 }
 
 .evolution-cutscene--after .evolution-cutscene__flash {
-  animation: evolution-flash-after 0.72s ease-out forwards;
+  animation: evolution-flash-after 0.95s ease-out forwards;
 }
 
 @keyframes evolution-scan {
@@ -2765,6 +2765,14 @@
   text-overflow: ellipsis;
 }
 
+.digimon-status__boss-label {
+  flex: 0 0 auto;
+  color: #ffcc57;
+  font-family: var(--font-pixel-mono);
+  font-size: clamp(0.32rem, 0.38vw, 0.38rem);
+  letter-spacing: 0.06em;
+}
+
 .digimon-status__trait {
   flex: 0 0 auto;
   display: block;
@@ -2833,9 +2841,35 @@
     0 0 12px rgba(242, 125, 86, 0.24);
 }
 
+.digimon-status--boss .digimon-status__hp {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 226, 137, 0.34),
+    inset 0 0 8px rgba(4, 5, 8, 0.38),
+    0 0 8px rgba(255, 193, 82, 0.2);
+}
+
+.digimon-status__hp-segments {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.digimon-status__hp-segment {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-1px);
+  background: rgba(255, 251, 225, 0.92);
+  box-shadow:
+    0 0 0 1px rgba(43, 28, 18, 0.54),
+    0 0 5px rgba(255, 210, 109, 0.56);
+}
+
 .digimon-status__hp-text {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   margin: 0;
   color: rgba(247, 252, 255, 0.96);
   font-family: var(--font-pixel-mono);
