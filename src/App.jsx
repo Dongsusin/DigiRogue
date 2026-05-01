@@ -40,7 +40,6 @@ const bgmTracks = [
   { title: '날지켜줘', url: '/BGM/날지켜줘.mp4' },
   { title: '내일을 찾아', url: '/BGM/내일을 찾아.mp4' },
   { title: '더 프론티어', url: '/BGM/더 프론티어.mp4' },
-  { title: '미라클', url: '/BGM/미라클.mp4' },
   { title: '새로운 진화', url: '/BGM/새로운 진화.mp4' },
   { title: '안녕! 디지몬', url: '/BGM/안녕! 디지몬.mp4' },
   { title: '에볼루션', url: '/BGM/에볼루션.mp4' },
