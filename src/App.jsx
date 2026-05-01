@@ -55,6 +55,8 @@ const BGM_FADE_OUT_SECONDS = 3
 const BUTTON_CLICK_SFX_URL = '/SFX/click.mp3'
 const BUTTON_CLICK_SFX_VOLUME = 0.62
 const BUTTON_CLICK_SFX_POOL_SIZE = 4
+const EVOLUTION_SCENE_SWITCH_MS = 1800
+const EVOLUTION_SCENE_TOTAL_MS = 3400
 
 const DIGIMON_DETECTOR_ITEM_ID = 'digimon-detector'
 const IV_DETECTOR_ITEM_ID = 'iv-detector'
@@ -4335,6 +4337,7 @@ function App() {
   const [currentLogs, setCurrentLogs] = useState([])
   const [rewardState, setRewardState] = useState(null)
   const [evolutionState, setEvolutionState] = useState(null)
+  const [evolutionScene, setEvolutionScene] = useState(null)
   const [mapSelectionState, setMapSelectionState] = useState(null)
   const [capturePreview, setCapturePreview] = useState(null)
   const [displayedPlayerExpRatio, setDisplayedPlayerExpRatio] = useState(0)
@@ -5800,6 +5803,7 @@ function App() {
       getCombatantById(nextParty, gameState.player?.id) ??
       getFirstLivingPartyMember(nextParty, gameState.activeAllyIds) ??
       evolvedMember
+    const sceneId = `${selectedMember.id}-${targetData.이름}-${Date.now()}`
 
     setGameState({
       ...gameState,
@@ -5807,11 +5811,32 @@ function App() {
       player: nextPlayer,
       party: nextParty,
     })
-    setEvolutionState({
-      mode: 'detail',
-      selectedMemberId: evolvedMember.id,
-      confirmTargetName: null,
+    setEvolutionScene({
+      id: sceneId,
+      phase: 'before',
+      fromName: selectedMember.name,
+      fromImageUrl: selectedMember.imageUrl,
+      toName: evolvedMember.name,
+      toImageUrl: evolvedMember.imageUrl,
     })
+    window.setTimeout(() => {
+      setEvolutionScene((current) =>
+        current?.id === sceneId
+          ? {
+              ...current,
+              phase: 'after',
+            }
+          : current
+      )
+    }, EVOLUTION_SCENE_SWITCH_MS)
+    window.setTimeout(() => {
+      setEvolutionScene((current) => (current?.id === sceneId ? null : current))
+      setEvolutionState({
+        mode: 'party',
+        selectedMemberId: null,
+        confirmTargetName: null,
+      })
+    }, EVOLUTION_SCENE_TOTAL_MS)
   }
 
   const handlePurchaseFixedRewardItem = (itemId) => {
@@ -7622,6 +7647,46 @@ function App() {
                   </aside>
                 )}
               </div>
+
+              {evolutionScene ? (
+                <div
+                  className={[
+                    'evolution-cutscene',
+                    evolutionScene.phase === 'after'
+                      ? 'evolution-cutscene--after'
+                      : 'evolution-cutscene--before',
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
+                  aria-label="진화 연출"
+                >
+                  <div className="evolution-cutscene__header">
+                    <strong className="evolution-cutscene__title">
+                      {evolutionScene.phase === 'after'
+                        ? `${evolutionScene.toName} 진화!`
+                        : `${evolutionScene.fromName} 진화!`}
+                    </strong>
+                  </div>
+                  <div className="evolution-cutscene__stage">
+                    <span className="evolution-cutscene__aura" aria-hidden="true" />
+                    <img
+                      key={`${evolutionScene.id}-${evolutionScene.phase}`}
+                      className="evolution-cutscene__digimon"
+                      src={
+                        evolutionScene.phase === 'after'
+                          ? evolutionScene.toImageUrl
+                          : evolutionScene.fromImageUrl
+                      }
+                      alt={
+                        evolutionScene.phase === 'after'
+                          ? evolutionScene.toName
+                          : evolutionScene.fromName
+                      }
+                    />
+                  </div>
+                  <div className="evolution-cutscene__flash" aria-hidden="true" />
+                </div>
+              ) : null}
             </section>
           )}
         </div>
