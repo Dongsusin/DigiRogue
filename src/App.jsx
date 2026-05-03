@@ -14,6 +14,7 @@ import matureSkillData from '../data/기술/성숙기.json'
 import perfectSkillData from '../data/기술/완전체.json'
 import ultimateSkillData from '../data/기술/궁극체.json'
 import superUltimateSkillData from '../data/기술/초궁극체.json'
+import attachmentSkillData from '../data/기술/어티치먼트.json'
 import mapData from '../data/map.json'
 import './App.css'
 
@@ -56,6 +57,9 @@ const BUTTON_CLICK_SFX_VOLUME = 0.62
 const BUTTON_CLICK_SFX_POOL_SIZE = 4
 const EVOLUTION_SCENE_SWITCH_MS = 3000
 const EVOLUTION_SCENE_TOTAL_MS = 5000
+const MAX_COMBATANT_SKILL_COUNT = 8
+const DIGIMON_SIZE_MIN = 1
+const DIGIMON_SIZE_MAX = 5
 
 const DIGIMON_DETECTOR_ITEM_ID = 'digimon-detector'
 const IV_DETECTOR_ITEM_ID = 'iv-detector'
@@ -705,6 +709,16 @@ const createDigimonImageUrl = (stage, name) =>
 
 const createDigimonArtworkUrl = (stage, name) => (stage && name ? `/이미지/${stage}/${name}.jpg` : '')
 
+const normalizeDigimonSize = (size) => {
+  const nextSize = Math.round(Number(size))
+
+  if (!Number.isFinite(nextSize)) {
+    return 3
+  }
+
+  return Math.max(DIGIMON_SIZE_MIN, Math.min(DIGIMON_SIZE_MAX, nextSize))
+}
+
 const hideBrokenArtwork = (event) => {
   const currentTarget = event.currentTarget
   const fallbackSrc = currentTarget.dataset.fallbackSrc
@@ -737,6 +751,7 @@ const allSkillLookup = [
   ...perfectSkillData,
   ...ultimateSkillData,
   ...superUltimateSkillData,
+  ...attachmentSkillData,
 ].reduce((result, skill) => {
   if (!result.has(skill.기술명)) {
     result.set(skill.기술명, skill)
@@ -744,6 +759,91 @@ const allSkillLookup = [
 
   return result
 }, new Map())
+
+const getAttachmentSkillNamesForLevel = (data, level) =>
+  [...(data?.어티치먼트 ?? [])]
+    .filter((entry) => entry?.기술 && Number(entry.레벨 ?? 0) <= level)
+    .sort((first, second) => Number(first.레벨 ?? 0) - Number(second.레벨 ?? 0))
+    .map((entry) => entry.기술)
+
+const getAllDigimonSkillNamesForLevel = (data, level) => {
+  const skillNames = [...(data?.기술 ?? []), ...getAttachmentSkillNamesForLevel(data, level)]
+
+  return [...new Set(skillNames)]
+}
+
+const getDigimonSkillNamesForLevel = (data, level) =>
+  getAllDigimonSkillNamesForLevel(data, level).slice(-MAX_COMBATANT_SKILL_COUNT)
+
+const mergeCombatantSkillNamesForLevel = (combatant, level) => {
+  if (!combatant?.speciesData) {
+    return combatant?.skills ?? []
+  }
+
+  const learnableSkills = getAllDigimonSkillNamesForLevel(combatant.speciesData, level)
+  const learnableSkillSet = new Set(learnableSkills)
+  const currentSkills = (combatant.skills?.length
+    ? combatant.skills
+    : getDigimonSkillNamesForLevel(combatant.speciesData, level)
+  ).filter((skillName) => learnableSkillSet.has(skillName))
+  const nextSkills = [...new Set(currentSkills)]
+
+  learnableSkills.forEach((skillName) => {
+    if (nextSkills.length < MAX_COMBATANT_SKILL_COUNT && !nextSkills.includes(skillName)) {
+      nextSkills.push(skillName)
+    }
+  })
+
+  return nextSkills.slice(0, MAX_COMBATANT_SKILL_COUNT)
+}
+
+const getNewSkillLearnNamesForLevel = (combatant, level) => {
+  if (!combatant?.speciesData) {
+    return []
+  }
+
+  const currentSkillSet = new Set(combatant.skills ?? [])
+
+  return getAllDigimonSkillNamesForLevel(combatant.speciesData, level).filter(
+    (skillName) => !currentSkillSet.has(skillName)
+  )
+}
+
+const createSkillLearnEvent = (combatant, skillName, level) => ({
+  id: `${combatant.id}-${level}-${skillName}`,
+  combatantId: combatant.id,
+  combatantName: combatant.name,
+  newSkillName: skillName,
+  level,
+})
+
+const getSkillLearnEventsForLevelRange = (combatant, fromLevel, toLevel) => {
+  if (!combatant?.speciesData || toLevel <= fromLevel) {
+    return []
+  }
+
+  const knownSkillNames = new Set(combatant.skills ?? [])
+  const queuedSkillNames = new Set()
+  let learnedSkillCount = knownSkillNames.size
+  const events = []
+
+  for (let level = fromLevel + 1; level <= toLevel; level += 1) {
+    getAllDigimonSkillNamesForLevel(combatant.speciesData, level)
+      .filter((skillName) => !knownSkillNames.has(skillName) && !queuedSkillNames.has(skillName))
+      .forEach((skillName) => {
+        if (learnedSkillCount < MAX_COMBATANT_SKILL_COUNT) {
+          knownSkillNames.add(skillName)
+          learnedSkillCount += 1
+          return
+        }
+
+        queuedSkillNames.add(skillName)
+        events.push(createSkillLearnEvent(combatant, skillName, level))
+      })
+  }
+
+  return events
+}
 
 const typeAdvantageMap = {
   데이터: ['백신'],
@@ -1132,6 +1232,7 @@ const STARTER_PARTY_COST_LIMIT = 10
 const STARTER_GROWTH_COST = 3
 const DIGI_EGG_HATCH_LEVEL = 3
 const BUFF_STAGE_DURATION = 10
+const BATTLE_STAT_MODIFIER_DURATION = 3
 const STATUS_DURATION_TURNS = 3
 const STATUS_EARLY_CURE_CHANCE = 30
 const IV_MAX = 31
@@ -1353,6 +1454,16 @@ const normalizeBuffState = (activeBuffs) =>
   BUFFABLE_STAT_KEYS.reduce((result, statKey) => {
     const nextValue = Math.max(0, Math.floor(activeBuffs?.[statKey] ?? 0))
     result[statKey] = Math.min(BUFF_STAGE_DURATION, nextValue)
+    return result
+  }, {})
+
+const normalizeBattleStatModifiers = (statModifiers) =>
+  BUFFABLE_STAT_KEYS.reduce((result, statKey) => {
+    const modifier = statModifiers?.[statKey]
+    const turns = Math.max(0, Math.min(BATTLE_STAT_MODIFIER_DURATION, Math.floor(modifier?.turns ?? 0)))
+    const multiplier = Number.isFinite(modifier?.multiplier) ? modifier.multiplier : 1
+
+    result[statKey] = turns > 0 && multiplier > 0 ? { turns, multiplier } : null
     return result
   }, {})
 
@@ -2615,11 +2726,26 @@ const getSkillData = (skillName) => {
   )
 }
 const isSkillAreaAttack = (skillData) => skillData?.전체공격 === true
-const getSkillRangeLabel = (skillData) => (isSkillAreaAttack(skillData) ? '상대 전체' : '상대 1마리')
+const isSupportSkill = (skillData) => skillData?.분류 === '보조형' || Boolean(skillData?.효과)
+const getSkillEffect = (skillData) => skillData?.효과 ?? null
+const getSkillRangeLabel = (skillData) =>
+  skillData?.대상 ?? (isSkillAreaAttack(skillData) ? '상대 전체' : '상대 1마리')
+const getSkillTargetSide = (skillData) => getSkillEffect(skillData)?.targetSide ?? 'enemy'
+const getSkillTargetScope = (skillData) =>
+  getSkillEffect(skillData)?.scope ?? (isSkillAreaAttack(skillData) ? 'all' : 'single')
+const isEnemyTargetSkill = (skillData) => !isSupportSkill(skillData) || getSkillTargetSide(skillData) === 'enemy'
+const shouldChooseEnemyTarget = (skillData, livingEnemyCount) =>
+  isEnemyTargetSkill(skillData) &&
+  getSkillTargetScope(skillData) === 'single' &&
+  livingEnemyCount > 1
 
 const getSkillEffectDescription = (skillData) => {
   if (!skillData) {
     return null
+  }
+
+  if (skillData.효과설명) {
+    return skillData.효과설명
   }
 
   const effects = []
@@ -2636,7 +2762,7 @@ const getSkillEffectDescription = (skillData) => {
   return effects.length > 0 ? effects.join(' ') : null
 }
 
-const BattleSkillTooltip = ({ skillData }) => {
+const BattleSkillTooltip = ({ skillData, className = '' }) => {
   if (!skillData) {
     return null
   }
@@ -2652,7 +2778,10 @@ const BattleSkillTooltip = ({ skillData }) => {
   ].filter((row) => row.value !== null && row.value !== undefined && row.value !== '')
 
   return (
-    <div className="battle-skill-tooltip" aria-hidden="true">
+    <div
+      className={['battle-skill-tooltip', className].filter(Boolean).join(' ')}
+      aria-hidden="true"
+    >
       <div
         className="battle-skill-tooltip__card"
         style={{
@@ -2947,6 +3076,9 @@ const calculateOtherStat = ({ base, iv, level }) =>
 const getBuffMultiplier = (activeBuffs, statKey) =>
   BUFFABLE_STAT_KEYS.includes(statKey) && (activeBuffs?.[statKey] ?? 0) > 0 ? 1.1 : 1
 
+const getBattleStatModifierMultiplier = (statModifiers, statKey) =>
+  normalizeBattleStatModifiers(statModifiers)[statKey]?.multiplier ?? 1
+
 const getDigicloneMultiplier = (digiclones, statKey) => {
   const cloneCount = normalizeDigiclones(digiclones)[statKey] ?? 0
 
@@ -2979,7 +3111,7 @@ const getAttributePowerMultiplier = (combatant, skillAttribute) => {
   return 1 + boostCount * 0.1
 }
 
-const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs, digiclones }) => ({
+const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs, statModifiers, digiclones }) => ({
   maxHp: Math.max(
     1,
     Math.floor(
@@ -2989,6 +3121,7 @@ const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs, digiclones }
         level,
       }) *
         getBuffMultiplier(activeBuffs, 'hp') *
+        getBattleStatModifierMultiplier(statModifiers, 'hp') *
         getDigicloneMultiplier(digiclones, 'hp')
     )
   ),
@@ -3001,6 +3134,7 @@ const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs, digiclones }
         level,
       }) *
         getBuffMultiplier(activeBuffs, 'attack') *
+        getBattleStatModifierMultiplier(statModifiers, 'attack') *
         getDigicloneMultiplier(digiclones, 'attack')
     )
   ),
@@ -3013,6 +3147,7 @@ const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs, digiclones }
         level,
       }) *
         getBuffMultiplier(activeBuffs, 'defense') *
+        getBattleStatModifierMultiplier(statModifiers, 'defense') *
         getDigicloneMultiplier(digiclones, 'defense')
     )
   ),
@@ -3025,6 +3160,7 @@ const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs, digiclones }
         level,
       }) *
         getBuffMultiplier(activeBuffs, 'specialAttack') *
+        getBattleStatModifierMultiplier(statModifiers, 'specialAttack') *
         getDigicloneMultiplier(digiclones, 'specialAttack')
     )
   ),
@@ -3037,6 +3173,7 @@ const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs, digiclones }
         level,
       }) *
         getBuffMultiplier(activeBuffs, 'specialDefense') *
+        getBattleStatModifierMultiplier(statModifiers, 'specialDefense') *
         getDigicloneMultiplier(digiclones, 'specialDefense')
     )
   ),
@@ -3049,6 +3186,7 @@ const calculateBattleStats = ({ baseStats, level, ivs, activeBuffs, digiclones }
         level,
       }) *
         getBuffMultiplier(activeBuffs, 'speed') *
+        getBattleStatModifierMultiplier(statModifiers, 'speed') *
         getDigicloneMultiplier(digiclones, 'speed')
     )
   ),
@@ -3156,6 +3294,7 @@ const createEvolvedCombatant = (combatant, targetData) => {
     experience: combatant.experience,
     ivs: combatant.ivs,
     activeBuffs: combatant.activeBuffs,
+    statModifiers: combatant.statModifiers,
     typePowerUps: combatant.typePowerUps,
     attributePowerUps: combatant.attributePowerUps,
     digiclones: combatant.digiclones,
@@ -3196,6 +3335,7 @@ const createJogressCombatant = (primaryCombatant, partnerCombatant, targetData) 
     experience: Math.max(primaryCombatant.experience ?? 0, partnerCombatant.experience ?? 0),
     ivs: mergedIvs,
     activeBuffs: primaryCombatant.activeBuffs,
+    statModifiers: primaryCombatant.statModifiers,
     typePowerUps: primaryCombatant.typePowerUps,
     attributePowerUps: primaryCombatant.attributePowerUps,
     digiclones: primaryCombatant.digiclones,
@@ -3243,6 +3383,7 @@ const createReturnedEvolutionCombatant = (combatant) => {
     experience: combatant.experience,
     ivs: combatant.ivs,
     activeBuffs: combatant.activeBuffs,
+    statModifiers: combatant.statModifiers,
     typePowerUps: combatant.typePowerUps,
     attributePowerUps: combatant.attributePowerUps,
     digiclones: combatant.digiclones,
@@ -3272,6 +3413,7 @@ const createCombatant = ({
   experience = 0,
   ivs,
   activeBuffs,
+  statModifiers,
   typePowerUps,
   attributePowerUps,
   digiclones,
@@ -3283,6 +3425,7 @@ const createCombatant = ({
   const baseStats = createBaseStats(data)
   const resolvedIvs = normalizeStatBlock(ivs, createRandomIvs(), IV_MAX)
   const resolvedActiveBuffs = normalizeBuffState(activeBuffs)
+  const resolvedStatModifiers = normalizeBattleStatModifiers(statModifiers)
   const resolvedTypePowerUps = normalizeTypePowerUps(typePowerUps)
   const resolvedAttributePowerUps = normalizeAttributePowerUps(attributePowerUps)
   const resolvedDigiclones = normalizeDigiclones(digiclones)
@@ -3294,6 +3437,7 @@ const createCombatant = ({
     level,
     ivs: resolvedIvs,
     activeBuffs: resolvedActiveBuffs,
+    statModifiers: resolvedStatModifiers,
     digiclones: resolvedDigiclones,
   })
 
@@ -3306,6 +3450,7 @@ const createCombatant = ({
     baseStats,
     ivs: resolvedIvs,
     activeBuffs: resolvedActiveBuffs,
+    statModifiers: resolvedStatModifiers,
     typePowerUps: resolvedTypePowerUps,
     attributePowerUps: resolvedAttributePowerUps,
     digiclones: resolvedDigiclones,
@@ -3320,12 +3465,13 @@ const createCombatant = ({
     baseStatTotal: getBaseStatTotal(baseStats),
     type: data?.타입 ?? '무',
     attribute: data?.속성 ?? '무',
+    size: normalizeDigimonSize(data?.크기),
     attack: battleStats.attack,
     specialAttack: battleStats.specialAttack,
     defense: battleStats.defense,
     specialDefense: battleStats.specialDefense,
     speed: battleStats.speed,
-    skills: [...(data?.기술 ?? [])].slice(0, 4),
+    skills: getDigimonSkillNamesForLevel(data, level),
   }
 }
 
@@ -3335,6 +3481,7 @@ const createCapturedPartyMember = (enemy, captureId) =>
       ...enemy,
       id: captureId,
       activeBuffs: normalizeBuffState(null),
+      statModifiers: normalizeBattleStatModifiers(null),
       typePowerUps: normalizeTypePowerUps(null),
       attributePowerUps: normalizeAttributePowerUps(null),
       digiclones: normalizeDigiclones(null),
@@ -3370,6 +3517,7 @@ const createDigiEggCombatant = ({
   baseStats: createBaseStats(null),
   ivs: createRandomIvs(),
   activeBuffs: normalizeBuffState(null),
+  statModifiers: normalizeBattleStatModifiers(null),
   typePowerUps: normalizeTypePowerUps(null),
   attributePowerUps: normalizeAttributePowerUps(null),
   digiclones: normalizeDigiclones(null),
@@ -3562,6 +3710,7 @@ const refreshCombatantStats = (
     level = combatant.level,
     ivs = combatant.ivs,
     activeBuffs = combatant.activeBuffs,
+    statModifiers = combatant.statModifiers,
     digiclones = combatant.digiclones,
     statusEffect = combatant.statusEffect,
     preserveMaxHpDelta = false,
@@ -3572,6 +3721,7 @@ const refreshCombatantStats = (
     level,
     ivs,
     activeBuffs,
+    statModifiers,
     digiclones,
   })
   const statMultiplier = combatant.isBoss ? BOSS_STAT_MULTIPLIER : 1
@@ -3589,6 +3739,7 @@ const refreshCombatantStats = (
     ...combatant,
     ivs,
     activeBuffs: normalizeBuffState(activeBuffs),
+    statModifiers: normalizeBattleStatModifiers(statModifiers),
     digiclones: normalizeDigiclones(digiclones),
     statusEffect: normalizeStatusEffect(statusEffect),
     level,
@@ -3602,6 +3753,7 @@ const refreshCombatantStats = (
     defense: resolvedBattleStats.defense,
     specialDefense: resolvedBattleStats.specialDefense,
     speed: resolvedBattleStats.speed,
+    skills: mergeCombatantSkillNamesForLevel(combatant, level),
   }
 }
 
@@ -3823,6 +3975,40 @@ const resolveTurnEndStatus = (combatant, { side = 'enemy' } = {}) => {
   }
 }
 
+const progressBattleStatModifiers = (combatant) => {
+  const currentModifiers = normalizeBattleStatModifiers(combatant?.statModifiers)
+  const nextModifiers = BUFFABLE_STAT_KEYS.reduce((result, statKey) => {
+    const modifier = currentModifiers[statKey]
+
+    if (!modifier) {
+      result[statKey] = null
+      return result
+    }
+
+    const nextTurns = modifier.turns - 1
+    result[statKey] = nextTurns > 0 ? { ...modifier, turns: nextTurns } : null
+    return result
+  }, {})
+
+  return refreshCombatantStats(combatant, {
+    statModifiers: nextModifiers,
+    preserveMaxHpDelta: true,
+  })
+}
+
+const resolveTurnEndCombatantEffects = (combatant, { side = 'enemy' } = {}) => {
+  const statusResult = resolveTurnEndStatus(combatant, { side })
+  const nextCombatant =
+    statusResult.nextCombatant?.currentHp > 0
+      ? progressBattleStatModifiers(statusResult.nextCombatant)
+      : statusResult.nextCombatant
+
+  return {
+    nextCombatant,
+    battleLogs: statusResult.battleLogs,
+  }
+}
+
 const applyExperienceAmount = ({
   combatant,
   experienceAmount,
@@ -3832,11 +4018,14 @@ const applyExperienceAmount = ({
     return {
       nextCombatant: combatant,
       battleLogs: [],
+      skillLearnEvents: [],
     }
   }
 
   let nextCombatant = { ...combatant }
   const battleLogs = []
+  const skillLearnEvents = []
+  const queuedSkillNames = new Set()
 
   nextCombatant.experience += experienceAmount
   battleLogs.push(`${nextCombatant.name}은(는) 경험치 ${experienceAmount}를 얻었다!`)
@@ -3845,9 +4034,27 @@ const applyExperienceAmount = ({
     nextCombatant.level < levelCap &&
     nextCombatant.experience >= nextCombatant.experienceToNext
   ) {
+    const nextLevel = nextCombatant.level + 1
+    const newlyLearnedSkills = getNewSkillLearnNamesForLevel(nextCombatant, nextLevel).filter(
+      (skillName) => !queuedSkillNames.has(skillName)
+    )
+    const freeSkillSlots = Math.max(
+      0,
+      MAX_COMBATANT_SKILL_COUNT - (nextCombatant.skills?.length ?? 0)
+    )
+    const autoLearnedSkills = newlyLearnedSkills.slice(0, freeSkillSlots)
+    const replacementSkillNames = newlyLearnedSkills.slice(freeSkillSlots)
+
     nextCombatant.experience -= nextCombatant.experienceToNext
-    nextCombatant = levelUpCombatant(nextCombatant, nextCombatant.level + 1)
+    nextCombatant = levelUpCombatant(nextCombatant, nextLevel)
     battleLogs.push(`${nextCombatant.name}의 레벨이 Lv.${nextCombatant.level}이 되었다!`)
+    autoLearnedSkills.forEach((skillName) => {
+      battleLogs.push(`${nextCombatant.name}은(는) ${skillName}을(를) 배웠다!`)
+    })
+    replacementSkillNames.forEach((skillName) => {
+      queuedSkillNames.add(skillName)
+      skillLearnEvents.push(createSkillLearnEvent(nextCombatant, skillName, nextLevel))
+    })
   }
 
   if (nextCombatant.level >= levelCap) {
@@ -3860,6 +4067,7 @@ const applyExperienceAmount = ({
   return {
     nextCombatant,
     battleLogs,
+    skillLearnEvents,
   }
 }
 
@@ -3879,6 +4087,7 @@ const applyPartyExperienceGain = ({
 
   let nextParty = [...party]
   const battleLogs = defeatedEnemies.map((enemy) => `${enemy.name}을(를) 쓰러뜨렸다!`)
+  const skillLearnEvents = []
   const totalBaseExperience = defeatedEnemies.reduce(
     (total, enemy) => total + getExperienceReward(enemy),
     0
@@ -3899,6 +4108,7 @@ const applyPartyExperienceGain = ({
     })
     nextParty = replacePartyMember(nextParty, experienceResult.nextCombatant)
     battleLogs.push(...experienceResult.battleLogs)
+    skillLearnEvents.push(...(experienceResult.skillLearnEvents ?? []))
   })
 
   if (getInventoryItemCount(inventory, EXP_SHARE_ITEM_ID) > 0) {
@@ -3919,11 +4129,288 @@ const applyPartyExperienceGain = ({
         })
         nextParty = replacePartyMember(nextParty, experienceResult.nextCombatant)
         battleLogs.push(...experienceResult.battleLogs)
+        skillLearnEvents.push(...(experienceResult.skillLearnEvents ?? []))
       })
   }
 
   return {
     nextParty,
+    battleLogs,
+    skillLearnEvents,
+  }
+}
+
+const getSupportTargetPool = ({ side, effect, party, enemies, activeAllyIds }) => {
+  const isActorAlly = side === 'ally'
+  const allyPool = isActorAlly
+    ? party
+    : enemies
+  const enemyPool = isActorAlly
+    ? enemies
+    : activeAllyIds
+        .map((allyId) => getCombatantById(party, allyId))
+        .filter(Boolean)
+
+  if (effect?.targetSide === 'enemy') {
+    return enemyPool
+  }
+
+  return allyPool
+}
+
+const chooseSupportTarget = ({ actor, action, effect, party, enemies, activeAllyIds }) => {
+  if (effect?.scope === 'self') {
+    return actor
+  }
+
+  const pool = getSupportTargetPool({
+    side: action.side,
+    effect,
+    party,
+    enemies,
+    activeAllyIds,
+  })
+
+  if (effect?.kind === 'revive') {
+    return pool.find((target) => target?.currentHp <= 0) ?? null
+  }
+
+  const livingTargets = pool.filter(isCombatantAbleToBattle)
+  if (effect?.scope === 'all') {
+    return livingTargets
+  }
+
+  if (action.targetId) {
+    const selectedTarget = livingTargets.find((target) => target.id === action.targetId)
+    if (selectedTarget) {
+      return selectedTarget
+    }
+  }
+
+  if (effect?.kind === 'heal') {
+    return (
+      [...livingTargets].sort(
+        (first, second) =>
+          first.currentHp / Math.max(1, first.maxHp) - second.currentHp / Math.max(1, second.maxHp)
+      )[0] ?? null
+    )
+  }
+
+  if (effect?.kind === 'clear-status') {
+    return livingTargets.find((target) => normalizeStatusEffect(target.statusEffect)) ?? actor
+  }
+
+  return livingTargets.find((target) => target.id === actor.id) ?? livingTargets[0] ?? null
+}
+
+const replaceSupportTarget = ({ side, targetSide, party, enemies, target }) => {
+  if (!target) {
+    return { party, enemies }
+  }
+
+  const shouldReplaceParty =
+    (side === 'ally' && targetSide !== 'enemy') ||
+    (side === 'enemy' && targetSide === 'enemy')
+
+  return shouldReplaceParty
+    ? { party: replacePartyMember(party, target), enemies }
+    : { party, enemies: replaceCombatantById(enemies, target) }
+}
+
+const getStatModifierLabel = (effect) => {
+  const statLabel = STAT_LABEL_MAP[effect?.statKey] ?? '스탯'
+  const percent = Math.round(Math.abs((effect?.multiplier ?? 1) - 1) * 100)
+  const direction = (effect?.multiplier ?? 1) >= 1 ? '증가' : '감소'
+
+  return `${statLabel} ${percent}% ${direction}`
+}
+
+const applySupportEffectToTarget = ({ actor, target, skillData }) => {
+  const effect = getSkillEffect(skillData)
+
+  if (!effect || !target) {
+    return {
+      nextTarget: target,
+      battleLogs: [`${skillData.기술명}은(는) 아직 효과가 구현되지 않았다.`],
+    }
+  }
+
+  if (effect.kind === 'heal') {
+    const healAmount = Math.max(1, Math.floor(target.maxHp * (effect.healRatio ?? 0)))
+    const nextHp = Math.min(target.maxHp, target.currentHp + healAmount)
+    const appliedHeal = Math.max(0, nextHp - target.currentHp)
+
+    return {
+      nextTarget: {
+        ...target,
+        currentHp: nextHp,
+      },
+      battleLogs: [`${target.name}의 HP가 ${appliedHeal} 회복됐다!`],
+    }
+  }
+
+  if (effect.kind === 'revive') {
+    if (target.currentHp > 0) {
+      return {
+        nextTarget: target,
+        battleLogs: [`${target.name}은(는) 아직 전투 가능하다!`],
+      }
+    }
+
+    const nextHp = Math.max(1, Math.floor(target.maxHp * (effect.reviveRatio ?? 0.5)))
+    return {
+      nextTarget: {
+        ...target,
+        currentHp: Math.min(target.maxHp, nextHp),
+        statusEffect: null,
+      },
+      battleLogs: [`${target.name}이(가) HP ${Math.min(target.maxHp, nextHp)}로 부활했다!`],
+    }
+  }
+
+  if (effect.kind === 'clear-status') {
+    if (!normalizeStatusEffect(target.statusEffect)) {
+      return {
+        nextTarget: target,
+        battleLogs: [`${target.name}에게 해제할 상태이상이 없다.`],
+      }
+    }
+
+    return {
+      nextTarget: clearStatusEffect(target),
+      battleLogs: [`${target.name}의 상태이상이 해제됐다!`],
+    }
+  }
+
+  if (effect.kind === 'stat-modifier') {
+    const nextModifiers = {
+      ...normalizeBattleStatModifiers(target.statModifiers),
+      [effect.statKey]: {
+        turns: effect.turns ?? BATTLE_STAT_MODIFIER_DURATION,
+        multiplier: effect.multiplier ?? 1,
+      },
+    }
+
+    return {
+      nextTarget: refreshCombatantStats(target, {
+        statModifiers: nextModifiers,
+        preserveMaxHpDelta: true,
+      }),
+      battleLogs: [`${target.name}의 ${getStatModifierLabel(effect)}!`],
+    }
+  }
+
+  if (effect.kind === 'status') {
+    if (normalizeStatusEffect(target.statusEffect)) {
+      return {
+        nextTarget: target,
+        battleLogs: [`${target.name}은(는) 이미 상태이상에 걸려 있다.`],
+      }
+    }
+
+    if (Math.random() * 100 >= (effect.chance ?? 100)) {
+      return {
+        nextTarget: target,
+        battleLogs: [`${actor.name}의 ${skillData.기술명}은(는) 실패했다!`],
+      }
+    }
+
+    return {
+      nextTarget: refreshCombatantStats(target, {
+        statusEffect: createStatusEffect(effect.status),
+      }),
+      battleLogs: [`${target.name}은(는) ${effect.status} 상태가 되었다!`],
+    }
+  }
+
+  if (effect.kind === 'clear-stat-drops' || effect.kind === 'clear-stat-boosts') {
+    const shouldClearDrop = effect.kind === 'clear-stat-drops'
+    const currentModifiers = normalizeBattleStatModifiers(target.statModifiers)
+    const nextModifiers = BUFFABLE_STAT_KEYS.reduce((result, statKey) => {
+      const modifier = currentModifiers[statKey]
+      const isDrop = (modifier?.multiplier ?? 1) < 1
+      const isBoost = (modifier?.multiplier ?? 1) > 1
+      result[statKey] =
+        (shouldClearDrop && isDrop) || (!shouldClearDrop && isBoost) ? null : modifier
+      return result
+    }, {})
+
+    return {
+      nextTarget: refreshCombatantStats(target, {
+        statModifiers: nextModifiers,
+        preserveMaxHpDelta: true,
+      }),
+      battleLogs: [
+        shouldClearDrop
+          ? `${target.name}의 스테이터스 하락이 해제됐다!`
+          : `${target.name}의 스테이터스 증가가 해제됐다!`,
+      ],
+    }
+  }
+
+  return {
+    nextTarget: target,
+    battleLogs: [`${skillData.기술명}의 효과는 아직 적용되지 않았다.`],
+  }
+}
+
+const resolveSupportSkillAction = ({
+  action,
+  actor,
+  party,
+  enemies,
+  activeAllyIds,
+  skillData,
+}) => {
+  const effect = getSkillEffect(skillData)
+  const battleLogs = [`${actor.name}의 ${skillData.기술명}!`]
+  let nextParty = [...party]
+  let nextEnemies = [...enemies]
+  const targets = chooseSupportTarget({
+    actor,
+    action,
+    effect,
+    party: nextParty,
+    enemies: nextEnemies,
+    activeAllyIds,
+  })
+  const targetList = Array.isArray(targets) ? targets : [targets].filter(Boolean)
+
+  if (targetList.length === 0) {
+    return {
+      nextParty,
+      nextEnemies,
+      battleLogs: [...battleLogs, '대상이 없다!'],
+    }
+  }
+
+  targetList.forEach((target) => {
+    const currentTarget =
+      (action.side === 'ally' && effect?.targetSide !== 'enemy') ||
+      (action.side === 'enemy' && effect?.targetSide === 'enemy')
+        ? getCombatantById(nextParty, target.id) ?? target
+        : getCombatantById(nextEnemies, target.id) ?? target
+    const effectResult = applySupportEffectToTarget({
+      actor,
+      target: currentTarget,
+      skillData,
+    })
+    const replaceResult = replaceSupportTarget({
+      side: action.side,
+      targetSide: effect?.targetSide ?? 'ally',
+      party: nextParty,
+      enemies: nextEnemies,
+      target: effectResult.nextTarget,
+    })
+
+    nextParty = replaceResult.party
+    nextEnemies = replaceResult.enemies
+    battleLogs.push(...effectResult.battleLogs)
+  })
+
+  return {
+    nextParty,
+    nextEnemies,
     battleLogs,
   }
 }
@@ -4093,7 +4580,25 @@ const resolveEnemyPartyActions = ({ enemies, party, activeAllyIds, inventory = {
       startStatusResult.canAct &&
       isCombatantAbleToBattle(nextEnemy)
     ) {
-      if (isAreaAttack) {
+      if (isSupportSkill(enemySkillData)) {
+        const supportResult = resolveSupportSkillAction({
+          action: {
+            side: 'enemy',
+            actorId: nextEnemy.id,
+            skillName: enemySkill,
+            targetId: targetAlly.id,
+          },
+          actor: nextEnemy,
+          party: nextParty,
+          enemies: nextEnemies,
+          activeAllyIds,
+          skillData: enemySkillData,
+        })
+
+        nextParty = supportResult.nextParty
+        nextEnemies = supportResult.nextEnemies
+        battleLogs.push(...supportResult.battleLogs)
+      } else if (isAreaAttack) {
         battleLogs.push(`${nextEnemy.name}의 ${enemySkillData.기술명}!`)
         activeAllyIds.forEach((allyId) => {
           const currentTarget = getCombatantById(nextParty, allyId)
@@ -4132,7 +4637,7 @@ const resolveEnemyPartyActions = ({ enemies, party, activeAllyIds, inventory = {
     }
 
     if (isCombatantAbleToBattle(nextEnemy)) {
-      const endStatusResult = resolveTurnEndStatus(nextEnemy, { side: 'enemy' })
+      const endStatusResult = resolveTurnEndCombatantEffects(nextEnemy, { side: 'enemy' })
       nextEnemy = endStatusResult.nextCombatant
       battleLogs.push(...endStatusResult.battleLogs)
     }
@@ -4221,6 +4726,7 @@ const resolveBattleTurnActions = ({
   let nextParty = [...party]
   let nextEnemies = [...enemies]
   const battleLogs = []
+  const skillLearnEvents = []
   const sortedActions = [...actions]
     .map((action) => {
       const priorityActor = getBattleTurnActor({ action, party: nextParty, enemies: nextEnemies })
@@ -4307,73 +4813,88 @@ const resolveBattleTurnActions = ({
         return [`${target.name}은(는) 풀죽었다!`]
       }
 
-      const targetCandidates = getBattleTurnTargetCandidates({
-        action,
-        party: nextParty,
-        enemies: nextEnemies,
-        activeAllyIds,
-      })
-
-      if (isAreaAttack) {
-        if (targetCandidates.length > 0) {
-          battleLogs.push(`${actor.name}의 ${skillData.기술명}!`)
-        }
-
-        targetCandidates.forEach((target) => {
-          const attackResult = resolveAttackAction({
-            attacker: actor,
-            defender: target,
-            skillName: action.skillName,
-            announce: false,
-            inventory,
-            attackerSide: action.side,
-          })
-
-          if (action.side === 'ally') {
-            nextEnemies = replaceCombatantById(nextEnemies, attackResult.nextDefender)
-
-            if (target.currentHp > 0 && attackResult.nextDefender.currentHp === 0) {
-              defeatedEnemies.push(target)
-            }
-            battleLogs.push(...attackResult.battleLogs)
-            battleLogs.push(...getDeathBoneFlinchLogs(attackResult.nextDefender))
-          } else {
-            const recoveryResult = resolveRecoveryProgramOnDefeat(attackResult.nextDefender)
-            nextParty = replacePartyMember(nextParty, recoveryResult.nextCombatant)
-            battleLogs.push(...attackResult.battleLogs)
-            battleLogs.push(...recoveryResult.battleLogs)
-            return
-          }
+      if (isSupportSkill(skillData)) {
+        const supportResult = resolveSupportSkillAction({
+          action,
+          actor,
+          party: nextParty,
+          enemies: nextEnemies,
+          activeAllyIds,
+          skillData,
         })
+
+        nextParty = supportResult.nextParty
+        nextEnemies = supportResult.nextEnemies
+        battleLogs.push(...supportResult.battleLogs)
       } else {
-        const selectedTarget =
-          targetCandidates.find((target) => target.id === action.targetId) ?? targetCandidates[0]
+        const targetCandidates = getBattleTurnTargetCandidates({
+          action,
+          party: nextParty,
+          enemies: nextEnemies,
+          activeAllyIds,
+        })
 
-        if (selectedTarget) {
-          const attackResult = resolveAttackAction({
-            attacker: actor,
-            defender: selectedTarget,
-            skillName: action.skillName,
-            inventory,
-            attackerSide: action.side,
-          })
-
-          if (action.side === 'ally') {
-            nextEnemies = replaceCombatantById(nextEnemies, attackResult.nextDefender)
-
-            if (selectedTarget.currentHp > 0 && attackResult.nextDefender.currentHp === 0) {
-              defeatedEnemies.push(selectedTarget)
-            }
-            battleLogs.push(...attackResult.battleLogs)
-            battleLogs.push(...getDeathBoneFlinchLogs(attackResult.nextDefender))
-          } else {
-            const recoveryResult = resolveRecoveryProgramOnDefeat(attackResult.nextDefender)
-            nextParty = replacePartyMember(nextParty, recoveryResult.nextCombatant)
-            battleLogs.push(...attackResult.battleLogs)
-            battleLogs.push(...recoveryResult.battleLogs)
+        if (isAreaAttack) {
+          if (targetCandidates.length > 0) {
+            battleLogs.push(`${actor.name}의 ${skillData.기술명}!`)
           }
+
+          targetCandidates.forEach((target) => {
+            const attackResult = resolveAttackAction({
+              attacker: actor,
+              defender: target,
+              skillName: action.skillName,
+              announce: false,
+              inventory,
+              attackerSide: action.side,
+            })
+
+            if (action.side === 'ally') {
+              nextEnemies = replaceCombatantById(nextEnemies, attackResult.nextDefender)
+
+              if (target.currentHp > 0 && attackResult.nextDefender.currentHp === 0) {
+                defeatedEnemies.push(target)
+              }
+              battleLogs.push(...attackResult.battleLogs)
+              battleLogs.push(...getDeathBoneFlinchLogs(attackResult.nextDefender))
+            } else {
+              const recoveryResult = resolveRecoveryProgramOnDefeat(attackResult.nextDefender)
+              nextParty = replacePartyMember(nextParty, recoveryResult.nextCombatant)
+              battleLogs.push(...attackResult.battleLogs)
+              battleLogs.push(...recoveryResult.battleLogs)
+              return
+            }
+          })
         } else {
-          battleLogs.push(`${actor.name}의 공격 대상이 없다!`)
+          const selectedTarget =
+            targetCandidates.find((target) => target.id === action.targetId) ?? targetCandidates[0]
+
+          if (selectedTarget) {
+            const attackResult = resolveAttackAction({
+              attacker: actor,
+              defender: selectedTarget,
+              skillName: action.skillName,
+              inventory,
+              attackerSide: action.side,
+            })
+
+            if (action.side === 'ally') {
+              nextEnemies = replaceCombatantById(nextEnemies, attackResult.nextDefender)
+
+              if (selectedTarget.currentHp > 0 && attackResult.nextDefender.currentHp === 0) {
+                defeatedEnemies.push(selectedTarget)
+              }
+              battleLogs.push(...attackResult.battleLogs)
+              battleLogs.push(...getDeathBoneFlinchLogs(attackResult.nextDefender))
+            } else {
+              const recoveryResult = resolveRecoveryProgramOnDefeat(attackResult.nextDefender)
+              nextParty = replacePartyMember(nextParty, recoveryResult.nextCombatant)
+              battleLogs.push(...attackResult.battleLogs)
+              battleLogs.push(...recoveryResult.battleLogs)
+            }
+          } else {
+            battleLogs.push(`${actor.name}의 공격 대상이 없다!`)
+          }
         }
       }
     }
@@ -4381,7 +4902,7 @@ const resolveBattleTurnActions = ({
     actor = getBattleTurnActor({ action, party: nextParty, enemies: nextEnemies }) ?? actor
 
     if (isCombatantAbleToBattle(actor)) {
-      const endStatusResult = resolveTurnEndStatus(actor, { side: action.side })
+      const endStatusResult = resolveTurnEndCombatantEffects(actor, { side: action.side })
       actor = endStatusResult.nextCombatant
       battleLogs.push(...endStatusResult.battleLogs)
 
@@ -4413,6 +4934,7 @@ const resolveBattleTurnActions = ({
       })
       nextParty = experienceResult.nextParty
       battleLogs.push(...experienceResult.battleLogs)
+      skillLearnEvents.push(...(experienceResult.skillLearnEvents ?? []))
     }
   })
 
@@ -4427,6 +4949,7 @@ const resolveBattleTurnActions = ({
     nextParty,
     nextEnemies,
     battleLogs,
+    skillLearnEvents,
   }
 }
 
@@ -4523,6 +5046,7 @@ function App() {
   const [evolutionScene, setEvolutionScene] = useState(null)
   const [mapSelectionState, setMapSelectionState] = useState(null)
   const [capturePreview, setCapturePreview] = useState(null)
+  const [skillReplaceState, setSkillReplaceState] = useState(null)
   const [displayedPlayerExpRatio, setDisplayedPlayerExpRatio] = useState(0)
   const [, setIsPlayerExpBarVisible] = useState(false)
   const [isPlayerExpTransitionInstant, setIsPlayerExpTransitionInstant] = useState(false)
@@ -4583,6 +5107,105 @@ function App() {
   const closeCombatantInfo = () => {
     activeCombatantInfoElementRef.current = null
     setActiveCombatantInfoId(null)
+  }
+
+  const queueSkillReplacementEvents = (events = []) => {
+    const validEvents = events.filter((event) => event?.combatantId && event?.newSkillName)
+
+    if (!validEvents.length) {
+      return
+    }
+
+    setSkillReplaceState((current) => {
+      const remainingQueue = current?.queue?.slice(current.index ?? 0) ?? []
+      const queuedIds = new Set(remainingQueue.map((event) => event.id))
+      const nextEvents = validEvents.filter((event) => !queuedIds.has(event.id))
+
+      if (!nextEvents.length) {
+        return current
+      }
+
+      return {
+        queue: [...remainingQueue, ...nextEvents],
+        index: 0,
+      }
+    })
+  }
+
+  const advanceSkillReplacementQueue = () => {
+    setSkillReplaceState((current) => {
+      if (!current?.queue?.length) {
+        return null
+      }
+
+      const nextIndex = (current.index ?? 0) + 1
+
+      if (nextIndex >= current.queue.length) {
+        return null
+      }
+
+      return {
+        ...current,
+        index: nextIndex,
+      }
+    })
+  }
+
+  const handleSkipSkillReplacement = () => {
+    advanceSkillReplacementQueue()
+  }
+
+  const handleReplaceSkill = (oldSkillName) => {
+    const activeEvent = skillReplaceState?.queue?.[skillReplaceState.index ?? 0]
+
+    if (!activeEvent?.combatantId || !oldSkillName) {
+      advanceSkillReplacementQueue()
+      return
+    }
+
+    setGameState((current) => {
+      if (!current) {
+        return current
+      }
+
+      const currentParty = syncPartyMember(current.party, current.player)
+      const targetMember = getCombatantById(currentParty, activeEvent.combatantId)
+
+      if (!targetMember) {
+        return current
+      }
+
+      let hasReplaced = false
+      const nextSkills = (targetMember.skills ?? []).map((skillName) => {
+        if (!hasReplaced && skillName === oldSkillName) {
+          hasReplaced = true
+          return activeEvent.newSkillName
+        }
+
+        return skillName
+      })
+
+      if (!hasReplaced) {
+        return current
+      }
+
+      const updatedMember = {
+        ...targetMember,
+        skills: [...new Set(nextSkills)].slice(0, MAX_COMBATANT_SKILL_COUNT),
+      }
+      const nextParty = replacePartyMember(currentParty, updatedMember)
+      const nextPlayer =
+        current.player?.id === updatedMember.id
+          ? updatedMember
+          : getCombatantById(nextParty, current.player?.id) ?? current.player
+
+      return {
+        ...current,
+        player: nextPlayer,
+        party: nextParty,
+      }
+    })
+    advanceSkillReplacementQueue()
   }
 
   const showLevelUpStatPreview = (previousStats, currentStats) => {
@@ -4845,6 +5468,7 @@ function App() {
     nextParty,
     nextEnemies,
     logs,
+    skillLearnEvents = [],
     nextInventory = gameState?.inventory ?? {},
     nextGold = gameState?.gold ?? 0,
     preferredActiveAllyIds = gameState?.activeAllyIds ?? [],
@@ -4880,6 +5504,7 @@ function App() {
       setSelectedBattleCommand('attack')
       setSelectedSkillIndex(0)
       setSelectedEnemyTargetId(null)
+      queueSkillReplacementEvents(skillLearnEvents)
     }
 
     const commitVictory = () => {
@@ -5070,20 +5695,17 @@ function App() {
     setSelectedEnemyTargetId(null)
 
     const playerSkillData = getSkillData(playerSkill)
-
-    if (isSkillAreaAttack(playerSkillData)) {
-      setHoveredSkillIndex(null)
-      setHoveredEnemyTargetId(null)
-      handleExecuteSkill(skillIndex)
-      return
-    }
-
     const livingEnemies = gameState.enemies.filter((enemy) => isCombatantAbleToBattle(enemy))
 
-    if (livingEnemies.length === 1) {
+    if (!shouldChooseEnemyTarget(playerSkillData, livingEnemies.length)) {
       setHoveredSkillIndex(null)
       setHoveredEnemyTargetId(null)
-      handleExecuteSkill(skillIndex, livingEnemies[0].id)
+      handleExecuteSkill(
+        skillIndex,
+        isEnemyTargetSkill(playerSkillData) && getSkillTargetScope(playerSkillData) === 'single'
+          ? livingEnemies[0]?.id ?? null
+          : null
+      )
       return
     }
 
@@ -5144,18 +5766,23 @@ function App() {
     setSelectedBattleCommand('attack')
     const playerSkillData = getSkillData(playerSkill)
     const isAreaAttack = isSkillAreaAttack(playerSkillData)
+    const needsEnemyTarget = isEnemyTargetSkill(playerSkillData)
+    const isSingleEnemyTarget =
+      needsEnemyTarget && getSkillTargetScope(playerSkillData) === 'single'
 
-    if (isAreaAttack) {
+    if (!isSingleEnemyTarget || isAreaAttack) {
       setSelectedEnemyTargetId(null)
     }
 
-    const targetEnemy = isAreaAttack
-      ? gameState.enemies[getLivingEnemyIndex(gameState.enemies)]
-      : gameState.enemies.find(
-          (enemy) => enemy.id === targetEnemyId && isCombatantAbleToBattle(enemy)
-        )
+    const targetEnemy = !needsEnemyTarget
+      ? null
+      : isAreaAttack
+        ? gameState.enemies[getLivingEnemyIndex(gameState.enemies)]
+        : gameState.enemies.find(
+            (enemy) => enemy.id === targetEnemyId && isCombatantAbleToBattle(enemy)
+          )
 
-    if (!targetEnemy) {
+    if (needsEnemyTarget && !targetEnemy) {
       setCurrentLogs(
         createBattleLog(
           isAreaAttack
@@ -5180,7 +5807,7 @@ function App() {
       side: 'ally',
       actor: actingAlly,
       skillName: playerSkill,
-      targetId: isAreaAttack ? null : targetEnemy.id,
+      targetId: isSingleEnemyTarget ? targetEnemy?.id ?? null : null,
       order: pendingActions.length,
     })
     const nextPendingActions = [...pendingActions, nextAllyAction]
@@ -5231,6 +5858,7 @@ function App() {
       nextParty: turnResult.nextParty,
       nextEnemies: turnResult.nextEnemies,
       logs: turnResult.battleLogs,
+      skillLearnEvents: turnResult.skillLearnEvents,
       preferredActiveAllyIds: battleContext.activeAllyIds,
     })
   }
@@ -5639,8 +6267,9 @@ function App() {
     const currentParty = syncPartyMember(gameState.party, gameState.player)
     const levelCap = gameState.levelCap ?? Infinity
     const effectiveRewardItem = getRewardItemWithInventoryModifiers(rewardItem, gameState.inventory)
-    const finishRewardUse = (nextGameState) => {
+    const finishRewardUse = (nextGameState, skillLearnEvents = []) => {
       setGameState(nextGameState)
+      queueSkillReplacementEvents(skillLearnEvents)
 
       if (source === 'fixed') {
         setRewardState((current) =>
@@ -5737,15 +6366,22 @@ function App() {
         return
       }
 
-      const nextParty = currentParty.map((member) =>
-        isRewardItemUsableByCombatant(partyLevelUpItem, member, levelCap)
-          ? applyLevelUpRewardEffect(
-              member,
-              effectiveRewardItem.partyLevelUpAmount,
-              getRewardItemLevelLimit(partyLevelUpItem, levelCap)
-            )
-          : member
-      )
+      const skillLearnEvents = []
+      const nextParty = currentParty.map((member) => {
+        if (!isRewardItemUsableByCombatant(partyLevelUpItem, member, levelCap)) {
+          return member
+        }
+
+        const nextMember = applyLevelUpRewardEffect(
+          member,
+          effectiveRewardItem.partyLevelUpAmount,
+          getRewardItemLevelLimit(partyLevelUpItem, levelCap)
+        )
+        skillLearnEvents.push(
+          ...getSkillLearnEventsForLevelRange(member, member.level, nextMember.level)
+        )
+        return nextMember
+      })
       const nextPlayer =
         getCombatantById(nextParty, gameState.player?.id) ??
         getFirstLivingPartyMember(nextParty, gameState.activeAllyIds) ??
@@ -5757,7 +6393,7 @@ function App() {
         gold: source === 'fixed' ? (gameState.gold ?? 0) - (rewardItem.price ?? 0) : gameState.gold,
         player: nextPlayer,
         party: nextParty,
-      })
+      }, skillLearnEvents)
       return
     }
 
@@ -5788,6 +6424,14 @@ function App() {
     }
 
     const effectResult = applyInstantRewardEffect(targetCombatant, effectiveRewardItem, levelCap)
+    const skillLearnEvents =
+      effectiveRewardItem.levelUpAmount && effectResult.nextPlayer
+        ? getSkillLearnEventsForLevelRange(
+            targetCombatant,
+            targetCombatant.level,
+            effectResult.nextPlayer.level
+          )
+        : []
     const nextParty = isTargetedItem
       ? replacePartyMember(currentParty, effectResult.nextPlayer)
       : syncPartyMember(currentParty, effectResult.nextPlayer)
@@ -5806,7 +6450,7 @@ function App() {
       inventory: nextInventory,
     }
 
-    finishRewardUse(nextGameState)
+    finishRewardUse(nextGameState, skillLearnEvents)
   }
 
   const requestRewardTargetSelection = (source, rewardItem) => {
@@ -6129,7 +6773,10 @@ function App() {
 
   const selectedGrowthDigimon = growthStageDigimon[selectedGrowthIndex] ?? growthStageDigimon[0]
   const selectedStarterCost = selectedStarterNames.length * STARTER_GROWTH_COST
-  const selectedGrowthSkills = selectedGrowthDigimon?.data?.기술 ?? []
+  const selectedGrowthSkills = getDigimonSkillNamesForLevel(
+    selectedGrowthDigimon?.data,
+    STARTING_PLAYER_LEVEL
+  )
   const selectedGrowthSkillSlots = Array.from(
     { length: 4 },
     (_, index) => selectedGrowthSkills[index] ?? null
@@ -6248,20 +6895,34 @@ function App() {
       : mapBackgrounds[mapTransition.activeIndex]
   const battleContext = getBattleContext()
   const partyMembers = battleContext.party
+  const activeSkillReplaceEvent = skillReplaceState?.queue?.[skillReplaceState.index ?? 0] ?? null
+  const skillReplaceCombatant = activeSkillReplaceEvent
+    ? getCombatantById(partyMembers, activeSkillReplaceEvent.combatantId)
+    : null
+  const skillReplaceNewSkillData = activeSkillReplaceEvent
+    ? getSkillData(activeSkillReplaceEvent.newSkillName)
+    : null
+  const skillReplaceCurrentSkills = skillReplaceCombatant?.skills ?? []
   const activeAllyIds = battleContext.activeAllyIds
   const activeAllies = activeAllyIds
     .map((memberId) => getCombatantById(partyMembers, memberId))
     .filter(Boolean)
   const actingAlly = battleContext.actingAlly ?? gameState?.player ?? null
   const playerSkills = actingAlly?.skills ?? []
-  const battleSkillSlots = Array.from({ length: 4 }, (_, index) => playerSkills[index] ?? null)
+  const battleSkillSlots = Array.from(
+    { length: MAX_COMBATANT_SKILL_COUNT },
+    (_, index) => playerSkills[index] ?? null
+  )
   const selectedSkill = battleSkillSlots[selectedSkillIndex]
   const selectedSkillData = selectedSkill ? getSkillData(selectedSkill) : null
   const activePreviewSkillIndex =
     hoveredSkillIndex !== null && battleSkillSlots[hoveredSkillIndex] ? hoveredSkillIndex : null
+  const activePreviewSkillData =
+    activePreviewSkillIndex !== null ? getSkillData(battleSkillSlots[activePreviewSkillIndex]) : null
   const isAttackPanelOpen = battlePanelMode === 'attack'
   const isAttackTargetPanelOpen = battlePanelMode === 'attack-targets'
   const isSkillConsoleOpen = isAttackPanelOpen || isAttackTargetPanelOpen
+  const actionPanelSkillData = activePreviewSkillData ?? (isAttackTargetPanelOpen ? selectedSkillData : null)
   const isItemPanelOpen = battlePanelMode === 'items'
   const isPartyPanelOpen = battlePanelMode === 'party'
   const captureInventoryItems = captureItemOrder.map((itemId) => {
@@ -6837,7 +7498,13 @@ function App() {
                             }}
                           >
                             <img
-                              className="adventure-player__sprite adventure-player__sprite--ally"
+                              className={[
+                                'adventure-player__sprite',
+                                'adventure-player__sprite--ally',
+                                `adventure-player__sprite--size-${ally.size}`,
+                              ]
+                                .filter(Boolean)
+                                .join(' ')}
                               src={ally.imageUrl}
                               alt={ally.name}
                             />
@@ -6980,7 +7647,13 @@ function App() {
                             }
                           >
                             <img
-                              className="adventure-player__sprite adventure-player__sprite--enemy"
+                              className={[
+                                'adventure-player__sprite',
+                                'adventure-player__sprite--enemy',
+                                `adventure-player__sprite--size-${enemy.size}`,
+                              ]
+                                .filter(Boolean)
+                                .join(' ')}
                               src={enemy.imageUrl}
                               alt={enemy.name}
                             />
@@ -7513,6 +8186,56 @@ function App() {
                   </div>
                 )}
 
+                {activeSkillReplaceEvent && skillReplaceCombatant ? (
+                  <div className="skill-replace-screen" role="dialog" aria-modal="true">
+                    <div className="skill-replace-screen__panel">
+                      <div className="skill-replace-screen__header">
+                        <span className="skill-replace-screen__eyebrow">새 기술</span>
+                        <strong className="skill-replace-screen__title">
+                          {skillReplaceCombatant.name}은(는) {activeSkillReplaceEvent.newSkillName}을(를) 배우려 한다.
+                        </strong>
+                      </div>
+
+                      <div className="skill-replace-screen__new">
+                        <strong>{activeSkillReplaceEvent.newSkillName}</strong>
+                        <span>
+                          {skillReplaceNewSkillData?.분류 ?? '기술'} ·{' '}
+                          {skillReplaceNewSkillData?.속성 ?? '무'} ·{' '}
+                          {getSkillRangeLabel(skillReplaceNewSkillData)}
+                        </span>
+                      </div>
+
+                      <p className="skill-replace-screen__prompt">
+                        잊을 기술을 선택해줘. 배우지 않으면 현재 기술 구성을 유지한다.
+                      </p>
+
+                      <div className="skill-replace-screen__skills">
+                        {skillReplaceCurrentSkills.map((skillName) => (
+                          <button
+                            key={skillName}
+                            type="button"
+                            className="skill-replace-screen__skill"
+                            onClick={() => handleReplaceSkill(skillName)}
+                          >
+                            <span className="skill-replace-screen__marker" aria-hidden="true">
+                              ▶
+                            </span>
+                            <span>{skillName}</span>
+                          </button>
+                        ))}
+                      </div>
+
+                      <button
+                        type="button"
+                        className="skill-replace-screen__skip"
+                        onClick={handleSkipSkillReplacement}
+                      >
+                        배우지 않는다
+                      </button>
+                    </div>
+                  </div>
+                ) : null}
+
                 {mapSelectionState && !rewardState && (
                   <div className="map-selection-screen" aria-label="지도 이동 선택">
                     <div className="map-selection-screen__panel">
@@ -7644,126 +8367,152 @@ function App() {
                     </div>
                   </div>
                 )}
+
+                {isSkillConsoleOpen &&
+                !rewardState &&
+                !mapSelectionState &&
+                !evolutionState &&
+                !isPartyPanelOpen &&
+                !isItemPanelOpen ? (
+                  <div className="battle-action-panel" aria-label="공격 선택">
+                    <section className="battle-action-panel__left">
+                      <div className="battle-action-panel__header">
+                        <span className="battle-action-panel__eyebrow">
+                          {isAttackTargetPanelOpen ? 'TARGET' : 'SKILL'}
+                        </span>
+                        {isAttackTargetPanelOpen ? (
+                          <strong className="battle-action-panel__title">공격 대상</strong>
+                        ) : null}
+                      </div>
+
+                      {isAttackPanelOpen ? (
+                        <div
+                          className="battle-skill-grid battle-skill-grid--action-panel"
+                          onMouseLeave={handleSkillPreviewClear}
+                        >
+                          {battleSkillSlots.map((skill, index) => {
+                            const skillData = skill ? getSkillData(skill) : null
+                            const isAreaAttack = isSkillAreaAttack(skillData)
+                            const skillMatchup =
+                              skill && !isAreaAttack && currentTargetEnemy && gameState
+                                ? getMatchupResult({
+                                    attackerType: actingAlly?.type,
+                                    skillAttribute: skillData?.속성,
+                                    defenderType: currentTargetEnemy.type,
+                                    defenderAttribute: currentTargetEnemy.attribute,
+                                  })
+                                : null
+                            const isAdvantageous = isAreaAttack
+                              ? (gameState?.enemies ?? []).some(
+                                  (enemy) =>
+                                    isCombatantAbleToBattle(enemy) &&
+                                    getMatchupResult({
+                                      attackerType: actingAlly?.type,
+                                      skillAttribute: skillData?.속성,
+                                      defenderType: enemy.type,
+                                      defenderAttribute: enemy.attribute,
+                                    }).multiplier > 1
+                                )
+                              : (skillMatchup?.multiplier ?? 1) > 1
+
+                            return (
+                              <button
+                                key={`${skill ?? 'empty'}-${index}`}
+                                type="button"
+                                className={[
+                                  'battle-skill',
+                                  skill ? '' : 'battle-skill--empty',
+                                  index === activePreviewSkillIndex && skill
+                                    ? 'battle-skill--active'
+                                    : '',
+                                  shouldShowSkillAdvantage && isAdvantageous
+                                    ? 'battle-skill--advantage'
+                                    : '',
+                                ]
+                                  .filter(Boolean)
+                                  .join(' ')}
+                                disabled={!skill}
+                                onMouseEnter={() => handleSkillPreview(index)}
+                                onFocus={() => handleSkillPreview(index)}
+                                onBlur={handleSkillPreviewClear}
+                                onClick={() => {
+                                  if (skill) {
+                                    handleSkillSelect(index)
+                                  }
+                                }}
+                              >
+                                <span className="battle-skill__marker" aria-hidden="true">
+                                  {index === activePreviewSkillIndex && skill ? '\u25B6' : ''}
+                                </span>
+                                <span className="battle-skill__label">{skill ?? ''}</span>
+                                {isAreaAttack ? <span className="battle-skill__badge">전체</span> : null}
+                              </button>
+                            )
+                          })}
+                        </div>
+                      ) : (
+                        <div className="battle-target-panel battle-target-panel--action">
+                          <div className="battle-target-list" onMouseLeave={handleTargetPreviewClear}>
+                            {visibleEnemies.map((enemy) => {
+                              const targetMatchup =
+                                selectedSkillData && !isSkillAreaAttack(selectedSkillData)
+                                  ? getMatchupResult({
+                                      attackerType: actingAlly?.type,
+                                      skillAttribute: selectedSkillData?.속성,
+                                      defenderType: enemy.type,
+                                      defenderAttribute: enemy.attribute,
+                                    })
+                                  : null
+                              const isAdvantageousTarget = (targetMatchup?.multiplier ?? 1) > 1
+
+                              return (
+                                <button
+                                  key={enemy.id}
+                                  type="button"
+                                  className={[
+                                    'battle-target',
+                                    hoveredEnemyTargetId === enemy.id ? 'battle-target--active' : '',
+                                    isAdvantageousTarget ? 'battle-target--advantage' : '',
+                                  ]
+                                    .filter(Boolean)
+                                    .join(' ')}
+                                  onMouseEnter={() => handleTargetPreview(enemy.id)}
+                                  onFocus={() => handleTargetPreview(enemy.id)}
+                                  onBlur={handleTargetPreviewClear}
+                                  onClick={() => handleAttackTargetSelect(enemy.id)}
+                                >
+                                  <span className="battle-target__name">{enemy.name}</span>
+                                </button>
+                              )
+                            })}
+                          </div>
+                        </div>
+                      )}
+                    </section>
+
+                    {actionPanelSkillData ? (
+                      <aside className="battle-action-panel__tooltip" aria-label="기술 정보">
+                        <BattleSkillTooltip
+                          skillData={actionPanelSkillData}
+                          className="battle-skill-tooltip--panel"
+                        />
+                      </aside>
+                    ) : null}
+                  </div>
+                ) : null}
               </div>
 
               <div className="battle-console" aria-label={'\uBC30\uD2C0 UI'}>
                 <section
                   className={[
                     'battle-console__message',
-                    isSkillConsoleOpen && !rewardState ? 'battle-console__message--skills' : '',
-                    !isSkillConsoleOpen && currentLogs.length > 0 ? 'battle-console__message--logs' : '',
+                    currentLogs.length > 0 ? 'battle-console__message--logs' : '',
                   ]
                     .filter(Boolean)
                     .join(' ')}
-                  aria-label={
-                    isSkillConsoleOpen && !rewardState
-                      ? isAttackTargetPanelOpen
-                        ? '공격 대상 목록'
-                        : '\uAE30\uC220 \uBAA9\uB85D'
-                      : '\uBC30\uD2C0 \uBA54\uC2DC\uC9C0'
-                  }
+                  aria-label={'\uBC30\uD2C0 \uBA54\uC2DC\uC9C0'}
                 >
-                  {isAttackPanelOpen && !rewardState ? (
-                    <div className="battle-skill-grid" onMouseLeave={handleSkillPreviewClear}>
-                      {battleSkillSlots.map((skill, index) => {
-                        const skillData = skill ? getSkillData(skill) : null
-                        const isAreaAttack = isSkillAreaAttack(skillData)
-                        const skillMatchup =
-                          skill && !isAreaAttack && currentTargetEnemy && gameState
-                            ? getMatchupResult({
-                                attackerType: actingAlly?.type,
-                                skillAttribute: skillData?.속성,
-                                defenderType: currentTargetEnemy.type,
-                                defenderAttribute: currentTargetEnemy.attribute,
-                              })
-                            : null
-                        const isAdvantageous = isAreaAttack
-                          ? (gameState?.enemies ?? []).some(
-                              (enemy) =>
-                                isCombatantAbleToBattle(enemy) &&
-                                getMatchupResult({
-                                  attackerType: actingAlly?.type,
-                                  skillAttribute: skillData?.속성,
-                                  defenderType: enemy.type,
-                                  defenderAttribute: enemy.attribute,
-                                }).multiplier > 1
-                            )
-                          : (skillMatchup?.multiplier ?? 1) > 1
-
-                        return (
-                          <button
-                            key={`${skill ?? 'empty'}-${index}`}
-                            type="button"
-                            className={[
-                              'battle-skill',
-                              skill ? '' : 'battle-skill--empty',
-                              index === activePreviewSkillIndex && skill
-                                ? 'battle-skill--active'
-                                : '',
-                              shouldShowSkillAdvantage && isAdvantageous
-                                ? 'battle-skill--advantage'
-                                : '',
-                            ]
-                              .filter(Boolean)
-                              .join(' ')}
-                            disabled={!skill}
-                            onMouseEnter={() => handleSkillPreview(index)}
-                            onFocus={() => handleSkillPreview(index)}
-                            onBlur={handleSkillPreviewClear}
-                            onClick={() => {
-                              if (skill) {
-                                handleSkillSelect(index)
-                              }
-                            }}
-                          >
-                            <span className="battle-skill__marker" aria-hidden="true">
-                              {index === activePreviewSkillIndex && skill ? '\u25B6' : ''}
-                            </span>
-                            <span className="battle-skill__label">{skill ?? ''}</span>
-                            {isAreaAttack ? <span className="battle-skill__badge">전체</span> : null}
-                            {skill ? <BattleSkillTooltip skillData={skillData} /> : null}
-                          </button>
-                        )
-                      })}
-                    </div>
-                  ) : isAttackTargetPanelOpen && !rewardState ? (
-                    <div className="battle-target-panel">
-                      <div className="battle-target-list" onMouseLeave={handleTargetPreviewClear}>
-                        {visibleEnemies.map((enemy) => {
-                          const targetMatchup =
-                            selectedSkillData && !isSkillAreaAttack(selectedSkillData)
-                              ? getMatchupResult({
-                                  attackerType: actingAlly?.type,
-                                  skillAttribute: selectedSkillData?.속성,
-                                  defenderType: enemy.type,
-                                  defenderAttribute: enemy.attribute,
-                                })
-                              : null
-                          const isAdvantageousTarget = (targetMatchup?.multiplier ?? 1) > 1
-
-                          return (
-                            <button
-                              key={enemy.id}
-                              type="button"
-                              className={[
-                                'battle-target',
-                                hoveredEnemyTargetId === enemy.id ? 'battle-target--active' : '',
-                                isAdvantageousTarget ? 'battle-target--advantage' : '',
-                              ]
-                                .filter(Boolean)
-                                .join(' ')}
-                              onMouseEnter={() => handleTargetPreview(enemy.id)}
-                              onFocus={() => handleTargetPreview(enemy.id)}
-                              onBlur={handleTargetPreviewClear}
-                              onClick={() => handleAttackTargetSelect(enemy.id)}
-                            >
-                              <span className="battle-target__name">{enemy.name}</span>
-                            </button>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  ) : currentLogs.length > 0 ? (
+                  {currentLogs.length > 0 ? (
                     <div className="battle-console__log-list">
                       {currentLogs.map((log, index) => (
                         <p key={index} className="battle-console__message-text">
