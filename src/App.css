@@ -2886,11 +2886,11 @@
 }
 
 .adventure-player__sprite--size-1 {
-  --digimon-size-scale: 0.68;
+  --digimon-size-scale: 0.5;
 }
 
 .adventure-player__sprite--size-2 {
-  --digimon-size-scale: 0.84;
+  --digimon-size-scale: 0.75;
 }
 
 .adventure-player__sprite--size-3 {
@@ -2898,11 +2898,11 @@
 }
 
 .adventure-player__sprite--size-4 {
-  --digimon-size-scale: 1.18;
+  --digimon-size-scale: 2;
 }
 
 .adventure-player__sprite--size-5 {
-  --digimon-size-scale: 1.36;
+  --digimon-size-scale: 3;
 }
 
 .digimon-status {
