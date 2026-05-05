@@ -4309,3 +4309,981 @@
     font-size: clamp(0.92rem, 3.2vw, 1.05rem);
   }
 }
+
+@media (min-width: 1800px) and (min-height: 900px) {
+  .main-screen {
+    --frame-inner-inset: clamp(24px, 1.25vw, 42px);
+    --battle-console-height: clamp(132px, 11.2vh, 184px);
+  }
+
+  .title-band__logo {
+    width: min(100%, 900px);
+  }
+
+  .menu-panel {
+    width: min(100%, 520px);
+    padding: clamp(20px, 1.2vw, 28px);
+  }
+
+  .selection-screen {
+    grid-template-columns: minmax(390px, 0.78fr) minmax(0, 1.42fr);
+  }
+
+  .selection-grid {
+    grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+    grid-auto-rows: clamp(154px, 13vh, 198px);
+  }
+
+  .selection-card__image {
+    width: clamp(86px, 5.2vw, 124px);
+    height: clamp(86px, 5.2vw, 124px);
+  }
+
+  .selection-gallery {
+    grid-template-columns: minmax(0, 1fr) clamp(170px, 11vw, 240px);
+  }
+
+  .selection-party-slot--filled {
+    grid-template-columns: clamp(52px, 3.1vw, 72px) minmax(0, 1fr);
+  }
+
+  .selection-party-slot__image {
+    width: clamp(52px, 3.1vw, 72px);
+    height: clamp(52px, 3.1vw, 72px);
+  }
+
+  .adventure-screen {
+    --battle-unit-width: clamp(240px, 12vw, 360px);
+    --battle-sprite-width: clamp(170px, 8.6vw, 260px);
+    --battle-sprite-height: clamp(160px, 9.8vh, 240px);
+  }
+
+  .digimon-status {
+    width: clamp(214px, 11.2vw, 310px);
+    height: clamp(38px, 2.2vw, 56px);
+  }
+
+  .battle-action-panel__left {
+    width: min(620px, 100%);
+  }
+
+  .battle-action-panel__tooltip {
+    width: min(460px, 100%);
+  }
+
+  .battle-action-panel .battle-skill-grid--action-panel {
+    height: clamp(310px, 28vh, 460px);
+  }
+
+  .battle-item-popover,
+  .capture-info-popover {
+    width: min(620px, calc(54% - clamp(8px, 1.2vw, 14px)));
+  }
+
+  .reward-screen__fixed {
+    width: min(100%, 720px);
+    max-width: calc(100% - 720px);
+  }
+
+  .reward-screen__random {
+    width: min(100%, 1040px);
+  }
+
+  .reward-item__image {
+    width: clamp(92px, 5.2vw, 132px);
+    height: clamp(92px, 5.2vw, 132px);
+  }
+
+  .reward-item--fixed .reward-item__image {
+    width: clamp(68px, 4vw, 96px);
+    height: clamp(68px, 4vw, 96px);
+  }
+}
+
+@media (max-width: 1100px), (orientation: portrait) {
+  .main-screen {
+    --frame-inner-inset: clamp(8px, 2.4vw, 18px);
+  }
+
+  .selection-screen {
+    grid-template-columns: minmax(260px, 0.74fr) minmax(0, 1.26fr);
+  }
+
+  .selection-gallery {
+    grid-template-columns: minmax(0, 1fr) clamp(104px, 13vw, 138px);
+  }
+
+  .selection-grid {
+    grid-template-columns: repeat(auto-fill, minmax(86px, 1fr));
+    grid-auto-rows: clamp(102px, 14.2vh, 128px);
+  }
+
+  .party-screen {
+    grid-template-columns: minmax(220px, 0.64fr) minmax(0, 1.36fr);
+    gap: clamp(14px, 2.4vw, 28px);
+  }
+
+  .reward-screen__fixed {
+    left: clamp(18px, 3vw, 34px);
+    max-width: min(420px, 42%);
+    width: min(420px, 42%);
+    transform: none;
+  }
+
+  .reward-screen__random {
+    width: min(620px, 72%);
+  }
+
+  .battle-action-panel {
+    grid-template-columns: minmax(250px, 0.82fr) minmax(210px, 0.48fr);
+  }
+}
+
+@media (max-width: 900px), (orientation: portrait) {
+  :root {
+    --frame-shell-padding: clamp(4px, 1.8vw, 10px);
+  }
+
+  #root {
+    align-items: stretch;
+    justify-items: stretch;
+  }
+
+  .main-screen,
+  .main-screen--adventure {
+    width: var(--frame-available-width);
+    height: var(--frame-available-height);
+    max-width: var(--frame-available-width);
+    max-height: var(--frame-available-height);
+    aspect-ratio: auto;
+  }
+
+  .main-screen {
+    --battle-console-height: clamp(142px, 25svh, 210px);
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .main-screen--adventure {
+    grid-template-rows: minmax(0, 1fr);
+  }
+
+  .main-screen__background,
+  .main-screen__veil,
+  .digit-rain,
+  .playfield--adventure,
+  .playfield--selection {
+    inset: var(--frame-inner-inset);
+  }
+
+  .title-band {
+    padding: clamp(6px, 2svh, 14px) clamp(10px, 4vw, 24px) 0;
+  }
+
+  .title-band__logo {
+    width: min(100%, 560px);
+  }
+
+  .playfield {
+    min-height: 0;
+  }
+
+  .playfield__content {
+    align-items: center;
+    justify-content: center;
+    padding: clamp(14px, 4vw, 26px);
+  }
+
+  .playfield__content--selection,
+  .playfield__content--adventure {
+    padding: 0;
+  }
+
+  .menu-panel {
+    width: min(100%, 420px);
+    border-width: clamp(4px, 1.4vw, 6px);
+  }
+
+  .menu-item {
+    min-height: 48px;
+    font-size: clamp(1.12rem, 6vw, 1.72rem);
+  }
+
+  .selection-screen {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: clamp(8px, 2vw, 14px);
+    overflow: hidden;
+  }
+
+  .selection-preview,
+  .selection-gallery {
+    border-width: clamp(3px, 1.3vw, 5px);
+  }
+
+  .selection-preview {
+    display: grid;
+    grid-template-rows: auto minmax(92px, 1fr) auto auto auto;
+    padding: clamp(9px, 2vw, 14px);
+  }
+
+  .selection-preview__top,
+  .selection-gallery__header {
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .selection-preview__title-group {
+    text-align: right;
+  }
+
+  .selection-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .selection-preview__frame {
+    min-height: clamp(92px, 18svh, 160px);
+    max-height: clamp(120px, 25svh, 220px);
+    border-radius: 10px;
+  }
+
+  .selection-preview__image {
+    max-width: 88%;
+    max-height: 88%;
+  }
+
+  .selection-preview__skills {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .selection-preview__actions {
+    justify-content: stretch;
+  }
+
+  .selection-start {
+    width: 100%;
+  }
+
+  .selection-gallery {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr) auto;
+    padding: clamp(9px, 2vw, 14px);
+    overflow: hidden;
+  }
+
+  .selection-grid {
+    grid-template-columns: repeat(auto-fill, minmax(78px, 1fr));
+    grid-auto-rows: clamp(96px, 16svh, 124px);
+    padding-right: 6px;
+  }
+
+  .selection-card {
+    gap: 5px;
+  }
+
+  .selection-card__image {
+    width: clamp(48px, 15vw, 72px);
+    height: clamp(48px, 15vw, 72px);
+  }
+
+  .selection-card__name,
+  .selection-party-slot__name {
+    letter-spacing: 0;
+  }
+
+  .selection-party {
+    grid-template-rows: auto auto auto;
+  }
+
+  .selection-party__slots {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(50px, auto));
+  }
+
+  .selection-party-slot--filled {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 2px;
+  }
+
+  .selection-party-slot__image {
+    width: clamp(34px, 10vw, 48px);
+    height: clamp(34px, 10vw, 48px);
+  }
+
+  .adventure-screen {
+    --battle-unit-width: clamp(104px, 28vw, 148px);
+    --battle-sprite-width: clamp(74px, 20vw, 112px);
+    --battle-sprite-height: clamp(66px, 16svh, 116px);
+    grid-template-rows: minmax(0, 1fr) var(--battle-console-height);
+  }
+
+  .adventure-stage__background {
+    background-size: cover;
+  }
+
+  .adventure-hud {
+    top: clamp(8px, 2vw, 14px);
+    left: clamp(8px, 2vw, 14px);
+    right: clamp(8px, 2vw, 14px);
+    gap: clamp(8px, 2vw, 12px);
+  }
+
+  .adventure-inventory-strip {
+    max-width: min(58%, 440px);
+    max-height: clamp(54px, 12svh, 86px);
+    overflow: auto;
+  }
+
+  .adventure-summary-card {
+    max-width: min(42%, 320px);
+    min-height: 42px;
+    padding: 7px 9px;
+  }
+
+  .adventure-summary-card__line {
+    gap: 8px;
+    letter-spacing: 0.03em;
+  }
+
+  .adventure-allies {
+    left: clamp(8px, 2vw, 14px);
+  }
+
+  .adventure-enemies {
+    right: clamp(8px, 2vw, 14px);
+  }
+
+  .adventure-allies,
+  .adventure-enemies {
+    bottom: clamp(6px, 1.5vw, 12px);
+    gap: 0;
+  }
+
+  .digimon-status {
+    width: clamp(118px, 24vw, 154px);
+    height: clamp(24px, 5vw, 31px);
+  }
+
+  .battle-console {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(44px, 0.82fr) minmax(74px, 1.18fr);
+    gap: clamp(7px, 1.8vw, 10px);
+    min-height: 0;
+    padding: clamp(8px, 2vw, 12px);
+    overflow: visible;
+  }
+
+  .battle-console__message,
+  .battle-console__commands {
+    border-width: 3px;
+  }
+
+  .battle-console__commands {
+    gap: clamp(6px, 1.8vw, 10px);
+    padding: clamp(7px, 2vw, 12px);
+  }
+
+  .battle-command {
+    min-height: 0;
+    padding: clamp(7px, 2vw, 12px) clamp(8px, 2.6vw, 14px);
+    font-size: clamp(0.78rem, 3.2vw, 1rem);
+  }
+
+  .battle-action-panel {
+    top: clamp(82px, 18svh, 132px);
+    right: clamp(8px, 2vw, 14px);
+    bottom: calc(var(--battle-console-height) + clamp(8px, 2vw, 14px));
+    left: clamp(8px, 2vw, 14px);
+    grid-template-columns: minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .battle-action-panel__left {
+    width: 100%;
+    max-height: 100%;
+  }
+
+  .battle-action-panel__tooltip {
+    display: none;
+  }
+
+  .battle-action-panel .battle-skill-grid--action-panel {
+    height: 100%;
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  .battle-target-panel--action {
+    min-height: clamp(84px, 16svh, 128px);
+  }
+
+  .battle-item-popover,
+  .capture-info-popover,
+  .level-up-stats {
+    right: clamp(8px, 2vw, 14px);
+    left: clamp(8px, 2vw, 14px);
+    width: auto;
+  }
+
+  .party-screen {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: clamp(12px, 2vw, 18px);
+    padding: clamp(12px, 3vw, 22px);
+  }
+
+  .party-screen__current {
+    min-height: clamp(112px, 20svh, 170px);
+  }
+
+  .party-screen__current-card {
+    min-height: clamp(92px, 16svh, 142px);
+  }
+
+  .party-screen__list {
+    max-height: none;
+  }
+
+  .reward-screen {
+    overflow: auto;
+    padding: clamp(12px, 3vw, 22px);
+    pointer-events: auto;
+  }
+
+  .reward-screen__fixed,
+  .reward-screen__random,
+  .reward-screen__bottom-actions {
+    position: relative;
+    inset: auto;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    width: 100%;
+    max-width: none;
+    transform: none;
+  }
+
+  .reward-screen__fixed {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-bottom: clamp(12px, 3vw, 18px);
+  }
+
+  .reward-screen__random {
+    margin: clamp(12px, 3vw, 18px) 0;
+  }
+
+  .reward-screen__bottom-actions {
+    justify-content: space-between;
+  }
+
+  .reward-item::after {
+    max-width: min(320px, 78vw);
+  }
+
+  .reward-target-screen,
+  .skill-replace-screen,
+  .evolution-screen,
+  .map-selection-screen {
+    padding: clamp(10px, 3vw, 20px);
+  }
+
+  .reward-target-screen__panel,
+  .skill-replace-screen__panel,
+  .evolution-screen__panel,
+  .evolution-screen__panel--detail,
+  .map-selection-screen__panel {
+    width: min(100%, 760px);
+    max-height: 100%;
+    overflow: auto;
+  }
+
+  .reward-target-screen__list,
+  .evolution-screen__party-list,
+  .map-selection-screen__list {
+    grid-template-columns: 1fr;
+  }
+
+  .evolution-detail__current {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .evolution-detail__stats {
+    grid-column: 1 / -1;
+  }
+
+  .evolution-detail__options {
+    grid-auto-flow: row;
+    grid-auto-columns: unset;
+    grid-template-columns: 1fr;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: clamp(210px, 42svh, 360px);
+  }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --frame-shell-padding: 0px;
+  }
+
+  .main-screen {
+    --frame-inner-inset: 6px;
+    --battle-console-height: clamp(156px, 29svh, 230px);
+  }
+
+  .main-screen__veil {
+    border-width: 2px;
+  }
+
+  .selection-preview__top,
+  .selection-gallery__header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .selection-preview__title-group {
+    width: 100%;
+    text-align: left;
+  }
+
+  .selection-back {
+    width: 100%;
+  }
+
+  .selection-preview__traits {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .selection-trait {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .selection-grid {
+    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+    grid-auto-rows: clamp(90px, 14svh, 112px);
+    gap: 7px;
+  }
+
+  .selection-card {
+    padding: 7px 6px 8px;
+  }
+
+  .selection-card__cost,
+  .selection-card__order {
+    min-width: 18px;
+    height: 18px;
+    font-size: 0.62rem;
+  }
+
+  .selection-party__slots {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(46px, auto));
+  }
+
+  .selection-party-slot {
+    padding: 4px;
+  }
+
+  .selection-party-slot__name {
+    display: none;
+  }
+
+  .adventure-screen {
+    --battle-unit-width: clamp(82px, 23vw, 112px);
+    --battle-sprite-width: clamp(58px, 16vw, 84px);
+    --battle-sprite-height: clamp(52px, 13svh, 88px);
+  }
+
+  .adventure-hud {
+    align-items: stretch;
+    flex-direction: column;
+    pointer-events: none;
+  }
+
+  .adventure-inventory-strip {
+    max-width: 100%;
+    max-height: clamp(40px, 9svh, 62px);
+  }
+
+  .adventure-summary-card {
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+  }
+
+  .adventure-summary-card__line {
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .adventure-allies,
+  .adventure-enemies {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .adventure-player__sprite--size-4 {
+    --digimon-size-scale: 1.55;
+  }
+
+  .adventure-player__sprite--size-5 {
+    --digimon-size-scale: 2.1;
+  }
+
+  .digimon-status {
+    width: clamp(96px, 27vw, 120px);
+    height: clamp(20px, 5.5vw, 26px);
+  }
+
+  .digimon-status__name {
+    gap: 2px;
+    font-size: clamp(0.34rem, 1.4vw, 0.44rem);
+  }
+
+  .digimon-status__level,
+  .digimon-status__hp-text {
+    font-size: clamp(0.3rem, 1.25vw, 0.38rem);
+  }
+
+  .digimon-status__trait {
+    display: none;
+  }
+
+  .digimon-status .adventure-player__status {
+    display: none;
+  }
+
+  .combatant-info {
+    left: 50%;
+    bottom: calc(100% + 8px);
+    width: min(88vw, 260px);
+  }
+
+  .battle-console__message::after {
+    width: 10px;
+    height: 10px;
+  }
+
+  .battle-console__message-text {
+    font-size: clamp(0.7rem, 3.2vw, 0.88rem);
+  }
+
+  .battle-command {
+    gap: 5px;
+  }
+
+  .battle-command__marker {
+    width: 12px;
+  }
+
+  .battle-action-panel {
+    top: clamp(132px, 25svh, 180px);
+  }
+
+  .battle-action-panel__header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .battle-action-panel__title {
+    text-align: left;
+    white-space: normal;
+  }
+
+  .battle-target-panel--action .battle-target-list {
+    grid-template-rows: repeat(2, minmax(40px, 1fr));
+  }
+
+  .battle-skill__label,
+  .battle-target__name,
+  .battle-item-row__name,
+  .party-member__name,
+  .reward-item__name,
+  .evolution-option__name,
+  .map-selection-screen__names {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .battle-item-row {
+    grid-template-columns: 34px minmax(0, 1fr) auto;
+  }
+
+  .battle-item-row__image {
+    width: 32px;
+    height: 32px;
+  }
+
+  .party-screen__current-card {
+    clip-path: none;
+  }
+
+  .party-screen__list .party-member,
+  .party-member {
+    clip-path: none;
+    grid-template-columns: clamp(42px, 13vw, 58px) minmax(0, 1fr) auto;
+  }
+
+  .party-screen__list .party-member {
+    min-height: clamp(58px, 11svh, 78px);
+    padding: 8px 10px;
+  }
+
+  .party-screen__list .party-member__image {
+    width: clamp(42px, 13vw, 58px);
+    height: clamp(42px, 13vw, 58px);
+  }
+
+  .reward-screen__fixed,
+  .reward-screen__random-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .reward-screen__bottom-actions,
+  .reward-screen__reroll-group {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .reward-screen__party-button,
+  .reward-screen__reroll-button,
+  .skill-replace-screen__skip,
+  .reward-target-screen__cancel {
+    width: 100%;
+  }
+
+  .reward-item {
+    min-height: clamp(96px, 18svh, 128px);
+  }
+
+  .reward-item__image,
+  .reward-item--fixed .reward-item__image {
+    width: clamp(48px, 15vw, 72px);
+    height: clamp(48px, 15vw, 72px);
+  }
+
+  .skill-replace-screen__skills {
+    grid-template-columns: 1fr;
+  }
+
+  .evolution-detail__current {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .evolution-detail__stats,
+  .evolution-option__stat-requirements {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .evolution-option {
+    grid-template-columns: 58px minmax(0, 1fr);
+    min-height: 0;
+    padding: 10px;
+  }
+
+  .evolution-option__image {
+    width: 58px;
+    height: 58px;
+  }
+
+  .map-selection-screen__header {
+    grid-template-columns: 1fr;
+  }
+
+  .map-selection-screen__stage {
+    justify-self: start;
+  }
+}
+
+@media (max-height: 560px) and (orientation: landscape) {
+  :root {
+    --frame-shell-padding: 4px;
+  }
+
+  .main-screen {
+    --frame-inner-inset: 8px;
+    --battle-console-height: clamp(76px, 22svh, 112px);
+  }
+
+  .title-band {
+    padding-top: 4px;
+  }
+
+  .title-band__logo {
+    width: min(100%, 380px);
+  }
+
+  .playfield__content {
+    padding: 12px 18px;
+  }
+
+  .menu-panel {
+    width: min(100%, 320px);
+    padding: 10px 12px;
+  }
+
+  .menu-panel__list {
+    gap: 4px;
+  }
+
+  .menu-item {
+    min-height: 34px;
+    padding: 6px 8px;
+    font-size: clamp(1rem, 4.2vh, 1.35rem);
+  }
+
+  .selection-preview {
+    padding: 8px;
+  }
+
+  .selection-screen {
+    grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
+    grid-template-rows: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .selection-gallery {
+    grid-template-columns: minmax(0, 1fr) clamp(112px, 15vw, 132px);
+    grid-template-rows: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .selection-preview__top,
+  .selection-gallery__header {
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .selection-preview__title-group {
+    text-align: right;
+  }
+
+  .selection-preview__frame {
+    min-height: 64px;
+    max-height: min(26vh, 118px);
+    padding: 8px;
+  }
+
+  .selection-preview__image {
+    width: auto;
+    height: 100%;
+    max-width: 88%;
+    max-height: 100%;
+    object-fit: contain;
+    transform: translateY(-22%);
+  }
+
+  .selection-preview__traits,
+  .selection-preview__skills,
+  .selection-preview__actions {
+    margin-top: 6px;
+  }
+
+  .selection-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    grid-auto-rows: clamp(76px, 21vh, 96px);
+  }
+
+  .selection-card__image {
+    width: clamp(44px, 11vh, 62px);
+    height: clamp(44px, 11vh, 62px);
+  }
+
+  .selection-party {
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  .selection-party__slots {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(8, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  .selection-party-slot--filled {
+    grid-template-columns: clamp(28px, 7.5vh, 38px) minmax(0, 1fr);
+  }
+
+  .selection-party-slot__image {
+    width: clamp(28px, 7.5vh, 38px);
+    height: clamp(28px, 7.5vh, 38px);
+  }
+
+  .selection-party-slot__name {
+    display: block;
+  }
+
+  .adventure-screen {
+    --battle-unit-width: clamp(118px, 15vw, 164px);
+    --battle-sprite-width: clamp(78px, 10vw, 110px);
+    --battle-sprite-height: clamp(62px, 18vh, 94px);
+  }
+
+  .adventure-hud {
+    top: 8px;
+  }
+
+  .adventure-inventory-strip {
+    max-height: 40px;
+    overflow: auto;
+  }
+
+  .adventure-summary-card {
+    min-height: 34px;
+    padding: 5px 8px;
+  }
+
+  .digimon-status {
+    width: clamp(116px, 13vw, 152px);
+    height: clamp(22px, 5.6vh, 28px);
+  }
+
+  .battle-console {
+    grid-template-columns: minmax(0, 0.92fr) minmax(260px, 1.08fr);
+    grid-template-rows: minmax(0, 1fr);
+    padding: 6px;
+  }
+
+  .battle-console__message,
+  .battle-console__commands {
+    border-width: 3px;
+  }
+
+  .battle-command {
+    padding: 5px 8px;
+  }
+
+  .battle-action-panel {
+    top: clamp(42px, 13vh, 62px);
+    bottom: calc(var(--battle-console-height) + 8px);
+  }
+
+  .battle-action-panel .battle-skill-grid--action-panel {
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .party-screen {
+    padding: 12px 16px;
+  }
+
+  .party-screen__current {
+    min-height: 120px;
+  }
+
+  .party-screen__current-card {
+    min-height: 96px;
+  }
+
+  .party-screen__list {
+    max-height: calc(100svh - 56px);
+  }
+}

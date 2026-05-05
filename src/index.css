@@ -15,6 +15,7 @@
 
 html {
   min-height: 100%;
+  font-size: clamp(14px, calc(11px + 0.28vw), 22px);
 }
 
 body {

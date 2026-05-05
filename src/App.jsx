@@ -3038,9 +3038,6 @@ const getLevelUpStatValues = (combatant) => ({
 const getCombatantBattleStatValue = (combatant, statKey) =>
   statKey === 'hp' ? combatant?.maxHp ?? 0 : combatant?.[statKey] ?? 0
 
-const getCombatantBattleStatTotal = (combatant) =>
-  STAT_KEYS.reduce((total, statKey) => total + getCombatantBattleStatValue(combatant, statKey), 0)
-
 const getExperienceToNextLevel = (level) => Math.floor(20 + level * 12)
 
 const clampStatValue = (value, minimum, maximum) => Math.min(maximum, Math.max(minimum, value))
@@ -4420,7 +4417,6 @@ const resolveAttackAction = ({
   defender,
   skillName,
   announce = true,
-  inventory = {},
   attackerSide = 'ally',
 }) => {
   const skillData = getSkillData(skillName)
