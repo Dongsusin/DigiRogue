@@ -2199,8 +2199,9 @@
   overflow: hidden;
   isolation: isolate;
   background:
-    linear-gradient(180deg, rgba(0, 4, 6, 0.68), rgba(0, 0, 0, 0.1) 26%, rgba(0, 9, 8, 0.22)),
-    url('/Evolution.png') center / cover no-repeat;
+    radial-gradient(circle at 50% 48%, rgba(255, 255, 255, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(0, 4, 6, 0.42), rgba(0, 0, 0, 0.03) 32%, rgba(0, 9, 8, 0.16)),
+    url('/Evolution.gif') center / cover no-repeat;
   pointer-events: auto;
 }
 
@@ -2215,26 +2216,20 @@
 .evolution-cutscene::before {
   z-index: 1;
   background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.1) 0,
-      rgba(255, 255, 255, 0.1) 1px,
-      transparent 1px,
-      transparent 7px
-    ),
-    radial-gradient(circle at center, rgba(115, 255, 208, 0.28), transparent 42%);
+    radial-gradient(circle at center, rgba(185, 255, 220, 0.28), transparent 38%),
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
   mix-blend-mode: screen;
-  opacity: 0.72;
-  animation: evolution-scan 1.2s linear infinite;
+  opacity: 0.36;
+  animation: evolution-scan 2.4s linear infinite;
 }
 
 .evolution-cutscene::after {
   z-index: 2;
   background:
-    radial-gradient(circle at center, rgba(202, 255, 235, 0.26), transparent 34%),
-    linear-gradient(90deg, rgba(0, 255, 204, 0), rgba(255, 255, 255, 0.16), rgba(0, 255, 204, 0));
+    radial-gradient(circle at center, rgba(230, 255, 242, 0.24), transparent 30%),
+    linear-gradient(90deg, rgba(0, 255, 204, 0), rgba(255, 255, 255, 0.12), rgba(0, 255, 204, 0));
   transform: translateX(-28%);
-  animation: evolution-beam 1.8s ease-in-out infinite;
+  animation: evolution-beam 2.6s ease-in-out infinite;
 }
 
 .evolution-cutscene__header {
@@ -2244,18 +2239,15 @@
   justify-items: start;
   gap: 2px;
   width: 100%;
-  padding: clamp(10px, 1.6vw, 18px) clamp(16px, 2.4vw, 32px);
-  background: rgba(5, 5, 7, 0.86);
-  border-bottom: 3px solid rgba(42, 255, 183, 0.32);
-  box-shadow: 0 5px 18px rgba(0, 15, 12, 0.45);
+  padding: clamp(10px, 1.4vw, 16px) clamp(16px, 2.4vw, 32px);
+  background: linear-gradient(90deg, rgba(2, 7, 8, 0.92), rgba(2, 18, 13, 0.54), transparent);
+  border-bottom: 2px solid rgba(122, 255, 196, 0.24);
+  box-shadow: 0 5px 18px rgba(0, 15, 12, 0.28);
 }
 
 .evolution-cutscene__eyebrow,
 .evolution-cutscene__title {
   font-family: var(--font-pixel);
-  text-shadow:
-    3px 3px 0 rgba(20, 7, 0, 0.95),
-    0 0 10px rgba(255, 201, 78, 0.45);
 }
 
 .evolution-cutscene__eyebrow {
@@ -2264,8 +2256,8 @@
 }
 
 .evolution-cutscene__title {
-  color: #ffb447;
-  font-size: clamp(1.36rem, 2.8vw, 2.8rem);
+  color: #ffd75a;
+  font-size: clamp(1.3rem, 2.55vw, 2.5rem);
   line-height: 1;
   letter-spacing: 0.04em;
 }
@@ -2280,22 +2272,22 @@
 
 .evolution-cutscene__aura {
   position: absolute;
-  width: clamp(190px, 25vw, 390px);
+  width: clamp(210px, 28vw, 430px);
   aspect-ratio: 1;
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(237, 255, 217, 0.88) 0 9%, rgba(87, 255, 173, 0.48) 18%, transparent 58%),
-    conic-gradient(from 0deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7), rgba(0, 255, 170, 0.08), rgba(255, 255, 255, 0));
+    radial-gradient(circle, rgba(245, 255, 224, 0.82) 0 8%, rgba(87, 255, 173, 0.42) 18%, transparent 58%),
+    conic-gradient(from 0deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.58), rgba(0, 255, 170, 0.08), rgba(255, 255, 255, 0));
   filter: blur(2px);
-  opacity: 0.82;
-  animation: evolution-aura 1.15s ease-in-out infinite;
+  opacity: 0.66;
+  animation: evolution-aura 1.6s ease-in-out infinite;
 }
 
 .evolution-cutscene__digimon {
   position: relative;
   z-index: 4;
-  width: clamp(118px, 14vw, 216px);
-  height: clamp(118px, 14vw, 216px);
+  width: clamp(132px, 15.5vw, 238px);
+  height: clamp(132px, 15.5vw, 238px);
   object-fit: contain;
   image-rendering: pixelated;
   filter:
@@ -2304,11 +2296,11 @@
 }
 
 .evolution-cutscene--before .evolution-cutscene__digimon {
-  animation: evolution-charge 3s ease-in-out forwards;
+  animation: evolution-charge 4s ease-in-out forwards;
 }
 
 .evolution-cutscene--after .evolution-cutscene__digimon {
-  animation: evolution-reveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: evolution-reveal 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .evolution-cutscene__flash {
@@ -2322,11 +2314,11 @@
 }
 
 .evolution-cutscene--before .evolution-cutscene__flash {
-  animation: evolution-flash-before 3s ease-in forwards;
+  animation: evolution-flash-before 4s ease-in forwards;
 }
 
 .evolution-cutscene--after .evolution-cutscene__flash {
-  animation: evolution-flash-after 0.95s ease-out forwards;
+  animation: evolution-flash-after 1.45s ease-out forwards;
 }
 
 @keyframes evolution-scan {

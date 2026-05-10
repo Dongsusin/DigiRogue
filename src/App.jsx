@@ -55,8 +55,8 @@ const BGM_FADE_OUT_SECONDS = 3
 const BUTTON_CLICK_SFX_URL = '/SFX/click.mp3'
 const BUTTON_CLICK_SFX_VOLUME = 0.62
 const BUTTON_CLICK_SFX_POOL_SIZE = 4
-const EVOLUTION_SCENE_SWITCH_MS = 3000
-const EVOLUTION_SCENE_TOTAL_MS = 5000
+const EVOLUTION_SCENE_SWITCH_MS = 4000
+const EVOLUTION_SCENE_TOTAL_MS = 8000
 const MAX_COMBATANT_SKILL_COUNT = 8
 const DIGIMON_SIZE_MIN = 1
 const DIGIMON_SIZE_MAX = 5
@@ -308,7 +308,7 @@ const COMMON_DIGI_EGG_NAMES = new Set([
   '빛',
   '어둠',
 ])
-const ROGUE_DIGI_EGG_NAMES = new Set(['모르프몬', '옷코몬'])
+const ROGUE_DIGI_EGG_NAMES = new Set(['모르포몬', '옷코몬'])
 const COMMON_REWARD_ITEM_IDS = new Set(['capture-net', 'heal-20', 'heal-50', LEVEL_UP_ITEM_ID])
 const GOOD_REWARD_ITEM_IDS = new Set([
   'capture-net-super',
@@ -351,6 +351,9 @@ const JOGRESS_RECIPES = [
   { targetName: '오메가몬', materials: ['워그레이몬', '메탈가루몬'] },
   { targetName: '오메가몬[알터-S]', materials: ['블리츠그레이몬', '크레스가루몬'] },
   { targetName: '오메가몬[즈왈트]', materials: ['블랙워그레이몬', '블랙메탈가루몬'] },
+  { targetName: '라이덴몬', materials: ['뇌신몬', '수신몬', '풍신몬'] },
+  { targetName: '라플레시몬', materials: ['로제몬', '로터스몬'] },
+  { targetName: '알파몬[왕룡검]', materials: ['알파몬', '오류우몬'] },
 ]
 const JOGRESS_CHIP_REWARD_ITEM = {
   id: JOGRESS_CHIP_ITEM_ID,
@@ -372,6 +375,9 @@ const ITEM_EVOLUTION_REQUIREMENTS = {
   카오스드라몬: { itemName: '레드디지조이드', rarity: 'rare' },
   '황제드라몬[파이터]': { itemName: '포지트론 레이저', rarity: 'rare' },
   '황제드라몬[팔라딘]': { itemName: '오메가 블레이드', rarity: 'rogue' },
+  '가이오몬[엄도의형]': { itemName: '천인엄도', rarity: 'rare' },
+  기가시드라몬: { itemName: '기가스케일', rarity: 'rare' },
+  '오메가몬[즈왈트-D]': { itemName: '블랙디지트론', rarity: 'rare' },
 }
 const ITEM_EVOLUTION_REWARD_ITEMS = Object.entries(ITEM_EVOLUTION_REQUIREMENTS).map(
   ([targetName, requirement]) => ({
@@ -628,6 +634,7 @@ const captureChanceByTier = {
 const growthStageDigimonUrls = [
   '/도감/성장기/가오몬.png',
   '/도감/성장기/가지몬.png',
+  '/도감/성장기/감마몬.png',
   '/도감/성장기/고부리몬.png',
   '/도감/성장기/길몬.png',
   '/도감/성장기/도루몬.png',
@@ -639,6 +646,7 @@ const growthStageDigimonUrls = [
   '/도감/성장기/루체몬.png',
   '/도감/성장기/류우다몬.png',
   '/도감/성장기/모노드라몬.png',
+  '/도감/성장기/모르포몬.png',
   '/도감/성장기/베타몬.png',
   '/도감/성장기/보보몬.png',
   '/도감/성장기/브이몬.png',
@@ -652,6 +660,7 @@ const growthStageDigimonUrls = [
   '/도감/성장기/아기벌몬.png',
   '/도감/성장기/아르마몬.png',
   '/도감/성장기/에렉몬.png',
+  '/도감/성장기/에리스몬.png',
   '/도감/성장기/올챙몬.png',
   '/도감/성장기/옷코몬.png',
   '/도감/성장기/울퉁몬.png',
@@ -659,8 +668,11 @@ const growthStageDigimonUrls = [
   '/도감/성장기/추추몬.png',
   '/도감/성장기/츄카이몬.png',
   '/도감/성장기/카메몬.png',
+  '/도감/성장기/캔들몬.png',
   '/도감/성장기/케라몬.png',
+  '/도감/성장기/코만드라몬.png',
   '/도감/성장기/코테몬.png',
+  '/도감/성장기/코스파이더몬.png',
   '/도감/성장기/쿠네몬.png',
   '/도감/성장기/쿠다몬.png',
   '/도감/성장기/크랩몬.png',
@@ -682,6 +694,7 @@ const growthStageDigimonUrls = [
   '/도감/성장기/피코데블몬.png',
   '/도감/성장기/헉몬.png',
   '/도감/성장기/호크몬.png',
+  '/도감/성장기/효코몬.png',
 ]
 
 const growthStageDigimon = growthStageDigimonUrls.map((url) => {
@@ -734,10 +747,13 @@ const hideBrokenArtwork = (event) => {
 
 const allDigimonLookup = Object.entries(digimonStageDataMap).reduce((result, [stage, items]) => {
   items.forEach((digimon) => {
+    const imageName = digimon.이미지명 ?? digimon.이름
+
     result.set(digimon.이름, {
       ...digimon,
       stage,
-      imageUrl: createDigimonImageUrl(stage, digimon.이름),
+      imageName,
+      imageUrl: createDigimonImageUrl(stage, imageName),
     })
   })
   return result
@@ -1727,37 +1743,56 @@ const hasJogressRecipeMaterials = (party, recipe) => {
 const getAvailableJogressRecipesForParty = (party, recipes = JOGRESS_RECIPES) =>
   (recipes ?? []).filter((recipe) => hasJogressRecipeMaterials(party, recipe))
 
-const getJogressRecipeForMembers = (members, recipes = JOGRESS_RECIPES) => {
-  if ((members ?? []).length !== 2) {
-    return null
+const canJogressRecipeAcceptMembers = (recipe, members) => {
+  const selectedMembers = (members ?? []).filter(Boolean)
+  const materialNames = recipe?.materials ?? []
+
+  if (selectedMembers.length <= 0 || selectedMembers.length > materialNames.length) {
+    return false
   }
 
-  const [firstMember, secondMember] = members
+  const materialCounts = materialNames.reduce((result, materialName) => {
+    result[materialName] = (result[materialName] ?? 0) + 1
+    return result
+  }, {})
 
-  if (!firstMember?.name || !secondMember?.name || firstMember.id === secondMember.id) {
+  return selectedMembers.every((member) => {
+    if (!member?.name || (materialCounts[member.name] ?? 0) <= 0) {
+      return false
+    }
+
+    materialCounts[member.name] -= 1
+    return true
+  })
+}
+
+const getJogressRecipeForMembers = (members, recipes = JOGRESS_RECIPES) => {
+  const selectedMembers = (members ?? []).filter(Boolean)
+  const selectedIds = new Set(selectedMembers.map((member) => member.id))
+
+  if (selectedMembers.length <= 1 || selectedIds.size !== selectedMembers.length) {
     return null
   }
 
   return (
     (recipes ?? []).find((recipe) => {
-      const selectedCounts = [firstMember.name, secondMember.name].reduce((result, name) => {
-        result[name] = (result[name] ?? 0) + 1
-        return result
-      }, {})
-
-      return (
-        recipe.materials?.length === 2 &&
-        recipe.materials.every((materialName) => {
-          if ((selectedCounts[materialName] ?? 0) <= 0) {
-            return false
-          }
-
-          selectedCounts[materialName] -= 1
-          return true
-        })
-      )
+      return recipe.materials?.length === selectedMembers.length && canJogressRecipeAcceptMembers(recipe, selectedMembers)
     }) ?? null
   )
+}
+
+const getJogressSelectionRequiredCount = (party, selectedIds = [], recipes = JOGRESS_RECIPES) => {
+  const selectedMembers = (selectedIds ?? []).map((memberId) => getCombatantById(party, memberId)).filter(Boolean)
+  const availableRecipes = getAvailableJogressRecipesForParty(party, recipes)
+  const matchingRecipes =
+    selectedMembers.length > 0
+      ? availableRecipes.filter((recipe) => canJogressRecipeAcceptMembers(recipe, selectedMembers))
+      : availableRecipes
+  const materialCounts = matchingRecipes
+    .map((recipe) => recipe.materials?.length ?? 0)
+    .filter((materialCount) => materialCount > 0)
+
+  return materialCounts.length > 0 ? Math.min(...materialCounts) : 2
 }
 
 const isJogressMemberSelectable = (member, party, selectedIds = [], recipes = JOGRESS_RECIPES) => {
@@ -1769,14 +1804,11 @@ const isJogressMemberSelectable = (member, party, selectedIds = [], recipes = JO
     return true
   }
 
-  const selectedMember = selectedIds.length > 0 ? getCombatantById(party, selectedIds[0]) : null
-
-  if (selectedMember) {
-    return Boolean(getJogressRecipeForMembers([selectedMember, member], recipes))
-  }
+  const selectedMembers = (selectedIds ?? []).map((memberId) => getCombatantById(party, memberId)).filter(Boolean)
+  const candidateMembers = [...selectedMembers, member]
 
   return getAvailableJogressRecipesForParty(party, recipes).some((recipe) =>
-    recipe.materials?.includes(member.name)
+    canJogressRecipeAcceptMembers(recipe, candidateMembers)
   )
 }
 
@@ -3311,25 +3343,37 @@ const createEvolvedCombatant = (combatant, targetData) => {
   }
 }
 
-const createJogressCombatant = (primaryCombatant, partnerCombatant, targetData) => {
-  if (!primaryCombatant || !partnerCombatant || !targetData) {
+const createJogressCombatant = (primaryCombatant, partnerCombatants, targetData) => {
+  const materialCombatants = [
+    primaryCombatant,
+    ...(Array.isArray(partnerCombatants) ? partnerCombatants : [partnerCombatants]),
+  ].filter(Boolean)
+
+  if (!primaryCombatant || materialCombatants.length <= 1 || !targetData) {
     return primaryCombatant
   }
 
   const mergedIvs = STAT_KEYS.reduce((result, statKey) => {
-    result[statKey] = Math.max(primaryCombatant.ivs?.[statKey] ?? 0, partnerCombatant.ivs?.[statKey] ?? 0)
+    result[statKey] = Math.max(...materialCombatants.map((combatant) => combatant.ivs?.[statKey] ?? 0))
     return result
   }, {})
-  const primaryHpRatio = primaryCombatant.maxHp > 0 ? primaryCombatant.currentHp / primaryCombatant.maxHp : 1
-  const partnerHpRatio = partnerCombatant.maxHp > 0 ? partnerCombatant.currentHp / partnerCombatant.maxHp : 1
-  const hpRatio = Math.max(0, Math.min(1, (primaryHpRatio + partnerHpRatio) / 2))
+  const hpRatio = Math.max(
+    0,
+    Math.min(
+      1,
+      materialCombatants.reduce(
+        (total, combatant) => total + (combatant.maxHp > 0 ? combatant.currentHp / combatant.maxHp : 1),
+        0
+      ) / materialCombatants.length
+    )
+  )
   const jogressCombatant = createCombatant({
     id: primaryCombatant.id,
     name: targetData.이름,
     imageUrl: targetData.imageUrl ?? '',
     data: targetData,
-    level: Math.max(primaryCombatant.level ?? 1, partnerCombatant.level ?? 1),
-    experience: Math.max(primaryCombatant.experience ?? 0, partnerCombatant.experience ?? 0),
+    level: Math.max(...materialCombatants.map((combatant) => combatant.level ?? 1)),
+    experience: Math.max(...materialCombatants.map((combatant) => combatant.experience ?? 0)),
     ivs: mergedIvs,
     activeBuffs: primaryCombatant.activeBuffs,
     statModifiers: primaryCombatant.statModifiers,
@@ -3442,6 +3486,7 @@ const createCombatant = ({
     id,
     name,
     imageUrl: imageUrl ?? '',
+    imageName: data?.imageName ?? data?.이미지명 ?? name,
     speciesData: data,
     speciesStage: stageName ?? data?.stage ?? null,
     baseStats,
@@ -6301,15 +6346,16 @@ function App() {
       const jogressRecipe = getJogressRecipeForMembers(selectedMembers, effectiveRewardItem.jogressRecipes)
       const targetData = jogressRecipe ? allDigimonLookup.get(jogressRecipe.targetName) : null
 
-      if (selectedMembers.length !== 2 || !jogressRecipe || !targetData) {
+      if (selectedMembers.length !== (jogressRecipe?.materials?.length ?? 0) || !jogressRecipe || !targetData) {
         return
       }
 
-      const [primaryMember, partnerMember] = selectedMembers
-      const jogressMember = createJogressCombatant(primaryMember, partnerMember, targetData)
+      const [primaryMember, ...partnerMembers] = selectedMembers
+      const jogressMember = createJogressCombatant(primaryMember, partnerMembers, targetData)
       const selectedIdSet = new Set(targetIds)
+      const partnerIdSet = new Set(partnerMembers.map((member) => member.id))
       const nextParty = currentParty
-        .filter((member) => member.id !== partnerMember.id)
+        .filter((member) => !partnerIdSet.has(member.id))
         .map((member) => (member.id === primaryMember.id ? jogressMember : member))
       const nextPlayer =
         selectedIdSet.has(gameState.player?.id)
@@ -6319,7 +6365,7 @@ function App() {
             jogressMember
       const nextActiveAllyIds = getActiveAllyIdsForParty(
         nextParty,
-        (gameState.activeAllyIds ?? []).filter((memberId) => memberId !== partnerMember.id),
+        (gameState.activeAllyIds ?? []).filter((memberId) => !partnerIdSet.has(memberId)),
         getBattleAllyLimit(gameState)
       )
 
@@ -6496,39 +6542,36 @@ function App() {
         return
       }
 
-      if (selectedTargetIds.length <= 0) {
-        const selectedMember = getCombatantById(currentParty, memberId)
+      const selectedMember = getCombatantById(currentParty, memberId)
 
-        if (!isJogressMemberSelectable(selectedMember, currentParty, [], rewardItem.jogressRecipes)) {
-          return
-        }
-
-        setRewardState((current) =>
-          current?.pendingTarget
-            ? {
-                ...current,
-                pendingTarget: {
-                  ...current.pendingTarget,
-                  selectedTargetIds: [memberId],
-                },
-              }
-            : current
-        )
+      if (!isJogressMemberSelectable(selectedMember, currentParty, selectedTargetIds, rewardItem.jogressRecipes)) {
         return
       }
 
-      const nextTargetIds = [selectedTargetIds[0], memberId]
+      const nextTargetIds = [...selectedTargetIds, memberId]
       const selectedMembers = nextTargetIds.map((targetId) => getCombatantById(currentParty, targetId)).filter(Boolean)
+      const jogressRecipe = getJogressRecipeForMembers(selectedMembers, rewardItem.jogressRecipes)
 
-      if (!getJogressRecipeForMembers(selectedMembers, rewardItem.jogressRecipes)) {
+      if (jogressRecipe) {
+        completeRewardItemUse({
+          rewardItem,
+          source: pendingTarget.source,
+          targetIds: nextTargetIds,
+        })
         return
       }
 
-      completeRewardItemUse({
-        rewardItem,
-        source: pendingTarget.source,
-        targetIds: nextTargetIds,
-      })
+      setRewardState((current) =>
+        current?.pendingTarget
+          ? {
+              ...current,
+              pendingTarget: {
+                ...current.pendingTarget,
+                selectedTargetIds: nextTargetIds,
+              },
+            }
+          : current
+      )
       return
     }
 
@@ -7095,6 +7138,13 @@ function App() {
     ? pendingRewardTarget?.selectedTargetIds ?? []
     : []
   const rewardTargetMembers = getRewardTargetCandidates(partyMembers, gameState?.player)
+  const pendingJogressRequiredCount = pendingRewardItem?.jogressRecipes
+    ? getJogressSelectionRequiredCount(
+        rewardTargetMembers,
+        pendingJogressSelectedIds,
+        pendingRewardItem.jogressRecipes
+      )
+    : 0
   const rewardTargetSlots = Array.from(
     { length: Math.max(PARTY_SLOT_COUNT, rewardTargetMembers.length) },
     (_, index) => rewardTargetMembers[index] ?? null
@@ -7519,7 +7569,7 @@ function App() {
                           >
                             <img
                               className="digimon-status__portrait"
-                              src={createDigimonArtworkUrl(ally.speciesStage, ally.name)}
+                              src={createDigimonArtworkUrl(ally.speciesStage, ally.imageName ?? ally.name)}
                               alt=""
                               data-fallback-src={ally.imageUrl}
                               onError={hideBrokenArtwork}
@@ -7678,7 +7728,7 @@ function App() {
                           >
                             <img
                               className="digimon-status__portrait"
-                              src={createDigimonArtworkUrl(enemy.speciesStage, enemy.name)}
+                              src={createDigimonArtworkUrl(enemy.speciesStage, enemy.imageName ?? enemy.name)}
                               alt=""
                               data-fallback-src={enemy.imageUrl}
                               onError={hideBrokenArtwork}
@@ -7821,7 +7871,7 @@ function App() {
                             <span className="reward-target-screen__eyebrow">대상 선택</span>
                             <strong className="reward-target-screen__title">
                               {pendingRewardItem.jogressRecipes
-                                ? `${pendingRewardItem.name} ${pendingJogressSelectedIds.length}/2`
+                                ? `${pendingRewardItem.name} ${pendingJogressSelectedIds.length}/${pendingJogressRequiredCount}`
                                 : pendingRewardItem.name}
                             </strong>
                           </div>
