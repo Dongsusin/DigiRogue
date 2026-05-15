@@ -55,11 +55,124 @@ const BGM_FADE_OUT_SECONDS = 3
 const BUTTON_CLICK_SFX_URL = '/SFX/click.mp3'
 const BUTTON_CLICK_SFX_VOLUME = 0.62
 const BUTTON_CLICK_SFX_POOL_SIZE = 4
+const BATTLE_ATTACK_SFX_VOLUME = 0.22
+const BATTLE_LOG_STEP_MS = 820
+const BATTLE_LOG_FINAL_DELAY_MS = 520
+const SAVE_STORAGE_KEY = 'digirogue-save-v1'
+const SAVE_DATA_VERSION = 1
 const EVOLUTION_SCENE_SWITCH_MS = 4000
 const EVOLUTION_SCENE_TOTAL_MS = 8000
 const MAX_COMBATANT_SKILL_COUNT = 8
 const DIGIMON_SIZE_MIN = 1
 const DIGIMON_SIZE_MAX = 5
+
+const canUseLocalStorage = () => {
+  try {
+    return typeof window !== 'undefined' && Boolean(window.localStorage)
+  } catch {
+    return false
+  }
+}
+
+const sanitizeGameStateForSave = (gameState) => {
+  if (!gameState || typeof gameState !== 'object') {
+    return null
+  }
+
+  const stageStartState = {
+    ...gameState,
+    actedAllyIds: [],
+    pendingAllyActions: [],
+  }
+
+  try {
+    return JSON.parse(JSON.stringify(stageStartState))
+  } catch {
+    return null
+  }
+}
+
+const parseSavedGameState = (rawSaveData) => {
+  try {
+    const parsedSaveData = JSON.parse(rawSaveData)
+    const savedGameState =
+      parsedSaveData?.version === SAVE_DATA_VERSION
+        ? parsedSaveData.gameState
+        : parsedSaveData?.gameState ?? null
+
+    if (
+      !savedGameState ||
+      typeof savedGameState !== 'object' ||
+      !savedGameState.player ||
+      !Array.isArray(savedGameState.party) ||
+      !Number.isFinite(Number(savedGameState.currentStage))
+    ) {
+      return null
+    }
+
+    return {
+      ...savedGameState,
+      currentStage: Math.max(1, Math.floor(Number(savedGameState.currentStage))),
+      actedAllyIds: [],
+      pendingAllyActions: [],
+    }
+  } catch {
+    return null
+  }
+}
+
+const saveGameStateToStorage = (gameState) => {
+  if (!canUseLocalStorage()) {
+    return false
+  }
+
+  const sanitizedGameState = sanitizeGameStateForSave(gameState)
+
+  if (!sanitizedGameState) {
+    return false
+  }
+
+  try {
+    window.localStorage.setItem(
+      SAVE_STORAGE_KEY,
+      JSON.stringify({
+        version: SAVE_DATA_VERSION,
+        savedAt: new Date().toISOString(),
+        gameState: sanitizedGameState,
+      })
+    )
+
+    return true
+  } catch {
+    return false
+  }
+}
+
+const loadSavedGameStateFromStorage = () => {
+  if (!canUseLocalStorage()) {
+    return null
+  }
+
+  try {
+    return parseSavedGameState(window.localStorage.getItem(SAVE_STORAGE_KEY))
+  } catch {
+    return null
+  }
+}
+
+const hasSavedGameState = () => Boolean(loadSavedGameStateFromStorage())
+
+const clearSavedGameStateFromStorage = () => {
+  if (!canUseLocalStorage()) {
+    return
+  }
+
+  try {
+    window.localStorage.removeItem(SAVE_STORAGE_KEY)
+  } catch {
+    // Ignore storage failures. The game can continue without persistence.
+  }
+}
 
 const DIGIMON_DETECTOR_ITEM_ID = 'digimon-detector'
 const IV_DETECTOR_ITEM_ID = 'iv-detector'
@@ -1213,6 +1326,7 @@ const ButtonClickSound = () => {
       audioIndexRef.current += 1
       audio.currentTime = 0
       audio.volume = BUTTON_CLICK_SFX_VOLUME
+      resumeBattleSfxAudioContext()
       const playPromise = audio.play()
 
       if (playPromise?.catch) {
@@ -1314,7 +1428,7 @@ const CAPTURE_INFO_TAB_DURATION_MS = 1000
 const CLASSIC_LEVEL_CAPS = [
   10, 16, 24, 32, 38, 48, 56, 64, 74, 84, 94, 104, 114, 126, 138, 150, 162, 174, 188, 200,
 ]
-const getBattlePrompt = (name) => `${name}은 무엇을 할까?`
+const getBattlePrompt = (name) => `${name}은 어떤 행동을 할까?`
 const formatGold = (value) => {
   const numericValue = Number(value ?? 0)
 
@@ -1414,7 +1528,107 @@ const replacePartyMember = (party, updatedMember) => {
 
   return currentParty.map((member, index) => (index === memberIndex ? updatedMember : member))
 }
+const createTrimmedSpriteDataUrl = (imageElement) => {
+  const width = imageElement?.naturalWidth ?? 0
+  const height = imageElement?.naturalHeight ?? 0
+
+  if (!width || !height || typeof document === 'undefined') {
+    return null
+  }
+
+  const sourceCanvas = document.createElement('canvas')
+  sourceCanvas.width = width
+  sourceCanvas.height = height
+  const sourceContext = sourceCanvas.getContext('2d', { willReadFrequently: true })
+
+  if (!sourceContext) {
+    return null
+  }
+
+  try {
+    sourceContext.drawImage(imageElement, 0, 0)
+    const { data } = sourceContext.getImageData(0, 0, width, height)
+    let minX = width
+    let minY = height
+    let maxX = -1
+    let maxY = -1
+
+    for (let y = 0; y < height; y += 1) {
+      for (let x = 0; x < width; x += 1) {
+        const alpha = data[(y * width + x) * 4 + 3]
+
+        if (alpha <= 8) {
+          continue
+        }
+
+        minX = Math.min(minX, x)
+        minY = Math.min(minY, y)
+        maxX = Math.max(maxX, x)
+        maxY = Math.max(maxY, y)
+      }
+    }
+
+    if (maxX < minX || maxY < minY) {
+      return null
+    }
+
+    const trimWidth = maxX - minX + 1
+    const trimHeight = maxY - minY + 1
+
+    if (trimWidth === width && trimHeight === height) {
+      return null
+    }
+
+    const trimmedCanvas = document.createElement('canvas')
+    trimmedCanvas.width = trimWidth
+    trimmedCanvas.height = trimHeight
+    const trimmedContext = trimmedCanvas.getContext('2d')
+
+    if (!trimmedContext) {
+      return null
+    }
+
+    trimmedContext.drawImage(
+      sourceCanvas,
+      minX,
+      minY,
+      trimWidth,
+      trimHeight,
+      0,
+      0,
+      trimWidth,
+      trimHeight
+    )
+
+    return trimmedCanvas.toDataURL('image/png')
+  } catch {
+    return null
+  }
+}
 const getLivingCombatants = (combatants) => (combatants ?? []).filter(isCombatantAbleToBattle)
+const getFastestCombatantSpeed = (combatants) =>
+  Math.max(
+    1,
+    ...getLivingCombatants(combatants).map((combatant) => Math.max(1, combatant?.speed ?? 1))
+  )
+const getRunChanceValue = ({ party, activeAllyIds, enemies, attemptCount = 1 }) => {
+  const activeAllies = (activeAllyIds ?? [])
+    .map((allyId) => getCombatantById(party, allyId))
+    .filter(isCombatantAbleToBattle)
+  const runnerSpeed = getFastestCombatantSpeed(activeAllies.length ? activeAllies : party)
+  const enemySpeed = getFastestCombatantSpeed(enemies)
+
+  if (runnerSpeed > enemySpeed) {
+    return 256
+  }
+
+  return Math.floor((runnerSpeed * 128) / Math.max(1, enemySpeed) + attemptCount * 30)
+}
+const rollRunAttempt = ({ party, activeAllyIds, enemies, attemptCount }) => {
+  const chanceValue = getRunChanceValue({ party, activeAllyIds, enemies, attemptCount })
+
+  return chanceValue >= 256 || Math.floor(Math.random() * 256) < chanceValue
+}
 const getRandomCombatant = (combatants) => {
   const currentCombatants = combatants ?? []
 
@@ -2104,6 +2318,381 @@ const selectRandomRewardItemsByRarity = (items, count = 3) => {
   return selectedItems
 }
 
+const REWARD_REVEAL_DURATION_MS = 1200
+const REWARD_REVEAL_IMAGE_URL = '/item.png'
+const HIT_EFFECT_DURATION_MS = 620
+const HIT_EFFECT_SEQUENCE_INTERVAL_MS = 1000
+const ATTACK_MOTION_DURATION_MS = 760
+const PROJECTILE_EFFECT_DURATION_MS = 620
+const RUN_STAGE_ADVANCE_DELAY_MS = 650
+
+const hitEffectAttributeClassMap = {
+  화염: 'fire',
+  불: 'fire',
+  물: 'water',
+  나무: 'wood',
+  풀: 'wood',
+  흙: 'earth',
+  땅: 'earth',
+  번개: 'electric',
+  전기: 'electric',
+  얼음: 'ice',
+  바람: 'wind',
+  강철: 'steel',
+  금속: 'steel',
+  빛: 'light',
+  어둠: 'dark',
+  무: 'neutral',
+}
+
+const getHitEffectAttributeClass = (attribute) =>
+  hitEffectAttributeClassMap[String(attribute ?? '무').trim()] ?? 'neutral'
+
+const isSpecialAttackCategory = (category) => category === '특수형' || category === '마법'
+
+const getHitEffectClassName = (effect) =>
+  [
+    'hit-effect',
+    `hit-effect--${getHitEffectAttributeClass(effect?.attribute)}`,
+    isSpecialAttackCategory(effect?.category) ? 'hit-effect--special' : 'hit-effect--physical',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+const getProjectileEffectClassName = (effect) =>
+  [
+    'skill-projectile',
+    `skill-projectile--${getHitEffectAttributeClass(effect?.attribute)}`,
+    isSpecialAttackCategory(effect?.category) ? 'skill-projectile--special' : 'skill-projectile--physical',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+let battleSfxAudioContext = null
+
+const battleAttackSoundProfiles = {
+  fire: {
+    wave: 'sawtooth',
+    base: 170,
+    accent: 780,
+    impact: 118,
+    filter: 1450,
+    noise: 1850,
+  },
+  water: {
+    wave: 'sine',
+    base: 290,
+    accent: 520,
+    impact: 185,
+    filter: 980,
+    noise: 720,
+  },
+  wood: {
+    wave: 'triangle',
+    base: 230,
+    accent: 390,
+    impact: 150,
+    filter: 1250,
+    noise: 1050,
+  },
+  earth: {
+    wave: 'square',
+    base: 92,
+    accent: 150,
+    impact: 74,
+    filter: 620,
+    noise: 520,
+  },
+  electric: {
+    wave: 'square',
+    base: 620,
+    accent: 1180,
+    impact: 430,
+    filter: 2600,
+    noise: 3100,
+  },
+  ice: {
+    wave: 'triangle',
+    base: 520,
+    accent: 940,
+    impact: 260,
+    filter: 2200,
+    noise: 2450,
+  },
+  wind: {
+    wave: 'sine',
+    base: 340,
+    accent: 760,
+    impact: 210,
+    filter: 1800,
+    noise: 1900,
+  },
+  steel: {
+    wave: 'square',
+    base: 180,
+    accent: 980,
+    impact: 96,
+    filter: 1700,
+    noise: 2600,
+  },
+  light: {
+    wave: 'sine',
+    base: 640,
+    accent: 1280,
+    impact: 330,
+    filter: 2800,
+    noise: 3000,
+  },
+  dark: {
+    wave: 'sawtooth',
+    base: 110,
+    accent: 360,
+    impact: 82,
+    filter: 740,
+    noise: 980,
+  },
+  neutral: {
+    wave: 'triangle',
+    base: 220,
+    accent: 480,
+    impact: 128,
+    filter: 1150,
+    noise: 1350,
+  },
+}
+
+const getBattleSfxAudioContext = () => {
+  if (typeof window === 'undefined') {
+    return null
+  }
+
+  const AudioContextConstructor = window.AudioContext || window.webkitAudioContext
+
+  if (!AudioContextConstructor) {
+    return null
+  }
+
+  if (!battleSfxAudioContext || battleSfxAudioContext.state === 'closed') {
+    battleSfxAudioContext = new AudioContextConstructor()
+  }
+
+  return battleSfxAudioContext
+}
+
+const resumeBattleSfxAudioContext = () => {
+  const audioContext = getBattleSfxAudioContext()
+
+  if (audioContext?.state === 'suspended') {
+    audioContext.resume().catch(() => {})
+  }
+
+  return audioContext
+}
+
+const getBattleAttackSoundProfile = (attribute) =>
+  battleAttackSoundProfiles[getHitEffectAttributeClass(attribute)] ?? battleAttackSoundProfiles.neutral
+
+const createBattleNoiseBuffer = (audioContext, duration) => {
+  const sampleCount = Math.max(1, Math.floor(audioContext.sampleRate * duration))
+  const buffer = audioContext.createBuffer(1, sampleCount, audioContext.sampleRate)
+  const output = buffer.getChannelData(0)
+
+  for (let index = 0; index < sampleCount; index += 1) {
+    const fadeOut = 1 - index / sampleCount
+    output[index] = (Math.random() * 2 - 1) * fadeOut
+  }
+
+  return buffer
+}
+
+const playBattleTone = ({
+  audioContext,
+  startAt,
+  duration,
+  frequency,
+  endFrequency,
+  type = 'sine',
+  volume = 0.08,
+  filterFrequency = 1200,
+  filterType = 'lowpass',
+}) => {
+  if (!audioContext) {
+    return
+  }
+
+  const oscillator = audioContext.createOscillator()
+  const filter = audioContext.createBiquadFilter()
+  const gain = audioContext.createGain()
+  const safeStartAt = Math.max(audioContext.currentTime, startAt)
+  const safeDuration = Math.max(0.04, duration)
+  const attackEndAt = safeStartAt + Math.min(0.018, safeDuration * 0.25)
+  const endAt = safeStartAt + safeDuration
+
+  oscillator.type = type
+  oscillator.frequency.setValueAtTime(Math.max(30, frequency), safeStartAt)
+
+  if (Number.isFinite(endFrequency)) {
+    oscillator.frequency.exponentialRampToValueAtTime(Math.max(30, endFrequency), endAt)
+  }
+
+  filter.type = filterType
+  filter.frequency.setValueAtTime(Math.max(80, filterFrequency), safeStartAt)
+  filter.Q.setValueAtTime(filterType === 'bandpass' ? 7 : 1.8, safeStartAt)
+  gain.gain.setValueAtTime(0.0001, safeStartAt)
+  gain.gain.exponentialRampToValueAtTime(Math.max(0.0001, volume), attackEndAt)
+  gain.gain.exponentialRampToValueAtTime(0.0001, endAt)
+
+  oscillator.connect(filter)
+  filter.connect(gain)
+  gain.connect(audioContext.destination)
+  oscillator.start(safeStartAt)
+  oscillator.stop(endAt + 0.04)
+}
+
+const playBattleNoise = ({
+  audioContext,
+  startAt,
+  duration,
+  volume = 0.08,
+  filterFrequency = 1200,
+  filterType = 'bandpass',
+}) => {
+  if (!audioContext) {
+    return
+  }
+
+  const safeStartAt = Math.max(audioContext.currentTime, startAt)
+  const safeDuration = Math.max(0.04, duration)
+  const endAt = safeStartAt + safeDuration
+  const source = audioContext.createBufferSource()
+  const filter = audioContext.createBiquadFilter()
+  const gain = audioContext.createGain()
+
+  source.buffer = createBattleNoiseBuffer(audioContext, safeDuration)
+  filter.type = filterType
+  filter.frequency.setValueAtTime(Math.max(80, filterFrequency), safeStartAt)
+  filter.Q.setValueAtTime(filterType === 'bandpass' ? 8 : 1.2, safeStartAt)
+  gain.gain.setValueAtTime(0.0001, safeStartAt)
+  gain.gain.exponentialRampToValueAtTime(Math.max(0.0001, volume), safeStartAt + 0.012)
+  gain.gain.exponentialRampToValueAtTime(0.0001, endAt)
+
+  source.connect(filter)
+  filter.connect(gain)
+  gain.connect(audioContext.destination)
+  source.start(safeStartAt)
+  source.stop(endAt + 0.02)
+}
+
+const playBattleAttackSound = (effect, phase) => {
+  const audioContext = resumeBattleSfxAudioContext()
+
+  if (!audioContext) {
+    return
+  }
+
+  const profile = getBattleAttackSoundProfile(effect?.attribute)
+  const now = audioContext.currentTime
+  const volume = BATTLE_ATTACK_SFX_VOLUME
+
+  if (phase === 'physical-move') {
+    playBattleNoise({
+      audioContext,
+      startAt: now,
+      duration: 0.2,
+      volume: volume * 0.22,
+      filterFrequency: profile.noise,
+      filterType: 'bandpass',
+    })
+    playBattleTone({
+      audioContext,
+      startAt: now,
+      duration: 0.18,
+      frequency: profile.base * 0.82,
+      endFrequency: profile.accent * 0.72,
+      type: 'triangle',
+      volume: volume * 0.18,
+      filterFrequency: profile.filter,
+    })
+    return
+  }
+
+  if (phase === 'special-launch') {
+    playBattleTone({
+      audioContext,
+      startAt: now,
+      duration: 0.18,
+      frequency: profile.base,
+      endFrequency: profile.accent,
+      type: profile.wave,
+      volume: volume * 0.3,
+      filterFrequency: profile.filter,
+    })
+    playBattleNoise({
+      audioContext,
+      startAt: now + 0.03,
+      duration: 0.12,
+      volume: volume * 0.12,
+      filterFrequency: profile.noise,
+    })
+    return
+  }
+
+  if (phase === 'special-travel') {
+    playBattleTone({
+      audioContext,
+      startAt: now + 0.1,
+      duration: 0.42,
+      frequency: profile.accent * 0.9,
+      endFrequency: profile.base * 1.12,
+      type: profile.wave === 'square' ? 'triangle' : profile.wave,
+      volume: volume * 0.16,
+      filterFrequency: profile.filter * 1.2,
+      filterType: 'bandpass',
+    })
+    playBattleNoise({
+      audioContext,
+      startAt: now + 0.08,
+      duration: 0.42,
+      volume: volume * 0.08,
+      filterFrequency: profile.noise,
+      filterType: 'bandpass',
+    })
+    return
+  }
+
+  if (phase === 'hit') {
+    playBattleTone({
+      audioContext,
+      startAt: now,
+      duration: 0.16,
+      frequency: profile.impact,
+      endFrequency: Math.max(42, profile.impact * 0.58),
+      type: isSpecialAttackCategory(effect?.category) ? profile.wave : 'square',
+      volume: volume * 0.55,
+      filterFrequency: profile.filter,
+    })
+    playBattleTone({
+      audioContext,
+      startAt: now + 0.018,
+      duration: 0.12,
+      frequency: profile.accent,
+      endFrequency: profile.accent * 0.68,
+      type: 'triangle',
+      volume: volume * 0.18,
+      filterFrequency: profile.filter * 1.5,
+      filterType: 'bandpass',
+    })
+    playBattleNoise({
+      audioContext,
+      startAt: now,
+      duration: 0.14,
+      volume: volume * 0.32,
+      filterFrequency: profile.noise,
+      filterType: 'bandpass',
+    })
+  }
+}
+
 const createRewardSelection = (
   inventory = {},
   rewardTarget = null,
@@ -2119,6 +2708,8 @@ const createRewardSelection = (
   ),
   selectedRandomItemId: null,
   isResolving: false,
+  isRevealing: true,
+  revealKey: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
   rerollCount,
   rerollCost: getRewardRerollCost(currentStage, rerollCount),
 })
@@ -2352,6 +2943,54 @@ const createBossHpBreakpoints = (stage) => {
 }
 
 const createBattleLog = (...lines) => lines.filter(Boolean)
+
+const isBattlePromptLog = (line) =>
+  /은 어떤 행동을 할까\?$/.test(line) ||
+  /은 어떻게 행동할까\?$/.test(line) ||
+  /은 무엇을 할까\?$/.test(line)
+
+const isBattleLogActionStart = (line) =>
+  line.includes('을(를) 사용했다!') ||
+  line.includes('돌아와!') ||
+  line.includes('부탁해!') ||
+  line.includes('도망치려 했다!') ||
+  line.includes('헤이스트가 발동했다!') ||
+  line === '상대의 차례!'
+
+const isBattleLogStandalone = (line) =>
+  isBattlePromptLog(line) ||
+  line.includes('데미지를 입었다') ||
+  line.includes('움직일 수 없었다') ||
+  line.includes('행동할 수 없었다') ||
+  line.includes('풀죽어서') ||
+  line.includes('풀죽었다') ||
+  line.includes('상태가 풀렸다') ||
+  line.includes('상태가 자연스럽게 풀렸다') ||
+  line.includes('체력선이 버텼다') ||
+  line.includes('생명의 힘') ||
+  line.includes('기적의루비') ||
+  line.includes('아이템을 선택하세요') ||
+  line.includes('눈앞이 깜깜해졌다') ||
+  line.includes('경험치') ||
+  line.includes('레벨이') ||
+  line.includes('배웠다')
+
+const createBattleLogSteps = (logs = []) =>
+  createBattleLog(...logs).reduce((steps, line) => {
+    const shouldStartNewStep =
+      steps.length === 0 || isBattleLogActionStart(line) || isBattleLogStandalone(line)
+
+    if (shouldStartNewStep) {
+      steps.push([line])
+      return steps
+    }
+
+    steps[steps.length - 1].push(line)
+    return steps
+  }, [])
+
+const createSkillUseLog = (combatantName, skillName) =>
+  `${combatantName}이(가) ${skillName}을(를) 사용했다!`
 
 const normalizeStatusEffect = (statusEffect) => {
   if (!statusEffect?.type || !STATUS_EFFECT_TYPES.includes(statusEffect.type)) {
@@ -2722,19 +3361,19 @@ const getStatusEffectDefinition = (statusType) => {
 const getStatusBlockMessage = (combatantName, statusType) => {
   switch (statusType) {
     case '혼란':
-      return `${combatantName}은(는) 혼란으로 명령을 제대로 수행하지 못했다!`
+      return `${combatantName}은(는) 상태이상(혼란)으로 행동할 수 없었다!`
     case '착란':
-      return `${combatantName}은(는) 착란 상태라 명령을 수행할 수 없다!`
+      return `${combatantName}은(는) 상태이상(착란)으로 행동할 수 없었다!`
     case '마비':
-      return `${combatantName}은(는) 마비로 몸이 굳어 움직이지 못했다!`
+      return `${combatantName}은(는) 상태이상(마비)으로 행동할 수 없었다!`
     case '행동불능':
-      return `${combatantName}은(는) 행동불능 상태라 움직일 수 없다!`
+      return `${combatantName}은(는) 상태이상(행동불능)으로 행동할 수 없었다!`
     case '수면':
-      return `${combatantName}은(는) 잠들어 있어 제대로 움직이지 못했다!`
+      return `${combatantName}은(는) 상태이상(수면)으로 행동할 수 없었다!`
     case '혼수상태':
-      return `${combatantName}은(는) 혼수상태라 전혀 반응하지 않는다!`
+      return `${combatantName}은(는) 상태이상(혼수상태)으로 행동할 수 없었다!`
     default:
-      return `${combatantName}은(는) 상태이상 때문에 행동하지 못했다!`
+      return `${combatantName}은(는) 상태이상(${statusType ?? '불명'})으로 행동할 수 없었다!`
   }
 }
 
@@ -3974,7 +4613,7 @@ const resolveTurnEndStatus = (combatant, { side = 'enemy' } = {}) => {
     const appliedDamage = Math.max(0, previousHp - nextHp)
     nextCombatant = hpResult.nextCombatant
     battleLogs.push(
-      `${nextCombatant.name}은(는) ${statusDefinition.label} 때문에 ${appliedDamage} 데미지를 입었다!`
+      `${nextCombatant.name}은(는) 상태이상(${statusDefinition.label})으로 ${appliedDamage} 데미지를 입었다!`
     )
     battleLogs.push(...hpResult.battleLogs)
 
@@ -4405,7 +5044,7 @@ const resolveSupportSkillAction = ({
   skillData,
 }) => {
   const effect = getSkillEffect(skillData)
-  const battleLogs = [`${actor.name}의 ${skillData.기술명}!`]
+  const battleLogs = [createSkillUseLog(actor.name, skillData.기술명)]
   let nextParty = [...party]
   let nextEnemies = [...enemies]
   const targets = chooseSupportTarget({
@@ -4466,13 +5105,14 @@ const resolveAttackAction = ({
 }) => {
   const skillData = getSkillData(skillName)
   const skillStatusData = getSkillStatusData(skillData)
-  const battleLogs = announce ? [`${attacker.name}의 ${skillData.기술명}!`] : []
+  const battleLogs = announce ? [createSkillUseLog(attacker.name, skillData.기술명)] : []
   const accuracyValue = getModifiedAccuracyValue(skillData, attacker, defender, attackerSide)
 
   if (Math.random() * 100 >= accuracyValue) {
     return {
       nextDefender: defender,
       battleLogs: [...battleLogs, `${attacker.name}의 공격이 빗나갔다!`],
+      hitEffects: [],
     }
   }
 
@@ -4492,6 +5132,7 @@ const resolveAttackAction = ({
     return {
       nextDefender: defender,
       battleLogs: [...battleLogs, '상성이 너무 불리해서 공격이 통하지 않았다!'],
+      hitEffects: [],
     }
   }
 
@@ -4534,13 +5175,29 @@ const resolveAttackAction = ({
       nextDefender = refreshCombatantStats(nextDefender, {
         statusEffect: createStatusEffect(skillStatusData.type),
       })
-      nextLogs.push(`${nextDefender.name}은(는) ${skillStatusData.type} 상태가 되었다!`)
+      nextLogs.push(`${nextDefender.name}은(는) 상태이상(${skillStatusData.type})에 걸렸다!`)
     }
   }
 
   return {
     nextDefender,
     battleLogs: nextLogs,
+    hitEffects:
+      appliedDamage > 0
+        ? [
+            {
+              attackerId: attacker.id,
+              attackerSide,
+              targetId: defender.id,
+              targetSide: attackerSide === 'ally' ? 'enemy' : 'ally',
+              attribute: skillData.속성 ?? '무',
+              category: skillData.분류 ?? '물리형',
+              skillName: skillData.기술명,
+              targetCurrentHp: nextDefender.currentHp,
+              isDefeatingHit: nextHp === 0,
+            },
+          ]
+        : [],
   }
 }
 
@@ -4594,6 +5251,7 @@ const resolveEnemyPartyActions = ({ enemies, party, activeAllyIds, inventory = {
   let nextEnemies = [...enemies]
   let nextParty = [...party]
   const battleLogs = []
+  const hitEffects = []
 
   nextEnemies.forEach((enemy, enemyIndex) => {
     if (!isCombatantAbleToBattle(enemy)) {
@@ -4640,7 +5298,7 @@ const resolveEnemyPartyActions = ({ enemies, party, activeAllyIds, inventory = {
         nextEnemies = supportResult.nextEnemies
         battleLogs.push(...supportResult.battleLogs)
       } else if (isAreaAttack) {
-        battleLogs.push(`${nextEnemy.name}의 ${enemySkillData.기술명}!`)
+        battleLogs.push(createSkillUseLog(nextEnemy.name, enemySkillData.기술명))
         activeAllyIds.forEach((allyId) => {
           const currentTarget = getCombatantById(nextParty, allyId)
 
@@ -4660,6 +5318,7 @@ const resolveEnemyPartyActions = ({ enemies, party, activeAllyIds, inventory = {
           nextParty = replacePartyMember(nextParty, recoveryResult.nextCombatant)
           battleLogs.push(...attackResult.battleLogs)
           battleLogs.push(...recoveryResult.battleLogs)
+          hitEffects.push(...(attackResult.hitEffects ?? []))
         })
       } else if (isCombatantAbleToBattle(targetAlly)) {
         const attackResult = resolveAttackAction({
@@ -4674,6 +5333,7 @@ const resolveEnemyPartyActions = ({ enemies, party, activeAllyIds, inventory = {
         nextParty = replacePartyMember(nextParty, targetAlly)
         battleLogs.push(...attackResult.battleLogs)
         battleLogs.push(...recoveryResult.battleLogs)
+        hitEffects.push(...(attackResult.hitEffects ?? []))
       }
     }
 
@@ -4690,6 +5350,7 @@ const resolveEnemyPartyActions = ({ enemies, party, activeAllyIds, inventory = {
     nextEnemies,
     nextParty,
     battleLogs,
+    hitEffects,
   }
 }
 
@@ -4768,6 +5429,7 @@ const resolveBattleTurnActions = ({
   let nextEnemies = [...enemies]
   const battleLogs = []
   const skillLearnEvents = []
+  const hitEffects = []
   const sortedActions = [...actions]
     .map((action) => {
       const priorityActor = getBattleTurnActor({ action, party: nextParty, enemies: nextEnemies })
@@ -4877,7 +5539,7 @@ const resolveBattleTurnActions = ({
 
         if (isAreaAttack) {
           if (targetCandidates.length > 0) {
-            battleLogs.push(`${actor.name}의 ${skillData.기술명}!`)
+            battleLogs.push(createSkillUseLog(actor.name, skillData.기술명))
           }
 
           targetCandidates.forEach((target) => {
@@ -4898,11 +5560,13 @@ const resolveBattleTurnActions = ({
               }
               battleLogs.push(...attackResult.battleLogs)
               battleLogs.push(...getDeathBoneFlinchLogs(attackResult.nextDefender))
+              hitEffects.push(...(attackResult.hitEffects ?? []))
             } else {
               const recoveryResult = resolveRecoveryProgramOnDefeat(attackResult.nextDefender)
               nextParty = replacePartyMember(nextParty, recoveryResult.nextCombatant)
               battleLogs.push(...attackResult.battleLogs)
               battleLogs.push(...recoveryResult.battleLogs)
+              hitEffects.push(...(attackResult.hitEffects ?? []))
               return
             }
           })
@@ -4927,11 +5591,13 @@ const resolveBattleTurnActions = ({
               }
               battleLogs.push(...attackResult.battleLogs)
               battleLogs.push(...getDeathBoneFlinchLogs(attackResult.nextDefender))
+              hitEffects.push(...(attackResult.hitEffects ?? []))
             } else {
               const recoveryResult = resolveRecoveryProgramOnDefeat(attackResult.nextDefender)
               nextParty = replacePartyMember(nextParty, recoveryResult.nextCombatant)
               battleLogs.push(...attackResult.battleLogs)
               battleLogs.push(...recoveryResult.battleLogs)
+              hitEffects.push(...(attackResult.hitEffects ?? []))
             }
           } else {
             battleLogs.push(`${actor.name}의 공격 대상이 없다!`)
@@ -4991,6 +5657,7 @@ const resolveBattleTurnActions = ({
     nextEnemies,
     battleLogs,
     skillLearnEvents,
+    hitEffects,
   }
 }
 
@@ -5073,6 +5740,7 @@ function App() {
     growthStageDigimon[0]?.name ? [growthStageDigimon[0].name] : []
   )
   const [gameState, setGameState] = useState(null)
+  const [hasSaveData, setHasSaveData] = useState(() => hasSavedGameState())
   const [selectedBattleCommand, setSelectedBattleCommand] = useState('attack')
   const [battlePanelMode, setBattlePanelMode] = useState('commands')
   const [selectedSkillIndex, setSelectedSkillIndex] = useState(0)
@@ -5088,12 +5756,20 @@ function App() {
   const [mapSelectionState, setMapSelectionState] = useState(null)
   const [capturePreview, setCapturePreview] = useState(null)
   const [skillReplaceState, setSkillReplaceState] = useState(null)
+  const [hitEffects, setHitEffects] = useState([])
+  const [attackMotions, setAttackMotions] = useState([])
+  const [projectileEffects, setProjectileEffects] = useState([])
+  const [trimmedBattleSprites, setTrimmedBattleSprites] = useState({})
   const [displayedPlayerExpRatio, setDisplayedPlayerExpRatio] = useState(0)
   const [, setIsPlayerExpBarVisible] = useState(false)
   const [isPlayerExpTransitionInstant, setIsPlayerExpTransitionInstant] = useState(false)
   const [levelUpStatPreview, setLevelUpStatPreview] = useState(null)
   const expAnimationTimeoutsRef = useRef([])
   const levelUpStatTimeoutsRef = useRef([])
+  const hitEffectTimeoutsRef = useRef([])
+  const battleLogSequenceTimeoutsRef = useRef([])
+  const hitEffectIdRef = useRef(0)
+  const combatantEffectAnchorRefs = useRef(new Map())
   const capturePreviewTimeoutsRef = useRef([])
   const capturePreviewIdRef = useRef(0)
   const activeCombatantInfoElementRef = useRef(null)
@@ -5112,6 +5788,360 @@ function App() {
     expAnimationTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
     expAnimationTimeoutsRef.current = []
   }
+
+  const clearHitEffectQueue = () => {
+    hitEffectTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
+    hitEffectTimeoutsRef.current = []
+    setHitEffects([])
+    setAttackMotions([])
+    setProjectileEffects([])
+  }
+
+  const clearBattleLogSequence = () => {
+    battleLogSequenceTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
+    battleLogSequenceTimeoutsRef.current = []
+  }
+
+  const showBattleLogSequence = (logs, { finalBattlePanel = 'commands' } = {}) => {
+    const steps = createBattleLogSteps(logs)
+    clearBattleLogSequence()
+
+    if (steps.length === 0) {
+      setCurrentLogs([])
+      setBattlePanelMode(finalBattlePanel)
+      return 0
+    }
+
+    setBattlePanelMode('logs')
+    setCurrentLogs(steps[0])
+
+    steps.slice(1).forEach((stepLogs, stepIndex) => {
+      const timeoutId = window.setTimeout(() => {
+        setCurrentLogs(stepLogs)
+        battleLogSequenceTimeoutsRef.current = battleLogSequenceTimeoutsRef.current.filter(
+          (currentTimeoutId) => currentTimeoutId !== timeoutId
+        )
+      }, BATTLE_LOG_STEP_MS * (stepIndex + 1))
+      battleLogSequenceTimeoutsRef.current.push(timeoutId)
+    })
+
+    const totalDelay = BATTLE_LOG_STEP_MS * Math.max(0, steps.length - 1) + BATTLE_LOG_FINAL_DELAY_MS
+    const finalTimeoutId = window.setTimeout(() => {
+      setBattlePanelMode(finalBattlePanel)
+      battleLogSequenceTimeoutsRef.current = battleLogSequenceTimeoutsRef.current.filter(
+        (currentTimeoutId) => currentTimeoutId !== finalTimeoutId
+      )
+    }, totalDelay)
+    battleLogSequenceTimeoutsRef.current.push(finalTimeoutId)
+    return totalDelay
+  }
+
+  const showImmediateBattleLogs = (...logs) => {
+    clearBattleLogSequence()
+    setCurrentLogs(createBattleLog(...logs))
+  }
+
+  const saveStageGameState = (nextGameState) => {
+    const didSave = saveGameStateToStorage(nextGameState)
+    setHasSaveData(didSave || hasSavedGameState())
+  }
+
+  const clearStageSave = () => {
+    clearSavedGameStateFromStorage()
+    setHasSaveData(false)
+  }
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined
+    }
+
+    const handleStorageChange = (event) => {
+      if (event.key === SAVE_STORAGE_KEY) {
+        setHasSaveData(hasSavedGameState())
+      }
+    }
+
+    window.addEventListener('storage', handleStorageChange)
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+    }
+  }, [])
+
+  const getBattleSpriteUrl = (imageUrl) => trimmedBattleSprites[imageUrl] ?? imageUrl
+
+  const handleBattleSpriteLoad = (event) => {
+    const imageElement = event.currentTarget
+    const sourceUrl = imageElement.dataset.sourceSrc
+
+    if (!sourceUrl || trimmedBattleSprites[sourceUrl]) {
+      return
+    }
+
+    const trimmedUrl = createTrimmedSpriteDataUrl(imageElement)
+
+    if (!trimmedUrl) {
+      return
+    }
+
+    setTrimmedBattleSprites((current) =>
+      current[sourceUrl]
+        ? current
+        : {
+            ...current,
+            [sourceUrl]: trimmedUrl,
+          }
+    )
+  }
+
+  const setCombatantEffectAnchorRef = (combatantId) => (element) => {
+    if (!combatantId) {
+      return
+    }
+
+    if (element) {
+      combatantEffectAnchorRefs.current.set(combatantId, element)
+    } else {
+      combatantEffectAnchorRefs.current.delete(combatantId)
+    }
+  }
+
+  const getCombatantEffectPoint = (combatantId) => {
+    const element = combatantEffectAnchorRefs.current.get(combatantId)
+    const fieldElement = element?.closest('.adventure-field')
+
+    if (!element || !fieldElement) {
+      return null
+    }
+
+    const elementRect = element.getBoundingClientRect()
+    const fieldRect = fieldElement.getBoundingClientRect()
+
+    return {
+      x: elementRect.left - fieldRect.left + elementRect.width / 2,
+      y: elementRect.top - fieldRect.top + elementRect.height * 0.45,
+    }
+  }
+
+  const showHitEffect = (effect) => {
+    if (!effect?.targetId) {
+      return
+    }
+
+    const hitPoint = getCombatantEffectPoint(effect.targetId)
+    hitEffectIdRef.current += 1
+    const stampedEffect = {
+      ...effect,
+      id: `${effect.targetId}-${hitEffectIdRef.current}`,
+      hitX: hitPoint?.x ?? effect.hitX ?? null,
+      hitY: hitPoint?.y ?? effect.hitY ?? null,
+    }
+
+    setHitEffects((current) => [...current, stampedEffect].slice(-8))
+
+    const endTimeoutId = window.setTimeout(() => {
+      setHitEffects((current) =>
+        current.filter((currentEffect) => currentEffect.id !== stampedEffect.id)
+      )
+      hitEffectTimeoutsRef.current = hitEffectTimeoutsRef.current.filter(
+        (currentTimeoutId) => currentTimeoutId !== endTimeoutId
+      )
+    }, HIT_EFFECT_DURATION_MS)
+
+    hitEffectTimeoutsRef.current.push(endTimeoutId)
+  }
+
+  const applyVisualAttackDamage = (effect) => {
+    if (!effect?.targetId || !Number.isFinite(effect.targetCurrentHp)) {
+      return
+    }
+
+    setGameState((current) => {
+      if (!current || screenMode !== 'adventure') {
+        return current
+      }
+
+      const applyHp = (combatant) => {
+        if (!combatant || combatant.id !== effect.targetId) {
+          return combatant
+        }
+
+        return {
+          ...combatant,
+          currentHp: Math.max(0, Math.min(combatant.maxHp, effect.targetCurrentHp)),
+        }
+      }
+
+      if (effect.targetSide === 'ally') {
+        const nextParty = (current.party ?? []).map(applyHp)
+        const nextPlayer = current.player?.id === effect.targetId ? applyHp(current.player) : current.player
+
+        return {
+          ...current,
+          player: nextPlayer,
+          party: nextParty,
+        }
+      }
+
+      return {
+        ...current,
+        enemies: (current.enemies ?? []).map(applyHp),
+      }
+    })
+  }
+
+  const playBattleAttackEffects = (effects = []) => {
+    const validEffects = effects.filter((effect) => effect?.targetId)
+
+    if (validEffects.length === 0) {
+      return 0
+    }
+
+    const getEffectAnimationDuration = (effect) => {
+      const isPhysical = effect.category === '물리형' || effect.category === '물리'
+      return isPhysical
+        ? Math.floor(ATTACK_MOTION_DURATION_MS * 0.42) + HIT_EFFECT_DURATION_MS + 120
+        : PROJECTILE_EFFECT_DURATION_MS + HIT_EFFECT_DURATION_MS + 120
+    }
+
+    validEffects.forEach((effect, index) => {
+      const startTimeoutId = window.setTimeout(() => {
+        hitEffectIdRef.current += 1
+        const effectId = `${effect.targetId}-${hitEffectIdRef.current}`
+        const isPhysical = effect.category === '물리형' || effect.category === '물리'
+        const motionEffect = {
+          ...effect,
+          id: effectId,
+        }
+
+        if (isPhysical) {
+          setAttackMotions((current) => [...current, motionEffect].slice(-4))
+          playBattleAttackSound(effect, 'physical-move')
+
+          const hitTimeoutId = window.setTimeout(() => {
+            playBattleAttackSound(effect, 'hit')
+            showHitEffect(effect)
+            applyVisualAttackDamage(effect)
+            hitEffectTimeoutsRef.current = hitEffectTimeoutsRef.current.filter(
+              (currentTimeoutId) => currentTimeoutId !== hitTimeoutId
+            )
+          }, Math.floor(ATTACK_MOTION_DURATION_MS * 0.42))
+          hitEffectTimeoutsRef.current.push(hitTimeoutId)
+
+          const endMotionTimeoutId = window.setTimeout(() => {
+            setAttackMotions((current) =>
+              current.filter((currentEffect) => currentEffect.id !== effectId)
+            )
+            hitEffectTimeoutsRef.current = hitEffectTimeoutsRef.current.filter(
+              (currentTimeoutId) => currentTimeoutId !== endMotionTimeoutId
+            )
+          }, ATTACK_MOTION_DURATION_MS)
+
+          hitEffectTimeoutsRef.current.push(endMotionTimeoutId)
+        } else {
+          const startPoint = getCombatantEffectPoint(effect.attackerId)
+          const endPoint = getCombatantEffectPoint(effect.targetId)
+          playBattleAttackSound(effect, 'special-launch')
+          playBattleAttackSound(effect, 'special-travel')
+
+          if (startPoint && endPoint) {
+            setProjectileEffects((current) =>
+              [
+                ...current,
+                {
+                  ...motionEffect,
+                  startX: startPoint.x,
+                  startY: startPoint.y,
+                  endX: endPoint.x,
+                  endY: endPoint.y,
+                },
+              ].slice(-4)
+            )
+          }
+
+          const hitTimeoutId = window.setTimeout(() => {
+            playBattleAttackSound(effect, 'hit')
+            showHitEffect(effect)
+            applyVisualAttackDamage(effect)
+            hitEffectTimeoutsRef.current = hitEffectTimeoutsRef.current.filter(
+              (currentTimeoutId) => currentTimeoutId !== hitTimeoutId
+            )
+          }, PROJECTILE_EFFECT_DURATION_MS)
+          hitEffectTimeoutsRef.current.push(hitTimeoutId)
+
+          const endProjectileTimeoutId = window.setTimeout(() => {
+            setProjectileEffects((current) =>
+              current.filter((currentEffect) => currentEffect.id !== effectId)
+            )
+            hitEffectTimeoutsRef.current = hitEffectTimeoutsRef.current.filter(
+              (currentTimeoutId) => currentTimeoutId !== endProjectileTimeoutId
+            )
+          }, PROJECTILE_EFFECT_DURATION_MS + 80)
+
+          hitEffectTimeoutsRef.current.push(endProjectileTimeoutId)
+        }
+
+        hitEffectTimeoutsRef.current = hitEffectTimeoutsRef.current.filter(
+          (currentTimeoutId) => currentTimeoutId !== startTimeoutId
+        )
+      }, index * HIT_EFFECT_SEQUENCE_INTERVAL_MS)
+
+      hitEffectTimeoutsRef.current.push(startTimeoutId)
+    })
+
+    return Math.max(
+      ...validEffects.map(
+        (effect, index) => index * HIT_EFFECT_SEQUENCE_INTERVAL_MS + getEffectAnimationDuration(effect)
+      )
+    )
+  }
+
+  const runAfterBattleAttackEffects = (effects, callback, { logs = [] } = {}) => {
+    const logDelay = logs.length > 0 ? showBattleLogSequence(logs, { finalBattlePanel: 'logs' }) : 0
+    const effectDelay = playBattleAttackEffects(effects)
+    const delay = Math.max(logDelay, effectDelay)
+
+    if (delay <= 0) {
+      callback()
+      return
+    }
+
+    if (logs.length === 0) {
+      setBattlePanelMode('animating')
+    }
+
+    const finishTimeoutId = window.setTimeout(() => {
+      callback()
+      hitEffectTimeoutsRef.current = hitEffectTimeoutsRef.current.filter(
+        (currentTimeoutId) => currentTimeoutId !== finishTimeoutId
+      )
+    }, delay)
+
+    hitEffectTimeoutsRef.current.push(finishTimeoutId)
+  }
+
+  useEffect(() => {
+    if (!rewardState?.isRevealing) {
+      return undefined
+    }
+
+    const activeRevealKey = rewardState.revealKey
+    const revealTimeoutId = window.setTimeout(() => {
+      setRewardState((current) =>
+        current?.revealKey === activeRevealKey
+          ? {
+              ...current,
+              isRevealing: false,
+            }
+          : current
+      )
+    }, REWARD_REVEAL_DURATION_MS)
+
+    return () => {
+      window.clearTimeout(revealTimeoutId)
+    }
+  }, [rewardState?.isRevealing, rewardState?.revealKey])
 
   const clearLevelUpStatAnimationQueue = () => {
     levelUpStatTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
@@ -5350,6 +6380,7 @@ function App() {
     nextEnemies,
     logs,
     actedAllyId,
+    hitEffects: actionHitEffects = [],
     nextInventory = gameState?.inventory ?? {},
     nextGold = gameState?.gold ?? 0,
     preferredActiveAllyIds = gameState?.activeAllyIds ?? [],
@@ -5359,9 +6390,12 @@ function App() {
       return
     }
 
+    playBattleAttackEffects(actionHitEffects)
+
     let resolvedParty = [...nextParty]
     let resolvedEnemies = [...nextEnemies]
     let resolvedLogs = [...logs]
+    let presentedLogCount = 0
     let activeAllyIds = getActiveAllyIdsForParty(
       resolvedParty,
       preferredActiveAllyIds,
@@ -5384,8 +6418,9 @@ function App() {
         actedAllyIds: nextActedAllyIds,
         pendingAllyActions: [],
       })
-      setCurrentLogs(createBattleLog(...resolvedLogs))
-      setBattlePanelMode(battlePanel)
+      const logsToPresent =
+        presentedLogCount > 0 ? resolvedLogs.slice(presentedLogCount) : resolvedLogs
+      showBattleLogSequence(logsToPresent, { finalBattlePanel: battlePanel })
       setSelectedEnemyTargetId(null)
 
       if (battlePanel === 'commands') {
@@ -5408,7 +6443,7 @@ function App() {
         getBattleAllyLimit(gameState)
       )
       nextGold += getStageClearGoldReward(gameState.currentStage, nextInventory)
-      resolvedLogs.push('전투에서 승리했다!')
+      resolvedLogs.push('아이템을 선택하세요')
       const rewardTarget = getFirstLivingPartyMember(resolvedParty, activeAllyIds)
       setRewardState(
         createRewardSelection(
@@ -5426,12 +6461,14 @@ function App() {
     }
 
     const commitDefeat = () => {
+      clearStageSave()
       resolvedLogs.push('눈앞이 깜깜해졌다...')
       commitBattleState({
         nextPlayer: getCombatantById(resolvedParty, actedAllyId) ?? resolvedParty[0] ?? gameState.player,
         battlePanel: 'logs',
       })
       window.setTimeout(() => {
+        clearBattleLogSequence()
         setScreenMode('menu')
         setGameState(null)
         setRewardState(null)
@@ -5469,40 +6506,44 @@ function App() {
     resolvedEnemies = enemyPhaseResult.nextEnemies
     resolvedParty = enemyPhaseResult.nextParty
     resolvedLogs.push(...enemyPhaseResult.battleLogs)
-    activeAllyIds = getActiveAllyIdsForParty(
-      resolvedParty,
-      activeAllyIds,
-      getBattleAllyLimit(gameState)
-    )
-    const miracleRubyResult = applyMiracleRubyTurnHealing({
-      party: resolvedParty,
-      activeAllyIds,
-    })
-    resolvedParty = miracleRubyResult.nextParty
-    resolvedLogs.push(...miracleRubyResult.battleLogs)
-    activeAllyIds = getActiveAllyIdsForParty(
-      resolvedParty,
-      activeAllyIds,
-      getBattleAllyLimit(gameState)
-    )
-    actedAllyIds = []
+    presentedLogCount = resolvedLogs.length
 
-    if (resolvedEnemies.every((enemy) => !isCombatantAbleToBattle(enemy))) {
-      commitVictory()
-      return
-    }
+    runAfterBattleAttackEffects(enemyPhaseResult.hitEffects, () => {
+      activeAllyIds = getActiveAllyIdsForParty(
+        resolvedParty,
+        activeAllyIds,
+        getBattleAllyLimit(gameState)
+      )
+      const miracleRubyResult = applyMiracleRubyTurnHealing({
+        party: resolvedParty,
+        activeAllyIds,
+      })
+      resolvedParty = miracleRubyResult.nextParty
+      resolvedLogs.push(...miracleRubyResult.battleLogs)
+      activeAllyIds = getActiveAllyIdsForParty(
+        resolvedParty,
+        activeAllyIds,
+        getBattleAllyLimit(gameState)
+      )
+      actedAllyIds = []
 
-    if (!resolvedParty.some((member) => isCombatantAbleToBattle(member))) {
-      commitDefeat()
-      return
-    }
+      if (resolvedEnemies.every((enemy) => !isCombatantAbleToBattle(enemy))) {
+        commitVictory()
+        return
+      }
 
-    nextActingAllyId = getNextActingAllyId(resolvedParty, activeAllyIds, actedAllyIds)
-    const nextPlayer =
-      getCombatantById(resolvedParty, nextActingAllyId) ??
-      getFirstLivingPartyMember(resolvedParty, activeAllyIds)
-    resolvedLogs.push(getBattlePrompt(nextPlayer.name))
-    commitBattleState({ nextPlayer, battlePanel: 'commands', nextActedAllyIds: [] })
+      if (!resolvedParty.some((member) => isCombatantAbleToBattle(member))) {
+        commitDefeat()
+        return
+      }
+
+      nextActingAllyId = getNextActingAllyId(resolvedParty, activeAllyIds, actedAllyIds)
+      const nextPlayer =
+        getCombatantById(resolvedParty, nextActingAllyId) ??
+        getFirstLivingPartyMember(resolvedParty, activeAllyIds)
+      resolvedLogs.push(getBattlePrompt(nextPlayer.name))
+      commitBattleState({ nextPlayer, battlePanel: 'commands', nextActedAllyIds: [] })
+    }, { logs: resolvedLogs })
   }
 
   const finishResolvedTurn = ({
@@ -5513,6 +6554,8 @@ function App() {
     nextInventory = gameState?.inventory ?? {},
     nextGold = gameState?.gold ?? 0,
     preferredActiveAllyIds = gameState?.activeAllyIds ?? [],
+    nextEscapeAttempts = gameState?.escapeAttempts ?? 0,
+    alreadyPresentedLogCount = 0,
   }) => {
     if (!gameState) {
       return
@@ -5535,13 +6578,15 @@ function App() {
         enemies: resolvedEnemies,
         inventory: nextInventory,
         gold: nextGold,
+        escapeAttempts: nextEscapeAttempts,
         activeAllyIds,
         actingAllyId: nextPlayer?.id ?? null,
         actedAllyIds: [],
         pendingAllyActions: [],
       })
-      setCurrentLogs(createBattleLog(...resolvedLogs))
-      setBattlePanelMode(battlePanel)
+      const logsToPresent =
+        alreadyPresentedLogCount > 0 ? resolvedLogs.slice(alreadyPresentedLogCount) : resolvedLogs
+      showBattleLogSequence(logsToPresent, { finalBattlePanel: battlePanel })
       setSelectedBattleCommand('attack')
       setSelectedSkillIndex(0)
       setSelectedEnemyTargetId(null)
@@ -5575,6 +6620,7 @@ function App() {
     }
 
     const commitDefeat = () => {
+      clearStageSave()
       resolvedLogs.push('눈앞이 깜깜해졌다...')
       commitBattleState({
         nextPlayer:
@@ -5584,6 +6630,7 @@ function App() {
         battlePanel: 'logs',
       })
       window.setTimeout(() => {
+        clearBattleLogSequence()
         setScreenMode('menu')
         setGameState(null)
         setRewardState(null)
@@ -5634,7 +6681,7 @@ function App() {
     const nextPlayer =
       getFirstLivingPartyMember(nextParty, nextActiveAllyIds) ?? currentPlayer
 
-    setGameState({
+    const nextGameState = {
       ...currentGameState,
       currentStage: nextStageNum,
       currentMap: mapName,
@@ -5649,10 +6696,15 @@ function App() {
       actingAllyId: nextPlayer?.id ?? null,
       actedAllyIds: [],
       pendingAllyActions: [],
-    })
+      escapeAttempts: 0,
+    }
+
+    setGameState(nextGameState)
+    saveStageGameState(nextGameState)
     setIsPlayerExpBarVisible(false)
-    setCurrentLogs(
-      createBattleLog(...eggProgressResult.hatchLogs, getBattlePrompt(nextPlayer?.name ?? '디지몬'))
+    showImmediateBattleLogs(
+      ...eggProgressResult.hatchLogs,
+      getBattlePrompt(nextPlayer?.name ?? '디지몬')
     )
     setSelectedBattleCommand('attack')
     setSelectedSkillIndex(0)
@@ -5667,11 +6719,13 @@ function App() {
   const handleNextStage = (currentGameState, currentPlayer) => {
     const nextStageNum = currentGameState.currentStage + 1
     if (nextStageNum > TOTAL_STAGE_COUNT) {
+      clearStageSave()
       setScreenMode('menu')
       setGameState(null)
       setRewardState(null)
       setEvolutionState(null)
       setMapSelectionState(null)
+      clearBattleLogSequence()
       setCurrentLogs([])
       return
     }
@@ -5686,7 +6740,7 @@ function App() {
           nextStageNum,
           options: getConnectedMapNames(currentGameState.currentMap),
         })
-        setCurrentLogs(createBattleLog('지도를 펼쳤다. 다음 지역을 선택해줘!'))
+        showImmediateBattleLogs('지도를 펼쳤다. 다음 지역을 선택해줘!')
         setBattlePanelMode('logs')
         setSelectedBattleCommand('attack')
         setSelectedEnemyTargetId(null)
@@ -5753,6 +6807,7 @@ function App() {
     setBattlePanelMode('attack-targets')
     setHoveredSkillIndex(null)
     setHoveredEnemyTargetId(null)
+    clearBattleLogSequence()
     setCurrentLogs([])
   }
 
@@ -5824,12 +6879,8 @@ function App() {
           )
 
     if (needsEnemyTarget && !targetEnemy) {
-      setCurrentLogs(
-        createBattleLog(
-          isAreaAttack
-            ? '공격할 수 있는 적이 없다!'
-            : `${actingAlly.name}의 공격 대상을 선택해줘!`
-        )
+      showImmediateBattleLogs(
+        isAreaAttack ? '공격할 수 있는 적이 없다!' : `${actingAlly.name}의 공격 대상을 선택해줘!`
       )
       setBattlePanelMode(isAreaAttack ? 'attack' : 'attack-targets')
       return
@@ -5873,7 +6924,7 @@ function App() {
         actedAllyIds: nextActedAllyIds,
         pendingAllyActions: nextPendingActions,
       })
-      setCurrentLogs(createBattleLog(`${actingAlly.name}의 행동을 정했다!`, getBattlePrompt(nextPlayer.name)))
+      showImmediateBattleLogs(`${actingAlly.name}의 행동을 정했다!`, getBattlePrompt(nextPlayer.name))
       setBattlePanelMode('commands')
       setSelectedSkillIndex(0)
       setSelectedEnemyTargetId(null)
@@ -5895,13 +6946,16 @@ function App() {
       inventory: gameState.inventory,
     })
 
-    finishResolvedTurn({
-      nextParty: turnResult.nextParty,
-      nextEnemies: turnResult.nextEnemies,
-      logs: turnResult.battleLogs,
-      skillLearnEvents: turnResult.skillLearnEvents,
-      preferredActiveAllyIds: battleContext.activeAllyIds,
-    })
+    runAfterBattleAttackEffects(turnResult.hitEffects, () => {
+      finishResolvedTurn({
+        nextParty: turnResult.nextParty,
+        nextEnemies: turnResult.nextEnemies,
+        logs: turnResult.battleLogs,
+        skillLearnEvents: turnResult.skillLearnEvents,
+        preferredActiveAllyIds: battleContext.activeAllyIds,
+        alreadyPresentedLogCount: turnResult.battleLogs.length,
+      })
+    }, { logs: turnResult.battleLogs })
   }
 
   useEffect(() => {
@@ -5939,6 +6993,15 @@ function App() {
       window.clearTimeout(fadeId)
     }
   }, [mapTransition.activeIndex, mapTransition.isFading, screenMode])
+
+  useEffect(() => {
+    if (screenMode === 'adventure') {
+      return undefined
+    }
+
+    clearHitEffectQueue()
+    return undefined
+  }, [screenMode])
 
   useEffect(() => {
     const scheduleExpAnimationUpdate = (callback, delay = 0) => {
@@ -6056,6 +7119,7 @@ function App() {
     () => () => {
       expAnimationTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
       levelUpStatTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
+      battleLogSequenceTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
       clearCapturePreviewTimeouts()
     },
     []
@@ -6116,28 +7180,168 @@ function App() {
     repositionDigitDrop(dropId)
   }
 
-  const handleMenuAction = (actionKey) => {
-    if (actionKey === 'new-game') {
-      clearCapturePreviewTimeouts()
-      setCapturePreview(null)
-      setRewardState(null)
-      setMapSelectionState(null)
-      setScreenMode('new-game')
-    }
+  const resetAdventureUiState = () => {
+    clearCapturePreviewTimeouts()
+    clearHitEffectQueue()
+    clearExpAnimationQueue()
+    clearLevelUpStatAnimationQueue()
+    clearBattleLogSequence()
+    setCapturePreview(null)
+    setRewardState(null)
+    setEvolutionState(null)
+    setEvolutionScene(null)
+    setMapSelectionState(null)
+    setSkillReplaceState(null)
+    setLevelUpStatPreview(null)
+    setCurrentLogs([])
+    setSelectedBattleCommand('attack')
+    setBattlePanelMode('commands')
+    setSelectedSkillIndex(0)
+    setHoveredSkillIndex(null)
+    setSelectedEnemyTargetId(null)
+    setHoveredEnemyTargetId(null)
+    setActiveCombatantInfoId(null)
+    setIsPlayerExpBarVisible(false)
+    setIsPlayerExpTransitionInstant(true)
   }
 
-  const handleBattleCommandSelect = (commandKey) => {
-    if (rewardState || mapSelectionState || !gameState || battlePanelMode === 'logs') {
+  const handleMenuAction = (actionKey) => {
+    if (actionKey === 'new-game') {
+      resetAdventureUiState()
+      setScreenMode('new-game')
       return
     }
 
-    if ((gameState.pendingAllyActions ?? []).length > 0 && commandKey !== 'attack') {
+    if (actionKey === 'continue') {
+      const savedGameState = loadSavedGameStateFromStorage()
+
+      if (!savedGameState) {
+        clearStageSave()
+        return
+      }
+
+      resetAdventureUiState()
+      setGameState(savedGameState)
+      setDisplayedPlayerExpRatio(getExperienceRatio(savedGameState.player))
+      showImmediateBattleLogs(getBattlePrompt(savedGameState.player?.name ?? '디지몬'))
+      setScreenMode('adventure')
+    }
+  }
+
+  const handleRunAttempt = () => {
+    if (
+      rewardState ||
+      mapSelectionState ||
+      !gameState ||
+      battlePanelMode === 'logs' ||
+      battlePanelMode === 'animating'
+    ) {
+      return
+    }
+
+    const battleContext = getBattleContext()
+    const currentParty = battleContext.party
+    const activeAllyIds = battleContext.activeAllyIds
+    const livingEnemies = getLivingCombatants(gameState.enemies)
+    const actingAlly =
+      battleContext.actingAlly ??
+      getFirstLivingPartyMember(currentParty, activeAllyIds) ??
+      gameState.player
+
+    if (!actingAlly || livingEnemies.length === 0) {
+      return
+    }
+
+    const nextEscapeAttempts = (gameState.escapeAttempts ?? 0) + 1
+    const runSucceeded = rollRunAttempt({
+      party: currentParty,
+      activeAllyIds,
+      enemies: gameState.enemies,
+      attemptCount: nextEscapeAttempts,
+    })
+    const runLogs = [`${actingAlly.name}은(는) 도망치려 했다!`]
+
+    setSelectedBattleCommand('run')
+    setSelectedEnemyTargetId(null)
+    setHoveredEnemyTargetId(null)
+    setHoveredSkillIndex(null)
+
+    if (runSucceeded) {
+      const nextPlayer =
+        getCombatantById(currentParty, gameState.player?.id) ??
+        getFirstLivingPartyMember(currentParty, activeAllyIds) ??
+        actingAlly
+      const escapedGameState = {
+        ...gameState,
+        player: nextPlayer,
+        party: currentParty,
+        activeAllyIds,
+        actedAllyIds: [],
+        pendingAllyActions: [],
+        escapeAttempts: 0,
+      }
+
+      setGameState(escapedGameState)
+      setBattlePanelMode('logs')
+      showImmediateBattleLogs(...runLogs, '무사히 도망쳤다!', '보상 없이 다음 스테이지로 이동한다.')
+
+      window.setTimeout(() => {
+        handleNextStage(escapedGameState, escapedGameState.player)
+      }, RUN_STAGE_ADVANCE_DELAY_MS)
+      return
+    }
+
+    const enemyActions = createEnemyBattleTurnActions({
+      enemies: gameState.enemies,
+      party: currentParty,
+      activeAllyIds,
+    })
+    const turnResult = resolveBattleTurnActions({
+      party: currentParty,
+      enemies: gameState.enemies,
+      activeAllyIds,
+      actions: enemyActions,
+      levelCap: gameState.levelCap,
+      inventory: gameState.inventory,
+    })
+    const failureLogs = [
+      ...runLogs,
+      '도망칠 수 없었다!',
+      ...(enemyActions.length > 0 ? ['상대의 차례!'] : []),
+      ...turnResult.battleLogs,
+    ]
+
+    runAfterBattleAttackEffects(turnResult.hitEffects, () => {
+      finishResolvedTurn({
+        nextParty: turnResult.nextParty,
+        nextEnemies: turnResult.nextEnemies,
+        logs: failureLogs,
+        skillLearnEvents: turnResult.skillLearnEvents,
+        preferredActiveAllyIds: activeAllyIds,
+        nextEscapeAttempts,
+        alreadyPresentedLogCount: failureLogs.length,
+      })
+    }, { logs: failureLogs })
+  }
+
+  const handleBattleCommandSelect = (commandKey) => {
+    if (
+      rewardState ||
+      mapSelectionState ||
+      !gameState ||
+      battlePanelMode === 'logs' ||
+      battlePanelMode === 'animating'
+    ) {
+      return
+    }
+
+    const isPriorityCommand = commandKey === 'swap' || commandKey === 'run'
+
+    if ((gameState.pendingAllyActions ?? []).length > 0 && commandKey !== 'attack' && !isPriorityCommand) {
       const currentActingAlly = getBattleContext().actingAlly ?? gameState.player
       setSelectedBattleCommand('attack')
       setBattlePanelMode('commands')
-      setCurrentLogs(
-        createBattleLog('남은 아군의 기술을 먼저 선택해줘!', getBattlePrompt(currentActingAlly.name))
-      )
+      showImmediateBattleLogs('남은 아군의 기술을 먼저 선택해줘!', getBattlePrompt(currentActingAlly.name))
       return
     }
 
@@ -6165,8 +7369,8 @@ function App() {
       setSelectedEnemyTargetId(null)
       return
     } else if (commandKey === 'run') {
-      const currentActingAlly = getBattleContext().actingAlly ?? gameState.player
-      setCurrentLogs(createBattleLog('지금은 도망칠 수 없다!', getBattlePrompt(currentActingAlly.name)))
+      handleRunAttempt()
+      return
     }
 
     setBattlePanelMode('commands')
@@ -6205,11 +7409,9 @@ function App() {
 
     const livingEnemies = gameState.enemies.filter((enemy) => isCombatantAbleToBattle(enemy))
     if (livingEnemies.length !== 1) {
-      setCurrentLogs(
-        createBattleLog(
-          '적 디지몬이 1마리만 남았을 때 포획할 수 있다!',
-          getBattlePrompt(actingAlly.name)
-        )
+      showImmediateBattleLogs(
+        '적 디지몬이 1마리만 남았을 때 포획할 수 있다!',
+        getBattlePrompt(actingAlly.name)
       )
       return
     }
@@ -6280,11 +7482,62 @@ function App() {
             index === replaceIndex ? nextPlayer.id : memberId
           )
         : [nextPlayer.id, ...battleContext.activeAllyIds]
+    const switchLogs = [`${currentPlayer.name}, 돌아와!`, `${nextPlayer.name}, 부탁해!`]
+    const pendingAllyActions = (gameState.pendingAllyActions ?? []).filter(
+      (action) =>
+        action.side === 'ally' &&
+        action.actorId !== currentPlayer.id &&
+        isCombatantAbleToBattle(getCombatantById(battleContext.party, action.actorId))
+    )
+
+    if (pendingAllyActions.length > 0) {
+      const switchedGameState = {
+        ...gameState,
+        player: nextPlayer,
+        party: battleContext.party,
+        activeAllyIds: nextActiveAllyIds,
+        actingAllyId: nextPlayer.id,
+        actedAllyIds: nextActiveAllyIds,
+        pendingAllyActions: [],
+      }
+      const enemyActions = createEnemyBattleTurnActions({
+        enemies: gameState.enemies,
+        party: battleContext.party,
+        activeAllyIds: nextActiveAllyIds,
+        startOrder: pendingAllyActions.length,
+      })
+      const turnResult = resolveBattleTurnActions({
+        party: battleContext.party,
+        enemies: gameState.enemies,
+        activeAllyIds: nextActiveAllyIds,
+        actions: [...pendingAllyActions, ...enemyActions],
+        levelCap: gameState.levelCap,
+        inventory: gameState.inventory,
+      })
+
+      const presentedLogs = [...switchLogs, ...turnResult.battleLogs]
+
+      setGameState(switchedGameState)
+      setSelectedBattleCommand('swap')
+      setSelectedEnemyTargetId(null)
+
+      runAfterBattleAttackEffects(turnResult.hitEffects, () => {
+        finishResolvedTurn({
+          nextParty: turnResult.nextParty,
+          nextEnemies: turnResult.nextEnemies,
+          logs: presentedLogs,
+          skillLearnEvents: turnResult.skillLearnEvents,
+          preferredActiveAllyIds: nextActiveAllyIds,
+          alreadyPresentedLogCount: presentedLogs.length,
+        })
+      }, { logs: presentedLogs })
+      return
+    }
 
     finishBattleAction({
       nextParty: battleContext.party,
       nextEnemies: gameState.enemies,
-      logs: [`${currentPlayer.name}, 돌아와!`, `${nextPlayer.name}, 부탁해!`],
+      logs: switchLogs,
       actedAllyId: nextPlayer.id,
       preferredActiveAllyIds: nextActiveAllyIds,
     })
@@ -6739,7 +7992,13 @@ function App() {
   }
 
   const handleClaimRandomRewardItem = (itemId) => {
-    if (!gameState || !rewardState || rewardState.isResolving || rewardState.pendingTarget) {
+    if (
+      !gameState ||
+      !rewardState ||
+      rewardState.isResolving ||
+      rewardState.isRevealing ||
+      rewardState.pendingTarget
+    ) {
       return
     }
 
@@ -6762,7 +8021,13 @@ function App() {
   }
 
   const handleRerollRewardItems = () => {
-    if (!gameState || !rewardState || rewardState.isResolving || rewardState.pendingTarget) {
+    if (
+      !gameState ||
+      !rewardState ||
+      rewardState.isResolving ||
+      rewardState.isRevealing ||
+      rewardState.pendingTarget
+    ) {
       return
     }
 
@@ -6892,7 +8157,7 @@ function App() {
       })
     )
 
-    setGameState({
+    const initialGameState = {
       currentStage: startingStage,
       maxStage: TOTAL_STAGE_COUNT,
       currentMap: mapName,
@@ -6909,8 +8174,12 @@ function App() {
       actingAllyId: player.id,
       actedAllyIds: [],
       pendingAllyActions: [],
-    })
-    setCurrentLogs(createBattleLog(getBattlePrompt(player.name)))
+      escapeAttempts: 0,
+    }
+
+    setGameState(initialGameState)
+    saveStageGameState(initialGameState)
+      showImmediateBattleLogs(getBattlePrompt(player.name))
     setSelectedBattleCommand('attack')
     setBattlePanelMode('commands')
     setSelectedSkillIndex(0)
@@ -7173,6 +8442,22 @@ function App() {
   const currentTargetEnemy =
     selectedTargetEnemy ??
     (currentTargetEnemyIndex >= 0 && gameState ? gameState.enemies[currentTargetEnemyIndex] : null)
+  const renderHitEffects = () =>
+    hitEffects.map((effect) => (
+      <span
+        key={effect.id}
+        className={getHitEffectClassName(effect)}
+        style={
+          Number.isFinite(effect.hitX) && Number.isFinite(effect.hitY)
+            ? {
+                '--hit-x': `${effect.hitX}px`,
+                '--hit-y': `${effect.hitY}px`,
+              }
+            : undefined
+        }
+        aria-hidden="true"
+      />
+    ))
 
   return (
     <main
@@ -7263,26 +8548,31 @@ function App() {
           {screenMode === 'menu' ? (
             <aside className="menu-panel">
               <nav className="menu-panel__list" aria-label={'\uBA54\uC778 \uBA54\uB274'}>
-                {menuItems.map((item) => (
-                  <button
-                    key={item.key}
-                    type="button"
-                    className={[
-                      'menu-item',
-                      item.key === 'new-game' ? 'menu-item--current' : '',
-                      item.disabled ? 'menu-item--disabled' : '',
-                    ]
-                      .filter(Boolean)
-                      .join(' ')}
-                    disabled={item.disabled}
-                    onClick={() => handleMenuAction(item.key)}
-                  >
-                    <span className="menu-item__marker" aria-hidden="true">
-                      {item.key === 'new-game' ? '\u25B6' : ''}
-                    </span>
-                    <span>{item.label}</span>
-                  </button>
-                ))}
+                {menuItems.map((item) => {
+                  const isContinueItem = item.key === 'continue'
+                  const isDisabled = isContinueItem ? !hasSaveData : item.disabled
+
+                  return (
+                    <button
+                      key={item.key}
+                      type="button"
+                      className={[
+                        'menu-item',
+                        item.key === 'new-game' ? 'menu-item--current' : '',
+                        isDisabled ? 'menu-item--disabled' : '',
+                      ]
+                        .filter(Boolean)
+                        .join(' ')}
+                      disabled={isDisabled}
+                      onClick={() => handleMenuAction(item.key)}
+                    >
+                      <span className="menu-item__marker" aria-hidden="true">
+                        {item.key === 'new-game' ? '\u25B6' : ''}
+                      </span>
+                      <span>{item.label}</span>
+                    </button>
+                  )
+                })}
               </nav>
             </aside>
           ) : screenMode === 'new-game' ? (
@@ -7305,8 +8595,10 @@ function App() {
                 <div className="selection-preview__frame">
                   <img
                     className="selection-preview__image"
-                    src={selectedGrowthDigimon.url}
+                    src={getBattleSpriteUrl(selectedGrowthDigimon.url)}
                     alt={selectedGrowthDigimon.name}
+                    data-source-src={selectedGrowthDigimon.url}
+                    onLoad={handleBattleSpriteLoad}
                   />
                 </div>
 
@@ -7495,6 +8787,9 @@ function App() {
                     aria-label="아군 디지몬"
                   >
                     {activeAllies.map((ally, index) => {
+                      const allyAttackMotion = attackMotions.find(
+                        (effect) => effect.attackerId === ally.id
+                      )
                       const allyHpRatio = Math.max(
                         0,
                         Math.min(100, (ally.currentHp / ally.maxHp) * 100)
@@ -7523,12 +8818,17 @@ function App() {
                             className={[
                               'adventure-player__sprite-wrap',
                               'adventure-player__sprite-wrap--ally',
+                              allyAttackMotion ? 'adventure-player__sprite-wrap--attacking' : '',
+                              allyAttackMotion?.targetSide === 'enemy'
+                                ? 'adventure-player__sprite-wrap--attack-right'
+                                : '',
                               activeCombatantInfoId === `player-${ally.id}`
                                 ? 'adventure-player__sprite-wrap--info-open'
                                 : '',
                             ]
                               .filter(Boolean)
                               .join(' ')}
+                            ref={setCombatantEffectAnchorRef(ally.id)}
                             tabIndex={0}
                             aria-label={`${ally.name} 상세 정보`}
                             onPointerEnter={(event) =>
@@ -7551,8 +8851,10 @@ function App() {
                               ]
                                 .filter(Boolean)
                                 .join(' ')}
-                              src={ally.imageUrl}
+                              src={getBattleSpriteUrl(ally.imageUrl)}
                               alt={ally.name}
+                              data-source-src={ally.imageUrl}
+                              onLoad={handleBattleSpriteLoad}
                             />
                             <CombatantInfoPanel
                               combatant={ally}
@@ -7635,6 +8937,9 @@ function App() {
 
                   <div className="adventure-enemies" aria-label={'\uC801 \uB514\uC9C0\uBAAC'}>
                     {visibleEnemies.map((enemy, index) => {
+                      const enemyAttackMotion = attackMotions.find(
+                        (effect) => effect.attackerId === enemy.id
+                      )
                       const enemyHpRatio = Math.max(
                         0,
                         Math.min(100, (enemy.currentHp / enemy.maxHp) * 100)
@@ -7658,12 +8963,17 @@ function App() {
                             className={[
                               'adventure-player__sprite-wrap',
                               'adventure-player__sprite-wrap--enemy',
+                              enemyAttackMotion ? 'adventure-player__sprite-wrap--attacking' : '',
+                              enemyAttackMotion?.targetSide === 'ally'
+                                ? 'adventure-player__sprite-wrap--attack-left'
+                                : '',
                               hasDigimonDetector && activeCombatantInfoId === `enemy-${enemy.id}`
                                 ? 'adventure-player__sprite-wrap--info-open'
                                 : '',
                             ]
                               .filter(Boolean)
                               .join(' ')}
+                            ref={setCombatantEffectAnchorRef(enemy.id)}
                             tabIndex={hasDigimonDetector ? 0 : undefined}
                             aria-label={
                               hasDigimonDetector
@@ -7700,8 +9010,10 @@ function App() {
                               ]
                                 .filter(Boolean)
                                 .join(' ')}
-                              src={enemy.imageUrl}
+                              src={getBattleSpriteUrl(enemy.imageUrl)}
                               alt={enemy.name}
+                              data-source-src={enemy.imageUrl}
+                              onLoad={handleBattleSpriteLoad}
                             />
                             {hasDigimonDetector ? (
                               <CombatantInfoPanel
@@ -7791,6 +9103,32 @@ function App() {
                       )
                     })}
                   </div>
+
+                  <div className="hit-effect-layer" aria-hidden="true">
+                    {renderHitEffects()}
+                  </div>
+
+                  <div className="skill-projectile-layer" aria-hidden="true">
+                    {projectileEffects.map((effect) => (
+                      <span
+                        key={effect.id}
+                        className={[
+                          getProjectileEffectClassName(effect),
+                          effect.endX < effect.startX ? 'skill-projectile--reverse' : '',
+                        ]
+                          .filter(Boolean)
+                          .join(' ')}
+                        style={{
+                          '--projectile-start-x': `${effect.startX}px`,
+                          '--projectile-start-y': `${effect.startY}px`,
+                          '--projectile-end-x': `${effect.endX}px`,
+                          '--projectile-end-y': `${effect.endY}px`,
+                        }}
+                      >
+                        <span className="skill-projectile__core" />
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
                 {rewardState && (
@@ -7836,26 +9174,42 @@ function App() {
 
                     <div className="reward-screen__random">
                       <div className="reward-screen__random-list">
-                        {rewardState.randomItems.map((item) => (
-                          <button
-                            key={item.id}
-                            type="button"
-                            className={[
-                              'reward-item',
-                              'reward-item--random',
-                              rewardState.selectedRandomItemId === item.id ? 'reward-item--selected' : '',
-                            ]
-                              .filter(Boolean)
-                              .join(' ')}
-                            disabled={rewardState.isResolving || Boolean(rewardState.pendingTarget)}
-                            onClick={() => handleClaimRandomRewardItem(item.id)}
-                            data-tooltip={item.description}
-                            title={item.description}
-                          >
-                            <img className="reward-item__image" src={item.imageUrl} alt="" />
-                            <strong className="reward-item__name">{item.name}</strong>
-                          </button>
-                        ))}
+                        {rewardState.randomItems.map((item) => {
+                          const isRevealingReward = Boolean(rewardState.isRevealing)
+
+                          return (
+                            <button
+                              key={item.id}
+                              type="button"
+                              className={[
+                                'reward-item',
+                                'reward-item--random',
+                                `reward-item--rarity-${getRewardItemRarity(item)}`,
+                                isRevealingReward ? 'reward-item--revealing' : 'reward-item--revealed',
+                                rewardState.selectedRandomItemId === item.id ? 'reward-item--selected' : '',
+                              ]
+                                .filter(Boolean)
+                                .join(' ')}
+                              disabled={
+                                rewardState.isResolving ||
+                                isRevealingReward ||
+                                Boolean(rewardState.pendingTarget)
+                              }
+                              onClick={() => handleClaimRandomRewardItem(item.id)}
+                              data-tooltip={isRevealingReward ? '' : item.description}
+                              title={isRevealingReward ? '' : item.description}
+                            >
+                              <img
+                                className="reward-item__image"
+                                src={isRevealingReward ? REWARD_REVEAL_IMAGE_URL : item.imageUrl}
+                                alt=""
+                              />
+                              <strong className="reward-item__name">
+                                {isRevealingReward ? '\u00A0' : item.name}
+                              </strong>
+                            </button>
+                          )
+                        })}
                       </div>
                     </div>
 
@@ -7971,6 +9325,7 @@ function App() {
                           className="reward-screen__reroll-button"
                           disabled={
                             rewardState.isResolving ||
+                            rewardState.isRevealing ||
                             Boolean(rewardState.pendingTarget) ||
                             (gameState?.gold ?? 0) < (rewardState.rerollCost ?? 0)
                           }
