@@ -56,6 +56,10 @@ const BUTTON_CLICK_SFX_URL = '/SFX/click.mp3'
 const BUTTON_CLICK_SFX_VOLUME = 0.62
 const BUTTON_CLICK_SFX_POOL_SIZE = 4
 const BATTLE_ATTACK_SFX_VOLUME = 0.22
+const SETTINGS_STORAGE_KEY = 'digirogue-settings-v1'
+const SPEED_OPTIONS = [1, 1.5, 2]
+const EVOLUTION_SPEED_OPTIONS = [1, 1.5, 2, 'skip']
+const VOLUME_OPTIONS = [0, 20, 40, 60, 80, 100]
 const BATTLE_LOG_STEP_MS = 820
 const BATTLE_LOG_FINAL_DELAY_MS = 520
 const SAVE_STORAGE_KEY = 'digirogue-save-v1'
@@ -72,6 +76,90 @@ const canUseLocalStorage = () => {
   } catch {
     return false
   }
+}
+
+const createDefaultSettings = () => ({
+  gameSpeed: 1,
+  expBarSpeed: 1,
+  evolutionSpeed: 1,
+  masterVolume: 100,
+  bgmVolume: 80,
+  sfxVolume: 80,
+  enabledBgmUrls: bgmTracks.map((track) => track.url),
+})
+
+const normalizeSettingNumber = (value, fallback, options) => {
+  const numericValue = Number(value)
+  return options.includes(numericValue) ? numericValue : fallback
+}
+
+const normalizeVolumeSetting = (value, fallback = 100) => {
+  const numericValue = Number(value)
+  return VOLUME_OPTIONS.includes(numericValue) ? numericValue : fallback
+}
+
+const sanitizeSettings = (settings) => {
+  const defaults = createDefaultSettings()
+  const enabledBgmUrls = Array.isArray(settings?.enabledBgmUrls)
+    ? settings.enabledBgmUrls.filter((url) => bgmTracks.some((track) => track.url === url))
+    : defaults.enabledBgmUrls
+
+  return {
+    gameSpeed: normalizeSettingNumber(settings?.gameSpeed, defaults.gameSpeed, SPEED_OPTIONS),
+    expBarSpeed: normalizeSettingNumber(settings?.expBarSpeed, defaults.expBarSpeed, SPEED_OPTIONS),
+    evolutionSpeed:
+      settings?.evolutionSpeed === 'skip'
+        ? 'skip'
+        : normalizeSettingNumber(settings?.evolutionSpeed, defaults.evolutionSpeed, SPEED_OPTIONS),
+    masterVolume: normalizeVolumeSetting(settings?.masterVolume, defaults.masterVolume),
+    bgmVolume: normalizeVolumeSetting(settings?.bgmVolume, defaults.bgmVolume),
+    sfxVolume: normalizeVolumeSetting(settings?.sfxVolume, defaults.sfxVolume),
+    enabledBgmUrls,
+  }
+}
+
+const loadSettingsFromStorage = () => {
+  if (!canUseLocalStorage()) {
+    return createDefaultSettings()
+  }
+
+  try {
+    const storedSettings = window.localStorage.getItem(SETTINGS_STORAGE_KEY)
+    return storedSettings ? sanitizeSettings(JSON.parse(storedSettings)) : createDefaultSettings()
+  } catch {
+    return createDefaultSettings()
+  }
+}
+
+const saveSettingsToStorage = (settings) => {
+  if (!canUseLocalStorage()) {
+    return
+  }
+
+  try {
+    window.localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(sanitizeSettings(settings)))
+  } catch {
+    // 설정 저장 실패는 게임 진행을 막지 않는다.
+  }
+}
+
+const getVolumeRatio = (value) => Math.max(0, Math.min(1, Number(value) / 100))
+
+const getEffectiveBgmVolume = (settings) =>
+  BGM_VOLUME * getVolumeRatio(settings.masterVolume) * getVolumeRatio(settings.bgmVolume)
+
+const getEffectiveSfxVolume = (settings) =>
+  getVolumeRatio(settings.masterVolume) * getVolumeRatio(settings.sfxVolume)
+
+const getEnabledBgmTracks = (settings) => {
+  const enabledUrlSet = new Set(settings.enabledBgmUrls ?? [])
+  return bgmTracks.filter((track) => enabledUrlSet.has(track.url))
+}
+
+const getScaledDuration = (duration, speed) => {
+  const numericSpeed = Number(speed)
+  const safeSpeed = Number.isFinite(numericSpeed) && numericSpeed > 0 ? numericSpeed : 1
+  return Math.max(0, Math.round(duration / safeSpeed))
 }
 
 const sanitizeGameStateForSave = (gameState) => {
@@ -174,8 +262,9 @@ const clearSavedGameStateFromStorage = () => {
   }
 }
 
-const DIGIMON_DETECTOR_ITEM_ID = 'digimon-detector'
 const IV_DETECTOR_ITEM_ID = 'iv-detector'
+const IV_DETECTOR_MAX = 3
+const IV_DETECTOR_REVEALED_STATS_PER_ITEM = 2
 const MAP_ITEM_ID = 'map-item'
 const GLOBE_ITEM_ID = 'globe-item'
 const EXP_SHARE_ITEM_ID = 'exp-share'
@@ -431,7 +520,6 @@ const GOOD_REWARD_ITEM_IDS = new Set([
   EXP_BOOSTER_ITEM_ID,
   PARTY_LEVEL_UP_ITEM_ID,
   MAP_ITEM_ID,
-  DIGIMON_DETECTOR_ITEM_ID,
 ])
 const RARE_REWARD_ITEM_IDS = new Set([
   'capture-net-hyper',
@@ -624,18 +712,10 @@ const randomRewardItemPool = [
     imageUrl: '/아이템/포획/포획그물(마스터).png',
   },
   {
-    id: DIGIMON_DETECTOR_ITEM_ID,
-    name: '디지몬탐지기',
-    description: '적 디지몬의 상세 정보를 확인할 수 있다',
-    unique: true,
-    imageUrl: '/아이템/탐지기/디지몬탐지기.png',
-  },
-  {
     id: IV_DETECTOR_ITEM_ID,
     name: '개체값탐지기',
-    description: '적 디지몬의 개체값 정보를 확인할 수 있다',
-    unique: true,
-    requiresItemId: DIGIMON_DETECTOR_ITEM_ID,
+    description: '적 디지몬의 개체값 정보를 일부 확인할 수 있다',
+    maxOwned: IV_DETECTOR_MAX,
     imageUrl: '/아이템/탐지기/개체값탐지기.png',
   },
   {
@@ -1128,6 +1208,50 @@ const SKILL_TOOLTIP_THEME_MAP = {
 const createPublicAssetUrl = (...segments) =>
   `/${segments.map((segment) => encodeURIComponent(segment)).join('/')}`
 
+const IDLE_ANIMATION_SPRITE_META_BY_STAGE = {
+  유아기: {
+    깜몬: { fileName: '깜몬', frameWidth: 490, frameHeight: 454 },
+    도도몬: { fileName: '도도몬', frameWidth: 486, frameHeight: 439 },
+    레레몬: { fileName: '레레몬', frameWidth: 454, frameHeight: 446 },
+    봄몬: { fileName: '봄몬', frameWidth: 493, frameHeight: 459 },
+    붐몬: { fileName: '봄몬', frameWidth: 493, frameHeight: 459 },
+    뽀글몬: { fileName: '뽀글몬', frameWidth: 489, frameHeight: 358 },
+    뽈뽈몬: { fileName: '뽈뽈몬', frameWidth: 491, frameHeight: 405 },
+    쁘띠몬: { fileName: '쁘띠몬', frameWidth: 352, frameHeight: 451 },
+    새싹몬: { fileName: '새싹몬', frameWidth: 395, frameHeight: 523 },
+    얍실몬: { fileName: '얍실몬', frameWidth: 412, frameHeight: 340 },
+    유라몬: { fileName: '유라몬', frameWidth: 458, frameHeight: 451 },
+    잎새몬: { fileName: '잎새몬', frameWidth: 390, frameHeight: 590 },
+    쟈리몬: { fileName: '쟈리몬', frameWidth: 402, frameHeight: 460 },
+    제리몬: { fileName: '제리몬', frameWidth: 400, frameHeight: 457 },
+    치코몬: { fileName: '치코몬', frameWidth: 489, frameHeight: 433 },
+    쿠라몬: { fileName: '쿠라몬', frameWidth: 399, frameHeight: 474 },
+    키몬: { fileName: '키몬', frameWidth: 490, frameHeight: 459 },
+    포요몬: { fileName: '포요몬', frameWidth: 490, frameHeight: 435 },
+    푸니몬: { fileName: '푸니몬', frameWidth: 491, frameHeight: 462 },
+    푸르르몬: { fileName: '푸르르몬', frameWidth: 490, frameHeight: 351 },
+    푸와몬: { fileName: '푸와몬', frameWidth: 512, frameHeight: 512 },
+    프스몬: { fileName: '프스몬', frameWidth: 349, frameHeight: 378 },
+    하얀몬: { fileName: '하얀몬', frameWidth: 400, frameHeight: 452 },
+  },
+}
+
+const getCombatantIdleAnimationSprite = (combatant) => {
+  const stage = combatant?.speciesStage ?? combatant?.speciesData?.stage
+  const imageName = combatant?.imageName ?? combatant?.name
+  const meta = stage && imageName ? IDLE_ANIMATION_SPRITE_META_BY_STAGE[stage]?.[imageName] : null
+
+  if (!stage || !meta) {
+    return null
+  }
+
+  return {
+    url: createPublicAssetUrl('도감', '애니메이션', stage, `${meta.fileName}.png`),
+    ratio: meta.frameWidth / meta.frameHeight,
+    inverseRatio: meta.frameHeight / meta.frameWidth,
+  }
+}
+
 const getDigimonTypeIconUrl = (type) =>
   DIGIMON_TYPE_ICON_NAMES.has(type) ? createPublicAssetUrl('타입', `${type}.png`) : null
 
@@ -1154,8 +1278,8 @@ const DigimonTraitIcon = ({ className, src, label }) => {
   )
 }
 
-const createShuffledBgmQueue = (previousUrl = null) => {
-  const queue = [...bgmTracks]
+const createShuffledBgmQueue = (previousUrl = null, sourceTracks = bgmTracks) => {
+  const queue = [...sourceTracks]
 
   for (let index = queue.length - 1; index > 0; index -= 1) {
     const randomIndex = Math.floor(Math.random() * (index + 1))
@@ -1169,18 +1293,99 @@ const createShuffledBgmQueue = (previousUrl = null) => {
   return queue
 }
 
-const BackgroundMusic = () => {
+const BackgroundMusic = ({ settings }) => {
+  const safeSettings = sanitizeSettings(settings)
   const audioRef = useRef(null)
-  const queueRef = useRef(createShuffledBgmQueue())
+  const enabledTracksRef = useRef(getEnabledBgmTracks(safeSettings))
+  const targetVolumeRef = useRef(getEffectiveBgmVolume(safeSettings))
+  const queueRef = useRef(createShuffledBgmQueue(null, enabledTracksRef.current))
   const currentTrackRef = useRef(null)
   const fadeFrameRef = useRef(null)
   const hasStartedRef = useRef(false)
+  const hasUserGestureRef = useRef(false)
   const isFadingOutRef = useRef(false)
 
   useEffect(() => {
     const audio = audioRef.current
+    const enabledTracks = getEnabledBgmTracks(safeSettings)
 
-    if (!audio || bgmTracks.length === 0) {
+    enabledTracksRef.current = enabledTracks
+    targetVolumeRef.current = getEffectiveBgmVolume(safeSettings)
+    queueRef.current = queueRef.current.filter((track) =>
+      enabledTracks.some((enabledTrack) => enabledTrack.url === track.url)
+    )
+
+    if (!audio) {
+      return
+    }
+
+    if (enabledTracks.length === 0) {
+      audio.pause()
+      audio.removeAttribute('src')
+      currentTrackRef.current = null
+      hasStartedRef.current = false
+      queueRef.current = []
+      return
+    }
+
+    if (!currentTrackRef.current && !hasStartedRef.current && hasUserGestureRef.current) {
+      queueRef.current = createShuffledBgmQueue(null, enabledTracks)
+      const nextTrack = queueRef.current.shift() ?? enabledTracks[0]
+      currentTrackRef.current = nextTrack
+      audio.pause()
+      audio.src = nextTrack.url
+      audio.currentTime = 0
+      audio.volume = targetVolumeRef.current
+      audio.play()
+        .then(() => {
+          hasStartedRef.current = true
+        })
+        .catch(() => {
+          hasStartedRef.current = false
+          audio.pause()
+        })
+      return
+    }
+
+    if (
+      currentTrackRef.current &&
+      !enabledTracks.some((track) => track.url === currentTrackRef.current?.url)
+    ) {
+      queueRef.current = createShuffledBgmQueue(null, enabledTracks)
+
+      if (hasStartedRef.current) {
+        const nextTrack = queueRef.current.shift() ?? enabledTracks[0]
+        currentTrackRef.current = nextTrack
+        audio.pause()
+        audio.src = nextTrack.url
+        audio.currentTime = 0
+        audio.volume = targetVolumeRef.current
+        audio.play().catch(() => {
+          hasStartedRef.current = false
+          audio.pause()
+        })
+        return
+      }
+
+      audio.pause()
+      audio.removeAttribute('src')
+      currentTrackRef.current = null
+      return
+    }
+
+    if (hasStartedRef.current) {
+      audio.volume = targetVolumeRef.current
+    }
+  }, [
+    safeSettings.masterVolume,
+    safeSettings.bgmVolume,
+    safeSettings.enabledBgmUrls,
+  ])
+
+  useEffect(() => {
+    const audio = audioRef.current
+
+    if (!audio) {
       return undefined
     }
 
@@ -1213,15 +1418,28 @@ const BackgroundMusic = () => {
     }
 
     const getNextTrack = () => {
-      if (queueRef.current.length === 0) {
-        queueRef.current = createShuffledBgmQueue(currentTrackRef.current?.url)
+      const enabledTracks = enabledTracksRef.current
+
+      if (enabledTracks.length === 0) {
+        return null
       }
 
-      return queueRef.current.shift() ?? bgmTracks[0]
+      if (queueRef.current.length === 0) {
+        queueRef.current = createShuffledBgmQueue(currentTrackRef.current?.url, enabledTracks)
+      }
+
+      return queueRef.current.shift() ?? enabledTracks[0]
     }
 
     const playNextTrack = async () => {
       const nextTrack = getNextTrack()
+
+      if (!nextTrack) {
+        audio.pause()
+        hasStartedRef.current = false
+        currentTrackRef.current = null
+        return
+      }
 
       currentTrackRef.current = nextTrack
       isFadingOutRef.current = false
@@ -1233,7 +1451,7 @@ const BackgroundMusic = () => {
       try {
         await audio.play()
         hasStartedRef.current = true
-        fadeVolume(BGM_VOLUME, BGM_FADE_IN_MS)
+        fadeVolume(targetVolumeRef.current, BGM_FADE_IN_MS)
       } catch {
         hasStartedRef.current = false
         audio.pause()
@@ -1241,6 +1459,8 @@ const BackgroundMusic = () => {
     }
 
     const startAfterUserGesture = () => {
+      hasUserGestureRef.current = true
+
       if (hasStartedRef.current) {
         return
       }
@@ -1291,15 +1511,24 @@ const BackgroundMusic = () => {
   return <audio ref={audioRef} preload="auto" aria-hidden="true" />
 }
 
-const ButtonClickSound = () => {
+const ButtonClickSound = ({ settings }) => {
+  const safeSettings = sanitizeSettings(settings)
   const audioPoolRef = useRef([])
   const audioIndexRef = useRef(0)
+  const volumeRef = useRef(BUTTON_CLICK_SFX_VOLUME * getEffectiveSfxVolume(safeSettings))
+
+  useEffect(() => {
+    volumeRef.current = BUTTON_CLICK_SFX_VOLUME * getEffectiveSfxVolume(safeSettings)
+    audioPoolRef.current.forEach((audio) => {
+      audio.volume = volumeRef.current
+    })
+  }, [safeSettings.masterVolume, safeSettings.sfxVolume])
 
   useEffect(() => {
     audioPoolRef.current = Array.from({ length: BUTTON_CLICK_SFX_POOL_SIZE }, () => {
       const audio = new Audio(BUTTON_CLICK_SFX_URL)
       audio.preload = 'auto'
-      audio.volume = BUTTON_CLICK_SFX_VOLUME
+      audio.volume = volumeRef.current
 
       return audio
     })
@@ -1325,7 +1554,7 @@ const ButtonClickSound = () => {
       const audio = audioPool[audioIndexRef.current % audioPool.length]
       audioIndexRef.current += 1
       audio.currentTime = 0
-      audio.volume = BUTTON_CLICK_SFX_VOLUME
+      audio.volume = volumeRef.current
       resumeBattleSfxAudioContext()
       const playPromise = audio.play()
 
@@ -1417,6 +1646,7 @@ const COMBATANT_STAT_CHART_FIELDS = [
   { key: 'specialDefense', label: '특수방어' },
   { key: 'specialAttack', label: '특수공격' },
 ]
+const IV_FIELD_KEYS = COMBATANT_STAT_CHART_FIELDS.map((field) => field.key)
 const STAT_CHART_CENTER = 60
 const STAT_CHART_RADIUS = 46
 const EXP_BAR_ANIMATION_MS = 520
@@ -2321,6 +2551,7 @@ const selectRandomRewardItemsByRarity = (items, count = 3) => {
 const REWARD_REVEAL_DURATION_MS = 1200
 const REWARD_REVEAL_IMAGE_URL = '/item.png'
 const HIT_EFFECT_DURATION_MS = 620
+const DAMAGE_TEXT_DURATION_MS = 920
 const HIT_EFFECT_SEQUENCE_INTERVAL_MS = 1000
 const ATTACK_MOTION_DURATION_MS = 760
 const PROJECTILE_EFFECT_DURATION_MS = 620
@@ -2583,6 +2814,12 @@ const playBattleNoise = ({
   source.stop(endAt + 0.02)
 }
 
+let battleSfxVolumeMultiplier = 1
+
+const setBattleSfxVolumeMultiplier = (value) => {
+  battleSfxVolumeMultiplier = Math.max(0, Math.min(1, Number(value) || 0))
+}
+
 const playBattleAttackSound = (effect, phase) => {
   const audioContext = resumeBattleSfxAudioContext()
 
@@ -2592,7 +2829,7 @@ const playBattleAttackSound = (effect, phase) => {
 
   const profile = getBattleAttackSoundProfile(effect?.attribute)
   const now = audioContext.currentTime
-  const volume = BATTLE_ATTACK_SFX_VOLUME
+  const volume = BATTLE_ATTACK_SFX_VOLUME * battleSfxVolumeMultiplier
 
   if (phase === 'physical-move') {
     playBattleNoise({
@@ -3058,6 +3295,43 @@ const formatInfoValue = (value, fallback = '-') => {
   return value
 }
 
+const createStableHash = (value) => {
+  const text = String(value ?? '')
+  let hash = 2166136261
+
+  for (let index = 0; index < text.length; index += 1) {
+    hash ^= text.charCodeAt(index)
+    hash = Math.imul(hash, 16777619)
+  }
+
+  return hash >>> 0
+}
+
+const getIvDetectorCount = (inventory = {}) =>
+  Math.max(0, Math.min(IV_DETECTOR_MAX, inventory?.[IV_DETECTOR_ITEM_ID] ?? 0))
+
+const getRevealedEnemyIvKeys = (combatant, inventory = {}) => {
+  const revealCount = Math.min(
+    IV_FIELD_KEYS.length,
+    getIvDetectorCount(inventory) * IV_DETECTOR_REVEALED_STATS_PER_ITEM
+  )
+
+  if (!combatant || revealCount <= 0) {
+    return []
+  }
+
+  const seed = `${combatant.id ?? ''}|${combatant.name ?? ''}|${combatant.level ?? 0}`
+
+  return [...IV_FIELD_KEYS]
+    .sort((firstKey, secondKey) => {
+      const firstHash = createStableHash(`${seed}|${firstKey}`)
+      const secondHash = createStableHash(`${seed}|${secondKey}`)
+
+      return firstHash - secondHash
+    })
+    .slice(0, revealCount)
+}
+
 const getCombatantInfoTabs = (side, options = {}) => {
   if (side !== 'enemy') {
     return COMBATANT_INFO_TABS
@@ -3103,26 +3377,32 @@ const getStatChartValue = (combatant, statKey) => {
   return combatant?.[statKey] ?? 0
 }
 
-const getCombatantStatChartData = (combatant, activeTab) => {
+const getCombatantStatChartData = (combatant, activeTab, revealedIvKeys = null) => {
   if (!combatant || !activeTab) {
     return null
   }
 
   const isBattleStats = activeTab === 'stats'
+  const revealedIvKeySet = Array.isArray(revealedIvKeys) ? new Set(revealedIvKeys) : null
   const maximumValue = isBattleStats
     ? Math.max(...COMBATANT_STAT_CHART_FIELDS.map((field) => getStatChartValue(combatant, field.key)), 1)
     : IV_MAX
 
   return COMBATANT_STAT_CHART_FIELDS.map((field) => {
-    const value = isBattleStats
+    const rawValue = isBattleStats
       ? getStatChartValue(combatant, field.key)
       : combatant?.[activeTab]?.[field.key] ?? 0
+    const isHiddenIv = activeTab === 'ivs' && revealedIvKeySet && !revealedIvKeySet.has(field.key)
+    const value = isHiddenIv ? 0 : rawValue
 
     return {
       ...field,
+      isHidden: isHiddenIv,
       value,
       valueText:
-        isBattleStats && field.key === 'hp'
+        isHiddenIv
+          ? '??'
+          : isBattleStats && field.key === 'hp'
           ? String(combatant.maxHp)
           : isBattleStats
             ? String(value)
@@ -3132,8 +3412,8 @@ const getCombatantStatChartData = (combatant, activeTab) => {
   })
 }
 
-const CombatantStatChart = ({ combatant, activeTab }) => {
-  const chartData = getCombatantStatChartData(combatant, activeTab)
+const CombatantStatChart = ({ combatant, activeTab, revealedIvKeys = null }) => {
+  const chartData = getCombatantStatChartData(combatant, activeTab, revealedIvKeys)
 
   if (!chartData) {
     return null
@@ -3151,6 +3431,7 @@ const CombatantStatChart = ({ combatant, activeTab }) => {
           className={[
             'combatant-stat-chart__label',
             `combatant-stat-chart__label--${item.key}`,
+            item.isHidden ? 'combatant-stat-chart__label--hidden' : '',
           ]
             .filter(Boolean)
             .join(' ')}
@@ -3235,6 +3516,7 @@ const CombatantInfoPanel = ({
   onTabChange,
   canViewEnemyInfo = false,
   canViewEnemyIvs = false,
+  revealedIvKeys = null,
 }) => {
   if (!combatant) {
     return null
@@ -3276,7 +3558,11 @@ const CombatantInfoPanel = ({
       ) : null}
 
       {resolvedActiveTab ? (
-        <CombatantStatChart combatant={combatant} activeTab={resolvedActiveTab} />
+        <CombatantStatChart
+          combatant={combatant}
+          activeTab={resolvedActiveTab}
+          revealedIvKeys={revealedIvKeys}
+        />
       ) : null}
     </div>
   )
@@ -5193,7 +5479,9 @@ const resolveAttackAction = ({
               attribute: skillData.속성 ?? '무',
               category: skillData.분류 ?? '물리형',
               skillName: skillData.기술명,
+              damage: appliedDamage,
               targetCurrentHp: nextDefender.currentHp,
+              targetStatusEffect: nextDefender.statusEffect ?? null,
               isDefeatingHit: nextHp === 0,
             },
           ]
@@ -5735,6 +6023,9 @@ function App() {
     baseDigitDrops.map((drop, index) => createDigitDrop(drop, index))
   )
   const [screenMode, setScreenMode] = useState('menu')
+  const [settingsTab, setSettingsTab] = useState('general')
+  const [isBgmSettingsOpen, setIsBgmSettingsOpen] = useState(false)
+  const [gameSettings, setGameSettings] = useState(() => loadSettingsFromStorage())
   const [selectedGrowthIndex, setSelectedGrowthIndex] = useState(0)
   const [selectedStarterNames, setSelectedStarterNames] = useState(() =>
     growthStageDigimon[0]?.name ? [growthStageDigimon[0].name] : []
@@ -5784,6 +6075,49 @@ function App() {
     }
   })
 
+  useEffect(() => {
+    saveSettingsToStorage(gameSettings)
+    setBattleSfxVolumeMultiplier(getEffectiveSfxVolume(gameSettings))
+  }, [gameSettings])
+
+  const updateGameSetting = (key, value) => {
+    setGameSettings((current) =>
+      sanitizeSettings({
+        ...current,
+        [key]: value,
+      })
+    )
+  }
+
+  const toggleBgmTrack = (trackUrl) => {
+    setGameSettings((current) => {
+      const enabledUrlSet = new Set(current.enabledBgmUrls)
+
+      if (enabledUrlSet.has(trackUrl)) {
+        enabledUrlSet.delete(trackUrl)
+      } else {
+        enabledUrlSet.add(trackUrl)
+      }
+
+      return sanitizeSettings({
+        ...current,
+        enabledBgmUrls: [...enabledUrlSet],
+      })
+    })
+  }
+
+  const switchSettingsTab = (nextTab) => {
+    setSettingsTab(nextTab)
+    setIsBgmSettingsOpen(false)
+  }
+
+  const getGameDuration = (duration) => getScaledDuration(duration, gameSettings.gameSpeed)
+  const getExpDuration = (duration) => getScaledDuration(duration, gameSettings.expBarSpeed)
+  const getEvolutionSceneDuration = (duration) =>
+    gameSettings.evolutionSpeed === 'skip'
+      ? 0
+      : getScaledDuration(duration, gameSettings.evolutionSpeed)
+
   const clearExpAnimationQueue = () => {
     expAnimationTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
     expAnimationTimeoutsRef.current = []
@@ -5821,11 +6155,13 @@ function App() {
         battleLogSequenceTimeoutsRef.current = battleLogSequenceTimeoutsRef.current.filter(
           (currentTimeoutId) => currentTimeoutId !== timeoutId
         )
-      }, BATTLE_LOG_STEP_MS * (stepIndex + 1))
+      }, getGameDuration(BATTLE_LOG_STEP_MS * (stepIndex + 1)))
       battleLogSequenceTimeoutsRef.current.push(timeoutId)
     })
 
-    const totalDelay = BATTLE_LOG_STEP_MS * Math.max(0, steps.length - 1) + BATTLE_LOG_FINAL_DELAY_MS
+    const totalDelay = getGameDuration(
+      BATTLE_LOG_STEP_MS * Math.max(0, steps.length - 1) + BATTLE_LOG_FINAL_DELAY_MS
+    )
     const finalTimeoutId = window.setTimeout(() => {
       setBattlePanelMode(finalBattlePanel)
       battleLogSequenceTimeoutsRef.current = battleLogSequenceTimeoutsRef.current.filter(
@@ -5892,6 +6228,44 @@ function App() {
             ...current,
             [sourceUrl]: trimmedUrl,
           }
+      )
+  }
+
+  const renderBattleSprite = (combatant, side) => {
+    const isAlly = side === 'ally'
+    const idleAnimationSprite = getCombatantIdleAnimationSprite(combatant)
+    const className = [
+      'adventure-player__sprite',
+      isAlly ? 'adventure-player__sprite--ally' : 'adventure-player__sprite--enemy',
+      `adventure-player__sprite--size-${combatant.size}`,
+      idleAnimationSprite ? 'adventure-player__sprite--idle-sheet' : '',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    if (idleAnimationSprite) {
+      return (
+        <span
+          className={className}
+          role="img"
+          aria-label={combatant.name}
+          style={{
+            '--idle-sprite-url': `url("${idleAnimationSprite.url}")`,
+            '--idle-frame-ratio': idleAnimationSprite.ratio,
+            '--idle-frame-inverse-ratio': idleAnimationSprite.inverseRatio,
+          }}
+        />
+      )
+    }
+
+    return (
+      <img
+        className={className}
+        src={getBattleSpriteUrl(combatant.imageUrl)}
+        alt={combatant.name}
+        data-source-src={combatant.imageUrl}
+        onLoad={handleBattleSpriteLoad}
+      />
     )
   }
 
@@ -5921,6 +6295,7 @@ function App() {
     return {
       x: elementRect.left - fieldRect.left + elementRect.width / 2,
       y: elementRect.top - fieldRect.top + elementRect.height * 0.45,
+      headY: elementRect.top - fieldRect.top + elementRect.height * 0.18,
     }
   }
 
@@ -5936,6 +6311,8 @@ function App() {
       id: `${effect.targetId}-${hitEffectIdRef.current}`,
       hitX: hitPoint?.x ?? effect.hitX ?? null,
       hitY: hitPoint?.y ?? effect.hitY ?? null,
+      damageX: hitPoint?.x ?? effect.damageX ?? effect.hitX ?? null,
+      damageY: hitPoint?.headY ?? effect.damageY ?? effect.hitY ?? null,
     }
 
     setHitEffects((current) => [...current, stampedEffect].slice(-8))
@@ -5947,13 +6324,17 @@ function App() {
       hitEffectTimeoutsRef.current = hitEffectTimeoutsRef.current.filter(
         (currentTimeoutId) => currentTimeoutId !== endTimeoutId
       )
-    }, HIT_EFFECT_DURATION_MS)
+    }, getGameDuration(Math.max(HIT_EFFECT_DURATION_MS, DAMAGE_TEXT_DURATION_MS)))
 
     hitEffectTimeoutsRef.current.push(endTimeoutId)
   }
 
   const applyVisualAttackDamage = (effect) => {
-    if (!effect?.targetId || !Number.isFinite(effect.targetCurrentHp)) {
+    const hasHpChange = Number.isFinite(effect?.targetCurrentHp)
+    const hasStatusChange =
+      effect && Object.prototype.hasOwnProperty.call(effect, 'targetStatusEffect')
+
+    if (!effect?.targetId || (!hasHpChange && !hasStatusChange)) {
       return
     }
 
@@ -5962,20 +6343,26 @@ function App() {
         return current
       }
 
-      const applyHp = (combatant) => {
+      const applyHitResult = (combatant) => {
         if (!combatant || combatant.id !== effect.targetId) {
           return combatant
         }
 
         return {
           ...combatant,
-          currentHp: Math.max(0, Math.min(combatant.maxHp, effect.targetCurrentHp)),
+          currentHp: hasHpChange
+            ? Math.max(0, Math.min(combatant.maxHp, effect.targetCurrentHp))
+            : combatant.currentHp,
+          statusEffect: hasStatusChange
+            ? normalizeStatusEffect(effect.targetStatusEffect)
+            : combatant.statusEffect,
         }
       }
 
       if (effect.targetSide === 'ally') {
-        const nextParty = (current.party ?? []).map(applyHp)
-        const nextPlayer = current.player?.id === effect.targetId ? applyHp(current.player) : current.player
+        const nextParty = (current.party ?? []).map(applyHitResult)
+        const nextPlayer =
+          current.player?.id === effect.targetId ? applyHitResult(current.player) : current.player
 
         return {
           ...current,
@@ -5986,7 +6373,7 @@ function App() {
 
       return {
         ...current,
-        enemies: (current.enemies ?? []).map(applyHp),
+        enemies: (current.enemies ?? []).map(applyHitResult),
       }
     })
   }
@@ -6000,9 +6387,11 @@ function App() {
 
     const getEffectAnimationDuration = (effect) => {
       const isPhysical = effect.category === '물리형' || effect.category === '물리'
-      return isPhysical
-        ? Math.floor(ATTACK_MOTION_DURATION_MS * 0.42) + HIT_EFFECT_DURATION_MS + 120
-        : PROJECTILE_EFFECT_DURATION_MS + HIT_EFFECT_DURATION_MS + 120
+      const hitFeedbackDuration = Math.max(HIT_EFFECT_DURATION_MS, DAMAGE_TEXT_DURATION_MS)
+      const baseDuration = isPhysical
+        ? Math.floor(ATTACK_MOTION_DURATION_MS * 0.42) + hitFeedbackDuration + 120
+        : PROJECTILE_EFFECT_DURATION_MS + hitFeedbackDuration + 120
+      return getGameDuration(baseDuration)
     }
 
     validEffects.forEach((effect, index) => {
@@ -6026,7 +6415,7 @@ function App() {
             hitEffectTimeoutsRef.current = hitEffectTimeoutsRef.current.filter(
               (currentTimeoutId) => currentTimeoutId !== hitTimeoutId
             )
-          }, Math.floor(ATTACK_MOTION_DURATION_MS * 0.42))
+          }, getGameDuration(Math.floor(ATTACK_MOTION_DURATION_MS * 0.42)))
           hitEffectTimeoutsRef.current.push(hitTimeoutId)
 
           const endMotionTimeoutId = window.setTimeout(() => {
@@ -6036,7 +6425,7 @@ function App() {
             hitEffectTimeoutsRef.current = hitEffectTimeoutsRef.current.filter(
               (currentTimeoutId) => currentTimeoutId !== endMotionTimeoutId
             )
-          }, ATTACK_MOTION_DURATION_MS)
+          }, getGameDuration(ATTACK_MOTION_DURATION_MS))
 
           hitEffectTimeoutsRef.current.push(endMotionTimeoutId)
         } else {
@@ -6067,7 +6456,7 @@ function App() {
             hitEffectTimeoutsRef.current = hitEffectTimeoutsRef.current.filter(
               (currentTimeoutId) => currentTimeoutId !== hitTimeoutId
             )
-          }, PROJECTILE_EFFECT_DURATION_MS)
+          }, getGameDuration(PROJECTILE_EFFECT_DURATION_MS))
           hitEffectTimeoutsRef.current.push(hitTimeoutId)
 
           const endProjectileTimeoutId = window.setTimeout(() => {
@@ -6077,7 +6466,7 @@ function App() {
             hitEffectTimeoutsRef.current = hitEffectTimeoutsRef.current.filter(
               (currentTimeoutId) => currentTimeoutId !== endProjectileTimeoutId
             )
-          }, PROJECTILE_EFFECT_DURATION_MS + 80)
+          }, getGameDuration(PROJECTILE_EFFECT_DURATION_MS + 80))
 
           hitEffectTimeoutsRef.current.push(endProjectileTimeoutId)
         }
@@ -6085,14 +6474,14 @@ function App() {
         hitEffectTimeoutsRef.current = hitEffectTimeoutsRef.current.filter(
           (currentTimeoutId) => currentTimeoutId !== startTimeoutId
         )
-      }, index * HIT_EFFECT_SEQUENCE_INTERVAL_MS)
+      }, getGameDuration(index * HIT_EFFECT_SEQUENCE_INTERVAL_MS))
 
       hitEffectTimeoutsRef.current.push(startTimeoutId)
     })
 
     return Math.max(
       ...validEffects.map(
-        (effect, index) => index * HIT_EFFECT_SEQUENCE_INTERVAL_MS + getEffectAnimationDuration(effect)
+        (effect, index) => getGameDuration(index * HIT_EFFECT_SEQUENCE_INTERVAL_MS) + getEffectAnimationDuration(effect)
       )
     )
   }
@@ -7067,7 +7456,7 @@ function App() {
 
       scheduleExpAnimationUpdate(() => {
         setIsPlayerExpBarVisible(false)
-      }, 30 + EXP_BAR_ANIMATION_MS + EXP_BAR_VISIBLE_AFTER_MS)
+      }, 30 + getExpDuration(EXP_BAR_ANIMATION_MS) + getExpDuration(EXP_BAR_VISIBLE_AFTER_MS))
 
       previousPlayerProgressRef.current = currentSnapshot
       return undefined
@@ -7087,7 +7476,7 @@ function App() {
         setIsPlayerExpTransitionInstant(false)
         setDisplayedPlayerExpRatio(100)
       }, elapsed)
-      elapsed += EXP_BAR_ANIMATION_MS
+      elapsed += getExpDuration(EXP_BAR_ANIMATION_MS)
 
       scheduleExpAnimationUpdate(() => {
         setIsPlayerExpTransitionInstant(true)
@@ -7103,7 +7492,7 @@ function App() {
 
     scheduleExpAnimationUpdate(() => {
       setIsPlayerExpBarVisible(false)
-    }, elapsed + EXP_BAR_ANIMATION_MS + EXP_BAR_VISIBLE_AFTER_MS)
+    }, elapsed + getExpDuration(EXP_BAR_ANIMATION_MS) + getExpDuration(EXP_BAR_VISIBLE_AFTER_MS))
 
     previousPlayerProgressRef.current = currentSnapshot
 
@@ -7212,6 +7601,12 @@ function App() {
       return
     }
 
+    if (actionKey === 'settings') {
+      switchSettingsTab('general')
+      setScreenMode('settings')
+      return
+    }
+
     if (actionKey === 'continue') {
       const savedGameState = loadSavedGameStateFromStorage()
 
@@ -7287,7 +7682,7 @@ function App() {
 
       window.setTimeout(() => {
         handleNextStage(escapedGameState, escapedGameState.player)
-      }, RUN_STAGE_ADVANCE_DELAY_MS)
+      }, getGameDuration(RUN_STAGE_ADVANCE_DELAY_MS))
       return
     }
 
@@ -7936,6 +8331,17 @@ function App() {
       player: nextPlayer,
       party: nextParty,
     })
+
+    if (gameSettings.evolutionSpeed === 'skip') {
+      setEvolutionScene(null)
+      setEvolutionState({
+        mode: 'party',
+        selectedMemberId: null,
+        confirmTargetName: null,
+      })
+      return
+    }
+
     setEvolutionScene({
       id: sceneId,
       phase: 'before',
@@ -7953,7 +8359,7 @@ function App() {
             }
           : current
       )
-    }, EVOLUTION_SCENE_SWITCH_MS)
+    }, getEvolutionSceneDuration(EVOLUTION_SCENE_SWITCH_MS))
     window.setTimeout(() => {
       setEvolutionScene((current) => (current?.id === sceneId ? null : current))
       setEvolutionState({
@@ -7961,7 +8367,7 @@ function App() {
         selectedMemberId: null,
         confirmTargetName: null,
       })
-    }, EVOLUTION_SCENE_TOTAL_MS)
+    }, getEvolutionSceneDuration(EVOLUTION_SCENE_TOTAL_MS))
   }
 
   const handlePurchaseFixedRewardItem = (itemId) => {
@@ -8241,8 +8647,8 @@ function App() {
       count: gameState?.inventory?.[itemId] ?? 0,
     }
   })
-  const hasDigimonDetector = (gameState?.inventory?.[DIGIMON_DETECTOR_ITEM_ID] ?? 0) > 0
-  const hasIvDetector = hasDigimonDetector && (gameState?.inventory?.[IV_DETECTOR_ITEM_ID] ?? 0) > 0
+  const hasDigimonDetector = true
+  const hasIvDetector = getIvDetectorCount(gameState?.inventory) > 0
   const hasGlobeItem = (gameState?.inventory?.[GLOBE_ITEM_ID] ?? 0) > 0
   const hudCombatant = actingAlly ?? gameState?.player ?? null
   const inventoryHudItems = [...rewardItemLookup.values()]
@@ -8444,29 +8850,58 @@ function App() {
     (currentTargetEnemyIndex >= 0 && gameState ? gameState.enemies[currentTargetEnemyIndex] : null)
   const renderHitEffects = () =>
     hitEffects.map((effect) => (
-      <span
-        key={effect.id}
-        className={getHitEffectClassName(effect)}
-        style={
-          Number.isFinite(effect.hitX) && Number.isFinite(effect.hitY)
-            ? {
-                '--hit-x': `${effect.hitX}px`,
-                '--hit-y': `${effect.hitY}px`,
-              }
-            : undefined
-        }
-        aria-hidden="true"
-      />
+      <span key={effect.id} className="battle-hit-feedback" aria-hidden="true">
+        <span
+          className={getHitEffectClassName(effect)}
+          style={
+            Number.isFinite(effect.hitX) && Number.isFinite(effect.hitY)
+              ? {
+                  '--hit-x': `${effect.hitX}px`,
+                  '--hit-y': `${effect.hitY}px`,
+                }
+              : undefined
+          }
+        />
+        {Number.isFinite(effect.damage) && effect.damage > 0 ? (
+          <span
+            className={[
+              'damage-text',
+              `damage-text--${getHitEffectAttributeClass(effect.attribute)}`,
+            ]
+              .filter(Boolean)
+              .join(' ')}
+            style={
+              Number.isFinite(effect.damageX) && Number.isFinite(effect.damageY)
+                ? {
+                    '--damage-x': `${effect.damageX}px`,
+                    '--damage-y': `${effect.damageY}px`,
+                  }
+                : undefined
+            }
+          >
+            {effect.damage}
+          </span>
+        ) : null}
+      </span>
     ))
+
+  const mainScreenStyle = {
+    '--attack-motion-duration': `${getGameDuration(ATTACK_MOTION_DURATION_MS)}ms`,
+    '--projectile-effect-duration': `${getGameDuration(PROJECTILE_EFFECT_DURATION_MS)}ms`,
+    '--hit-effect-duration': `${getGameDuration(HIT_EFFECT_DURATION_MS)}ms`,
+    '--damage-text-duration': `${getGameDuration(DAMAGE_TEXT_DURATION_MS)}ms`,
+    '--exp-bar-duration': `${getExpDuration(EXP_BAR_ANIMATION_MS)}ms`,
+  }
 
   return (
     <main
       className={['main-screen', screenMode === 'adventure' ? 'main-screen--adventure' : '']
         .filter(Boolean)
         .join(' ')}
+      style={mainScreenStyle}
     >
-      <BackgroundMusic />
-      <ButtonClickSound />
+      <BackgroundMusic settings={gameSettings} />
+      <ButtonClickSound settings={gameSettings} />
       <div
         className="main-screen__background main-screen__background--base"
         aria-hidden="true"
@@ -8529,6 +8964,7 @@ function App() {
         className={[
           'playfield',
           screenMode === 'new-game' ? 'playfield--selection' : '',
+          screenMode === 'settings' ? 'playfield--settings' : '',
           screenMode === 'adventure' ? 'playfield--adventure' : '',
         ]
           .filter(Boolean)
@@ -8540,6 +8976,7 @@ function App() {
           className={[
             'playfield__content',
             screenMode === 'new-game' ? 'playfield__content--selection' : '',
+            screenMode === 'settings' ? 'playfield__content--settings' : '',
             screenMode === 'adventure' ? 'playfield__content--adventure' : '',
           ]
             .filter(Boolean)
@@ -8575,6 +9012,238 @@ function App() {
                 })}
               </nav>
             </aside>
+          ) : screenMode === 'settings' ? (
+            <section className="settings-screen" aria-label="설정">
+              <div className="settings-panel">
+                <div className="settings-panel__top">
+                  <button
+                    type="button"
+                    className="settings-panel__shoulder settings-panel__shoulder--left"
+                    aria-label="이전 분류"
+                    onClick={() => switchSettingsTab(settingsTab === 'general' ? 'audio' : 'general')}
+                  >
+                    F
+                  </button>
+                  <div className="settings-tabs" role="tablist" aria-label="설정 분류">
+                    <button
+                      type="button"
+                      role="tab"
+                      aria-selected={settingsTab === 'general'}
+                      className={[
+                        'settings-tab',
+                        settingsTab === 'general' ? 'settings-tab--active' : '',
+                      ]
+                        .filter(Boolean)
+                        .join(' ')}
+                      onClick={() => switchSettingsTab('general')}
+                    >
+                      일반
+                    </button>
+                    <button
+                      type="button"
+                      role="tab"
+                      aria-selected={settingsTab === 'audio'}
+                      className={[
+                        'settings-tab',
+                        settingsTab === 'audio' ? 'settings-tab--active' : '',
+                      ]
+                        .filter(Boolean)
+                        .join(' ')}
+                      onClick={() => switchSettingsTab('audio')}
+                    >
+                      오디오
+                    </button>
+                  </div>
+                  <button
+                    type="button"
+                    className="settings-panel__shoulder settings-panel__shoulder--right"
+                    aria-label="다음 분류"
+                    onClick={() => switchSettingsTab(settingsTab === 'general' ? 'audio' : 'general')}
+                  >
+                    R
+                  </button>
+                </div>
+
+                <div className="settings-panel__body">
+                  {settingsTab === 'general' ? (
+                    <div className="settings-list">
+                      <div className="settings-row">
+                        <span className="settings-row__label">게임배속</span>
+                        <div className="settings-options" role="group" aria-label="게임배속">
+                          {SPEED_OPTIONS.map((speed) => (
+                            <button
+                              key={`game-speed-${speed}`}
+                              type="button"
+                              className={[
+                                'settings-option',
+                                gameSettings.gameSpeed === speed ? 'settings-option--active' : '',
+                              ]
+                                .filter(Boolean)
+                                .join(' ')}
+                              onClick={() => updateGameSetting('gameSpeed', speed)}
+                            >
+                              {speed}배
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="settings-row">
+                        <span className="settings-row__label">경험치바 속도</span>
+                        <div className="settings-options" role="group" aria-label="경험치바 속도">
+                          {SPEED_OPTIONS.map((speed) => (
+                            <button
+                              key={`exp-speed-${speed}`}
+                              type="button"
+                              className={[
+                                'settings-option',
+                                gameSettings.expBarSpeed === speed ? 'settings-option--active' : '',
+                              ]
+                                .filter(Boolean)
+                                .join(' ')}
+                              onClick={() => updateGameSetting('expBarSpeed', speed)}
+                            >
+                              {speed}배
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="settings-row">
+                        <span className="settings-row__label">진화씬 속도</span>
+                        <div className="settings-options" role="group" aria-label="진화씬 속도">
+                          {EVOLUTION_SPEED_OPTIONS.map((speed) => (
+                            <button
+                              key={`evolution-speed-${speed}`}
+                              type="button"
+                              className={[
+                                'settings-option',
+                                gameSettings.evolutionSpeed === speed ? 'settings-option--active' : '',
+                              ]
+                                .filter(Boolean)
+                                .join(' ')}
+                              onClick={() => updateGameSetting('evolutionSpeed', speed)}
+                            >
+                              {speed === 'skip' ? '스킵' : `${speed}배`}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="settings-list settings-list--audio">
+                      {[
+                        ['masterVolume', '마스터 오디오'],
+                        ['bgmVolume', '오디오'],
+                        ['sfxVolume', '효과음'],
+                      ].map(([settingKey, label]) => (
+                        <div key={settingKey} className="settings-row">
+                          <span className="settings-row__label">{label}</span>
+                          <div className="settings-options settings-options--volume" role="group" aria-label={label}>
+                            {VOLUME_OPTIONS.map((volume) => (
+                              <button
+                                key={`${settingKey}-${volume}`}
+                                type="button"
+                                className={[
+                                  'settings-option',
+                                  gameSettings[settingKey] === volume ? 'settings-option--active' : '',
+                                ]
+                                  .filter(Boolean)
+                                  .join(' ')}
+                                onClick={() => updateGameSetting(settingKey, volume)}
+                              >
+                                {volume}%
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+
+                      <div className="settings-bgm-entry">
+                        <div className="settings-bgm-entry__copy">
+                          <span className="settings-row__label">BGM 설정</span>
+                          <span className="settings-bgm-entry__summary">
+                            활성 BGM {gameSettings.enabledBgmUrls.length}/{bgmTracks.length}
+                          </span>
+                        </div>
+                        <button
+                          type="button"
+                          className="settings-bgm-entry__button"
+                          aria-haspopup="dialog"
+                          aria-expanded={isBgmSettingsOpen}
+                          onClick={() => setIsBgmSettingsOpen(true)}
+                        >
+                          BGM 설정
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {isBgmSettingsOpen && settingsTab === 'audio' && (
+                  <div className="settings-bgm-window" role="dialog" aria-modal="true" aria-label="BGM 설정">
+                    <div className="settings-bgm-window__panel">
+                      <div className="settings-bgm-window__header">
+                        <div className="settings-bgm-window__title-group">
+                          <span className="settings-bgm-window__eyebrow">오디오</span>
+                          <h2 className="settings-bgm-window__title">BGM 설정</h2>
+                        </div>
+                        <span className="settings-bgm-window__count">
+                          {gameSettings.enabledBgmUrls.length}/{bgmTracks.length}
+                        </span>
+                        <button
+                          type="button"
+                          className="settings-bgm-window__close"
+                          onClick={() => setIsBgmSettingsOpen(false)}
+                        >
+                          닫기
+                        </button>
+                      </div>
+
+                      <div className="settings-bgm settings-bgm--window">
+                        <div className="settings-bgm__list">
+                          {bgmTracks.map((track) => {
+                            const isEnabled = gameSettings.enabledBgmUrls.includes(track.url)
+
+                            return (
+                              <div key={track.url} className="settings-bgm__item">
+                                <span className="settings-bgm__title">{track.title}</span>
+                                <button
+                                  type="button"
+                                  className={[
+                                    'settings-bgm__toggle',
+                                    isEnabled ? 'settings-bgm__toggle--enabled' : '',
+                                  ]
+                                    .filter(Boolean)
+                                    .join(' ')}
+                                  onClick={() => toggleBgmTrack(track.url)}
+                                >
+                                  {isEnabled ? '설정' : '해제'}
+                                </button>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <div className="settings-panel__bottom">
+                  <button
+                    type="button"
+                    className="settings-back"
+                    onClick={() => {
+                      setIsBgmSettingsOpen(false)
+                      setScreenMode('menu')
+                    }}
+                  >
+                    뒤로가기
+                  </button>
+                  <span className="settings-panel__hint">BACK</span>
+                </div>
+              </div>
+            </section>
           ) : screenMode === 'new-game' ? (
             <section className="selection-screen" aria-label={'\uC131\uC7A5\uAE30 \uC120\uD0DD'}>
               <div className="selection-preview">
@@ -8843,19 +9512,7 @@ function App() {
                               }
                             }}
                           >
-                            <img
-                              className={[
-                                'adventure-player__sprite',
-                                'adventure-player__sprite--ally',
-                                `adventure-player__sprite--size-${ally.size}`,
-                              ]
-                                .filter(Boolean)
-                                .join(' ')}
-                              src={getBattleSpriteUrl(ally.imageUrl)}
-                              alt={ally.name}
-                              data-source-src={ally.imageUrl}
-                              onLoad={handleBattleSpriteLoad}
-                            />
+                            {renderBattleSprite(ally, 'ally')}
                             <CombatantInfoPanel
                               combatant={ally}
                               side="ally"
@@ -8947,6 +9604,8 @@ function App() {
                       const enemyStatusBadge = getCombatantStatusBadge(enemy)
                       const enemyTypeIconUrl = getDigimonTypeIconUrl(enemy.type)
                       const enemyAttributeIconUrl = getDigimonAttributeIconUrl(enemy.attribute)
+                      const enemyRevealedIvKeys = getRevealedEnemyIvKeys(enemy, gameState?.inventory)
+                      const canViewEnemyIvs = hasIvDetector && enemyRevealedIvKeys.length > 0
 
                       return (
                         <div
@@ -8975,11 +9634,7 @@ function App() {
                               .join(' ')}
                             ref={setCombatantEffectAnchorRef(enemy.id)}
                             tabIndex={hasDigimonDetector ? 0 : undefined}
-                            aria-label={
-                              hasDigimonDetector
-                                ? `${enemy.name} 상세 정보`
-                                : '디지몬탐지기 획득 후 적 정보를 확인할 수 있습니다'
-                            }
+                            aria-label={`${enemy.name} 상세 정보`}
                             onPointerEnter={
                               hasDigimonDetector
                                 ? (event) =>
@@ -9002,19 +9657,7 @@ function App() {
                                 : undefined
                             }
                           >
-                            <img
-                              className={[
-                                'adventure-player__sprite',
-                                'adventure-player__sprite--enemy',
-                                `adventure-player__sprite--size-${enemy.size}`,
-                              ]
-                                .filter(Boolean)
-                                .join(' ')}
-                              src={getBattleSpriteUrl(enemy.imageUrl)}
-                              alt={enemy.name}
-                              data-source-src={enemy.imageUrl}
-                              onLoad={handleBattleSpriteLoad}
-                            />
+                            {renderBattleSprite(enemy, 'enemy')}
                             {hasDigimonDetector ? (
                               <CombatantInfoPanel
                                 combatant={enemy}
@@ -9022,7 +9665,8 @@ function App() {
                                 activeTab={combatantInfoTab}
                                 onTabChange={setCombatantInfoTab}
                                 canViewEnemyInfo={hasDigimonDetector}
-                                canViewEnemyIvs={hasIvDetector}
+                                canViewEnemyIvs={canViewEnemyIvs}
+                                revealedIvKeys={enemyRevealedIvKeys}
                               />
                             ) : null}
                           </div>
