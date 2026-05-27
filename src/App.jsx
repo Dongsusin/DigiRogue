@@ -1210,29 +1210,132 @@ const createPublicAssetUrl = (...segments) =>
 
 const IDLE_ANIMATION_SPRITE_META_BY_STAGE = {
   유아기: {
-    깜몬: { fileName: '깜몬', frameWidth: 490, frameHeight: 454 },
-    도도몬: { fileName: '도도몬', frameWidth: 486, frameHeight: 439 },
-    레레몬: { fileName: '레레몬', frameWidth: 454, frameHeight: 446 },
-    봄몬: { fileName: '봄몬', frameWidth: 493, frameHeight: 459 },
-    붐몬: { fileName: '봄몬', frameWidth: 493, frameHeight: 459 },
-    뽀글몬: { fileName: '뽀글몬', frameWidth: 489, frameHeight: 358 },
-    뽈뽈몬: { fileName: '뽈뽈몬', frameWidth: 491, frameHeight: 405 },
-    쁘띠몬: { fileName: '쁘띠몬', frameWidth: 352, frameHeight: 451 },
-    새싹몬: { fileName: '새싹몬', frameWidth: 395, frameHeight: 523 },
-    얍실몬: { fileName: '얍실몬', frameWidth: 412, frameHeight: 340 },
-    유라몬: { fileName: '유라몬', frameWidth: 458, frameHeight: 451 },
-    잎새몬: { fileName: '잎새몬', frameWidth: 390, frameHeight: 590 },
-    쟈리몬: { fileName: '쟈리몬', frameWidth: 402, frameHeight: 460 },
-    제리몬: { fileName: '제리몬', frameWidth: 400, frameHeight: 457 },
-    치코몬: { fileName: '치코몬', frameWidth: 489, frameHeight: 433 },
-    쿠라몬: { fileName: '쿠라몬', frameWidth: 399, frameHeight: 474 },
-    키몬: { fileName: '키몬', frameWidth: 490, frameHeight: 459 },
-    포요몬: { fileName: '포요몬', frameWidth: 490, frameHeight: 435 },
-    푸니몬: { fileName: '푸니몬', frameWidth: 491, frameHeight: 462 },
-    푸르르몬: { fileName: '푸르르몬', frameWidth: 490, frameHeight: 351 },
+    깜몬: { fileName: '깜몬', frameWidth: 512, frameHeight: 512 },
+    도도몬: { fileName: '도도몬', frameWidth: 512, frameHeight: 512 },
+    레레몬: { fileName: '레레몬', frameWidth: 512, frameHeight: 512 },
+    모크몬: { fileName: '모크몬', frameWidth: 512, frameHeight: 512 },
+    봄몬: { fileName: '봄몬', frameWidth: 512, frameHeight: 512 },
+    붐몬: { fileName: '봄몬', frameWidth: 512, frameHeight: 512 },
+    뽀글몬: { fileName: '뽀글몬', frameWidth: 512, frameHeight: 512 },
+    뽈뽈몬: { fileName: '뽈뽈몬', frameWidth: 512, frameHeight: 512 },
+    쁘띠몬: { fileName: '쁘띠몬', frameWidth: 512, frameHeight: 512 },
+    새싹몬: { fileName: '새싹몬', frameWidth: 512, frameHeight: 512 },
+    얍실몬: { fileName: '얍실몬', frameWidth: 512, frameHeight: 512 },
+    유라몬: { fileName: '유라몬', frameWidth: 512, frameHeight: 512 },
+    잎새몬: { fileName: '잎새몬', frameWidth: 512, frameHeight: 512 },
+    쟈리몬: { fileName: '쟈리몬', frameWidth: 512, frameHeight: 512 },
+    제리몬: { fileName: '제리몬', frameWidth: 512, frameHeight: 512 },
+    츠브몬: { fileName: '츠브몬', frameWidth: 512, frameHeight: 512 },
+    치코몬: { fileName: '치코몬', frameWidth: 512, frameHeight: 512 },
+    코코몬: { fileName: '코코몬', frameWidth: 512, frameHeight: 512 },
+    쿠라몬: { fileName: '쿠라몬', frameWidth: 512, frameHeight: 512 },
+    키몬: { fileName: '키몬', frameWidth: 512, frameHeight: 512 },
+    포요몬: { fileName: '포요몬', frameWidth: 512, frameHeight: 512 },
+    푸니몬: { fileName: '푸니몬', frameWidth: 512, frameHeight: 512 },
+    푸르르몬: { fileName: '푸르르몬', frameWidth: 512, frameHeight: 512 },
     푸와몬: { fileName: '푸와몬', frameWidth: 512, frameHeight: 512 },
-    프스몬: { fileName: '프스몬', frameWidth: 349, frameHeight: 378 },
-    하얀몬: { fileName: '하얀몬', frameWidth: 400, frameHeight: 452 },
+    푸티몬: { fileName: '푸티몬', frameWidth: 512, frameHeight: 512 },
+    프스몬: { fileName: '프스몬', frameWidth: 512, frameHeight: 512 },
+    피치몬: { fileName: '피치몬', frameWidth: 512, frameHeight: 512 },
+    하얀몬: { fileName: '하얀몬', frameWidth: 512, frameHeight: 512 },
+  },
+  유년기: {
+    구리몬: { fileName: '구리몬', frameWidth: 512, frameHeight: 512 },
+    구미몬: { fileName: '구미몬', frameWidth: 512, frameHeight: 512 },
+    기기몬: { fileName: '기기몬', frameWidth: 512, frameHeight: 512 },
+    꼬마몬: { fileName: '꼬마몬', frameWidth: 512, frameHeight: 512 },
+    데롱몬: { fileName: '데롱몬', frameWidth: 512, frameHeight: 512 },
+    도리몬: { fileName: '도리몬', frameWidth: 512, frameHeight: 512 },
+    둥실몬: { fileName: '둥실몬', frameWidth: 512, frameHeight: 512 },
+    모티몬: { fileName: '모티몬', frameWidth: 512, frameHeight: 512 },
+    미사일몬: { fileName: '미사일몬', frameWidth: 512, frameHeight: 512 },
+    베이비드몬: { fileName: '베이비드몬', frameWidth: 512, frameHeight: 512 },
+    뿔몬: { fileName: '뿔몬', frameWidth: 512, frameHeight: 512 },
+    시드몬: { fileName: '시드몬', frameWidth: 512, frameHeight: 512 },
+    야몬: { fileName: '야몬', frameWidth: 512, frameHeight: 512 },
+    야옹몬: { fileName: '야옹몬', frameWidth: 512, frameHeight: 512 },
+    어니몬: { fileName: '어니몬', frameWidth: 512, frameHeight: 512 },
+    와냐몬: { fileName: '와냐몬', frameWidth: 512, frameHeight: 512 },
+    우파몬: { fileName: '우파몬', frameWidth: 512, frameHeight: 512 },
+    초코몬: { fileName: '초코몬', frameWidth: 512, frameHeight: 512 },
+    츠메몬: { fileName: '츠메몬', frameWidth: 512, frameHeight: 512 },
+    치치몬: { fileName: '치치몬', frameWidth: 512, frameHeight: 512 },
+    카프리몬: { fileName: '카프리몬', frameWidth: 512, frameHeight: 512 },
+    코로몬: { fileName: '코로몬', frameWidth: 512, frameHeight: 512 },
+    큐피몬: { fileName: '큐피몬', frameWidth: 512, frameHeight: 512 },
+    토코몬: { fileName: '토코몬', frameWidth: 512, frameHeight: 512 },
+    퍼그몬: { fileName: '퍼그몬', frameWidth: 512, frameHeight: 512 },
+    포로몬: { fileName: '포로몬', frameWidth: 512, frameHeight: 512 },
+    포코몬: { fileName: '포코몬', frameWidth: 512, frameHeight: 512 },
+    푸치메라몬: { fileName: '푸치메라몬', frameWidth: 512, frameHeight: 512 },
+    프스리몬: { fileName: '프스리몬', frameWidth: 512, frameHeight: 512 },
+    피나몬: { fileName: '피나몬', frameWidth: 512, frameHeight: 512 },
+    히야리몬: { fileName: '히야리몬', frameWidth: 512, frameHeight: 512 },
+  },
+  성장기: {
+    '가오몬': { fileName: '가오몬', frameWidth: 627, frameHeight: 627 },
+    '가지몬': { fileName: '가지몬', frameWidth: 627, frameHeight: 627 },
+    '감마몬': { fileName: '감마몬', frameWidth: 627, frameHeight: 627 },
+    '고부리몬': { fileName: '고부리몬', frameWidth: 627, frameHeight: 627 },
+    '길몬': { fileName: '길몬', frameWidth: 627, frameHeight: 627 },
+    '도루몬': { fileName: '도루몬', frameWidth: 627, frameHeight: 627 },
+    '드라코몬': { fileName: '드라코몬', frameWidth: 543, frameHeight: 724 },
+    '드라큐몬': { fileName: '드라큐몬', frameWidth: 627, frameHeight: 627 },
+    '라라몬': { fileName: '라라몬', frameWidth: 543, frameHeight: 724 },
+    '레나몬': { fileName: '레나몬', frameWidth: 627, frameHeight: 627 },
+    '로프몬': { fileName: '로프몬', frameWidth: 627, frameHeight: 627 },
+    '루체몬': { fileName: '루체몬', frameWidth: 627, frameHeight: 627 },
+    '류우다몬': { fileName: '류우다몬', frameWidth: 627, frameHeight: 627 },
+    '모노드라몬': { fileName: '모노드라몬', frameWidth: 543, frameHeight: 724 },
+    '모르포몬': { fileName: '모르포몬', frameWidth: 543, frameHeight: 724 },
+    '베타몬': { fileName: '베타몬', frameWidth: 543, frameHeight: 724 },
+    '보보몬': { fileName: '보보몬', frameWidth: 627, frameHeight: 627 },
+    '브이몬': { fileName: '브이몬', frameWidth: 627, frameHeight: 627 },
+    '블루코몬': { fileName: '블루코몬', frameWidth: 543, frameHeight: 724 },
+    '사이케몬': { fileName: '사이케몬', frameWidth: 627, frameHeight: 627 },
+    '샤코몬': { fileName: '샤코몬', frameWidth: 627, frameHeight: 627 },
+    '쉬라몬': { fileName: '쉬라몬', frameWidth: 627, frameHeight: 627 },
+    '스윔몬': { fileName: '스웜몬', frameWidth: 627, frameHeight: 627 },
+    '아구몬(흑)': { fileName: '아구몬(흑)', frameWidth: 627, frameHeight: 627 },
+    '아구몬': { fileName: '아구몬', frameWidth: 543, frameHeight: 724 },
+    '아기벌몬': { fileName: '아기벌몬', frameWidth: 627, frameHeight: 627 },
+    '아르마몬': { fileName: '아르마몬', frameWidth: 627, frameHeight: 627 },
+    '에렉몬': { fileName: '에렉몬', frameWidth: 627, frameHeight: 627 },
+    '에리스몬': { fileName: '에리스몬', frameWidth: 627, frameHeight: 627 },
+    '올챙몬': { fileName: '올챙몬', frameWidth: 627, frameHeight: 627 },
+    '옷코몬': { fileName: '웃코몬', frameWidth: 627, frameHeight: 627 },
+    '울퉁몬': { fileName: '울퉁몬', frameWidth: 627, frameHeight: 627 },
+    '임프몬': { fileName: '임프몬', frameWidth: 627, frameHeight: 627 },
+    '추추몬': { fileName: '추추몬', frameWidth: 543, frameHeight: 724 },
+    '츄카이몬': { fileName: '츄카이몬', frameWidth: 627, frameHeight: 627 },
+    '카메몬': { fileName: '카메몬', frameWidth: 543, frameHeight: 724 },
+    '캔들몬': { fileName: '캔들몬', frameWidth: 627, frameHeight: 627 },
+    '케라몬': { fileName: '케라몬', frameWidth: 627, frameHeight: 627 },
+    '코만드라몬': { fileName: '코만드라몬', frameWidth: 543, frameHeight: 724 },
+    '코스파이더몬': { fileName: '코스파이더몬', frameWidth: 543, frameHeight: 724 },
+    '코테몬': { fileName: '코테몬', frameWidth: 627, frameHeight: 627 },
+    '쿠네몬': { fileName: '쿠네몬', frameWidth: 627, frameHeight: 627 },
+    '쿠다몬': { fileName: '쿠다몬', frameWidth: 627, frameHeight: 627 },
+    '크랩몬': { fileName: '크랩몬', frameWidth: 627, frameHeight: 627 },
+    '테리어몬': { fileName: '테리어몬', frameWidth: 627, frameHeight: 627 },
+    '텐타몬': { fileName: '텐타몬', frameWidth: 543, frameHeight: 724 },
+    '토이아구몬': { fileName: '토이아구몬', frameWidth: 543, frameHeight: 724 },
+    '톱니몬': { fileName: '톱니몬', frameWidth: 543, frameHeight: 724 },
+    '팅커몬': { fileName: '팅커몬', frameWidth: 627, frameHeight: 627 },
+    '파닥몬': { fileName: '파닥몬', frameWidth: 627, frameHeight: 627 },
+    '파피몬(흑)': { fileName: '파피몬(흑)', frameWidth: 627, frameHeight: 627 },
+    '파피몬': { fileName: '파피몬', frameWidth: 627, frameHeight: 627 },
+    '팔몬': { fileName: '팔몬', frameWidth: 627, frameHeight: 627 },
+    '팔코몬': { fileName: '팔코몬', frameWidth: 543, frameHeight: 724 },
+    '펭귄몬': { fileName: '펭귄몬', frameWidth: 627, frameHeight: 627 },
+    '폼몬': { fileName: '폼몬', frameWidth: 627, frameHeight: 627 },
+    '플로라몬': { fileName: '플로라몬', frameWidth: 543, frameHeight: 724 },
+    '플롯트몬': { fileName: '플릇트몬', frameWidth: 543, frameHeight: 724 },
+    '피요몬': { fileName: '피요몬', frameWidth: 627, frameHeight: 627 },
+    '피코데블몬': { fileName: '피코데블몬', frameWidth: 627, frameHeight: 627 },
+    '헉몬': { fileName: '헉몬', frameWidth: 627, frameHeight: 627 },
+    '호크몬': { fileName: '호크몬', frameWidth: 543, frameHeight: 724 },
+    '효코몬': { fileName: '효코몬', frameWidth: 627, frameHeight: 627 },
   },
 }
 
@@ -1295,10 +1398,11 @@ const createShuffledBgmQueue = (previousUrl = null, sourceTracks = bgmTracks) =>
 
 const BackgroundMusic = ({ settings }) => {
   const safeSettings = sanitizeSettings(settings)
+  const initialEnabledTracks = getEnabledBgmTracks(safeSettings)
   const audioRef = useRef(null)
-  const enabledTracksRef = useRef(getEnabledBgmTracks(safeSettings))
+  const enabledTracksRef = useRef(initialEnabledTracks)
   const targetVolumeRef = useRef(getEffectiveBgmVolume(safeSettings))
-  const queueRef = useRef(createShuffledBgmQueue(null, enabledTracksRef.current))
+  const queueRef = useRef(createShuffledBgmQueue(null, initialEnabledTracks))
   const currentTrackRef = useRef(null)
   const fadeFrameRef = useRef(null)
   const hasStartedRef = useRef(false)
@@ -6058,9 +6162,11 @@ function App() {
   const expAnimationTimeoutsRef = useRef([])
   const levelUpStatTimeoutsRef = useRef([])
   const hitEffectTimeoutsRef = useRef([])
+  const battleEffectFrameIdsRef = useRef([])
   const battleLogSequenceTimeoutsRef = useRef([])
   const hitEffectIdRef = useRef(0)
   const combatantEffectAnchorRefs = useRef(new Map())
+  const combatantEffectPointCacheRef = useRef(new Map())
   const capturePreviewTimeoutsRef = useRef([])
   const capturePreviewIdRef = useRef(0)
   const activeCombatantInfoElementRef = useRef(null)
@@ -6126,6 +6232,8 @@ function App() {
   const clearHitEffectQueue = () => {
     hitEffectTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
     hitEffectTimeoutsRef.current = []
+    battleEffectFrameIdsRef.current.forEach((frameId) => window.cancelAnimationFrame(frameId))
+    battleEffectFrameIdsRef.current = []
     setHitEffects([])
     setAttackMotions([])
     setProjectileEffects([])
@@ -6286,17 +6394,39 @@ function App() {
     const fieldElement = element?.closest('.adventure-field')
 
     if (!element || !fieldElement) {
-      return null
+      return combatantEffectPointCacheRef.current.get(combatantId) ?? null
     }
 
     const elementRect = element.getBoundingClientRect()
     const fieldRect = fieldElement.getBoundingClientRect()
 
-    return {
+    const point = {
       x: elementRect.left - fieldRect.left + elementRect.width / 2,
       y: elementRect.top - fieldRect.top + elementRect.height * 0.45,
       headY: elementRect.top - fieldRect.top + elementRect.height * 0.18,
     }
+
+    combatantEffectPointCacheRef.current.set(combatantId, point)
+    return point
+  }
+
+  const runAfterBattleLayout = (callback) => {
+    const firstFrameId = window.requestAnimationFrame(() => {
+      battleEffectFrameIdsRef.current = battleEffectFrameIdsRef.current.filter(
+        (frameId) => frameId !== firstFrameId
+      )
+
+      const secondFrameId = window.requestAnimationFrame(() => {
+        battleEffectFrameIdsRef.current = battleEffectFrameIdsRef.current.filter(
+          (frameId) => frameId !== secondFrameId
+        )
+        callback()
+      })
+
+      battleEffectFrameIdsRef.current.push(secondFrameId)
+    })
+
+    battleEffectFrameIdsRef.current.push(firstFrameId)
   }
 
   const showHitEffect = (effect) => {
@@ -6305,14 +6435,23 @@ function App() {
     }
 
     const hitPoint = getCombatantEffectPoint(effect.targetId)
+    const hitX = hitPoint?.x ?? effect.hitX ?? null
+    const hitY = hitPoint?.y ?? effect.hitY ?? null
+    const damageX = hitPoint?.x ?? effect.damageX ?? effect.hitX ?? null
+    const damageY = hitPoint?.headY ?? effect.damageY ?? effect.hitY ?? hitY
+
+    if (!Number.isFinite(hitX) || !Number.isFinite(hitY)) {
+      return
+    }
+
     hitEffectIdRef.current += 1
     const stampedEffect = {
       ...effect,
       id: `${effect.targetId}-${hitEffectIdRef.current}`,
-      hitX: hitPoint?.x ?? effect.hitX ?? null,
-      hitY: hitPoint?.y ?? effect.hitY ?? null,
-      damageX: hitPoint?.x ?? effect.damageX ?? effect.hitX ?? null,
-      damageY: hitPoint?.headY ?? effect.damageY ?? effect.hitY ?? null,
+      hitX,
+      hitY,
+      damageX,
+      damageY,
     }
 
     setHitEffects((current) => [...current, stampedEffect].slice(-8))
@@ -7059,16 +7198,22 @@ function App() {
       syncPartyMember(currentGameState.party, currentPlayer)
     )
     const nextParty = eggProgressResult.nextParty
+    const preferredActiveAllyIds = [
+      currentPlayer?.id,
+      ...(currentGameState.activeAllyIds ?? []),
+    ].filter(Boolean)
     const nextActiveAllyIds = getActiveAllyIdsForParty(
       nextParty,
-      [],
+      preferredActiveAllyIds,
       getBattleAllyLimit({
         encounterCount,
         enemies: newEnemies,
       })
     )
     const nextPlayer =
-      getFirstLivingPartyMember(nextParty, nextActiveAllyIds) ?? currentPlayer
+      getCombatantById(nextParty, currentPlayer?.id) ??
+      getFirstLivingPartyMember(nextParty, nextActiveAllyIds) ??
+      currentPlayer
 
     const nextGameState = {
       ...currentGameState,
@@ -7508,6 +7653,8 @@ function App() {
     () => () => {
       expAnimationTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
       levelUpStatTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
+      hitEffectTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
+      battleEffectFrameIdsRef.current.forEach((frameId) => window.cancelAnimationFrame(frameId))
       battleLogSequenceTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
       clearCapturePreviewTimeouts()
     },
@@ -7915,28 +8062,47 @@ function App() {
       setGameState(switchedGameState)
       setSelectedBattleCommand('swap')
       setSelectedEnemyTargetId(null)
+      setBattlePanelMode('logs')
 
-      runAfterBattleAttackEffects(turnResult.hitEffects, () => {
-        finishResolvedTurn({
-          nextParty: turnResult.nextParty,
-          nextEnemies: turnResult.nextEnemies,
-          logs: presentedLogs,
-          skillLearnEvents: turnResult.skillLearnEvents,
-          preferredActiveAllyIds: nextActiveAllyIds,
-          alreadyPresentedLogCount: presentedLogs.length,
-        })
-      }, { logs: presentedLogs })
+      runAfterBattleLayout(() => {
+        runAfterBattleAttackEffects(turnResult.hitEffects, () => {
+          finishResolvedTurn({
+            nextParty: turnResult.nextParty,
+            nextEnemies: turnResult.nextEnemies,
+            logs: presentedLogs,
+            skillLearnEvents: turnResult.skillLearnEvents,
+            preferredActiveAllyIds: nextActiveAllyIds,
+            alreadyPresentedLogCount: presentedLogs.length,
+          })
+        }, { logs: presentedLogs })
+      })
       return
     }
 
-    finishBattleAction({
-      nextParty: battleContext.party,
-      nextEnemies: gameState.enemies,
-      logs: switchLogs,
-      actedAllyId: nextPlayer.id,
-      preferredActiveAllyIds: nextActiveAllyIds,
+    setGameState({
+      ...gameState,
+      player: nextPlayer,
+      party: battleContext.party,
+      activeAllyIds: nextActiveAllyIds,
+      actingAllyId: nextPlayer.id,
+      actedAllyIds: Array.from(
+        new Set([...(gameState.actedAllyIds ?? []), nextPlayer.id].filter(Boolean))
+      ),
+      pendingAllyActions: [],
     })
-    setSelectedBattleCommand('attack')
+    setSelectedBattleCommand('swap')
+    setSelectedEnemyTargetId(null)
+    setBattlePanelMode('logs')
+
+    runAfterBattleLayout(() => {
+      finishBattleAction({
+        nextParty: battleContext.party,
+        nextEnemies: gameState.enemies,
+        logs: switchLogs,
+        actedAllyId: nextPlayer.id,
+        preferredActiveAllyIds: nextActiveAllyIds,
+      })
+    })
   }
 
   const getRewardItemBySource = (source, itemId) =>
