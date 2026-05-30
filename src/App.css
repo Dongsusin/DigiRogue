@@ -3681,7 +3681,7 @@
 
 .combatant-info__identity {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto auto auto;
+  grid-template-columns: minmax(0, 1fr) repeat(5, auto);
   gap: 4px;
   align-items: center;
   min-width: 0;
@@ -3702,6 +3702,15 @@
 .combatant-info__name {
   color: #ffffff;
   font-size: 0.7rem;
+}
+
+.combatant-info__status {
+  max-width: 58px;
+  padding: 2px 5px 1px;
+  overflow: hidden;
+  font-size: 0.5rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .combatant-info__pill,
