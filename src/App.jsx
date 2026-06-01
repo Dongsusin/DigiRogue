@@ -2998,6 +2998,512 @@ const hitEffectAttributeClassMap = {
 const getHitEffectAttributeClass = (attribute) =>
   hitEffectAttributeClassMap[String(attribute ?? '무').trim()] ?? 'neutral'
 
+const babySkillVisualEffectClassMap = {
+  '글레어 아이': 'baby-glare-eye',
+  '다이아몬드 더스트': 'baby-diamond-dust',
+  '독성 거품': 'baby-toxic-bubbles',
+  '뜨거운 숨결': 'baby-hot-breath',
+  변신: 'baby-metamorphosis',
+  '비누 거품': 'baby-soap-bubbles',
+  '산성 거품': 'baby-acid-bubbles',
+  스모크: 'baby-smoke',
+  '시드 크래커': 'baby-seed-cracker',
+  '엔젤 더스트': 'baby-angel-dust',
+  '열기를 띤 거품': 'baby-heated-bubbles',
+  '작은 쇳가루': 'baby-metal-filings',
+  '재밍 파우더': 'baby-jamming-powder',
+  '점성 거품': 'baby-sticky-bubbles',
+  '푸와 페더': 'baby-puwa-feather',
+  '버블 봄': 'baby-bubble-bomb',
+  푸슈: 'baby-pushu',
+  '아기 젖꼭지': 'baby-pacifier',
+}
+
+const childSkillVisualEffectClassMap = {
+  거품: 'child-bubbles',
+  '공기 거품': 'child-air-bubble',
+  꼬마불꽃주먹: 'child-flame-fist',
+  '네일 스크래치': 'child-nail-scratch',
+  '더블 버블': 'child-double-bubble',
+  '따끔따끔 스파크': 'child-prickly-spark',
+  '메탈 드롭': 'child-metal-drop',
+  물어뜯기: 'child-bite',
+  살생석: 'child-killing-stone',
+  '샤본 플라워': 'child-shabon-flower',
+  '쇼크 샤우트': 'child-shock-shout',
+  '스마일 팡': 'child-smile-fang',
+  '신축성 거품': 'child-elastic-bubble',
+  '엔젤 링': 'child-angel-ring',
+  파인콘: 'child-pinecone',
+  '포로로 브리즈': 'child-pororo-breeze',
+  '폭스 테일': 'child-fox-tail',
+  '하울링 헤르츠': 'child-howling-hertz',
+  '핫 가스': 'child-hot-gas',
+  '핫 바이트': 'child-hot-bite',
+  '홉 어택': 'child-hop-attack',
+  '뾰족뾰족 어택': 'child-spiky-attack',
+  '미사일 크래시': 'child-missile-crash',
+  '페인트 스플레시': 'child-paint-splash',
+  삐약삐약: 'child-peep',
+  '따끔따끔 롤링': 'child-prickly-rolling',
+}
+
+const stageSkillVisualEffectLookup = new Map(
+  [
+    ...growthSkillData.map((skillData) => [
+      skillData.기술명,
+      { skillData, stage: 'rookie' },
+    ]),
+    ...matureSkillData.map((skillData) => [
+      skillData.기술명,
+      { skillData, stage: 'mature' },
+    ]),
+  ].filter(([skillName]) => Boolean(skillName))
+)
+
+const stageSkillAttributeMotifMap = {
+  화염: 'flame',
+  불: 'flame',
+  번개: 'electric',
+  전기: 'electric',
+  물: 'water',
+  얼음: 'ice',
+  바람: 'wind',
+  나무: 'plant',
+  풀: 'plant',
+  강철: 'metal',
+  금속: 'metal',
+  흙: 'rock',
+  땅: 'rock',
+  빛: 'summon',
+  어둠: 'nightmare',
+}
+
+const stageSkillMotifConfigMap = {
+  blast: { hue: 210, secondaryHue: 35, width: 38, height: 38, radius: '50%' },
+  bite: { hue: 24, secondaryHue: 44, width: 46, height: 30, radius: '52% 48% 46% 54%' },
+  bubble: { hue: 190, secondaryHue: 165, width: 44, height: 34, radius: '58% 42% 62% 38%' },
+  color: { hue: 312, secondaryHue: 54, width: 48, height: 32, radius: '50%' },
+  electric: { hue: 55, secondaryHue: 188, width: 52, height: 24, radius: '4px' },
+  feather: { hue: 150, secondaryHue: 190, width: 58, height: 20, radius: '100% 8% 100% 8%' },
+  fist: { hue: 28, secondaryHue: 7, width: 46, height: 32, radius: '62% 38% 58% 42%' },
+  flame: { hue: 18, secondaryHue: 45, width: 48, height: 34, radius: '60% 42% 58% 42%' },
+  guard: { hue: 205, secondaryHue: 48, width: 42, height: 42, radius: '24% 24% 46% 46%' },
+  horn: { hue: 42, secondaryHue: 15, width: 46, height: 34, radius: '50% 12% 50% 12%' },
+  ice: { hue: 198, secondaryHue: 220, width: 34, height: 52, radius: '8px' },
+  metal: { hue: 208, secondaryHue: 218, width: 52, height: 26, radius: '12px' },
+  nightmare: { hue: 265, secondaryHue: 320, width: 46, height: 34, radius: '50%' },
+  plant: { hue: 112, secondaryHue: 56, width: 44, height: 30, radius: '70% 8% 70% 8%' },
+  powder: { hue: 55, secondaryHue: 130, width: 48, height: 32, radius: '50%' },
+  rock: { hue: 32, secondaryHue: 18, width: 38, height: 34, radius: '26% 48% 32% 52%' },
+  roll: { hue: 210, secondaryHue: 56, width: 44, height: 44, radius: '50%' },
+  shell: { hue: 176, secondaryHue: 214, width: 48, height: 34, radius: '24% 54% 34% 54%' },
+  slash: { hue: 210, secondaryHue: 35, width: 58, height: 22, radius: '4px' },
+  sound: { hue: 52, secondaryHue: 198, width: 62, height: 38, radius: '50%' },
+  summon: { hue: 48, secondaryHue: 272, width: 48, height: 48, radius: '50%' },
+  thread: { hue: 160, secondaryHue: 210, width: 58, height: 22, radius: '999px' },
+  water: { hue: 194, secondaryHue: 218, width: 52, height: 28, radius: '999px' },
+  wind: { hue: 172, secondaryHue: 205, width: 64, height: 20, radius: '999px' },
+}
+
+const stageSkillStageConfigMap = {
+  rookie: {
+    hueOffset: 0,
+    secondaryHueOffset: 0,
+    widthBoost: 0,
+    heightBoost: 0,
+    accentBoost: 0,
+  },
+  mature: {
+    hueOffset: 14,
+    secondaryHueOffset: 18,
+    widthBoost: 14,
+    heightBoost: 10,
+    accentBoost: 6,
+  },
+}
+
+const stageSkillMotifRules = [
+  {
+    motif: 'nightmare',
+    patterns: [
+      '나이트메어',
+      '드림',
+      '디 ･ 슈르넨',
+      '아이 오브',
+      '다크',
+      '데스',
+      '데빌',
+      '데들리',
+      '헬즈',
+      '공포',
+      '최면',
+      '미드나이트',
+      '셰이드',
+      '섀도',
+      '죽음',
+    ],
+  },
+  {
+    motif: 'flame',
+    patterns: [
+      '파이어',
+      '플레임',
+      '불꽃',
+      '화염',
+      '토이 플레임',
+      '볼케이노',
+      '메가파이어',
+      '메가화염',
+      '불 뿜기',
+      '불타는',
+      '호염룡',
+      '페트라 파이어',
+      '푸른화염포',
+      '아나키스트 플레임',
+      '파이어 페더',
+      '블루 플레어',
+      '화염볼',
+      '매드니스 파이어',
+      '이그저스트 플레임',
+      '도깨비 불',
+    ],
+  },
+  {
+    motif: 'electric',
+    patterns: [
+      '썬더',
+      '전기',
+      '라이트닝',
+      '스파크',
+      '쇼크',
+      '침봉',
+      '기어 스팅거',
+      '번개',
+      '번쩍',
+      '볼트',
+      '스턴',
+      '블리츠크리그',
+    ],
+  },
+  { motif: 'ice', patterns: ['아이스', '헤일', '빙빙', '블레이징', '얼음', '영도'] },
+  {
+    motif: 'wind',
+    patterns: [
+      '타이푼',
+      '트위스터',
+      '회오리',
+      '폭풍',
+      '선풍',
+      '윙',
+      '게일',
+      '진공',
+      '카마이타치',
+      '수리검 날개',
+      '메테오 윙',
+      '유성 폭풍',
+    ],
+  },
+  { motif: 'feather', patterns: ['깃털', '날개', '부리', '팔코', '플롯트'] },
+  {
+    motif: 'plant',
+    patterns: [
+      '넛츠',
+      '시드',
+      '아이비',
+      '대나무',
+      '프루츠',
+      '호엽',
+      '라라',
+      '브랜치',
+      '선인장',
+      '홍당무',
+      '리프',
+      '태양 광선',
+    ],
+  },
+  {
+    motif: 'powder',
+    patterns: [
+      '꽃가루',
+      '파우더',
+      '자장가',
+      '치즈',
+      '더스트',
+      '참',
+      '판타지아',
+      '미러 더스트',
+      '드림 더스트',
+      '스마일리',
+    ],
+  },
+  { motif: 'thread', patterns: ['그물', '실크', '스레드', '전기 실'] },
+  {
+    motif: 'metal',
+    patterns: [
+      '메탈',
+      '캐논',
+      '톱니',
+      'M16',
+      'DCD',
+      '포인터',
+      '기어',
+      '레이저',
+      '스틸',
+      '아이언',
+      '틴',
+      '그레네이드',
+      '드릴',
+      '스나이프',
+      '스카우터',
+      '파워 메탈',
+      '팡팡레이저',
+      '파괴',
+      '디스트럭션',
+      '디스트로이',
+    ],
+  },
+  { motif: 'bubble', patterns: ['버블', '거품'] },
+  {
+    motif: 'water',
+    patterns: [
+      '워터',
+      '물고기',
+      '스크류',
+      '테일',
+      '핀',
+      '브라인',
+      '러시',
+      '아쿠아',
+      '넵튠',
+      '프레셔',
+    ],
+  },
+  {
+    motif: 'rock',
+    patterns: [
+      '록',
+      '돌',
+      '폭탄',
+      '크랙',
+      '퀘이크',
+      '본',
+      '보머',
+      '응가',
+      '덩크',
+      '투척',
+    ],
+  },
+  {
+    motif: 'slash',
+    patterns: [
+      '시클',
+      '검',
+      '블레이드',
+      '슬래시',
+      '절공참',
+      '구렬공참',
+      '수아란격',
+      '제비',
+      '비검',
+      '크림슨',
+      '엣지',
+    ],
+  },
+  {
+    motif: 'bite',
+    patterns: [
+      '바이트',
+      '송곳니',
+      '팡',
+      '클로',
+      '스크래치',
+      '네일',
+      '주사기',
+      '크런치',
+      '물어뜯기',
+      '크로우',
+      '스컬',
+    ],
+  },
+  { motif: 'horn', patterns: ['호른', '투구', '램', '뿔', '대뿔', '트러스트'] },
+  { motif: 'guard', patterns: ['등껍질', '가드', '철갑', '미러 가드'] },
+  { motif: 'roll', patterns: ['회전', '구르기', '빙빙'] },
+  { motif: 'roll', patterns: ['스핀', '스피닝', '풀 스로틀'] },
+  {
+    motif: 'fist',
+    patterns: [
+      '주먹',
+      '펀치',
+      '백핸드',
+      '때리기',
+      '태클',
+      '헤딩',
+      '다이브',
+      '가르기',
+      '베기',
+      '권',
+      '너클',
+      '핸드',
+      '슬랩',
+      '배싱',
+      '블로',
+      '임팩트',
+      '내려치기',
+      '망치',
+      '차지',
+    ],
+  },
+  {
+    motif: 'sound',
+    patterns: [
+      '외침',
+      '친구',
+      '공기 팡',
+      '호변허',
+      '호엽설',
+      '포효',
+      '하울링',
+      '레름',
+      '로어',
+      '에코',
+      '심포니',
+    ],
+  },
+  {
+    motif: 'summon',
+    patterns: [
+      '그랜드 크로스',
+      '서몬',
+      '이합도',
+      '절광충',
+      '트리플렉스 포스',
+      '헤븐즈',
+      '솔 샷',
+      '솔 블로',
+      '트윙클',
+      '광선',
+    ],
+  },
+  { motif: 'color', patterns: ['컬러풀', '화려', '원색'] },
+]
+
+const stageSkillVisualEffectProfileCache = new Map()
+
+const getPositiveStringHash = (value) => {
+  let hash = 0
+  for (const character of String(value ?? '')) {
+    hash = (hash * 31 + character.codePointAt(0)) >>> 0
+  }
+  return hash
+}
+
+const createHslColor = (hue, saturation = 82, lightness = 62, alpha = 1) =>
+  `hsl(${Math.round(hue % 360)} ${saturation}% ${lightness}% / ${alpha})`
+
+const getStageSkillMotif = (skillName, skillData) => {
+  const normalizedSkillName = String(skillName ?? '').trim()
+  const matchedRule = stageSkillMotifRules.find((rule) =>
+    rule.patterns.some((pattern) => normalizedSkillName.includes(pattern))
+  )
+
+  if (matchedRule) {
+    return matchedRule.motif
+  }
+
+  return stageSkillAttributeMotifMap[String(skillData?.속성 ?? '').trim()] ?? 'blast'
+}
+
+const getStageSkillVisualEffectProfile = (skillName) => {
+  const normalizedSkillName = String(skillName ?? '').trim()
+  const skillEntry = stageSkillVisualEffectLookup.get(normalizedSkillName)
+  const skillData = skillEntry?.skillData
+
+  if (!skillData) {
+    return null
+  }
+
+  const cachedProfile = stageSkillVisualEffectProfileCache.get(normalizedSkillName)
+  if (cachedProfile) {
+    return cachedProfile
+  }
+
+  const stageConfig =
+    stageSkillStageConfigMap[skillEntry.stage] ?? stageSkillStageConfigMap.rookie
+  const motif = getStageSkillMotif(normalizedSkillName, skillData)
+  const config = stageSkillMotifConfigMap[motif] ?? stageSkillMotifConfigMap.blast
+  const hash = getPositiveStringHash(normalizedSkillName)
+  const hueShift = (hash % 31) - 15 + stageConfig.hueOffset
+  const secondaryShift = ((hash >>> 5) % 45) - 22 + stageConfig.secondaryHueOffset
+  const sizeShift = (hash % 5) * 2
+  const width = config.width + sizeShift + stageConfig.widthBoost
+  const height = config.height + ((hash >>> 3) % 5) * 2 + stageConfig.heightBoost
+  const accentDistance = 22 + (hash % 10) + stageConfig.accentBoost
+  const rotate = ((hash >>> 7) % 56) - 28
+  const slug = `r${hash.toString(36)}`
+  const stageSpecificClassNames =
+    skillEntry.stage === 'mature'
+      ? ['skill-vfx--mature', `skill-vfx--mature-${motif}`, `skill-vfx--mature-${slug}`]
+      : [`skill-vfx--rookie-${slug}`]
+  const profile = {
+    className: ['skill-vfx--rookie', `skill-vfx--rookie-${motif}`, ...stageSpecificClassNames]
+      .filter(Boolean)
+      .join(' '),
+    style: {
+      '--rookie-primary': createHslColor(config.hue + hueShift),
+      '--rookie-secondary': createHslColor(config.secondaryHue + secondaryShift, 88, 66),
+      '--rookie-accent': createHslColor(config.hue + 58 + hueShift, 94, 74),
+      '--rookie-projectile-width': `clamp(${Math.max(24, width - 14)}px, ${(width / 12).toFixed(2)}vw, ${width + 12}px)`,
+      '--rookie-projectile-height': `clamp(${Math.max(18, height - 10)}px, ${(height / 12).toFixed(2)}vw, ${height + 10}px)`,
+      '--rookie-radius': config.radius,
+      '--rookie-rotate': `${rotate}deg`,
+      '--rookie-accent-a-x': `${-accentDistance}px`,
+      '--rookie-accent-a-y': `${-12 - ((hash >>> 4) % 12)}px`,
+      '--rookie-accent-b-x': `${14 + ((hash >>> 8) % 16)}px`,
+      '--rookie-accent-b-y': `${-8 + ((hash >>> 2) % 18)}px`,
+      '--rookie-accent-c-x': `${-6 + ((hash >>> 6) % 14)}px`,
+      '--rookie-accent-c-y': `${18 + ((hash >>> 10) % 14)}px`,
+      '--rookie-hit-rotate': `${rotate * -1}deg`,
+    },
+  }
+
+  stageSkillVisualEffectProfileCache.set(normalizedSkillName, profile)
+  return profile
+}
+
+const skillVisualEffectClassMap = {
+  ...babySkillVisualEffectClassMap,
+  ...childSkillVisualEffectClassMap,
+}
+
+const getSkillVisualEffectClass = (skillName) => {
+  const normalizedSkillName = String(skillName ?? '').trim()
+  const visualEffectClass = skillVisualEffectClassMap[normalizedSkillName]
+
+  if (!visualEffectClass) {
+    return getStageSkillVisualEffectProfile(normalizedSkillName)?.className ?? ''
+  }
+
+  return visualEffectClass ? `skill-vfx--${visualEffectClass}` : ''
+}
+
+const getSkillVisualEffectStyle = (skillName) =>
+  getStageSkillVisualEffectProfile(skillName)?.style ?? null
+
+const mergeEffectStyles = (...styles) => {
+  const mergedStyle = styles.reduce(
+    (result, style) => (style ? { ...result, ...style } : result),
+    {}
+  )
+
+  return Object.keys(mergedStyle).length > 0 ? mergedStyle : undefined
+}
+
+const getAttackMotionStyle = (attackMotion) =>
+  Number.isFinite(attackMotion?.lungeDistance)
+    ? { '--attack-lunge-distance': `${attackMotion.lungeDistance}px` }
+    : undefined
+
 const isSpecialAttackCategory = (category) => category === '특수형' || category === '마법'
 
 const getHitEffectClassName = (effect) =>
@@ -3005,6 +3511,7 @@ const getHitEffectClassName = (effect) =>
     'hit-effect',
     `hit-effect--${getHitEffectAttributeClass(effect?.attribute)}`,
     isSpecialAttackCategory(effect?.category) ? 'hit-effect--special' : 'hit-effect--physical',
+    getSkillVisualEffectClass(effect?.skillName),
   ]
     .filter(Boolean)
     .join(' ')
@@ -3014,6 +3521,7 @@ const getProjectileEffectClassName = (effect) =>
     'skill-projectile',
     `skill-projectile--${getHitEffectAttributeClass(effect?.attribute)}`,
     isSpecialAttackCategory(effect?.category) ? 'skill-projectile--special' : 'skill-projectile--physical',
+    getSkillVisualEffectClass(effect?.skillName),
   ]
     .filter(Boolean)
     .join(' ')
@@ -6718,12 +7226,18 @@ function App() {
     }
   }
 
-  const getCombatantEffectPoint = (combatantId) => {
+  const getCombatantEffectPoint = (combatantId, { preferCached = false } = {}) => {
+    const cachedPoint = combatantEffectPointCacheRef.current.get(combatantId)
+
+    if (preferCached && cachedPoint) {
+      return cachedPoint
+    }
+
     const element = combatantEffectAnchorRefs.current.get(combatantId)
     const fieldElement = element?.closest('.adventure-field')
 
     if (!element || !fieldElement) {
-      return combatantEffectPointCacheRef.current.get(combatantId) ?? null
+      return cachedPoint ?? null
     }
 
     const elementRect = element.getBoundingClientRect()
@@ -6733,6 +7247,7 @@ function App() {
       x: elementRect.left - fieldRect.left + elementRect.width / 2,
       y: elementRect.top - fieldRect.top + elementRect.height * 0.45,
       headY: elementRect.top - fieldRect.top + elementRect.height * 0.18,
+      fieldCenterX: fieldRect.width / 2,
     }
 
     combatantEffectPointCacheRef.current.set(combatantId, point)
@@ -6862,14 +7377,33 @@ function App() {
       return getGameDuration(baseDuration)
     }
 
+    const getPhysicalAttackLungeDistance = (effect) => {
+      const attackerPoint = getCombatantEffectPoint(effect.attackerId, { preferCached: true })
+      const targetPoint = getCombatantEffectPoint(effect.targetId)
+      const fallbackCenterX =
+        attackerPoint && targetPoint ? (attackerPoint.x + targetPoint.x) / 2 : null
+      const centerX = Number.isFinite(attackerPoint?.fieldCenterX)
+        ? attackerPoint.fieldCenterX
+        : fallbackCenterX
+
+      if (!attackerPoint || !Number.isFinite(centerX)) {
+        return null
+      }
+
+      const distance = Math.abs(centerX - attackerPoint.x)
+      return Number.isFinite(distance) && distance > 0 ? Math.round(Math.max(72, distance)) : null
+    }
+
     validEffects.forEach((effect, index) => {
       const startTimeoutId = window.setTimeout(() => {
         hitEffectIdRef.current += 1
         const effectId = `${effect.targetId}-${hitEffectIdRef.current}`
         const isPhysical = effect.category === '물리형' || effect.category === '물리'
+        const lungeDistance = isPhysical ? getPhysicalAttackLungeDistance(effect) : null
         const motionEffect = {
           ...effect,
           id: effectId,
+          ...(Number.isFinite(lungeDistance) ? { lungeDistance } : {}),
         }
 
         if (isPhysical) {
@@ -9348,15 +9882,20 @@ function App() {
       <span key={effect.id} className="battle-hit-feedback" aria-hidden="true">
         <span
           className={getHitEffectClassName(effect)}
-          style={
+          style={mergeEffectStyles(
+            getSkillVisualEffectStyle(effect?.skillName),
             Number.isFinite(effect.hitX) && Number.isFinite(effect.hitY)
               ? {
                   '--hit-x': `${effect.hitX}px`,
                   '--hit-y': `${effect.hitY}px`,
                 }
-              : undefined
-          }
-        />
+              : null
+          )}
+        >
+          <span className="hit-effect__accent hit-effect__accent--a" />
+          <span className="hit-effect__accent hit-effect__accent--b" />
+          <span className="hit-effect__accent hit-effect__accent--c" />
+        </span>
         {Number.isFinite(effect.damage) && effect.damage > 0 ? (
           <span
             className={[
@@ -9990,8 +10529,9 @@ function App() {
                                 ? 'adventure-player__sprite-wrap--info-open'
                                 : '',
                             ]
-                              .filter(Boolean)
-                              .join(' ')}
+                            .filter(Boolean)
+                            .join(' ')}
+                            style={getAttackMotionStyle(allyAttackMotion)}
                             ref={setCombatantEffectAnchorRef(ally.id)}
                             tabIndex={0}
                             aria-label={`${ally.name} 상세 정보`}
@@ -10125,8 +10665,9 @@ function App() {
                                 ? 'adventure-player__sprite-wrap--info-open'
                                 : '',
                             ]
-                              .filter(Boolean)
-                              .join(' ')}
+                            .filter(Boolean)
+                            .join(' ')}
+                            style={getAttackMotionStyle(enemyAttackMotion)}
                             ref={setCombatantEffectAnchorRef(enemy.id)}
                             tabIndex={hasDigimonDetector ? 0 : undefined}
                             aria-label={`${enemy.name} 상세 정보`}
@@ -10262,9 +10803,13 @@ function App() {
                           '--projectile-start-y': `${effect.startY}px`,
                           '--projectile-end-x': `${effect.endX}px`,
                           '--projectile-end-y': `${effect.endY}px`,
+                          ...getSkillVisualEffectStyle(effect?.skillName),
                         }}
                       >
                         <span className="skill-projectile__core" />
+                        <span className="skill-projectile__accent skill-projectile__accent--a" />
+                        <span className="skill-projectile__accent skill-projectile__accent--b" />
+                        <span className="skill-projectile__accent skill-projectile__accent--c" />
                       </span>
                     ))}
                   </div>

@@ -3151,7 +3151,7 @@
 }
 
 .adventure-player__sprite-wrap--attacking {
-  --attack-lunge-distance: clamp(42px, 6vw, 104px);
+  --attack-lunge-distance: clamp(96px, 22vw, 420px);
   z-index: 9;
   animation-duration: var(--attack-motion-duration, 760ms);
   animation-timing-function: cubic-bezier(0.18, 0.92, 0.28, 1);
@@ -3185,6 +3185,7 @@
 .skill-projectile {
   --projectile-color: #f8f4e8;
   --projectile-secondary: #8bd7ff;
+  --projectile-global-scale: 1.18;
   --projectile-start-x: 0px;
   --projectile-start-y: 0px;
   --projectile-end-x: 0px;
@@ -3203,8 +3204,8 @@
   left: 50%;
   top: 50%;
   display: block;
-  width: clamp(15px, 2vw, 26px);
-  height: clamp(15px, 2vw, 26px);
+  width: clamp(20px, 2.6vw, 34px);
+  height: clamp(20px, 2.6vw, 34px);
   border-radius: 50%;
   background:
     radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.98) 0 14%, transparent 15%),
@@ -3351,6 +3352,1188 @@
   --projectile-secondary: #b8c4d8;
 }
 
+.skill-projectile__accent {
+  --accent-x: 0px;
+  --accent-y: 0px;
+  --accent-rotate: 0deg;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+  width: clamp(7px, 1vw, 13px);
+  height: clamp(7px, 1vw, 13px);
+  border-radius: 50%;
+  background: var(--projectile-secondary);
+  opacity: 0;
+  pointer-events: none;
+  transform:
+    translate(calc(-50% + var(--accent-x)), calc(-50% + var(--accent-y)))
+    rotate(var(--accent-rotate));
+}
+
+.skill-projectile__accent--a {
+  --accent-x: -16px;
+  --accent-y: -8px;
+}
+
+.skill-projectile__accent--b {
+  --accent-x: -6px;
+  --accent-y: 11px;
+}
+
+.skill-projectile__accent--c {
+  --accent-x: 14px;
+  --accent-y: -4px;
+}
+
+.skill-projectile:is([class*='skill-vfx--baby-'], [class*='skill-vfx--child-'], .skill-vfx--rookie) .skill-projectile__accent {
+  opacity: 0.88;
+  animation: babyProjectileAccentPulse var(--projectile-effect-duration, 620ms) ease-out both;
+}
+
+.skill-vfx--baby-glare-eye {
+  --projectile-color: #9ef8ff;
+  --projectile-secondary: #5f4fff;
+  --hit-color: #9ef8ff;
+  --hit-secondary: #9a6bff;
+}
+
+.skill-vfx--baby-glare-eye .skill-projectile__core {
+  width: clamp(28px, 3.4vw, 44px);
+  height: clamp(16px, 2vw, 26px);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, #110f2f 0 14%, #f6ffff 15% 18%, #42f2ff 19% 31%, transparent 32%),
+    radial-gradient(ellipse at 50% 48%, rgba(255, 255, 255, 0.96) 0 18%, rgba(136, 255, 255, 0.72) 19% 55%, rgba(57, 39, 152, 0.76) 56% 72%, transparent 73%);
+  box-shadow: inset 0 -3px 0 rgba(31, 22, 90, 0.58);
+}
+
+.skill-vfx--baby-glare-eye .skill-projectile__core::before {
+  inset: 36% 92% 36% -145%;
+  background: linear-gradient(90deg, transparent, rgba(96, 244, 255, 0.84), transparent);
+}
+
+.skill-vfx--baby-glare-eye .skill-projectile__core::after {
+  inset: -42% -18%;
+  border-color: rgba(160, 252, 255, 0.7);
+  border-radius: 50%;
+}
+
+.skill-vfx--baby-glare-eye .skill-projectile__accent {
+  width: 4px;
+  height: 4px;
+  background: #e4fbff;
+  box-shadow: 0 0 9px #6df6ff;
+}
+
+.skill-vfx--baby-diamond-dust {
+  --projectile-color: #dff9ff;
+  --projectile-secondary: #67b7ff;
+  --hit-color: #dff9ff;
+  --hit-secondary: #78c7ff;
+}
+
+.skill-vfx--baby-diamond-dust .skill-projectile__core {
+  width: clamp(18px, 2.2vw, 30px);
+  height: clamp(24px, 2.8vw, 40px);
+  border-radius: 4px;
+  clip-path: polygon(50% 0, 86% 28%, 66% 100%, 34% 100%, 14% 28%);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(170, 235, 255, 0.82) 42%, rgba(81, 143, 255, 0.78));
+}
+
+.skill-vfx--baby-diamond-dust .skill-projectile__core::before {
+  inset: 44% 86% 44% -160%;
+  background: linear-gradient(90deg, transparent, rgba(220, 250, 255, 0.9));
+}
+
+.skill-vfx--baby-diamond-dust .skill-projectile__core::after,
+.skill-vfx--baby-diamond-dust .skill-projectile__accent {
+  border-radius: 3px;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+
+.skill-vfx--baby-toxic-bubbles {
+  --projectile-color: #d15bff;
+  --projectile-secondary: #6af07a;
+  --hit-color: #d15bff;
+  --hit-secondary: #70f678;
+}
+
+.skill-vfx--baby-toxic-bubbles .skill-projectile__core {
+  background:
+    radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.86) 0 10%, transparent 11%),
+    radial-gradient(circle at 68% 70%, rgba(110, 255, 91, 0.92) 0 9%, transparent 10%),
+    radial-gradient(circle, rgba(128, 30, 170, 0.88) 0 38%, rgba(202, 78, 255, 0.72) 60%, rgba(104, 241, 107, 0.6) 73%, transparent 75%);
+}
+
+.skill-vfx--baby-toxic-bubbles .skill-projectile__accent {
+  background: radial-gradient(circle, #8bff70 0 42%, #a63dca 44% 72%, transparent 73%);
+}
+
+.skill-vfx--baby-hot-breath {
+  --projectile-color: #ff9152;
+  --projectile-secondary: #ffe39a;
+  --hit-color: #ff9152;
+  --hit-secondary: #ffe39a;
+}
+
+.skill-vfx--baby-hot-breath .skill-projectile__core {
+  width: clamp(38px, 4.6vw, 64px);
+  height: clamp(15px, 1.8vw, 24px);
+  border-radius: 999px 54% 54% 999px;
+  background:
+    linear-gradient(90deg, transparent 0 6%, rgba(255, 255, 255, 0.88) 19%, #ffe39a 40%, #ff8a43 72%, rgba(255, 71, 40, 0.1));
+}
+
+.skill-vfx--baby-hot-breath .skill-projectile__core::after {
+  inset: -44% -14%;
+  border: 0;
+  background: radial-gradient(ellipse at 72% 50%, rgba(255, 91, 45, 0.7), transparent 64%);
+  filter: blur(3px);
+}
+
+.skill-vfx--baby-metamorphosis {
+  --projectile-color: #f5e8ff;
+  --projectile-secondary: #8a67ff;
+  --hit-color: #f5e8ff;
+  --hit-secondary: #8a67ff;
+}
+
+.skill-vfx--baby-metamorphosis .skill-projectile__core {
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 66% 34%, rgba(39, 25, 91, 0.96) 0 30%, transparent 31%),
+    radial-gradient(circle at 47% 48%, #fff8d8 0 42%, #bd9cff 58%, transparent 70%);
+}
+
+.skill-vfx--baby-metamorphosis .skill-projectile__core::after {
+  inset: -52%;
+  border: 1px dashed rgba(255, 248, 216, 0.72);
+  border-radius: 50%;
+}
+
+.skill-vfx--baby-soap-bubbles {
+  --projectile-color: #dffaff;
+  --projectile-secondary: #8ee7ff;
+  --hit-color: #dffaff;
+  --hit-secondary: #8ee7ff;
+}
+
+.skill-vfx--baby-soap-bubbles .skill-projectile__core {
+  background:
+    radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.94) 0 12%, transparent 13%),
+    radial-gradient(circle at 68% 70%, rgba(255, 187, 243, 0.42) 0 18%, transparent 19%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.18) 0 42%, rgba(144, 232, 255, 0.48) 55%, rgba(255, 236, 164, 0.24) 68%, transparent 71%);
+  border: 1px solid rgba(223, 250, 255, 0.72);
+}
+
+.skill-vfx--baby-soap-bubbles .skill-projectile__accent {
+  background: radial-gradient(circle at 34% 30%, white 0 18%, rgba(142, 231, 255, 0.5) 19% 58%, transparent 61%);
+}
+
+.skill-vfx--baby-acid-bubbles {
+  --projectile-color: #a4ff52;
+  --projectile-secondary: #24d795;
+  --hit-color: #a4ff52;
+  --hit-secondary: #24d795;
+}
+
+.skill-vfx--baby-acid-bubbles .skill-projectile__core {
+  border-radius: 54% 46% 60% 40%;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.92) 0 12%, transparent 13%),
+    radial-gradient(circle at 66% 70%, rgba(66, 255, 95, 0.74) 0 12%, transparent 13%),
+    radial-gradient(circle, rgba(192, 255, 102, 0.78) 0 40%, rgba(26, 203, 134, 0.64) 64%, transparent 72%);
+  border: 1px solid rgba(180, 255, 85, 0.72);
+}
+
+.skill-vfx--baby-acid-bubbles .skill-projectile__accent {
+  background: radial-gradient(circle, rgba(189, 255, 96, 0.96), rgba(27, 207, 136, 0.62) 68%, transparent 70%);
+}
+
+.skill-vfx--baby-smoke {
+  --projectile-color: #d5dce5;
+  --projectile-secondary: #788390;
+  --hit-color: #d5dce5;
+  --hit-secondary: #788390;
+}
+
+.skill-vfx--baby-smoke .skill-projectile__core {
+  width: clamp(30px, 3.6vw, 50px);
+  height: clamp(20px, 2.4vw, 34px);
+  border-radius: 54% 46% 60% 44%;
+  background:
+    radial-gradient(circle at 30% 58%, rgba(226, 232, 240, 0.78) 0 28%, transparent 29%),
+    radial-gradient(circle at 52% 36%, rgba(177, 187, 199, 0.74) 0 30%, transparent 31%),
+    radial-gradient(circle at 74% 60%, rgba(120, 131, 144, 0.68) 0 28%, transparent 29%);
+  filter: blur(1px) drop-shadow(0 0 9px rgba(213, 220, 229, 0.65));
+}
+
+.skill-vfx--baby-smoke .skill-projectile__accent {
+  width: clamp(9px, 1vw, 15px);
+  height: clamp(9px, 1vw, 15px);
+  background: rgba(190, 199, 210, 0.62);
+  filter: blur(1px);
+}
+
+.skill-vfx--baby-seed-cracker {
+  --projectile-color: #9ae45f;
+  --projectile-secondary: #f5df65;
+  --hit-color: #9ae45f;
+  --hit-secondary: #f5df65;
+}
+
+.skill-vfx--baby-seed-cracker .skill-projectile__core {
+  width: clamp(17px, 2vw, 28px);
+  height: clamp(11px, 1.3vw, 18px);
+  border-radius: 70% 8% 70% 8%;
+  background:
+    linear-gradient(135deg, #f5df65 0 24%, #88cd54 25% 72%, #386c32);
+  transform: translate(-50%, -50%) rotate(-22deg);
+}
+
+.skill-vfx--baby-seed-cracker .skill-projectile__accent {
+  width: 6px;
+  height: 9px;
+  border-radius: 70% 8% 70% 8%;
+  background: #d5c451;
+}
+
+.skill-vfx--baby-angel-dust {
+  --projectile-color: #fff5b8;
+  --projectile-secondary: #ffffff;
+  --hit-color: #fff5b8;
+  --hit-secondary: #ffffff;
+}
+
+.skill-vfx--baby-angel-dust .skill-projectile__core,
+.skill-vfx--baby-angel-dust .skill-projectile__accent {
+  clip-path: polygon(50% 0, 61% 36%, 98% 35%, 68% 56%, 79% 94%, 50% 70%, 21% 94%, 32% 56%, 2% 35%, 39% 36%);
+}
+
+.skill-vfx--baby-angel-dust .skill-projectile__core {
+  background:
+    radial-gradient(circle at 50% 44%, white 0 18%, #fff5b8 19% 54%, rgba(255, 211, 96, 0.62) 55% 72%, transparent 73%);
+}
+
+.skill-vfx--baby-heated-bubbles {
+  --projectile-color: #ffb04a;
+  --projectile-secondary: #ff5741;
+  --hit-color: #ffb04a;
+  --hit-secondary: #ff5741;
+}
+
+.skill-vfx--baby-heated-bubbles .skill-projectile__core {
+  background:
+    radial-gradient(circle at 30% 26%, rgba(255, 255, 255, 0.92) 0 10%, transparent 11%),
+    radial-gradient(circle at 54% 58%, rgba(255, 72, 43, 0.92) 0 24%, transparent 25%),
+    radial-gradient(circle, rgba(255, 210, 103, 0.78) 0 44%, rgba(255, 112, 55, 0.62) 64%, transparent 72%);
+}
+
+.skill-vfx--baby-heated-bubbles .skill-projectile__accent {
+  background: radial-gradient(circle, #ffe19a, #ff7740 68%, transparent 70%);
+}
+
+.skill-vfx--baby-metal-filings {
+  --projectile-color: #dbe3ec;
+  --projectile-secondary: #7f8b98;
+  --hit-color: #dbe3ec;
+  --hit-secondary: #7f8b98;
+}
+
+.skill-vfx--baby-metal-filings .skill-projectile__core {
+  width: clamp(34px, 4vw, 56px);
+  height: clamp(14px, 1.7vw, 22px);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 22% 45%, #eef4fb 0 5%, transparent 6%),
+    radial-gradient(circle at 48% 56%, #9eabb8 0 6%, transparent 7%),
+    radial-gradient(circle at 73% 42%, #dbe3ec 0 5%, transparent 6%),
+    linear-gradient(90deg, transparent, rgba(127, 139, 152, 0.48), transparent);
+}
+
+.skill-vfx--baby-metal-filings .skill-projectile__accent {
+  width: 12px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #f4f8fb, #788692);
+}
+
+.skill-vfx--baby-jamming-powder {
+  --projectile-color: #fff15a;
+  --projectile-secondary: #52e7ff;
+  --hit-color: #fff15a;
+  --hit-secondary: #52e7ff;
+}
+
+.skill-vfx--baby-jamming-powder .skill-projectile__core {
+  width: clamp(34px, 4vw, 56px);
+  height: clamp(18px, 2vw, 28px);
+  border-radius: 4px;
+  background:
+    linear-gradient(90deg, transparent 0 12%, rgba(255, 241, 90, 0.9) 13% 18%, transparent 19% 42%, rgba(82, 231, 255, 0.82) 43% 49%, transparent 50%),
+    linear-gradient(0deg, transparent 0 26%, rgba(255, 255, 255, 0.74) 27% 33%, transparent 34% 70%, rgba(255, 241, 90, 0.68) 71% 78%, transparent 79%);
+  image-rendering: pixelated;
+}
+
+.skill-vfx--baby-jamming-powder .skill-projectile__accent {
+  border-radius: 2px;
+  background: #fff15a;
+  box-shadow: 10px 5px 0 #52e7ff, -8px -4px 0 rgba(255, 255, 255, 0.86);
+}
+
+.skill-vfx--baby-sticky-bubbles {
+  --projectile-color: #b8ff86;
+  --projectile-secondary: #f5db6a;
+  --hit-color: #b8ff86;
+  --hit-secondary: #f5db6a;
+}
+
+.skill-vfx--baby-sticky-bubbles .skill-projectile__core {
+  width: clamp(22px, 2.6vw, 36px);
+  height: clamp(18px, 2.1vw, 30px);
+  border-radius: 62% 42% 70% 38%;
+  background:
+    radial-gradient(circle at 30% 26%, rgba(255, 255, 255, 0.9) 0 11%, transparent 12%),
+    radial-gradient(circle at 70% 66%, rgba(245, 219, 106, 0.64) 0 16%, transparent 17%),
+    radial-gradient(circle, rgba(184, 255, 134, 0.8) 0 48%, rgba(245, 219, 106, 0.62) 64%, transparent 72%);
+  transform: translate(-50%, -50%) skewX(-8deg);
+}
+
+.skill-vfx--baby-sticky-bubbles .skill-projectile__accent {
+  width: 7px;
+  height: 12px;
+  border-radius: 58% 42% 70% 38%;
+  background: rgba(201, 255, 123, 0.82);
+}
+
+.skill-vfx--baby-puwa-feather {
+  --projectile-color: #f0fff6;
+  --projectile-secondary: #78e4c5;
+  --hit-color: #f0fff6;
+  --hit-secondary: #78e4c5;
+}
+
+.skill-vfx--baby-puwa-feather .skill-projectile__core {
+  width: clamp(32px, 3.8vw, 54px);
+  height: clamp(11px, 1.4vw, 18px);
+  border-radius: 100% 6% 100% 6%;
+  background:
+    linear-gradient(100deg, rgba(255, 255, 255, 0.98), rgba(191, 255, 224, 0.78) 54%, rgba(120, 228, 197, 0.28));
+  transform: translate(-50%, -50%) rotate(-18deg);
+}
+
+.skill-vfx--baby-puwa-feather .skill-projectile__core::after {
+  inset: 46% 12% 42% 14%;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(65, 135, 118, 0.44);
+}
+
+.skill-vfx--baby-puwa-feather .skill-projectile__accent {
+  width: 14px;
+  height: 5px;
+  border-radius: 100% 6% 100% 6%;
+  background: rgba(240, 255, 246, 0.9);
+}
+
+.skill-vfx--baby-bubble-bomb {
+  --projectile-color: #b9f8ff;
+  --projectile-secondary: #ff6a38;
+  --hit-color: #ffb647;
+  --hit-secondary: #62eaff;
+}
+
+.skill-vfx--baby-bubble-bomb .skill-projectile__core {
+  width: clamp(23px, 2.8vw, 38px);
+  height: clamp(23px, 2.8vw, 38px);
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.96) 0 12%, transparent 13%),
+    radial-gradient(circle at 56% 58%, rgba(255, 93, 46, 0.92) 0 25%, transparent 26%),
+    radial-gradient(circle, rgba(185, 248, 255, 0.45) 0 50%, rgba(255, 106, 56, 0.66) 66%, transparent 72%);
+  border: 1px solid rgba(185, 248, 255, 0.78);
+}
+
+.skill-vfx--baby-bubble-bomb .skill-projectile__accent {
+  background: #ffcf61;
+  box-shadow: 0 0 10px #ff6a38;
+}
+
+.skill-vfx--baby-pushu {
+  --projectile-color: #75d4ff;
+  --projectile-secondary: #636bff;
+  --hit-color: #75d4ff;
+  --hit-secondary: #636bff;
+}
+
+.skill-vfx--baby-pushu .skill-projectile__core {
+  width: clamp(42px, 4.8vw, 70px);
+  height: clamp(12px, 1.5vw, 20px);
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, transparent, rgba(117, 212, 255, 0.9) 25%, rgba(99, 107, 255, 0.82) 68%, transparent);
+}
+
+.skill-vfx--baby-pushu .skill-projectile__accent {
+  background: #75d4ff;
+  box-shadow: 8px -4px 0 rgba(99, 107, 255, 0.78);
+}
+
+.skill-vfx--baby-pacifier {
+  --projectile-color: #ffd8ee;
+  --projectile-secondary: #9bd6ff;
+  --hit-color: #ffd8ee;
+  --hit-secondary: #9bd6ff;
+}
+
+.skill-vfx--baby-pacifier .skill-projectile__core {
+  width: clamp(27px, 3.2vw, 44px);
+  height: clamp(20px, 2.4vw, 32px);
+  border-radius: 48% 52% 45% 55%;
+  background:
+    radial-gradient(circle at 50% 50%, #fff 0 18%, #ffd8ee 19% 36%, transparent 37%),
+    radial-gradient(ellipse at 54% 50%, rgba(155, 214, 255, 0.9) 0 62%, transparent 64%);
+}
+
+.skill-vfx--baby-pacifier .skill-projectile__core::after {
+  inset: 28% -18% 28% 68%;
+  border: 0;
+  border-radius: 999px;
+  background: #ffd8ee;
+}
+
+.skill-vfx--child-bubbles {
+  --projectile-color: #b8f5ff;
+  --projectile-secondary: #65d9ff;
+  --hit-color: #b8f5ff;
+  --hit-secondary: #65d9ff;
+  --child-projectile-bg:
+    radial-gradient(circle at 30% 26%, rgba(255, 255, 255, 0.94) 0 12%, transparent 13%),
+    radial-gradient(circle, rgba(184, 245, 255, 0.34) 0 44%, rgba(101, 217, 255, 0.5) 58%, transparent 70%);
+  --child-hit-before-bg:
+    radial-gradient(circle at 30% 26%, rgba(255, 255, 255, 0.92) 0 9%, transparent 10%),
+    radial-gradient(circle, rgba(184, 245, 255, 0.36) 0 40%, rgba(101, 217, 255, 0.44) 58%, transparent 68%);
+}
+
+.skill-vfx--child-air-bubble {
+  --projectile-color: #e9fbff;
+  --projectile-secondary: #9cd8ff;
+  --hit-color: #e9fbff;
+  --hit-secondary: #9cd8ff;
+  --child-projectile-width: clamp(30px, 3.6vw, 52px);
+  --child-projectile-height: clamp(16px, 2vw, 26px);
+  --child-projectile-bg:
+    radial-gradient(circle at 24% 38%, rgba(255, 255, 255, 0.72) 0 8%, transparent 9%),
+    linear-gradient(90deg, transparent, rgba(233, 251, 255, 0.8) 24%, rgba(156, 216, 255, 0.5) 70%, transparent);
+  --child-projectile-trail-bg: linear-gradient(90deg, transparent, rgba(233, 251, 255, 0.82), transparent);
+  --child-projectile-after-bg: radial-gradient(ellipse at 65% 50%, rgba(255, 255, 255, 0.32), transparent 64%);
+  --child-hit-before-bg:
+    linear-gradient(90deg, transparent, rgba(233, 251, 255, 0.8) 24%, rgba(156, 216, 255, 0.46) 70%, transparent);
+  --child-hit-after-bg:
+    radial-gradient(circle at 20% 46%, rgba(233, 251, 255, 0.42) 0 12%, transparent 13%),
+    radial-gradient(circle at 74% 55%, rgba(156, 216, 255, 0.36) 0 10%, transparent 11%);
+}
+
+.skill-vfx--child-flame-fist {
+  --projectile-color: #ff7a25;
+  --projectile-secondary: #ffe061;
+  --hit-color: #ff7a25;
+  --hit-secondary: #ffe061;
+  --child-projectile-width: clamp(28px, 3.4vw, 46px);
+  --child-projectile-height: clamp(20px, 2.4vw, 34px);
+  --child-projectile-radius: 58% 36% 58% 42%;
+  --child-projectile-bg:
+    radial-gradient(circle at 32% 38%, #ffeaa0 0 14%, transparent 15%),
+    conic-gradient(from 220deg, #ff3d1f, #ffba33, #ff6d22, #ff2b1d);
+  --child-projectile-after-bg: radial-gradient(ellipse at 72% 50%, rgba(255, 60, 31, 0.72), transparent 64%);
+  --child-hit-before-bg:
+    radial-gradient(circle at 34% 45%, #ffeaa0 0 10%, transparent 11%),
+    conic-gradient(from 220deg, #ff3d1f, #ffba33, #ff6d22, transparent 78%);
+  --child-hit-after-bg:
+    linear-gradient(128deg, transparent 0 30%, rgba(255, 234, 160, 0.95) 31% 38%, rgba(255, 122, 37, 0.78) 39% 58%, transparent 59%);
+}
+
+.skill-vfx--child-nail-scratch {
+  --projectile-color: #f4f6fb;
+  --projectile-secondary: #8893a7;
+  --hit-color: #f4f6fb;
+  --hit-secondary: #8893a7;
+  --child-projectile-width: clamp(34px, 4vw, 58px);
+  --child-projectile-height: clamp(15px, 1.8vw, 24px);
+  --child-projectile-radius: 4px;
+  --child-projectile-bg:
+    linear-gradient(118deg, transparent 0 22%, rgba(244, 246, 251, 0.98) 23% 30%, transparent 31% 44%, rgba(136, 147, 167, 0.9) 45% 51%, transparent 52%);
+  --child-projectile-after-bg:
+    linear-gradient(58deg, transparent 0 45%, rgba(244, 246, 251, 0.92) 46% 52%, transparent 53%);
+  --child-hit-before-bg:
+    linear-gradient(118deg, transparent 0 22%, rgba(244, 246, 251, 0.98) 23% 30%, transparent 31% 44%, rgba(136, 147, 167, 0.9) 45% 51%, transparent 52%);
+  --child-hit-after-bg:
+    linear-gradient(58deg, transparent 0 36%, rgba(244, 246, 251, 0.92) 37% 44%, transparent 45% 60%, rgba(136, 147, 167, 0.78) 61% 66%, transparent 67%);
+  --child-hit-accent-height: 3px;
+  --child-hit-accent-radius: 2px;
+}
+
+.skill-vfx--child-double-bubble {
+  --projectile-color: #c7fff0;
+  --projectile-secondary: #79dfff;
+  --hit-color: #c7fff0;
+  --hit-secondary: #79dfff;
+  --child-projectile-width: clamp(32px, 3.8vw, 54px);
+  --child-projectile-height: clamp(22px, 2.6vw, 36px);
+  --child-projectile-bg:
+    radial-gradient(circle at 30% 46%, rgba(255, 255, 255, 0.88) 0 7%, transparent 8%),
+    radial-gradient(circle at 34% 54%, rgba(199, 255, 240, 0.66) 0 25%, transparent 26%),
+    radial-gradient(circle at 66% 46%, rgba(121, 223, 255, 0.58) 0 27%, transparent 28%);
+  --child-projectile-after-bg: radial-gradient(circle at 35% 50%, rgba(255, 255, 255, 0.3) 0 20%, transparent 21%);
+  --child-hit-before-bg:
+    radial-gradient(circle at 34% 52%, rgba(199, 255, 240, 0.62) 0 26%, transparent 27%),
+    radial-gradient(circle at 66% 46%, rgba(121, 223, 255, 0.54) 0 28%, transparent 29%);
+  --child-hit-after-bg:
+    radial-gradient(circle at 26% 70%, rgba(255, 255, 255, 0.52) 0 8%, transparent 9%),
+    radial-gradient(circle at 78% 28%, rgba(199, 255, 240, 0.42) 0 10%, transparent 11%);
+}
+
+.skill-vfx--child-prickly-spark {
+  --projectile-color: #fff15a;
+  --projectile-secondary: #56edff;
+  --hit-color: #fff15a;
+  --hit-secondary: #56edff;
+  --child-projectile-width: clamp(30px, 3.5vw, 50px);
+  --child-projectile-height: clamp(16px, 1.9vw, 26px);
+  --child-projectile-radius: 0;
+  --child-projectile-clip: polygon(0 44%, 34% 44%, 26% 0, 100% 54%, 58% 54%, 66% 100%);
+  --child-projectile-bg: linear-gradient(90deg, #fff15a, #56edff 62%, rgba(255, 255, 255, 0.86));
+  --child-hit-before-bg:
+    conic-gradient(from 8deg, transparent 0 9%, #fff15a 10% 15%, transparent 16% 32%, #56edff 33% 39%, transparent 40% 62%, #fff15a 63% 69%, transparent 70%);
+  --child-hit-after-bg:
+    linear-gradient(90deg, transparent 0 44%, #fff15a 45% 51%, transparent 52%),
+    linear-gradient(0deg, transparent 0 44%, #56edff 45% 51%, transparent 52%);
+}
+
+.skill-vfx--child-metal-drop {
+  --projectile-color: #dbe3ec;
+  --projectile-secondary: #748395;
+  --hit-color: #dbe3ec;
+  --hit-secondary: #748395;
+  --child-projectile-width: clamp(16px, 2vw, 28px);
+  --child-projectile-height: clamp(16px, 2vw, 28px);
+  --child-projectile-radius: 50%;
+  --child-projectile-bg:
+    radial-gradient(circle at 34% 28%, #ffffff 0 10%, transparent 11%),
+    radial-gradient(circle, #dbe3ec 0 32%, #748395 64%, transparent 70%);
+  --child-hit-before-bg:
+    radial-gradient(circle at 42% 36%, #f8fbff 0 8%, transparent 9%),
+    radial-gradient(circle, rgba(219, 227, 236, 0.76) 0 28%, rgba(116, 131, 149, 0.48) 54%, transparent 66%);
+  --child-hit-after-bg:
+    linear-gradient(130deg, transparent 0 42%, rgba(248, 251, 255, 0.9) 43% 47%, transparent 48%),
+    linear-gradient(40deg, transparent 0 52%, rgba(116, 131, 149, 0.8) 53% 57%, transparent 58%);
+}
+
+.skill-vfx--child-bite {
+  --projectile-color: #e8fbff;
+  --projectile-secondary: #73d6ff;
+  --hit-color: #e8fbff;
+  --hit-secondary: #73d6ff;
+  --child-projectile-width: clamp(28px, 3.3vw, 46px);
+  --child-projectile-height: clamp(20px, 2.3vw, 32px);
+  --child-projectile-bg:
+    linear-gradient(135deg, transparent 0 36%, rgba(255, 255, 255, 0.96) 37% 45%, transparent 46%),
+    linear-gradient(45deg, transparent 0 54%, rgba(232, 251, 255, 0.92) 55% 63%, transparent 64%),
+    radial-gradient(circle, rgba(115, 214, 255, 0.45), transparent 68%);
+  --child-hit-before-bg:
+    linear-gradient(135deg, transparent 0 32%, rgba(255, 255, 255, 0.96) 33% 41%, transparent 42%),
+    linear-gradient(45deg, transparent 0 56%, rgba(232, 251, 255, 0.9) 57% 65%, transparent 66%);
+  --child-hit-after-bg: radial-gradient(circle, rgba(115, 214, 255, 0.5) 0 36%, transparent 37%);
+}
+
+.skill-vfx--child-killing-stone {
+  --projectile-color: #b9b7c3;
+  --projectile-secondary: #8668af;
+  --hit-color: #b9b7c3;
+  --hit-secondary: #8668af;
+  --child-projectile-width: clamp(24px, 2.8vw, 38px);
+  --child-projectile-height: clamp(20px, 2.4vw, 34px);
+  --child-projectile-radius: 28% 44% 30% 52%;
+  --child-projectile-bg:
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.48) 0 8%, transparent 9%),
+    linear-gradient(135deg, #c8c6d0, #7d748a 52%, #4e435f);
+  --child-projectile-after-bg: radial-gradient(circle, rgba(146, 96, 168, 0.42) 0 34%, transparent 70%);
+  --child-hit-before-bg:
+    linear-gradient(135deg, rgba(200, 198, 208, 0.86), rgba(78, 67, 95, 0.58)),
+    radial-gradient(circle, rgba(146, 96, 168, 0.45), transparent 62%);
+  --child-hit-after-bg:
+    radial-gradient(circle at 30% 64%, rgba(111, 225, 112, 0.36) 0 8%, transparent 9%),
+    radial-gradient(circle at 70% 32%, rgba(134, 104, 175, 0.45) 0 9%, transparent 10%);
+}
+
+.skill-vfx--child-shabon-flower {
+  --projectile-color: #f6ffd2;
+  --projectile-secondary: #74df8c;
+  --hit-color: #f6ffd2;
+  --hit-secondary: #74df8c;
+  --child-projectile-width: clamp(28px, 3.3vw, 46px);
+  --child-projectile-height: clamp(28px, 3.3vw, 46px);
+  --child-projectile-clip: polygon(50% 0, 61% 31%, 94% 28%, 68% 50%, 94% 72%, 61% 69%, 50% 100%, 39% 69%, 6% 72%, 32% 50%, 6% 28%, 39% 31%);
+  --child-projectile-bg: radial-gradient(circle, #fffbe0 0 18%, #f3a9da 19% 40%, #74df8c 41% 68%, transparent 70%);
+  --child-hit-before-bg:
+    radial-gradient(circle, #fffbe0 0 12%, transparent 13%),
+    conic-gradient(from 10deg, #f3a9da, transparent 18%, #74df8c, transparent 42%, #f3a9da, transparent 72%);
+  --child-hit-after-bg: radial-gradient(circle, rgba(246, 255, 210, 0.58) 0 32%, transparent 33%);
+}
+
+.skill-vfx--child-shock-shout {
+  --projectile-color: #fff15a;
+  --projectile-secondary: #73f4ff;
+  --hit-color: #fff15a;
+  --hit-secondary: #73f4ff;
+  --child-projectile-width: clamp(38px, 4.5vw, 66px);
+  --child-projectile-height: clamp(22px, 2.6vw, 38px);
+  --child-projectile-bg:
+    radial-gradient(ellipse, transparent 0 38%, rgba(255, 241, 90, 0.84) 39% 44%, transparent 45% 57%, rgba(115, 244, 255, 0.58) 58% 63%, transparent 64%);
+  --child-hit-before-bg:
+    radial-gradient(ellipse, transparent 0 28%, rgba(255, 241, 90, 0.86) 29% 34%, transparent 35% 48%, rgba(115, 244, 255, 0.62) 49% 55%, transparent 56%);
+  --child-hit-after-bg:
+    linear-gradient(90deg, transparent 0 45%, rgba(255, 241, 90, 0.95) 46% 52%, transparent 53%),
+    linear-gradient(0deg, transparent 0 45%, rgba(115, 244, 255, 0.78) 46% 52%, transparent 53%);
+}
+
+.skill-vfx--child-smile-fang {
+  --projectile-color: #fff6d2;
+  --projectile-secondary: #ff7fa6;
+  --hit-color: #fff6d2;
+  --hit-secondary: #ff7fa6;
+  --child-projectile-width: clamp(30px, 3.5vw, 50px);
+  --child-projectile-height: clamp(18px, 2.1vw, 30px);
+  --child-projectile-bg:
+    radial-gradient(circle at 34% 38%, #2a1b23 0 7%, transparent 8%),
+    radial-gradient(circle at 66% 38%, #2a1b23 0 7%, transparent 8%),
+    linear-gradient(135deg, transparent 0 46%, #fff 47% 56%, transparent 57%),
+    radial-gradient(ellipse, rgba(255, 246, 210, 0.82), rgba(255, 127, 166, 0.45) 70%);
+  --child-hit-before-bg:
+    radial-gradient(circle at 35% 36%, #2a1b23 0 5%, transparent 6%),
+    radial-gradient(circle at 65% 36%, #2a1b23 0 5%, transparent 6%),
+    linear-gradient(135deg, transparent 0 43%, #fff 44% 52%, transparent 53%);
+  --child-hit-after-bg: radial-gradient(ellipse, rgba(255, 127, 166, 0.48), transparent 62%);
+}
+
+.skill-vfx--child-elastic-bubble {
+  --projectile-color: #b8ffdc;
+  --projectile-secondary: #74cfff;
+  --hit-color: #b8ffdc;
+  --hit-secondary: #74cfff;
+  --child-projectile-width: clamp(40px, 4.7vw, 68px);
+  --child-projectile-height: clamp(18px, 2.1vw, 30px);
+  --child-projectile-radius: 999px 56% 56% 999px;
+  --child-projectile-bg:
+    radial-gradient(circle at 24% 34%, rgba(255, 255, 255, 0.9) 0 9%, transparent 10%),
+    linear-gradient(90deg, rgba(184, 255, 220, 0.82), rgba(116, 207, 255, 0.42) 78%, transparent);
+  --child-projectile-skew-x: -8deg;
+  --child-hit-before-bg:
+    linear-gradient(90deg, rgba(184, 255, 220, 0.74), rgba(116, 207, 255, 0.42) 76%, transparent);
+  --child-hit-after-bg:
+    radial-gradient(circle at 20% 54%, rgba(255, 255, 255, 0.48) 0 8%, transparent 9%),
+    linear-gradient(120deg, transparent 0 50%, rgba(184, 255, 220, 0.74) 51% 57%, transparent 58%);
+}
+
+.skill-vfx--child-angel-ring {
+  --projectile-color: #fff4a8;
+  --projectile-secondary: #ffffff;
+  --hit-color: #fff4a8;
+  --hit-secondary: #ffffff;
+  --child-projectile-width: clamp(34px, 4vw, 56px);
+  --child-projectile-height: clamp(34px, 4vw, 56px);
+  --child-projectile-bg:
+    radial-gradient(circle, transparent 0 42%, rgba(255, 255, 255, 0.98) 43% 49%, rgba(255, 244, 168, 0.8) 50% 58%, transparent 59%);
+  --child-projectile-after-border: 2px solid rgba(255, 244, 168, 0.78);
+  --child-hit-before-bg:
+    radial-gradient(circle, transparent 0 36%, rgba(255, 255, 255, 0.96) 37% 44%, rgba(255, 244, 168, 0.82) 45% 52%, transparent 53%);
+  --child-hit-after-bg:
+    conic-gradient(from 0deg, rgba(255, 244, 168, 0.8), transparent 24%, white, transparent 62%, rgba(255, 244, 168, 0.8));
+}
+
+.skill-vfx--child-pinecone {
+  --projectile-color: #b9793c;
+  --projectile-secondary: #f0d063;
+  --hit-color: #b9793c;
+  --hit-secondary: #f0d063;
+  --child-projectile-width: clamp(18px, 2.2vw, 30px);
+  --child-projectile-height: clamp(26px, 3vw, 44px);
+  --child-projectile-radius: 50% 50% 42% 42%;
+  --child-projectile-bg:
+    linear-gradient(135deg, transparent 0 35%, rgba(240, 208, 99, 0.88) 36% 42%, transparent 43%),
+    linear-gradient(45deg, transparent 0 55%, rgba(97, 69, 43, 0.7) 56% 62%, transparent 63%),
+    radial-gradient(ellipse, #b9793c, #5d422e 72%);
+  --child-hit-before-bg:
+    radial-gradient(ellipse, rgba(185, 121, 60, 0.72), rgba(93, 66, 46, 0.46) 62%, transparent 68%);
+  --child-hit-after-bg:
+    linear-gradient(135deg, transparent 0 35%, rgba(240, 208, 99, 0.9) 36% 42%, transparent 43%),
+    linear-gradient(45deg, transparent 0 55%, rgba(97, 69, 43, 0.76) 56% 62%, transparent 63%);
+}
+
+.skill-vfx--child-pororo-breeze {
+  --projectile-color: #f0fff6;
+  --projectile-secondary: #d6c59a;
+  --hit-color: #f0fff6;
+  --hit-secondary: #d6c59a;
+  --child-projectile-width: clamp(44px, 5vw, 74px);
+  --child-projectile-height: clamp(16px, 1.9vw, 26px);
+  --child-projectile-bg:
+    linear-gradient(90deg, transparent, rgba(240, 255, 246, 0.84) 22%, rgba(214, 197, 154, 0.48) 70%, transparent);
+  --child-projectile-after-bg: radial-gradient(ellipse at 70% 50%, rgba(214, 197, 154, 0.35), transparent 70%);
+  --child-hit-before-bg:
+    linear-gradient(90deg, transparent, rgba(240, 255, 246, 0.74) 22%, rgba(214, 197, 154, 0.44) 70%, transparent);
+  --child-hit-after-bg:
+    radial-gradient(circle at 25% 60%, rgba(214, 197, 154, 0.4) 0 8%, transparent 9%),
+    radial-gradient(circle at 74% 42%, rgba(214, 197, 154, 0.36) 0 7%, transparent 8%);
+}
+
+.skill-vfx--child-fox-tail {
+  --projectile-color: #fff0d8;
+  --projectile-secondary: #f0a35b;
+  --hit-color: #fff0d8;
+  --hit-secondary: #f0a35b;
+  --child-projectile-width: clamp(42px, 4.8vw, 70px);
+  --child-projectile-height: clamp(15px, 1.8vw, 24px);
+  --child-projectile-radius: 100% 12% 100% 12%;
+  --child-projectile-bg:
+    linear-gradient(100deg, rgba(255, 240, 216, 0.98), rgba(240, 163, 91, 0.72) 55%, rgba(116, 72, 45, 0.36));
+  --child-projectile-rotate: -14deg;
+  --child-hit-before-bg:
+    linear-gradient(100deg, rgba(255, 240, 216, 0.96), rgba(240, 163, 91, 0.68) 55%, rgba(116, 72, 45, 0.3));
+  --child-hit-after-bg:
+    linear-gradient(116deg, transparent 0 44%, rgba(116, 72, 45, 0.64) 45% 50%, transparent 51%);
+}
+
+.skill-vfx--child-howling-hertz {
+  --projectile-color: #d8fcff;
+  --projectile-secondary: #9d8cff;
+  --hit-color: #d8fcff;
+  --hit-secondary: #9d8cff;
+  --child-projectile-width: clamp(44px, 5vw, 74px);
+  --child-projectile-height: clamp(28px, 3.3vw, 48px);
+  --child-projectile-bg:
+    radial-gradient(ellipse, transparent 0 33%, rgba(216, 252, 255, 0.82) 34% 39%, transparent 40% 52%, rgba(157, 140, 255, 0.62) 53% 58%, transparent 59%);
+  --child-hit-before-bg:
+    radial-gradient(ellipse, transparent 0 28%, rgba(216, 252, 255, 0.84) 29% 34%, transparent 35% 48%, rgba(157, 140, 255, 0.6) 49% 55%, transparent 56%);
+  --child-hit-after-bg:
+    conic-gradient(from 90deg, transparent 0 18%, rgba(216, 252, 255, 0.7) 19% 24%, transparent 25% 55%, rgba(157, 140, 255, 0.62) 56% 62%, transparent 63%);
+}
+
+.skill-vfx--child-hot-gas {
+  --projectile-color: #ffb06a;
+  --projectile-secondary: #9b8c7a;
+  --hit-color: #ffb06a;
+  --hit-secondary: #9b8c7a;
+  --child-projectile-width: clamp(42px, 4.8vw, 70px);
+  --child-projectile-height: clamp(22px, 2.6vw, 36px);
+  --child-projectile-radius: 999px;
+  --child-projectile-bg:
+    radial-gradient(circle at 32% 48%, rgba(255, 213, 160, 0.72) 0 18%, transparent 19%),
+    radial-gradient(circle at 58% 38%, rgba(155, 140, 122, 0.55) 0 22%, transparent 23%),
+    radial-gradient(circle at 78% 58%, rgba(255, 105, 54, 0.5) 0 18%, transparent 19%);
+  --child-projectile-filter: blur(1px) drop-shadow(0 0 9px rgba(255, 176, 106, 0.65));
+  --child-hit-before-bg:
+    radial-gradient(circle at 32% 48%, rgba(255, 213, 160, 0.62) 0 18%, transparent 19%),
+    radial-gradient(circle at 58% 38%, rgba(155, 140, 122, 0.46) 0 22%, transparent 23%),
+    radial-gradient(circle at 78% 58%, rgba(255, 105, 54, 0.44) 0 18%, transparent 19%);
+  --child-hit-filter: blur(2px) drop-shadow(0 0 10px rgba(255, 176, 106, 0.58));
+}
+
+.skill-vfx--child-hot-bite {
+  --projectile-color: #ff9a58;
+  --projectile-secondary: #fff0b0;
+  --hit-color: #ff9a58;
+  --hit-secondary: #fff0b0;
+  --child-projectile-bg:
+    linear-gradient(135deg, transparent 0 34%, #fff0b0 35% 43%, transparent 44%),
+    linear-gradient(45deg, transparent 0 56%, #ff9a58 57% 65%, transparent 66%),
+    radial-gradient(circle, rgba(255, 76, 38, 0.48), transparent 64%);
+  --child-hit-before-bg:
+    linear-gradient(135deg, transparent 0 31%, #fff0b0 32% 40%, transparent 41%),
+    linear-gradient(45deg, transparent 0 57%, #ff9a58 58% 66%, transparent 67%);
+  --child-hit-after-bg: radial-gradient(circle, rgba(255, 76, 38, 0.5) 0 34%, transparent 35%);
+}
+
+.skill-vfx--child-hop-attack {
+  --projectile-color: #f3f4ff;
+  --projectile-secondary: #8fd3ff;
+  --hit-color: #f3f4ff;
+  --hit-secondary: #8fd3ff;
+  --child-projectile-width: clamp(26px, 3vw, 42px);
+  --child-projectile-height: clamp(26px, 3vw, 42px);
+  --child-projectile-bg:
+    radial-gradient(circle at 38% 30%, rgba(255, 255, 255, 0.94) 0 11%, transparent 12%),
+    radial-gradient(circle, rgba(243, 244, 255, 0.86) 0 44%, rgba(143, 211, 255, 0.48) 64%, transparent 70%);
+  --child-projectile-trail-bg:
+    linear-gradient(115deg, transparent 0 34%, rgba(143, 211, 255, 0.7) 35% 41%, transparent 42%);
+  --child-hit-before-bg:
+    radial-gradient(circle, rgba(243, 244, 255, 0.74) 0 34%, rgba(143, 211, 255, 0.42) 56%, transparent 66%);
+  --child-hit-after-bg:
+    linear-gradient(115deg, transparent 0 40%, rgba(143, 211, 255, 0.74) 41% 47%, transparent 48%);
+}
+
+.skill-vfx--child-spiky-attack {
+  --projectile-color: #fff2b8;
+  --projectile-secondary: #dca545;
+  --hit-color: #fff2b8;
+  --hit-secondary: #dca545;
+  --child-projectile-width: clamp(26px, 3vw, 42px);
+  --child-projectile-height: clamp(30px, 3.6vw, 50px);
+  --child-projectile-clip: polygon(50% 0, 63% 35%, 100% 42%, 70% 62%, 78% 100%, 50% 74%, 22% 100%, 30% 62%, 0 42%, 37% 35%);
+  --child-projectile-bg: linear-gradient(135deg, #fff2b8, #dca545 58%, #80652c);
+  --child-hit-before-bg:
+    conic-gradient(from 0deg, #fff2b8, transparent 16%, #dca545, transparent 38%, #fff2b8, transparent 68%);
+  --child-hit-after-bg:
+    linear-gradient(135deg, transparent 0 36%, rgba(255, 242, 184, 0.94) 37% 45%, transparent 46%);
+}
+
+.skill-vfx--child-missile-crash {
+  --projectile-color: #e3edf5;
+  --projectile-secondary: #ff7040;
+  --hit-color: #e3edf5;
+  --hit-secondary: #ff7040;
+  --child-projectile-width: clamp(44px, 5vw, 74px);
+  --child-projectile-height: clamp(18px, 2.1vw, 30px);
+  --child-projectile-radius: 60% 12% 12% 60%;
+  --child-projectile-bg:
+    linear-gradient(90deg, #e3edf5 0 58%, #7d8b98 59% 74%, #ff7040 75% 100%);
+  --child-projectile-after-bg: radial-gradient(ellipse at 92% 50%, rgba(255, 112, 64, 0.78), transparent 62%);
+  --child-hit-before-bg:
+    conic-gradient(from 10deg, rgba(255, 112, 64, 0.88), transparent 18%, rgba(227, 237, 245, 0.72), transparent 44%, rgba(255, 112, 64, 0.78), transparent 70%);
+  --child-hit-after-bg:
+    linear-gradient(90deg, transparent 0 36%, rgba(227, 237, 245, 0.88) 37% 49%, rgba(255, 112, 64, 0.72) 50% 62%, transparent 63%);
+}
+
+.skill-vfx--child-paint-splash {
+  --projectile-color: #79d4ff;
+  --projectile-secondary: #ff73c8;
+  --hit-color: #79d4ff;
+  --hit-secondary: #ff73c8;
+  --child-projectile-width: clamp(38px, 4.4vw, 62px);
+  --child-projectile-height: clamp(20px, 2.4vw, 34px);
+  --child-projectile-bg:
+    radial-gradient(circle at 22% 46%, #79d4ff 0 18%, transparent 19%),
+    radial-gradient(circle at 52% 38%, #ff73c8 0 16%, transparent 17%),
+    radial-gradient(circle at 74% 60%, #ffe45a 0 14%, transparent 15%);
+  --child-hit-before-bg:
+    radial-gradient(circle at 26% 48%, rgba(121, 212, 255, 0.8) 0 18%, transparent 19%),
+    radial-gradient(circle at 54% 36%, rgba(255, 115, 200, 0.78) 0 16%, transparent 17%),
+    radial-gradient(circle at 74% 62%, rgba(255, 228, 90, 0.72) 0 14%, transparent 15%);
+  --child-hit-after-bg:
+    radial-gradient(circle at 18% 72%, rgba(121, 212, 255, 0.68) 0 7%, transparent 8%),
+    radial-gradient(circle at 84% 28%, rgba(255, 115, 200, 0.66) 0 8%, transparent 9%);
+}
+
+.skill-vfx--child-peep {
+  --projectile-color: #fff6a8;
+  --projectile-secondary: #ffbd5a;
+  --hit-color: #fff6a8;
+  --hit-secondary: #ffbd5a;
+  --child-projectile-width: clamp(38px, 4.5vw, 66px);
+  --child-projectile-height: clamp(22px, 2.6vw, 38px);
+  --child-projectile-bg:
+    radial-gradient(ellipse, transparent 0 35%, rgba(255, 246, 168, 0.82) 36% 42%, transparent 43% 56%, rgba(255, 189, 90, 0.54) 57% 62%, transparent 63%);
+  --child-hit-before-bg:
+    radial-gradient(ellipse, transparent 0 30%, rgba(255, 246, 168, 0.84) 31% 37%, transparent 38% 51%, rgba(255, 189, 90, 0.58) 52% 58%, transparent 59%);
+  --child-hit-after-bg:
+    radial-gradient(circle at 50% 50%, rgba(255, 246, 168, 0.72) 0 8%, transparent 9%),
+    conic-gradient(from 0deg, transparent 0 12%, rgba(255, 189, 90, 0.62) 13% 18%, transparent 19% 42%, rgba(255, 246, 168, 0.62) 43% 48%, transparent 49%);
+}
+
+.skill-vfx--child-prickly-rolling {
+  --projectile-color: #e9edf6;
+  --projectile-secondary: #ffd851;
+  --hit-color: #e9edf6;
+  --hit-secondary: #ffd851;
+  --child-projectile-width: clamp(30px, 3.5vw, 50px);
+  --child-projectile-height: clamp(30px, 3.5vw, 50px);
+  --child-projectile-clip: polygon(50% 0, 58% 24%, 82% 10%, 76% 36%, 100% 50%, 76% 64%, 82% 90%, 58% 76%, 50% 100%, 42% 76%, 18% 90%, 24% 64%, 0 50%, 24% 36%, 18% 10%, 42% 24%);
+  --child-projectile-bg:
+    radial-gradient(circle, #e9edf6 0 40%, #ffd851 41% 62%, transparent 64%);
+  --child-hit-before-bg:
+    conic-gradient(from 0deg, #ffd851, transparent 10%, #e9edf6, transparent 24%, #ffd851, transparent 42%, #e9edf6, transparent 64%, #ffd851, transparent);
+  --child-hit-after-bg: radial-gradient(circle, rgba(233, 237, 246, 0.72) 0 28%, transparent 29%);
+}
+
+.skill-projectile[class*='skill-vfx--child-'] .skill-projectile__core {
+  width: var(--child-projectile-width, clamp(24px, 2.8vw, 40px));
+  height: var(--child-projectile-height, clamp(18px, 2.1vw, 30px));
+  border-radius: var(--child-projectile-radius, 50%);
+  background: var(
+    --child-projectile-bg,
+    radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.96) 0 14%, transparent 15%),
+    radial-gradient(circle, var(--projectile-color) 0 38%, var(--projectile-secondary) 64%, transparent 70%)
+  );
+  box-shadow: var(--child-projectile-shadow, none);
+  clip-path: var(--child-projectile-clip, none);
+  filter:
+    var(
+      --child-projectile-filter,
+      drop-shadow(0 0 7px var(--projectile-color))
+      drop-shadow(0 0 14px color-mix(in srgb, var(--projectile-secondary) 70%, transparent))
+    );
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--child-projectile-rotate, 0deg))
+    skewX(var(--child-projectile-skew-x, 0deg));
+}
+
+.skill-projectile[class*='skill-vfx--child-'] .skill-projectile__core::before {
+  inset: var(--child-projectile-trail-inset, 28% 86% 28% -120%);
+  border: var(--child-projectile-trail-border, 0);
+  border-radius: var(--child-projectile-trail-radius, 999px);
+  background: var(
+    --child-projectile-trail-bg,
+    linear-gradient(90deg, transparent, color-mix(in srgb, var(--projectile-color) 82%, transparent))
+  );
+  clip-path: var(--child-projectile-trail-clip, none);
+  filter: var(--child-projectile-trail-filter, blur(1px));
+}
+
+.skill-projectile--reverse[class*='skill-vfx--child-'] .skill-projectile__core::before {
+  inset: var(--child-projectile-reverse-trail-inset, 28% -120% 28% 86%);
+  background: var(
+    --child-projectile-reverse-trail-bg,
+    linear-gradient(270deg, transparent, color-mix(in srgb, var(--projectile-color) 82%, transparent))
+  );
+}
+
+.skill-projectile[class*='skill-vfx--child-'] .skill-projectile__core::after {
+  inset: var(--child-projectile-after-inset, -34%);
+  border: var(--child-projectile-after-border, 1px solid color-mix(in srgb, var(--projectile-color) 72%, transparent));
+  border-radius: var(--child-projectile-after-radius, inherit);
+  background: var(--child-projectile-after-bg, transparent);
+  clip-path: var(--child-projectile-after-clip, none);
+  filter: var(--child-projectile-after-filter, none);
+  opacity: var(--child-projectile-after-opacity, 0.82);
+}
+
+.skill-projectile[class*='skill-vfx--child-'] .skill-projectile__accent {
+  width: var(--child-projectile-accent-width, clamp(5px, 0.8vw, 10px));
+  height: var(--child-projectile-accent-height, clamp(5px, 0.8vw, 10px));
+  border-radius: var(--child-projectile-accent-radius, 50%);
+  background: var(--child-projectile-accent-bg, var(--projectile-secondary));
+  box-shadow: var(--child-projectile-accent-shadow, none);
+  clip-path: var(--child-projectile-accent-clip, none);
+}
+
+.skill-vfx--rookie {
+  --projectile-color: var(--rookie-primary);
+  --projectile-secondary: var(--rookie-secondary);
+  --hit-color: var(--rookie-primary);
+  --hit-secondary: var(--rookie-secondary);
+}
+
+.skill-vfx--mature {
+  --projectile-global-scale: 1.34;
+  --hit-global-scale: 1.28;
+}
+
+.skill-vfx--rookie .skill-projectile__core {
+  width: var(--rookie-projectile-width);
+  height: var(--rookie-projectile-height);
+  border-radius: var(--rookie-radius, 50%);
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.95) 0 10%, transparent 11%),
+    radial-gradient(circle, var(--rookie-primary) 0 40%, var(--rookie-secondary) 64%, transparent 72%);
+  transform: translate(-50%, -50%) rotate(var(--rookie-rotate, 0deg));
+}
+
+.skill-vfx--rookie .skill-projectile__core::before {
+  inset: 30% 90% 30% -140%;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--rookie-primary) 82%, transparent));
+}
+
+.skill-vfx--rookie.skill-projectile--reverse .skill-projectile__core::before {
+  inset: 30% -140% 30% 90%;
+  background: linear-gradient(270deg, transparent, color-mix(in srgb, var(--rookie-primary) 82%, transparent));
+}
+
+.skill-vfx--rookie .skill-projectile__core::after {
+  inset: -32%;
+  border: 1px solid color-mix(in srgb, var(--rookie-accent) 70%, transparent);
+  border-radius: inherit;
+  background: transparent;
+}
+
+.skill-vfx--mature .skill-projectile__core {
+  filter: drop-shadow(0 0 14px color-mix(in srgb, var(--rookie-primary) 62%, transparent));
+}
+
+.skill-vfx--mature .skill-projectile__core::before {
+  inset-block: 24%;
+  opacity: 0.92;
+}
+
+.skill-vfx--mature .skill-projectile__core::after {
+  inset: -44%;
+  border-width: 2px;
+}
+
+.skill-vfx--rookie .skill-projectile__accent {
+  width: clamp(8px, 1vw, 14px);
+  height: clamp(8px, 1vw, 14px);
+  background: var(--rookie-accent);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--rookie-accent) 82%, transparent);
+}
+
+.skill-vfx--rookie .skill-projectile__accent--a {
+  --accent-x: var(--rookie-accent-a-x);
+  --accent-y: var(--rookie-accent-a-y);
+}
+
+.skill-vfx--rookie .skill-projectile__accent--b {
+  --accent-x: var(--rookie-accent-b-x);
+  --accent-y: var(--rookie-accent-b-y);
+}
+
+.skill-vfx--rookie .skill-projectile__accent--c {
+  --accent-x: var(--rookie-accent-c-x);
+  --accent-y: var(--rookie-accent-c-y);
+}
+
+.skill-vfx--rookie-flame .skill-projectile__core {
+  border-radius: 62% 38% 58% 42%;
+  background:
+    radial-gradient(circle at 34% 30%, rgba(255, 250, 190, 0.98) 0 14%, transparent 15%),
+    conic-gradient(from 218deg, var(--rookie-secondary), var(--rookie-primary), #ff3a22, var(--rookie-accent), var(--rookie-secondary));
+}
+
+.skill-vfx--rookie-electric .skill-projectile__core {
+  border-radius: 0;
+  clip-path: polygon(0 42%, 38% 42%, 30% 0, 100% 52%, 58% 52%, 66% 100%);
+  background: linear-gradient(90deg, var(--rookie-primary), var(--rookie-secondary), rgba(255, 255, 255, 0.9));
+}
+
+.skill-vfx--rookie-water .skill-projectile__core,
+.skill-vfx--rookie-wind .skill-projectile__core {
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, transparent, var(--rookie-primary) 22%, var(--rookie-secondary) 68%, transparent),
+    radial-gradient(ellipse at 72% 50%, color-mix(in srgb, var(--rookie-accent) 46%, transparent), transparent 70%);
+}
+
+.skill-vfx--rookie-wind .skill-projectile__core {
+  height: clamp(16px, 1.6vw, 24px);
+  transform: translate(-50%, -50%) rotate(calc(var(--rookie-rotate, 0deg) - 8deg));
+}
+
+.skill-vfx--rookie-feather .skill-projectile__core,
+.skill-vfx--rookie-plant .skill-projectile__core {
+  border-radius: var(--rookie-radius, 100% 8% 100% 8%);
+  background:
+    linear-gradient(105deg, rgba(255, 255, 255, 0.96), var(--rookie-primary) 42%, var(--rookie-secondary) 78%, transparent);
+}
+
+.skill-vfx--rookie-plant .skill-projectile__core {
+  clip-path: polygon(0 50%, 38% 0, 100% 50%, 38% 100%);
+}
+
+.skill-vfx--rookie-powder .skill-projectile__core,
+.skill-vfx--rookie-color .skill-projectile__core {
+  background:
+    radial-gradient(circle at 22% 42%, var(--rookie-primary) 0 10%, transparent 11%),
+    radial-gradient(circle at 52% 32%, var(--rookie-secondary) 0 12%, transparent 13%),
+    radial-gradient(circle at 74% 62%, var(--rookie-accent) 0 10%, transparent 11%);
+}
+
+.skill-vfx--rookie-thread .skill-projectile__core {
+  height: clamp(14px, 1.4vw, 22px);
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, transparent 0 8%, var(--rookie-primary) 9% 14%, transparent 15% 34%, var(--rookie-secondary) 35% 41%, transparent 42%),
+    linear-gradient(0deg, transparent 0 42%, rgba(255, 255, 255, 0.82) 43% 49%, transparent 50%);
+}
+
+.skill-vfx--rookie-metal .skill-projectile__core {
+  background:
+    radial-gradient(circle at 28% 28%, rgba(255, 255, 255, 0.98) 0 9%, transparent 10%),
+    linear-gradient(135deg, #f6fbff, var(--rookie-primary) 42%, var(--rookie-secondary) 72%, #667284);
+  box-shadow: inset -6px -3px 0 rgba(54, 65, 80, 0.42);
+}
+
+.skill-vfx--rookie-bubble .skill-projectile__core {
+  background:
+    radial-gradient(circle at 28% 26%, rgba(255, 255, 255, 0.96) 0 12%, transparent 13%),
+    radial-gradient(circle at 70% 70%, color-mix(in srgb, var(--rookie-accent) 58%, transparent) 0 14%, transparent 15%),
+    radial-gradient(circle, color-mix(in srgb, var(--rookie-primary) 45%, transparent) 0 44%, color-mix(in srgb, var(--rookie-secondary) 54%, transparent) 60%, transparent 72%);
+  border: 1px solid color-mix(in srgb, var(--rookie-primary) 62%, transparent);
+}
+
+.skill-vfx--rookie-ice .skill-projectile__core {
+  border-radius: 7px;
+  clip-path: polygon(50% 0, 90% 28%, 66% 100%, 34% 100%, 10% 28%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), var(--rookie-primary) 46%, var(--rookie-secondary));
+}
+
+.skill-vfx--rookie-nightmare .skill-projectile__core {
+  background:
+    radial-gradient(circle at 50% 50%, #160d2d 0 15%, rgba(255, 255, 255, 0.86) 16% 19%, var(--rookie-secondary) 20% 31%, transparent 32%),
+    radial-gradient(circle, #261047 0 38%, var(--rookie-primary) 58%, var(--rookie-secondary) 72%, transparent 74%);
+}
+
+.skill-vfx--rookie-fist .skill-projectile__core {
+  background:
+    radial-gradient(circle at 35% 38%, rgba(255, 255, 255, 0.92) 0 12%, transparent 13%),
+    linear-gradient(135deg, var(--rookie-primary), var(--rookie-secondary) 58%, var(--rookie-accent));
+  clip-path: polygon(12% 32%, 32% 12%, 74% 16%, 100% 48%, 70% 86%, 28% 82%, 0 58%);
+}
+
+.skill-vfx--rookie-bite .skill-projectile__core {
+  background:
+    linear-gradient(135deg, transparent 0 34%, rgba(255, 255, 255, 0.98) 35% 43%, transparent 44%),
+    linear-gradient(45deg, transparent 0 56%, var(--rookie-accent) 57% 65%, transparent 66%),
+    radial-gradient(circle, color-mix(in srgb, var(--rookie-primary) 58%, transparent), transparent 68%);
+}
+
+.skill-vfx--rookie-horn .skill-projectile__core {
+  clip-path: polygon(0 50%, 64% 0, 100% 50%, 64% 100%);
+  background: linear-gradient(100deg, rgba(255, 255, 255, 0.96), var(--rookie-primary), var(--rookie-secondary));
+}
+
+.skill-vfx--rookie-guard .skill-projectile__core,
+.skill-vfx--rookie-shell .skill-projectile__core {
+  background:
+    radial-gradient(circle at 50% 34%, rgba(255, 255, 255, 0.76) 0 11%, transparent 12%),
+    linear-gradient(150deg, var(--rookie-primary), var(--rookie-secondary) 68%, rgba(35, 49, 66, 0.5));
+  clip-path: polygon(50% 0, 92% 22%, 78% 100%, 22% 100%, 8% 22%);
+}
+
+.skill-vfx--rookie-rock .skill-projectile__core {
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.5) 0 8%, transparent 9%),
+    linear-gradient(135deg, var(--rookie-primary), var(--rookie-secondary) 58%, #5b4031);
+  clip-path: polygon(18% 10%, 68% 0, 100% 38%, 78% 94%, 24% 100%, 0 50%);
+}
+
+.skill-vfx--rookie-roll .skill-projectile__core {
+  background:
+    conic-gradient(from 0deg, var(--rookie-primary), var(--rookie-secondary), var(--rookie-accent), var(--rookie-primary));
+  clip-path: polygon(50% 0, 61% 32%, 94% 28%, 68% 50%, 94% 72%, 61% 68%, 50% 100%, 39% 68%, 6% 72%, 32% 50%, 6% 28%, 39% 32%);
+}
+
+.skill-vfx--rookie-sound .skill-projectile__core {
+  background:
+    radial-gradient(ellipse, transparent 0 34%, var(--rookie-primary) 35% 40%, transparent 41% 55%, color-mix(in srgb, var(--rookie-secondary) 70%, transparent) 56% 61%, transparent 62%);
+}
+
+.skill-vfx--rookie-summon .skill-projectile__core {
+  background:
+    radial-gradient(circle, transparent 0 34%, rgba(255, 255, 255, 0.95) 35% 41%, var(--rookie-primary) 42% 50%, transparent 51%),
+    conic-gradient(from 45deg, var(--rookie-secondary), transparent 24%, var(--rookie-accent), transparent 62%, var(--rookie-secondary));
+}
+
+.skill-vfx--rookie-slash .skill-projectile__core {
+  height: clamp(14px, 1.5vw, 23px);
+  border-radius: 4px;
+  background:
+    linear-gradient(116deg, transparent 0 26%, rgba(255, 255, 255, 0.96) 27% 34%, var(--rookie-primary) 35% 54%, transparent 55%),
+    linear-gradient(42deg, transparent 0 48%, var(--rookie-secondary) 49% 56%, transparent 57%);
+}
+
 @keyframes physicalAttackLungeRight {
   0%,
   100% {
@@ -3358,15 +4541,16 @@
   }
 
   30% {
-    transform: translateX(var(--attack-lunge-distance)) translateY(-2px);
+    transform: translateX(calc(var(--attack-lunge-distance) * 0.96)) translateY(-2px);
   }
 
-  46% {
-    transform: translateX(calc(var(--attack-lunge-distance) * 1.08)) translateY(0);
+  42%,
+  54% {
+    transform: translateX(var(--attack-lunge-distance)) translateY(0);
   }
 
   72% {
-    transform: translateX(8px) translateY(0);
+    transform: translateX(calc(var(--attack-lunge-distance) * 0.28)) translateY(0);
   }
 }
 
@@ -3377,22 +4561,45 @@
   }
 
   30% {
-    transform: translateX(calc(var(--attack-lunge-distance) * -1)) translateY(-2px);
+    transform: translateX(calc(var(--attack-lunge-distance) * -0.96)) translateY(-2px);
   }
 
-  46% {
-    transform: translateX(calc(var(--attack-lunge-distance) * -1.08)) translateY(0);
+  42%,
+  54% {
+    transform: translateX(calc(var(--attack-lunge-distance) * -1)) translateY(0);
   }
 
   72% {
-    transform: translateX(-8px) translateY(0);
+    transform: translateX(calc(var(--attack-lunge-distance) * -0.28)) translateY(0);
+  }
+}
+
+@keyframes babyProjectileAccentPulse {
+  0% {
+    opacity: 0;
+    transform:
+      translate(calc(-50% + var(--accent-x)), calc(-50% + var(--accent-y)))
+      rotate(var(--accent-rotate))
+      scale(0.45);
+  }
+
+  28% {
+    opacity: 0.94;
+  }
+
+  100% {
+    opacity: 0.18;
+    transform:
+      translate(calc(-50% + var(--accent-x)), calc(-50% + var(--accent-y)))
+      rotate(var(--accent-rotate))
+      scale(1.35);
   }
 }
 
 @keyframes projectileTravel {
   0% {
     opacity: 0;
-    transform: translate(var(--projectile-start-x), var(--projectile-start-y)) scale(0.56);
+    transform: translate(var(--projectile-start-x), var(--projectile-start-y)) scale(calc(var(--projectile-global-scale, 1) * 0.56));
   }
 
   12% {
@@ -3405,7 +4612,7 @@
 
   100% {
     opacity: 0;
-    transform: translate(var(--projectile-end-x), var(--projectile-end-y)) scale(1.05);
+    transform: translate(var(--projectile-end-x), var(--projectile-end-y)) scale(calc(var(--projectile-global-scale, 1) * 1.05));
   }
 }
 
@@ -3433,12 +4640,13 @@
   --hit-color: #f8f4e8;
   --hit-secondary: #8bd7ff;
   --hit-spark: rgba(255, 255, 255, 0.92);
+  --hit-global-scale: 1.14;
   position: absolute;
   left: var(--hit-x, 50%);
   top: var(--hit-y, 50%);
   z-index: 8;
-  width: clamp(46px, 6.2vw, 86px);
-  height: clamp(46px, 6.2vw, 86px);
+  width: clamp(58px, 7.4vw, 104px);
+  height: clamp(58px, 7.4vw, 104px);
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%) scale(0.2);
@@ -3555,6 +4763,614 @@
 .hit-effect--neutral {
   --hit-color: #f0f0f0;
   --hit-secondary: #b8c4d8;
+}
+
+.hit-effect__accent {
+  --hit-accent-x: 0px;
+  --hit-accent-y: 0px;
+  --hit-accent-rotate: 0deg;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+  width: clamp(9px, 1.2vw, 16px);
+  height: clamp(9px, 1.2vw, 16px);
+  border-radius: 50%;
+  background: var(--hit-secondary);
+  opacity: 0;
+  pointer-events: none;
+  transform:
+    translate(calc(-50% + var(--hit-accent-x)), calc(-50% + var(--hit-accent-y)))
+    rotate(var(--hit-accent-rotate));
+}
+
+.hit-effect__accent--a {
+  --hit-accent-x: -22px;
+  --hit-accent-y: -15px;
+}
+
+.hit-effect__accent--b {
+  --hit-accent-x: 22px;
+  --hit-accent-y: -6px;
+}
+
+.hit-effect__accent--c {
+  --hit-accent-x: -4px;
+  --hit-accent-y: 24px;
+}
+
+.hit-effect:is([class*='skill-vfx--baby-'], [class*='skill-vfx--child-'], .skill-vfx--rookie) .hit-effect__accent {
+  opacity: 0.9;
+  animation: babyHitAccentBurst var(--hit-effect-duration, 620ms) ease-out both;
+}
+
+.hit-effect.skill-vfx--baby-glare-eye::before {
+  background:
+    radial-gradient(circle at 50% 50%, #120d2d 0 11%, #f8ffff 12% 15%, #49f1ff 16% 28%, transparent 29%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.92) 0 26%, rgba(103, 248, 255, 0.58) 27% 48%, transparent 49%);
+  border-radius: 50%;
+}
+
+.hit-effect.skill-vfx--baby-glare-eye::after {
+  inset: -6% -22%;
+  border: 2px solid rgba(132, 247, 255, 0.68);
+  border-radius: 50%;
+  background:
+    conic-gradient(from 12deg, transparent 0 18%, rgba(158, 107, 255, 0.72) 20% 28%, transparent 30% 64%, rgba(91, 79, 255, 0.7) 66% 73%, transparent 75%);
+}
+
+.hit-effect.skill-vfx--baby-glare-eye .hit-effect__accent {
+  width: 4px;
+  height: 4px;
+  background: #f6ffff;
+  box-shadow: 0 0 10px #55efff;
+}
+
+.hit-effect.skill-vfx--baby-diamond-dust::before {
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, transparent 0 32%, rgba(255, 255, 255, 0.96) 33% 38%, transparent 39%),
+    conic-gradient(from 45deg, rgba(229, 251, 255, 0.95), rgba(95, 174, 255, 0.56), transparent, rgba(229, 251, 255, 0.84));
+  clip-path: polygon(50% 0, 92% 26%, 76% 100%, 24% 100%, 8% 26%);
+}
+
+.hit-effect.skill-vfx--baby-diamond-dust::after,
+.hit-effect.skill-vfx--baby-diamond-dust .hit-effect__accent {
+  border-radius: 3px;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+
+.hit-effect.skill-vfx--baby-diamond-dust::after {
+  inset: 8%;
+  border: 0;
+  background:
+    linear-gradient(90deg, transparent 0 30%, rgba(255, 255, 255, 0.92) 31% 36%, transparent 37%),
+    linear-gradient(0deg, transparent 0 42%, rgba(103, 183, 255, 0.9) 43% 48%, transparent 49%);
+}
+
+.hit-effect.skill-vfx--baby-toxic-bubbles::before {
+  background:
+    radial-gradient(circle at 38% 32%, rgba(255, 255, 255, 0.84) 0 8%, transparent 9%),
+    radial-gradient(circle at 62% 66%, rgba(106, 240, 122, 0.82) 0 12%, transparent 13%),
+    radial-gradient(circle, rgba(119, 25, 158, 0.92) 0 34%, rgba(209, 91, 255, 0.58) 52%, rgba(106, 240, 122, 0.46) 66%, transparent 68%);
+}
+
+.hit-effect.skill-vfx--baby-toxic-bubbles::after {
+  border-color: rgba(106, 240, 122, 0.72);
+  background:
+    radial-gradient(circle at 26% 68%, rgba(115, 255, 97, 0.78) 0 5%, transparent 6%),
+    radial-gradient(circle at 74% 30%, rgba(115, 255, 97, 0.74) 0 4%, transparent 5%),
+    conic-gradient(from 30deg, rgba(209, 91, 255, 0.62), transparent 30%, rgba(106, 240, 122, 0.54), transparent 72%);
+}
+
+.hit-effect.skill-vfx--baby-hot-breath::before {
+  border-radius: 999px;
+  background:
+    radial-gradient(ellipse at 70% 50%, rgba(255, 71, 40, 0.74), transparent 57%),
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.88) 22%, rgba(255, 227, 154, 0.78) 43%, rgba(255, 145, 82, 0.62) 72%, transparent);
+  filter: blur(1.5px) drop-shadow(0 0 12px #ff9152);
+}
+
+.hit-effect.skill-vfx--baby-hot-breath::after {
+  inset: 24% -10%;
+  border: 0;
+  border-radius: 999px;
+  background:
+    linear-gradient(110deg, transparent 0 20%, rgba(255, 255, 255, 0.86) 21% 27%, rgba(255, 176, 74, 0.8) 28% 62%, transparent 63%);
+}
+
+.hit-effect.skill-vfx--baby-metamorphosis::before {
+  background:
+    radial-gradient(circle at 64% 35%, rgba(45, 27, 102, 0.96) 0 25%, transparent 26%),
+    radial-gradient(circle at 50% 50%, rgba(255, 248, 216, 0.92) 0 32%, rgba(138, 103, 255, 0.54) 50%, transparent 64%);
+}
+
+.hit-effect.skill-vfx--baby-metamorphosis::after {
+  inset: -2%;
+  border: 1px dashed rgba(255, 248, 216, 0.74);
+  border-radius: 50%;
+  background: conic-gradient(from 80deg, transparent, rgba(138, 103, 255, 0.5), transparent 44%, rgba(255, 248, 216, 0.5), transparent 82%);
+}
+
+.hit-effect.skill-vfx--baby-soap-bubbles::before {
+  background:
+    radial-gradient(circle at 28% 28%, rgba(255, 255, 255, 0.94) 0 9%, transparent 10%),
+    radial-gradient(circle at 62% 65%, rgba(255, 187, 243, 0.44) 0 15%, transparent 16%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.15) 0 36%, rgba(142, 231, 255, 0.42) 52%, rgba(255, 236, 164, 0.2) 66%, transparent 69%);
+  border: 1px solid rgba(223, 250, 255, 0.68);
+}
+
+.hit-effect.skill-vfx--baby-soap-bubbles::after {
+  border-color: rgba(223, 250, 255, 0.6);
+  background:
+    radial-gradient(circle at 20% 70%, rgba(223, 250, 255, 0.52) 0 10%, transparent 11%),
+    radial-gradient(circle at 76% 30%, rgba(255, 236, 164, 0.34) 0 8%, transparent 9%);
+}
+
+.hit-effect.skill-vfx--baby-soap-bubbles .hit-effect__accent,
+.hit-effect.skill-vfx--baby-acid-bubbles .hit-effect__accent,
+.hit-effect.skill-vfx--baby-sticky-bubbles .hit-effect__accent {
+  background: radial-gradient(circle at 34% 30%, white 0 18%, var(--hit-color) 19% 58%, transparent 61%);
+}
+
+.hit-effect.skill-vfx--baby-acid-bubbles::before {
+  background:
+    radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.92) 0 10%, transparent 11%),
+    radial-gradient(circle at 68% 62%, rgba(66, 255, 95, 0.72) 0 12%, transparent 13%),
+    radial-gradient(circle, rgba(180, 255, 83, 0.72) 0 38%, rgba(36, 215, 149, 0.48) 56%, transparent 68%);
+  border: 1px solid rgba(180, 255, 85, 0.7);
+}
+
+.hit-effect.skill-vfx--baby-acid-bubbles::after {
+  inset: 8%;
+  border: 0;
+  background:
+    linear-gradient(130deg, transparent 0 37%, rgba(164, 255, 82, 0.92) 38% 42%, transparent 43%),
+    linear-gradient(40deg, transparent 0 55%, rgba(36, 215, 149, 0.78) 56% 60%, transparent 61%);
+}
+
+.hit-effect.skill-vfx--baby-smoke::before {
+  background:
+    radial-gradient(circle at 30% 58%, rgba(226, 232, 240, 0.62) 0 22%, transparent 23%),
+    radial-gradient(circle at 52% 36%, rgba(177, 187, 199, 0.6) 0 28%, transparent 29%),
+    radial-gradient(circle at 74% 60%, rgba(120, 131, 144, 0.54) 0 24%, transparent 25%);
+  filter: blur(2px);
+}
+
+.hit-effect.skill-vfx--baby-smoke::after {
+  inset: 4%;
+  border: 0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(213, 220, 229, 0.38) 0 20%, transparent 21%),
+    radial-gradient(circle at 80% 45%, rgba(120, 131, 144, 0.32) 0 18%, transparent 19%);
+  filter: blur(3px);
+}
+
+.hit-effect.skill-vfx--baby-smoke .hit-effect__accent {
+  background: rgba(190, 199, 210, 0.52);
+  filter: blur(1px);
+}
+
+.hit-effect.skill-vfx--baby-seed-cracker::before {
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, transparent 0 37%, rgba(245, 223, 101, 0.92) 38% 43%, transparent 44%),
+    radial-gradient(ellipse at 36% 48%, rgba(154, 228, 95, 0.84) 0 18%, transparent 19%),
+    radial-gradient(ellipse at 65% 40%, rgba(245, 223, 101, 0.78) 0 16%, transparent 17%);
+}
+
+.hit-effect.skill-vfx--baby-seed-cracker::after {
+  inset: 10%;
+  border: 0;
+  background:
+    linear-gradient(56deg, transparent 0 38%, rgba(56, 108, 50, 0.9) 39% 43%, transparent 44%),
+    linear-gradient(128deg, transparent 0 56%, rgba(245, 223, 101, 0.82) 57% 61%, transparent 62%);
+}
+
+.hit-effect.skill-vfx--baby-seed-cracker .hit-effect__accent {
+  width: 8px;
+  height: 13px;
+  border-radius: 70% 8% 70% 8%;
+  background: linear-gradient(135deg, #f5df65, #77bd4e);
+}
+
+.hit-effect.skill-vfx--baby-angel-dust::before {
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.96) 0 11%, transparent 12%),
+    conic-gradient(from 0deg, rgba(255, 245, 184, 0.9), transparent 22%, rgba(255, 255, 255, 0.82), transparent 58%, rgba(255, 214, 91, 0.68), transparent);
+  clip-path: polygon(50% 0, 61% 36%, 98% 35%, 68% 56%, 79% 94%, 50% 70%, 21% 94%, 32% 56%, 2% 35%, 39% 36%);
+}
+
+.hit-effect.skill-vfx--baby-angel-dust::after,
+.hit-effect.skill-vfx--baby-angel-dust .hit-effect__accent {
+  clip-path: polygon(50% 0, 61% 36%, 98% 35%, 68% 56%, 79% 94%, 50% 70%, 21% 94%, 32% 56%, 2% 35%, 39% 36%);
+}
+
+.hit-effect.skill-vfx--baby-angel-dust::after {
+  border: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0 8%, rgba(255, 245, 184, 0.64) 9% 34%, transparent 35%);
+}
+
+.hit-effect.skill-vfx--baby-heated-bubbles::before {
+  background:
+    radial-gradient(circle at 30% 26%, rgba(255, 255, 255, 0.9) 0 9%, transparent 10%),
+    radial-gradient(circle at 54% 58%, rgba(255, 72, 43, 0.88) 0 20%, transparent 21%),
+    radial-gradient(circle, rgba(255, 210, 103, 0.72) 0 36%, rgba(255, 112, 55, 0.52) 55%, transparent 68%);
+}
+
+.hit-effect.skill-vfx--baby-heated-bubbles::after {
+  border-color: rgba(255, 87, 65, 0.72);
+  background: conic-gradient(from 20deg, rgba(255, 176, 74, 0.72), transparent 24%, rgba(255, 87, 65, 0.76), transparent 68%);
+}
+
+.hit-effect.skill-vfx--baby-metal-filings::before {
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 22% 45%, #eef4fb 0 4%, transparent 5%),
+    radial-gradient(circle at 48% 56%, #9eabb8 0 5%, transparent 6%),
+    radial-gradient(circle at 73% 42%, #dbe3ec 0 4%, transparent 5%),
+    linear-gradient(90deg, transparent, rgba(127, 139, 152, 0.42), transparent);
+}
+
+.hit-effect.skill-vfx--baby-metal-filings::after {
+  border: 0;
+  background:
+    linear-gradient(110deg, transparent 0 35%, #f4f8fb 36% 39%, transparent 40%),
+    linear-gradient(28deg, transparent 0 54%, #788692 55% 58%, transparent 59%);
+}
+
+.hit-effect.skill-vfx--baby-metal-filings .hit-effect__accent {
+  width: 14px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #f4f8fb, #788692);
+}
+
+.hit-effect.skill-vfx--baby-jamming-powder::before {
+  border-radius: 4px;
+  background:
+    linear-gradient(90deg, transparent 0 12%, rgba(255, 241, 90, 0.9) 13% 17%, transparent 18% 40%, rgba(82, 231, 255, 0.82) 41% 47%, transparent 48%),
+    linear-gradient(0deg, transparent 0 26%, rgba(255, 255, 255, 0.74) 27% 33%, transparent 34% 70%, rgba(255, 241, 90, 0.68) 71% 78%, transparent 79%);
+}
+
+.hit-effect.skill-vfx--baby-jamming-powder::after {
+  border: 0;
+  background:
+    linear-gradient(90deg, transparent 0 45%, rgba(255, 241, 90, 0.96) 46% 52%, transparent 53%),
+    linear-gradient(0deg, transparent 0 46%, rgba(82, 231, 255, 0.86) 47% 53%, transparent 54%);
+}
+
+.hit-effect.skill-vfx--baby-jamming-powder .hit-effect__accent {
+  border-radius: 2px;
+  background: #fff15a;
+  box-shadow: 10px 5px 0 #52e7ff, -8px -4px 0 rgba(255, 255, 255, 0.86);
+}
+
+.hit-effect.skill-vfx--baby-sticky-bubbles::before {
+  border-radius: 62% 42% 70% 38%;
+  background:
+    radial-gradient(circle at 30% 26%, rgba(255, 255, 255, 0.86) 0 10%, transparent 11%),
+    radial-gradient(circle at 70% 66%, rgba(245, 219, 106, 0.62) 0 13%, transparent 14%),
+    radial-gradient(circle, rgba(184, 255, 134, 0.74) 0 42%, rgba(245, 219, 106, 0.52) 62%, transparent 70%);
+}
+
+.hit-effect.skill-vfx--baby-sticky-bubbles::after {
+  inset: 12%;
+  border: 0;
+  border-radius: 58% 42% 70% 38%;
+  background:
+    linear-gradient(80deg, transparent 0 48%, rgba(245, 219, 106, 0.76) 49% 55%, transparent 56%),
+    radial-gradient(circle at 62% 88%, rgba(184, 255, 134, 0.74) 0 9%, transparent 10%);
+}
+
+.hit-effect.skill-vfx--baby-puwa-feather::before {
+  width: 116%;
+  height: 52%;
+  top: 24%;
+  left: -8%;
+  right: auto;
+  bottom: auto;
+  border-radius: 100% 6% 100% 6%;
+  background:
+    linear-gradient(100deg, rgba(255, 255, 255, 0.98), rgba(191, 255, 224, 0.78) 54%, rgba(120, 228, 197, 0.28));
+  transform: rotate(-18deg);
+}
+
+.hit-effect.skill-vfx--baby-puwa-feather::after {
+  inset: 38% 10% 40% 12%;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(65, 135, 118, 0.42);
+  transform: rotate(-18deg);
+}
+
+.hit-effect.skill-vfx--baby-puwa-feather .hit-effect__accent {
+  width: 18px;
+  height: 6px;
+  border-radius: 100% 6% 100% 6%;
+  background: rgba(240, 255, 246, 0.9);
+}
+
+.hit-effect.skill-vfx--baby-bubble-bomb::before {
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.96) 0 9%, transparent 10%),
+    radial-gradient(circle at 52% 58%, rgba(255, 93, 46, 0.92) 0 20%, transparent 21%),
+    radial-gradient(circle, rgba(185, 248, 255, 0.36) 0 38%, rgba(255, 106, 56, 0.58) 57%, transparent 69%);
+}
+
+.hit-effect.skill-vfx--baby-bubble-bomb::after {
+  border: 0;
+  background:
+    conic-gradient(from 8deg, transparent 0 8%, rgba(255, 207, 97, 0.95) 9% 14%, transparent 15% 31%, rgba(255, 106, 56, 0.82) 32% 38%, transparent 39% 62%, rgba(98, 234, 255, 0.62) 63% 68%, transparent 69%);
+}
+
+.hit-effect.skill-vfx--baby-bubble-bomb .hit-effect__accent {
+  background: #ffcf61;
+  box-shadow: 0 0 11px #ff6a38;
+}
+
+.hit-effect.skill-vfx--baby-pushu::before {
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, transparent, rgba(117, 212, 255, 0.84) 22%, rgba(99, 107, 255, 0.76) 68%, transparent);
+}
+
+.hit-effect.skill-vfx--baby-pushu::after {
+  inset: 18%;
+  border: 0;
+  background:
+    radial-gradient(circle at 24% 65%, rgba(117, 212, 255, 0.86) 0 9%, transparent 10%),
+    radial-gradient(circle at 72% 30%, rgba(99, 107, 255, 0.72) 0 8%, transparent 9%),
+    linear-gradient(120deg, transparent 0 40%, rgba(255, 255, 255, 0.8) 41% 46%, transparent 47%);
+}
+
+.hit-effect.skill-vfx--baby-pushu .hit-effect__accent {
+  background: #75d4ff;
+  box-shadow: 8px -4px 0 rgba(99, 107, 255, 0.78);
+}
+
+.hit-effect.skill-vfx--baby-pacifier::before {
+  border-radius: 48% 52% 45% 55%;
+  background:
+    radial-gradient(circle at 50% 50%, #fff 0 14%, #ffd8ee 15% 30%, transparent 31%),
+    radial-gradient(ellipse at 54% 50%, rgba(155, 214, 255, 0.82) 0 54%, transparent 56%);
+}
+
+.hit-effect.skill-vfx--baby-pacifier::after {
+  inset: 16%;
+  border: 2px solid rgba(255, 216, 238, 0.8);
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 0 45%, rgba(155, 214, 255, 0.56) 46% 54%, transparent 55%);
+}
+
+.hit-effect.skill-vfx--baby-pacifier .hit-effect__accent {
+  background: radial-gradient(circle, #fff 0 22%, #ffd8ee 23% 58%, #9bd6ff 59%);
+}
+
+.hit-effect[class*='skill-vfx--child-']::before {
+  inset: var(--child-hit-before-inset, 0);
+  border: var(--child-hit-before-border, 0);
+  border-radius: var(--child-hit-before-radius, 50%);
+  background: var(
+    --child-hit-before-bg,
+    radial-gradient(circle, var(--hit-spark) 0 10%, transparent 11%),
+    radial-gradient(circle, color-mix(in srgb, var(--hit-color) 78%, transparent) 0 28%, transparent 62%)
+  );
+  clip-path: var(--child-hit-before-clip, none);
+  filter: var(--child-hit-filter, blur(0.4px) drop-shadow(0 0 9px var(--hit-color)));
+}
+
+.hit-effect[class*='skill-vfx--child-']::after {
+  inset: var(--child-hit-after-inset, 10%);
+  border: var(--child-hit-after-border, 0);
+  border-radius: var(--child-hit-after-radius, 50%);
+  background: var(
+    --child-hit-after-bg,
+    radial-gradient(circle, transparent 0 45%, color-mix(in srgb, var(--hit-secondary) 58%, transparent) 46% 54%, transparent 55%)
+  );
+  clip-path: var(--child-hit-after-clip, none);
+  filter: var(--child-hit-after-filter, drop-shadow(0 0 10px var(--hit-color)));
+}
+
+.hit-effect[class*='skill-vfx--child-'] .hit-effect__accent {
+  width: var(--child-hit-accent-width, clamp(7px, 1vw, 13px));
+  height: var(--child-hit-accent-height, clamp(7px, 1vw, 13px));
+  border-radius: var(--child-hit-accent-radius, 50%);
+  background: var(--child-hit-accent-bg, var(--hit-secondary));
+  box-shadow: var(--child-hit-accent-shadow, none);
+  clip-path: var(--child-hit-accent-clip, none);
+}
+
+.hit-effect.skill-vfx--rookie::before {
+  border-radius: var(--rookie-radius, 50%);
+  background:
+    radial-gradient(circle, var(--hit-spark) 0 9%, transparent 10%),
+    radial-gradient(circle, color-mix(in srgb, var(--rookie-primary) 74%, transparent) 0 30%, transparent 62%),
+    conic-gradient(
+      from var(--rookie-hit-rotate, 0deg),
+      transparent 0 10deg,
+      color-mix(in srgb, var(--rookie-secondary) 88%, transparent) 11deg 22deg,
+      transparent 23deg 58deg,
+      color-mix(in srgb, var(--rookie-accent) 82%, transparent) 59deg 74deg,
+      transparent 75deg 122deg,
+      color-mix(in srgb, var(--rookie-primary) 86%, transparent) 123deg 136deg,
+      transparent 137deg 360deg
+    );
+}
+
+.hit-effect.skill-vfx--rookie::after {
+  inset: 10%;
+  border: 2px solid color-mix(in srgb, var(--rookie-primary) 76%, transparent);
+  border-radius: var(--rookie-radius, 50%);
+  background:
+    radial-gradient(circle, transparent 0 42%, color-mix(in srgb, var(--rookie-secondary) 60%, transparent) 43% 52%, transparent 53%),
+    conic-gradient(from 0deg, var(--rookie-primary), transparent 28%, var(--rookie-accent), transparent 72%, var(--rookie-primary));
+}
+
+.hit-effect.skill-vfx--rookie .hit-effect__accent {
+  width: clamp(10px, 1.25vw, 17px);
+  height: clamp(10px, 1.25vw, 17px);
+  background: var(--rookie-accent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--rookie-accent) 84%, transparent);
+}
+
+.hit-effect.skill-vfx--rookie .hit-effect__accent--a {
+  --hit-accent-x: var(--rookie-accent-a-x);
+  --hit-accent-y: var(--rookie-accent-a-y);
+}
+
+.hit-effect.skill-vfx--rookie .hit-effect__accent--b {
+  --hit-accent-x: var(--rookie-accent-b-x);
+  --hit-accent-y: var(--rookie-accent-b-y);
+}
+
+.hit-effect.skill-vfx--rookie .hit-effect__accent--c {
+  --hit-accent-x: var(--rookie-accent-c-x);
+  --hit-accent-y: var(--rookie-accent-c-y);
+}
+
+.hit-effect.skill-vfx--mature::before {
+  filter: drop-shadow(0 0 16px color-mix(in srgb, var(--rookie-primary) 58%, transparent));
+}
+
+.hit-effect.skill-vfx--mature::after {
+  inset: 2%;
+  border-width: 3px;
+  filter: drop-shadow(0 0 12px color-mix(in srgb, var(--rookie-secondary) 54%, transparent));
+}
+
+.hit-effect.skill-vfx--mature .hit-effect__accent {
+  width: clamp(12px, 1.5vw, 22px);
+  height: clamp(12px, 1.5vw, 22px);
+}
+
+.hit-effect.skill-vfx--rookie-flame::before {
+  background:
+    radial-gradient(circle at 34% 34%, rgba(255, 250, 190, 0.95) 0 10%, transparent 11%),
+    conic-gradient(from 218deg, var(--rookie-secondary), var(--rookie-primary), #ff3a22, transparent 78%);
+}
+
+.hit-effect.skill-vfx--rookie-electric::before {
+  clip-path: polygon(50% 0, 62% 36%, 100% 50%, 62% 64%, 50% 100%, 38% 64%, 0 50%, 38% 36%);
+  background: linear-gradient(90deg, var(--rookie-primary), var(--rookie-secondary), white);
+}
+
+.hit-effect.skill-vfx--rookie-electric::after {
+  border: 0;
+  background:
+    linear-gradient(90deg, transparent 0 44%, var(--rookie-primary) 45% 52%, transparent 53%),
+    linear-gradient(0deg, transparent 0 44%, var(--rookie-secondary) 45% 52%, transparent 53%);
+}
+
+.hit-effect.skill-vfx--rookie-water::before,
+.hit-effect.skill-vfx--rookie-wind::before {
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, transparent, color-mix(in srgb, var(--rookie-primary) 78%, transparent) 24%, color-mix(in srgb, var(--rookie-secondary) 58%, transparent) 72%, transparent),
+    radial-gradient(ellipse at 70% 50%, color-mix(in srgb, var(--rookie-accent) 40%, transparent), transparent 70%);
+}
+
+.hit-effect.skill-vfx--rookie-feather::before,
+.hit-effect.skill-vfx--rookie-plant::before {
+  border-radius: 100% 8% 100% 8%;
+  background: linear-gradient(105deg, rgba(255, 255, 255, 0.9), var(--rookie-primary) 42%, var(--rookie-secondary) 78%, transparent);
+  transform: rotate(var(--rookie-hit-rotate, 0deg));
+}
+
+.hit-effect.skill-vfx--rookie-plant::before {
+  clip-path: polygon(0 50%, 38% 0, 100% 50%, 38% 100%);
+}
+
+.hit-effect.skill-vfx--rookie-powder::before,
+.hit-effect.skill-vfx--rookie-color::before {
+  background:
+    radial-gradient(circle at 22% 42%, color-mix(in srgb, var(--rookie-primary) 78%, transparent) 0 10%, transparent 11%),
+    radial-gradient(circle at 52% 32%, color-mix(in srgb, var(--rookie-secondary) 76%, transparent) 0 12%, transparent 13%),
+    radial-gradient(circle at 74% 62%, color-mix(in srgb, var(--rookie-accent) 76%, transparent) 0 10%, transparent 11%);
+}
+
+.hit-effect.skill-vfx--rookie-thread::before {
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, transparent 0 8%, var(--rookie-primary) 9% 14%, transparent 15% 34%, var(--rookie-secondary) 35% 41%, transparent 42%),
+    linear-gradient(0deg, transparent 0 42%, rgba(255, 255, 255, 0.82) 43% 49%, transparent 50%);
+}
+
+.hit-effect.skill-vfx--rookie-metal::before {
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 26% 30%, rgba(255, 255, 255, 0.92) 0 8%, transparent 9%),
+    linear-gradient(135deg, #f6fbff, var(--rookie-primary) 42%, var(--rookie-secondary) 72%, #667284);
+}
+
+.hit-effect.skill-vfx--rookie-bubble::before {
+  background:
+    radial-gradient(circle at 28% 26%, rgba(255, 255, 255, 0.94) 0 10%, transparent 11%),
+    radial-gradient(circle at 70% 70%, color-mix(in srgb, var(--rookie-accent) 56%, transparent) 0 14%, transparent 15%),
+    radial-gradient(circle, color-mix(in srgb, var(--rookie-primary) 45%, transparent) 0 42%, color-mix(in srgb, var(--rookie-secondary) 52%, transparent) 60%, transparent 72%);
+}
+
+.hit-effect.skill-vfx--rookie-ice::before {
+  border-radius: 7px;
+  clip-path: polygon(50% 0, 90% 28%, 66% 100%, 34% 100%, 10% 28%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), var(--rookie-primary) 46%, var(--rookie-secondary));
+}
+
+.hit-effect.skill-vfx--rookie-nightmare::before {
+  background:
+    radial-gradient(circle at 50% 50%, #160d2d 0 12%, rgba(255, 255, 255, 0.84) 13% 16%, var(--rookie-secondary) 17% 28%, transparent 29%),
+    radial-gradient(circle, #261047 0 34%, var(--rookie-primary) 58%, var(--rookie-secondary) 72%, transparent 74%);
+}
+
+.hit-effect.skill-vfx--rookie-fist::before {
+  clip-path: polygon(12% 32%, 32% 12%, 74% 16%, 100% 48%, 70% 86%, 28% 82%, 0 58%);
+  background: linear-gradient(135deg, var(--rookie-primary), var(--rookie-secondary) 58%, var(--rookie-accent));
+}
+
+.hit-effect.skill-vfx--rookie-bite::before {
+  background:
+    linear-gradient(135deg, transparent 0 34%, rgba(255, 255, 255, 0.98) 35% 43%, transparent 44%),
+    linear-gradient(45deg, transparent 0 56%, var(--rookie-accent) 57% 65%, transparent 66%),
+    radial-gradient(circle, color-mix(in srgb, var(--rookie-primary) 58%, transparent), transparent 68%);
+}
+
+.hit-effect.skill-vfx--rookie-horn::before {
+  clip-path: polygon(0 50%, 64% 0, 100% 50%, 64% 100%);
+  background: linear-gradient(100deg, rgba(255, 255, 255, 0.96), var(--rookie-primary), var(--rookie-secondary));
+}
+
+.hit-effect.skill-vfx--rookie-guard::before,
+.hit-effect.skill-vfx--rookie-shell::before {
+  clip-path: polygon(50% 0, 92% 22%, 78% 100%, 22% 100%, 8% 22%);
+  background: linear-gradient(150deg, var(--rookie-primary), var(--rookie-secondary) 68%, rgba(35, 49, 66, 0.5));
+}
+
+.hit-effect.skill-vfx--rookie-rock::before {
+  clip-path: polygon(18% 10%, 68% 0, 100% 38%, 78% 94%, 24% 100%, 0 50%);
+  background: linear-gradient(135deg, var(--rookie-primary), var(--rookie-secondary) 58%, #5b4031);
+}
+
+.hit-effect.skill-vfx--rookie-roll::before {
+  clip-path: polygon(50% 0, 61% 32%, 94% 28%, 68% 50%, 94% 72%, 61% 68%, 50% 100%, 39% 68%, 6% 72%, 32% 50%, 6% 28%, 39% 32%);
+  background: conic-gradient(from 0deg, var(--rookie-primary), var(--rookie-secondary), var(--rookie-accent), var(--rookie-primary));
+}
+
+.hit-effect.skill-vfx--rookie-sound::before {
+  background:
+    radial-gradient(ellipse, transparent 0 30%, var(--rookie-primary) 31% 37%, transparent 38% 52%, color-mix(in srgb, var(--rookie-secondary) 70%, transparent) 53% 59%, transparent 60%);
+}
+
+.hit-effect.skill-vfx--rookie-summon::before {
+  background:
+    radial-gradient(circle, transparent 0 30%, rgba(255, 255, 255, 0.94) 31% 37%, var(--rookie-primary) 38% 47%, transparent 48%),
+    conic-gradient(from 45deg, var(--rookie-secondary), transparent 24%, var(--rookie-accent), transparent 62%, var(--rookie-secondary));
+}
+
+.hit-effect.skill-vfx--rookie-slash::before {
+  border-radius: 4px;
+  background:
+    linear-gradient(116deg, transparent 0 26%, rgba(255, 255, 255, 0.96) 27% 34%, var(--rookie-primary) 35% 54%, transparent 55%),
+    linear-gradient(42deg, transparent 0 48%, var(--rookie-secondary) 49% 56%, transparent 57%);
 }
 
 .battle-hit-feedback {
@@ -3966,17 +5782,17 @@
 @keyframes hitEffectBurst {
   0% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.18) rotate(-8deg);
+    transform: translate(-50%, -50%) scale(calc(var(--hit-global-scale, 1) * 0.18)) rotate(-8deg);
   }
 
   18% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(0.92) rotate(3deg);
+    transform: translate(-50%, -50%) scale(calc(var(--hit-global-scale, 1) * 0.92)) rotate(3deg);
   }
 
   100% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(1.45) rotate(16deg);
+    transform: translate(-50%, -50%) scale(calc(var(--hit-global-scale, 1) * 1.45)) rotate(16deg);
   }
 }
 
@@ -4028,6 +5844,28 @@
   100% {
     opacity: 0;
     transform: scale(1.55) rotate(180deg);
+  }
+}
+
+@keyframes babyHitAccentBurst {
+  0% {
+    opacity: 0;
+    transform:
+      translate(calc(-50% + var(--hit-accent-x)), calc(-50% + var(--hit-accent-y)))
+      rotate(var(--hit-accent-rotate))
+      scale(0.45);
+  }
+
+  20% {
+    opacity: 0.95;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(calc(-50% + var(--hit-accent-x)), calc(-50% + var(--hit-accent-y)))
+      rotate(var(--hit-accent-rotate))
+      scale(1.7);
   }
 }
 
