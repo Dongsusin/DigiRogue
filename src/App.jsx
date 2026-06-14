@@ -890,24 +890,16 @@ const growthStageDigimonUrls = [
   '/도감/성장기/효코몬.png',
 ]
 
-const growthStageDigimon = [
-  {
-    url: '/도감/유아기/깜몬.png',
-    name: '깜몬',
-    data: babyStageData.find((digimon) => digimon.이름 === '깜몬'),
-    stage: '유아기',
-  },
-  ...growthStageDigimonUrls.map((url) => {
-    const fileName = url.split('/').pop() ?? ''
-    const data = growthStageData.find((digimon) => digimon.이름 === fileName.replace('.png', ''))
-    return {
-      url,
-      name: fileName.replace('.png', ''),
-      data,
-      stage: '성장기',
-    }
-  }),
-]
+const growthStageDigimon = growthStageDigimonUrls.map((url) => {
+  const fileName = url.split('/').pop() ?? ''
+  const data = growthStageData.find((digimon) => digimon.이름 === fileName.replace('.png', ''))
+  return {
+    url,
+    name: fileName.replace('.png', ''),
+    data,
+    stage: '성장기',
+  }
+})
 
 const digimonStageDataMap = {
   유아기: babyStageData,
@@ -1663,19 +1655,6 @@ const IDLE_ANIMATION_SPRITE_META_BY_STAGE = {
   },
 }
 
-const ATTACK_ANIMATION_SPRITE_META_BY_STAGE = {
-  유아기: {
-    깜몬: {
-      fileName: '깜몬',
-      skillNames: ['산성 거품'],
-      frameWidth: 862,
-      frameHeight: 703,
-      columns: 4,
-      rows: 2,
-    },
-  },
-}
-
 const getCombatantIdleAnimationSprite = (combatant) => {
   const stage = combatant?.speciesStage ?? combatant?.speciesData?.stage
   const imageName = combatant?.imageName ?? combatant?.name
@@ -1689,27 +1668,6 @@ const getCombatantIdleAnimationSprite = (combatant) => {
     url: createPublicAssetUrl('애니메이션', '대기', stage, `${meta.fileName}.png`),
     ratio: meta.frameWidth / meta.frameHeight,
     inverseRatio: meta.frameHeight / meta.frameWidth,
-  }
-}
-
-const getCombatantAttackAnimationSprite = (combatant, attackMotion) => {
-  const stage = combatant?.speciesStage ?? combatant?.speciesData?.stage
-  const imageName = combatant?.imageName ?? combatant?.name
-  const meta =
-    stage && imageName ? ATTACK_ANIMATION_SPRITE_META_BY_STAGE[stage]?.[imageName] : null
-
-  if (!stage || !meta || !meta.skillNames.includes(attackMotion?.skillName)) {
-    return null
-  }
-
-  return {
-    url: createPublicAssetUrl('애니메이션', '공격', stage, `${meta.fileName}.png`),
-    ratio: meta.frameWidth / meta.frameHeight,
-    inverseRatio: meta.frameHeight / meta.frameWidth,
-    columns: meta.columns,
-    rows: meta.rows,
-    backgroundSize: meta.backgroundSize,
-    framePositions: meta.framePositions,
   }
 }
 
@@ -3173,7 +3131,6 @@ const DAMAGE_TEXT_DURATION_MS = 920
 const HIT_EFFECT_SEQUENCE_INTERVAL_MS = 1000
 const ATTACK_MOTION_DURATION_MS = 760
 const PROJECTILE_EFFECT_DURATION_MS = 620
-const ATTACK_SPRITE_ANIMATION_DURATION_MS = 960
 const RUN_STAGE_ADVANCE_DELAY_MS = 650
 
 const hitEffectAttributeClassMap = {
@@ -8019,63 +7976,30 @@ function App() {
       )
   }
 
-  const renderBattleSprite = (combatant, side, attackMotion = null) => {
+  const renderBattleSprite = (combatant, side) => {
     const isAlly = side === 'ally'
-    const attackAnimationSprite = getCombatantAttackAnimationSprite(combatant, attackMotion)
     const idleAnimationSprite = getCombatantIdleAnimationSprite(combatant)
-    const animationSprite = attackAnimationSprite ?? idleAnimationSprite
     const className = [
       'adventure-player__sprite',
       isAlly ? 'adventure-player__sprite--ally' : 'adventure-player__sprite--enemy',
       `adventure-player__sprite--size-${combatant.size}`,
-      attackAnimationSprite
-        ? 'adventure-player__sprite--attack-sheet'
-        : idleAnimationSprite
-          ? 'adventure-player__sprite--idle-sheet'
-          : '',
+      idleAnimationSprite ? 'adventure-player__sprite--idle-sheet' : '',
     ]
       .filter(Boolean)
       .join(' ')
 
-    if (animationSprite) {
+    if (idleAnimationSprite) {
       return (
         <span
-          key={attackAnimationSprite ? attackMotion.id : 'idle-animation'}
+          key="idle-animation"
           className={className}
           role="img"
           aria-label={combatant.name}
-          style={
-            attackAnimationSprite
-              ? {
-                  '--attack-sprite-url': `url("${attackAnimationSprite.url}")`,
-                  '--idle-sprite-url': idleAnimationSprite
-                    ? `url("${idleAnimationSprite.url}")`
-                    : 'none',
-                  '--attack-display-ratio':
-                    idleAnimationSprite?.ratio ?? attackAnimationSprite.ratio,
-                  '--attack-display-inverse-ratio':
-                    idleAnimationSprite?.inverseRatio ?? attackAnimationSprite.inverseRatio,
-                  '--attack-sprite-background-size':
-                    attackAnimationSprite.backgroundSize ??
-                    `${attackAnimationSprite.columns * 100}% ${attackAnimationSprite.rows * 100}%`,
-                  '--attack-frame-position-1': attackAnimationSprite.framePositions?.[0],
-                  '--attack-frame-position-2': attackAnimationSprite.framePositions?.[1],
-                  '--attack-frame-position-3': attackAnimationSprite.framePositions?.[2],
-                  '--attack-frame-position-4': attackAnimationSprite.framePositions?.[3],
-                  '--attack-frame-position-5': attackAnimationSprite.framePositions?.[4],
-                  '--attack-frame-position-6': attackAnimationSprite.framePositions?.[5],
-                  '--attack-frame-position-7': attackAnimationSprite.framePositions?.[6],
-                  '--attack-frame-position-8': attackAnimationSprite.framePositions?.[7],
-                  '--attack-sprite-duration': attackMotion.isPhysical
-                    ? 'var(--attack-motion-duration)'
-                    : 'var(--attack-sprite-motion-duration)',
-                }
-              : {
-                  '--idle-sprite-url': `url("${idleAnimationSprite.url}")`,
-                  '--idle-frame-ratio': idleAnimationSprite.ratio,
-                  '--idle-frame-inverse-ratio': idleAnimationSprite.inverseRatio,
-                }
-          }
+          style={{
+            '--idle-sprite-url': `url("${idleAnimationSprite.url}")`,
+            '--idle-frame-ratio': idleAnimationSprite.ratio,
+            '--idle-frame-inverse-ratio': idleAnimationSprite.inverseRatio,
+          }}
         />
       )
     }
@@ -8284,9 +8208,8 @@ function App() {
           ...(Number.isFinite(lungeDistance) ? { lungeDistance } : {}),
         }
 
-        setAttackMotions((current) => [...current, motionEffect].slice(-4))
-
         if (isPhysical) {
+          setAttackMotions((current) => [...current, motionEffect].slice(-4))
           playBattleAttackSound(effect, 'physical-move')
 
           const hitTimeoutId = window.setTimeout(() => {
@@ -8350,17 +8273,6 @@ function App() {
           }, getGameDuration(PROJECTILE_EFFECT_DURATION_MS + 80))
 
           hitEffectTimeoutsRef.current.push(endProjectileTimeoutId)
-
-          const endSpecialMotionTimeoutId = window.setTimeout(() => {
-            setAttackMotions((current) =>
-              current.filter((currentEffect) => currentEffect.id !== effectId)
-            )
-            hitEffectTimeoutsRef.current = hitEffectTimeoutsRef.current.filter(
-              (currentTimeoutId) => currentTimeoutId !== endSpecialMotionTimeoutId
-            )
-          }, getGameDuration(ATTACK_SPRITE_ANIMATION_DURATION_MS))
-
-          hitEffectTimeoutsRef.current.push(endSpecialMotionTimeoutId)
         }
 
         hitEffectTimeoutsRef.current = hitEffectTimeoutsRef.current.filter(
@@ -10842,7 +10754,6 @@ function App() {
 
   const mainScreenStyle = {
     '--attack-motion-duration': `${getGameDuration(ATTACK_MOTION_DURATION_MS)}ms`,
-    '--attack-sprite-motion-duration': `${getGameDuration(ATTACK_SPRITE_ANIMATION_DURATION_MS)}ms`,
     '--projectile-effect-duration': `${getGameDuration(PROJECTILE_EFFECT_DURATION_MS)}ms`,
     '--hit-effect-duration': `${getGameDuration(HIT_EFFECT_DURATION_MS)}ms`,
     '--damage-text-duration': `${getGameDuration(DAMAGE_TEXT_DURATION_MS)}ms`,

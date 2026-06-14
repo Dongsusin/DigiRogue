@@ -6666,34 +6666,6 @@
   animation: digimonIdleSprite4 960ms steps(1, end) infinite;
 }
 
-.adventure-player__sprite--attack-sheet {
-  position: relative;
-  display: block;
-  width: min(var(--battle-sprite-width), calc(var(--battle-sprite-height) * var(--attack-display-ratio)));
-  height: min(var(--battle-sprite-height), calc(var(--battle-sprite-width) * var(--attack-display-inverse-ratio)));
-  overflow: hidden;
-  background-image: var(--attack-sprite-url);
-  background-repeat: no-repeat;
-  background-size: var(--attack-sprite-background-size);
-  background-position: 0% 0%;
-  animation: digimonAttackSprite8 var(--attack-sprite-duration, 760ms) steps(1, end) 1 both;
-}
-
-.adventure-player__sprite--attack-sheet::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: var(--idle-sprite-url);
-  background-repeat: no-repeat;
-  background-size: 400% 100%;
-  background-position: 0% 0%;
-  pointer-events: none;
-  will-change: opacity;
-  animation:
-    digimonIdleSprite4 960ms steps(1, end) infinite,
-    digimonAttackSpriteCrossfade var(--attack-sprite-duration, 760ms) ease-in-out 1 both;
-}
-
 .adventure-player__sprite--size-1 {
   --digimon-size-scale: 0.5;
 }
@@ -6733,65 +6705,6 @@
   75%,
   100% {
     background-position: 100% 0%;
-  }
-}
-
-@keyframes digimonAttackSprite8 {
-  0%,
-  12.49% {
-    background-position: var(--attack-frame-position-1, 0% 0%);
-  }
-
-  12.5%,
-  24.99% {
-    background-position: var(--attack-frame-position-2, 33.333% 0%);
-  }
-
-  25%,
-  37.49% {
-    background-position: var(--attack-frame-position-3, 66.666% 0%);
-  }
-
-  37.5%,
-  49.99% {
-    background-position: var(--attack-frame-position-4, 100% 0%);
-  }
-
-  50%,
-  62.49% {
-    background-position: var(--attack-frame-position-5, 0% 100%);
-  }
-
-  62.5%,
-  74.99% {
-    background-position: var(--attack-frame-position-6, 33.333% 100%);
-  }
-
-  75%,
-  87.49% {
-    background-position: var(--attack-frame-position-7, 66.666% 100%);
-  }
-
-  87.5%,
-  100% {
-    background-position: var(--attack-frame-position-8, 100% 100%);
-  }
-}
-
-@keyframes digimonAttackSpriteCrossfade {
-  0%,
-  10% {
-    opacity: 1;
-  }
-
-  35%,
-  68% {
-    opacity: 0;
-  }
-
-  90%,
-  100% {
-    opacity: 1;
   }
 }
 
