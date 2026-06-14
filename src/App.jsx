@@ -890,15 +890,24 @@ const growthStageDigimonUrls = [
   '/도감/성장기/효코몬.png',
 ]
 
-const growthStageDigimon = growthStageDigimonUrls.map((url) => {
-  const fileName = url.split('/').pop() ?? ''
-  const data = growthStageData.find((digimon) => digimon.이름 === fileName.replace('.png', ''))
-  return {
-    url,
-    name: fileName.replace('.png', ''),
-    data,
-  }
-})
+const growthStageDigimon = [
+  {
+    url: '/도감/유아기/깜몬.png',
+    name: '깜몬',
+    data: babyStageData.find((digimon) => digimon.이름 === '깜몬'),
+    stage: '유아기',
+  },
+  ...growthStageDigimonUrls.map((url) => {
+    const fileName = url.split('/').pop() ?? ''
+    const data = growthStageData.find((digimon) => digimon.이름 === fileName.replace('.png', ''))
+    return {
+      url,
+      name: fileName.replace('.png', ''),
+      data,
+      stage: '성장기',
+    }
+  }),
+]
 
 const digimonStageDataMap = {
   유아기: babyStageData,
@@ -1654,6 +1663,19 @@ const IDLE_ANIMATION_SPRITE_META_BY_STAGE = {
   },
 }
 
+const ATTACK_ANIMATION_SPRITE_META_BY_STAGE = {
+  유아기: {
+    깜몬: {
+      fileName: '깜몬',
+      skillNames: ['산성 거품'],
+      frameWidth: 862,
+      frameHeight: 703,
+      columns: 4,
+      rows: 2,
+    },
+  },
+}
+
 const getCombatantIdleAnimationSprite = (combatant) => {
   const stage = combatant?.speciesStage ?? combatant?.speciesData?.stage
   const imageName = combatant?.imageName ?? combatant?.name
@@ -1664,9 +1686,30 @@ const getCombatantIdleAnimationSprite = (combatant) => {
   }
 
   return {
-    url: createPublicAssetUrl('애니메이션', stage, `${meta.fileName}.png`),
+    url: createPublicAssetUrl('애니메이션', '대기', stage, `${meta.fileName}.png`),
     ratio: meta.frameWidth / meta.frameHeight,
     inverseRatio: meta.frameHeight / meta.frameWidth,
+  }
+}
+
+const getCombatantAttackAnimationSprite = (combatant, attackMotion) => {
+  const stage = combatant?.speciesStage ?? combatant?.speciesData?.stage
+  const imageName = combatant?.imageName ?? combatant?.name
+  const meta =
+    stage && imageName ? ATTACK_ANIMATION_SPRITE_META_BY_STAGE[stage]?.[imageName] : null
+
+  if (!stage || !meta || !meta.skillNames.includes(attackMotion?.skillName)) {
+    return null
+  }
+
+  return {
+    url: createPublicAssetUrl('애니메이션', '공격', stage, `${meta.fileName}.png`),
+    ratio: meta.frameWidth / meta.frameHeight,
+    inverseRatio: meta.frameHeight / meta.frameWidth,
+    columns: meta.columns,
+    rows: meta.rows,
+    backgroundSize: meta.backgroundSize,
+    framePositions: meta.framePositions,
   }
 }
 
@@ -1693,6 +1736,149 @@ const DigimonTraitIcon = ({ className, src, label }) => {
       alt={label}
       title={label}
     />
+  )
+}
+
+const MatchupGuideBadge = ({ kind, name, compact = false }) => {
+  const iconUrl =
+    kind === 'type' ? getDigimonTypeIconUrl(name) : getDigimonAttributeIconUrl(name)
+
+  return (
+    <span
+      className={[
+        'matchup-guide-badge',
+        `matchup-guide-badge--${kind}`,
+        compact ? 'matchup-guide-badge--compact' : '',
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    >
+      {iconUrl ? <img className="matchup-guide-badge__icon" src={iconUrl} alt="" /> : null}
+      <span className="matchup-guide-badge__label">{name}</span>
+    </span>
+  )
+}
+
+const MatchupGuideRow = ({ kind, source, targets }) => (
+  <div className="matchup-guide-row">
+    <MatchupGuideBadge kind={kind} name={source} />
+    <span className="matchup-guide-row__arrow" aria-hidden="true">
+      {'>'}
+    </span>
+    <span className="matchup-guide-row__targets">
+      {targets.map((target) => (
+        <MatchupGuideBadge key={`${source}-${target}`} kind={kind} name={target} compact />
+      ))}
+    </span>
+  </div>
+)
+
+const MatchupGuideModal = ({ onConfirm }) => {
+  const typeEntries = Object.entries(typeAdvantageMap)
+  const attributeEntries = Object.entries(attributeAdvantageMap)
+
+  return (
+    <div className="matchup-guide-overlay" role="dialog" aria-modal="true" aria-labelledby="matchup-guide-title">
+      <div className="matchup-guide-panel">
+        <button
+          type="button"
+          className="matchup-guide-close"
+          aria-label="상성표 확인 후 게임 시작"
+          onClick={onConfirm}
+        >
+          X
+        </button>
+
+        <div className="matchup-guide-header">
+          <p className="matchup-guide-kicker">BATTLE GUIDE</p>
+          <h2 id="matchup-guide-title" className="matchup-guide-title">
+            상성표
+          </h2>
+          <p className="matchup-guide-summary">
+            기술 속성과 디지몬 타입이 유리할수록 피해가 커지고, 불리하면 피해가 줄어든다.
+          </p>
+        </div>
+
+        <div className="matchup-guide-body">
+          <section className="matchup-guide-section matchup-guide-section--type" aria-label="타입 상성">
+            <div className="matchup-guide-section__head">
+              <span>타입</span>
+              <strong>x2</strong>
+            </div>
+            <div className="matchup-guide-rows">
+              {typeEntries.map(([source, targets]) => (
+                <MatchupGuideRow
+                  key={`type-${source}`}
+                  kind="type"
+                  source={source}
+                  targets={targets}
+                />
+              ))}
+            </div>
+          </section>
+
+          <section className="matchup-guide-section matchup-guide-section--attribute" aria-label="속성 상성">
+            <div className="matchup-guide-section__head">
+              <span>속성</span>
+              <strong>다음 2개에 강함</strong>
+            </div>
+            <div className="matchup-guide-wheel" aria-label="속성 상성 순환표">
+              <div className="matchup-guide-wheel__ring" aria-hidden="true" />
+              <div className="matchup-guide-wheel__core">
+                <strong>x2</strong>
+                <span>유리</span>
+              </div>
+              {attributeEntries.map(([attribute], index) => {
+                const angle = (360 / attributeEntries.length) * index - 90
+                const radians = (angle * Math.PI) / 180
+                const x = 50 + Math.cos(radians) * 39
+                const y = 50 + Math.sin(radians) * 39
+
+                return (
+                  <span
+                    key={`attribute-node-${attribute}`}
+                    className="matchup-guide-node"
+                    style={{
+                      '--matchup-node-x': `${x}%`,
+                      '--matchup-node-y': `${y}%`,
+                    }}
+                  >
+                    <MatchupGuideBadge kind="attribute" name={attribute} compact />
+                  </span>
+                )
+              })}
+              {attributeEntries.map(([attribute], index) => {
+                const angle = (360 / attributeEntries.length) * (index + 0.5) - 90
+                const radians = (angle * Math.PI) / 180
+                const x = 50 + Math.cos(radians) * 39
+                const y = 50 + Math.sin(radians) * 39
+
+                return (
+                  <span
+                    key={`attribute-arrow-${attribute}`}
+                    className="matchup-guide-wheel__arrow"
+                    style={{
+                      '--matchup-arrow-x': `${x}%`,
+                      '--matchup-arrow-y': `${y}%`,
+                      '--matchup-arrow-angle': `${angle + 90}deg`,
+                    }}
+                    aria-hidden="true"
+                  >
+                    {'>'}
+                  </span>
+                )
+              })}
+            </div>
+            <p className="matchup-guide-note">무 속성은 상성 변화가 없다.</p>
+          </section>
+        </div>
+
+        <div className="matchup-guide-footer">
+          <span>타입과 속성이 모두 유리하면 최대 x3</span>
+          <span>둘 다 불리하면 공격이 통하지 않음</span>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -2141,6 +2327,19 @@ const syncPartyMember = (party, activePlayer) => {
   return currentParty.map((member, index) => (index === activeIndex ? activePlayer : member))
 }
 const isCombatantEgg = (combatant) => Boolean(combatant?.isEgg)
+const fullyRestoreParty = (party) =>
+  (party ?? []).map((member) => {
+    if (isCombatantEgg(member)) {
+      return member
+    }
+
+    const refreshedMember = refreshCombatantStats(member, { statusEffect: null })
+
+    return {
+      ...refreshedMember,
+      currentHp: refreshedMember.maxHp,
+    }
+  })
 const isCombatantAbleToBattle = (combatant) =>
   !isCombatantEgg(combatant) && (combatant?.currentHp ?? 0) > 0
 const getBattleAllyLimit = (battleState) =>
@@ -2974,6 +3173,7 @@ const DAMAGE_TEXT_DURATION_MS = 920
 const HIT_EFFECT_SEQUENCE_INTERVAL_MS = 1000
 const ATTACK_MOTION_DURATION_MS = 760
 const PROJECTILE_EFFECT_DURATION_MS = 620
+const ATTACK_SPRITE_ANIMATION_DURATION_MS = 960
 const RUN_STAGE_ADVANCE_DELAY_MS = 650
 
 const hitEffectAttributeClassMap = {
@@ -3058,6 +3258,18 @@ const stageSkillVisualEffectLookup = new Map(
       skillData.기술명,
       { skillData, stage: 'mature' },
     ]),
+    ...perfectSkillData.map((skillData) => [
+      skillData.기술명,
+      { skillData, stage: 'perfect' },
+    ]),
+    ...ultimateSkillData.map((skillData) => [
+      skillData.기술명,
+      { skillData, stage: 'ultimate' },
+    ]),
+    ...superUltimateSkillData.map((skillData) => [
+      skillData.기술명,
+      { skillData, stage: 'super-ultimate' },
+    ]),
   ].filter(([skillName]) => Boolean(skillName))
 )
 
@@ -3121,6 +3333,27 @@ const stageSkillStageConfigMap = {
     heightBoost: 10,
     accentBoost: 6,
   },
+  perfect: {
+    hueOffset: 28,
+    secondaryHueOffset: 36,
+    widthBoost: 26,
+    heightBoost: 18,
+    accentBoost: 12,
+  },
+  ultimate: {
+    hueOffset: 48,
+    secondaryHueOffset: 58,
+    widthBoost: 38,
+    heightBoost: 26,
+    accentBoost: 18,
+  },
+  'super-ultimate': {
+    hueOffset: 72,
+    secondaryHueOffset: 84,
+    widthBoost: 52,
+    heightBoost: 36,
+    accentBoost: 26,
+  },
 }
 
 const stageSkillMotifRules = [
@@ -3142,6 +3375,38 @@ const stageSkillMotifRules = [
       '셰이드',
       '섀도',
       '죽음',
+      '레이드',
+      '신드롬',
+      '데드',
+      '얼라이브',
+      '블러디',
+      '암흑',
+      '어둠',
+      '저주',
+      '오블리비언',
+      '파라다이스 로스트',
+      '판도라',
+      '포이즌',
+      '헬리',
+      '블랙 매터',
+      '다크니스',
+      '데몬즈',
+      '로스트',
+      '로스트룸',
+      '베놈',
+      '메가 데스',
+      '블랙 데스',
+      '테러',
+      '팬텀',
+      '데프스',
+      '디스페어',
+      '카오스',
+      '케이오스',
+      '사바스',
+      '스포커',
+      '스토커',
+      '다크네스',
+      '카니발',
     ],
   },
   {
@@ -3167,6 +3432,26 @@ const stageSkillMotifRules = [
       '매드니스 파이어',
       '이그저스트 플레임',
       '도깨비 불',
+      '래비드 파이어',
+      '마스터 파이어',
+      '메테오 플레임',
+      '블레이즈',
+      '콜드 플레임',
+      '버밀리온',
+      '가이아',
+      '버닝',
+      '프로미넌스',
+      '오거 플레임',
+      '인페르노',
+      '화력',
+      '그랑 ･ 델 ･ 솔',
+      '홀리 플레어',
+      '버너',
+      '블루머더',
+      '코로나',
+      '퍼가토리얼 플레임',
+      '블레이즈',
+      '레스팅',
     ],
   },
   {
@@ -3184,9 +3469,44 @@ const stageSkillMotifRules = [
       '볼트',
       '스턴',
       '블리츠크리그',
+      '묠니르',
+      '번개창',
+      '해머 스파크',
+      '라이트닝',
+      '녹다운',
+      '파일',
+      '헥썬더',
+      '버니어',
+      '일렉',
+      '플라즈마',
+      '마볼트',
+      '프라즈먼트',
+      '퍼니시 저지',
+      '뇌광',
     ],
   },
-  { motif: 'ice', patterns: ['아이스', '헤일', '빙빙', '블레이징', '얼음', '영도'] },
+  {
+    motif: 'ice',
+    patterns: [
+      '아이스',
+      '헤일',
+      '빙빙',
+      '블레이징',
+      '얼음',
+      '영도',
+      '프로즌',
+      '아이시클',
+      '미스트',
+      '팬텀',
+      '빙월아',
+      '프리저',
+      '프로스트',
+      '코큐토스',
+      '블리자드',
+      '아크틱',
+      '크리스탈',
+    ],
+  },
   {
     motif: 'wind',
     patterns: [
@@ -3202,6 +3522,20 @@ const stageSkillMotifRules = [
       '수리검 날개',
       '메테오 윙',
       '유성 폭풍',
+      '토네이도',
+      '스카이',
+      '소닉',
+      '블래스트',
+      '지가 스톰',
+      '다크 스톰',
+      '일륜의 춤',
+      '효광일섬',
+      '볼텍스',
+      '사이크론',
+      '허리케인',
+      '플라이',
+      '황금날개',
+      '스트림',
     ],
   },
   { motif: 'feather', patterns: ['깃털', '날개', '부리', '팔코', '플롯트'] },
@@ -3220,6 +3554,19 @@ const stageSkillMotifRules = [
       '홍당무',
       '리프',
       '태양 광선',
+      '꽃잎',
+      '폴렌',
+      '체리',
+      '로열 너츠',
+      '로제스',
+      '레이피어',
+      '페탈',
+      '쏜',
+      '위프',
+      '바이올런트 퍼니셔',
+      '스프라우트',
+      '위스렌',
+      '발레 건',
     ],
   },
   {
@@ -3235,9 +3582,22 @@ const stageSkillMotifRules = [
       '미러 더스트',
       '드림 더스트',
       '스마일리',
+      '세레나데',
+      '러블리',
+      '하트 브레이크',
+      '프리티',
+      '트릭 오어 트릿',
+      'LOVE YOU',
+      '러브',
+      '유혹',
+      '플래티넘',
+      '바나나',
+      '슬립',
+      '테라피',
+      '생명의키스',
     ],
   },
-  { motif: 'thread', patterns: ['그물', '실크', '스레드', '전기 실'] },
+  { motif: 'thread', patterns: ['그물', '실크', '스레드', '전기 실', '거미줄', '네트워크'] },
   {
     motif: 'metal',
     patterns: [
@@ -3261,6 +3621,31 @@ const stageSkillMotifRules = [
       '파괴',
       '디스트럭션',
       '디스트로이',
+      '디스트로이어',
+      '뉴클리어',
+      '레그 리볼버',
+      '로켓',
+      '레이저포',
+      '아토믹',
+      '블래스터',
+      '하울링 캐논',
+      '플러그 봄',
+      '메탈리카',
+      '딥 퍼플',
+      '보링',
+      '로더',
+      '수류탄',
+      '∞',
+      '무한',
+      '미사일',
+      '블릿',
+      '불릿',
+      '스테이크',
+      '호넷 이레이저',
+      '포지트론',
+      '하이퍼 무한',
+      '키를리안',
+      '라이징 ･ 선',
     ],
   },
   { motif: 'bubble', patterns: ['버블', '거품'] },
@@ -3277,6 +3662,16 @@ const stageSkillMotifRules = [
       '아쿠아',
       '넵튠',
       '프레셔',
+      '샤워',
+      '타이달',
+      '웨이브',
+      '수류',
+      '아시파트라바나',
+      '오션',
+      '애틀랜틱',
+      '댐',
+      '디멘션 시저',
+      '파이널 ･ 엘리시온',
     ],
   },
   {
@@ -3292,6 +3687,19 @@ const stageSkillMotifRules = [
       '응가',
       '덩크',
       '투척',
+      '크랙',
+      '봄버',
+      '봄',
+      '해머 크러시',
+      '그래비티',
+      '엑스크리먼트',
+      '피라미드',
+      '그라운드',
+      '지진',
+      '암공',
+      '크래처',
+      '인텐스',
+      '디비전',
     ],
   },
   {
@@ -3308,6 +3716,35 @@ const stageSkillMotifRules = [
       '비검',
       '크림슨',
       '엣지',
+      '블레이드',
+      '슬라이서',
+      '양날검',
+      '영혼가르기',
+      '세이버',
+      '에지',
+      '커팅',
+      '범필섬',
+      '천만의 태도',
+      '아메노무라쿠모',
+      '참인',
+      '브레이커',
+      '세이버',
+      '레이피어',
+      '태도',
+      '성검',
+      '엑스칼리버',
+      '그레이 소드',
+      '트럼프검',
+      '펜릴 소드',
+      '철검',
+      '소닉 슬래시',
+      '엣지 블리자드',
+      '코스모 블레이드',
+      '오메가 블레이드',
+      '하켄 슬래셔',
+      '왕룡검',
+      '그레이달파',
+      '사이즈',
     ],
   },
   {
@@ -3324,12 +3761,63 @@ const stageSkillMotifRules = [
       '물어뜯기',
       '크로우',
       '스컬',
+      '칼립바이트',
+      '애니멀 네일',
+      '카이저 네일',
+      '이레이즈 클로',
+      '스크랩리스 클로',
+      '프로즌 클로',
+      '길티 크로우',
+      '다크니스 크로우',
+      '디스트로이 크로우',
+      '레이븐 클로',
+      '게일 클로',
+      '네일 크러셔',
+      '칼립바이트',
+      '하이랜드 팡',
+      '그라운드 팡',
     ],
   },
-  { motif: 'horn', patterns: ['호른', '투구', '램', '뿔', '대뿔', '트러스트'] },
-  { motif: 'guard', patterns: ['등껍질', '가드', '철갑', '미러 가드'] },
+  {
+    motif: 'horn',
+    patterns: [
+      '호른',
+      '투구',
+      '램',
+      '뿔',
+      '대뿔',
+      '트러스트',
+      '트라이던트',
+      '앵커',
+      '랜스',
+      '스파이크',
+      '재블린',
+      '피어',
+      '찌르기',
+      '스팅거',
+      '토마호크',
+    ],
+  },
+  {
+    motif: 'guard',
+    patterns: ['등껍질', '가드', '철갑', '미러 가드', '황금 갑옷', '버프', '필드', '결계'],
+  },
   { motif: 'roll', patterns: ['회전', '구르기', '빙빙'] },
-  { motif: 'roll', patterns: ['스핀', '스피닝', '풀 스로틀'] },
+  {
+    motif: 'roll',
+    patterns: [
+      '스핀',
+      '스피닝',
+      '풀 스로틀',
+      '대회전',
+      '메리 고 라운드',
+      '마스커레이드',
+      '스트라이크 롤',
+      '스파이럴',
+      '자이로',
+      '파이널 스트라이크 롤',
+    ],
+  },
   {
     motif: 'fist',
     patterns: [
@@ -3352,6 +3840,28 @@ const stageSkillMotifRules = [
       '내려치기',
       '망치',
       '차지',
+      '강타',
+      '슬랩',
+      '스트라이크',
+      '어택',
+      '크러시',
+      '프레스',
+      '다이브',
+      '차징',
+      '비트 프레스',
+      '임팩트',
+      '킥',
+      '액셀 암',
+      '크리티컬 암',
+      '트리니티 암',
+      '블리츠 암',
+      '스매시',
+      '최후의일격',
+      '보름달 유성 충격',
+      '레이지',
+      '레오파드 모드',
+      '격앙',
+      '어썸 링 잭',
     ],
   },
   {
@@ -3368,6 +3878,10 @@ const stageSkillMotifRules = [
       '로어',
       '에코',
       '심포니',
+      '초음파',
+      '사무라이 톤',
+      '왈츠',
+      '드래곤즈 로어',
     ],
   },
   {
@@ -3383,12 +3897,247 @@ const stageSkillMotifRules = [
       '솔 블로',
       '트윙클',
       '광선',
+      '골든 트라이앵글',
+      '노던 크로스',
+      '천국',
+      '니르바나',
+      '미카후츠노카미',
+      '니기미타마',
+      '아라미타마',
+      '에니그마',
+      '게니아스',
+      '메테오 럭스',
+      '금강계만다라',
+      '태장계만다라',
+      '글로리어스',
+      '디지털라이즈',
+      '오브 ･ 소울',
+      '샤이닝',
+      '스타라이트',
+      '아우스',
+      '람프란투스',
+      '엘리시온',
+      '퍼지 샤인',
+      '헤븐즈',
+      '저스티스',
+      '제로 헤븐스',
+      '디바인',
+      '아발론',
+      '팬드래곤즈 글로리',
+      '샤리테',
+      '무녀의 결계',
+      '홀리',
     ],
   },
   { motif: 'color', patterns: ['컬러풀', '화려', '원색'] },
 ]
 
+const skillDetailVisualEffectRules = [
+  {
+    detail: 'cross',
+    patterns: [
+      '그랜드 크로스',
+      '노던 크로스',
+      '세븐 헤븐즈',
+      '금강계만다라',
+      '태장계만다라',
+      '트리플렉스 포스',
+      '디지털라이즈 ･ 오브 ･ 소울',
+      '제로 헤븐스',
+      '디바인',
+      '팬드래곤즈 글로리',
+      '람프란투스',
+    ],
+  },
+  {
+    detail: 'cannon',
+    patterns: [
+      '캐논',
+      '블래스터',
+      '블래스트',
+      '디스트로이어',
+      '디스트럭션',
+      '무한',
+      '∞',
+      '지드 포',
+      '파동포',
+      '발사',
+    ],
+  },
+  {
+    detail: 'laser',
+    patterns: ['레이저', '광선', '빔', '포지트론', '뉴클리어', '아토믹', '퀄리얼라이즈'],
+  },
+  {
+    detail: 'missile',
+    patterns: ['미사일', '로켓', '그레네이드', '수류탄', 'DCD', '봄버', '플러그 봄'],
+  },
+  {
+    detail: 'bomb',
+    patterns: ['폭탄', '봄', '크랙', '퀘이크', '크래처', '어나이얼레이션', '그레네이드 스톰'],
+  },
+  {
+    detail: 'breath',
+    patterns: ['브레스', '불 뿜기', '화염포', '푸른화염포', '코큐토스', '와이번'],
+  },
+  {
+    detail: 'blade',
+    patterns: [
+      '소드',
+      '검',
+      '세이버',
+      '블레이드',
+      '슬래시',
+      '슬라이서',
+      '에지',
+      '엣지',
+      '커팅',
+      '태도',
+      '참',
+      '양단',
+      '엑스칼리버',
+      '무라쿠모',
+      '사이즈',
+    ],
+  },
+  {
+    detail: 'claw',
+    patterns: [
+      '클로',
+      '네일',
+      '크로우',
+      '팡',
+      '바이트',
+      '물어뜯기',
+      '크런치',
+      '토리드 바이스',
+    ],
+  },
+  {
+    detail: 'pierce',
+    patterns: ['랜스', '창', '재블린', '피어', '스팅거', '스파이크', '찌르기', '트라이던트', '앵커', '호른', '뿔'],
+  },
+  {
+    detail: 'impact',
+    patterns: [
+      '펀치',
+      '주먹',
+      '권',
+      '너클',
+      '킥',
+      '태클',
+      '강타',
+      '스매시',
+      '차지',
+      '임팩트',
+      '프레스',
+      '해머',
+      '망치',
+      '모닝스타',
+      '최후의일격',
+    ],
+  },
+  {
+    detail: 'spiral',
+    patterns: ['토네이도', '사이크론', '허리케인', '회전', '스핀', '스파이럴', '볼텍스', '대회전', '롤'],
+  },
+  {
+    detail: 'wave',
+    patterns: ['웨이브', '샤워', '오션', '아쿠아', '워터', '타이달', '댐', '수류', '언듈레이션'],
+  },
+  { detail: 'bubble', patterns: ['버블', '거품', '솝', '비눗방울'] },
+  {
+    detail: 'thunder',
+    patterns: ['썬더', '번개', '라이트닝', '일렉', '플라즈마', '볼트', '스파크', '뇌광', '전기'],
+  },
+  {
+    detail: 'flame',
+    patterns: ['파이어', '플레임', '화염', '불꽃', '버닝', '코로나', '가이아', '인페르노', '프로미넌스', '버너'],
+  },
+  {
+    detail: 'ice',
+    patterns: ['아이스', '얼음', '블리자드', '프로스트', '프리저', '크리스탈', '빙', '영도', '아이시클', '아크틱'],
+  },
+  {
+    detail: 'poison',
+    patterns: ['포이즌', '독', '톡신', '베놈', '애시드', '산성', '푸르츠 플레셰트'],
+  },
+  {
+    detail: 'powder',
+    patterns: ['파우더', '더스트', '미스트', '꽃가루', '폴렌', '스포어', '가루', '최면', '참'],
+  },
+  {
+    detail: 'plant',
+    patterns: ['시드', '꽃잎', '브랜치', '리프', '넛츠', '페탈', '쏜', '위프', '선인장', '홍당무', '위스렌'],
+  },
+  { detail: 'thread', patterns: ['그물', '거미줄', '실크', '스레드', '네트워크'] },
+  {
+    detail: 'sound',
+    patterns: ['외침', '포효', '하울링', '로어', '초음파', '심포니', '에코', '톤', '왈츠', '세레나데', '레름'],
+  },
+  {
+    detail: 'dark',
+    patterns: [
+      '다크',
+      '데스',
+      '나이트메어',
+      '블랙',
+      '헬',
+      '로스트',
+      '카오스',
+      '케이오스',
+      '악',
+      '저주',
+      '디스페어',
+      '사바스',
+      '스토커',
+    ],
+  },
+  {
+    detail: 'light',
+    patterns: ['천국', '홀리', '헤븐', '샤인', '빛', '글로리어스', '샤이닝', '스타라이트', '퍼지 샤인', 'LOVE YOU'],
+  },
+  {
+    detail: 'data',
+    patterns: ['데이터', '디지털', '네트워크', '크로노', '타임', '디멘션', '에니그마', '게니아스'],
+  },
+  {
+    detail: 'cosmic',
+    patterns: ['메테오', '유성', '스타', '코스모', '우주', '퀘이사', '오로라', '루나', '보름달', '그라비티', '그래비티'],
+  },
+  {
+    detail: 'shield',
+    patterns: ['가드', '방패', '갑옷', '힐링', '큐어', '필드', '결계', '테라피', '버프', '황금 갑옷'],
+  },
+  {
+    detail: 'heart',
+    patterns: ['러브', '하트', '스마일', '프리티', '키스', '유혹', '러블리'],
+  },
+  {
+    detail: 'feather',
+    patterns: ['깃털', '날개', '윙', '페더', '버드', '피닉스', '레이븐'],
+  },
+]
+
+const skillDetailAttributeMap = {
+  화염: 'flame',
+  번개: 'thunder',
+  전기: 'thunder',
+  물: 'wave',
+  얼음: 'ice',
+  바람: 'spiral',
+  나무: 'plant',
+  풀: 'plant',
+  강철: 'cannon',
+  금속: 'cannon',
+  흙: 'bomb',
+  땅: 'bomb',
+  빛: 'light',
+  어둠: 'dark',
+}
+
 const stageSkillVisualEffectProfileCache = new Map()
+const skillDetailVisualEffectProfileCache = new Map()
 
 const getPositiveStringHash = (value) => {
   let hash = 0
@@ -3400,6 +4149,48 @@ const getPositiveStringHash = (value) => {
 
 const createHslColor = (hue, saturation = 82, lightness = 62, alpha = 1) =>
   `hsl(${Math.round(hue % 360)} ${saturation}% ${lightness}% / ${alpha})`
+
+const getSkillDetailVisualEffectProfile = (skillName) => {
+  const normalizedSkillName = String(skillName ?? '').trim()
+
+  if (!normalizedSkillName) {
+    return null
+  }
+
+  const cachedProfile = skillDetailVisualEffectProfileCache.get(normalizedSkillName)
+  if (cachedProfile) {
+    return cachedProfile
+  }
+
+  const skillData =
+    stageSkillVisualEffectLookup.get(normalizedSkillName)?.skillData ??
+    allSkillLookup.get(normalizedSkillName)
+  const matchedDetails = skillDetailVisualEffectRules
+    .filter((rule) => rule.patterns.some((pattern) => normalizedSkillName.includes(pattern)))
+    .map((rule) => rule.detail)
+  const attributeDetail = skillDetailAttributeMap[String(skillData?.속성 ?? '').trim()]
+  const detailNames = [matchedDetails[0] ?? attributeDetail ?? 'impact']
+  const hash = getPositiveStringHash(normalizedSkillName)
+  const detailHue = 24 + (hash % 320)
+  const detailProfile = {
+    className: ['skill-vfx-detail', ...detailNames.map((detail) => `skill-vfx-detail--${detail}`)]
+      .filter(Boolean)
+      .join(' '),
+    style: {
+      '--detail-rotate': `${((hash >>> 3) % 72) - 36}deg`,
+      '--detail-rotate-alt': `${((hash >>> 9) % 96) - 48}deg`,
+      '--detail-spread': `${24 + (hash % 24)}px`,
+      '--detail-spread-alt': `${18 + ((hash >>> 5) % 30)}px`,
+      '--detail-core-scale': (1 + ((hash >>> 6) % 7) * 0.03).toFixed(2),
+      '--detail-primary-fallback': createHslColor(detailHue, 86, 64),
+      '--detail-secondary-fallback': createHslColor(detailHue + 52, 88, 68),
+      '--detail-accent-fallback': createHslColor(detailHue + 104, 94, 74),
+    },
+  }
+
+  skillDetailVisualEffectProfileCache.set(normalizedSkillName, detailProfile)
+  return detailProfile
+}
 
 const getStageSkillMotif = (skillName, skillData) => {
   const normalizedSkillName = String(skillName ?? '').trim()
@@ -3442,9 +4233,13 @@ const getStageSkillVisualEffectProfile = (skillName) => {
   const rotate = ((hash >>> 7) % 56) - 28
   const slug = `r${hash.toString(36)}`
   const stageSpecificClassNames =
-    skillEntry.stage === 'mature'
-      ? ['skill-vfx--mature', `skill-vfx--mature-${motif}`, `skill-vfx--mature-${slug}`]
-      : [`skill-vfx--rookie-${slug}`]
+    skillEntry.stage === 'rookie'
+      ? [`skill-vfx--rookie-${slug}`]
+      : [
+          `skill-vfx--${skillEntry.stage}`,
+          `skill-vfx--${skillEntry.stage}-${motif}`,
+          `skill-vfx--${skillEntry.stage}-${slug}`,
+        ]
   const profile = {
     className: ['skill-vfx--rookie', `skill-vfx--rookie-${motif}`, ...stageSpecificClassNames]
       .filter(Boolean)
@@ -3479,16 +4274,28 @@ const skillVisualEffectClassMap = {
 const getSkillVisualEffectClass = (skillName) => {
   const normalizedSkillName = String(skillName ?? '').trim()
   const visualEffectClass = skillVisualEffectClassMap[normalizedSkillName]
+  const detailClassName = getSkillDetailVisualEffectProfile(normalizedSkillName)?.className ?? ''
 
   if (!visualEffectClass) {
-    return getStageSkillVisualEffectProfile(normalizedSkillName)?.className ?? ''
+    return [
+      getStageSkillVisualEffectProfile(normalizedSkillName)?.className ?? '',
+      detailClassName,
+    ]
+      .filter(Boolean)
+      .join(' ')
   }
 
-  return visualEffectClass ? `skill-vfx--${visualEffectClass}` : ''
+  return [`skill-vfx--${visualEffectClass}`, detailClassName].filter(Boolean).join(' ')
 }
 
-const getSkillVisualEffectStyle = (skillName) =>
-  getStageSkillVisualEffectProfile(skillName)?.style ?? null
+const getSkillVisualEffectStyle = (skillName) => {
+  const visualEffectStyle = {
+    ...(getStageSkillVisualEffectProfile(skillName)?.style ?? {}),
+    ...(getSkillDetailVisualEffectProfile(skillName)?.style ?? {}),
+  }
+
+  return Object.keys(visualEffectStyle).length > 0 ? visualEffectStyle : null
+}
 
 const mergeEffectStyles = (...styles) => {
   const mergedStyle = styles.reduce(
@@ -5174,6 +5981,15 @@ const getEvolutionOptions = (combatant, inventory = {}) => {
     })
 }
 
+const getReadyEvolutionPreviewTargets = (combatant, inventory = {}) =>
+  getEvolutionOptions(combatant, inventory)
+    .filter((option) => option.canEvolve)
+    .map((option) => ({
+      name: option.targetData.이름,
+      stage: option.targetData.stage,
+      imageUrl: option.targetData.imageUrl,
+    }))
+
 const createEvolvedCombatant = (combatant, targetData) => {
   if (!combatant || !targetData) {
     return combatant
@@ -5813,7 +6629,10 @@ const resolveTurnStartStatus = (combatant) => {
   }
 }
 
-const resolveTurnEndStatus = (combatant, { side = 'enemy' } = {}) => {
+const resolveTurnEndStatus = (
+  combatant,
+  { side = 'enemy', skipEndTurnDamage = false } = {}
+) => {
   const normalizedStatus = normalizeStatusEffect(combatant.statusEffect)
   const statusDefinition = getStatusEffectDefinition(normalizedStatus?.type)
 
@@ -5827,7 +6646,11 @@ const resolveTurnEndStatus = (combatant, { side = 'enemy' } = {}) => {
   let nextCombatant = combatant
   const battleLogs = []
 
-  if (statusDefinition.endTurnDamageRatio && nextCombatant.currentHp > 0) {
+  if (
+    statusDefinition.endTurnDamageRatio &&
+    nextCombatant.currentHp > 0 &&
+    !skipEndTurnDamage
+  ) {
     const previousHp = nextCombatant.currentHp
     const damage = Math.max(1, Math.floor(nextCombatant.maxHp * statusDefinition.endTurnDamageRatio))
     const rawNextHp = Math.max(0, nextCombatant.currentHp - damage)
@@ -5904,8 +6727,11 @@ const progressBattleStatModifiers = (combatant) => {
   })
 }
 
-const resolveTurnEndCombatantEffects = (combatant, { side = 'enemy' } = {}) => {
-  const statusResult = resolveTurnEndStatus(combatant, { side })
+const resolveTurnEndCombatantEffects = (
+  combatant,
+  { side = 'enemy', skipEndTurnDamage = false } = {}
+) => {
+  const statusResult = resolveTurnEndStatus(combatant, { side, skipEndTurnDamage })
   const nextCombatant =
     statusResult.nextCombatant?.currentHp > 0
       ? progressBattleStatModifiers(statusResult.nextCombatant)
@@ -6339,7 +7165,18 @@ const resolveAttackAction = ({
     return {
       nextDefender: defender,
       battleLogs: [...battleLogs, `${attacker.name}의 공격이 빗나갔다!`],
-      hitEffects: [],
+      hitEffects: [
+        {
+          attackerId: attacker.id,
+          attackerSide,
+          targetId: defender.id,
+          targetSide: attackerSide === 'ally' ? 'enemy' : 'ally',
+          attribute: skillData.속성 ?? '무',
+          category: skillData.분류 ?? '물리형',
+          skillName: skillData.기술명,
+          isMiss: true,
+        },
+      ],
     }
   }
 
@@ -6838,7 +7675,12 @@ const resolveBattleTurnActions = ({
     actor = getBattleTurnActor({ action, party: nextParty, enemies: nextEnemies }) ?? actor
 
     if (isCombatantAbleToBattle(actor)) {
-      const endStatusResult = resolveTurnEndCombatantEffects(actor, { side: action.side })
+      const shouldSkipAllyEndTurnStatusDamage =
+        action.side === 'ally' && nextEnemies.every((enemy) => !isCombatantAbleToBattle(enemy))
+      const endStatusResult = resolveTurnEndCombatantEffects(actor, {
+        side: action.side,
+        skipEndTurnDamage: shouldSkipAllyEndTurnStatusDamage,
+      })
       actor = endStatusResult.nextCombatant
       battleLogs.push(...endStatusResult.battleLogs)
 
@@ -6971,6 +7813,7 @@ function App() {
   const [selectedStarterNames, setSelectedStarterNames] = useState(() =>
     growthStageDigimon[0]?.name ? [growthStageDigimon[0].name] : []
   )
+  const [isMatchupGuideOpen, setIsMatchupGuideOpen] = useState(false)
   const [gameState, setGameState] = useState(null)
   const [hasSaveData, setHasSaveData] = useState(() => hasSavedGameState())
   const [selectedBattleCommand, setSelectedBattleCommand] = useState('attack')
@@ -7176,29 +8019,63 @@ function App() {
       )
   }
 
-  const renderBattleSprite = (combatant, side) => {
+  const renderBattleSprite = (combatant, side, attackMotion = null) => {
     const isAlly = side === 'ally'
+    const attackAnimationSprite = getCombatantAttackAnimationSprite(combatant, attackMotion)
     const idleAnimationSprite = getCombatantIdleAnimationSprite(combatant)
+    const animationSprite = attackAnimationSprite ?? idleAnimationSprite
     const className = [
       'adventure-player__sprite',
       isAlly ? 'adventure-player__sprite--ally' : 'adventure-player__sprite--enemy',
       `adventure-player__sprite--size-${combatant.size}`,
-      idleAnimationSprite ? 'adventure-player__sprite--idle-sheet' : '',
+      attackAnimationSprite
+        ? 'adventure-player__sprite--attack-sheet'
+        : idleAnimationSprite
+          ? 'adventure-player__sprite--idle-sheet'
+          : '',
     ]
       .filter(Boolean)
       .join(' ')
 
-    if (idleAnimationSprite) {
+    if (animationSprite) {
       return (
         <span
+          key={attackAnimationSprite ? attackMotion.id : 'idle-animation'}
           className={className}
           role="img"
           aria-label={combatant.name}
-          style={{
-            '--idle-sprite-url': `url("${idleAnimationSprite.url}")`,
-            '--idle-frame-ratio': idleAnimationSprite.ratio,
-            '--idle-frame-inverse-ratio': idleAnimationSprite.inverseRatio,
-          }}
+          style={
+            attackAnimationSprite
+              ? {
+                  '--attack-sprite-url': `url("${attackAnimationSprite.url}")`,
+                  '--idle-sprite-url': idleAnimationSprite
+                    ? `url("${idleAnimationSprite.url}")`
+                    : 'none',
+                  '--attack-display-ratio':
+                    idleAnimationSprite?.ratio ?? attackAnimationSprite.ratio,
+                  '--attack-display-inverse-ratio':
+                    idleAnimationSprite?.inverseRatio ?? attackAnimationSprite.inverseRatio,
+                  '--attack-sprite-background-size':
+                    attackAnimationSprite.backgroundSize ??
+                    `${attackAnimationSprite.columns * 100}% ${attackAnimationSprite.rows * 100}%`,
+                  '--attack-frame-position-1': attackAnimationSprite.framePositions?.[0],
+                  '--attack-frame-position-2': attackAnimationSprite.framePositions?.[1],
+                  '--attack-frame-position-3': attackAnimationSprite.framePositions?.[2],
+                  '--attack-frame-position-4': attackAnimationSprite.framePositions?.[3],
+                  '--attack-frame-position-5': attackAnimationSprite.framePositions?.[4],
+                  '--attack-frame-position-6': attackAnimationSprite.framePositions?.[5],
+                  '--attack-frame-position-7': attackAnimationSprite.framePositions?.[6],
+                  '--attack-frame-position-8': attackAnimationSprite.framePositions?.[7],
+                  '--attack-sprite-duration': attackMotion.isPhysical
+                    ? 'var(--attack-motion-duration)'
+                    : 'var(--attack-sprite-motion-duration)',
+                }
+              : {
+                  '--idle-sprite-url': `url("${idleAnimationSprite.url}")`,
+                  '--idle-frame-ratio': idleAnimationSprite.ratio,
+                  '--idle-frame-inverse-ratio': idleAnimationSprite.inverseRatio,
+                }
+          }
         />
       )
     }
@@ -7403,11 +8280,13 @@ function App() {
         const motionEffect = {
           ...effect,
           id: effectId,
+          isPhysical,
           ...(Number.isFinite(lungeDistance) ? { lungeDistance } : {}),
         }
 
+        setAttackMotions((current) => [...current, motionEffect].slice(-4))
+
         if (isPhysical) {
-          setAttackMotions((current) => [...current, motionEffect].slice(-4))
           playBattleAttackSound(effect, 'physical-move')
 
           const hitTimeoutId = window.setTimeout(() => {
@@ -7471,6 +8350,17 @@ function App() {
           }, getGameDuration(PROJECTILE_EFFECT_DURATION_MS + 80))
 
           hitEffectTimeoutsRef.current.push(endProjectileTimeoutId)
+
+          const endSpecialMotionTimeoutId = window.setTimeout(() => {
+            setAttackMotions((current) =>
+              current.filter((currentEffect) => currentEffect.id !== effectId)
+            )
+            hitEffectTimeoutsRef.current = hitEffectTimeoutsRef.current.filter(
+              (currentTimeoutId) => currentTimeoutId !== endSpecialMotionTimeoutId
+            )
+          }, getGameDuration(ATTACK_SPRITE_ANIMATION_DURATION_MS))
+
+          hitEffectTimeoutsRef.current.push(endSpecialMotionTimeoutId)
         }
 
         hitEffectTimeoutsRef.current = hitEffectTimeoutsRef.current.filter(
@@ -7670,7 +8560,7 @@ function App() {
     advanceSkillReplacementQueue()
   }
 
-  const showLevelUpStatPreview = (previousStats, currentStats) => {
+  const showLevelUpStatPreview = (previousStats, currentStats, evolutionTargets = []) => {
     const statRows = LEVEL_UP_STAT_KEYS.map((statKey) => {
       const startValue = previousStats?.[statKey] ?? currentStats?.[statKey] ?? 0
       const endValue = currentStats?.[statKey] ?? startValue
@@ -7684,8 +8574,12 @@ function App() {
         value: startValue,
       }
     })
+    const newlyAvailableEvolutionTargets = [...evolutionTargets]
 
-    if (!statRows.some((row) => row.gain > 0)) {
+    if (
+      !statRows.some((row) => row.gain > 0) &&
+      newlyAvailableEvolutionTargets.length === 0
+    ) {
       return
     }
 
@@ -7693,6 +8587,7 @@ function App() {
     setLevelUpStatPreview({
       isExiting: false,
       rows: statRows,
+      evolutionTargets: newlyAvailableEvolutionTargets,
     })
 
     const steps = 14
@@ -7711,6 +8606,7 @@ function App() {
                   ...row,
                   value: Math.round(row.startValue + (row.endValue - row.startValue) * easedProgress),
                 })),
+                evolutionTargets: newlyAvailableEvolutionTargets,
               }
             : current
         )
@@ -8060,7 +8956,10 @@ function App() {
     const eggProgressResult = progressDigiEggPartyByStage(
       syncPartyMember(currentGameState.party, currentPlayer)
     )
-    const nextParty = eggProgressResult.nextParty
+    const didMoveMap = isMapMoveStage(nextStageNum)
+    const nextParty = didMoveMap
+      ? fullyRestoreParty(eggProgressResult.nextParty)
+      : eggProgressResult.nextParty
     const preferredActiveAllyIds = [
       currentPlayer?.id,
       ...(currentGameState.activeAllyIds ?? []),
@@ -8101,6 +9000,7 @@ function App() {
     setIsPlayerExpBarVisible(false)
     showImmediateBattleLogs(
       ...eggProgressResult.hatchLogs,
+      didMoveMap ? '새로운 지역에 도착해 파티 전원이 부활하고 완전히 회복됐다!' : null,
       getBattlePrompt(nextPlayer?.name ?? '디지몬')
     )
     setSelectedBattleCommand('attack')
@@ -8424,6 +9324,7 @@ function App() {
       level: gameState.player.level,
       ratio: getExperienceRatio(gameState.player),
       stats: getLevelUpStatValues(gameState.player),
+      readyEvolutionTargets: getReadyEvolutionPreviewTargets(gameState.player, gameState.inventory),
     }
     const previousSnapshot = previousPlayerProgressRef.current
 
@@ -8471,10 +9372,17 @@ function App() {
     }
 
     scheduleExpAnimationUpdate(() => {
+      const previousReadyEvolutionTargetNames = new Set(
+        (previousSnapshot.readyEvolutionTargets ?? []).map((target) => target.name)
+      )
+      const newlyReadyEvolutionTargets = currentSnapshot.readyEvolutionTargets.filter(
+        (target) => !previousReadyEvolutionTargetNames.has(target.name)
+      )
+
       setIsPlayerExpBarVisible(true)
       setIsPlayerExpTransitionInstant(false)
       setDisplayedPlayerExpRatio(previousSnapshot.ratio)
-      showLevelUpStatPreview(previousSnapshot.stats, currentSnapshot.stats)
+      showLevelUpStatPreview(previousSnapshot.stats, currentSnapshot.stats, newlyReadyEvolutionTargets)
     })
 
     let elapsed = 30
@@ -8510,6 +9418,7 @@ function App() {
     gameState?.player?.level,
     gameState?.player?.experience,
     gameState?.player?.experienceToNext,
+    gameState?.inventory,
   ])
 
   useEffect(
@@ -9555,6 +10464,13 @@ function App() {
 
     setSelectedStarterNames((currentNames) => currentNames.filter((name) => name !== digimonName))
   }
+  const handleRequestStartAdventure = () => {
+    if (selectedStarterNames.length <= 0) {
+      return
+    }
+
+    setIsMatchupGuideOpen(true)
+  }
   const handleStartAdventure = () => {
     const selectedStarterDigimon = selectedStarterNames
       .map((name) => growthStageDigimon.find((digimon) => digimon.name === name))
@@ -9579,7 +10495,7 @@ function App() {
         imageUrl: digimon.url,
         data: digimon.data,
         level: STARTING_PLAYER_LEVEL,
-        stageName: '성장기',
+        stageName: digimon.stage ?? '성장기',
       })
     )
     const player = startingParty[0]
@@ -9624,6 +10540,10 @@ function App() {
     setMapSelectionState(null)
     setCapturePreview(null)
     setScreenMode('adventure')
+  }
+  const handleConfirmMatchupGuideStart = () => {
+    setIsMatchupGuideOpen(false)
+    handleStartAdventure()
   }
 
   const activeBackgroundUrl =
@@ -9896,10 +10816,11 @@ function App() {
           <span className="hit-effect__accent hit-effect__accent--b" />
           <span className="hit-effect__accent hit-effect__accent--c" />
         </span>
-        {Number.isFinite(effect.damage) && effect.damage > 0 ? (
+        {effect.isMiss || (Number.isFinite(effect.damage) && effect.damage > 0) ? (
           <span
             className={[
               'damage-text',
+              effect.isMiss ? 'damage-text--miss' : '',
               `damage-text--${getHitEffectAttributeClass(effect.attribute)}`,
             ]
               .filter(Boolean)
@@ -9913,7 +10834,7 @@ function App() {
                 : undefined
             }
           >
-            {effect.damage}
+            {effect.isMiss ? 'MISS' : effect.damage}
           </span>
         ) : null}
       </span>
@@ -9921,6 +10842,7 @@ function App() {
 
   const mainScreenStyle = {
     '--attack-motion-duration': `${getGameDuration(ATTACK_MOTION_DURATION_MS)}ms`,
+    '--attack-sprite-motion-duration': `${getGameDuration(ATTACK_SPRITE_ANIMATION_DURATION_MS)}ms`,
     '--projectile-effect-duration': `${getGameDuration(PROJECTILE_EFFECT_DURATION_MS)}ms`,
     '--hit-effect-duration': `${getGameDuration(HIT_EFFECT_DURATION_MS)}ms`,
     '--damage-text-duration': `${getGameDuration(DAMAGE_TEXT_DURATION_MS)}ms`,
@@ -10279,18 +11201,21 @@ function App() {
               </div>
             </section>
           ) : screenMode === 'new-game' ? (
-            <section className="selection-screen" aria-label={'\uC131\uC7A5\uAE30 \uC120\uD0DD'}>
+            <section className="selection-screen" aria-label="처음 디지몬 선택">
               <div className="selection-preview">
                 <div className="selection-preview__top">
                   <button
                     type="button"
                     className="selection-back"
-                    onClick={() => setScreenMode('menu')}
+                    onClick={() => {
+                      setIsMatchupGuideOpen(false)
+                      setScreenMode('menu')
+                    }}
                   >
                     {'\u25C0 \uB4A4\uB85C'}
                   </button>
                   <div className="selection-preview__title-group">
-                    <p className="selection-label">{'\uD604\uC7AC \uC131\uC7A5\uAE30'}</p>
+                    <p className="selection-label">현재 디지몬</p>
                     <h2 className="selection-name">{selectedGrowthDigimon.name}</h2>
                   </div>
                 </div>
@@ -10331,7 +11256,7 @@ function App() {
                     type="button"
                     className="selection-start"
                     disabled={selectedStarterNames.length <= 0}
-                    onClick={handleStartAdventure}
+                    onClick={handleRequestStartAdventure}
                   >
                     {'\uC2DC\uC791'}
                   </button>
@@ -10341,7 +11266,7 @@ function App() {
               <div className="selection-gallery">
                 <div className="selection-gallery__main">
                   <div className="selection-gallery__header">
-                    <p className="selection-label">{'\uC131\uC7A5\uAE30 \uBAA9\uB85D'}</p>
+                    <p className="selection-label">디지몬 목록</p>
                     <p className="selection-count">
                       {selectedGrowthIndex + 1}/{growthStageDigimon.length}
                     </p>
@@ -10378,7 +11303,7 @@ function App() {
                           ) : null}
                           <img
                             className="selection-card__image"
-                            src={createDigimonArtworkUrl('성장기', digimon.name)}
+                            src={createDigimonArtworkUrl(digimon.stage ?? '성장기', digimon.name)}
                             alt={digimon.name}
                             onError={hideBrokenArtwork}
                           />
@@ -10409,7 +11334,7 @@ function App() {
                           <span className="selection-party-slot__order">{index + 1}</span>
                           <img
                             className="selection-party-slot__image"
-                            src={createDigimonArtworkUrl('성장기', digimon.name)}
+                            src={createDigimonArtworkUrl(digimon.stage ?? '성장기', digimon.name)}
                             alt=""
                             onError={hideBrokenArtwork}
                           />
@@ -10430,6 +11355,10 @@ function App() {
                   </div>
                 </aside>
               </div>
+
+              {isMatchupGuideOpen ? (
+                <MatchupGuideModal onConfirm={handleConfirmMatchupGuideStart} />
+              ) : null}
             </section>
           ) : (
             <section className="adventure-screen" aria-label={'\uAC8C\uC784 \uC2DC\uC791 \uD654\uBA74'}>
@@ -10493,6 +11422,7 @@ function App() {
                       const allyAttackMotion = attackMotions.find(
                         (effect) => effect.attackerId === ally.id
                       )
+                      const hasPhysicalAllyAttackMotion = allyAttackMotion?.isPhysical
                       const allyHpRatio = Math.max(
                         0,
                         Math.min(100, (ally.currentHp / ally.maxHp) * 100)
@@ -10521,8 +11451,11 @@ function App() {
                             className={[
                               'adventure-player__sprite-wrap',
                               'adventure-player__sprite-wrap--ally',
-                              allyAttackMotion ? 'adventure-player__sprite-wrap--attacking' : '',
-                              allyAttackMotion?.targetSide === 'enemy'
+                              hasPhysicalAllyAttackMotion
+                                ? 'adventure-player__sprite-wrap--attacking'
+                                : '',
+                              hasPhysicalAllyAttackMotion &&
+                              allyAttackMotion.targetSide === 'enemy'
                                 ? 'adventure-player__sprite-wrap--attack-right'
                                 : '',
                               activeCombatantInfoId === `player-${ally.id}`
@@ -10547,7 +11480,7 @@ function App() {
                               }
                             }}
                           >
-                            {renderBattleSprite(ally, 'ally')}
+                            {renderBattleSprite(ally, 'ally', allyAttackMotion)}
                             <CombatantInfoPanel
                               combatant={ally}
                               side="ally"
@@ -10632,6 +11565,7 @@ function App() {
                       const enemyAttackMotion = attackMotions.find(
                         (effect) => effect.attackerId === enemy.id
                       )
+                      const hasPhysicalEnemyAttackMotion = enemyAttackMotion?.isPhysical
                       const enemyHpRatio = Math.max(
                         0,
                         Math.min(100, (enemy.currentHp / enemy.maxHp) * 100)
@@ -10657,8 +11591,11 @@ function App() {
                             className={[
                               'adventure-player__sprite-wrap',
                               'adventure-player__sprite-wrap--enemy',
-                              enemyAttackMotion ? 'adventure-player__sprite-wrap--attacking' : '',
-                              enemyAttackMotion?.targetSide === 'ally'
+                              hasPhysicalEnemyAttackMotion
+                                ? 'adventure-player__sprite-wrap--attacking'
+                                : '',
+                              hasPhysicalEnemyAttackMotion &&
+                              enemyAttackMotion.targetSide === 'ally'
                                 ? 'adventure-player__sprite-wrap--attack-left'
                                 : '',
                               hasDigimonDetector && activeCombatantInfoId === `enemy-${enemy.id}`
@@ -10693,7 +11630,7 @@ function App() {
                                 : undefined
                             }
                           >
-                            {renderBattleSprite(enemy, 'enemy')}
+                            {renderBattleSprite(enemy, 'enemy', enemyAttackMotion)}
                             {hasDigimonDetector ? (
                               <CombatantInfoPanel
                                 combatant={enemy}
@@ -11656,6 +12593,24 @@ function App() {
                         <span className="level-up-stats__gain">(+{row.gain})</span>
                       </p>
                     ))}
+                    {levelUpStatPreview.evolutionTargets?.length > 0 ? (
+                      <div className="level-up-stats__evolutions" aria-label="새로운 진화 가능 대상">
+                        <p className="level-up-stats__evolution-title">진화 가능</p>
+                        {levelUpStatPreview.evolutionTargets.map((target) => (
+                          <div key={target.name} className="level-up-stats__evolution">
+                            <img
+                              className="level-up-stats__evolution-image"
+                              src={target.imageUrl}
+                              alt=""
+                            />
+                            <span className="level-up-stats__evolution-body">
+                              <strong>{target.name}</strong>
+                              <span>{target.stage}</span>
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    ) : null}
                   </aside>
                 )}
 
