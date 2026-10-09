@@ -2,13 +2,15 @@ import { loadBattleEngine } from './lib/battle-engine-fixture.mjs';
 import { TRAINER_SKILLS, normalizeTrainerRanks, getTrainerCostLimit, getTrainerStarterCost } from '../src/progression/trainerSkills.js';
 import { TOWN_BUILDINGS, TOWN_RESIDENTS, normalizeTown, applyTownStartingSupport } from '../src/progression/townProgress.js';
 import { recordRivalMeeting, recordRivalVictory } from '../src/battle/rivalEncounters.js';
-import { HARD_MODE_BALANCE } from '../src/progression/gameDifficulty.js';
+import { CASUAL_MODE_BALANCE, HARD_MODE_BALANCE } from '../src/progression/gameDifficulty.js';
 import { resolve } from 'node:path';
 import { tmpdir } from 'node:os';
-const e = await loadBattleEngine();
-import {writeFile} from 'node:fs/promises';
+import {readFile,writeFile} from 'node:fs/promises';
 const args=process.argv.slice(2), positional=args.filter(arg=>!arg.startsWith('--'));
 const mode=args.includes('--hard')?'hard':'classic', maxProgression=args.includes('--max-progression')||mode==='hard';
+const roundLimit=Math.max(100,Math.min(5000,Math.floor(Number(args.find(arg=>arg.startsWith('--round-limit='))?.split('=')[1])||100)));
+const difficultyFile=args.find(arg=>arg.startsWith('--difficulty-file='))?.slice('--difficulty-file='.length);
+const e = await loadBattleEngine(difficultyFile?{difficultySource:await readFile(resolve(difficultyFile),'utf8')}:{});
 const seedStart=Math.max(0,Math.floor(Number(args.find(arg=>arg.startsWith('--seed-start='))?.split('=')[1])||0));
 const out=resolve(positional[0]??(tmpdir()+'/digilog-adventure-balance.json')), count=Math.max(1,Math.min(300,Math.floor(Number(positional[1])||96)));
 const trainerSkills=maxProgression?normalizeTrainerRanks(Object.fromEntries(TRAINER_SKILLS.map(node=>[node.id,node.maxRank]))):{};
@@ -33,7 +35,7 @@ for(let stage=1;stage<=200;stage++){
  let env=e.applyMapEnvironment({party,enemies,currentMap:map,currentStage:stage,gameMode:mode});party=env.party;enemies=env.enemies;
  const encounterNames=enemies.map(u=>u.name), encounterId=enemies.find(u=>u.bossEncounter?.leader)?.bossEncounter.id;
  const limit=e.getBattleAllyLimit({enemies,encounterCount:enemies.length});let active=[],round=0;
- while(party.some(living)&&enemies.some(living)&&round++<100){
+ while(party.some(living)&&enemies.some(living)&&round++<roundLimit){
   active=active.filter(id=>party.some(u=>u.id===id&&living(u))).slice(0,limit);
   const eligible=party.filter(u=>living(u)&&!active.includes(u.id)).sort((a,b)=>(bestMove(b,party,enemies)?.score??0)*(b.currentHp/b.maxHp+.5)-(bestMove(a,party,enemies)?.score??0)*(a.currentHp/a.maxHp+.5));
   while(active.length<limit&&eligible.length)active.push(eligible.shift().id);
@@ -42,7 +44,7 @@ for(let stage=1;stage<=200;stage++){
   const before=party.filter(living).length;
   const result=e.resolveBattleTurnActions({party,enemies,activeAllyIds:active,actions,levelCap:cap,inventory});party=result.nextParty;enemies=result.nextEnemies;faints+=Math.max(0,before-party.filter(living).length);turns++;
  }
- if(!party.some(living)||enemies.some(living))return{seed,names,cleared:stage-1,lostAt:stage,rounds:round,turns,faints,gold,routes,party:party.map(u=>({name:u.name,level:u.level,hp:u.currentHp,max:u.maxHp})),bossTurns,checkpoints,enemies:enemies.map(u=>({name:u.name,level:u.level,hp:u.currentHp,max:u.maxHp,budget:u.baseStatTotal}))};
+ if(!party.some(living)||enemies.some(living))return{seed,names,cleared:stage-1,outcome:party.some(living)?'unresolved':'defeat',lostAt:party.some(living)?undefined:stage,unresolvedAt:party.some(living)?stage:undefined,rounds:round,turns,faints,gold,routes,party:party.map(u=>({name:u.name,level:u.level,hp:u.currentHp,max:u.maxHp})),bossTurns,checkpoints,enemies:enemies.map(u=>({name:u.name,level:u.level,hp:u.currentHp,max:u.maxHp,budget:u.baseStatTotal}))};
  if(stage%10===0)bossTurns.push({stage,rounds:round,names:encounterNames,profile:encounterId});
  party=e.recoverAfterVictory(party,stage%10===0,active).nextParty;
  gold+=e.getStageClearGoldReward(stage,inventory);
@@ -56,7 +58,7 @@ for(let stage=1;stage<=200;stage++){
  party=evolve(party,inventory);
  if(stage%10===0)checkpoints.push({stage,levels:party.map(u=>u.level),forms:party.map(u=>u.name),gold});
 }
-return{seed,names,cleared:200,turns,faints,gold,bossTurns,checkpoints,totalDrops,routes}}
+return{seed,names,cleared:200,outcome:'clear',turns,faints,gold,bossTurns,checkpoints,totalDrops,routes}}
 const core=['아구몬','파피몬','팔몬','파닥몬','텐타몬','쉬라몬','피요몬','플롯트몬'];
 const teams=maxProgression?[core,['워그레이몬',...core.slice(1)],['메탈가루몬',...core.filter(n=>n!=='파피몬')],
  ['릴리몬','그레이몬','파닥몬','쉬라몬','텐타몬','피요몬'],['엔젤몬','가루몬','아구몬','팔몬','텐타몬','쉬라몬','피요몬'],
@@ -66,5 +68,5 @@ const teamCosts=teams.map(names=>names.reduce((sum,name)=>sum+getTrainerStarterC
 if(teamCosts.some(cost=>cost>getTrainerCostLimit(trainerSkills)))throw new Error('Starting cost exceeds the real budget');
 const results=[];
 for(let i=0;i<count;i++){results.push(run((i+seedStart)*7919+17,teams[(i+seedStart)%teams.length]));if((i+1)%12===0)console.log('Completed '+(i+1)+'/'+count+' runs')}
-const summary={mode,maxProgression,seedStart,teamCosts,hardProfile:mode==='hard'?HARD_MODE_BALANCE:undefined,trainerNodes:Object.keys(trainerSkills).length,townSupport:town?{buildings:town.buildings,selectedSupport:town.selectedSupport}:null,runs:count,clears:results.filter(r=>r.cleared===200).length,medianStage:results.map(r=>r.cleared).sort((a,b)=>a-b)[Math.floor(count/2)],earliestLoss:Math.min(...results.map(r=>r.cleared)),results};
+const summary={mode,maxProgression,seedStart,roundLimit,difficultyFile:difficultyFile?resolve(difficultyFile):undefined,teamCosts,casualProfile:mode==='classic'&&!difficultyFile?CASUAL_MODE_BALANCE:undefined,hardProfile:mode==='hard'&&!difficultyFile?HARD_MODE_BALANCE:undefined,trainerNodes:Object.keys(trainerSkills).length,townSupport:town?{buildings:town.buildings,selectedSupport:town.selectedSupport}:null,runs:count,clears:results.filter(r=>r.cleared===200).length,defeats:results.filter(r=>r.outcome==='defeat').length,unresolved:results.filter(r=>r.outcome==='unresolved').length,medianStage:results.map(r=>r.cleared).sort((a,b)=>a-b)[Math.floor(count/2)],earliestLoss:Math.min(...results.map(r=>r.cleared)),results};
 await writeFile(out,JSON.stringify(summary,null,2));console.log(JSON.stringify({...summary,results:undefined,report:out},null,2));

@@ -3,8 +3,12 @@
 export const STAGE_LEVEL_CAPS = Object.freeze([
   14, 22, 32, 42, 52, 62, 72, 82, 92, 102, 112, 122, 132, 142, 152, 162, 172, 182, 192, 200,
 ])
-// Separate, deterministic hard profile. These bonuses never change another mode
-// or depend on the player's current upgrades, wins, losses, or random roll.
+// Daily and endless inherit casual enemy pressure, while hard keeps its own
+// profile. Neither depends on player upgrades, wins, losses, or outcome rolls.
+export const CASUAL_MODE_BALANCE = Object.freeze({
+  wildHp: 1.02, wildHpGrowth: .33, wildStats: 1.01, wildStatsGrowth: .21,
+  bossHp: 1.08, bossHpGrowth: .57, bossStats: 1.02, bossStatsGrowth: .23,
+})
 export const HARD_MODE_BALANCE = Object.freeze({
   levelScaleStart: 1.08, levelScaleEnd: 1.18, levelBonusStart: 2, levelBonusEnd: 6,
   wildHp: 1.1, wildHpGrowth: .16, wildStats: 1.0325, wildStatsGrowth: .0675,
@@ -48,9 +52,11 @@ function getBaseEnemyDifficultyModifiers(combatant) {
 
 export function getEnemyDifficultyModifiers(combatant) {
   const base = getBaseEnemyDifficultyModifiers(combatant)
-  if (combatant?.enemyGameMode !== 'hard' || (!combatant.enemyStage && !combatant.isBoss)) return base
+  const profile = combatant?.enemyGameMode === 'hard' ? HARD_MODE_BALANCE
+    : ['classic', 'daily', 'endless'].includes(combatant?.enemyGameMode) ? CASUAL_MODE_BALANCE : null
+  if (!profile || (!combatant.enemyStage && !combatant.isBoss)) return base
   const progress = (stageOf(combatant.enemyStage ?? combatant.bossStage) - 1) / 199
-  const profile = HARD_MODE_BALANCE, boss = combatant.isBoss || combatant.rivalEncounter || combatant.specialQuest
+  const boss = combatant.isBoss || combatant.rivalEncounter || combatant.specialQuest
   return { hp: base.hp * (boss ? profile.bossHp + profile.bossHpGrowth * progress : profile.wildHp + profile.wildHpGrowth * progress),
     stats: base.stats * (boss ? profile.bossStats + profile.bossStatsGrowth * progress : profile.wildStats + profile.wildStatsGrowth * progress) }
 }

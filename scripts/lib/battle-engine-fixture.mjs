@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os'
 import { join, resolve, dirname, basename } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
-export async function loadBattleEngine() {
+export async function loadBattleEngine({ difficultySource } = {}) {
   const root = resolve(fileURLToPath(new URL('../../', import.meta.url))).replaceAll('\\', '/')
   const directory = await mkdtemp(join(tmpdir(), 'digilog-balance-'))
   const names = ['mapData','allDigimonLookup','allSkillLookup','getSkillData','createCombatant','refreshCombatantStats',
@@ -24,6 +24,7 @@ export async function loadBattleEngine() {
   await writeFile(entry, 'export {' + names.join(',') + '} from ' + JSON.stringify(root + '/src/App.jsx'))
   await build({ configFile: false, root, publicDir: false, logLevel: 'silent',
     plugins: [{ name: 'battle-test-exports', enforce: 'pre', transform(code, id) {
+      if (difficultySource && id.replaceAll('\\', '/') === root + '/src/progression/gameDifficulty.js') return difficultySource
       if (id.replaceAll('\\', '/') !== root + '/src/App.jsx') return null
       return code.slice(0, code.indexOf('function App()')) + '\nexport {' + names.join(',') + '}\n'
     } }], build: { outDir: join(directory, 'bundle'), emptyOutDir: false, minify: false,

@@ -73,7 +73,9 @@ test('hard enemy bonuses are mode-specific and do not affect allies or other mod
     const base = getEnemyDifficultyModifiers({ ...flags, enemyStage: 100 })
     const hard = getEnemyDifficultyModifiers({ ...flags, enemyStage: 100, enemyGameMode: 'hard' })
     assert(hard.hp > base.hp && hard.stats > base.stats)
-    for (const mode of ['classic', 'daily', 'endless']) assert.deepEqual(getEnemyDifficultyModifiers({ ...flags, enemyStage: 100, enemyGameMode: mode }), base)
+    const casual = getEnemyDifficultyModifiers({ ...flags, enemyStage: 100, enemyGameMode: 'classic' })
+    assert(casual.hp > base.hp && casual.stats > base.stats)
+    for (const mode of ['daily', 'endless']) assert.deepEqual(getEnemyDifficultyModifiers({ ...flags, enemyStage: 100, enemyGameMode: mode }), casual)
   }
   assert.deepEqual(getEnemyDifficultyModifiers({ enemyGameMode: 'hard' }), { hp: 1, stats: 1 })
 })

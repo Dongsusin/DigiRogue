@@ -1,0 +1,475 @@
+{
+  "date": "2026-10-10",
+  "targetClearRate": 0.1,
+  "modesSharingCasual": [
+    "classic",
+    "daily",
+    "endless"
+  ],
+  "profile": {
+    "wildHp": 1.02,
+    "wildHpGrowth": 0.33,
+    "wildStats": 1.01,
+    "wildStatsGrowth": 0.21,
+    "bossHp": 1.08,
+    "bossHpGrowth": 0.57,
+    "bossStats": 1.02,
+    "bossStatsGrowth": 0.23
+  },
+  "policy": {
+    "trainerSkills": 0,
+    "townSupport": null,
+    "startingCostLimit": 10,
+    "teamCosts": [
+      9,
+      9,
+      9,
+      9,
+      9,
+      9
+    ],
+    "teamCount": 6,
+    "roundLimit": 1000,
+    "realBattleEngine": true,
+    "statEvolution": true,
+    "earnedGoldRecovery": true,
+    "oneRewardPerStage": true,
+    "scanning": false,
+    "eggs": false,
+    "optionalEvents": false,
+    "voluntarySwitching": false,
+    "midBattleItems": false,
+    "overflowSkillLearning": false
+  },
+  "before": {
+    "runs": 96,
+    "clears": 60,
+    "defeats": 35,
+    "unresolved": 1,
+    "clearRate": 0.625
+  },
+  "validation": {
+    "seedIndexRanges": [
+      [
+        3000,
+        3299
+      ],
+      [
+        4000,
+        4299
+      ]
+    ],
+    "runs": 600,
+    "clears": 61,
+    "defeats": 508,
+    "unresolved": 31,
+    "clearRate": 0.10166666666666667,
+    "resolvedRuns": 569,
+    "resolvedClearRate": 0.10720562390158173,
+    "resolvedWilson95": [
+      0.08436844960529585,
+      0.13531093442490888
+    ],
+    "possibleClearRateBounds": [
+      0.10166666666666667,
+      0.15333333333333332
+    ],
+    "medianStage": 117,
+    "earliestStageReached": 7,
+    "mapsVisited": 29,
+    "finalBossProfiles": [
+      "lucemon-final",
+      "yggdrasil-final",
+      "apocalymon-final",
+      "arcadiamon-final",
+      "dexmon-final",
+      "bagramon-final",
+      "zwart-d-final",
+      "armageddemon-final"
+    ],
+    "teams": [
+      {
+        "names": [
+          "아구몬",
+          "파피몬",
+          "팔몬"
+        ],
+        "runs": 100,
+        "clears": 0,
+        "defeats": 96,
+        "unresolved": 4
+      },
+      {
+        "names": [
+          "파닥몬",
+          "텐타몬",
+          "쉬라몬"
+        ],
+        "runs": 100,
+        "clears": 32,
+        "defeats": 67,
+        "unresolved": 1
+      },
+      {
+        "names": [
+          "아구몬",
+          "피요몬",
+          "파닥몬"
+        ],
+        "runs": 100,
+        "clears": 28,
+        "defeats": 72,
+        "unresolved": 0
+      },
+      {
+        "names": [
+          "팔몬",
+          "피요몬",
+          "플롯트몬"
+        ],
+        "runs": 100,
+        "clears": 1,
+        "defeats": 87,
+        "unresolved": 12
+      },
+      {
+        "names": [
+          "파피몬",
+          "텐타몬",
+          "플롯트몬"
+        ],
+        "runs": 100,
+        "clears": 0,
+        "defeats": 86,
+        "unresolved": 14
+      },
+      {
+        "names": [
+          "아구몬",
+          "쉬라몬",
+          "피요몬"
+        ],
+        "runs": 100,
+        "clears": 0,
+        "defeats": 100,
+        "unresolved": 0
+      }
+    ],
+    "unresolvedRuns": [
+      {
+        "seed": 23899559,
+        "names": [
+          "아구몬",
+          "파피몬",
+          "팔몬"
+        ],
+        "stage": 133
+      },
+      {
+        "seed": 24026263,
+        "names": [
+          "파피몬",
+          "텐타몬",
+          "플롯트몬"
+        ],
+        "stage": 98
+      },
+      {
+        "seed": 24160886,
+        "names": [
+          "팔몬",
+          "피요몬",
+          "플롯트몬"
+        ],
+        "stage": 87
+      },
+      {
+        "seed": 24184643,
+        "names": [
+          "아구몬",
+          "파피몬",
+          "팔몬"
+        ],
+        "stage": 111
+      },
+      {
+        "seed": 24263833,
+        "names": [
+          "파피몬",
+          "텐타몬",
+          "플롯트몬"
+        ],
+        "stage": 60
+      },
+      {
+        "seed": 24540998,
+        "names": [
+          "팔몬",
+          "피요몬",
+          "플롯트몬"
+        ],
+        "stage": 87
+      },
+      {
+        "seed": 24834001,
+        "names": [
+          "파피몬",
+          "텐타몬",
+          "플롯트몬"
+        ],
+        "stage": 108
+      },
+      {
+        "seed": 25016138,
+        "names": [
+          "팔몬",
+          "피요몬",
+          "플롯트몬"
+        ],
+        "stage": 119
+      },
+      {
+        "seed": 25166599,
+        "names": [
+          "파피몬",
+          "텐타몬",
+          "플롯트몬"
+        ],
+        "stage": 70
+      },
+      {
+        "seed": 25253708,
+        "names": [
+          "팔몬",
+          "피요몬",
+          "플롯트몬"
+        ],
+        "stage": 92
+      },
+      {
+        "seed": 25301222,
+        "names": [
+          "팔몬",
+          "피요몬",
+          "플롯트몬"
+        ],
+        "stage": 100
+      },
+      {
+        "seed": 25404169,
+        "names": [
+          "파피몬",
+          "텐타몬",
+          "플롯트몬"
+        ],
+        "stage": 88
+      },
+      {
+        "seed": 25641739,
+        "names": [
+          "파피몬",
+          "텐타몬",
+          "플롯트몬"
+        ],
+        "stage": 60
+      },
+      {
+        "seed": 25728848,
+        "names": [
+          "팔몬",
+          "피요몬",
+          "플롯트몬"
+        ],
+        "stage": 90
+      },
+      {
+        "seed": 25808038,
+        "names": [
+          "파닥몬",
+          "텐타몬",
+          "쉬라몬"
+        ],
+        "stage": 36
+      },
+      {
+        "seed": 25871390,
+        "names": [
+          "팔몬",
+          "피요몬",
+          "플롯트몬"
+        ],
+        "stage": 112
+      },
+      {
+        "seed": 25966418,
+        "names": [
+          "팔몬",
+          "피요몬",
+          "플롯트몬"
+        ],
+        "stage": 130
+      },
+      {
+        "seed": 26021851,
+        "names": [
+          "파피몬",
+          "텐타몬",
+          "플롯트몬"
+        ],
+        "stage": 70
+      },
+      {
+        "seed": 26061446,
+        "names": [
+          "팔몬",
+          "피요몬",
+          "플롯트몬"
+        ],
+        "stage": 100
+      },
+      {
+        "seed": 31866073,
+        "names": [
+          "파피몬",
+          "텐타몬",
+          "플롯트몬"
+        ],
+        "stage": 88
+      },
+      {
+        "seed": 32388727,
+        "names": [
+          "파피몬",
+          "텐타몬",
+          "플롯트몬"
+        ],
+        "stage": 110
+      },
+      {
+        "seed": 32428322,
+        "names": [
+          "팔몬",
+          "피요몬",
+          "플롯트몬"
+        ],
+        "stage": 90
+      },
+      {
+        "seed": 32531269,
+        "names": [
+          "파피몬",
+          "텐타몬",
+          "플롯트몬"
+        ],
+        "stage": 68
+      },
+      {
+        "seed": 32879705,
+        "names": [
+          "아구몬",
+          "파피몬",
+          "팔몬"
+        ],
+        "stage": 161
+      },
+      {
+        "seed": 33141032,
+        "names": [
+          "팔몬",
+          "피요몬",
+          "플롯트몬"
+        ],
+        "stage": 60
+      },
+      {
+        "seed": 33196465,
+        "names": [
+          "파피몬",
+          "텐타몬",
+          "플롯트몬"
+        ],
+        "stage": 100
+      },
+      {
+        "seed": 33291493,
+        "names": [
+          "파피몬",
+          "텐타몬",
+          "플롯트몬"
+        ],
+        "stage": 110
+      },
+      {
+        "seed": 33481549,
+        "names": [
+          "파피몬",
+          "텐타몬",
+          "플롯트몬"
+        ],
+        "stage": 93
+      },
+      {
+        "seed": 33624091,
+        "names": [
+          "파피몬",
+          "텐타몬",
+          "플롯트몬"
+        ],
+        "stage": 80
+      },
+      {
+        "seed": 33829985,
+        "names": [
+          "아구몬",
+          "파피몬",
+          "팔몬"
+        ],
+        "stage": 102
+      },
+      {
+        "seed": 33853742,
+        "names": [
+          "팔몬",
+          "피요몬",
+          "플롯트몬"
+        ],
+        "stage": 128
+      }
+    ]
+  },
+  "checks": {
+    "focusedTests": 34,
+    "regressionTests": 329,
+    "failedTests": 0,
+    "build": true,
+    "distAssets": {
+      "models": 512,
+      "clips": 4273,
+      "maps": 34
+    },
+    "browser": {
+      "guestStart": true,
+      "actualAttack": true,
+      "damageLogMatchesHp": true,
+      "saveReloadResume": true,
+      "consoleErrors": 0
+    }
+  },
+  "source": {
+    "baselineCommit": "8415b5e1f7c5fdd0cacdb32f7e4e5c23de81cf46",
+    "ok": true,
+    "levelComparisons": 4800,
+    "unchangedHardStatComparisons": 2400,
+    "sharedCasualStatComparisons": 4800,
+    "beforeDifficultySha256": "d6d1964a443b9374bb4acbb552698f598c23829bb83d14d332bb5a806d15b058",
+    "finalDifficultySha256": "96333e83f7e57e5e6d62bee5e49f460614705908d012bbb824e1b6580bb93c96",
+    "simulationSha256": "a575035aa6b86b9689d972f08928f14faa1e7caf9e73c1ade2b98d9b62de9618",
+    "fixtureSha256": "f012be094b62ff0960523a7f828ca531d055446d08ad3db03f8696b2171ce7fc"
+  },
+  "rawReports": [
+    "digilog-casual-before-1000-20261010.json",
+    "digilog-casual-final-a-20261010.json",
+    "digilog-casual-final-b-20261010.json"
+  ],
+  "deployment": "local-code-and-dist-only"
+}

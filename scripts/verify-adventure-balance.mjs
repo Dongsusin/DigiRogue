@@ -5,6 +5,7 @@ import { normalizeRegionStatModifiers, mergeRegionStatModifier, prepareCombatant
 import { getStageLevelCap, getStageEnemyLevelRange, getEnemyDifficultyModifiers, getAdventureExperienceMultiplier, pickWildEncounterNames } from '../src/progression/gameDifficulty.js'
 import { tickBattleTimers, scoreSkill } from '../src/balance/combat.js'
 import { getCombatantEffects } from '../src/battle/battleInfo.js'
+import { buildEventBattle, getEventBattlePreview } from '../src/adventure/eventBattles.js'
 import { BATTLE_CARDS, getBattleItemTargets, BATTLE_ITEM_LOOKUP, resolveBattleConsumable } from '../src/battle/battleItems.js'
 import { getAdventureAttackModifiers } from '../src/data/adventureItems.js'
 import { LORE_PROFILES, getLoreProfile } from '../src/balance/loreProfiles.js'
@@ -52,6 +53,138 @@ test('classic caps, enemy levels and growth remain bounded through 200 and endle
   assert.equal(lastCap, 200)
   assert.equal(getStageLevelCap(201, 'endless'), Infinity)
   assert(getStageEnemyLevelRange(501, 'endless')[0] > 200)
+})
+test('casual, daily and endless share progressive enemy pressure independently of player progress', () => {
+  for (const flags of [{}, { isBoss: true }, { rivalEncounter: {} }, { specialQuest: true }]) {
+    let first, last
+    for (let stage = 1; stage <= 200; stage++) {
+      const enemy = { ...flags, enemyStage: stage }
+      const base = getEnemyDifficultyModifiers(enemy)
+      const casual = getEnemyDifficultyModifiers({ ...enemy, enemyGameMode: 'classic' })
+      assert(casual.hp > base.hp && casual.stats > base.stats, 'casual:' + stage)
+      for (const mode of ['daily', 'endless']) assert.deepEqual(getEnemyDifficultyModifiers({ ...enemy, enemyGameMode: mode }), casual)
+      assert.deepEqual(getEnemyDifficultyModifiers({ ...enemy, enemyGameMode: 'classic', trainerSkills: { attack: 99 }, wins: 100, losses: 100 }), casual)
+      if (stage === 1) first = { hp: casual.hp / base.hp, stats: casual.stats / base.stats }
+      if (stage === 200) last = { hp: casual.hp / base.hp, stats: casual.stats / base.stats }
+    }
+    assert(last.hp > first.hp && last.stats > first.stats)
+  }
+  assert.deepEqual(getEnemyDifficultyModifiers({ enemyGameMode: 'classic' }), { hp: 1, stats: 1 })
+})
+test('hard enemy levels keep actual combat stats stronger than the shared casual profile', () => {
+  for (const stage of [1, 10, 21, 50, 100, 150, 191, 200]) {
+    for (const flags of [{}, { isBoss: true }, { rivalEncounter: {} }, { specialQuest: true }]) {
+      for (const endpoint of [0, 1]) {
+        const enemy = mode => engine.refreshCombatantStats({
+          ...unit([...engine.allDigimonLookup.keys()][0], getStageEnemyLevelRange(stage, mode)[endpoint]),
+          ...flags, enemyStage: stage, enemyGameMode: mode,
+        })
+        const casual = enemy('classic'), hard = enemy('hard')
+        for (const key of ['maxHp', 'attack', 'defense', 'specialAttack', 'specialDefense']) assert(hard[key] >= casual[key], stage + ':' + key)
+        assert(hard.maxHp > casual.maxHp)
+      }
+    }
+  }
+})
+test('endless inherits late casual pressure after 200 without losing its uncapped level growth', () => {
+  for (const stage of [201, 250, 401, 1000]) {
+    assert.equal(getStageLevelCap(stage, 'endless'), Infinity)
+    assert(getStageEnemyLevelRange(stage, 'endless')[1] > 200)
+    for (const flags of [{}, { isBoss: true }, { rivalEncounter: {} }, { specialQuest: true }]) {
+      assert.deepEqual(getEnemyDifficultyModifiers({ ...flags, enemyStage: stage, enemyGameMode: 'endless' }),
+        getEnemyDifficultyModifiers({ ...flags, enemyStage: 200, enemyGameMode: 'classic' }))
+    }
+  }
+  const stage = 250, map = engine.getMapNameForStage(stage, 'endless')
+  const enemies = engine.buildEnemyParty(stage, [], 1, engine.getBossEncounterNamesForStage(map, stage), { mapName: map, gameMode: 'endless' })
+  assert(enemies.length > 0)
+  assert(enemies.every(enemy => enemy.level > 200 && enemy.enemyGameMode === 'endless' && enemy.currentHp > 0))
+})
+test('daily and endless build the same wild, rival and boss stats as casual through stage 200', () => {
+  const random = Math.random
+  try {
+    for (const stage of [1, 8, 10, 35, 100, 191, 200]) {
+      const map = engine.getMapNameForStage(stage), groups = engine.getMapEncounterGroups(map)
+      let expected
+      for (const mode of ['classic', 'daily', 'endless']) {
+        Math.random = () => .37
+        const enemies = engine.buildEnemyParty(stage, groups[engine.getEncounterGroupForStage(stage)] ?? [], 2,
+          engine.getBossEncounterNamesForStage(map, stage), { mapName: map, gameMode: mode })
+        assert(enemies.length > 0)
+        assert(enemies.every(enemy => enemy.enemyGameMode === mode))
+        const stats = enemies.map(({ name, level, maxHp, attack, defense, specialAttack, specialDefense, speed }) =>
+          ({ name, level, maxHp, attack, defense, specialAttack, specialDefense, speed }))
+        if (expected) assert.deepEqual(stats, expected, mode + ':' + stage)
+        else expected = stats
+      }
+    }
+  } finally { Math.random = random }
+})
+test('daily and endless story fights inherit the same casual stats and level preview', () => {
+  const name = [...engine.allDigimonLookup.keys()][0], ally = unit(name, 200)
+  const spec = { opponents: [name], levelDelta: 8, specialQuest: true }
+  let expected
+  for (const mode of ['classic', 'daily', 'endless']) {
+    const state = { gameMode: mode, currentStage: 195, currentMap: engine.getMapNameForStage(195), levelCap: 200,
+      player: ally, party: [ally], enemies: [{ level: 198 }], explorationEvent: { id: 'shared-event', storyId: 'shared-trial', phase: 'battle',
+        battle: { spec, routeId: 'fight', waveIndex: 0 } } }
+    const preview = getEventBattlePreview(state, spec)
+    const result = buildEventBattle(state, { createCombatant: engine.createCombatant, allDigimonLookup: engine.allDigimonLookup,
+      refreshCombatantStats: engine.refreshCombatantStats, getActiveAllyIdsForParty: party => [party[0].id] })
+    assert(result.ok)
+    const enemy = result.state.enemies[0]
+    assert.equal(enemy.enemyGameMode, mode)
+    assert.equal(enemy.level, preview.level)
+    const stats = [enemy.level, enemy.maxHp, enemy.attack, enemy.defense, enemy.specialAttack, enemy.specialDefense]
+    if (expected) assert.deepEqual(stats, expected)
+    else expected = stats
+  }
+})
+test('casual encounter stats refresh without stacking and boss evolution retains the difficulty', () => {
+  for (const stage of [1, 8, 10, 35, 50, 100, 191, 200]) {
+    const map = engine.getMapNameForStage(stage), groups = engine.getMapEncounterGroups(map)
+    const enemies = engine.buildEnemyParty(stage, groups[engine.getEncounterGroupForStage(stage)] ?? [], 2,
+      engine.getBossEncounterNamesForStage(map, stage), { mapName: map, gameMode: 'classic' })
+    assert(enemies.length > 0)
+    for (const enemy of enemies) {
+      assert.equal(enemy.enemyGameMode, 'classic')
+      const refreshed = engine.refreshCombatantStats(engine.refreshCombatantStats(enemy))
+      for (const key of ['maxHp', 'attack', 'defense', 'specialAttack', 'specialDefense', 'speed', 'currentHp']) assert.equal(refreshed[key], enemy[key], stage + ':' + key)
+      assert(enemy.level <= getStageLevelCap(stage))
+    }
+    if (stage === 200) {
+      const boss = enemies.find(enemy => enemy.isBoss), target = engine.allDigimonLookup.get(boss.name === '워그레이몬' ? '메탈가루몬' : '워그레이몬')
+      const evolved = engine.evolveBossCombatant({ ...boss, currentHp: Math.floor(boss.maxHp / 2) }, target)
+      assert.equal(evolved.enemyGameMode, 'classic')
+      assert.equal(evolved.level, boss.level)
+      assert(Math.abs(evolved.currentHp / evolved.maxHp - .5) < .02)
+      assert.equal(engine.refreshCombatantStats(evolved).attack, evolved.attack)
+    }
+  }
+})
+test('casual saves migrate old enemy stats once while preserving the party, inventory and HP ratio', () => {
+  const ally = unit('아구몬', 90), stage = 100, map = engine.getMapNameForStage(stage)
+  const enemies = engine.buildEnemyParty(stage, [], 1, engine.getBossEncounterNamesForStage(map, stage), { mapName: map, gameMode: 'daily' })
+    .map(enemy => engine.refreshCombatantStats({ ...enemy, enemyGameMode: undefined }))
+    .map(enemy => ({ ...enemy, currentHp: Math.floor(enemy.maxHp * .4) }))
+  const state = { gameMode: 'classic', currentStage: stage, currentMap: map, player: ally, party: [ally], enemies,
+    activeAllyIds: [ally.id], inventory: { 'heal-20': 2 }, gold: 1250, trainerSkills: {} }
+  const serialized = JSON.stringify({ version: 1, gameState: state })
+  const restored = engine.parseSavedGameState(serialized)
+  assert(restored)
+  assert.equal(restored.party[0].attack, ally.attack)
+  assert.equal(restored.party[0].maxHp, ally.maxHp)
+  assert.deepEqual(restored.inventory, state.inventory)
+  assert.equal(restored.gold, state.gold)
+  for (let i = 0; i < enemies.length; i++) {
+    const enemy = restored.enemies[i], old = enemies[i]
+    assert.equal(enemy.enemyGameMode, 'classic')
+    assert(enemy.maxHp > old.maxHp && enemy.attack > old.attack)
+    assert(Math.abs(enemy.currentHp / enemy.maxHp - old.currentHp / old.maxHp) < .02)
+  }
+  const again = engine.parseSavedGameState(JSON.stringify({ version: 1, gameState: restored }))
+  assert.deepEqual(again.enemies.map(enemy => [enemy.maxHp, enemy.currentHp, enemy.attack]), restored.enemies.map(enemy => [enemy.maxHp, enemy.currentHp, enemy.attack]))
+  assert.equal(JSON.stringify({ version: 1, gameState: state }), serialized)
 })
 test('early wildlife excludes lore outliers, weighted encounters stay diverse and fallback never yields an empty party', () => {
   const pool = ['아구몬','팔몬','루체몬'], lookup = engine.allDigimonLookup
