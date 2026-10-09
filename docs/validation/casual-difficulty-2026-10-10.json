@@ -453,6 +453,15 @@
       "damageLogMatchesHp": true,
       "saveReloadResume": true,
       "consoleErrors": 0
+    },
+    "production": {
+      "rootStatus": 200,
+      "jsBundles": 18,
+      "profileVerified": true,
+      "sharedModesVerified": true,
+      "exactBinaryAssets": 5,
+      "saveReloadResume": true,
+      "consoleErrors": 0
     }
   },
   "source": {
@@ -464,12 +473,63 @@
     "beforeDifficultySha256": "d6d1964a443b9374bb4acbb552698f598c23829bb83d14d332bb5a806d15b058",
     "finalDifficultySha256": "96333e83f7e57e5e6d62bee5e49f460614705908d012bbb824e1b6580bb93c96",
     "simulationSha256": "a575035aa6b86b9689d972f08928f14faa1e7caf9e73c1ade2b98d9b62de9618",
-    "fixtureSha256": "f012be094b62ff0960523a7f828ca531d055446d08ad3db03f8696b2171ce7fc"
+    "fixtureSha256": "f012be094b62ff0960523a7f828ca531d055446d08ad3db03f8696b2171ce7fc",
+    "releaseCommit": "18d18dcde94a61a20615cb571ae449dc043eb3bb"
   },
   "rawReports": [
     "digilog-casual-before-1000-20261010.json",
     "digilog-casual-final-a-20261010.json",
     "digilog-casual-final-b-20261010.json"
   ],
-  "deployment": "local-code-and-dist-only"
+  "deployment": {
+    "status": "READY",
+    "origin": "https://digirouge.co.kr",
+    "projectId": "prj_D39FMNYtKjtyZ8nYrmKS98nn5F2R",
+    "deploymentId": "dpl_2WDiv1BMiw1C8gPQpxM2FoRjwd9u",
+    "sourceCommit": "18d18dcde94a61a20615cb571ae449dc043eb3bb",
+    "verifiedAt": "2026-10-09T17:51:03.353Z",
+    "build": {
+      "exitCode": 0,
+      "versionedResources": 527,
+      "modules": 281,
+      "losslessModels": 512
+    },
+    "entryPath": "/assets/index-drVunDu9.js",
+    "profileBundle": "/assets/App-BPz0YDrI.js",
+    "profileBundleSha256": "b178c39a9e43daa8f437451be04eaae6e07d091e73dc2b957852d4f8855fe94c",
+    "domains": [
+      "digirouge.co.kr"
+    ],
+    "aliases": [
+      "digirouge.co.kr"
+    ],
+    "removedAliases": [
+      "digilog-web-preview-dongsusins-projects.vercel.app"
+    ],
+    "ssoProtection": {
+      "deploymentType": "all_except_custom_domains"
+    },
+    "browser": {
+      "guestEntry": true,
+      "zeroSkillPoints": true,
+      "starterTeamCost9Of10": true,
+      "casualBattleStarted": true,
+      "both3dModelsVisible": true,
+      "attackDamageAndRecoveryLog": true,
+      "emptyManualSlotSaved": true,
+      "guestSessionRetainedAfterReload": true,
+      "selectedSaveRestored": true,
+      "allyHpRetained": "20/22",
+      "enemyHpRetained": "6/16",
+      "modeRetained": "classic",
+      "stageRetained": 1,
+      "consoleErrors": 0
+    },
+    "evidence": {
+      "http": "../artifacts/digilog-production-http-20261010.json",
+      "ui": "../artifacts/digilog-production-ui-20261010.json",
+      "hosting": "../artifacts/digilog-production-cleanup-generated-aliases-20261010.json",
+      "screenshot": "../artifacts/digilog-production-casual-20261010.png"
+    }
+  }
 }
