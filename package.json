@@ -18,7 +18,8 @@
     "test:balance": "node --test scripts/verify-adventure-balance.mjs",
     "simulate:balance": "node scripts/simulate-adventure-balance.mjs",
     "test:bosses": "node --test scripts/verify-boss-variety.mjs",
-    "test:party": "node --test scripts/verify-party-admission.mjs"
+    "test:party": "node --test scripts/verify-party-admission.mjs",
+    "test:skills": "node --test scripts/verify-skill-learning.mjs"
   },
   "dependencies": {
     "firebase": "^13.0.0",

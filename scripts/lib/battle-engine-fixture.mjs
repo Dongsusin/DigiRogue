@@ -15,6 +15,7 @@ export async function loadBattleEngine() {
     'resolveBattleTurnActions','createBattleTurnAction','createEnemyBattleTurnActions','getBattleAllyLimit',
     'getCommandSkillNames','scoreSkill','getMatchupResult','recoverAfterVictory','applyPartyExperienceGain',
     'levelUpCombatant','parseSavedGameState','applySupportEffectToTarget','resolveTurnEndCombatantEffects',
+    'getNewSkillLearnNamesForLevel','getSkillLearnEventsForLevelRange','applyExperienceAmount',
     'createRewardSelection','applyInstantRewardEffect','applyPartyHealRewardEffect','applyDigicloneRewardEffect',
     'applyLevelUpRewardEffect','getEvolutionRoute','isBossStage','getStageClearGoldReward','isRewardItemUsableByCombatant',
     'addRewardInventoryItem','applyMapEnvironment','prepareCombatantForStage','fixedRewardItems']

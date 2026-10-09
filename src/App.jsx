@@ -936,6 +936,14 @@ const getDigimonSkillNamesForLevel = (data, level) => {
   return [...new Set([...signature, ...(slots > 0 ? getAttachmentSkillNamesForLevel(data, level).slice(-slots) : [])])]
 }
 
+// The saved current level is the learning checkpoint: only newly crossed unlocks
+// are opportunities. Missing older skills were declined or replaced, not deferred.
+const getNewDigimonSkillNamesForLevelRange = (data, fromLevel, toLevel) => {
+  if (!data || toLevel <= fromLevel) return []
+  const previouslyAvailable = new Set(getAllDigimonSkillNamesForLevel(data, fromLevel))
+  return getAllDigimonSkillNamesForLevel(data, toLevel).filter(skillName => !previouslyAvailable.has(skillName))
+}
+
 const mergeCombatantSkillNamesForLevel = (combatant, level) => {
   if (!combatant?.speciesData) {
     return combatant?.skills ?? []
@@ -949,7 +957,7 @@ const mergeCombatantSkillNamesForLevel = (combatant, level) => {
   ).filter((skillName) => learnableSkillSet.has(skillName))
   const nextSkills = [...new Set(currentSkills)]
 
-  learnableSkills.forEach((skillName) => {
+  getNewDigimonSkillNamesForLevelRange(combatant.speciesData, combatant.level, level).forEach((skillName) => {
     if (nextSkills.length < MAX_COMBATANT_SKILL_COUNT && !nextSkills.includes(skillName)) {
       nextSkills.push(skillName)
     }
@@ -965,7 +973,7 @@ const getNewSkillLearnNamesForLevel = (combatant, level) => {
 
   const currentSkillSet = new Set(combatant.skills ?? [])
 
-  return getAllDigimonSkillNamesForLevel(combatant.speciesData, level).filter(
+  return getNewDigimonSkillNamesForLevelRange(combatant.speciesData, combatant.level, level).filter(
     (skillName) => !currentSkillSet.has(skillName)
   )
 }
@@ -989,7 +997,7 @@ const getSkillLearnEventsForLevelRange = (combatant, fromLevel, toLevel) => {
   const events = []
 
   for (let level = fromLevel + 1; level <= toLevel; level += 1) {
-    getAllDigimonSkillNamesForLevel(combatant.speciesData, level)
+    getNewDigimonSkillNamesForLevelRange(combatant.speciesData, level - 1, level)
       .filter((skillName) => !knownSkillNames.has(skillName) && !queuedSkillNames.has(skillName))
       .forEach((skillName) => {
         if (learnedSkillCount < MAX_COMBATANT_SKILL_COUNT) {
