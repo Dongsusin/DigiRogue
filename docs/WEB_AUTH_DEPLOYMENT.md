@@ -26,7 +26,7 @@
 | Vercel 프로젝트 | digilog-web-preview |
 | Vercel 프로젝트 ID | prj_D39FMNYtKjtyZ8nYrmKS98nn5F2R |
 | Vercel 팀 ID | team_0pXPkw9uj74xSFTG03R2YRpb |
-| 최신 배포 | dpl_G48AU3YaFriGCfzXPBheHvMoPcsL |
+| 검증한 게임 배포 | dpl_8yNLpZ3HnGUdbRQpGKgyRMezHWjb |
 | 영구 에셋 CDN | https://digirogue-510313.web.app |
 | 에셋 버전 | sites/digirogue-510313/versions/d29ecd4d9dcc0ff7 |
 | 에셋 제공 파일 수 | 1,761 |
@@ -103,5 +103,15 @@ Firebase 웹앱의 공개 설정은 src/auth/firebaseConfig.json에 있다. 서�
 - 대표 6종과 1600×900, 1366×768, 960×540, 812×375 화면에서 로컬 198개·운영 웹 202개 확인 항목을 통과했다. 운영 검사는 실제 Firebase 게스트 로그인 후 별도 테스트 브라우저 저장소로 진행했고 실행·콘솔·에셋 요청 오류는 0개였다.
 - 로컬 빌드·실행 파일 검사 --dist·Vercel 운영 배포는 종료 코드 0이며 공식 주소 HTTP 200 및 READY를 확인했다. 자동 생성된 임시 별칭은 다시 제거했다.
 - 검증 자료: ../artifacts/digirouge-starter-preview-2026-10-09/. 물리 모바일·Safari와 모든 모델의 개별 시각 검수는 이번 범위에 포함하지 않는다.
+
+## 2026-10-09 보유 디지몬 한도와 알 표시
+
+- 알을 포함해 보유 한도를 8마리로 통일했다. 디지에그 보상·스캔 부화가 가득 찬 파티에 바로 추가되는 대신 보유 멤버를 선택해 교체하거나 영입을 취소한다. 지역 지원 동료는 보유 슬롯에서 제외한다.
+- 교체 확정 전에는 스캔율·해금·골드·스테이지 진행을 소비하지 않는다. 마지막 전투 가능 디지몬은 알로 교체할 수 없다. 기존 초과 저장의 멤버는 정리 대기 목록으로 보존하고 사용자가 각각 결정한다.
+- 진화·전투 교체·전투 불능 교체·아이템 대상·영입 교체·저장 슬롯에 알과 부화 대기를 표시한다. 알이 할 수 없는 행동은 선택을 막고 긴 목록에는 내부 스크롤을 적용한다.
+- 게임 수정 커밋: a843a2db4136743c5d1ab8f3c65f09b768e07f8e. 전체 회귀 238개, 로컬 브라우저 62개, 실제 Firebase 게스트로 운영 웹 25개 확인 항목을 통과했다. 브라우저 실행·콘솔·에셋 요청 오류는 0개였다.
+- 운영 웹에서 교체 취소·확정, 스캔율 100% 보존과 확정 후 소모, 선택 저장·새로고침·이어하기, 새 파티로 다음 스테이지 진입을 확인했다. 로컬에서는 기존 12마리 저장의 명시적 정리와 초과 멤버 보존도 검증했다.
+- 로컬 빌드·실행 파일 검사 --dist·Vercel 배포는 종료 코드 0이며 공식 주소 HTTP 200과 READY를 확인했다. 자동 생성된 프로젝트·main 브랜치 임시 별칭은 제거했다.
+- 검증 자료: ../artifacts/digirouge-party-capacity-2026-10-09/. 물리 모바일·Safari와 런처 설치 패키지 재생성은 이번 검증 범위에 포함하지 않는다.
 
 공식 참고: [Firebase Google 인증](https://firebase.google.com/docs/auth/web/google-signin), [Firebase Hosting 채널 관리](https://firebase.google.com/docs/hosting/manage-hosting-resources), [Vercel 도메인 연결](https://vercel.com/docs/domains/working-with-domains/add-a-domain).
