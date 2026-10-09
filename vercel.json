@@ -84,7 +84,25 @@
       ]
     },
     {
+      "source": "/%EB%A7%B5/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
       "source": "/속성/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/%EC%86%8D%EC%84%B1/:path*",
       "headers": [
         {
           "key": "Cache-Control",
@@ -102,7 +120,25 @@
       ]
     },
     {
+      "source": "/%EC%95%84%EC%9D%B4%ED%85%9C/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
       "source": "/타입/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/%ED%83%80%EC%9E%85/:path*",
       "headers": [
         {
           "key": "Cache-Control",

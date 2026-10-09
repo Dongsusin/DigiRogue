@@ -1,6 +1,8 @@
 export function createHostingConfig(entries) {
-  const paths = [...entries].sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)
-    .map(entry => '/' + entry.name + (entry.directory ? '/:path*' : ''))
+  // HTTP paths can arrive percent-encoded even when the public directory uses Korean names.
+  const paths = [...new Set([...entries].sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)
+    .flatMap(entry => [entry.name, encodeURIComponent(entry.name)]
+      .map(name => '/' + name + (entry.directory ? '/:path*' : ''))))]
   if (paths.some(path => /^\/(?:assets|__|api)(?:\/|$)/.test(path))) throw new Error('Public root conflicts with an application route')
   const cache = value => [{ key: 'Cache-Control', value }]
   return {

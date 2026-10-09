@@ -28,6 +28,16 @@ test('app entry and compiled bundles stay at the existing Google/guest save orig
     assert(config.headers.some(rule => rule.source === source && rule.headers.some(h => h.key === 'Cache-Control' && h.value === 'no-cache')))
   }
 })
+test('percent-encoded Korean asset paths receive the same daily browser cache as ASCII assets', () => {
+  const koreanRoots = entries.filter(entry => encodeURIComponent(entry.name) !== entry.name)
+  assert(koreanRoots.length > 0, 'Expected real Korean asset roots')
+  for (const entry of koreanRoots) {
+    const source = '/' + encodeURIComponent(entry.name) + (entry.isDirectory() ? '/:path*' : '')
+    assert(config.headers.some(rule => rule.source === source && !rule.has
+      && rule.headers.some(header => header.key === 'Cache-Control' && header.value === 'public, max-age=86400')),
+    'The percent-encoded HTTP asset path has no daily cache rule')
+  }
+})
 test('only explicitly versioned models and music receive immutable browser caching', () => {
   for (const source of ['/models/:path*', '/BGM/:path*']) {
     const rules = config.headers.filter(rule => rule.source === source)
