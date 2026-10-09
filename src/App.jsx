@@ -32,6 +32,7 @@ import { useAuthSession } from './auth/AuthContext.js'
 import { browserStorage } from './progression/localStorage.js'
 import { getCollectionStatus } from './progression/digimonCollection.js'
 import TrainerSkillTree from './components/TrainerSkillTree.jsx'
+import DigimonDex from './components/DigimonDex.jsx'
 import ItemLuck from './components/ItemLuck.jsx'
 import { ITEM_RARITIES, getItemRarityLabel } from './data/itemRarities.js'
 import { pickLuckRewardRarity } from './progression/itemLuck.js'
@@ -116,6 +117,7 @@ const menuItems = [
   { label: '\uC774\uC5B4\uD558\uAE30', key: 'continue', disabled: true },
   { label: '스킬', key: 'skills', disabled: false },
   { label: '마을', key: 'town', disabled: false },
+  { label: '도감', key: 'dex', disabled: false },
   { label: '\uC124\uC815', key: 'settings', disabled: false },
 ]
 
@@ -7301,7 +7303,7 @@ function App() {
 
   const handleMenuAction = (actionKey) => {
     setSelectedMenuKey(actionKey)
-    if (actionKey === 'skills' || actionKey === 'town') {
+    if (actionKey === 'skills' || actionKey === 'town' || actionKey === 'dex') {
       setScreenMode(actionKey)
       return
     }
@@ -8745,6 +8747,7 @@ function App() {
           screenMode === 'settings' ? 'playfield--settings' : '',
           screenMode === 'skills' ? 'playfield--skills' : '',
           screenMode === 'town' ? 'playfield--town' : '',
+          screenMode === 'dex' ? 'playfield--dex' : '',
           screenMode === 'adventure' ? 'playfield--adventure' : '',
         ]
           .filter(Boolean)
@@ -8759,6 +8762,7 @@ function App() {
             screenMode === 'settings' ? 'playfield__content--settings' : '',
             screenMode === 'skills' ? 'playfield__content--skills' : '',
             screenMode === 'town' ? 'playfield__content--town' : '',
+            screenMode === 'dex' ? 'playfield__content--dex' : '',
             screenMode === 'adventure' ? 'playfield__content--adventure' : '',
           ]
             .filter(Boolean)
@@ -8808,6 +8812,8 @@ function App() {
             <TrainerSkillTree progress={trainerProgress} onLearn={handleTrainerLearn} onReset={handleTrainerReset} onBack={() => setScreenMode('menu')} />
           ) : screenMode === 'town' ? (
             <TownScreen town={localProgress.town} trust={localProgress.regionalTrust} onAction={localProgress.actTown} onBack={() => setScreenMode('menu')} />
+          ) : screenMode === 'dex' ? (
+            <DigimonDex eggs={digiEggData} lookup={allDigimonLookup} collection={localProgress.collection} onBack={() => setScreenMode('menu')} />
           ) : screenMode === 'settings' ? (
             <section className="settings-screen" aria-label="설정">
               <div className="settings-panel">

@@ -236,7 +236,9 @@
 
 .menu-panel {
   width: min(100%, 380px);
-  padding: 16px 18px 18px;
+  max-height: 100%;
+  overflow-y: auto;
+  padding: 14px 16px;
   border: 6px solid #da4b34;
   background: rgba(59, 52, 69, 0.92);
   box-shadow:
@@ -248,7 +250,7 @@
 .menu-panel__list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
 }
 
 .menu-item {
@@ -256,12 +258,12 @@
   grid-template-columns: 28px 1fr;
   align-items: center;
   width: 100%;
-  padding: 10px 12px;
+  padding: 6px 12px;
   border: 0;
   background: transparent;
   color: #f8f3fb;
   font-family: var(--font-pixel);
-  font-size: clamp(1.55rem, calc(3 * var(--game-vw)), 2.35rem);
+  font-size: clamp(1.35rem, calc(2.5 * var(--game-vw)), 2rem);
   line-height: 1.12;
   text-align: left;
   text-shadow: 3px 3px 0 #26202f;

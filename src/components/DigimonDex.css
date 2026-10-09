@@ -1,0 +1,64 @@
+.playfield.playfield--dex { position: absolute; inset: var(--frame-inner-inset); }
+.playfield__content.playfield__content--dex { position: absolute; inset: 0; display: block; padding: 14px; }
+.dex-screen { height: 100%; min-height: 0; display: flex; flex-direction: column; gap: 16px; padding: 20px; color: #e4f0f7; border: 1px solid #52768a; border-radius: 8px; background: linear-gradient(125deg, #152b3bf7, #081521fc); box-shadow: 0 10px 40px #0006, inset 0 1px #b7e6ff12; font-family: var(--font-pixel); }
+.dex-header { display: flex; align-items: center; gap: 22px; padding-bottom: 16px; border-bottom: 1px solid #729bbd40; flex-shrink: 0; }
+.dex-header__title > span { display: block; margin-bottom: 7px; font-size: 10px; letter-spacing: 3px; color: #8ccddd; }
+.dex-header h1 { margin: 0; font-size: 25px; line-height: 1.2; font-weight: 500; }
+.dex-back { padding: 12px 18px; color: #e4f0f7; background: #263f53; border: 1px solid #68889b; border-radius: 4px; font: inherit; font-size: 13px; cursor: pointer; }
+.dex-back:hover { background: #345c72; border-color: #9ce8f6; }
+.dex-screen button:focus-visible, .dex-viewport:focus-visible { outline: 2px solid #a9ecfa; outline-offset: 3px; }
+.dex-body { flex: 1; min-height: 0; display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 16px; }
+.dex-families { overflow-y: auto; min-height: 0; padding: 2px 8px 2px 2px; display: flex; flex-direction: column; gap: 4px; scrollbar-width: thin; scrollbar-color: #598ca1 #0b1d2c; }
+.dex-family { display: flex; flex-shrink: 0; align-items: center; gap: 12px; min-height: 46px; padding: 4px 10px; border: 1px solid #41647b88; border-radius: 4px; color: #c7dce9; background: #19334588; cursor: pointer; text-align: left; font: inherit; font-size: 13px; }
+.dex-family img { width: 36px; height: 36px; flex-shrink: 0; object-fit: contain; image-rendering: auto; filter: drop-shadow(0 2px 3px #0006); }
+.dex-family__arrow { margin-left: auto; font-size: 23px; opacity: 0.4; }
+.dex-family:hover { color: #fff; border-color: #7cb4c7; background: #234b6088; }
+.dex-family--active, .dex-family--active:hover { border-color: #eac17c; background: linear-gradient(110deg, #85532d, #423826); box-shadow: inset 3px 0 #ffc773; color: #fff1d5; }
+.dex-family--active .dex-family__arrow { color: #ffd68b; opacity: 1; }
+.dex-family--other { margin-top: 6px; border-top-color: #63879b; }
+.dex-family__symbol { width: 38px; text-align: center; color: #a3cbd8; font-size: 31px; }
+.dex-chart { min-width: 0; min-height: 0; display: flex; flex-direction: column; border: 1px solid #456b82; border-radius: 5px; overflow: hidden; background: #091a27; }
+.dex-chart__toolbar { min-height: 55px; padding: 9px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-shrink: 0; background: #193142; border-bottom: 1px solid #50758a66; }
+.dex-chart h2 { margin: 0; color: #e8f0e9; font-size: 15px; font-weight: 500; }
+.dex-zoom { display: flex; align-items: center; gap: 4px; }
+.dex-zoom button { width: 30px; height: 30px; padding: 0; border: 1px solid #52738a; border-radius: 3px; color: #cce8f3; background: #1d3a4d; font: inherit; font-size: 21px; line-height: 1; cursor: pointer; }
+.dex-zoom button:hover:not(:disabled) { color: #fff0ce; background: #3b5360; border-color: #ddbc7b; }
+.dex-zoom button:disabled { opacity: 0.3; cursor: default; }
+.dex-zoom output { min-width: 48px; text-align: center; color: #a8c3d3; font-size: 12px; }
+.dex-zoom .dex-zoom__reset { margin-left: 6px; }
+.dex-viewport { flex: 1; min-height: 0; min-width: 0; overflow: auto; position: relative; cursor: grab; overscroll-behavior: contain; scrollbar-width: auto; scrollbar-color: #689db0 #0b1b28; background-color: #0a1b29; background-image: linear-gradient(#78adca08 1px, transparent 1px), linear-gradient(90deg, #78adca08 1px, transparent 1px); background-size: 32px 32px; }
+.dex-viewport--dragging { cursor: grabbing; user-select: none; }
+.dex-viewport::-webkit-scrollbar { width: 12px; height: 12px; }
+.dex-viewport::-webkit-scrollbar-track, .dex-viewport::-webkit-scrollbar-corner { background: #102433; }
+.dex-viewport::-webkit-scrollbar-thumb { background: #6a9daf; border: 3px solid #102433; border-radius: 8px; }
+.dex-viewport::-webkit-scrollbar-thumb:hover { background: #acdce6; }
+.dex-canvas-space { position: relative; min-width: 100%; min-height: 100%; }
+.dex-canvas { position: absolute; left: 0; top: 0; transform-origin: left top; }
+.dex-connections { position: absolute; inset: 0; overflow: visible; pointer-events: none; }
+.dex-connection { fill: none; stroke: #789baa; stroke-width: 2; stroke-linecap: square; stroke-linejoin: round; opacity: 0.7; }
+.dex-connection--merge { stroke: #68818d; opacity: 0.5; }
+.dex-connection--active { stroke: #f5c77f; stroke-width: 3; opacity: 1; }
+.dex-connection--dim { opacity: 0.12; }
+.dex-node { position: absolute; display: grid; place-items: center; padding: 4px; border: 1px solid transparent; border-radius: 10px; background: #0a1b29; color: #9ab3c1; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.dex-node img { width: 100%; height: 100%; min-width: 0; min-height: 0; object-fit: contain; image-rendering: auto; filter: drop-shadow(0 4px 3px #0006); pointer-events: none; }
+.dex-node--egg { padding: 13px; border-color: #ba925966; border-radius: 50%; background: radial-gradient(ellipse, #bf96552b, #0a1b29 72%); }
+.dex-node:hover, .dex-node--active { border-color: #f5c77f; background-color: #1c3543; box-shadow: 0 0 15px #ffcc6f18; }
+.dex-node--unknown { background-color: #0a1b29; }
+.dex-node__question { font: 49px/1 var(--font-pixel); color: #89a3b3; text-shadow: 0 2px #0004; }
+.dex-node--dim { opacity: 0.38; }
+@media (max-height: 650px) {
+  .playfield__content.playfield__content--dex { padding: 10px; }
+  .dex-screen { padding: 14px; gap: 10px; }
+  .dex-header { padding-bottom: 10px; }
+  .dex-family { min-height: 43px; }
+  .dex-family img { width: 32px; height: 32px; }
+}
+@media (max-width: 900px) {
+  .dex-body { grid-template-columns: 124px minmax(0, 1fr); gap: 10px; }
+  .dex-family { gap: 6px; padding: 4px 7px; font-size: 12px; }
+  .dex-chart__toolbar { padding: 8px 10px; }
+  .dex-chart h2 { font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dex-screen *, .dex-screen *::before, .dex-screen *::after { scroll-behavior: auto; }
+}
