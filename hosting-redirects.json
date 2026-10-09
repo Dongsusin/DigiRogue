@@ -1,0 +1,155 @@
+{
+  "headers": [
+    {
+      "glob": "/",
+      "headers": {
+        "Cache-Control": "no-cache"
+      }
+    },
+    {
+      "glob": "/index.html",
+      "headers": {
+        "Cache-Control": "no-cache"
+      }
+    },
+    {
+      "glob": "/**",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "strict-origin-when-cross-origin"
+      }
+    },
+    {
+      "glob": "/BGM/**",
+      "headers": {
+        "Cache-Control": "public, max-age=86400",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "glob": "/Title.png",
+      "headers": {
+        "Cache-Control": "public, max-age=86400",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "glob": "/favicon.svg",
+      "headers": {
+        "Cache-Control": "public, max-age=86400",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "glob": "/item.png",
+      "headers": {
+        "Cache-Control": "public, max-age=86400",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "glob": "/items/**",
+      "headers": {
+        "Cache-Control": "public, max-age=86400",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "glob": "/models/**",
+      "headers": {
+        "Cache-Control": "public, max-age=86400",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "glob": "/맵/**",
+      "headers": {
+        "Cache-Control": "public, max-age=86400",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "glob": "/속성/**",
+      "headers": {
+        "Cache-Control": "public, max-age=86400",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "glob": "/아이템/**",
+      "headers": {
+        "Cache-Control": "public, max-age=86400",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "glob": "/타입/**",
+      "headers": {
+        "Cache-Control": "public, max-age=86400",
+        "Access-Control-Allow-Origin": "*"
+      }
+    }
+  ],
+  "redirects": [
+    {
+      "glob": "/",
+      "location": "https://digirouge.co.kr",
+      "statusCode": 302
+    },
+    {
+      "glob": "/index.html",
+      "location": "https://digirouge.co.kr",
+      "statusCode": 302
+    },
+    {
+      "glob": "/BGM/:path*",
+      "location": "https://digirouge.co.kr/BGM/:path",
+      "statusCode": 301
+    },
+    {
+      "glob": "/Title.png",
+      "location": "https://digirouge.co.kr/Title.png",
+      "statusCode": 301
+    },
+    {
+      "glob": "/favicon.svg",
+      "location": "https://digirouge.co.kr/favicon.svg",
+      "statusCode": 301
+    },
+    {
+      "glob": "/item.png",
+      "location": "https://digirouge.co.kr/item.png",
+      "statusCode": 301
+    },
+    {
+      "glob": "/items/:path*",
+      "location": "https://digirouge.co.kr/items/:path",
+      "statusCode": 301
+    },
+    {
+      "glob": "/models/:path*",
+      "location": "https://digirouge.co.kr/models/:path",
+      "statusCode": 301
+    },
+    {
+      "glob": "/맵/:path*",
+      "location": "https://digirouge.co.kr/맵/:path",
+      "statusCode": 301
+    },
+    {
+      "glob": "/속성/:path*",
+      "location": "https://digirouge.co.kr/속성/:path",
+      "statusCode": 301
+    },
+    {
+      "glob": "/아이템/:path*",
+      "location": "https://digirouge.co.kr/아이템/:path",
+      "statusCode": 301
+    },
+    {
+      "glob": "/타입/:path*",
+      "location": "https://digirouge.co.kr/타입/:path",
+      "statusCode": 301
+    }
+  ]
+}

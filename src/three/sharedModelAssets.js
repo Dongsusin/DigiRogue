@@ -2,6 +2,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js'
 import { ResourceLeaseCache } from './ResourceLeaseCache.js'
 import { disposeModelTrees } from './modelResources.js'
+import { versionedResourceUrl } from '../data/resourceUrl.js'
 
 function decodedBytes(asset) {
   const buffers = new Set(), images = new Set()
@@ -22,7 +23,7 @@ function decodedBytes(asset) {
 }
 
 const templates = new ResourceLeaseCache({
-  load: url => new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(url),
+  load: url => new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(versionedResourceUrl(url)),
   dispose: asset => disposeModelTrees([asset.scene], { closeImages: true }),
   estimate: decodedBytes, limit: 6, maxBytes: 96 * 1024 * 1024,
 })

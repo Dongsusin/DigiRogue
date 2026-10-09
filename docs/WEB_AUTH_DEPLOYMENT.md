@@ -4,7 +4,7 @@
 
 ## 로그인과 진행 기록
 
-웹 첫 화면에서 Google 로그인 또는 게스트로 시작한 뒤 메인 메뉴로 이동한다. Firebase Authentication의 Google 및 익명 인증을 사용하며 로그인 상태는 브라우저를 다시 열어도 유지한다. 로그인 방식을 선택하기 전에는 큰 게임·3D 번들을 불러오지 않는다.
+웹 첫 화면에서 Google 로그인 또는 게스트로 시작한 뒤 메인 메뉴로 이동한다. Firebase Authentication의 Google 인증과 브라우저 로컬 게스트를 사용하며 로그인 상태는 브라우저를 다시 열어도 유지한다. 로그인 방식을 선택하기 전에는 큰 게임·3D 번들을 불러오지 않는다.
 
 진행 기록은 현재 브라우저의 로컬 저장 공간에 보관한다. Google 계정은 Firebase UID별 공간을 사용하며, 게스트는 해당 도메인의 로컬 기록을 사용한다. 로그아웃해도 저장 기록은 지우지 않는다. 다른 브라우저·기기·도메인으로 자동 동기화하는 클라우드 저장은 구현하지 않았다.
 
@@ -12,7 +12,7 @@
 
 도메인을 변경해도 이전 도메인의 브라우저 저장 데이터를 삭제하지는 않는다. 브라우저 저장소는 출처별로 분리되므로 이전 주소의 기록이 새 주소로 자동 이전되지는 않는다. 이번 변경은 호스팅과 주소 연결을 변경했으며 사용자 저장 데이터를 삭제하지 않았다.
 
-네트워크 오류로 익명 인증에 연결하지 못하면 로컬 게스트로 진입할 수 있다. 페이지 자체의 오프라인 설치·캐시는 포함하지 않는다. AURORA Launcher의 로그인 없는 로컬 게스트·IPC 파일 저장과 설치 패키지는 이번 작업에서 변경하지 않았다.
+게스트는 Firebase에 익명 계정을 만들지 않고 로컬 기록으로 바로 진입한다. 이전 익명 로그인 세션은 로컬에서 로그아웃하되 게스트 저장 데이터는 유지한다. 페이지 자체의 오프라인 설치·캐시는 포함하지 않는다. AURORA Launcher의 로그인 없는 로컬 게스트·IPC 파일 저장과 설치 패키지는 이번 작업에서 변경하지 않았다.
 
 ## 운영 리소스
 
@@ -26,14 +26,14 @@
 | Vercel 프로젝트 | digilog-web-preview |
 | Vercel 프로젝트 ID | prj_D39FMNYtKjtyZ8nYrmKS98nn5F2R |
 | Vercel 팀 ID | team_0pXPkw9uj74xSFTG03R2YRpb |
-| 검증한 게임 배포 | dpl_8yNLpZ3HnGUdbRQpGKgyRMezHWjb |
-| 영구 에셋 CDN | https://digirogue-510313.web.app |
-| 에셋 버전 | sites/digirogue-510313/versions/d29ecd4d9dcc0ff7 |
-| 에셋 제공 파일 수 | 1,761 |
+| 운영 소스 브랜치 | main |
+| 에셋 CDN | https://digirouge.co.kr (Vercel static) |
+| 에셋 버전 | 파일 내용 SHA-256 쿼리 v |
+| 압축 모델 | 512개, 원본과 Brotli 압축 해제 바이트 동일 |
 
-Vercel이 앱 번들을 제공하고 public 파일 경로는 Firebase Hosting의 live 채널로 전달한다. 한글 맵·타입·속성 이름을 원래 경로와 URL 인코딩 방식 그대로 전달한다. Vercel 빌드에서만 public 복사를 생략하며 일반 로컬 빌드는 설치형 게임에 필요한 데이터를 포함한다.
+Vercel이 앱과 public 리소스를 직접 제공한다. Firebase로 전달하던 외부 rewrite는 제거했다. 모델은 별도 .glb.br 파일과 Content-Encoding: br로 제공하고, 모델·BGM의 내용 해시가 바뀔 때 다운로드 URL도 바뀐다. 버전 쿼리가 있는 모델·BGM만 1년 immutable 캐시를 사용하며 버전 없는 리소스는 1일 캐시를 사용한다. 자세한 운영 기준은 docs/NETWORK_BUDGET.md를 따른다.
 
-Firebase live 채널에는 게임 실행 번들을 제외한 에셋만 게시했다. 기본 Firebase 주소의 루트와 /index.html은 공식 주소로 이동한다. Firebase의 /__/auth/* 인증 처리와 모델·맵·BGM 제공 경로는 유지한다. 미리보기 채널의 만료 날짜에 의존하지 않는다.
+새 Vercel 배포의 모델·BGM·한글 경로를 실제 바이트로 확인한 뒤 Firebase Hosting의 live 정적 파일 제공을 종료하고 이전 파일 주소를 Vercel로 이동시킨다. Firebase Authentication과 /__/auth/* 예약 경로는 유지하며 계정과 저장 데이터를 삭제하지 않는다. 이전 Hosting 버전은 복구용으로 남긴다.
 
 Firebase 인증의 허용 도메인은 공식 게임 주소, Firebase 인증·영구 에셋 주소, localhost 및 127.0.0.1이다. 삭제한 임시 게임 주소는 로그인 허용 목록에서도 제거했다.
 
@@ -53,24 +53,27 @@ Firebase 인증의 허용 도메인은 공식 게임 주소, Firebase 인증·�
 ~~~powershell
 npm ci
 npm run test:auth
+npm run test:guest-budget
+npm run test:network-budget
+npm run test:hosting-budget
 npm run build
 npm run verify -- --dist
 ~~~
 
-에셋 CDN을 바꿀 때는 새 영구 경로에 게임 파일을 먼저 게시하고 원본 파일 목록·해시를 비교한 뒤 전달 설정을 만든다.
+public 리소스 경로가 달라지면 정적 호스팅 설정을 다시 생성하고 내용을 확인한다.
 
 ~~~powershell
-node scripts/prepare-vercel-preview.mjs https://digirogue-510313.web.app
+node scripts/prepare-vercel-preview.mjs
 ~~~
 
-스크립트의 기존 파일명은 유지하며 Firebase live 주소도 지원한다. Vercel CLI에 권한 있는 계정으로 로그인한 상태에서 같은 팀·프로젝트에 게시한다.
+스크립트의 기존 파일명은 유지하지만 Firebase 주소 인수는 받지 않는다. Vercel CLI에 권한 있는 계정으로 로그인한 상태에서 같은 팀·프로젝트에 게시한다.
 
 ~~~powershell
 npx vercel --scope team_0pXPkw9uj74xSFTG03R2YRpb link --project digilog-web-preview --yes
 npx vercel --scope team_0pXPkw9uj74xSFTG03R2YRpb deploy --prod --yes
 ~~~
 
-Firebase 웹앱의 공개 설정은 src/auth/firebaseConfig.json에 있다. 서비스 계정 키·CLI 인증 토큰·.env 파일을 배포하지 않는다. .vercelignore는 public·dist·node_modules·.git·.tmp-web-deploy·docs·.env*·.vercel을 제외한다.
+Firebase 웹앱의 공개 설정은 src/auth/firebaseConfig.json에 있다. 서비스 계정 키·CLI 인증 토큰·.env 파일을 배포하지 않는다. .vercelignore는 dist·node_modules·.git·.tmp-web-deploy·docs·.env*·.vercel을 제외하며 public은 반드시 업로드에 포함한다. Brotli 파일은 빌드 단계에서 만들므로 소스 업로드를 중복하지 않는다.
 
 ## 2026-10-09 주소 이전 검증
 

@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from 'react'
-import { GoogleAuthProvider, onAuthStateChanged, signInAnonymously, signInWithPopup,
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup,
   linkWithPopup, signInWithCredential, signOut } from 'firebase/auth'
 import { firebaseAuth, authPersistenceReady } from './firebaseClient.js'
 import { AuthContext } from './AuthContext.js'
@@ -16,6 +16,7 @@ export default function AuthProvider({ children }) {
   const [ready, setReady] = useState(false)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  const anonymousRetirementRef = useRef(Promise.resolve())
   useEffect(() => {
     let active = true, unsubscribe
     try { initializeLauncherStorage() } catch (failure) { setError(failure.message); setReady(true); return }
@@ -25,7 +26,17 @@ export default function AuthProvider({ children }) {
       if (!active) return
       unsubscribe = onAuthStateChanged(firebaseAuth, user => {
         if (!active) return
-        setIdentity(describe(user) ?? (localSession() ? localGuest() : null))
+        if (user?.isAnonymous) {
+          // Guest progress already uses the shared local guest namespace.
+          // Retire only this browser's anonymous session, never its saved data.
+          try {
+            const identity = localGuest()
+            browserStorage()?.setItem(LOCAL_SESSION, 'guest')
+            setIdentity(identity)
+            anonymousRetirementRef.current = signOut(firebaseAuth)
+            void anonymousRetirementRef.current.catch(failure => { if (active) setError(authErrorMessage(failure)) })
+          } catch (failure) { setError(failure.message) }
+        } else setIdentity(describe(user) ?? (localSession() ? localGuest() : null))
         setReady(true)
       }, failure => { if (active) { setError(authErrorMessage(failure)); setReady(true) } })
     }).catch(failure => { if (active) { setError(authErrorMessage(failure)); setIdentity(localSession() ? localGuest() : null); setReady(true) } })
@@ -36,6 +47,7 @@ export default function AuthProvider({ children }) {
     setBusy(true); setError('')
     const guestBefore = identity?.isAnonymous
     try {
+      await anonymousRetirementRef.current
       await authPersistenceReady
       const provider = new GoogleAuthProvider()
       provider.setCustomParameters({ prompt: 'select_account' })
@@ -58,22 +70,20 @@ export default function AuthProvider({ children }) {
     if (busy) return
     setBusy(true); setError('')
     try {
-      await authPersistenceReady
-      const result = await signInAnonymously(firebaseAuth)
-      browserStorage()?.removeItem(LOCAL_SESSION)
-      setIdentity(describe(result.user))
-    } catch (failure) {
-      // The installed/offline game remains playable when Firebase cannot be reached.
-      if (failure.code === 'auth/network-request-failed' || !navigator.onLine) {
-        try { browserStorage()?.setItem(LOCAL_SESSION, 'guest'); setIdentity(localGuest()) }
-        catch { setError('게스트 기록을 저장할 공간이 없습니다.') }
-      } else setError(authErrorMessage(failure))
+      const identity = localGuest()
+      const storage = browserStorage()
+      if (!storage) throw new Error('Guest storage unavailable')
+      storage.setItem(LOCAL_SESSION, 'guest')
+      if (storage.getItem(LOCAL_SESSION) !== 'guest') throw new Error('Guest session was not saved')
+      setIdentity(identity)
+    } catch {
+      setError('게스트 기록을 저장할 공간이 없습니다.')
     } finally { setBusy(false) }
   }
   const logout = async () => {
     if (busy) return
     setBusy(true); setError('')
-    try { await signOut(firebaseAuth); browserStorage()?.removeItem(LOCAL_SESSION); setIdentity(null) }
+    try { await anonymousRetirementRef.current; if (firebaseAuth.currentUser) await signOut(firebaseAuth); browserStorage()?.removeItem(LOCAL_SESSION); setIdentity(null) }
     catch (failure) { setError(authErrorMessage(failure)) }
     finally { setBusy(false) }
   }

@@ -1,4 +1,5 @@
 import TownScreen from './components/TownScreen.jsx'
+import { versionedResourceUrl } from './data/resourceUrl.js'
 import { applyTownStartingSupport, getTownEggStages } from './progression/townProgress.js'
 import { hydrateRegionalTrust } from './progression/regionalTrustProgress.js'
 import { ITEM_EVOLUTION_REWARD_ITEMS } from './data/evolutionItems.js'
@@ -1222,6 +1223,8 @@ const BackgroundMusic = ({ settings }) => {
   const hasStartedRef = useRef(false)
   const hasUserGestureRef = useRef(false)
   const isFadingOutRef = useRef(false)
+  const retryTimerRef = useRef(null)
+  const retryFailuresRef = useRef(0)
 
   useEffect(() => {
     const audio = audioRef.current
@@ -1237,8 +1240,17 @@ const BackgroundMusic = ({ settings }) => {
       return
     }
 
+    if (targetVolumeRef.current <= 0 || document.hidden || navigator.onLine === false) {
+      audio.pause()
+      window.clearTimeout(retryTimerRef.current)
+      retryTimerRef.current = null
+      return
+    }
+
     if (enabledTracks.length === 0) {
       audio.pause()
+      window.clearTimeout(retryTimerRef.current)
+      retryTimerRef.current = null
       audio.removeAttribute('src')
       currentTrackRef.current = null
       hasStartedRef.current = false
@@ -1251,7 +1263,7 @@ const BackgroundMusic = ({ settings }) => {
       const nextTrack = queueRef.current.shift() ?? enabledTracks[0]
       currentTrackRef.current = nextTrack
       audio.pause()
-      audio.src = nextTrack.url
+      audio.src = versionedResourceUrl(nextTrack.url)
       audio.currentTime = 0
       audio.volume = targetVolumeRef.current
       baseVolumeRef.current = targetVolumeRef.current
@@ -1276,7 +1288,7 @@ const BackgroundMusic = ({ settings }) => {
         const nextTrack = queueRef.current.shift() ?? enabledTracks[0]
         currentTrackRef.current = nextTrack
         audio.pause()
-        audio.src = nextTrack.url
+        audio.src = versionedResourceUrl(nextTrack.url)
         audio.currentTime = 0
         audio.volume = targetVolumeRef.current
         baseVolumeRef.current = targetVolumeRef.current
@@ -1296,6 +1308,7 @@ const BackgroundMusic = ({ settings }) => {
     if (hasStartedRef.current) {
       baseVolumeRef.current = targetVolumeRef.current
       audio.volume = baseVolumeRef.current * gameAudio.getBgmDucking()
+      if (audio.paused && retryTimerRef.current === null && retryFailuresRef.current < 4) audio.play().catch(() => {})
     }
   }, [
     safeSettings.masterVolume,
@@ -1308,6 +1321,14 @@ const BackgroundMusic = ({ settings }) => {
 
     if (!audio) {
       return undefined
+    }
+
+    let disposed = false
+    const canStream = () => !disposed && !document.hidden && navigator.onLine !== false
+      && targetVolumeRef.current > 0 && enabledTracksRef.current.length > 0
+    const cancelRetry = () => {
+      window.clearTimeout(retryTimerRef.current)
+      retryTimerRef.current = null
     }
 
     const cancelFade = () => {
@@ -1355,6 +1376,7 @@ const BackgroundMusic = ({ settings }) => {
     }
 
     const playNextTrack = async () => {
+      if (!canStream() || retryFailuresRef.current > 4) return
       const nextTrack = getNextTrack()
 
       if (!nextTrack) {
@@ -1367,13 +1389,14 @@ const BackgroundMusic = ({ settings }) => {
       currentTrackRef.current = nextTrack
       isFadingOutRef.current = false
       audio.pause()
-      audio.src = nextTrack.url
+      audio.src = versionedResourceUrl(nextTrack.url)
       audio.volume = 0
       baseVolumeRef.current = 0
       audio.currentTime = 0
 
       try {
         await audio.play()
+        if (!canStream()) { audio.pause(); return }
         hasStartedRef.current = true
         fadeVolume(targetVolumeRef.current, BGM_FADE_IN_MS)
       } catch {
@@ -1385,7 +1408,7 @@ const BackgroundMusic = ({ settings }) => {
     const startAfterUserGesture = () => {
       hasUserGestureRef.current = true
 
-      if (hasStartedRef.current) {
+      if (!canStream() || hasStartedRef.current || retryTimerRef.current !== null || retryFailuresRef.current >= 4) {
         return
       }
 
@@ -1412,8 +1435,27 @@ const BackgroundMusic = ({ settings }) => {
     }
 
     const handleError = () => {
-      window.setTimeout(playNextTrack, 400)
+      if (!canStream() || retryTimerRef.current !== null || retryFailuresRef.current >= 4) return
+      const delay = 5000 * 2 ** retryFailuresRef.current++
+      retryTimerRef.current = window.setTimeout(() => {
+        retryTimerRef.current = null
+        void playNextTrack()
+      }, delay)
     }
+
+    const handlePlaying = () => { retryFailuresRef.current = 0; cancelRetry() }
+    const resumePlayback = () => {
+      if (!canStream() || !hasUserGestureRef.current || retryFailuresRef.current >= 4) return
+      if (!currentTrackRef.current || !audio.src) { void playNextTrack(); return }
+      if (audio.paused) audio.play().then(() => {
+        if (!canStream()) { audio.pause(); return }
+        hasStartedRef.current = true
+        fadeVolume(targetVolumeRef.current, BGM_FADE_IN_MS)
+      }).catch(() => {})
+    }
+    const suspendPlayback = () => { cancelRetry(); cancelFade(); audio.pause() }
+    const handleVisibility = () => document.hidden ? suspendPlayback() : resumePlayback()
+    const handleOnline = () => { retryFailuresRef.current = 0; resumePlayback() }
 
     // Keep track fades and user volume intact; only the audible mix dips during attacks.
     let mixFrameId
@@ -1428,8 +1470,14 @@ const BackgroundMusic = ({ settings }) => {
     audio.addEventListener('timeupdate', handleTimeUpdate)
     audio.addEventListener('ended', handleEnded)
     audio.addEventListener('error', handleError)
+    audio.addEventListener('playing', handlePlaying)
+    document.addEventListener('visibilitychange', handleVisibility)
+    window.addEventListener('offline', suspendPlayback)
+    window.addEventListener('online', handleOnline)
 
     return () => {
+      disposed = true
+      cancelRetry()
       cancelFade()
       window.cancelAnimationFrame(mixFrameId)
       window.removeEventListener('pointerdown', startAfterUserGesture)
@@ -1437,11 +1485,15 @@ const BackgroundMusic = ({ settings }) => {
       audio.removeEventListener('timeupdate', handleTimeUpdate)
       audio.removeEventListener('ended', handleEnded)
       audio.removeEventListener('error', handleError)
+      audio.removeEventListener('playing', handlePlaying)
+      document.removeEventListener('visibilitychange', handleVisibility)
+      window.removeEventListener('offline', suspendPlayback)
+      window.removeEventListener('online', handleOnline)
       audio.pause()
     }
   }, [])
 
-  return <audio ref={audioRef} preload="auto" aria-hidden="true" />
+  return <audio ref={audioRef} preload="none" aria-hidden="true" />
 }
 
 const ButtonClickSound = () => {
