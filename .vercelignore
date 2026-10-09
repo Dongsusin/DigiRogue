@@ -1,0 +1,17 @@
+public
+public/**
+dist
+dist/**
+node_modules
+node_modules/**
+.git
+.git/**
+.tmp-web-deploy
+.tmp-web-deploy/**
+docs
+docs/**
+.env
+.env.*
+.vercel
+.vercel/**
+*.log

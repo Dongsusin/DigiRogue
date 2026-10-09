@@ -1,0 +1,2751 @@
+{
+  "revision": 2,
+  "verifiedAt": "2026-10-04",
+  "policy": "Official reference-book generations are the default. Game Ultra groups 19 selected ultimate fusions, final modes and exceptional endgame forms supported by official Card Game Lv.7 entries; card levels do not redefine their official reference-book generation. Arcadiamon forms follow the official Hacker's Memory form chart. Species training bands preserve authored balance.",
+  "profiles": {
+    "그랜쿠가몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "grankuwagamon"
+    },
+    "넵튠몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "neptunemon"
+    },
+    "노블펌프몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "noblepumpmon"
+    },
+    "듀나스몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "dynasmon"
+    },
+    "듀크몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "dukemon"
+    },
+    "디아블로몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "diablomon"
+    },
+    "라센몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "rasenmon"
+    },
+    "러스트티라노몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "rusttyranomon"
+    },
+    "레이브몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "ravmon"
+    },
+    "로드나이트몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "lordknightmon"
+    },
+    "로제몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "rosemon"
+    },
+    "로터스몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "lotusmon"
+    },
+    "리리스몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "lilithmon"
+    },
+    "리바이어몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "leviamon"
+    },
+    "마린엔젤몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "marinangemon"
+    },
+    "마스테몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "mastemon"
+    },
+    "마왕몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "demon"
+    },
+    "메탈가루몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "metalgarurumon"
+    },
+    "메탈시드라몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "metalseadramon"
+    },
+    "메탈에테몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "metaletemon"
+    },
+    "미네르바몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "minervamon"
+    },
+    "미라쥬가오가몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "miragegaogamon"
+    },
+    "바이킹몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "vikemon"
+    },
+    "반쵸릴리몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "bancholilimon"
+    },
+    "발두르몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "valdurmon"
+    },
+    "발키리몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "valkyrimon"
+    },
+    "베놈묘티스몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "venomvamdemon"
+    },
+    "베르제브몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "beelzebumon"
+    },
+    "베리얼묘티스몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "belialvamdemon"
+    },
+    "벨페몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "belphemonsleepmode"
+    },
+    "볼트몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "boltmon"
+    },
+    "브레이크드라몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "breakdramon"
+    },
+    "블랙메탈가루몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "metalgarurumon_black"
+    },
+    "블랙워그레이몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "blackwargreymon"
+    },
+    "블리츠그레이몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "blitzgreymon"
+    },
+    "샤벨레오몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "saberleomon"
+    },
+    "샤인그레이몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "shinegreymon"
+    },
+    "샤크라몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "sakuyamon"
+    },
+    "세라피몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "seraphimon"
+    },
+    "세인트가르고몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "saintgalgomon"
+    },
+    "슬레이어드라몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "slayerdramon"
+    },
+    "알파몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "alphamon"
+    },
+    "알포스브이드라몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "ulforcevdramon"
+    },
+    "오류우몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "ouryumon"
+    },
+    "오파니몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "ofanimon"
+    },
+    "워그레이몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "wargreymon"
+    },
+    "제스몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "jesmon"
+    },
+    "카오스듀크몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "chaosdukemon"
+    },
+    "케루비몬(선)": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "cherubimon"
+    },
+    "케루비몬(악)": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "cherubimon-vice"
+    },
+    "쿠즈하몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "kuzuhamon"
+    },
+    "크레니엄몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "craniummon"
+    },
+    "크레스가루몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "cresgarurumon"
+    },
+    "타이거베스파몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "tigervespamon"
+    },
+    "타이타몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "titamon"
+    },
+    "택티몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "tactimon"
+    },
+    "파워드라몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "mugendramon"
+    },
+    "플래티넘워매몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "platinumnumemon"
+    },
+    "플레시오몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "plesiomon"
+    },
+    "피노키몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "pinochimon"
+    },
+    "페닉스몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "hououmon"
+    },
+    "피에몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "piemon"
+    },
+    "헤라클레스캅테리몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "heraklekabuterimon"
+    },
+    "헤비레오몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "heavyleomon"
+    },
+    "에이션트가루몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "ancientgarurumon"
+    },
+    "에이션트그레이몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "ancientgreymon"
+    },
+    "아포카리몬": {
+      "stage": "초궁극체",
+      "trainingStage": "궁극체",
+      "directory": "apoclymon",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "BT15-102",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=BT15-102&search=true",
+        "note": "진화의 종말을 상징하는 특수 최종 존재"
+      }
+    },
+    "반쵸레오몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "bancholeomon"
+    },
+    "발바몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "barbamon"
+    },
+    "카오스드라몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "chaosdramon"
+    },
+    "듀란다몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "durandamon"
+    },
+    "이바몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "ebemon"
+    },
+    "간쿠몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "gankoomon"
+    },
+    "그랜드로코몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "grandlocomon"
+    },
+    "하이안드로몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "hiandromon"
+    },
+    "할배몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "jijimon"
+    },
+    "킹에테몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "kingetemon"
+    },
+    "홀리드라몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "holydramon"
+    },
+    "메탈릭드라몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "metallicdramon"
+    },
+    "라구엘몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "raguelmon"
+    },
+    "볼케닉드라몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "volcanicdramon"
+    },
+    "매그너몬": {
+      "stage": "아머체",
+      "trainingStage": "궁극체",
+      "directory": "magnamon"
+    },
+    "래피드몬[아머]": {
+      "stage": "아머체",
+      "trainingStage": "궁극체",
+      "directory": "rapidmon_gold"
+    },
+    "아르고몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "algomon"
+    },
+    "청룡몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "qinglongmon"
+    },
+    "백호몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "baihumon"
+    },
+    "반쵸록몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "banchogolemon"
+    },
+    "반쵸스팅몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "banchostingmon"
+    },
+    "현무몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "xuanwumon"
+    },
+    "가르프몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "gulfmon"
+    },
+    "황룡몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "huanglongmon"
+    },
+    "러블리엔젤몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "lovelyangemon"
+    },
+    "미타마몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "mitamamon"
+    },
+    "라지엘몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "rasielmon"
+    },
+    "주작몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "zhuqiaomon"
+    },
+    "알카디몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "source": "https://digimonstory.bn-ent.net/images/special/sp01_13_04.png",
+      "note": "Official Hacker's Memory forms; the reference-book arkadimon page is the Rookie form only."
+    },
+    "디아나몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "dianamon"
+    },
+    "도루고라몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "dorugoramon"
+    },
+    "카이젤그레이몬": {
+      "stage": "하이브리드체",
+      "trainingStage": "궁극체",
+      "directory": "kaisergreymon"
+    },
+    "갓드라몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "goddramon"
+    },
+    "그란드라큐몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "granddracumon"
+    },
+    "그리포몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "griffomon"
+    },
+    "저스티몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "justimon"
+    },
+    "슬레이프몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "sleipmon"
+    },
+    "메기드라몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "megidramon"
+    },
+    "메르크리몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "mercurymon"
+    },
+    "파일볼케몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "pilevolcamon"
+    },
+    "가이오몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "gaioumon"
+    },
+    "타이런트캅테리몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "tyrantkabuterimon"
+    },
+    "알카디몬[초궁극체]": {
+      "stage": "초궁극체",
+      "trainingStage": "궁극체",
+      "source": "https://digimonstory.bn-ent.net/images/special/sp01_13_04.png",
+      "note": "Official Hacker's Memory forms; the reference-book arkadimon page is the Rookie form only."
+    },
+    "오메가샤우트몬": {
+      "stage": "완전체",
+      "trainingStage": "궁극체",
+      "directory": "omegashoutmon"
+    },
+    "두프트몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "duftmon"
+    },
+    "매그너가루몬[SV]": {
+      "stage": "하이브리드체",
+      "trainingStage": "궁극체",
+      "directory": "magnagarurumon",
+      "note": "Unequipped 3D model of MagnaGarurumon; same Hybrid species."
+    },
+    "에이션트볼케몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "ancientvolcamon"
+    },
+    "블래스트몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "blastmon"
+    },
+    "왕펭귄몬": {
+      "stage": "하이브리드체",
+      "trainingStage": "궁극체",
+      "directory": "daipenmon"
+    },
+    "파라오몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "pharaohmon"
+    },
+    "유피테르몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "jupitermon"
+    },
+    "바그라몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "bagramon"
+    },
+    "데크스몬": {
+      "stage": "초궁극체",
+      "trainingStage": "궁극체",
+      "directory": "death-x-mon",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "BT9-112",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=BT9-112&search=true",
+        "note": "데크스 계열의 최종 재앙 형태"
+      }
+    },
+    "프린스콩알몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "princemamemon"
+    },
+    "가드로몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "guardromon"
+    },
+    "가루몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "garurumon"
+    },
+    "가루몬(흑)": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "garurumon_black"
+    },
+    "가르고몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "galgomon"
+    },
+    "가오가몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "gaogamon"
+    },
+    "가트몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "tailmon"
+    },
+    "개굴몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "gekomon"
+    },
+    "고스몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "bakemon"
+    },
+    "구미호몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "kyubimon"
+    },
+    "그라우몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "growmon"
+    },
+    "그레이몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "greymon-first"
+    },
+    "긴류우몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "ginryumon"
+    },
+    "니드몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "togemon"
+    },
+    "데블몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "devimon"
+    },
+    "도루가몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "dorugamon"
+    },
+    "레오몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "leomon"
+    },
+    "레파몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "reppamon"
+    },
+    "말벌몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "waspmon"
+    },
+    "메라몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "meramon"
+    },
+    "모노크로몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "monochromon"
+    },
+    "옐로우워매몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "geremon"
+    },
+    "바오헉몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "baohuckmon"
+    },
+    "버드라몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "birdramon"
+    },
+    "베지몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "vegimon"
+    },
+    "브이드라몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "v-dramon"
+    },
+    "블랙가트몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "blacktailmon"
+    },
+    "스카몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "scumon"
+    },
+    "스타몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "starmon"
+    },
+    "스트라이크드라몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "strikedramon"
+    },
+    "스팅몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "stingmon"
+    },
+    "시드라몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "seadramon"
+    },
+    "아이스몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "icemon"
+    },
+    "아큐라몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "aquilamon"
+    },
+    "에어드라몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "airdramon"
+    },
+    "엑스브이몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "xv-mon"
+    },
+    "엔젤몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "angemon"
+    },
+    "우가몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "orgemon"
+    },
+    "우드몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "woodmon"
+    },
+    "워매몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "numemon"
+    },
+    "원뿔몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "ikkakumon"
+    },
+    "위자몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "wizarmon"
+    },
+    "지오그레이몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "geogreymon"
+    },
+    "캅테리몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "kabuterimon"
+    },
+    "코어드라몬(녹)": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "coredramon_g"
+    },
+    "코어드라몬(청)": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "coredramon_b"
+    },
+    "쿠가몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "kuwagamon"
+    },
+    "크리사리몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "chrysalimon"
+    },
+    "토리에몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "turuiemon"
+    },
+    "티라노몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "tyranomon"
+    },
+    "펙크몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "peckmon"
+    },
+    "프리지몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "yukidarumon"
+    },
+    "필몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "filmon"
+    },
+    "해바라기몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "sunflowmon"
+    },
+    "황금아르마몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "ankylomon"
+    },
+    "타임몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "clockmon"
+    },
+    "사이크로몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "cyclomon"
+    },
+    "골드워매몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "goldnumemon"
+    },
+    "쟈자드몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "jazardmon"
+    },
+    "라보보몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "lavorvomon"
+    },
+    "메이쿠몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "meicoomon"
+    },
+    "모야몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "nanimon"
+    },
+    "달팽이워매몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "karatukinumemon"
+    },
+    "소서리몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "sorcerimon"
+    },
+    "즈바이거몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "zubaeagermon"
+    },
+    "아레스타드라몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "arresterdramon"
+    },
+    "레드꼬끼몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "akatorimon"
+    },
+    "다이노휴몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "dinohumon"
+    },
+    "그리즈몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "gryzmon"
+    },
+    "오메카몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "omekamon"
+    },
+    "탱크몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "tankmon"
+    },
+    "태스크몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "tuskmon"
+    },
+    "멧돼지몬": {
+      "stage": "아머체",
+      "trainingStage": "성숙기",
+      "directory": "boarmon"
+    },
+    "황소몬": {
+      "stage": "아머체",
+      "trainingStage": "성숙기",
+      "directory": "bullmon"
+    },
+    "골드브이드라몬": {
+      "stage": "아머체",
+      "trainingStage": "성숙기",
+      "directory": "goldv-dramon"
+    },
+    "링스몬": {
+      "stage": "아머체",
+      "trainingStage": "성숙기",
+      "directory": "lynxmon"
+    },
+    "토토몬": {
+      "stage": "아머체",
+      "trainingStage": "성숙기",
+      "directory": "opossummon"
+    },
+    "프라리몬": {
+      "stage": "아머체",
+      "trainingStage": "성숙기",
+      "directory": "prairiemon"
+    },
+    "백사몬": {
+      "stage": "아머체",
+      "trainingStage": "성숙기",
+      "directory": "quetzalmon"
+    },
+    "비트몬": {
+      "stage": "아머체",
+      "trainingStage": "성숙기",
+      "directory": "bitmon"
+    },
+    "번개드라몬": {
+      "stage": "아머체",
+      "trainingStage": "성숙기",
+      "directory": "lighdramon"
+    },
+    "사수몬": {
+      "stage": "아머체",
+      "trainingStage": "성숙기",
+      "directory": "sagittarimon"
+    },
+    "시프몬": {
+      "stage": "아머체",
+      "trainingStage": "성숙기",
+      "directory": "sheepmon"
+    },
+    "백조몬": {
+      "stage": "아머체",
+      "trainingStage": "성숙기",
+      "directory": "swanmon"
+    },
+    "아그니몬": {
+      "stage": "하이브리드체",
+      "trainingStage": "성숙기",
+      "directory": "agnimon"
+    },
+    "알카디몬[성숙기]": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "source": "https://digimonstory.bn-ent.net/images/special/sp01_13_04.png",
+      "note": "Official Hacker's Memory forms; the reference-book arkadimon page is the Rookie form only."
+    },
+    "실리컨몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "coelamon"
+    },
+    "머드프리지몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "tuchidarumon"
+    },
+    "록몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "golemon"
+    },
+    "그레이몬(청)": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "greymon_blue"
+    },
+    "후디에몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "hudiemon"
+    },
+    "레키스몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "lekismon"
+    },
+    "볼프몬": {
+      "stage": "하이브리드체",
+      "trainingStage": "성숙기",
+      "directory": "wolfmon"
+    },
+    "라프타드라몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "raptordramon"
+    },
+    "레어몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "raremon"
+    },
+    "상굴몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "sangloupmon"
+    },
+    "시스터몬 느와르": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "sistermonnoir"
+    },
+    "유니몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "yunimon"
+    },
+    "화염드라몬": {
+      "stage": "아머체",
+      "trainingStage": "성숙기",
+      "directory": "fladramon"
+    },
+    "가드로몬(골드)": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "gardromon_gold"
+    },
+    "아이스데블몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "icedevimon"
+    },
+    "매드레오몬[암드]": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "madleomon:armedmode"
+    },
+    "바리스타몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "baristamon"
+    },
+    "도루루몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "dorulumon"
+    },
+    "그레이몬[크로스워즈]": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "greymon"
+    },
+    "메일버드라몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "mailbirdramon"
+    },
+    "샤우트몬[X2]": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "shoutmonx2"
+    },
+    "샤우트몬[X3]": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "shoutmonx3"
+    },
+    "샤우트몬[X4]": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "shoutmonx4"
+    },
+    "다크티라노몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "darktyranomon"
+    },
+    "타겟몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "targetmon"
+    },
+    "가오몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "gaomon"
+    },
+    "가지몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "gazimon"
+    },
+    "고부리몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "goburimon"
+    },
+    "길몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "guilmon"
+    },
+    "도루몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "dorumon"
+    },
+    "드라코몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "dracomon"
+    },
+    "드라큐몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "dracumon"
+    },
+    "라라몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "lalamon"
+    },
+    "레나몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "renamon"
+    },
+    "로프몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "lopmon"
+    },
+    "루체몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "lucemon"
+    },
+    "류우다몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "ryudamon"
+    },
+    "모노드라몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "monodramon"
+    },
+    "베타몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "betamon"
+    },
+    "브이몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "v-mon"
+    },
+    "샤코몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "shakomon"
+    },
+    "쉬라몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "gomamon"
+    },
+    "아구몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "agumon"
+    },
+    "아구몬(흑)": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "agumon-black"
+    },
+    "아기벌몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "funbeemon"
+    },
+    "아르마몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "armadimon"
+    },
+    "에렉몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "elecmon"
+    },
+    "올챙몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "otamamon"
+    },
+    "임프몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "impmon"
+    },
+    "추추몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "wormmon"
+    },
+    "츠카이몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "tukaimon"
+    },
+    "카메몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "kamemon"
+    },
+    "케라몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "keramon"
+    },
+    "쿠다몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "kudamon"
+    },
+    "테리어몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "terriermon"
+    },
+    "텐타몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "tentomon"
+    },
+    "톱니몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "hagurumon"
+    },
+    "파닥몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "patamon"
+    },
+    "파피몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "gabumon"
+    },
+    "파피몬(흑)": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "gabumon_black"
+    },
+    "팔몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "palmon"
+    },
+    "팔코몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "falcomon"
+    },
+    "플롯트몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "plotmon"
+    },
+    "피요몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "piyomon"
+    },
+    "피코데블몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "picodevimon"
+    },
+    "헉몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "huckmon"
+    },
+    "호크몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "hawkmon"
+    },
+    "가무드라몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "gumdramon"
+    },
+    "쟈자몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "jazamon"
+    },
+    "샤우트몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "shoutmon"
+    },
+    "황금톱니몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "solarmon"
+    },
+    "보보몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "vorvomon"
+    },
+    "즈바몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "zubamon"
+    },
+    "베어몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "bearmon"
+    },
+    "에리스몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "herissmon"
+    },
+    "레드펭귄몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "muchomon"
+    },
+    "테이파몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "bakumon"
+    },
+    "토이아구몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "toyagumon"
+    },
+    "토이아구몬(흑)": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "toyagumon_black"
+    },
+    "알카디몬[성장기]": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "source": "https://digimonstory.bn-ent.net/images/special/sp01_13_04.png",
+      "note": "Official Hacker's Memory forms; the reference-book arkadimon page is the Rookie form only."
+    },
+    "츄몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "tyumon"
+    },
+    "루나몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "lunamon"
+    },
+    "머슈몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "mushmon"
+    },
+    "시스터몬 블랑": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "sistermonblanc"
+    },
+    "치비카메몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "kamemon",
+      "note": "Xros Wars design variant of Kamemon; uses the base species generation, not an independent official encyclopedia entry."
+    },
+    "큐트몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "cutemon"
+    },
+    "모니터몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "monitamon"
+    },
+    "스패로우몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "sparrowmon"
+    },
+    "스타몬즈": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "starmons"
+    },
+    "코에몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "koemon"
+    },
+    "가루다몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "garudamon"
+    },
+    "고래몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "whamon"
+    },
+    "그라운드라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "groundramon"
+    },
+    "데이터몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "nanomon"
+    },
+    "도루그레몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "doruguremon"
+    },
+    "도사몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "taomon"
+    },
+    "디지타몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "digitamamon"
+    },
+    "라이즈그레이몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "rizegreymon"
+    },
+    "라일라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "lilamon"
+    },
+    "래피드몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "rapidmon"
+    },
+    "레이디데블몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "ladydevimon"
+    },
+    "로더레오몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "loaderleomon"
+    },
+    "루체몬[폴다운]": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "rucemonfalldownmode"
+    },
+    "릴리몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "lilimon"
+    },
+    "마하가오가몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "machgaogamon"
+    },
+    "메가드라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "megadramon"
+    },
+    "메가로그라우몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "megalogrowmon"
+    },
+    "메가시드라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "megaseadramon"
+    },
+    "메탈그레이몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "metalgreymon"
+    },
+    "메탈티라노몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "metaltyranomon"
+    },
+    "묘티스몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "vamdemon"
+    },
+    "블랙메가로그라우몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "blackmegalogrowmon"
+    },
+    "블루메라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "bluemeramon"
+    },
+    "사이버드라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "cyberdramon"
+    },
+    "세이버헉몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "saviorhuckmon"
+    },
+    "슈퍼스타몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "superstarmon"
+    },
+    "스컬그레이몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "skullgreymon"
+    },
+    "스컬사탄몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "skullsatamon"
+    },
+    "실피드몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "silphymon"
+    },
+    "아트라캅테리몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "atlurkabuterimon"
+    },
+    "안티라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "andiramon_2"
+    },
+    "에어로브이드라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "earov-dramon"
+    },
+    "에테몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "etemon"
+    },
+    "엔젤우몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "angewomon"
+    },
+    "오로치몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "orochimon"
+    },
+    "왕개굴몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "tonosamagekomon"
+    },
+    "왕쿠가몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "okuwamon"
+    },
+    "워가루몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "weregarrumon"
+    },
+    "워가루몬(흑)": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "weregarurumon_black"
+    },
+    "윙드라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "wingdramon"
+    },
+    "인펠몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "infermon"
+    },
+    "쥬드몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "zudomon"
+    },
+    "쥬레이몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "jyureimon"
+    },
+    "캐논벌몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "cannonbeemon"
+    },
+    "콩알몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "mamemon"
+    },
+    "트리케라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "triceramon"
+    },
+    "파일드라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "paildramon"
+    },
+    "팬더몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "pandamon"
+    },
+    "팬텀몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "fantomon"
+    },
+    "퍼펫몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "monzaemon"
+    },
+    "펌프몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "pumpmon"
+    },
+    "홀리엔젤몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "holyangemon"
+    },
+    "화이트레오몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "panjyamon"
+    },
+    "히샤류우몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "hisyaryumon"
+    },
+    "히포그리포몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "hippogriffomon"
+    },
+    "안드로몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "andromon"
+    },
+    "블랙킹워매몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "blackkingnumemon"
+    },
+    "듀라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "duramon"
+    },
+    "기가드라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "gigadramon"
+    },
+    "아이언레오몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "grappuleomon"
+    },
+    "쟈자리히몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "jazarichmon"
+    },
+    "키메라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "chimairamon"
+    },
+    "라보가리타몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "lavogaritamon"
+    },
+    "메이크랙몬[비셔스]": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "meicrackmon_v"
+    },
+    "메탈콩알몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "metalmamemon"
+    },
+    "피콜몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "picklemon"
+    },
+    "데드메라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "deathmeramon"
+    },
+    "베이더몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "vademon"
+    },
+    "아르고몬[완전체]": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "algomon-ultimate"
+    },
+    "챠츠라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "caturamon"
+    },
+    "인다라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "indaramon"
+    },
+    "굼비라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "kumbhiramon"
+    },
+    "마지라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "majiramon"
+    },
+    "마쿠라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "makuramon"
+    },
+    "데블시드라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "waruseadramon"
+    },
+    "메이크랙몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "meicrackmon"
+    },
+    "메피스몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "mephismon"
+    },
+    "미히라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "mihiramon"
+    },
+    "파지라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "pajiramon"
+    },
+    "산티라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "sandiramon"
+    },
+    "신드라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "sinduramon"
+    },
+    "스티필몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "stiffilmon"
+    },
+    "바지라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "vajramon"
+    },
+    "비가라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "vikaralamon"
+    },
+    "시스터몬 블랑[각성]": {
+      "stage": "성장기",
+      "trainingStage": "완전체",
+      "directory": "sistermon_blanc_Awake"
+    },
+    "시스터몬 느와르[각성]": {
+      "stage": "성숙기",
+      "trainingStage": "완전체",
+      "directory": "sistermon_noir_Awake"
+    },
+    "알카디몬[완전체]": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "source": "https://digimonstory.bn-ent.net/images/special/sp01_13_04.png",
+      "note": "Official Hacker's Memory forms; the reference-book arkadimon page is the Rookie form only."
+    },
+    "브리트라몬": {
+      "stage": "하이브리드체",
+      "trainingStage": "완전체",
+      "directory": "vritramon"
+    },
+    "캐치콩알몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "catchmamemon"
+    },
+    "치린몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "tyilinmon"
+    },
+    "크레세몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "crescemon"
+    },
+    "야타가라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "yatagaramon_axcel"
+    },
+    "다이노몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "dinobeemon"
+    },
+    "드라고몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "dagomon"
+    },
+    "그레이드몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "grademon"
+    },
+    "가름몬": {
+      "stage": "하이브리드체",
+      "trainingStage": "완전체",
+      "directory": "garummon"
+    },
+    "나이트몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "knightmon"
+    },
+    "마타돌몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "matadrmon"
+    },
+    "토우몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "shakkoumon"
+    },
+    "볼케몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "volcamon"
+    },
+    "아트라캅테리몬(청)": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "atlurkabuterimon-blue"
+    },
+    "바스테몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "bastemon"
+    },
+    "사이버드라몬[크로스워즈]": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "cyberdramon-xwars"
+    },
+    "맘몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "mammon"
+    },
+    "메탈그레이몬[크로스워즈]": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "metalgreymon"
+    },
+    "메탈그레이몬[사이버런처]": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "metalgreymon_cyberlauncher"
+    },
+    "도리몬": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "directory": "dorimon"
+    },
+    "둥실몬": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "directory": "pukamon"
+    },
+    "모티몬": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "directory": "mochimon"
+    },
+    "뿔몬": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "directory": "tunomon"
+    },
+    "시드몬": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "directory": "tanemon"
+    },
+    "야옹몬": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "directory": "nyaromon"
+    },
+    "어니몬": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "directory": "pyocomon"
+    },
+    "와냐몬": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "directory": "wanyamon"
+    },
+    "츠메몬": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "directory": "tsumemon"
+    },
+    "코로몬": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "directory": "koromon"
+    },
+    "토코몬": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "directory": "tokomon"
+    },
+    "퍼그몬": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "directory": "pagumon"
+    },
+    "프스리몬": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "directory": "pusurimon"
+    },
+    "꼬마몬": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "directory": "chibimon"
+    },
+    "알카디몬[유년기]": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "source": "https://digimonstory.bn-ent.net/images/special/sp01_13_04.png",
+      "note": "Official Hacker's Memory forms; the reference-book arkadimon page is the Rookie form only."
+    },
+    "깜몬": {
+      "stage": "유아기",
+      "trainingStage": "유아기",
+      "directory": "botamon"
+    },
+    "도도몬": {
+      "stage": "유아기",
+      "trainingStage": "유아기",
+      "directory": "dodomon"
+    },
+    "뽀글몬": {
+      "stage": "유아기",
+      "trainingStage": "유아기",
+      "directory": "bubbmon"
+    },
+    "쿠라몬": {
+      "stage": "유아기",
+      "trainingStage": "유아기",
+      "directory": "kuramon"
+    },
+    "포요몬": {
+      "stage": "유아기",
+      "trainingStage": "유아기",
+      "directory": "poyomon"
+    },
+    "푸니몬": {
+      "stage": "유아기",
+      "trainingStage": "유아기",
+      "directory": "punimon"
+    },
+    "프스몬": {
+      "stage": "유아기",
+      "trainingStage": "유아기",
+      "directory": "pusumon"
+    },
+    "하얀몬": {
+      "stage": "유아기",
+      "trainingStage": "유아기",
+      "directory": "yukimibotamon"
+    },
+    "치코몬": {
+      "stage": "유아기",
+      "trainingStage": "유아기",
+      "directory": "chicomon"
+    },
+    "두프트몬[레오파드]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "duftmonleopardmode"
+    },
+    "라센몬[격앙]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "rasenmon_f"
+    },
+    "레이브몬[버스트]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "ravmonburstmode"
+    },
+    "로제몬[버스트]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "rosemonburstmode"
+    },
+    "루체몬[사탄]": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "lucemonsatanmode",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "BT18-101",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=BT18-101&search=true",
+        "note": "루체몬 계열의 최종 형태"
+      }
+    },
+    "미라쥬가오가몬[버스트]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "miragegaogamon:burstmode"
+    },
+    "벨페몬[레이지]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "belphemonragemode"
+    },
+    "샤인그레이몬[루인]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "shinegreymon_ruin"
+    },
+    "샤인그레이몬[버스트]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "shinegreymonburstmode"
+    },
+    "아마게몬": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "armagemon",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "BT5-085",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=BT5-085&search=true",
+        "note": "디아블로몬 계열의 극한 합성 형태"
+      }
+    },
+    "알파몬[왕룡검]": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "alphamon:ouryuken",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "BT20-060",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=BT20-060&search=true",
+        "note": "알파몬과 왕룡몬의 최종 합체 형태"
+      }
+    },
+    "엑자몬": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "examon",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "EX3-074",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=EX3-074&search=true",
+        "note": "슬레이어드라몬과 브레이크드라몬의 최상위 합체"
+      }
+    },
+    "오메가몬": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "omegamon",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "BT5-086",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=BT5-086&search=true",
+        "note": "궁극체 합체의 대표 최상위 형태"
+      }
+    },
+    "오메가몬[알터-S]": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "omegamon-alter-s",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "BT3-112",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=BT3-112&search=true",
+        "note": "블리츠그레이몬과 크레스가루루몬의 합체 형태"
+      }
+    },
+    "오메가몬[즈왈트]": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "omegamon_zwart",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "BT5-087",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=BT5-087&search=true",
+        "note": "오메가몬 계열의 상위 합체 변종"
+      }
+    },
+    "오파니몬[폴다운]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "ofanimonfalldownmode"
+    },
+    "황제드라몬[파이터]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "imperialdramonfightermode"
+    },
+    "황제드라몬[팔라딘]": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "imperialdramonpaladinmode",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "BT8-112",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=BT8-112&search=true",
+        "note": "황제드라몬의 최종 모드"
+      }
+    },
+    "베르제브몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "beelzebumon_x"
+    },
+    "크레니엄몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "craniummon_x"
+    },
+    "듀나스몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "dynasmon_x"
+    },
+    "듀크몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "dukemon_x"
+    },
+    "제스몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "jesmon_x"
+    },
+    "메탈가루몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "metalgarurumon_x"
+    },
+    "밀레니엄몬": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "millenniumon",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "P-220",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=P-220&search=true",
+        "note": "파워드라몬과 키메라몬의 시간·공간 합체 형태"
+      }
+    },
+    "오메가몬[알터-B]": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "omegamon_alter-b",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "EX4-073",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=EX4-073&search=true",
+        "note": "오메가몬 알터 계열의 특수 최종 변종"
+      }
+    },
+    "오메가몬[머시풀]": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "omegamon_merciful",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "BT9-083",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=BT9-083&search=true",
+        "note": "오메가몬의 최종 강화 형태"
+      }
+    },
+    "오메가몬[X항체]": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "omegamon-x",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "BT5-111",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=BT5-111&search=true",
+        "note": "오메가몬 자체가 최상위 합체 형태인 X항체 변종"
+      }
+    },
+    "오메가몬[즈왈트-D]": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "omegamonzwart_d",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "BT5-112",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=BT5-112&search=true",
+        "note": "오메가몬 즈왈트의 특수 최종 변종"
+      }
+    },
+    "스사노오몬": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "susanoomon",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "BT7-112",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=BT7-112&search=true",
+        "note": "스피릿이 집결한 최종 융합 형태"
+      }
+    },
+    "알포스브이드라몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "ulforcevdramon_x"
+    },
+    "워그레이몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "wargreymon_x"
+    },
+    "블랙워그레이몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "blackwargreymon_x"
+    },
+    "매그너몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "magnamon_x"
+    },
+    "가이오몬[엄도의형]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "gaioumon_itto"
+    },
+    "아구몬[용기의유대]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "agumon_kizuna"
+    },
+    "파피몬[우정의유대]": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "gabumon_kizuna"
+    },
+    "듀크몬[크림슨]": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "dukemoncrimsonmode",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "EX2-073",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=EX2-073&search=true",
+        "note": "듀크몬의 최종 모드"
+      }
+    },
+    "카오스몬": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "chaosmon",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "BT4-090",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=BT4-090&search=true",
+        "note": "궁극체 융합의 특수 형태"
+      }
+    },
+    "카오스몬[발두르암]": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "chaosmonvaldurarm",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "card": "BT20-037",
+        "cardLevel": 7,
+        "source": "https://digimoncard.com/cards/?card_no=BT20-037&search=true",
+        "note": "카오스몬 계열의 특수 융합 형태"
+      }
+    },
+    "위그드라실 7D6": {
+      "stage": "궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "yggdrasill7d6"
+    },
+    "울퉁몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "gottsumon"
+    },
+    "두프트몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "duftmon_x"
+    },
+    "슬레이프몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "sleipmon_x"
+    },
+    "베르제브몬[블래스트]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "beelzebumonblastmode"
+    },
+    "와이즈몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "wisemon"
+    },
+    "운석몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "insekimon"
+    },
+    "쿠즈하몬[무녀 모드]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "kuzuhamon_miko"
+    },
+    "케레스몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "ceresmon"
+    },
+    "에오스몬[궁극체]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "eosmon_lv6"
+    },
+    "킹체스몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "kingchessmon"
+    },
+    "마르스몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "marsmon"
+    },
+    "플루토몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "plutomon"
+    },
+    "퀸체스몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "queenchessmon"
+    },
+    "라플레시몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "rafflesimon"
+    },
+    "라이덴몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "raidenmon"
+    },
+    "베누스몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "venusmon"
+    },
+    "지드가루몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "zdgarurumon"
+    },
+    "발바몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "barbamon_x"
+    },
+    "비숍체스몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "bishopchessmon"
+    },
+    "케루비몬(선)[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "cherubimon_x"
+    },
+    "다이노타이거몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "dinotigermon"
+    },
+    "도르빅크몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "dorbickmon"
+    },
+    "이랑몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "erlangmon"
+    },
+    "풍신몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "fujinmon"
+    },
+    "간쿠몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "gankoomon_x"
+    },
+    "기가시드라몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "gigaseadramon"
+    },
+    "갓드라몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "goddramon_x"
+    },
+    "환쿤몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "huankunmon"
+    },
+    "제트메르바몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "jetmervamon"
+    },
+    "유노몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "junomon"
+    },
+    "유노몬[히스테릭 모드]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "junomon_hysteric"
+    },
+    "리리스몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "lilithmon_x"
+    },
+    "메기드라몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "megidramon_x"
+    },
+    "오그도몬": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "ogudomon",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "cardLevel": 7,
+        "card": "EX6-073",
+        "source": "https://digimoncard.com/cards/?card_no=EX6-073",
+        "note": "공식 도감 궁극체 중 Lv.7 카드와 합체·최종 형태 설정을 근거로 분류한 게임 초궁극체."
+      }
+    },
+    "오파니몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "ofanimon_x"
+    },
+    "페닉스몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "hououmon_x"
+    },
+    "룩체스몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "rookchessmon"
+    },
+    "로제몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "rosemon_x"
+    },
+    "샤크라몬[X항체]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "sakuyamon_x"
+    },
+    "수신몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "suijinmon"
+    },
+    "탁탑몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "takutoumon"
+    },
+    "얼티메이트카오스몬": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "ultimatechaosmon",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "cardLevel": 7,
+        "card": "EX6-062",
+        "source": "https://digimoncard.com/cards/?card_no=EX6-062",
+        "note": "공식 도감 궁극체 중 Lv.7 카드와 합체·최종 형태 설정을 근거로 분류한 게임 초궁극체."
+      }
+    },
+    "불카누스몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "vulcanusmon"
+    },
+    "샹펑몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "xiangpengmon"
+    },
+    "지드밀레니엄몬": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "zeedmillenniumon",
+      "referenceStage": "궁극체",
+      "classification": {
+        "basis": "game-ultra",
+        "cardLevel": 7,
+        "card": "BT19-101",
+        "source": "https://digimoncard.com/cards/?card_no=BT19-101",
+        "note": "공식 도감 궁극체 중 Lv.7 카드와 합체·최종 형태 설정을 근거로 분류한 게임 초궁극체."
+      }
+    }
+  }
+}

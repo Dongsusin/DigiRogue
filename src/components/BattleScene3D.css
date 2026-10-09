@@ -1,0 +1,4 @@
+.battle-scene-3d { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.battle-scene-3d__canvas, .battle-scene-3d__canvas canvas { width: 100%; height: 100%; display: block; }
+.battle-scene-3d__status { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); max-width: 90%; padding: 5px 12px; border: 1px solid #9ae4ff42; border-radius: 12px; background: #08182ac9; color: #c5ecff; font: 10px/1.45 system-ui, sans-serif; letter-spacing: .04em; text-align: center; backdrop-filter: blur(6px); }
+@container game-design (max-width: 680px) { .battle-scene-3d__status { top: 5px; font-size: 9px; padding: 3px 8px; } }

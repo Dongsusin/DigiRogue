@@ -1,0 +1,128 @@
+{
+  "passed": true,
+  "exitCode": 0,
+  "commands": [
+    {
+      "name": "syntax src/data/regionalBossProfiles.js",
+      "exe": "C:/Program Files/nodejs/node.exe",
+      "args": [
+        "--check",
+        "src/data/regionalBossProfiles.js"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "syntax src/battle/encounterVariety.js",
+      "exe": "C:/Program Files/nodejs/node.exe",
+      "args": [
+        "--check",
+        "src/battle/encounterVariety.js"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "syntax src/data/bossProfiles.js",
+      "exe": "C:/Program Files/nodejs/node.exe",
+      "args": [
+        "--check",
+        "src/data/bossProfiles.js"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "syntax src/data/rivalProfiles.js",
+      "exe": "C:/Program Files/nodejs/node.exe",
+      "args": [
+        "--check",
+        "src/data/rivalProfiles.js"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "syntax src/battle/bossEncounters.js",
+      "exe": "C:/Program Files/nodejs/node.exe",
+      "args": [
+        "--check",
+        "src/battle/bossEncounters.js"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "syntax src/battle/rivalEncounters.js",
+      "exe": "C:/Program Files/nodejs/node.exe",
+      "args": [
+        "--check",
+        "src/battle/rivalEncounters.js"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "syntax scripts/verify-boss-variety.mjs",
+      "exe": "C:/Program Files/nodejs/node.exe",
+      "args": [
+        "--check",
+        "scripts/verify-boss-variety.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "escape + regional-support + balance regression",
+      "exe": "C:/Program Files/nodejs/node.exe",
+      "args": [
+        "--test",
+        "scripts/verify-escape.mjs",
+        "scripts/verify-regional-support.mjs",
+        "scripts/verify-adventure-balance.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "✔ every one of the 512 species has a coherent individual profile and legal signature/support skills (4.9432ms)\n✔ lore identities and exceptions survive tuning instead of uniform generation stats (4.8929ms)\n✔ classic caps, enemy levels and growth remain bounded through 200 and endless remains uncapped (1.8552ms)\n✔ early wildlife excludes lore outliers, weighted encounters stay diverse and fallback never yields an empty party (2.9165ms)\n✔ skill buffs/debuffs survive ten actions and same-map encounters, including reserves (5.5851ms)\n✔ a map change clears every temporary stat, resets guards and cooldowns, restores fainted units and preserves permanent training (2.0835ms)\n✔ region buffs migrate only live legacy effects, do not stack, and descriptions display the map lifetime (2.172ms)\n✔ duplicate cards are rejected, boss debuffs are halved, and cleanse still removes region debuffs (3.5242ms)\n✔ guards, ailments and recovery cooldowns continue to use actions rather than map lifetime (0.9164ms)\n✔ enemy support decisions use visible effects and never spend actions repeating an existing region buff (1.6597ms)\n✔ resuming a revision-3 save refreshes species stats and preserves HP ratio, inventory and active region changes (17.8499ms)\n✔ temporary region boosts cannot satisfy permanent evolution training requirements (2.1055ms)\n✔ equipment recognizes region-lifetime defense boosts and stat drops (0.8053ms)\n✔ all map encounter pools build valid battles throughout classic progression (146.3453ms)\n✔ equal forces start at 70% and stronger enemies lower escape chance across every stat (1.8498ms)\n✔ very fast or powerful runners can still fail and hopeless fights retain a bounded chance (0.2998ms)\n✔ retry bonuses are bounded, preserve enemy-strength ordering, and never guarantee success (0.267ms)\n✔ only deployed living allies count; reserves, eggs, fainted units and dead enemies do not inflate the chance (0.2692ms)\n✔ bosses, rivals, support units and a fallen boss leader lock the whole encounter (0.4229ms)\n✔ empty fights cannot escape and probability checks never mutate HP, experience or items (0.2575ms)\n✔ seeded rolls match the chance threshold without automatic speed success (4.8278ms)\n✔ switch cues cover every outgoing/incoming enemy when the formation changes (1.2608ms)\n✔ App rejects boss attempts without rolling, consuming a turn or damaging the party (1.6957ms)\n✔ App success advances once, preserves living enemy HP and grants no battle reward (1.6242ms)\n✔ App failure consumes exactly one enemy turn, stays on the stage and records the failed attempt (1.3944ms)\n✔ App story escape follows the existing story result and does not skip an extra stage (1.2327ms)\n✔ escape stage transition reuses enemy recall and delayed entry at speed 1 (3.3035ms)\n✔ escape stage transition reuses enemy recall and delayed entry at speed 2 (1.368ms)\n✔ ordinary victories keep the existing KO path instead of recalling dead enemies (1.3323ms)\n✔ the same species in consecutive stages receives distinct renderer identities (1.8497ms)\n✔ all 34 maps have unique local stories and fully animated resident assets (2.7705ms)\n✔ 14 new bosses and all new event opponents are present in the live roster (0.6002ms)\n✔ map trust clamps to 0..3 while NPC discounts and spent promise survive (0.415ms)\n✔ legacy successful journal recovers trust once without spending aid (0.6843ms)\n✔ trust 2 earns one separate AI helper and stores the spent regional promise (0.9009ms)\n✔ trust 1, nonboss fights, duo bosses, event battles and all-owned-fainted cannot spend aid (0.4784ms)\n✔ a solo rival also accepts regional aid; higher trust gives a stronger helper (0.2836ms)\n✔ composition always has one owned slot + helper while ownership/cost stay unchanged (1.2178ms)\n✔ fainted human slot stays vacant for manual replacement; helper cannot avoid total loss (0.3302ms)\n✔ round commit persists helper damage, status and cooldown without contaminating commands (0.5754ms)\n✔ finished or stale-stage helpers never rejoin from a reward/manual save (0.2024ms)\n✔ AI chooses an offensive ready skill and respects shared cooldown; supports cannot heal or stall (0.4183ms)\n✔ turn preview labels helper as automatic without turning it into a pending command (0.6787ms)\n✔ 시작의마을 resident quest has real single-choice outcomes and no premature combat rewards (22.062ms)\n✔ 미하라시 산 resident quest has real single-choice outcomes and no premature combat rewards (0.7949ms)\n✔ 기어사바나 resident quest has real single-choice outcomes and no premature combat rewards (0.4881ms)\n✔ 용의눈호수 resident quest has real single-choice outcomes and no premature combat rewards (0.3169ms)\n✔ 네트의 바다 resident quest has real single-choice outcomes and no premature combat rewards (0.4299ms)\n✔ 메탈 엠파이어 resident quest has real single-choice outcomes and no premature combat rewards (0.388ms)\n✔ 나이트메어 솔저스 resident quest has real single-choice outcomes and no premature combat rewards (0.4081ms)\n✔ 비틀랜드 resident quest has real single-choice outcomes and no premature combat rewards (0.3823ms)\n✔ 쓰레기의 산 resident quest has real single-choice outcomes and no premature combat rewards (0.1986ms)\n✔ 지하 하수도 resident quest has real single-choice outcomes and no premature combat rewards (0.176ms)\n✔ 윈드 가디언즈 resident quest has real single-choice outcomes and no premature combat rewards (0.1316ms)\n✔ 코덱 유적 resident quest has real single-choice outcomes and no premature combat rewards (0.1678ms)\n✔ 아이스 생츄어리 resident quest has real single-choice outcomes and no premature combat rewards (0.1497ms)\n✔ 무한산 resident quest has real single-choice outcomes and no premature combat rewards (0.3038ms)\n✔ 오버델 묘지 resident quest has real single-choice outcomes and no premature combat rewards (0.1825ms)\n✔ 어셈블러 타워 resident quest has real single-choice outcomes and no premature combat rewards (0.3347ms)\n✔ 부트 화산 resident quest has real single-choice outcomes and no premature combat rewards (0.2571ms)\n✔ 이블 포레스트 resident quest has real single-choice outcomes and no premature combat rewards (0.4295ms)\n✔ 다크 웹 resident quest has real single-choice outcomes and no premature combat rewards (0.3052ms)\n✔ 다크 에리어 resident quest has real single-choice outcomes and no premature combat rewards (0.229ms)\n✔ 코퀴토스 resident quest has real single-choice outcomes and no premature combat rewards (0.1436ms)\n✔ 센트럴 타운 resident quest has real single-choice outcomes and no premature combat rewards (0.2149ms)\n✔ 어비스 에리어 resident quest has real single-choice outcomes and no premature combat rewards (0.2409ms)\n✔ 기어 포레스트 resident quest has real single-choice outcomes and no premature combat rewards (0.1555ms)\n✔ 팩토리얼 에리어 resident quest has real single-choice outcomes and no premature combat rewards (0.157ms)\n✔ 코즈믹 에리어 resident quest has real single-choice outcomes and no premature combat rewards (0.1457ms)\n✔ 가디언 팰리스 resident quest has real single-choice outcomes and no premature combat rewards (0.2307ms)\n✔ 다크 필드 resident quest has real single-choice outcomes and no premature combat rewards (0.2822ms)\n✔ 겐시 대륙 resident quest has real single-choice outcomes and no premature combat rewards (0.1681ms)\n✔ 아시노 섬 resident quest has real single-choice outcomes and no premature combat rewards (0.1247ms)\n✔ 선공계 resident quest has real single-choice outcomes and no premature combat rewards (0.194ms)\n✔ 용정궁 resident quest has real single-choice outcomes and no premature combat rewards (0.1379ms)\n✔ 사규산 resident quest has real single-choice outcomes and no premature combat rewards (0.1193ms)\n✔ 황천 resident quest has real single-choice outcomes and no premature combat rewards (0.183ms)\n✔ actual App context renders helper but never asks it for a command (2.8786ms)\n✔ actual App AI submits exactly one ready offensive action and stops without an owned active ally (1.2117ms)\n✔ actual App XP distribution excludes the helper from both rewards and division (1.467ms)\n✔ actual App visual hit cue updates helper HP/status without inserting it into the saved party (1.1108ms)\n✔ actual App entry and both completed-round paths are wired to aid, reset and AI (1.1284ms)\n✔ temporary allies and their evolution history never unlock the local collection (0.5584ms)\n✔ actual App manual switch keeps every intermediate state owned-only while helper remains in the resolved turn (1.3397ms)\n✔ all owned allies fainting takes precedence over a poisoned boss KO even when helper survives (2.4322ms)\n✔ actual App item round submits one AI attack plus one enemy turn without a second human attack (2.6328ms)\n✔ actual App switch round submits one AI attack plus one enemy turn without a second human attack (1.8316ms)\n✔ battle item menu and resolution both receive the composed active ally formation (0.3146ms)\n✔ actual App owned menus exclude helper while active formation still includes it (1.8277ms)\n✔ actual App rejects a helper as a manual switch candidate even if its active slot is stale (1.3628ms)\n✔ rust-tyrannomon is reachable on a fitting map and its saved pending pattern replaces exactly one action (5.6679ms)\n✔ moon-hunt is reachable on a fitting map and its saved pending pattern replaces exactly one action (1.5842ms)\n✔ ceres-garden is reachable on a fitting map and its saved pending pattern replaces exactly one action (2.2421ms)\n✔ neptune-trident is reachable on a fitting map and its saved pending pattern replaces exactly one action (1.8633ms)\n✔ royal-wasp is reachable on a fitting map and its saved pending pattern replaces exactly one action (2.933ms)\n✔ valkyrie-watch is reachable on a fitting map and its saved pending pattern replaces exactly one action (0.892ms)\n✔ scrap-crown is reachable on a fitting map and its saved pending pattern replaces exactly one action (0.8273ms)\n✔ alien-contact is reachable on a fitting map and its saved pending pattern replaces exactly one action (1.1091ms)\n✔ orochi-pond is reachable on a fitting map and its saved pending pattern replaces exactly one action (0.755ms)\n✔ bancho-justice is reachable on a fitting map and its saved pending pattern replaces exactly one action (1.437ms)\n✔ suijin-foundry is reachable on a fitting map and its saved pending pattern replaces exactly one action (1.1736ms)\n✔ sleipmon-trial is reachable on a fitting map and its saved pending pattern replaces exactly one action (1.6126ms)\n✔ dorubick-fire is reachable on a fitting map and its saved pending pattern replaces exactly one action (1.4322ms)\n✔ plesio-mirage is reachable on a fitting map and its saved pending pattern replaces exactly one action (1.4439ms)\n✔ actual App completed round removes KO helper from formation, keeps reserve on bench and persists 1v1 (4.4049ms)\nℹ tests 105\nℹ suites 0\nℹ pass 105\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2015.7367\n",
+      "stderr": ""
+    },
+    {
+      "name": "runtime assets",
+      "exe": "C:/Program Files/nodejs/node.exe",
+      "args": [
+        "scripts/verify-runtime.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"ok\":true,\"assets\":\"C:\\\\Users\\\\pdwea\\\\Develop\\\\digirouge\\\\public\",\"models\":512,\"clips\":4273,\"modelBytes\":510085580,\"portraits\":1024,\"bgm\":15,\"maps\":34,\"battleCards\":20,\"battleSupplies\":7,\"adventureItems\":35}\n",
+      "stderr": ""
+    },
+    {
+      "name": "production build",
+      "exe": "C:/Program Files/nodejs/node.exe",
+      "args": [
+        "node_modules/vite/bin/vite.js",
+        "build"
+      ],
+      "exitCode": 0,
+      "stdout": "\u001b[36mvite v8.0.5 \u001b[32mbuilding client environment for production...\u001b[36m\u001b[39m\n\u001b[2K\rtransforming...✓ 272 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                                         0.66 kB │ gzip:   0.37 kB\ndist/.vite/manifest.json                                4.54 kB │ gzip:   0.77 kB\ndist/assets/index-BNkOCYyr.css                          8.37 kB │ gzip:   2.64 kB\ndist/assets/App-fcLugjXX.css                          212.91 kB │ gzip:  42.28 kB\ndist/assets/rolldown-runtime-Cr0BHlHC.js                0.07 kB │ gzip:   0.07 kB\ndist/assets/evolutionTimeline-HujSPTwA.js               0.90 kB │ gzip:   0.51 kB\ndist/assets/cinematicTimeline-B7Wd-OKA.js               1.82 kB │ gzip:   1.00 kB\ndist/assets/LocalProgressProvider-B6NhXA6E.js           6.54 kB │ gzip:   2.74 kB\ndist/assets/evolutionMotifs-zgX1yCXp.js                 9.89 kB │ gzip:   3.76 kB\ndist/assets/EvolutionRenderer-BfoXSTBM.js              11.31 kB │ gzip:   4.48 kB\ndist/assets/localStorage-Dc0JzlfM.js                   11.72 kB │ gzip:   4.65 kB\ndist/assets/cinematicSurface-MObmKMpk.js               11.93 kB │ gzip:   5.06 kB\ndist/assets/CinematicEvolutionRenderer-Dg1qiVG4.js     46.63 kB │ gzip:  15.86 kB\ndist/assets/BattleRenderer-Gtf7G-Df.js                 87.40 kB │ gzip:  29.31 kB\ndist/assets/digimonSizes-CY6mwJS-.js                  164.86 kB │ gzip:  19.46 kB\ndist/assets/digimonModelManifest-BL8UFLs1.js          176.21 kB │ gzip:  23.10 kB\ndist/assets/index-jS8Q-arJ.js                         306.81 kB │ gzip:  95.20 kB\ndist/assets/App-CgDy7BVq.js                           588.06 kB │ gzip: 147.36 kB\ndist/assets/scanProgress-B-LQH-lr.js                  654.35 kB │ gzip: 134.25 kB\ndist/assets/expansionEvolutionCinematics-DiL2Yvgp.js  657.19 kB │ gzip: 113.19 kB\ndist/assets/three-engine-Beot-MB2.js                  716.87 kB │ gzip: 182.74 kB\n\n\u001b[32m✓ built in 5.76s\u001b[39m\n",
+      "stderr": "\u001b[33m\u001b[33m[PLUGIN_TIMINGS] Warning:\u001b[0m Your build spent significant time in plugins. Here is a breakdown:\n  - vite:prepare-out-dir (32%)\n  - vite:css (32%)\n  - vite:css-post (20%)\nSee https://rolldown.rs/options/checks#plugintimings for more details.\n\u001b[39m\n\u001b[33m[plugin builtin:vite-reporter] \n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\u001b[39m\n"
+    },
+    {
+      "name": "distribution assets",
+      "exe": "C:/Program Files/nodejs/node.exe",
+      "args": [
+        "scripts/verify-runtime.mjs",
+        "--dist"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"ok\":true,\"assets\":\"C:\\\\Users\\\\pdwea\\\\Develop\\\\digirouge\\\\dist\",\"models\":512,\"clips\":4273,\"modelBytes\":510085580,\"portraits\":1024,\"bgm\":15,\"maps\":34,\"battleCards\":20,\"battleSupplies\":7,\"adventureItems\":35}\n",
+      "stderr": ""
+    }
+  ]
+}

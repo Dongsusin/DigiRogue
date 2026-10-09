@@ -1,0 +1,14 @@
+{
+  "status": "complete",
+  "startedAt": "2026-10-09T06:25:06.453Z",
+  "exe": "C:/Program Files/nodejs/node.exe",
+  "args": [
+    "--test",
+    "C:/Users/pdwea/Develop/digirouge/scripts/verify-boss-variety.mjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "stdout": "✔ all 29 new routes have complete natural models and unique stable IDs (3.6259ms)\n✔ every map and encounter slot has at least three starting species in classic, daily and endless cycles (8712.5264ms)\n✔ real App builds every scheduled local encounter in all modes without falling back to ordinary wildlife (3801.6178ms)\n✔ exhausted three-species pools rotate, and duplicate profiles do not multiply species odds (2.0284ms)\n✔ live regional and final boss picks avoid the previous two species (1479.8126ms)\n✔ rival memories retain wins and adaptation without pinning every map to the same lineage (7.261ms)\n✔ existing fusion, armor, burst and final profiles remain selectable with their formations (3.8317ms)\n✔ every original boss profile remains reachable on a curated fitting map (259.0399ms)\n✔ new boss phases retain HP gates, evolution exemptions and action-consuming powers (15.9185ms)\nℹ tests 9\nℹ suites 0\nℹ pass 9\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 16288.587\n",
+  "stderr": "",
+  "completedAt": "2026-10-09T06:25:22.890Z"
+}

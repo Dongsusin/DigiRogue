@@ -1,0 +1,60 @@
+/* One design canvas: every menu, overlay and battle scales together. */
+html, body, #root { width: 100%; height: 100%; min-height: 0; margin: 0; padding: 0; overflow: hidden; background: #000; }
+html { font-size: 16px; }
+#root { display: block; }
+.game-viewport { position: fixed; inset: 0; display: grid; place-items: center; padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); overflow: hidden; background: #000; }
+.game-frame-slot { position: relative; flex: none; }
+.game-frame { position: absolute; left: 0; top: 0; width: 1280px; height: 720px; transform-origin: 0 0; }
+.game-design { container: game-design / size; width: 100%; height: 100%; --game-vw: 12.8px; --game-vh: 7.2px; --frame-shell-padding: 0px; }
+.game-design .main-screen { width: 100%; height: 100%; max-width: none; max-height: none; min-height: 0; padding: 0; aspect-ratio: 16 / 9; --frame-inner-inset: 0px; --frame-available-width: 1280px; --frame-available-height: 720px; --battle-console-height: 128px; }
+.game-viewport[data-orientation-blocked='true'] .game-frame-slot { visibility: hidden; pointer-events: none; }
+.orientation-notice { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 32px; text-align: center; color: #edf6ff; background: #000; font-family: system-ui, 'Malgun Gothic', sans-serif; }
+.orientation-notice svg { width: 96px; height: 80px; color: #edd18b; }
+.orientation-notice h1 { margin: 0; font-size: 21px; line-height: 1.5; word-break: keep-all; }
+.orientation-notice p { margin: 0; color: #bccada; font-size: 15px; line-height: 1.7; word-break: keep-all; }
+.orientation-notice span { max-width: 290px; color: #7f91a5; font-size: 12px; line-height: 1.7; word-break: keep-all; }
+
+/* The map ends before the status rail. Feet and cards never share a layout anchor. */
+.game-design .adventure-screen { --battle-sprite-width: 156px; --battle-sprite-height: 148px; --battle-unit-width: 220px; }
+.game-design .adventure-stage__background { bottom: 80px; background-size: cover; background-position: center bottom; }
+.game-design .adventure-stage::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 80px; background: #0d1a2a; border-top: 1px solid #415770; pointer-events: none; }
+.game-design .adventure-allies, .game-design .adventure-enemies { top: 0; bottom: 0; width: calc(50% - 44px); max-width: none; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 12px; align-items: stretch; z-index: auto; }
+.game-design .adventure-allies { left: 28px; right: auto; }
+.game-design .adventure-enemies { right: 28px; left: auto; }
+.game-design .adventure-ally, .game-design .adventure-enemy { position: relative; width: 100%; min-width: 0; height: 100%; }
+.game-design .adventure-player__sprite-wrap--ally, .game-design .adventure-player__sprite-wrap--enemy { position: absolute; top: calc(var(--map-ground-y) - var(--battle-model-lift, 0px)); bottom: auto; left: 50%; transform: translate(-50%, -100%); width: var(--battle-model-width, min(var(--battle-sprite-width), 100%)); height: var(--battle-model-height, var(--battle-sprite-height)); }
+.game-design .adventure-player__sprite-wrap[data-combatant-id] { min-width: 44px; min-height: 44px; z-index: var(--battle-model-layer, 2); }
+.game-design .digimon-status { position: absolute; bottom: 8px; width: 100%; height: 56px; }
+.game-design .digimon-status[data-active='true']::before { inset: auto auto calc(100% + 2px) 4px; padding: 1px 6px; }
+.game-design .adventure-hud { top: 16px; left: 28px; right: 28px; height: 64px; gap: 32px; }
+.game-design .adventure-inventory-strip { flex: 1 1 auto; max-width: 70%; max-height: 64px; overflow-y: auto; }
+.game-design .adventure-summary-card { flex: none; max-width: 26%; }
+.game-design .battle-action-panel { top: 96px; bottom: 96px; left: 28px; right: 28px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
+.game-design .battle-action-panel__left { max-width: 580px; max-height: 100%; overflow: auto; }
+.game-design .battle-action-panel__tooltip { max-height: 100%; overflow: auto; }
+.game-design .battle-action-panel__close { margin-left: auto; }
+.game-design .battle-scene-3d__status { top: 82px; max-width: 50%; }
+
+.game-design .digimon-status { max-width: 260px; left: 50%; transform: translateX(-50%); }
+.game-design .digimon-status__name { top: 5px; font-size: 14px; }
+.game-design .digimon-status__level { font-size: 12px; }
+.game-design .digimon-status__hp { top: 27px; }
+.game-design .digimon-status__hp-text { font-size: 12px; top: 9px; }
+.game-design .battle-command { font-size: 16px; }
+.game-design .battle-console__message-text { font-size: 14px; }
+.game-design .battle-console__message-header { font-size: 12px; }
+.game-design .battle-action-panel .battle-skill { font-size: 16px; }
+.game-design .battle-action-panel__eyebrow { font-size: 16px; }
+
+/* Transient panels sit above the status rail, within the same safe scene area. */
+.game-design .battle-item-popover, .game-design .capture-info-popover, .game-design .level-up-stats {
+  bottom: calc(100% + 96px); right: 28px; width: 430px; max-height: 388px;
+  min-height: 0; overflow-y: auto; padding: 12px; border: 1px solid #698095;
+  border-radius: 8px; background: #102034fa; box-shadow: 0 10px 28px #0006;
+}
+.game-design .level-up-stats { left: 28px; right: auto; width: 300px; }
+.game-design .battle-item-row { min-height: 48px; border-radius: 5px; background: #22364c; font: 14px/1.4 var(--battle-ui-font); }
+.game-design .party-screen { background-color: #0b1729; }
+.game-design .party-screen__current { display: flex; flex-direction: column; gap: 16px; min-height: 0; }
+.game-design .party-screen__current-image { position: relative; left: auto; top: auto; width: 180px; height: 180px; flex: none; }
+.game-design .party-screen__current-card { width: 100%; }

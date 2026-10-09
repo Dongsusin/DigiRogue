@@ -1,0 +1,4540 @@
+{
+  "passed": true,
+  "bossProfiles": 55,
+  "rivalProfiles": 71,
+  "combinations": 1360,
+  "belowThree": 378,
+  "rows": [
+    {
+      "mapName": "시작의마을",
+      "stage": 15,
+      "type": "rival",
+      "names": [
+        "샤우트몬",
+        "브이몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X2]",
+        "armor-fire",
+        "armor-thunder"
+      ]
+    },
+    {
+      "mapName": "시작의마을",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "가드로몬"
+      ],
+      "profiles": [
+        "security"
+      ]
+    },
+    {
+      "mapName": "시작의마을",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "가드로몬",
+        "골드워매몬"
+      ],
+      "profiles": [
+        "security",
+        "scrap-crown"
+      ]
+    },
+    {
+      "mapName": "시작의마을",
+      "stage": 75,
+      "type": "rival",
+      "names": [
+        "샤우트몬[X3]",
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X4]",
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "시작의마을",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "샤우트몬[X3]",
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X4]",
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "시작의마을",
+      "stage": 115,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "로제몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-rose"
+      ]
+    },
+    {
+      "mapName": "시작의마을",
+      "stage": 135,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "로제몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-rose"
+      ]
+    },
+    {
+      "mapName": "시작의마을",
+      "stage": 155,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "로제몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-rose"
+      ]
+    },
+    {
+      "mapName": "시작의마을",
+      "stage": 175,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "로제몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-rose"
+      ]
+    },
+    {
+      "mapName": "시작의마을",
+      "stage": 195,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "로제몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-rose"
+      ]
+    },
+    {
+      "mapName": "미하라시 산",
+      "stage": 15,
+      "type": "rival",
+      "names": [
+        "브이몬"
+      ],
+      "profiles": [
+        "armor-thunder"
+      ]
+    },
+    {
+      "mapName": "미하라시 산",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "쿠가몬"
+      ],
+      "profiles": [
+        "insect-lord"
+      ]
+    },
+    {
+      "mapName": "미하라시 산",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "쿠가몬"
+      ],
+      "profiles": [
+        "insect-lord"
+      ]
+    },
+    {
+      "mapName": "미하라시 산",
+      "stage": 60,
+      "type": "boss",
+      "names": [
+        "왕쿠가몬",
+        "실피드몬"
+      ],
+      "profiles": [
+        "insect-lord",
+        "valkyrie-watch"
+      ]
+    },
+    {
+      "mapName": "미하라시 산",
+      "stage": 80,
+      "type": "boss",
+      "names": [
+        "왕쿠가몬",
+        "실피드몬"
+      ],
+      "profiles": [
+        "insect-lord",
+        "valkyrie-watch"
+      ]
+    },
+    {
+      "mapName": "기어사바나",
+      "stage": 15,
+      "type": "rival",
+      "names": [
+        "브이몬"
+      ],
+      "profiles": [
+        "armor-fire"
+      ]
+    },
+    {
+      "mapName": "기어사바나",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "데블몬",
+        "메라몬"
+      ],
+      "profiles": [
+        "black-gears",
+        "volcano"
+      ]
+    },
+    {
+      "mapName": "기어사바나",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "데블몬",
+        "메라몬"
+      ],
+      "profiles": [
+        "black-gears",
+        "volcano"
+      ]
+    },
+    {
+      "mapName": "기어사바나",
+      "stage": 80,
+      "type": "boss",
+      "names": [
+        "블루메라몬",
+        "에테몬"
+      ],
+      "profiles": [
+        "volcano",
+        "etemon-show"
+      ]
+    },
+    {
+      "mapName": "기어사바나",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "샤우트몬[X2]",
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X3]",
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "기어사바나",
+      "stage": 115,
+      "type": "rival",
+      "names": [
+        "샤인그레이몬",
+        "라센몬"
+      ],
+      "profiles": [
+        "burst-shine",
+        "raging-spiral"
+      ]
+    },
+    {
+      "mapName": "용의눈호수",
+      "stage": 10,
+      "type": "boss",
+      "names": [
+        "파피몬",
+        "쉬라몬"
+      ],
+      "profiles": [
+        "yamato",
+        "joe"
+      ]
+    },
+    {
+      "mapName": "용의눈호수",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "시드라몬"
+      ],
+      "profiles": [
+        "sea-dragon"
+      ]
+    },
+    {
+      "mapName": "용의눈호수",
+      "stage": 30,
+      "type": "boss",
+      "names": [
+        "가루몬",
+        "원뿔몬"
+      ],
+      "profiles": [
+        "yamato",
+        "joe"
+      ]
+    },
+    {
+      "mapName": "용의눈호수",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "용의눈호수",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "시드라몬"
+      ],
+      "profiles": [
+        "sea-dragon"
+      ]
+    },
+    {
+      "mapName": "용의눈호수",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "용의눈호수",
+      "stage": 60,
+      "type": "boss",
+      "names": [
+        "메가시드라몬",
+        "오로치몬"
+      ],
+      "profiles": [
+        "sea-dragon",
+        "orochi-pond"
+      ]
+    },
+    {
+      "mapName": "용의눈호수",
+      "stage": 75,
+      "type": "rival",
+      "names": [
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "용의눈호수",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "용의눈호수",
+      "stage": 135,
+      "type": "rival",
+      "names": [
+        "슬레이어드라몬"
+      ],
+      "profiles": [
+        "fusion-엑자몬"
+      ]
+    },
+    {
+      "mapName": "용의눈호수",
+      "stage": 155,
+      "type": "rival",
+      "names": [
+        "슬레이어드라몬",
+        "황제드라몬[파이터]"
+      ],
+      "profiles": [
+        "fusion-엑자몬",
+        "paladin-awake"
+      ]
+    },
+    {
+      "mapName": "용의눈호수",
+      "stage": 175,
+      "type": "rival",
+      "names": [
+        "슬레이어드라몬",
+        "황제드라몬[파이터]"
+      ],
+      "profiles": [
+        "fusion-엑자몬",
+        "paladin-awake"
+      ]
+    },
+    {
+      "mapName": "용의눈호수",
+      "stage": 195,
+      "type": "rival",
+      "names": [
+        "슬레이어드라몬",
+        "황제드라몬[파이터]"
+      ],
+      "profiles": [
+        "fusion-엑자몬",
+        "paladin-awake"
+      ]
+    },
+    {
+      "mapName": "네트의 바다",
+      "stage": 10,
+      "type": "boss",
+      "names": [
+        "파피몬",
+        "쉬라몬"
+      ],
+      "profiles": [
+        "yamato",
+        "joe"
+      ]
+    },
+    {
+      "mapName": "네트의 바다",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "시드라몬"
+      ],
+      "profiles": [
+        "sea-dragon"
+      ]
+    },
+    {
+      "mapName": "네트의 바다",
+      "stage": 30,
+      "type": "boss",
+      "names": [
+        "가루몬",
+        "원뿔몬"
+      ],
+      "profiles": [
+        "yamato",
+        "joe"
+      ]
+    },
+    {
+      "mapName": "네트의 바다",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "네트의 바다",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "시드라몬"
+      ],
+      "profiles": [
+        "sea-dragon"
+      ]
+    },
+    {
+      "mapName": "네트의 바다",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "네트의 바다",
+      "stage": 60,
+      "type": "boss",
+      "names": [
+        "메가시드라몬",
+        "오로치몬"
+      ],
+      "profiles": [
+        "sea-dragon",
+        "orochi-pond"
+      ]
+    },
+    {
+      "mapName": "네트의 바다",
+      "stage": 75,
+      "type": "rival",
+      "names": [
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "네트의 바다",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "네트의 바다",
+      "stage": 135,
+      "type": "rival",
+      "names": [
+        "슬레이어드라몬"
+      ],
+      "profiles": [
+        "fusion-엑자몬"
+      ]
+    },
+    {
+      "mapName": "네트의 바다",
+      "stage": 155,
+      "type": "rival",
+      "names": [
+        "슬레이어드라몬",
+        "황제드라몬[파이터]"
+      ],
+      "profiles": [
+        "fusion-엑자몬",
+        "paladin-awake"
+      ]
+    },
+    {
+      "mapName": "네트의 바다",
+      "stage": 175,
+      "type": "rival",
+      "names": [
+        "슬레이어드라몬",
+        "황제드라몬[파이터]"
+      ],
+      "profiles": [
+        "fusion-엑자몬",
+        "paladin-awake"
+      ]
+    },
+    {
+      "mapName": "네트의 바다",
+      "stage": 195,
+      "type": "rival",
+      "names": [
+        "슬레이어드라몬",
+        "황제드라몬[파이터]"
+      ],
+      "profiles": [
+        "fusion-엑자몬",
+        "paladin-awake"
+      ]
+    },
+    {
+      "mapName": "메탈 엠파이어",
+      "stage": 15,
+      "type": "rival",
+      "names": [
+        "샤우트몬",
+        "브이몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X2]",
+        "armor-thunder"
+      ]
+    },
+    {
+      "mapName": "메탈 엠파이어",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "가드로몬"
+      ],
+      "profiles": [
+        "security"
+      ]
+    },
+    {
+      "mapName": "메탈 엠파이어",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "가드로몬",
+        "골드워매몬"
+      ],
+      "profiles": [
+        "security",
+        "scrap-crown"
+      ]
+    },
+    {
+      "mapName": "메탈 엠파이어",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "샤우트몬",
+        "그레이몬[크로스워즈]"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X2]",
+        "fusion-메탈그레이몬[크로스워즈]"
+      ]
+    },
+    {
+      "mapName": "메탈 엠파이어",
+      "stage": 75,
+      "type": "rival",
+      "names": [
+        "그레이몬[크로스워즈]",
+        "메탈그레이몬[크로스워즈]"
+      ],
+      "profiles": [
+        "fusion-메탈그레이몬[크로스워즈]",
+        "fusion-메탈그레이몬[사이버런처]"
+      ]
+    },
+    {
+      "mapName": "메탈 엠파이어",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "그레이몬[크로스워즈]",
+        "메탈그레이몬[크로스워즈]"
+      ],
+      "profiles": [
+        "fusion-메탈그레이몬[크로스워즈]",
+        "fusion-메탈그레이몬[사이버런처]"
+      ]
+    },
+    {
+      "mapName": "나이트메어 솔저스",
+      "stage": 10,
+      "type": "boss",
+      "names": [
+        "플롯트몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "나이트메어 솔저스",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "데블몬"
+      ],
+      "profiles": [
+        "black-gears"
+      ]
+    },
+    {
+      "mapName": "나이트메어 솔저스",
+      "stage": 30,
+      "type": "boss",
+      "names": [
+        "가트몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "나이트메어 솔저스",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "그레이몬"
+      ],
+      "profiles": [
+        "dark-skull"
+      ]
+    },
+    {
+      "mapName": "나이트메어 솔저스",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "데블몬"
+      ],
+      "profiles": [
+        "black-gears"
+      ]
+    },
+    {
+      "mapName": "나이트메어 솔저스",
+      "stage": 50,
+      "type": "boss",
+      "names": [
+        "가트몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "나이트메어 솔저스",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "그레이몬"
+      ],
+      "profiles": [
+        "dark-skull"
+      ]
+    },
+    {
+      "mapName": "나이트메어 솔저스",
+      "stage": 70,
+      "type": "boss",
+      "names": [
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "나이트메어 솔저스",
+      "stage": 90,
+      "type": "boss",
+      "names": [
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "나이트메어 솔저스",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "메탈그레이몬[크로스워즈]",
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "fusion-메탈그레이몬[사이버런처]",
+        "fusion-마스테몬"
+      ]
+    },
+    {
+      "mapName": "나이트메어 솔저스",
+      "stage": 110,
+      "type": "boss",
+      "names": [
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "나이트메어 솔저스",
+      "stage": 130,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "나이트메어 솔저스",
+      "stage": 150,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "나이트메어 솔저스",
+      "stage": 170,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "나이트메어 솔저스",
+      "stage": 190,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "비틀랜드",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "쿠가몬"
+      ],
+      "profiles": [
+        "insect-lord"
+      ]
+    },
+    {
+      "mapName": "비틀랜드",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "엑스브이몬",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "비틀랜드",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "쿠가몬"
+      ],
+      "profiles": [
+        "insect-lord"
+      ]
+    },
+    {
+      "mapName": "비틀랜드",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "엑스브이몬",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "비틀랜드",
+      "stage": 60,
+      "type": "boss",
+      "names": [
+        "왕쿠가몬",
+        "오로치몬"
+      ],
+      "profiles": [
+        "insect-lord",
+        "orochi-pond"
+      ]
+    },
+    {
+      "mapName": "비틀랜드",
+      "stage": 75,
+      "type": "rival",
+      "names": [
+        "엑스브이몬",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "비틀랜드",
+      "stage": 80,
+      "type": "boss",
+      "names": [
+        "왕쿠가몬",
+        "오로치몬"
+      ],
+      "profiles": [
+        "insect-lord",
+        "orochi-pond"
+      ]
+    },
+    {
+      "mapName": "비틀랜드",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "엑스브이몬",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "비틀랜드",
+      "stage": 115,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "레이브몬"
+      ],
+      "profiles": [
+        "burst-rose",
+        "burst-raven"
+      ]
+    },
+    {
+      "mapName": "비틀랜드",
+      "stage": 135,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "레이브몬"
+      ],
+      "profiles": [
+        "burst-rose",
+        "burst-raven"
+      ]
+    },
+    {
+      "mapName": "비틀랜드",
+      "stage": 155,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "레이브몬"
+      ],
+      "profiles": [
+        "burst-rose",
+        "burst-raven"
+      ]
+    },
+    {
+      "mapName": "비틀랜드",
+      "stage": 175,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "레이브몬"
+      ],
+      "profiles": [
+        "burst-rose",
+        "burst-raven"
+      ]
+    },
+    {
+      "mapName": "비틀랜드",
+      "stage": 195,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "레이브몬"
+      ],
+      "profiles": [
+        "burst-rose",
+        "burst-raven"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 8,
+      "type": "rival",
+      "names": [
+        "팔몬",
+        "피코데블몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 10,
+      "type": "boss",
+      "names": [
+        "팔몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 15,
+      "type": "rival",
+      "names": [
+        "팔몬",
+        "피코데블몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "데블몬"
+      ],
+      "profiles": [
+        "black-gears"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 28,
+      "type": "rival",
+      "names": [
+        "니드몬",
+        "데블몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 30,
+      "type": "boss",
+      "names": [
+        "니드몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "그레이몬"
+      ],
+      "profiles": [
+        "dark-skull"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "데블몬",
+        "골드워매몬"
+      ],
+      "profiles": [
+        "black-gears",
+        "scrap-crown"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 48,
+      "type": "rival",
+      "names": [
+        "니드몬",
+        "데블몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 50,
+      "type": "boss",
+      "names": [
+        "니드몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "그레이몬"
+      ],
+      "profiles": [
+        "dark-skull"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 68,
+      "type": "rival",
+      "names": [
+        "릴리몬",
+        "블루메라몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 70,
+      "type": "boss",
+      "names": [
+        "릴리몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 75,
+      "type": "rival",
+      "names": [
+        "그레이몬"
+      ],
+      "profiles": [
+        "dark-skull"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 88,
+      "type": "rival",
+      "names": [
+        "릴리몬",
+        "블루메라몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 90,
+      "type": "boss",
+      "names": [
+        "릴리몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "릴리몬",
+        "블루메라몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 108,
+      "type": "rival",
+      "names": [
+        "릴리몬",
+        "블루메라몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 110,
+      "type": "boss",
+      "names": [
+        "릴리몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 128,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "볼트몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 130,
+      "type": "boss",
+      "names": [
+        "로제몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 148,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "볼트몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 150,
+      "type": "boss",
+      "names": [
+        "로제몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 160,
+      "type": "boss",
+      "names": [
+        "메탈에테몬",
+        "플래티넘워매몬"
+      ],
+      "profiles": [
+        "etemon-show",
+        "scrap-crown"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 168,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "볼트몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 170,
+      "type": "boss",
+      "names": [
+        "로제몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 180,
+      "type": "boss",
+      "names": [
+        "메탈에테몬",
+        "플래티넘워매몬"
+      ],
+      "profiles": [
+        "etemon-show",
+        "scrap-crown"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 188,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "볼트몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "쓰레기의 산",
+      "stage": 190,
+      "type": "boss",
+      "names": [
+        "로제몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 8,
+      "type": "rival",
+      "names": [
+        "팔몬",
+        "피코데블몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 10,
+      "type": "boss",
+      "names": [
+        "팔몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 15,
+      "type": "rival",
+      "names": [
+        "팔몬",
+        "피코데블몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "데블몬"
+      ],
+      "profiles": [
+        "black-gears"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 28,
+      "type": "rival",
+      "names": [
+        "니드몬",
+        "데블몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 30,
+      "type": "boss",
+      "names": [
+        "니드몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "그레이몬"
+      ],
+      "profiles": [
+        "dark-skull"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "데블몬",
+        "골드워매몬"
+      ],
+      "profiles": [
+        "black-gears",
+        "scrap-crown"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 48,
+      "type": "rival",
+      "names": [
+        "니드몬",
+        "데블몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 50,
+      "type": "boss",
+      "names": [
+        "니드몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "그레이몬"
+      ],
+      "profiles": [
+        "dark-skull"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 68,
+      "type": "rival",
+      "names": [
+        "릴리몬",
+        "블루메라몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 70,
+      "type": "boss",
+      "names": [
+        "릴리몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 75,
+      "type": "rival",
+      "names": [
+        "그레이몬"
+      ],
+      "profiles": [
+        "dark-skull"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 88,
+      "type": "rival",
+      "names": [
+        "릴리몬",
+        "블루메라몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 90,
+      "type": "boss",
+      "names": [
+        "릴리몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "릴리몬",
+        "블루메라몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 108,
+      "type": "rival",
+      "names": [
+        "릴리몬",
+        "블루메라몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 110,
+      "type": "boss",
+      "names": [
+        "릴리몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 128,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "볼트몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 130,
+      "type": "boss",
+      "names": [
+        "로제몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 148,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "볼트몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 150,
+      "type": "boss",
+      "names": [
+        "로제몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 160,
+      "type": "boss",
+      "names": [
+        "메탈에테몬",
+        "플래티넘워매몬"
+      ],
+      "profiles": [
+        "etemon-show",
+        "scrap-crown"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 168,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "볼트몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 170,
+      "type": "boss",
+      "names": [
+        "로제몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 180,
+      "type": "boss",
+      "names": [
+        "메탈에테몬",
+        "플래티넘워매몬"
+      ],
+      "profiles": [
+        "etemon-show",
+        "scrap-crown"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 188,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "볼트몬"
+      ],
+      "profiles": [
+        "mimi",
+        "jimiken"
+      ]
+    },
+    {
+      "mapName": "지하 하수도",
+      "stage": 190,
+      "type": "boss",
+      "names": [
+        "로제몬"
+      ],
+      "profiles": [
+        "mimi"
+      ]
+    },
+    {
+      "mapName": "윈드 가디언즈",
+      "stage": 15,
+      "type": "rival",
+      "names": [
+        "브이몬"
+      ],
+      "profiles": [
+        "armor-thunder"
+      ]
+    },
+    {
+      "mapName": "윈드 가디언즈",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "쿠가몬"
+      ],
+      "profiles": [
+        "insect-lord"
+      ]
+    },
+    {
+      "mapName": "윈드 가디언즈",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "쿠가몬"
+      ],
+      "profiles": [
+        "insect-lord"
+      ]
+    },
+    {
+      "mapName": "윈드 가디언즈",
+      "stage": 60,
+      "type": "boss",
+      "names": [
+        "왕쿠가몬",
+        "실피드몬"
+      ],
+      "profiles": [
+        "insect-lord",
+        "valkyrie-watch"
+      ]
+    },
+    {
+      "mapName": "윈드 가디언즈",
+      "stage": 80,
+      "type": "boss",
+      "names": [
+        "왕쿠가몬",
+        "실피드몬"
+      ],
+      "profiles": [
+        "insect-lord",
+        "valkyrie-watch"
+      ]
+    },
+    {
+      "mapName": "코덱 유적",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "가드로몬"
+      ],
+      "profiles": [
+        "security"
+      ]
+    },
+    {
+      "mapName": "코덱 유적",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "샤우트몬[X3]",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X4]",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "코덱 유적",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "가드로몬"
+      ],
+      "profiles": [
+        "security"
+      ]
+    },
+    {
+      "mapName": "코덱 유적",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "샤우트몬[X3]",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X4]",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "아이스 생츄어리",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "시드라몬"
+      ],
+      "profiles": [
+        "sea-dragon"
+      ]
+    },
+    {
+      "mapName": "아이스 생츄어리",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "레오몬"
+      ],
+      "profiles": [
+        "ice-lion"
+      ]
+    },
+    {
+      "mapName": "아이스 생츄어리",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "시드라몬"
+      ],
+      "profiles": [
+        "sea-dragon"
+      ]
+    },
+    {
+      "mapName": "아이스 생츄어리",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "레오몬"
+      ],
+      "profiles": [
+        "ice-lion"
+      ]
+    },
+    {
+      "mapName": "아이스 생츄어리",
+      "stage": 60,
+      "type": "boss",
+      "names": [
+        "메가시드라몬",
+        "실피드몬"
+      ],
+      "profiles": [
+        "sea-dragon",
+        "valkyrie-watch"
+      ]
+    },
+    {
+      "mapName": "아이스 생츄어리",
+      "stage": 75,
+      "type": "rival",
+      "names": [
+        "레오몬"
+      ],
+      "profiles": [
+        "ice-lion"
+      ]
+    },
+    {
+      "mapName": "아이스 생츄어리",
+      "stage": 115,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "미라쥬가오가몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-mirage"
+      ]
+    },
+    {
+      "mapName": "아이스 생츄어리",
+      "stage": 135,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "미라쥬가오가몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-mirage"
+      ]
+    },
+    {
+      "mapName": "아이스 생츄어리",
+      "stage": 155,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "미라쥬가오가몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-mirage"
+      ]
+    },
+    {
+      "mapName": "아이스 생츄어리",
+      "stage": 175,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "미라쥬가오가몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-mirage"
+      ]
+    },
+    {
+      "mapName": "아이스 생츄어리",
+      "stage": 195,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "미라쥬가오가몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-mirage"
+      ]
+    },
+    {
+      "mapName": "무한산",
+      "stage": 15,
+      "type": "rival",
+      "names": [
+        "브이몬"
+      ],
+      "profiles": [
+        "armor-fire"
+      ]
+    },
+    {
+      "mapName": "무한산",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "데블몬",
+        "메라몬"
+      ],
+      "profiles": [
+        "black-gears",
+        "volcano"
+      ]
+    },
+    {
+      "mapName": "무한산",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "데블몬",
+        "메라몬"
+      ],
+      "profiles": [
+        "black-gears",
+        "volcano"
+      ]
+    },
+    {
+      "mapName": "무한산",
+      "stage": 80,
+      "type": "boss",
+      "names": [
+        "블루메라몬",
+        "에테몬"
+      ],
+      "profiles": [
+        "volcano",
+        "etemon-show"
+      ]
+    },
+    {
+      "mapName": "무한산",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "샤우트몬[X2]",
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X3]",
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "무한산",
+      "stage": 115,
+      "type": "rival",
+      "names": [
+        "샤인그레이몬",
+        "라센몬"
+      ],
+      "profiles": [
+        "burst-shine",
+        "raging-spiral"
+      ]
+    },
+    {
+      "mapName": "오버델 묘지",
+      "stage": 10,
+      "type": "boss",
+      "names": [
+        "플롯트몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "오버델 묘지",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "데블몬"
+      ],
+      "profiles": [
+        "black-gears"
+      ]
+    },
+    {
+      "mapName": "오버델 묘지",
+      "stage": 30,
+      "type": "boss",
+      "names": [
+        "가트몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "오버델 묘지",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "그레이몬"
+      ],
+      "profiles": [
+        "dark-skull"
+      ]
+    },
+    {
+      "mapName": "오버델 묘지",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "데블몬"
+      ],
+      "profiles": [
+        "black-gears"
+      ]
+    },
+    {
+      "mapName": "오버델 묘지",
+      "stage": 50,
+      "type": "boss",
+      "names": [
+        "가트몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "오버델 묘지",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "그레이몬"
+      ],
+      "profiles": [
+        "dark-skull"
+      ]
+    },
+    {
+      "mapName": "오버델 묘지",
+      "stage": 70,
+      "type": "boss",
+      "names": [
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "오버델 묘지",
+      "stage": 90,
+      "type": "boss",
+      "names": [
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "오버델 묘지",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "메탈그레이몬[크로스워즈]",
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "fusion-메탈그레이몬[사이버런처]",
+        "fusion-마스테몬"
+      ]
+    },
+    {
+      "mapName": "오버델 묘지",
+      "stage": 110,
+      "type": "boss",
+      "names": [
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "오버델 묘지",
+      "stage": 130,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "오버델 묘지",
+      "stage": 150,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "오버델 묘지",
+      "stage": 170,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "오버델 묘지",
+      "stage": 190,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "어셈블러 타워",
+      "stage": 15,
+      "type": "rival",
+      "names": [
+        "샤우트몬",
+        "브이몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X2]",
+        "armor-thunder"
+      ]
+    },
+    {
+      "mapName": "어셈블러 타워",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "가드로몬"
+      ],
+      "profiles": [
+        "security"
+      ]
+    },
+    {
+      "mapName": "어셈블러 타워",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "가드로몬",
+        "골드워매몬"
+      ],
+      "profiles": [
+        "security",
+        "scrap-crown"
+      ]
+    },
+    {
+      "mapName": "어셈블러 타워",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "샤우트몬",
+        "그레이몬[크로스워즈]"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X2]",
+        "fusion-메탈그레이몬[크로스워즈]"
+      ]
+    },
+    {
+      "mapName": "어셈블러 타워",
+      "stage": 75,
+      "type": "rival",
+      "names": [
+        "그레이몬[크로스워즈]",
+        "메탈그레이몬[크로스워즈]"
+      ],
+      "profiles": [
+        "fusion-메탈그레이몬[크로스워즈]",
+        "fusion-메탈그레이몬[사이버런처]"
+      ]
+    },
+    {
+      "mapName": "어셈블러 타워",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "그레이몬[크로스워즈]",
+        "메탈그레이몬[크로스워즈]"
+      ],
+      "profiles": [
+        "fusion-메탈그레이몬[크로스워즈]",
+        "fusion-메탈그레이몬[사이버런처]"
+      ]
+    },
+    {
+      "mapName": "부트 화산",
+      "stage": 15,
+      "type": "rival",
+      "names": [
+        "샤우트몬",
+        "브이몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X2]",
+        "armor-fire"
+      ]
+    },
+    {
+      "mapName": "부트 화산",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "메라몬"
+      ],
+      "profiles": [
+        "volcano"
+      ]
+    },
+    {
+      "mapName": "부트 화산",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "메라몬"
+      ],
+      "profiles": [
+        "volcano"
+      ]
+    },
+    {
+      "mapName": "부트 화산",
+      "stage": 60,
+      "type": "boss",
+      "names": [
+        "블루메라몬"
+      ],
+      "profiles": [
+        "volcano"
+      ]
+    },
+    {
+      "mapName": "부트 화산",
+      "stage": 80,
+      "type": "boss",
+      "names": [
+        "블루메라몬"
+      ],
+      "profiles": [
+        "volcano"
+      ]
+    },
+    {
+      "mapName": "부트 화산",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "샤우트몬[X2]",
+        "그레이몬[크로스워즈]"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X3]",
+        "fusion-메탈그레이몬[크로스워즈]"
+      ]
+    },
+    {
+      "mapName": "부트 화산",
+      "stage": 100,
+      "type": "boss",
+      "names": [
+        "파워드라몬",
+        "도르빅크몬"
+      ],
+      "profiles": [
+        "machine-dragon",
+        "dorubick-fire"
+      ]
+    },
+    {
+      "mapName": "부트 화산",
+      "stage": 115,
+      "type": "rival",
+      "names": [
+        "블리츠그레이몬",
+        "샤인그레이몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬[알터-S]",
+        "burst-shine",
+        "ruin-flames"
+      ]
+    },
+    {
+      "mapName": "이블 포레스트",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "쿠가몬"
+      ],
+      "profiles": [
+        "insect-lord"
+      ]
+    },
+    {
+      "mapName": "이블 포레스트",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "엑스브이몬",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "이블 포레스트",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "쿠가몬"
+      ],
+      "profiles": [
+        "insect-lord"
+      ]
+    },
+    {
+      "mapName": "이블 포레스트",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "엑스브이몬",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "이블 포레스트",
+      "stage": 60,
+      "type": "boss",
+      "names": [
+        "왕쿠가몬",
+        "오로치몬"
+      ],
+      "profiles": [
+        "insect-lord",
+        "orochi-pond"
+      ]
+    },
+    {
+      "mapName": "이블 포레스트",
+      "stage": 75,
+      "type": "rival",
+      "names": [
+        "엑스브이몬",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "이블 포레스트",
+      "stage": 80,
+      "type": "boss",
+      "names": [
+        "왕쿠가몬",
+        "오로치몬"
+      ],
+      "profiles": [
+        "insect-lord",
+        "orochi-pond"
+      ]
+    },
+    {
+      "mapName": "이블 포레스트",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "엑스브이몬",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "이블 포레스트",
+      "stage": 115,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "레이브몬"
+      ],
+      "profiles": [
+        "burst-rose",
+        "burst-raven"
+      ]
+    },
+    {
+      "mapName": "이블 포레스트",
+      "stage": 135,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "레이브몬"
+      ],
+      "profiles": [
+        "burst-rose",
+        "burst-raven"
+      ]
+    },
+    {
+      "mapName": "이블 포레스트",
+      "stage": 155,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "레이브몬"
+      ],
+      "profiles": [
+        "burst-rose",
+        "burst-raven"
+      ]
+    },
+    {
+      "mapName": "이블 포레스트",
+      "stage": 175,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "레이브몬"
+      ],
+      "profiles": [
+        "burst-rose",
+        "burst-raven"
+      ]
+    },
+    {
+      "mapName": "이블 포레스트",
+      "stage": 195,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "레이브몬"
+      ],
+      "profiles": [
+        "burst-rose",
+        "burst-raven"
+      ]
+    },
+    {
+      "mapName": "다크 웹",
+      "stage": 10,
+      "type": "boss",
+      "names": [
+        "텐타몬"
+      ],
+      "profiles": [
+        "koushiro"
+      ]
+    },
+    {
+      "mapName": "다크 웹",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "가드로몬"
+      ],
+      "profiles": [
+        "security"
+      ]
+    },
+    {
+      "mapName": "다크 웹",
+      "stage": 30,
+      "type": "boss",
+      "names": [
+        "캅테리몬"
+      ],
+      "profiles": [
+        "koushiro"
+      ]
+    },
+    {
+      "mapName": "다크 웹",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "그레이몬[크로스워즈]"
+      ],
+      "profiles": [
+        "fusion-메탈그레이몬[크로스워즈]"
+      ]
+    },
+    {
+      "mapName": "다크 웹",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "가드로몬"
+      ],
+      "profiles": [
+        "security"
+      ]
+    },
+    {
+      "mapName": "다크 웹",
+      "stage": 50,
+      "type": "boss",
+      "names": [
+        "캅테리몬"
+      ],
+      "profiles": [
+        "koushiro"
+      ]
+    },
+    {
+      "mapName": "다크 웹",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "그레이몬[크로스워즈]"
+      ],
+      "profiles": [
+        "fusion-메탈그레이몬[크로스워즈]"
+      ]
+    },
+    {
+      "mapName": "다크 웹",
+      "stage": 70,
+      "type": "boss",
+      "names": [
+        "아트라캅테리몬"
+      ],
+      "profiles": [
+        "koushiro"
+      ]
+    },
+    {
+      "mapName": "다크 웹",
+      "stage": 90,
+      "type": "boss",
+      "names": [
+        "아트라캅테리몬"
+      ],
+      "profiles": [
+        "koushiro"
+      ]
+    },
+    {
+      "mapName": "다크 웹",
+      "stage": 110,
+      "type": "boss",
+      "names": [
+        "아트라캅테리몬"
+      ],
+      "profiles": [
+        "koushiro"
+      ]
+    },
+    {
+      "mapName": "다크 웹",
+      "stage": 130,
+      "type": "boss",
+      "names": [
+        "헤라클레스캅테리몬"
+      ],
+      "profiles": [
+        "koushiro"
+      ]
+    },
+    {
+      "mapName": "다크 웹",
+      "stage": 150,
+      "type": "boss",
+      "names": [
+        "헤라클레스캅테리몬"
+      ],
+      "profiles": [
+        "koushiro"
+      ]
+    },
+    {
+      "mapName": "다크 웹",
+      "stage": 170,
+      "type": "boss",
+      "names": [
+        "헤라클레스캅테리몬"
+      ],
+      "profiles": [
+        "koushiro"
+      ]
+    },
+    {
+      "mapName": "다크 웹",
+      "stage": 190,
+      "type": "boss",
+      "names": [
+        "헤라클레스캅테리몬"
+      ],
+      "profiles": [
+        "koushiro"
+      ]
+    },
+    {
+      "mapName": "다크 에리어",
+      "stage": 10,
+      "type": "boss",
+      "names": [
+        "플롯트몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "다크 에리어",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "데블몬"
+      ],
+      "profiles": [
+        "black-gears"
+      ]
+    },
+    {
+      "mapName": "다크 에리어",
+      "stage": 30,
+      "type": "boss",
+      "names": [
+        "가트몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "다크 에리어",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "그레이몬"
+      ],
+      "profiles": [
+        "dark-skull"
+      ]
+    },
+    {
+      "mapName": "다크 에리어",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "데블몬"
+      ],
+      "profiles": [
+        "black-gears"
+      ]
+    },
+    {
+      "mapName": "다크 에리어",
+      "stage": 50,
+      "type": "boss",
+      "names": [
+        "가트몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "다크 에리어",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "그레이몬"
+      ],
+      "profiles": [
+        "dark-skull"
+      ]
+    },
+    {
+      "mapName": "다크 에리어",
+      "stage": 70,
+      "type": "boss",
+      "names": [
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "다크 에리어",
+      "stage": 90,
+      "type": "boss",
+      "names": [
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "다크 에리어",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "메탈그레이몬[크로스워즈]",
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "fusion-메탈그레이몬[사이버런처]",
+        "fusion-마스테몬"
+      ]
+    },
+    {
+      "mapName": "다크 에리어",
+      "stage": 110,
+      "type": "boss",
+      "names": [
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "다크 에리어",
+      "stage": 130,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "다크 에리어",
+      "stage": 150,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "다크 에리어",
+      "stage": 170,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "다크 에리어",
+      "stage": 190,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "코퀴토스",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "시드라몬"
+      ],
+      "profiles": [
+        "sea-dragon"
+      ]
+    },
+    {
+      "mapName": "코퀴토스",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "레오몬"
+      ],
+      "profiles": [
+        "ice-lion"
+      ]
+    },
+    {
+      "mapName": "코퀴토스",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "시드라몬"
+      ],
+      "profiles": [
+        "sea-dragon"
+      ]
+    },
+    {
+      "mapName": "코퀴토스",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "레오몬"
+      ],
+      "profiles": [
+        "ice-lion"
+      ]
+    },
+    {
+      "mapName": "코퀴토스",
+      "stage": 60,
+      "type": "boss",
+      "names": [
+        "메가시드라몬",
+        "실피드몬"
+      ],
+      "profiles": [
+        "sea-dragon",
+        "valkyrie-watch"
+      ]
+    },
+    {
+      "mapName": "코퀴토스",
+      "stage": 75,
+      "type": "rival",
+      "names": [
+        "레오몬"
+      ],
+      "profiles": [
+        "ice-lion"
+      ]
+    },
+    {
+      "mapName": "코퀴토스",
+      "stage": 115,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "미라쥬가오가몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-mirage"
+      ]
+    },
+    {
+      "mapName": "코퀴토스",
+      "stage": 135,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "미라쥬가오가몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-mirage"
+      ]
+    },
+    {
+      "mapName": "코퀴토스",
+      "stage": 155,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "미라쥬가오가몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-mirage"
+      ]
+    },
+    {
+      "mapName": "코퀴토스",
+      "stage": 175,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "미라쥬가오가몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-mirage"
+      ]
+    },
+    {
+      "mapName": "코퀴토스",
+      "stage": 195,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "미라쥬가오가몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-mirage"
+      ]
+    },
+    {
+      "mapName": "센트럴 타운",
+      "stage": 15,
+      "type": "rival",
+      "names": [
+        "샤우트몬",
+        "브이몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X2]",
+        "armor-fire",
+        "armor-thunder"
+      ]
+    },
+    {
+      "mapName": "센트럴 타운",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "가드로몬"
+      ],
+      "profiles": [
+        "security"
+      ]
+    },
+    {
+      "mapName": "센트럴 타운",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "가드로몬",
+        "골드워매몬"
+      ],
+      "profiles": [
+        "security",
+        "scrap-crown"
+      ]
+    },
+    {
+      "mapName": "센트럴 타운",
+      "stage": 75,
+      "type": "rival",
+      "names": [
+        "샤우트몬[X3]",
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X4]",
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "센트럴 타운",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "샤우트몬[X3]",
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X4]",
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "센트럴 타운",
+      "stage": 115,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "로제몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-rose"
+      ]
+    },
+    {
+      "mapName": "센트럴 타운",
+      "stage": 135,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "로제몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-rose"
+      ]
+    },
+    {
+      "mapName": "센트럴 타운",
+      "stage": 155,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "로제몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-rose"
+      ]
+    },
+    {
+      "mapName": "센트럴 타운",
+      "stage": 175,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "로제몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-rose"
+      ]
+    },
+    {
+      "mapName": "센트럴 타운",
+      "stage": 195,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "로제몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "burst-rose"
+      ]
+    },
+    {
+      "mapName": "어비스 에리어",
+      "stage": 10,
+      "type": "boss",
+      "names": [
+        "플롯트몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "어비스 에리어",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "데블몬"
+      ],
+      "profiles": [
+        "black-gears"
+      ]
+    },
+    {
+      "mapName": "어비스 에리어",
+      "stage": 30,
+      "type": "boss",
+      "names": [
+        "가트몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "어비스 에리어",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "그레이몬"
+      ],
+      "profiles": [
+        "dark-skull"
+      ]
+    },
+    {
+      "mapName": "어비스 에리어",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "데블몬"
+      ],
+      "profiles": [
+        "black-gears"
+      ]
+    },
+    {
+      "mapName": "어비스 에리어",
+      "stage": 50,
+      "type": "boss",
+      "names": [
+        "가트몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "어비스 에리어",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "그레이몬"
+      ],
+      "profiles": [
+        "dark-skull"
+      ]
+    },
+    {
+      "mapName": "어비스 에리어",
+      "stage": 70,
+      "type": "boss",
+      "names": [
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "어비스 에리어",
+      "stage": 90,
+      "type": "boss",
+      "names": [
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "어비스 에리어",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "메탈그레이몬[크로스워즈]",
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "fusion-메탈그레이몬[사이버런처]",
+        "fusion-마스테몬"
+      ]
+    },
+    {
+      "mapName": "어비스 에리어",
+      "stage": 110,
+      "type": "boss",
+      "names": [
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "어비스 에리어",
+      "stage": 130,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "어비스 에리어",
+      "stage": 150,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "어비스 에리어",
+      "stage": 170,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "어비스 에리어",
+      "stage": 190,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "기어 포레스트",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "쿠가몬"
+      ],
+      "profiles": [
+        "insect-lord"
+      ]
+    },
+    {
+      "mapName": "기어 포레스트",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "엑스브이몬",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "기어 포레스트",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "쿠가몬"
+      ],
+      "profiles": [
+        "insect-lord"
+      ]
+    },
+    {
+      "mapName": "기어 포레스트",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "엑스브이몬",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "기어 포레스트",
+      "stage": 60,
+      "type": "boss",
+      "names": [
+        "왕쿠가몬",
+        "오로치몬"
+      ],
+      "profiles": [
+        "insect-lord",
+        "orochi-pond"
+      ]
+    },
+    {
+      "mapName": "기어 포레스트",
+      "stage": 75,
+      "type": "rival",
+      "names": [
+        "엑스브이몬",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "기어 포레스트",
+      "stage": 80,
+      "type": "boss",
+      "names": [
+        "왕쿠가몬",
+        "오로치몬"
+      ],
+      "profiles": [
+        "insect-lord",
+        "orochi-pond"
+      ]
+    },
+    {
+      "mapName": "기어 포레스트",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "엑스브이몬",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "기어 포레스트",
+      "stage": 115,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "레이브몬"
+      ],
+      "profiles": [
+        "burst-rose",
+        "burst-raven"
+      ]
+    },
+    {
+      "mapName": "기어 포레스트",
+      "stage": 135,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "레이브몬"
+      ],
+      "profiles": [
+        "burst-rose",
+        "burst-raven"
+      ]
+    },
+    {
+      "mapName": "기어 포레스트",
+      "stage": 155,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "레이브몬"
+      ],
+      "profiles": [
+        "burst-rose",
+        "burst-raven"
+      ]
+    },
+    {
+      "mapName": "기어 포레스트",
+      "stage": 175,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "레이브몬"
+      ],
+      "profiles": [
+        "burst-rose",
+        "burst-raven"
+      ]
+    },
+    {
+      "mapName": "기어 포레스트",
+      "stage": 195,
+      "type": "rival",
+      "names": [
+        "로제몬",
+        "레이브몬"
+      ],
+      "profiles": [
+        "burst-rose",
+        "burst-raven"
+      ]
+    },
+    {
+      "mapName": "팩토리얼 에리어",
+      "stage": 15,
+      "type": "rival",
+      "names": [
+        "샤우트몬",
+        "브이몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X2]",
+        "armor-thunder"
+      ]
+    },
+    {
+      "mapName": "팩토리얼 에리어",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "가드로몬"
+      ],
+      "profiles": [
+        "security"
+      ]
+    },
+    {
+      "mapName": "팩토리얼 에리어",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "가드로몬",
+        "골드워매몬"
+      ],
+      "profiles": [
+        "security",
+        "scrap-crown"
+      ]
+    },
+    {
+      "mapName": "팩토리얼 에리어",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "샤우트몬",
+        "그레이몬[크로스워즈]"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X2]",
+        "fusion-메탈그레이몬[크로스워즈]"
+      ]
+    },
+    {
+      "mapName": "팩토리얼 에리어",
+      "stage": 75,
+      "type": "rival",
+      "names": [
+        "그레이몬[크로스워즈]",
+        "메탈그레이몬[크로스워즈]"
+      ],
+      "profiles": [
+        "fusion-메탈그레이몬[크로스워즈]",
+        "fusion-메탈그레이몬[사이버런처]"
+      ]
+    },
+    {
+      "mapName": "팩토리얼 에리어",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "그레이몬[크로스워즈]",
+        "메탈그레이몬[크로스워즈]"
+      ],
+      "profiles": [
+        "fusion-메탈그레이몬[크로스워즈]",
+        "fusion-메탈그레이몬[사이버런처]"
+      ]
+    },
+    {
+      "mapName": "코즈믹 에리어",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "가드로몬"
+      ],
+      "profiles": [
+        "security"
+      ]
+    },
+    {
+      "mapName": "코즈믹 에리어",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "샤우트몬[X3]",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X4]",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "코즈믹 에리어",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "가드로몬"
+      ],
+      "profiles": [
+        "security"
+      ]
+    },
+    {
+      "mapName": "코즈믹 에리어",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "샤우트몬[X3]",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X4]",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "가디언 팰리스",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "가드로몬"
+      ],
+      "profiles": [
+        "security"
+      ]
+    },
+    {
+      "mapName": "가디언 팰리스",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "샤우트몬[X3]",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X4]",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "가디언 팰리스",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "가드로몬"
+      ],
+      "profiles": [
+        "security"
+      ]
+    },
+    {
+      "mapName": "가디언 팰리스",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "샤우트몬[X3]",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X4]",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "다크 필드",
+      "stage": 10,
+      "type": "boss",
+      "names": [
+        "플롯트몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "다크 필드",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "데블몬"
+      ],
+      "profiles": [
+        "black-gears"
+      ]
+    },
+    {
+      "mapName": "다크 필드",
+      "stage": 30,
+      "type": "boss",
+      "names": [
+        "가트몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "다크 필드",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "그레이몬"
+      ],
+      "profiles": [
+        "dark-skull"
+      ]
+    },
+    {
+      "mapName": "다크 필드",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "데블몬"
+      ],
+      "profiles": [
+        "black-gears"
+      ]
+    },
+    {
+      "mapName": "다크 필드",
+      "stage": 50,
+      "type": "boss",
+      "names": [
+        "가트몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "다크 필드",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "그레이몬"
+      ],
+      "profiles": [
+        "dark-skull"
+      ]
+    },
+    {
+      "mapName": "다크 필드",
+      "stage": 70,
+      "type": "boss",
+      "names": [
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "다크 필드",
+      "stage": 90,
+      "type": "boss",
+      "names": [
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "다크 필드",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "메탈그레이몬[크로스워즈]",
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "fusion-메탈그레이몬[사이버런처]",
+        "fusion-마스테몬"
+      ]
+    },
+    {
+      "mapName": "다크 필드",
+      "stage": 110,
+      "type": "boss",
+      "names": [
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "다크 필드",
+      "stage": 130,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "다크 필드",
+      "stage": 150,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "다크 필드",
+      "stage": 170,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "다크 필드",
+      "stage": 190,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "겐시 대륙",
+      "stage": 10,
+      "type": "boss",
+      "names": [
+        "아구몬"
+      ],
+      "profiles": [
+        "taichi"
+      ]
+    },
+    {
+      "mapName": "겐시 대륙",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "쿠가몬"
+      ],
+      "profiles": [
+        "insect-lord"
+      ]
+    },
+    {
+      "mapName": "겐시 대륙",
+      "stage": 30,
+      "type": "boss",
+      "names": [
+        "그레이몬",
+        "메탈티라노몬"
+      ],
+      "profiles": [
+        "taichi",
+        "rust-tyrannomon"
+      ]
+    },
+    {
+      "mapName": "겐시 대륙",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "쿠가몬"
+      ],
+      "profiles": [
+        "insect-lord"
+      ]
+    },
+    {
+      "mapName": "겐시 대륙",
+      "stage": 50,
+      "type": "boss",
+      "names": [
+        "그레이몬",
+        "메탈티라노몬"
+      ],
+      "profiles": [
+        "taichi",
+        "rust-tyrannomon"
+      ]
+    },
+    {
+      "mapName": "겐시 대륙",
+      "stage": 60,
+      "type": "boss",
+      "names": [
+        "왕쿠가몬"
+      ],
+      "profiles": [
+        "insect-lord"
+      ]
+    },
+    {
+      "mapName": "겐시 대륙",
+      "stage": 70,
+      "type": "boss",
+      "names": [
+        "메탈그레이몬",
+        "러스트티라노몬"
+      ],
+      "profiles": [
+        "taichi",
+        "rust-tyrannomon"
+      ]
+    },
+    {
+      "mapName": "겐시 대륙",
+      "stage": 80,
+      "type": "boss",
+      "names": [
+        "왕쿠가몬",
+        "플레시오몬"
+      ],
+      "profiles": [
+        "insect-lord",
+        "plesio-mirage"
+      ]
+    },
+    {
+      "mapName": "겐시 대륙",
+      "stage": 115,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "라센몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "raging-spiral"
+      ]
+    },
+    {
+      "mapName": "겐시 대륙",
+      "stage": 130,
+      "type": "boss",
+      "names": [
+        "워그레이몬",
+        "러스트티라노몬"
+      ],
+      "profiles": [
+        "taichi",
+        "adventure-duo",
+        "rust-tyrannomon"
+      ]
+    },
+    {
+      "mapName": "겐시 대륙",
+      "stage": 150,
+      "type": "boss",
+      "names": [
+        "워그레이몬",
+        "러스트티라노몬"
+      ],
+      "profiles": [
+        "taichi",
+        "adventure-duo",
+        "rust-tyrannomon"
+      ]
+    },
+    {
+      "mapName": "겐시 대륙",
+      "stage": 170,
+      "type": "boss",
+      "names": [
+        "워그레이몬",
+        "러스트티라노몬"
+      ],
+      "profiles": [
+        "taichi",
+        "adventure-duo",
+        "rust-tyrannomon"
+      ]
+    },
+    {
+      "mapName": "겐시 대륙",
+      "stage": 190,
+      "type": "boss",
+      "names": [
+        "워그레이몬",
+        "러스트티라노몬"
+      ],
+      "profiles": [
+        "taichi",
+        "adventure-duo",
+        "rust-tyrannomon"
+      ]
+    },
+    {
+      "mapName": "아시노 섬",
+      "stage": 10,
+      "type": "boss",
+      "names": [
+        "파피몬",
+        "쉬라몬"
+      ],
+      "profiles": [
+        "yamato",
+        "joe"
+      ]
+    },
+    {
+      "mapName": "아시노 섬",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "시드라몬"
+      ],
+      "profiles": [
+        "sea-dragon"
+      ]
+    },
+    {
+      "mapName": "아시노 섬",
+      "stage": 30,
+      "type": "boss",
+      "names": [
+        "가루몬",
+        "원뿔몬"
+      ],
+      "profiles": [
+        "yamato",
+        "joe"
+      ]
+    },
+    {
+      "mapName": "아시노 섬",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "아시노 섬",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "시드라몬"
+      ],
+      "profiles": [
+        "sea-dragon"
+      ]
+    },
+    {
+      "mapName": "아시노 섬",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "아시노 섬",
+      "stage": 60,
+      "type": "boss",
+      "names": [
+        "메가시드라몬",
+        "오로치몬"
+      ],
+      "profiles": [
+        "sea-dragon",
+        "orochi-pond"
+      ]
+    },
+    {
+      "mapName": "아시노 섬",
+      "stage": 75,
+      "type": "rival",
+      "names": [
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "아시노 섬",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "아시노 섬",
+      "stage": 135,
+      "type": "rival",
+      "names": [
+        "슬레이어드라몬"
+      ],
+      "profiles": [
+        "fusion-엑자몬"
+      ]
+    },
+    {
+      "mapName": "아시노 섬",
+      "stage": 155,
+      "type": "rival",
+      "names": [
+        "슬레이어드라몬",
+        "황제드라몬[파이터]"
+      ],
+      "profiles": [
+        "fusion-엑자몬",
+        "paladin-awake"
+      ]
+    },
+    {
+      "mapName": "아시노 섬",
+      "stage": 175,
+      "type": "rival",
+      "names": [
+        "슬레이어드라몬",
+        "황제드라몬[파이터]"
+      ],
+      "profiles": [
+        "fusion-엑자몬",
+        "paladin-awake"
+      ]
+    },
+    {
+      "mapName": "아시노 섬",
+      "stage": 195,
+      "type": "rival",
+      "names": [
+        "슬레이어드라몬",
+        "황제드라몬[파이터]"
+      ],
+      "profiles": [
+        "fusion-엑자몬",
+        "paladin-awake"
+      ]
+    },
+    {
+      "mapName": "선공계",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "가드로몬"
+      ],
+      "profiles": [
+        "security"
+      ]
+    },
+    {
+      "mapName": "선공계",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "샤우트몬[X3]",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X4]",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "선공계",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "가드로몬"
+      ],
+      "profiles": [
+        "security"
+      ]
+    },
+    {
+      "mapName": "선공계",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "샤우트몬[X3]",
+        "아큐라몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X4]",
+        "fusion-실피드몬"
+      ]
+    },
+    {
+      "mapName": "용정궁",
+      "stage": 10,
+      "type": "boss",
+      "names": [
+        "아구몬"
+      ],
+      "profiles": [
+        "taichi"
+      ]
+    },
+    {
+      "mapName": "용정궁",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "쿠가몬"
+      ],
+      "profiles": [
+        "insect-lord"
+      ]
+    },
+    {
+      "mapName": "용정궁",
+      "stage": 30,
+      "type": "boss",
+      "names": [
+        "그레이몬",
+        "메탈티라노몬"
+      ],
+      "profiles": [
+        "taichi",
+        "rust-tyrannomon"
+      ]
+    },
+    {
+      "mapName": "용정궁",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "쿠가몬"
+      ],
+      "profiles": [
+        "insect-lord"
+      ]
+    },
+    {
+      "mapName": "용정궁",
+      "stage": 50,
+      "type": "boss",
+      "names": [
+        "그레이몬",
+        "메탈티라노몬"
+      ],
+      "profiles": [
+        "taichi",
+        "rust-tyrannomon"
+      ]
+    },
+    {
+      "mapName": "용정궁",
+      "stage": 60,
+      "type": "boss",
+      "names": [
+        "왕쿠가몬"
+      ],
+      "profiles": [
+        "insect-lord"
+      ]
+    },
+    {
+      "mapName": "용정궁",
+      "stage": 70,
+      "type": "boss",
+      "names": [
+        "메탈그레이몬",
+        "러스트티라노몬"
+      ],
+      "profiles": [
+        "taichi",
+        "rust-tyrannomon"
+      ]
+    },
+    {
+      "mapName": "용정궁",
+      "stage": 80,
+      "type": "boss",
+      "names": [
+        "왕쿠가몬",
+        "플레시오몬"
+      ],
+      "profiles": [
+        "insect-lord",
+        "plesio-mirage"
+      ]
+    },
+    {
+      "mapName": "용정궁",
+      "stage": 115,
+      "type": "rival",
+      "names": [
+        "워그레이몬",
+        "라센몬"
+      ],
+      "profiles": [
+        "fusion-오메가몬",
+        "raging-spiral"
+      ]
+    },
+    {
+      "mapName": "용정궁",
+      "stage": 130,
+      "type": "boss",
+      "names": [
+        "워그레이몬",
+        "러스트티라노몬"
+      ],
+      "profiles": [
+        "taichi",
+        "adventure-duo",
+        "rust-tyrannomon"
+      ]
+    },
+    {
+      "mapName": "용정궁",
+      "stage": 150,
+      "type": "boss",
+      "names": [
+        "워그레이몬",
+        "러스트티라노몬"
+      ],
+      "profiles": [
+        "taichi",
+        "adventure-duo",
+        "rust-tyrannomon"
+      ]
+    },
+    {
+      "mapName": "용정궁",
+      "stage": 170,
+      "type": "boss",
+      "names": [
+        "워그레이몬",
+        "러스트티라노몬"
+      ],
+      "profiles": [
+        "taichi",
+        "adventure-duo",
+        "rust-tyrannomon"
+      ]
+    },
+    {
+      "mapName": "용정궁",
+      "stage": 190,
+      "type": "boss",
+      "names": [
+        "워그레이몬",
+        "러스트티라노몬"
+      ],
+      "profiles": [
+        "taichi",
+        "adventure-duo",
+        "rust-tyrannomon"
+      ]
+    },
+    {
+      "mapName": "사규산",
+      "stage": 15,
+      "type": "rival",
+      "names": [
+        "브이몬"
+      ],
+      "profiles": [
+        "armor-fire"
+      ]
+    },
+    {
+      "mapName": "사규산",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "데블몬",
+        "메라몬"
+      ],
+      "profiles": [
+        "black-gears",
+        "volcano"
+      ]
+    },
+    {
+      "mapName": "사규산",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "데블몬",
+        "메라몬"
+      ],
+      "profiles": [
+        "black-gears",
+        "volcano"
+      ]
+    },
+    {
+      "mapName": "사규산",
+      "stage": 80,
+      "type": "boss",
+      "names": [
+        "블루메라몬",
+        "에테몬"
+      ],
+      "profiles": [
+        "volcano",
+        "etemon-show"
+      ]
+    },
+    {
+      "mapName": "사규산",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "샤우트몬[X2]",
+        "엑스브이몬"
+      ],
+      "profiles": [
+        "fusion-샤우트몬[X3]",
+        "fusion-파일드라몬"
+      ]
+    },
+    {
+      "mapName": "사규산",
+      "stage": 115,
+      "type": "rival",
+      "names": [
+        "샤인그레이몬",
+        "라센몬"
+      ],
+      "profiles": [
+        "burst-shine",
+        "raging-spiral"
+      ]
+    },
+    {
+      "mapName": "황천",
+      "stage": 10,
+      "type": "boss",
+      "names": [
+        "플롯트몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "황천",
+      "stage": 20,
+      "type": "boss",
+      "names": [
+        "데블몬"
+      ],
+      "profiles": [
+        "black-gears"
+      ]
+    },
+    {
+      "mapName": "황천",
+      "stage": 30,
+      "type": "boss",
+      "names": [
+        "가트몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "황천",
+      "stage": 35,
+      "type": "rival",
+      "names": [
+        "그레이몬"
+      ],
+      "profiles": [
+        "dark-skull"
+      ]
+    },
+    {
+      "mapName": "황천",
+      "stage": 40,
+      "type": "boss",
+      "names": [
+        "데블몬"
+      ],
+      "profiles": [
+        "black-gears"
+      ]
+    },
+    {
+      "mapName": "황천",
+      "stage": 50,
+      "type": "boss",
+      "names": [
+        "가트몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "황천",
+      "stage": 55,
+      "type": "rival",
+      "names": [
+        "그레이몬"
+      ],
+      "profiles": [
+        "dark-skull"
+      ]
+    },
+    {
+      "mapName": "황천",
+      "stage": 70,
+      "type": "boss",
+      "names": [
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "황천",
+      "stage": 90,
+      "type": "boss",
+      "names": [
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "황천",
+      "stage": 95,
+      "type": "rival",
+      "names": [
+        "메탈그레이몬[크로스워즈]",
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "fusion-메탈그레이몬[사이버런처]",
+        "fusion-마스테몬"
+      ]
+    },
+    {
+      "mapName": "황천",
+      "stage": 110,
+      "type": "boss",
+      "names": [
+        "엔젤우몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "황천",
+      "stage": 130,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "황천",
+      "stage": 150,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "황천",
+      "stage": 170,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    },
+    {
+      "mapName": "황천",
+      "stage": 190,
+      "type": "boss",
+      "names": [
+        "오파니몬"
+      ],
+      "profiles": [
+        "hikari"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "src/data/bossProfiles.js": {
+    "sha256": "28166642dfbb30d14ee2962484345b8cc2801ca5c8b8c9aa2786be813bba92ee"
+  },
+  "src/data/rivalProfiles.js": {
+    "sha256": "aa381f890d1334a549feb76c5d9741781dafc0ef0d7fa2e629d4cf82239f6cd8"
+  },
+  "src/battle/bossEncounters.js": {
+    "sha256": "a254a8702581287a4fc4f503f59ffec41e9e26494bb1e40054b10f447af5cdf7"
+  },
+  "src/battle/rivalEncounters.js": {
+    "sha256": "0ef59cc9c342cdb5920bcc1120dfd24adce2794a9737ad387f32ec43071f5d16"
+  },
+  "scripts/verify-regional-support.mjs": {
+    "sha256": "7c932e2e0f42f7134aca0e7f8d245c7439dcebf7c43920695efcf289e6c0c7c8"
+  },
+  "package.json": {
+    "sha256": "62b797c3ecfef9e5b50d386dae3137eb2e58315d98692af740f0fd7f903433e9"
+  }
+}

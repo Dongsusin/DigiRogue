@@ -1,0 +1,299 @@
+import { mergeRegionStatModifier, REGION_EFFECT_TEXT } from './regionModifiers.js'
+import { BOSS_MAP_THEMES, BOSS_PROFILES, BOSS_PROFILE_BY_ID } from '../data/bossProfiles.js'
+import { resolveFinalBossAfterAction, resolveFinalBossBeforeAction } from './finalBosses.js'
+import { withBossSegments, hydrateBossSegments, finishBossDamageWindow, BOSS_PHASE_VERSION } from './bossPhases.js'
+import { getBossPhaseSignature } from '../data/bossPatternSkills.js'
+
+export const BOSS_EVOLUTION_MS = 1100
+export const BOSS_EVOLUTION_SWAP_MS = 500
+export const BOSS_POWER_MS = 520
+export const BOSS_FUSION_MS = 1600
+export const BOSS_FUSION_SWAP_MS = 750
+export const BOSS_PLAN_VERSION = BOSS_PHASE_VERSION
+export const BOSS_RECOVERY_LIMIT = 2
+
+const tierForStage = stage => stage <= 20 ? 0 : stage <= 60 ? 1 : stage <= 110 ? 2 : 3
+const living = unit => unit && !unit.isEgg && unit.currentHp > 0
+
+export function getBossCandidates(stage, mapName, speciesLookup, { history = [], kind } = {}) {
+  if (stage < 10 || stage > 200 || stage % 10 !== 0) return []
+  const eligible = BOSS_PROFILES.filter(profile => stage >= profile.minStage && stage <= profile.maxStage &&
+    profile.line.every(name => speciesLookup.has(name)) && (!profile.companion || speciesLookup.has(profile.companion)))
+  if (stage === 200) return eligible.filter(profile => profile.kind === 'final')
+  const desired = kind ?? (Math.floor(stage / 10) % 2 ? 'lineage' : 'wild')
+  const typed = eligible.filter(profile => profile.kind === desired)
+  const pool = typed.length ? typed : eligible
+  const regional = pool.filter(profile => profile.themes.includes(BOSS_MAP_THEMES[mapName]))
+  const relevant = regional.length ? regional : pool
+  const fresh = relevant.filter(profile => !history.slice(-4).includes(profile.id))
+  return fresh.length ? fresh : relevant
+}
+
+export function getBossProfile(stage, mapName, speciesLookup, { id, random = Math.random, ...options } = {}) {
+  if (id) {
+    const profile = BOSS_PROFILE_BY_ID.get(id)
+    return profile && stage >= profile.minStage && stage <= profile.maxStage && stage % 10 === 0 &&
+      profile.line.every(name => speciesLookup.has(name)) && (!profile.companion || speciesLookup.has(profile.companion)) ? profile : null
+  }
+  const candidates = getBossCandidates(stage, mapName, speciesLookup, options)
+  return candidates[Math.min(candidates.length - 1, Math.max(0, Math.floor(random() * candidates.length)))] ?? null
+}
+
+export function createBossPlan(profile, stage, { companionIds = [], support = false } = {}) {
+  const index = profile.kind === 'final' ? 0 : ['lineage', 'rival'].includes(profile.kind) ? Math.min(tierForStage(stage), profile.line.length - 1)
+    : Math.min(Math.floor((stage - profile.minStage) / 40), profile.line.length - 1)
+  const startIndex = profile.awakenActions ? 0 : index
+  const name = support ? profile.companion : profile.line[startIndex]
+  const nextForm = !support ? profile.line[startIndex + 1] : null
+  const phases = support ? [] : profile.phases ? profile.phases.map((phase, index) => ({ ...phase, id: `phase-${index + 1}` }))
+    : [{ id: 'phase-1', atHp: nextForm ? .6 : .35,
+    ...(profile.awakenActions ? { atActions: profile.awakenActions } : {}), form: nextForm ?? null,
+    label: nextForm ? profile.phaseLabel : '마지막 결의',
+    speech: profile.phaseSpeech ?? (nextForm ? `${name}의 숨겨진 힘이 깨어난다!` : `${name}이(가) 마지막 힘을 끌어올렸다!`),
+    effect: nextForm ? {} : profile.finalPower }]
+  // Either Digimon in a duo can rally; an ordinary minion has no independent boss script.
+  const rules = support && profile.id !== 'adventure-duo' ? [] : profile.rules
+  const intro = profile.kind === 'lineage'
+    ? profile.companion ? `야생 ${profile.line[startIndex]}와(과) ${profile.companion}이(가) 협공을 준비한다!`
+      : `야생 ${name}이(가) 길을 막아섰다!`
+    : profile.speech
+  return withBossSegments({ version: BOSS_PLAN_VERSION, id: profile.id, kind: profile.kind, title: profile.title,
+    name: profile.kind === 'lineage' ? name : profile.name, emblem: profile.emblem, stage, source: profile.source ?? null,
+    intro, initialName: name, leader: !support, companionIds,
+    phases, rules, phase: 0, usedRules: [], actions: 0, hitStreak: 0, lastCategory: null,
+    lastEvent: null, recoveryLimit: BOSS_RECOVERY_LIMIT, recoveries: 0 },
+    { line: support ? [name] : profile.line, segmented: !support || profile.id === 'adventure-duo' })
+}
+
+// Older snapshots include human names and dialogue. Only presentation changes;
+// phase gates, spent powers, damage, equipment and recurrence remain serialized.
+export function normalizeEncounterPresentation(unit) {
+  if (!unit || typeof unit !== 'object') return unit
+  const plan = unit.bossEncounter
+  if (unit.rivalEncounter) {
+    const intro = unit.rivalEncounter.meeting > 1
+      ? `전에 만났던 ${unit.name}이(가) 다시 나타났다!` : `야생 ${unit.name}이(가) 나타났다!`
+    if (unit.rivalEncounter.name === unit.name && (!plan || (plan.kind === 'rival' &&
+      plan.name === unit.name && plan.title === '야생 라이벌' && plan.intro === intro && !plan.source))) return unit
+    return { ...unit, rivalEncounter: { ...unit.rivalEncounter, name: unit.name },
+      ...(plan ? { bossEncounter: { ...plan, kind: 'rival', name: unit.name, title: '야생 라이벌',
+        intro, source: null, emblem: '라이벌' } } : {}) }
+  }
+  if (plan?.kind !== 'tamer') return unit
+  const profile = BOSS_PROFILE_BY_ID.get(plan.id)
+  const fresh = profile && createBossPlan(profile, plan.stage, {
+    companionIds: plan.companionIds, support: plan.leader === false,
+  })
+  const phases = (plan.phases ?? []).map((phase, index) => ({ ...phase,
+    label: fresh?.phases[index]?.label ?? (phase.form ? '진화' : '마지막 결의'),
+    speech: phase.form ? `${unit.name}의 숨겨진 힘이 깨어난다!` : `${unit.name}이(가) 마지막 힘을 끌어올렸다!`,
+  }))
+  const rules = (plan.rules ?? []).map(tactic => ({ ...tactic,
+    label: fresh?.rules.find(current => current.id === tactic.id)?.label ?? '잠재력 해방', speech: null,
+  }))
+  const lastEvent = plan.phases?.find(phase => phase.label === plan.lastEvent)?.id
+  const lastRule = plan.rules?.find(tactic => tactic.label === plan.lastEvent)?.id
+  return { ...unit, bossEncounter: { ...plan, kind: 'lineage', name: unit.name,
+    title: fresh?.title ?? '야생 우두머리', emblem: null, source: null,
+    intro: fresh?.intro ?? `야생 ${unit.name}이(가) 길을 막아섰다!`, phases, rules,
+    lastEvent: lastEvent ? phases.find(phase => phase.id === lastEvent)?.label
+      : lastRule ? rules.find(tactic => tactic.id === lastRule)?.label : null,
+  } }
+}
+
+export function isBossSkillAllowed(unit, skill) {
+  if (!unit?.bossEncounter) return true
+  if (skill?.효과?.kind === 'revive') return false
+  return skill?.효과?.kind !== 'heal' || (unit.bossEncounter.recoveries ?? 0) < (unit.bossEncounter.recoveryLimit ?? BOSS_RECOVERY_LIMIT)
+}
+
+export function spendBossRecovery(unit, skill) {
+  if (!unit?.bossEncounter || skill?.효과?.kind !== 'heal') return unit
+  return { ...unit, bossEncounter: { ...unit.bossEncounter, recoveries: (unit.bossEncounter.recoveries ?? 0) + 1 } }
+}
+
+export function createBossEncounter({ stage, mapName, speciesLookup, createBossCombatant, createCombatant,
+  random, history, id }) {
+  const profile = getBossProfile(stage, mapName, speciesLookup, { random, history, id })
+  if (!profile) return []
+  const ids = [`boss-${stage}-${profile.id}`, ...(profile.companion ? [`boss-${stage}-${profile.id}-partner`] : [])]
+  const plan = createBossPlan(profile, stage, { companionIds: ids.slice(1) })
+  const main = createBossCombatant({ stage, name: plan.initialName, data: speciesLookup.get(plan.initialName) })
+  const markers = [...new Set(plan.phases.map(phase => phase.atHp))].sort((a, b) => b - a)
+  const enemies = [{ ...main, id: ids[0], bossEncounter: plan, bossHpMarkers: markers,
+    bossHpBreakpoints: markers, bossHpSegmentCount: markers.length + 1 }]
+  if (profile.companion) {
+    const supportPlan = createBossPlan(profile, stage, { companionIds: [ids[0]], support: true })
+    const companion = profile.id === 'adventure-duo'
+      ? createBossCombatant({ stage, name: profile.companion, data: speciesLookup.get(profile.companion) })
+      : createCombatant({ id: ids[1], name: profile.companion, data: speciesLookup.get(profile.companion), level: main.level })
+    const supportMarkers = supportPlan.phases.map(phase => phase.atHp)
+    enemies.push({ ...companion, id: ids[1], bossEncounter: supportPlan,
+      bossHpMarkers: supportMarkers, bossHpBreakpoints: supportMarkers, bossHpSegmentCount: supportMarkers.length + 1 })
+  }
+  return enemies
+}
+
+function conditionMet(condition, unit, enemies, hits) {
+  const plan = unit.bossEncounter
+  switch (condition.kind) {
+    case 'hp': return unit.currentHp <= Math.max(1, Math.floor(unit.maxHp * condition.ratio))
+    case 'actions': return plan.actions >= condition.count
+    case 'hits': return plan.lastCategory === condition.category && plan.hitStreak >= condition.count
+    case 'critical': return hits.some(hit => hit.damage > 0 && hit.isCritical)
+    case 'miss': return hits.some(hit => hit.isMiss)
+    case 'status': return Boolean(unit.statusEffect)
+    case 'partner-defeated': return plan.companionIds.some(id => !living(enemies.find(enemy => enemy.id === id)))
+    default: return false
+  }
+}
+
+function applyPower(unit, effect, refreshCombatantStats) {
+  const modifiers = { ...unit.statModifiers }
+  for (const [key, multiplier] of Object.entries(effect?.stats ?? {})) {
+    const current = modifiers[key]
+    modifiers[key] = mergeRegionStatModifier(current, multiplier)
+  }
+  const guards = { ...unit.battleGuards }
+  for (const [kind, turns] of Object.entries(effect?.guards ?? {})) guards[kind] = Math.max(guards[kind] ?? 0, turns)
+  const next = refreshCombatantStats({ ...unit, battleGuards: guards }, {
+    statModifiers: modifiers, statusEffect: effect?.clearStatus ? null : unit.statusEffect })
+  if (effect?.healRatio) next.currentHp = Math.min(next.maxHp, next.currentHp + Math.max(1, Math.floor(next.maxHp * effect.healRatio)))
+  return next
+}
+
+// Evolution reacts immediately. Other patterns wait for the boss's own action
+// and replace that action; queued conditions survive slower turns and saves.
+export function resolveBossReactions(context,
+  { speciesLookup, evolveBoss, refreshCombatantStats, getSkillData = (name, unit) => unit.speciesData?.기술설정?.[name] }) {
+  const { enemies, actorId, actorSide, hitEffects = [], didAct = true, deferPatterns = false, patternActorId } = context
+  const changes = [], battleLogs = []
+  const consumed = new Set(), nextEnemies = [...enemies]
+  // Resolve a fusion leader first even if a resumed save lists its companion first.
+  const order = enemies.map((_, index) => index).sort((a, b) =>
+    Number(Boolean(enemies[b].bossEncounter?.phases[enemies[b].bossEncounter.phase]?.fusion)) -
+    Number(Boolean(enemies[a].bossEncounter?.phases[enemies[a].bossEncounter.phase]?.fusion)))
+  for (const index of order) {
+    const saved = enemies[index]
+    if (consumed.has(saved.id)) continue
+    const original = hydrateBossSegments(normalizeEncounterPresentation(saved))
+    if (!living(original) || !original.bossEncounter) { nextEnemies[index] = original; continue }
+    const hits = hitEffects.filter(hit => hit.targetId === original.id && hit.targetSide === 'enemy' && hit.kind !== 'status')
+    let plan = { ...original.bossEncounter, usedRules: [...original.bossEncounter.usedRules] }
+    for (const hit of hits) {
+      if (hit.isMiss) { plan.hitStreak = 0; plan.lastCategory = null; continue }
+      if (!(hit.damage > 0)) continue
+      plan.hitStreak = plan.lastCategory === hit.category ? plan.hitStreak + 1 : 1
+      plan.lastCategory = hit.category
+    }
+    if (actorSide === 'enemy' && actorId === original.id && didAct) plan.actions++
+    let unit = { ...original, bossEncounter: plan }
+    const deferPower = deferPatterns && patternActorId !== unit.id
+    let phase = plan.phases[plan.phase]
+    const partners = (phase?.prepared ? [] : phase?.fusion?.partners ?? []).map(partner => enemies.find(enemy => enemy.id === partner.id && enemy.name === partner.name))
+    const fusionReady = phase?.prepared || !phase?.fusion || (partners.length > 0 && partners.every(living))
+    if (phase?.fusion && !fusionReady) {
+      // Defeating a material cancels the fusion, not the leader's HP section.
+      phase = { ...phase, form: null, fusion: null, atActions: null, condition: null,
+        label: '동료의 결의', effect: {}, prepared: true }
+      plan = { ...plan, phases: plan.phases.map((value, i) => i === plan.phase ? phase : value) }
+      unit = { ...unit, bossEncounter: plan }
+    }
+    const pendingPhase = plan.pendingPhase?.id === phase?.id ? plan.pendingPhase : null
+    const reachedHp = phase && (pendingPhase?.reachedHp || unit.bossHpGateLocked === phase.atHp || unit.currentHp <= Math.max(1, Math.floor(unit.maxHp * phase.atHp)))
+    const earlyTrigger = pendingPhase || phase && !phase.prepared && fusionReady &&
+      ((phase.atActions && plan.actions >= phase.atActions) || (phase.condition && conditionMet(phase.condition, unit, enemies, hits)))
+    const phaseForm = !phase?.prepared && phase?.form && speciesLookup.get(phase.form)
+    if (phase && (reachedHp || earlyTrigger) && !phaseForm && deferPower) {
+      plan = { ...plan, pendingPhase: { id: phase.id, reachedHp: Boolean(reachedHp) } }
+      unit = { ...unit, bossEncounter: plan,
+        ...(reachedHp ? { bossHpBreakpoints: [...new Set([...(unit.bossHpBreakpoints ?? []), phase.atHp])].sort((a, b) => b - a) } : {}) }
+    } else if (phase && (reachedHp || earlyTrigger)) {
+      const previousName = unit.name
+      const form = phaseForm
+      const materials = !phase.prepared && phase.fusion && form ? [unit, ...partners] : []
+      if (form) unit = evolveBoss(unit, form)
+      if (materials.length) {
+        const ratio = materials.reduce((sum, material) => sum + material.currentHp, 0) /
+          materials.reduce((sum, material) => sum + material.maxHp, 0)
+        const observed = materials.reduce((sum, material) => ({
+          physical: sum.physical + (material.rivalEncounter?.observed?.physical ?? 0),
+          special: sum.special + (material.rivalEncounter?.observed?.special ?? 0),
+        }), { physical: 0, special: 0 })
+        unit = { ...unit, currentHp: Math.max(1, Math.min(unit.maxHp, Math.floor(unit.maxHp * ratio))),
+          ...(unit.rivalEncounter ? { rivalEncounter: { ...unit.rivalEncounter, observed } } : {}) }
+        partners.forEach(partner => consumed.add(partner.id))
+      }
+      if (!phase.prepared) unit = applyPower(unit, phase.effect, refreshCombatantStats)
+      plan = { ...plan, phase: plan.phase + (reachedHp ? 1 : 0), lastEvent: phase.label, pendingPhase: null,
+        ...(!reachedHp ? { phases: plan.phases.map((value, i) => i === plan.phase ? { ...value, prepared: true } : value) } : {}),
+        ...(materials.length ? { companionIds: [] } : {}),
+        regenerationStopped: plan.regenerationStopped || phase.effect?.stopRegeneration === true }
+      unit = normalizeEncounterPresentation({ ...unit, bossEncounter: plan,
+        bossHpBreakpoints: reachedHp ? (unit.bossHpBreakpoints ?? []).filter(ratio => ratio < phase.atHp) : unit.bossHpBreakpoints })
+      plan = unit.bossEncounter
+      const logs = [phase.speech, materials.length ? `${materials.map(material => material.name).join(' + ')} · ${phase.label}!`
+        : null, form ? `${previousName} → ${unit.name}!` : `${unit.name}의 ${phase.label} 발동!`].filter(Boolean)
+      const change = { targetId: unit.id, targetSide: 'enemy', kind: materials.length ? 'fusion' : form ? 'evolve' : 'power',
+        actionActorId: unit.id, consumesAction: !form,
+        ...(materials.length ? { consumedIds: partners.map(partner => partner.id) } : {}),
+        label: phase.label, previousName, nextName: unit.name, nextCombatant: unit, logs,
+        ...(!form && reachedHp && phase.signature ? { signature: getBossPhaseSignature(unit, plan.phase - 1, getSkillData) } : {}) }
+      changes.push(change); battleLogs.push(...logs)
+    }
+    for (const tactic of plan.rules) {
+      if (plan.usedRules.includes(tactic.id) ||
+        (!plan.pendingRules?.includes(tactic.id) && !conditionMet(tactic.condition, unit, enemies, hits))) continue
+      if (deferPower) {
+        plan = { ...plan, pendingRules: [...new Set([...(plan.pendingRules ?? []), tactic.id])] }
+        unit = { ...unit, bossEncounter: plan }
+        continue
+      }
+      const previous = unit
+      unit = applyPower(unit, tactic.effect, refreshCombatantStats)
+      plan = { ...plan, usedRules: [...plan.usedRules, tactic.id], lastEvent: tactic.label,
+        ...(plan.pendingRules ? { pendingRules: plan.pendingRules.filter(id => id !== tactic.id) } : {}),
+        regenerationStopped: plan.regenerationStopped || tactic.effect.stopRegeneration === true }
+      unit = { ...unit, bossEncounter: plan }
+      const healed = Math.max(0, unit.currentHp - previous.currentHp)
+      const logs = [tactic.speech, `${unit.name}의 ${tactic.label} 발동!${healed ? ` HP ${healed} 회복.` : ''}`,
+        ...(previous.statusEffect && !unit.statusEffect ? [`${unit.name}의 ${previous.statusEffect.type}이(가) 해제됐다!`] : [])].filter(Boolean)
+      changes.push({ targetId: unit.id, targetSide: 'enemy', kind: 'power', label: tactic.label,
+        actionActorId: unit.id, consumesAction: true,
+        nextCombatant: unit, logs }); battleLogs.push(...logs)
+    }
+    nextEnemies[index] = normalizeEncounterPresentation(unit)
+  }
+  const finalResponse = patternActorId
+    ? resolveFinalBossBeforeAction(nextEnemies.filter(unit => !consumed.has(unit.id)), patternActorId, refreshCombatantStats)
+    : resolveFinalBossAfterAction(nextEnemies.filter(unit => !consumed.has(unit.id)), context, refreshCombatantStats)
+  return { nextEnemies: finalResponse.nextEnemies.map(finishBossDamageWindow),
+    changes: [...changes, ...finalResponse.changes], battleLogs: [...battleLogs, ...finalResponse.battleLogs] }
+}
+
+export function getBossIntroLogs(enemies) {
+  const leader = enemies.find(unit => unit.bossEncounter?.leader)
+  const plan = normalizeEncounterPresentation(leader)?.bossEncounter
+  return plan ? [plan.intro, `${plan.title} 대결이 시작됐다!`].filter(Boolean) : []
+}
+
+export function describeBossPower(effect = {}) {
+  const labels = { attack: '공격', defense: '방어', specialAttack: '특공', specialDefense: '특방', speed: '스피드' }
+  return [
+    ...Object.entries(effect.stats ?? {}).map(([key, value]) => `${labels[key]} ${value >= 1 ? '+' : ''}${Math.round((value - 1) * 100)}%, ${REGION_EFFECT_TEXT}`),
+    ...Object.entries(effect.guards ?? {}).map(([key, turns]) => `${key === 'special' ? '특수' : '물리'} 피해 50% 감소, ${turns}행동`),
+    ...(effect.healRatio ? [`최대 HP ${Math.round(effect.healRatio * 100)}% 회복`] : []),
+    ...(effect.clearStatus ? ['상태이상 해제'] : []),
+  ].join(' · ')
+}
+
+export function getBossBattleInfo(enemies) {
+  const boss = normalizeEncounterPresentation(enemies.find(unit => living(unit) && unit.bossEncounter?.leader) ??
+    enemies.find(unit => living(unit) && unit.bossEncounter))
+  if (!boss) return null
+  const plan = boss.bossEncounter
+  const nextPhase = plan.phases[plan.phase]
+  const phaseTell = nextPhase ? `${nextPhase.atActions ? `HP ${Math.round(nextPhase.atHp * 100)}% 이하 또는 ${nextPhase.atActions}번째 행동 후` : `HP ${Math.round(nextPhase.atHp * 100)}% 이하`} · ${nextPhase.form ? `${nextPhase.form}(으)로 변화` : describeBossPower(nextPhase.effect)}`
+    : plan.phases.length ? '힘 해방 완료 · 더 이상의 형태 변화 없음' : '동료의 결의를 이어 싸웁니다.'
+  return { boss, ...plan, phaseTell, rules: plan.rules.map(tactic => ({ ...tactic, used: plan.usedRules.includes(tactic.id) })) }
+}

@@ -1,0 +1,13 @@
+{
+  "status": "complete",
+  "startedAt": "2026-10-09T06:23:04.037Z",
+  "exe": "C:/Program Files/nodejs/node.exe",
+  "args": [
+    "C:/Users/pdwea/Develop/digirouge/docs/validation/boss-variety-2026-10-09/verify-browser.mjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "stdout": "VISIBLE water-sea 메탈시드라몬\nVISIBLE water-moon 디아나몬\nVISIBLE water-lake 플레시오몬\nVISIBLE waste-crown 메탈에테몬\nVISIBLE waste-chief 타이타몬\nVISIBLE waste-watch 하이안드로몬\nVISIBLE network-infection 디아블로몬\nVISIBLE network-devourer 알카디몬\nVISIBLE network-hunter 저스티몬\nVISIBLE holy-saint 제스몬\nVISIBLE holy-beast 슬레이프몬\nVISIBLE holy-dragon 오류우몬\n{\"passed\":true,\"exitCode\":0,\"scenes\":12,\"modelsReady\":24}\n",
+  "stderr": "",
+  "completedAt": "2026-10-09T06:23:26.600Z"
+}

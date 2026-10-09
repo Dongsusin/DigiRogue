@@ -1,0 +1,102 @@
+.digi-skill-console {
+  position: absolute; z-index: 7; top: 96px; left: 28px; width: 530px; max-height: calc(100% - 192px);
+  display: flex; flex-direction: column; box-sizing: border-box; overflow: hidden;
+  border: 1px solid #3b8196; border-left: 3px solid #5ee2f2; border-radius: 4px 20px 4px 4px;
+  background: linear-gradient(130deg, #12364bef, #081b2af7 65%); color: #e9f9ff;
+  box-shadow: 0 16px 40px #00101cb3, inset 0 1px #91eafa29;
+  font: 14px/1.4 var(--battle-ui-font); outline: none;
+}
+.digi-skill-console button { font-family: inherit; cursor: pointer; }
+.digi-skill-console button:focus-visible { outline: 2px solid #9ff4ff; outline-offset: -3px; }
+.digi-skill-console .digi-skill__execute:disabled { opacity: 0.55; cursor: not-allowed; }
+.digi-skill-console .digi-target:disabled { opacity: 0.5; cursor: not-allowed; }
+.digi-skill__cooldown, .digi-skill__ready { flex: none; font-size: 11px; white-space: nowrap; }
+.digi-skill__cooldown { color: #ffd18b; }
+.digi-skill__ready { color: #8bdddd; }
+.skill-info-tooltip__cooldown { padding: 8px 10px; border-left: 2px solid #83cbb5; background: #173b43; color: #c6f3e3; font-size: 12px; }
+.adventure-player__status--burn { background: #843316; color: #ffe1a3; }
+.digi-skill-console__header { display: flex; align-items: center; gap: 12px; flex: none; padding: 10px 16px 8px; }
+.digi-skill-console__portrait { display: grid; place-items: center; width: 50px; height: 50px; flex: none;
+  background: radial-gradient(circle, #306b8299, #132f4244); border: 1px solid #568e9b; border-radius: 9px; }
+.digi-skill-console__portrait img { width: 46px; height: 46px; object-fit: contain; }
+.digi-skill-console__identity { min-width: 0; flex: 1; }
+.digi-skill-console__identity > span { display: block; color: #71d4e6; font-size: 10px; line-height: 12px; letter-spacing: 2px; }
+.digi-skill-console__identity h2 { display: flex; align-items: baseline; gap: 12px; margin: 3px 0; font-size: 20px; line-height: 24px; overflow-wrap: anywhere; }
+.digi-skill-console__identity small { color: #a4bdca; font-size: 12px; white-space: nowrap; font-weight: 400; }
+.digi-skill-console__identity p { margin: 0; color: #acd5df; font-size: 11px; line-height: 14px; }
+.digi-skill-console__identity i { display: inline-block; width: 5px; height: 5px; margin-right: 7px; background: #70e7c7; box-shadow: 0 0 8px #70e7c755; }
+.digi-skill-console__close { align-self: flex-start; flex: none; width: 36px; height: 36px; padding: 0;
+  border: 1px solid #467285; background: #143244; border-radius: 4px 10px 4px 4px; color: #cceaf2; font-size: 25px; }
+.digi-skill-console__section-title { display: flex; align-items: center; gap: 10px; flex: none; padding: 7px 16px;
+  border-top: 1px solid #49809b4d; border-bottom: 1px solid #49809b4d; background: #06162070; }
+.digi-skill-console__section-title span { color: #75bccd; font-size: 10px; letter-spacing: 1.7px; }
+.digi-skill-console__section-title strong { font-size: 12px; font-weight: 500; }
+.digi-skill-console__section-title span:last-child { margin-left: auto; font-variant-numeric: tabular-nums; }
+.digi-skill-console__list { min-height: 0; padding: 6px 10px; display: grid; gap: 4px; overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #4f9cae #102b3e; }
+.digi-skill { display: flex; align-items: stretch; min-height: 58px; border: 1px solid #366579; border-radius: 3px; background: linear-gradient(90deg, #16394d, #0d2639); }
+.digi-skill--active, .digi-skill:focus-within { border-color: #69d8e9; background: linear-gradient(90deg, #216079, #12374b); box-shadow: inset 3px 0 #6be6f4; }
+.digi-skill__execute { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1; padding: 7px 8px; color: inherit; background: none; border: 0; text-align: left; }
+.digi-skill__number { color: #8cc4d3; font: 12px/1 ui-monospace, monospace; min-width: 19px; }
+.digi-skill__attribute { flex: none; width: 31px; display: grid; justify-items: center; gap: 1px; font-size: 10px; color: #c5e3ed; }
+.digi-skill__attribute img { width: 22px; height: 22px; object-fit: contain; }
+.digi-skill__copy { min-width: 0; flex: 1; }
+.digi-skill__copy strong { display: block; font-size: 16px; font-weight: 650; line-height: 1.3; overflow-wrap: anywhere; }
+.digi-skill__copy small { display: block; margin-top: 3px; font-size: 11px; color: #a8c5d2; }
+.digi-skill__copy small span { color: #557f94; padding: 0 3px; }
+.digi-skill__info { display: grid; place-items: center; align-self: stretch; width: 44px; min-height: 44px; flex: none; padding: 0; border: 0; border-left: 1px solid #5d95ac40; color: #a6d7e5; background: #01172540; }
+.digi-skill__info span { display: grid; place-items: center; width: 20px; height: 20px; border: 1px solid currentColor; border-radius: 50%; font: 600 13px/1 system-ui, sans-serif; }
+.digi-skill__info:hover, .digi-skill__info[aria-expanded='true'] { background: #295c70; color: #e2fcff; }
+.digi-skill-console__footer { display: flex; align-items: center; justify-content: space-between; flex: none; gap: 10px; box-sizing: border-box; min-height: 32px; padding: 5px 14px;
+  border-top: 1px solid #376077; color: #9abacb; font-size: 10px; }
+.digi-skill-console__footer > span:first-child { color: #91deed; font-size: 11px; }
+.digi-skill-console__footer button { border: 0; background: none; color: #98eafa; font-size: 12px; min-height: 32px; padding: 0 4px; }
+.digi-skill-console__touch { display: none; }
+.digi-skill-console__selected { display: flex; gap: 10px; align-items: center; flex: none; margin: 8px 10px 0; padding: 0 0 0 12px; border: 1px solid #4e9bad; background: #1b4b5f; }
+.digi-skill-console__selected > svg { width: 24px; height: 24px; color: #81e4ef; flex: none; }
+.digi-skill-console__selected > span { padding: 7px 0; min-width: 0; flex: 1; }
+.digi-skill-console__selected small { display: block; font-size: 10px; color: #a2cbd4; }
+.digi-skill-console__selected strong { display: block; font-size: 15px; overflow-wrap: anywhere; }
+.digi-target { display: flex; align-items: center; gap: 12px; min-height: 78px; padding: 8px 12px; border: 1px solid #3b677c; border-radius: 3px; background: #102c40; color: #e9f6fc; text-align: left; }
+.digi-target--active { background: #1b485b; border-color: #f2b26c; }
+.digi-target__reticle { position: relative; width: 48px; height: 48px; flex: none; border: 1px solid #6598ab; background: #081e2c; }
+.digi-target__reticle::before, .digi-target__reticle::after { content: ''; position: absolute; inset: -3px; border: solid #70d6eb; border-width: 2px 0; pointer-events: none; }
+.digi-target__reticle::after { inset: 6px -3px; border-width: 0 2px; }
+.digi-target__reticle img { width: 100%; height: 100%; object-fit: contain; }
+.digi-target__identity { min-width: 0; flex: 1; }
+.digi-target__identity small { display: block; font-size: 9px; color: #8dbdcd; letter-spacing: 1px; }
+.digi-target__identity strong { display: block; margin: 2px 0 5px; font-size: 16px; overflow-wrap: anywhere; }
+.digi-target__hp { display: block; height: 4px; max-width: 220px; background: #020e19; }
+.digi-target__hp i { display: block; height: 100%; background: #57c5b8; }
+.digi-skill-console .matchup-badge { flex: none; font-size: 10px; }
+
+.skill-info-tooltip { position: absolute; z-index: 85; box-sizing: border-box; width: 352px; padding: 15px;
+  overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #569daf #0d2535;
+  border: 1px solid #67bfd0; border-top: 3px solid #6de1ef; border-radius: 3px 14px 3px 3px;
+  background: #0a2032fa; color: #e6f7ff; box-shadow: 0 12px 32px #00101dcc; font: 13px/1.55 var(--battle-ui-font);
+  overflow-wrap: anywhere; pointer-events: none; }
+.skill-info-tooltip--pinned { pointer-events: auto; }
+.skill-info-tooltip__header { position: relative; padding-bottom: 11px; border-bottom: 1px solid #3c687a; }
+.skill-info-tooltip__code { color: #8cd5e2; font-size: 10px; letter-spacing: 1.7px; }
+.skill-info-tooltip__header h3 { margin: 5px 0; padding-right: 24px; font-size: 19px; line-height: 1.3; }
+.skill-info-tooltip__header p { margin: 0; color: #b2d0dc; font-size: 12px; }
+.skill-info-tooltip__header button { position: absolute; top: -9px; right: -9px; width: 34px; height: 34px;
+  padding: 0; border: 1px solid #4e7c90; background: #193f54; color: #e5faff; border-radius: 4px; font-size: 23px; cursor: pointer; }
+.skill-info-tooltip__header button:focus-visible { outline: 2px solid #a9efff; outline-offset: 2px; }
+.skill-info-tooltip__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0; }
+.skill-info-tooltip__stats > div { padding: 8px 10px; border-left: 2px solid #378eaa; background: #16374b; }
+.skill-info-tooltip__stats dt { font-size: 11px; color: #aad0de; }
+.skill-info-tooltip__stats dd { margin: 1px 0 0; font: 600 19px/1.3 var(--battle-ui-font); color: #f2fbff; }
+.skill-info-tooltip__description { margin: 0 0 12px; white-space: pre-line; word-break: keep-all; }
+.skill-info-tooltip .target-matchups { margin: 0; border: 0; border-top: 1px solid #396177; border-radius: 0; padding: 11px 0 0; background: none; }
+.skill-info-tooltip .target-matchups h3 { color: #8ed9e5; font-size: 12px; margin: 0 0 7px; }
+.skill-info-tooltip .target-matchups li { font-size: 12px; }
+.skill-info-tooltip .target-matchups p { color: #9bb9ca; font-size: 11px; }
+.skill-info-tooltip__hint { margin: 10px 0 0; color: #89c4d3; font-size: 10px; }
+.game-design .battle-console__commands--digivice .battle-command { border-color: #386278; background: #102b40; color: #bcdae7; border-radius: 4px 12px 4px 4px; gap: 12px; }
+.game-design .battle-console__commands--digivice .battle-command--active { border-color: #64c5d6; background: linear-gradient(110deg, #245970, #17374e); color: #e5fcff; box-shadow: inset 3px 0 #72e5ee; }
+.battle-console__commands--digivice .battle-command__marker { width: 22px; height: 22px; flex: none; color: #80d9e7; }
+.battle-console__commands--digivice .battle-command__marker svg { width: 100%; height: 100%; }
+@media (hover: none), (pointer: coarse) {
+  .digi-skill-console__keyboard { display: none; }
+  .digi-skill-console__touch { display: inline; }
+}

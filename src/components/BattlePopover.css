@@ -1,0 +1,42 @@
+.game-design .game-popover {
+  position: absolute; z-index: 80; box-sizing: border-box; width: 320px;
+  display: flex; flex-direction: column; gap: 10px; min-height: 0;
+  padding: 14px 10px 14px 14px; overflow: hidden;
+  border: 1px solid #698095; border-radius: 8px; background: #102034fa;
+  color: #f3f7fc; box-shadow: 0 10px 28px #0008; font: 14px/1.55 var(--battle-ui-font);
+  overflow-wrap: anywhere; pointer-events: auto;
+}
+.game-design .game-popover__header { flex: none; padding: 0 4px 10px 0; border-bottom: 1px solid #38556b; }
+.game-design .game-popover__scroll {
+  min-height: 0; overflow-x: hidden; overflow-y: auto; padding-right: 6px;
+  overscroll-behavior: contain; scrollbar-gutter: stable; scroll-padding: 8px;
+  scrollbar-width: thin; scrollbar-color: #6296ab #0b1b2c;
+}
+.game-design .game-popover__scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.game-design .game-popover__scroll::-webkit-scrollbar-track { background: #0b1b2c; border-radius: 8px; }
+.game-design .game-popover__scroll::-webkit-scrollbar-thumb { background: #6296ab; border: 2px solid #0b1b2c; border-radius: 8px; }
+.game-design .game-popover__scroll::-webkit-scrollbar-thumb:hover { background: #95d3de; }
+.game-design .game-popover__scroll::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+.game-design .game-popover__scroll::-webkit-scrollbar-corner { background: transparent; }
+/* Chromium otherwise gives standard thin scrollbars priority over the rounded
+   track and thumb below; Firefox keeps the standard thin/color fallback. */
+@supports selector(::-webkit-scrollbar) {
+  .game-design .game-popover__scroll { scrollbar-width: auto; scrollbar-color: auto; }
+}
+.game-design .game-popover__scroll:focus-visible { outline: 1px solid #84c5d8; outline-offset: 2px; border-radius: 3px; }
+.game-design .game-popover[data-scrollable='true'][data-scroll-end='false']::after {
+  content: ''; position: absolute; left: 14px; right: 18px; bottom: 14px; height: 16px;
+  background: linear-gradient(transparent, #102034); pointer-events: none;
+}
+.game-design .game-popover--item strong { display: block; margin-bottom: 6px; color: #f1d792; font-size: 15px; }
+.game-design .game-popover--item p { margin: 0; white-space: pre-line; word-break: keep-all; overflow-wrap: anywhere; }
+.game-design .game-popover__close { position: absolute; z-index: 2; top: 10px; right: 14px; width: 28px; height: 28px; padding: 0; border: 1px solid #607b95; border-radius: 5px; background: #22364c; color: white; font: 20px/1 system-ui; cursor: pointer; }
+.game-design .game-popover__close:hover { border-color: #9ad6e3; background: #31516a; }
+.game-design .game-popover__close:focus-visible { outline: 2px solid #eed18b; outline-offset: 2px; }
+.game-design .game-popover .combatant-info { position: static; width: auto; max-height: none; padding: 0; border: 0; background: none; box-shadow: none; overflow: visible; opacity: 1; visibility: visible; transform: none; pointer-events: auto; }
+.game-design .game-popover .combatant-info__identity { display: flex; flex-wrap: wrap; padding-right: 32px; gap: 5px; }
+.game-design .game-popover .combatant-info__name { flex: 0 0 100%; white-space: normal; overflow: visible; overflow-wrap: anywhere; font-size: 15px; line-height: 1.4; }
+.game-design .game-popover .combatant-info__pill, .game-design .game-popover .combatant-info__level { font-size: 11px; line-height: 1.2; }
+.game-design .adventure-inventory-item:focus-visible { outline: 2px solid #eed18b; outline-offset: 3px; }
+
+.game-viewport[data-orientation-blocked='true'] .game-popover { display: none; }

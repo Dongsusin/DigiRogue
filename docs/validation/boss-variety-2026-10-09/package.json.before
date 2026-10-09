@@ -1,0 +1,31 @@
+{
+  "name": "digirogue",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "verify": "node scripts/verify-runtime.mjs",
+    "test:items": "node --test scripts/verify-battle-items.mjs scripts/verify-adventure-items.mjs",
+    "test:escape": "node --test scripts/verify-escape.mjs",
+    "test:regions": "node --test scripts/verify-regional-support.mjs",
+    "test:quests": "node --test scripts/verify-quest-risk.mjs",
+    "test:town": "node --test scripts/verify-town.mjs",
+    "test:scan": "node --test scripts/verify-scan-rates.mjs",
+    "test:auth": "node --test scripts/verify-auth.mjs",
+    "test:balance": "node --test scripts/verify-adventure-balance.mjs",
+    "simulate:balance": "node scripts/simulate-adventure-balance.mjs"
+  },
+  "dependencies": {
+    "firebase": "^13.0.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.4"
+  }
+}

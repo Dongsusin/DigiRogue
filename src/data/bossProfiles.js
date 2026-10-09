@@ -1,0 +1,153 @@
+// Wild Digimon lineages and regional bosses keep their stage-scaled evolution routes.
+// Trigger percentages and temporary powers are authored rules for this fan game.
+import { FINAL_BOSS_PROFILES } from './finalBossProfiles.js'
+import { REGIONAL_BOSS_PROFILES } from './regionalBossProfiles.js'
+
+export const BOSS_SOURCES = Object.freeze({
+  belphemon: 'https://digimon.net/reference_en/detail.php?directory_name=belphemonragemode',
+  network: 'https://digimon.net/reference_en/detail.php?directory_name=diablomon',
+  machine: 'https://digimon.net/reference_en/detail.php?directory_name=mugendramon',
+  final: 'https://digimon.net/reference_en/detail.php?directory_name=lucemonsatanmode',
+})
+
+export const BOSS_MAP_THEMES = Object.freeze({
+  '시작의마을': 'town', '미하라시 산': 'wind', 기어사바나: 'earth', 용의눈호수: 'water',
+  '네트의 바다': 'water', '메탈 엠파이어': 'machine', '나이트메어 솔저스': 'dark', 비틀랜드: 'forest',
+  '쓰레기의 산': 'waste', '지하 하수도': 'waste', '윈드 가디언즈': 'wind', '코덱 유적': 'holy',
+  '아이스 생츄어리': 'ice', 무한산: 'earth', '오버델 묘지': 'dark', '어셈블러 타워': 'machine',
+  '부트 화산': 'fire', '이블 포레스트': 'forest', '다크 웹': 'network', '다크 에리어': 'dark',
+  코퀴토스: 'ice', '센트럴 타운': 'town', '어비스 에리어': 'dark', '기어 포레스트': 'forest',
+  '팩토리얼 에리어': 'machine', '코즈믹 에리어': 'holy', '가디언 팰리스': 'holy', '다크 필드': 'dark',
+  '겐시 대륙': 'ancient', '아시노 섬': 'water', 선공계: 'holy', 용정궁: 'ancient', 사규산: 'earth', 황천: 'dark',
+})
+
+const stats = (values, turns = 3) => ({ stats: values, turns })
+const guard = (kind, turns = 2) => ({ guards: { [kind]: turns } })
+const rule = (id, label, condition, effect, tell, speech = null) => ({ id, label, condition, effect, tell, speech })
+const physical = { kind: 'hits', category: '물리형', count: 2 }
+const special = { kind: 'hits', category: '특수형', count: 2 }
+const hp = ratio => ({ kind: 'hp', ratio })
+const turn = count => ({ kind: 'actions', count })
+const partner = { kind: 'partner-defeated' }
+
+// Keep profile IDs stable so earlier saves retain their encounter history.
+const lineage = (id, line, themes, tactic, extra = {}) => ({
+  id, kind: 'lineage', name: line[0], title: '야생 우두머리', line, themes, emblem: null,
+  minStage: 10, maxStage: 190, source: null, speech: null, rules: [tactic],
+  phaseLabel: '진화', finalPower: stats({ attack: 1.2, specialAttack: 1.2 }, 3), ...extra,
+})
+const wild = (id, title, line, themes, minStage, maxStage, tactic, extra = {}) => ({
+  id, kind: 'wild', name: title, title, line, themes, minStage, maxStage, rules: [tactic, ...(extra.extraRules ?? [])],
+  speech: '영역의 주인이 길을 막아섰다.', phaseLabel: '잠재력 해방',
+  finalPower: stats({ attack: 1.2, specialAttack: 1.2 }, 3), ...extra,
+})
+
+export const BOSS_PROFILES = Object.freeze([
+  lineage("taichi", ["아구몬","그레이몬","메탈그레이몬","워그레이몬"], ["town","earth","fire","ancient"],
+    rule("courage", "불굴의 투지", {"kind":"hp","ratio":0.35}, {"stats":{"attack":1.25},"turns":3}, "HP 35% 이하 · 공격 +25%, 3행동")),
+  lineage("yamato", ["파피몬","가루몬","워가루몬","메탈가루몬"], ["ice","water","wind","town"],
+    rule("friendship", "냉기의 방벽", {"kind":"critical"}, {"guards":{"special":2}}, "치명타를 받으면 · 특수 방벽, 2행동")),
+  lineage("koushiro", ["텐타몬","캅테리몬","아트라캅테리몬","헤라클레스캅테리몬"], ["machine","forest","network"],
+    rule("analysis", "공격 패턴 분석", {"kind":"hits","category":"물리형","count":2}, {"guards":{"physical":2}}, "물리 공격 2회 연속 명중 · 물리 방벽, 2행동")),
+  lineage("sora", ["피요몬","버드라몬","가루다몬","페닉스몬"], ["wind","fire","forest"],
+    rule("care", "불꽃의 정화", {"kind":"status"}, {"clearStatus":true,"stats":{"speed":1.15},"turns":2}, "상태이상에 걸리면 · 한 번 해제, 스피드 +15%")),
+  lineage("mimi", ["팔몬","니드몬","릴리몬","로제몬"], ["forest","earth","town","waste"],
+    rule("bloom", "생명의 꽃", {"kind":"hp","ratio":0.35}, {"healRatio":0.1,"stats":{"specialDefense":1.15},"turns":2}, "HP 35% 이하 · 최대 HP 10% 회복, 특방 +15%")),
+  lineage("joe", ["쉬라몬","원뿔몬","쥬드몬","바이킹몬"], ["water","ice"],
+    rule("reliable", "강인한 외피", {"kind":"actions","count":3}, {"stats":{"defense":1.2,"specialDefense":1.2},"turns":2}, "3번째 행동 후 · 양쪽 방어 +20%, 2행동")),
+  lineage("takeru", ["파닥몬","엔젤몬","홀리엔젤몬","세라피몬"], ["holy","wind","town"],
+    rule("hope", "희망의 빛", {"kind":"status"}, {"clearStatus":true,"stats":{"specialAttack":1.15},"turns":2}, "상태이상에 걸리면 · 한 번 해제, 특공 +15%")),
+  lineage("hikari", ["플롯트몬","가트몬","엔젤우몬","오파니몬"], ["holy","dark","town"],
+    rule("light", "빛의 보호", {"kind":"hp","ratio":0.35}, {"clearStatus":true,"guards":{"special":2}}, "HP 35% 이하 · 상태이상 해제, 특수 방벽")),
+  lineage("takato", ["길몬","그라우몬","메가로그라우몬","듀크몬","듀크몬[크림슨]"], ["fire","earth","holy"],
+    rule("blue-card", "용의 파동", {"kind":"actions","count":3}, {"stats":{"specialAttack":1.2},"turns":2}, "3번째 행동 후 · 특공 +20%, 2행동")),
+  lineage("ruki", ["레나몬","구미호몬","도사몬","샤크라몬"], ["wind","holy","forest"],
+    rule("speed-card", "재빠른 발놀림", {"kind":"miss"}, {"stats":{"speed":1.25},"turns":3}, "상대 공격이 빗나가면 · 스피드 +25%, 3행동")),
+  lineage("jen", ["테리어몬","가르고몬","래피드몬","세인트가르고몬"], ["machine","wind","town"],
+    rule("steady", "전투 재정비", {"kind":"actions","count":3}, {"healRatio":0.08,"guards":{"physical":2}}, "3번째 행동 후 · 최대 HP 8% 회복, 물리 방벽")),
+  lineage("masaru", ["아구몬","지오그레이몬","라이즈그레이몬","샤인그레이몬","샤인그레이몬[버스트]"], ["fire","earth","machine"],
+    rule("digisoul", "불꽃 충전", {"kind":"hits","category":"물리형","count":2}, {"stats":{"attack":1.25},"turns":3}, "물리 공격 2회 연속 명중 · 공격 +25%, 3행동")),
+  lineage("tohma", ["가오몬","가오가몬","마하가오가몬","미라쥬가오가몬","미라쥬가오가몬[버스트]"], ["machine","ice","wind"],
+    rule("counter-data", "포격 패턴 분석", {"kind":"hits","category":"특수형","count":2}, {"guards":{"special":2},"stats":{"speed":1.15},"turns":2}, "특수 공격 2회 연속 명중 · 특수 방벽, 스피드 +15%")),
+  lineage("yoshino", ["라라몬","해바라기몬","라일라몬","로제몬","로제몬[버스트]"], ["forest","town","holy"],
+    rule("trust", "자연의 회복", {"kind":"hp","ratio":0.3}, {"healRatio":0.12,"clearStatus":true}, "HP 30% 이하 · 최대 HP 12% 회복, 상태이상 해제")),
+  lineage("adventure-duo", ["워그레이몬"], ["town","ancient","holy"],
+    rule("friend-fallen", "동료의 결의", {"kind":"partner-defeated"}, {"stats":{"attack":1.2,"specialAttack":1.2},"turns":3}, "동료가 쓰러지면 · 남은 디지몬의 양쪽 공격 +20%"), {"companion":"메탈가루몬","minStage":90,"name":"워그레이몬 · 메탈가루몬","title":"야생 디지몬의 협공","phaseLabel":"동료의 결의","finalPower":{"stats":{"defense":1.2,"specialDefense":1.2},"turns":2}}),
+
+  wild('black-gears', '검은 기어의 습격', ['데블몬'], ['dark', 'waste', 'earth'], 20, 60,
+    rule('black-gear', '검은 기어 흡수', hp(.4), stats({ attack: 1.25 }, 3), 'HP 40% 이하 · 공격 +25%, 3행동'), { emblem: '검은 기어' }),
+  wild('insect-lord', '숲의 곤충 군주', ['쿠가몬', '왕쿠가몬', '그랜쿠가몬'], ['forest', 'wind', 'ancient'], 20, 140,
+    rule('shell', '외골격 경화', physical, guard('physical'), '물리 공격 2회 연속 명중 · 물리 방벽, 2행동')),
+  wild('security', '유적과 공장의 방위 프로그램', ['가드로몬', '안드로몬', '하이안드로몬'], ['machine', 'network', 'town', 'holy'], 20, 140,
+    rule('protocol', '방위 프로토콜', special, guard('special'), '특수 공격 2회 연속 명중 · 특수 방벽, 2행동')),
+  wild('sea-dragon', '심해의 지배자', ['시드라몬', '메가시드라몬', '메탈시드라몬'], ['water', 'ice'], 20, 170,
+    rule('current', '해류 가속', turn(3), stats({ speed: 1.25 }, 3), '3번째 행동 후 · 스피드 +25%, 3행동')),
+  wild('volcano', '화산의 불꽃 수호자', ['메라몬', '블루메라몬'], ['fire', 'earth'], 20, 80,
+    rule('heat', '열기 집중', hp(.35), stats({ specialAttack: 1.25 }, 3), 'HP 35% 이하 · 특공 +25%, 3행동')),
+  wild('etemon-show', '에테몬의 도전 무대', ['에테몬', '메탈에테몬'], ['waste', 'town', 'earth'], 50, 190,
+    rule('metal-body', '금속 보디', physical, stats({ defense: 1.25 }, 3), '물리 공격 2회 연속 명중 · 방어 +25%', '에테몬: 이제부터가 진짜 공연이다!'),
+    { extraRules: [rule('encore', '앙코르 피날레', turn(8), { ...stats({ attack: 1.35 }, 3), stopRegeneration: true },
+      '8번째 행동 후 · 재생 회복 중단, 공격 +35%, 3행동', '에테몬: 앙코르다! 모든 힘을 마지막 무대에 쏟아붓겠다!')] }),
+  wild('vampire', '흡혈귀의 부활 의식', ['묘티스몬', '베놈묘티스몬'], ['dark', 'waste'], 60, 140,
+    rule('blood', '어둠의 재생', hp(.25), { healRatio: .1, ...stats({ specialAttack: 1.15 }, 2) }, 'HP 25% 이하 · 최대 HP 10% 회복, 특공 +15%')),
+  wild('network-hive', '다크 웹의 증식 핵', ['인펠몬', '디아블로몬', '아마게몬'], ['network', 'machine', 'dark'], 70, 190,
+    rule('data-feed', '증식체 데이터 흡수', partner, stats({ attack: 1.2, specialAttack: 1.2 }, 3),
+      '증식체가 쓰러지면 · 핵의 양쪽 공격 +20%, 3행동'),
+    { companion: '크리사리몬', source: BOSS_SOURCES.network, phaseLabel: '증식 데이터 융합' }),
+  wild('machine-dragon', '폭주한 기계룡', ['파워드라몬', '카오스드라몬'], ['machine', 'fire', 'network'], 90, 190,
+    rule('overdrive', '포격 시스템 과부하', turn(3), stats({ specialAttack: 1.25, defense: .9 }, 3),
+      '3번째 행동 후 · 특공 +25%, 방어 -10%'), { source: BOSS_SOURCES.machine }),
+  wild('puppet-forest', '인형의 숲', ['피노키몬'], ['forest', 'dark'], 90, 190,
+    rule('puppet-rage', '끊어진 조종 줄', partner, stats({ attack: 1.25, defense: .85 }, 3),
+      '우드몬이 쓰러지면 · 공격 +25%, 방어 -15%'), { companion: '우드몬' }),
+  wild('clown', '악몽의 서커스', ['피에몬'], ['dark', 'holy'], 110, 190,
+    rule('trick', '속임수의 막', { kind: 'critical' }, { ...guard('physical'), ...stats({ speed: 1.2 }, 2) },
+      '치명타를 받으면 · 물리 방벽, 스피드 +20%'), { companion: '레이디데블몬' }),
+  wild('sleeping-demon', '잠든 마왕의 봉인', ['벨페몬', '벨페몬[레이지]'], ['dark', 'ice'], 140, 190,
+    rule('rage', '봉인의 잔재', hp(.25), stats({ attack: 1.25 }, 3), 'HP 25% 이하 · 공격 +25%, 3행동'),
+    { awakenActions: 3, phaseLabel: '레이지 모드 각성', source: BOSS_SOURCES.belphemon }),
+  wild('craniamon', '성기사의 방패 시험', ['크레니엄몬', '크레니엄몬[X항체]'], ['holy', 'machine', 'ancient'], 150, 190,
+    rule('shield', '방패 전개', physical, guard('physical'), '물리 공격 2회 연속 명중 · 물리 방벽, 2행동')),
+  ...[
+    ['azure', '청룡몬', ['water', 'ancient'], '특공', 'specialAttack'],
+    ['vermilion', '주작몬', ['fire', 'ancient'], '특공', 'specialAttack'],
+    ['white-tiger', '백호몬', ['wind', 'ice', 'earth'], '공격', 'attack'],
+    ['tortoise', '현무몬', ['forest', 'water', 'earth'], '특방', 'specialDefense'],
+  ].map(([id, name, themes, statName, key]) => wild(id, `${name}의 수호 시험`, [name], themes, 110, 190,
+    rule('guardian', '영역의 공명', turn(3), stats({ [key]: 1.25 }, 3), `3번째 행동 후 · ${statName} +25%, 3행동`))),
+  wild('huanglong', '황룡몬의 황금 영역', ['황룡몬'], ['ancient', 'holy', 'earth'], 170, 190,
+    rule('emperor', '황금 장갑', hp(.25), stats({ defense: 1.2, specialDefense: 1.2 }, 3), 'HP 25% 이하 · 양쪽 방어 +20%, 3행동')),
+
+  lineage('rust-tyrannomon', ['티라노몬', '메탈티라노몬', '러스트티라노몬'], ['machine', 'fire', 'ancient'],
+    rule('rust-armor', '적갈색 장갑 가동', physical, { ...guard('physical'), ...stats({ specialAttack: 1.15 }, 2) }, '물리 공격 2회 명중 · 장갑 가동, 특공 +15%'), { minStage: 30 }),
+  lineage('moon-hunt', ['레키스몬', '크레세몬', '디아나몬'], ['ice', 'water', 'holy'],
+    rule('moon-duality', '달빛의 양면', hp(.5), { clearStatus: true, ...stats({ specialAttack: 1.2, speed: 1.15 }, 2) }, 'HP 50% 이하 · 상태이상 해제, 달빛 강화'), { minStage: 40 }),
+  wild('ceres-garden', '공중 정원의 수호자', ['로터스몬', '케레스몬'], ['forest', 'holy', 'wind'], 90, 190,
+    rule('fruit-of-life', '정원의 생명력', hp(.5), { healRatio: .08, ...stats({ specialDefense: 1.2 }, 3) }, 'HP 50% 이하 · 회복과 자연 방벽')),
+  wild('neptune-trident', '해저 신전의 창', ['넵튠몬'], ['water', 'ancient'], 90, 190,
+    rule('sea-domain', '심해의 지배권', turn(3), stats({ attack: 1.2, speed: 1.15 }, 3), '3번째 행동 · 공격과 기동 강화')),
+  lineage('royal-wasp', ['캐논벌몬', '타이거베스파몬'], ['forest', 'machine', 'wind'],
+    rule('royal-stance', '왕실 전투 태세', { kind: 'miss' }, stats({ attack: 1.2, speed: 1.2 }, 2), '상대 공격 회피 · 공격과 스피드 강화'), { minStage: 70 }),
+  wild('valkyrie-watch', '창공의 전사', ['실피드몬', '발키리몬'], ['wind', 'holy', 'ice'], 60, 190,
+    rule('white-armor', '백은의 보호', { kind: 'critical' }, { ...guard('special'), ...stats({ attack: 1.15 }, 2) }, '치명타 피격 · 특수 방벽과 반격 준비')),
+  wild('scrap-crown', '폐기물 산의 왕', ['골드워매몬', '블랙킹워매몬', '플래티넘워매몬'], ['waste', 'machine', 'town'], 40, 190,
+    rule('scrap-feast', '폐데이터 포식', hp(.5), { healRatio: .1, ...stats({ defense: 1.2 }, 2) }, 'HP 50% 이하 · 회복과 방어 강화')),
+  wild('alien-contact', '유적 밖에서 온 신호', ['베이더몬', '이바몬'], ['network', 'holy', 'machine'], 50, 190,
+    rule('psycho-data', '초능력 신호 증폭', special, stats({ specialAttack: 1.2, specialDefense: 1.15 }, 2), '특수 공격 2회 명중 · 초능력 강화')),
+  wild('orochi-pond', '늪의 여덟 머리', ['오로치몬'], ['water', 'dark', 'forest'], 50, 130,
+    rule('eight-heads', '여덟 머리의 경계', turn(3), { clearStatus: true, ...stats({ defense: 1.2, attack: 1.1 }, 2) }, '3번째 행동 · 상태이상 해제, 방어와 공격 강화')),
+  wild('bancho-justice', '약한 자를 지키는 시험', ['반쵸레오몬'], ['earth', 'town', 'ancient'], 90, 190,
+    rule('gakuran', '가쿠란의 결의', hp(.5), { ...guard('physical'), ...stats({ attack: 1.25 }, 3) }, 'HP 50% 이하 · 물리 방벽, 공격 +25%')),
+  wild('suijin-foundry', '공장의 전투 실험체', ['메탈콩알몬', '수신몬'], ['machine', 'network'], 60, 190,
+    rule('weapon-sync', '병장 시스템 동기화', turn(3), stats({ attack: 1.15, specialAttack: 1.2 }, 3), '3번째 행동 · 양쪽 공격 강화')),
+  wild('sleipmon-trial', '빙원의 붉은 성기사', ['슬레이프몬', '슬레이프몬[X항체]'], ['ice', 'holy', 'wind'], 110, 190,
+    rule('six-leg-charge', '여섯 다리의 돌파', hp(.5), { clearStatus: true, ...stats({ speed: 1.25, attack: 1.15 }, 3) }, 'HP 50% 이하 · 상태이상 해제와 돌진 준비')),
+  wild('dorubick-fire', '붉은 용의 화염 진형', ['도르빅크몬'], ['fire', 'ancient', 'earth'], 100, 190,
+    rule('fire-formation', '화염 진형 집결', turn(3), stats({ specialAttack: 1.25, defense: .9 }, 3), '3번째 행동 · 특공 +25%, 방어 -10%')),
+  wild('plesio-mirage', '호수에 비친 고대의 환영', ['플레시오몬'], ['water', 'ice', 'ancient'], 80, 190,
+    rule('mist-shell', '안개의 장막', hp(.5), { ...guard('special'), ...stats({ specialAttack: 1.15 }, 2) }, 'HP 50% 이하 · 특수 방벽과 파동 강화')),
+  ...REGIONAL_BOSS_PROFILES,
+  ...FINAL_BOSS_PROFILES.map(profile => ({ ...profile, themes: Object.values(BOSS_MAP_THEMES) })),
+])
+
+export const BOSS_PROFILE_BY_ID = new Map(BOSS_PROFILES.map(profile => [profile.id, profile]))

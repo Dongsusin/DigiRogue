@@ -1,0 +1,13 @@
+{
+  "status": "complete",
+  "startedAt": "2026-10-09T06:25:06.481Z",
+  "exe": "C:/Program Files/nodejs/node.exe",
+  "args": [
+    "C:/Users/pdwea/Develop/digirouge/docs/validation/boss-variety-2026-10-09/run-checks.mjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "stdout": "CHECK syntax src/data/regionalBossProfiles.js exit=0\nCHECK syntax src/battle/encounterVariety.js exit=0\nCHECK syntax src/data/bossProfiles.js exit=0\nCHECK syntax src/data/rivalProfiles.js exit=0\nCHECK syntax src/battle/bossEncounters.js exit=0\nCHECK syntax src/battle/rivalEncounters.js exit=0\nCHECK syntax scripts/verify-boss-variety.mjs exit=0\nCHECK escape + regional-support + balance regression exit=0\nCHECK runtime assets exit=0\nCHECK production build exit=0\nCHECK distribution assets exit=0\n{\"passed\":true,\"exitCode\":0,\"commands\":11}\n",
+  "stderr": "",
+  "completedAt": "2026-10-09T06:25:22.491Z"
+}

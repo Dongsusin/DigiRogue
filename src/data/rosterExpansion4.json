@@ -1,0 +1,101 @@
+{
+  "addedAt": "2026-10-04",
+  "names": [
+    "울퉁몬",
+    "두프트몬[X항체]",
+    "슬레이프몬[X항체]",
+    "베르제브몬[블래스트]"
+  ],
+  "branches": {
+    "모티몬": [
+      "울퉁몬"
+    ],
+    "뿔몬": [
+      "울퉁몬"
+    ],
+    "두프트몬": [
+      "두프트몬[X항체]"
+    ],
+    "두프트몬[레오파드]": [
+      "두프트몬[X항체]"
+    ],
+    "슬레이프몬": [
+      "슬레이프몬[X항체]"
+    ],
+    "베르제브몬": [
+      "베르제브몬[블래스트]"
+    ]
+  },
+  "directions": {
+    "울퉁몬": [
+      {
+        "style": "rock",
+        "anchor": "head"
+      }
+    ],
+    "두프트몬[X항체]": [
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      },
+      {
+        "style": "spear",
+        "anchor": "weapon"
+      }
+    ],
+    "슬레이프몬[X항체]": [
+      {
+        "style": "arrow",
+        "anchor": "bow"
+      },
+      {
+        "style": "iceBreath",
+        "anchor": "leftHand"
+      }
+    ],
+    "베르제브몬[블래스트]": [
+      {
+        "style": "beam",
+        "anchor": "cannon"
+      },
+      {
+        "style": "giantOrb",
+        "anchor": "cannon"
+      }
+    ]
+  },
+  "items": {
+    "두프트몬[X항체]": {
+      "from": [
+        "두프트몬",
+        "두프트몬[레오파드]"
+      ],
+      "itemName": "X항체 인자 · 두프트몬",
+      "itemId": "item-evolution-두프트몬의 X항체",
+      "imageUrl": "/items/evolution/canonical/x-antibody.png",
+      "rarity": "rogue",
+      "level": 60,
+      "method": "X진화"
+    },
+    "슬레이프몬[X항체]": {
+      "from": [
+        "슬레이프몬"
+      ],
+      "itemName": "X항체 인자 · 슬레이프몬",
+      "itemId": "item-evolution-슬레이프몬의 X항체",
+      "imageUrl": "/items/evolution/canonical/x-antibody.png",
+      "rarity": "rogue",
+      "level": 60,
+      "method": "X진화"
+    }
+  },
+  "modes": {
+    "베르제브몬[블래스트]": {
+      "from": [
+        "베르제브몬"
+      ],
+      "level": 60,
+      "method": "모드 체인지"
+    }
+  }
+}

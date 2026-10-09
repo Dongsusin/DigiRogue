@@ -1,0 +1,3848 @@
+{
+  "version": 1,
+  "researchedAt": "2026-09-30",
+  "scaleMeaning": "공식 도감의 체형·크기 묘사를 바탕으로 조정한 게임 표시 배율. 공식 신장이나 미터 단위가 아님.",
+  "profiles": {
+    "깜몬": {
+      "scale": 0.32,
+      "form": "유아",
+      "evidence": "검은 솜털로 덮인 갓 태어난 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=botamon"
+    },
+    "도도몬": {
+      "scale": 0.34,
+      "form": "유아",
+      "evidence": "작고 부드러운 털과 미발달한 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=dodomon"
+    },
+    "뽀글몬": {
+      "scale": 0.3,
+      "form": "유아",
+      "evidence": "거품처럼 유연한 작은 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=bubbmon"
+    },
+    "쿠라몬": {
+      "scale": 0.33,
+      "form": "유아",
+      "evidence": "눈과 촉수를 중심으로 한 유아형 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=kuramon"
+    },
+    "포요몬": {
+      "scale": 0.31,
+      "form": "유아",
+      "evidence": "해파리 같은 유아형 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=poyomon"
+    },
+    "푸니몬": {
+      "scale": 0.34,
+      "form": "유아",
+      "evidence": "부드러운 젤리 형태의 유아형 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=punimon"
+    },
+    "프스몬": {
+      "scale": 0.35,
+      "form": "유아",
+      "evidence": "솜털과 작은 뿔을 가진 유아형 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=pusumon"
+    },
+    "하얀몬": {
+      "scale": 0.31,
+      "form": "유아",
+      "evidence": "흰 솜털로 덮인 갓 태어난 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=yukimibotamon"
+    },
+    "치코몬": {
+      "scale": 0.42,
+      "form": "유아기 슬라임형",
+      "evidence": "아직 팔다리가 없는 작은 구형의 몸체. 치코몬 3D 모델의 비율.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=chicomon"
+    },
+    "도리몬": {
+      "scale": 0.43,
+      "form": "유년",
+      "evidence": "뿔과 털을 가진 유년형 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=dorimon"
+    },
+    "둥실몬": {
+      "scale": 0.4,
+      "form": "유년",
+      "evidence": "수생 공룡의 특징이 있는 유년형 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=pukamon"
+    },
+    "모티몬": {
+      "scale": 0.41,
+      "form": "유년",
+      "evidence": "말랑한 떡을 닮은 유년형 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=mochimon"
+    },
+    "뿔몬": {
+      "scale": 0.43,
+      "form": "유년",
+      "evidence": "작은 몸에 큰 뿔이 있는 형태",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=tunomon"
+    },
+    "시드몬": {
+      "scale": 0.38,
+      "form": "유년",
+      "evidence": "새싹이 돋은 구근형 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=tanemon"
+    },
+    "야옹몬": {
+      "scale": 0.4,
+      "form": "유년",
+      "evidence": "작은 고양이를 닮은 몸체",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=nyaromon"
+    },
+    "어니몬": {
+      "scale": 0.39,
+      "form": "유년",
+      "evidence": "꽃과 뿌리가 있는 구근형 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=pyocomon"
+    },
+    "와냐몬": {
+      "scale": 0.42,
+      "form": "유년",
+      "evidence": "소형 애완동물을 닮은 몸체",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=wanyamon"
+    },
+    "츠메몬": {
+      "scale": 0.41,
+      "form": "유년",
+      "evidence": "발톱과 눈이 발달한 유년형 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=tsumemon"
+    },
+    "코로몬": {
+      "scale": 0.42,
+      "form": "유년",
+      "evidence": "털이 빠진 작고 둥근 몸체",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=koromon"
+    },
+    "토코몬": {
+      "scale": 0.39,
+      "form": "유년",
+      "evidence": "짧은 팔다리가 있는 작은 몸체",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=tokomon"
+    },
+    "퍼그몬": {
+      "scale": 0.4,
+      "form": "유년",
+      "evidence": "귀 같은 기관으로 떠다니는 작은 몸체",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=pagumon"
+    },
+    "프스리몬": {
+      "scale": 0.44,
+      "form": "유년",
+      "evidence": "가시가 생긴 작은 네발 몸체",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=pusurimon"
+    },
+    "가오몬": {
+      "scale": 0.72,
+      "form": "소형 수인",
+      "evidence": "짧은 팔다리와 글러브를 가진 수인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=gaomon"
+    },
+    "가지몬": {
+      "scale": 0.78,
+      "form": "소형 짐승",
+      "evidence": "작지만 날카로운 발톱을 가진 몸체",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=gazimon"
+    },
+    "고부리몬": {
+      "scale": 0.8,
+      "form": "소형 수인",
+      "evidence": "작은 도깨비를 닮은 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=goburimon"
+    },
+    "길몬": {
+      "scale": 0.95,
+      "form": "소형 공룡",
+      "evidence": "어린 공룡을 닮은 긴 꼬리의 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=guilmon"
+    },
+    "도루몬": {
+      "scale": 0.88,
+      "form": "소형 짐승",
+      "evidence": "털과 굵은 꼬리를 가진 짐승형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=dorumon"
+    },
+    "드라코몬": {
+      "scale": 0.78,
+      "form": "소형 용",
+      "evidence": "작은 체구의 고대 용형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=dracomon"
+    },
+    "드라큐몬": {
+      "scale": 0.6,
+      "form": "소형 수인",
+      "evidence": "장난꾸러기 흡혈귀를 닮은 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=dracumon"
+    },
+    "라라몬": {
+      "scale": 0.6,
+      "form": "소형 식물",
+      "evidence": "씨앗과 잎으로 이루어진 식물형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=lalamon"
+    },
+    "레나몬": {
+      "scale": 1,
+      "form": "수인",
+      "evidence": "성장기 중에서도 키가 크고 날씬한 체형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=renamon"
+    },
+    "로프몬": {
+      "scale": 0.48,
+      "form": "소형 짐승",
+      "evidence": "긴 귀를 가진 작은 짐승형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=lopmon"
+    },
+    "루체몬": {
+      "scale": 0.82,
+      "form": "인간형",
+      "evidence": "어린아이 모습을 한 천사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=lucemon"
+    },
+    "류우다몬": {
+      "scale": 0.78,
+      "form": "소형 용",
+      "evidence": "갑주를 두른 작은 짐승용형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=ryudamon"
+    },
+    "모노드라몬": {
+      "scale": 0.8,
+      "form": "소형 용",
+      "evidence": "작은 용을 닮은 몸체",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=monodramon"
+    },
+    "베타몬": {
+      "scale": 0.58,
+      "form": "소형 수생",
+      "evidence": "낮은 네발 몸체와 등지느러미",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=betamon"
+    },
+    "브이몬": {
+      "scale": 0.72,
+      "form": "소형 용",
+      "evidence": "짧은 다리로 서는 소룡형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=v-mon"
+    },
+    "샤코몬": {
+      "scale": 0.5,
+      "form": "소형 수생",
+      "evidence": "조개껍데기에 숨는 연체형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=shakomon"
+    },
+    "쉬라몬": {
+      "scale": 0.62,
+      "form": "소형 수생",
+      "evidence": "짧은 지느러미와 털을 가진 해수형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=gomamon"
+    },
+    "아구몬": {
+      "scale": 0.72,
+      "form": "소형 공룡",
+      "evidence": "작은 공룡을 닮은 이족보행 체형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=agumon"
+    },
+    "아구몬(흑)": {
+      "scale": 0.72,
+      "form": "소형 공룡",
+      "evidence": "아구몬과 같은 기본 골격의 검은 아종",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=agumon-black"
+    },
+    "아기벌몬": {
+      "scale": 0.48,
+      "form": "소형 곤충",
+      "evidence": "작고 튼튼한 벌형 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=funbeemon"
+    },
+    "아르마몬": {
+      "scale": 0.64,
+      "form": "소형 짐승",
+      "evidence": "낮고 둥근 갑각의 아르마딜로형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=armadimon"
+    },
+    "에렉몬": {
+      "scale": 0.65,
+      "form": "소형 짐승",
+      "evidence": "여러 꼬리를 가진 네발 짐승형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=elecmon"
+    },
+    "올챙몬": {
+      "scale": 0.5,
+      "form": "소형 수생",
+      "evidence": "올챙이를 닮은 수생형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=otamamon"
+    },
+    "임프몬": {
+      "scale": 0.63,
+      "form": "소형 수인",
+      "evidence": "어린 악마를 닮은 소형 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=impmon"
+    },
+    "추추몬": {
+      "scale": 0.48,
+      "form": "소형 곤충",
+      "evidence": "낮고 부드러운 애벌레형 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=wormmon"
+    },
+    "츠카이몬": {
+      "scale": 0.5,
+      "form": "소형 짐승",
+      "evidence": "파닥몬과 비슷한 귀와 둥근 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=tukaimon"
+    },
+    "카메몬": {
+      "scale": 0.65,
+      "form": "소형 수생",
+      "evidence": "등껍데기가 발달한 거북형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=kamemon"
+    },
+    "케라몬": {
+      "scale": 0.86,
+      "form": "소형 특이형",
+      "evidence": "길게 늘어난 팔과 확대된 머리",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=keramon"
+    },
+    "쿠다몬": {
+      "scale": 0.62,
+      "form": "소형 짐승",
+      "evidence": "2006년판의 길고 가느다란 성수형 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=kudamon-2006"
+    },
+    "테리어몬": {
+      "scale": 0.48,
+      "form": "소형 짐승",
+      "evidence": "긴 귀와 작은 몸체의 짐승형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=terriermon"
+    },
+    "텐타몬": {
+      "scale": 0.7,
+      "form": "소형 곤충",
+      "evidence": "갑각과 여섯 다리의 곤충형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=tentomon"
+    },
+    "톱니몬": {
+      "scale": 0.68,
+      "form": "소형 기계",
+      "evidence": "하나의 톱니바퀴를 닮은 기계형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=hagurumon"
+    },
+    "파닥몬": {
+      "scale": 0.5,
+      "form": "소형 짐승",
+      "evidence": "넓은 귀와 둥근 몸체의 짐승형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=patamon"
+    },
+    "파피몬": {
+      "scale": 0.78,
+      "form": "소형 짐승",
+      "evidence": "털가죽을 걸친 소형 파충류형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=gabumon"
+    },
+    "파피몬(흑)": {
+      "scale": 0.78,
+      "form": "소형 짐승",
+      "evidence": "파피몬과 같은 기본 골격의 검은 아종",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=gabumon_black"
+    },
+    "팔몬": {
+      "scale": 0.64,
+      "form": "소형 식물",
+      "evidence": "머리의 꽃과 뿌리 같은 발을 가진 식물형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=palmon"
+    },
+    "팔코몬": {
+      "scale": 0.72,
+      "form": "소형 조류",
+      "evidence": "2006년판의 날개가 발달한 닌자형 조류",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=falcomon-2006"
+    },
+    "플롯트몬": {
+      "scale": 0.45,
+      "form": "소형 짐승",
+      "evidence": "강아지를 닮은 작은 성수형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=plotmon"
+    },
+    "피요몬": {
+      "scale": 0.62,
+      "form": "소형 조류",
+      "evidence": "작은 날개와 짧은 다리의 조류형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=piyomon"
+    },
+    "피코데블몬": {
+      "scale": 0.5,
+      "form": "소형 특이형",
+      "evidence": "박쥐를 닮은 작은 악마형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=picodevimon"
+    },
+    "헉몬": {
+      "scale": 0.8,
+      "form": "소형 용",
+      "evidence": "작은 용 형태의 민첩한 몸체",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=huckmon"
+    },
+    "호크몬": {
+      "scale": 0.75,
+      "form": "소형 조류",
+      "evidence": "곧게 서는 매를 닮은 조류형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=hawkmon"
+    },
+    "가드로몬": {
+      "scale": 1.25,
+      "form": "기계",
+      "evidence": "두꺼운 장갑과 원통형 몸통의 기계형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=guardromon"
+    },
+    "가루몬": {
+      "scale": 1.38,
+      "form": "짐승",
+      "evidence": "날카로운 털을 가진 늑대형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=garurumon"
+    },
+    "가루몬(흑)": {
+      "scale": 1.38,
+      "form": "짐승",
+      "evidence": "가루몬과 같은 골격의 검은 늑대형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=garurumon_black"
+    },
+    "가르고몬": {
+      "scale": 1.18,
+      "form": "수인",
+      "evidence": "양팔에 총기를 단 직립 수인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=galgomon"
+    },
+    "가오가몬": {
+      "scale": 1.26,
+      "form": "짐승",
+      "evidence": "가오몬보다 자란 네발 짐승형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=gaogamon"
+    },
+    "가트몬": {
+      "scale": 0.55,
+      "form": "소형 짐승",
+      "evidence": "성숙기지만 작은 몸체의 성수형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=tailmon"
+    },
+    "개굴몬": {
+      "scale": 1.05,
+      "form": "수생",
+      "evidence": "나팔과 성대가 발달한 직립 개구리형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=gekomon"
+    },
+    "고스몬": {
+      "scale": 0.86,
+      "form": "특이형",
+      "evidence": "천으로 감싼 유령 같은 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=bakemon"
+    },
+    "구미호몬": {
+      "scale": 1.4,
+      "form": "짐승",
+      "evidence": "아홉 꼬리를 가진 거대한 여우형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=kyubimon"
+    },
+    "그라우몬": {
+      "scale": 1.85,
+      "form": "공룡",
+      "evidence": "길몬에서 성장한 육중한 마룡형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=growmon"
+    },
+    "그레이몬": {
+      "scale": 1.9,
+      "form": "공룡",
+      "evidence": "머리의 갑각과 굵은 꼬리가 발달한 공룡형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=greymon-first"
+    },
+    "긴류우몬": {
+      "scale": 1.6,
+      "form": "장신 용",
+      "evidence": "갑주와 긴 몸을 가진 짐승용형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=ginryumon"
+    },
+    "니드몬": {
+      "scale": 1.65,
+      "form": "식물",
+      "evidence": "거대한 선인장을 닮은 몸체",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=togemon"
+    },
+    "데블몬": {
+      "scale": 1.42,
+      "form": "인간형",
+      "evidence": "긴 팔다리와 날개를 가진 악마형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=devimon"
+    },
+    "도루가몬": {
+      "scale": 1.65,
+      "form": "짐승",
+      "evidence": "거친 힘과 무게를 지닌 큰 짐승용형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=dorugamon"
+    },
+    "레오몬": {
+      "scale": 1.2,
+      "form": "수인",
+      "evidence": "근육질로 직립하는 사자 수인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=leomon"
+    },
+    "레파몬": {
+      "scale": 1.2,
+      "form": "짐승",
+      "evidence": "칼날 꼬리를 가진 네발 성수형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=reppamon"
+    },
+    "말벌몬": {
+      "scale": 1.25,
+      "form": "곤충",
+      "evidence": "벌 형태의 날개와 침을 가진 곤충형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=waspmon"
+    },
+    "메라몬": {
+      "scale": 1.25,
+      "form": "인간형",
+      "evidence": "불꽃으로 이루어진 직립 인간형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=meramon"
+    },
+    "모노크로몬": {
+      "scale": 1.7,
+      "form": "공룡",
+      "evidence": "뿔과 갑각이 발달한 네발 공룡형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=monochromon"
+    },
+    "옐로우워매몬": {
+      "scale": 0.68,
+      "form": "소형 특이형",
+      "evidence": "작고 특이한 연체형 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=geremon"
+    },
+    "바오헉몬": {
+      "scale": 1.3,
+      "form": "용",
+      "evidence": "발톱과 다리가 자란 용형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=baohuckmon"
+    },
+    "버드라몬": {
+      "scale": 1.75,
+      "form": "조류",
+      "evidence": "거대한 날개를 가진 불새형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=birdramon"
+    },
+    "베지몬": {
+      "scale": 1.08,
+      "form": "식물",
+      "evidence": "덩굴이 발달한 식충식물형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=vegimon"
+    },
+    "브이드라몬": {
+      "scale": 1.6,
+      "form": "용",
+      "evidence": "브이몬보다 굵고 큰 직립 용형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=v-dramon"
+    },
+    "블랙가트몬": {
+      "scale": 0.55,
+      "form": "소형 짐승",
+      "evidence": "가트몬과 같은 작은 고양이형 체격",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=blacktailmon"
+    },
+    "스카몬": {
+      "scale": 0.78,
+      "form": "소형 특이형",
+      "evidence": "낮고 둥글게 뭉친 돌연변이형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=scumon"
+    },
+    "스타몬": {
+      "scale": 0.9,
+      "form": "소형 특이형",
+      "evidence": "별 모양의 갑옷을 두른 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=starmon"
+    },
+    "스트라이크드라몬": {
+      "scale": 1.22,
+      "form": "용인",
+      "evidence": "길쭉한 사지와 장갑을 가진 용인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=strikedramon"
+    },
+    "스팅몬": {
+      "scale": 1.24,
+      "form": "인간형",
+      "evidence": "가늘고 단단한 직립 곤충인간형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=stingmon"
+    },
+    "시드라몬": {
+      "scale": 1.85,
+      "form": "장신 수생",
+      "evidence": "뱀처럼 긴 몸통의 수생 용형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=seadramon"
+    },
+    "아이스몬": {
+      "scale": 1.28,
+      "form": "광물",
+      "evidence": "얼음과 광석으로 된 두꺼운 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=icemon"
+    },
+    "아큐라몬": {
+      "scale": 1.72,
+      "form": "조류",
+      "evidence": "거대한 독수리를 닮은 몸체",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=aquilamon"
+    },
+    "에어드라몬": {
+      "scale": 1.85,
+      "form": "장신 용",
+      "evidence": "거대한 날개와 긴 몸통의 환수형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=airdramon"
+    },
+    "엑스브이몬": {
+      "scale": 1.55,
+      "form": "용인",
+      "evidence": "날개가 발달한 직립 용인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=xv-mon"
+    },
+    "엔젤몬": {
+      "scale": 1.25,
+      "form": "인간형",
+      "evidence": "여섯 날개의 천사형 인간 체격",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=angemon"
+    },
+    "우가몬": {
+      "scale": 1.3,
+      "form": "수인",
+      "evidence": "근육질 도깨비를 닮은 체형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=orgemon"
+    },
+    "우드몬": {
+      "scale": 1.9,
+      "form": "식물",
+      "evidence": "거대한 나무를 닮은 몸체",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=woodmon"
+    },
+    "워매몬": {
+      "scale": 0.78,
+      "form": "소형 특이형",
+      "evidence": "낮은 자세의 민달팽이형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=numemon"
+    },
+    "원뿔몬": {
+      "scale": 1.65,
+      "form": "짐승",
+      "evidence": "두꺼운 털과 뿔을 가진 네발 짐승형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=ikkakumon"
+    },
+    "위자몬": {
+      "scale": 1.04,
+      "form": "인간형",
+      "evidence": "망토를 두른 마법사형 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=wizarmon"
+    },
+    "지오그레이몬": {
+      "scale": 2,
+      "form": "공룡",
+      "evidence": "발달한 근육과 갑각을 가진 그레이몬 계열",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=geogreymon"
+    },
+    "캅테리몬": {
+      "scale": 1.55,
+      "form": "곤충",
+      "evidence": "뿔과 날개가 큰 딱정벌레형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=kabuterimon"
+    },
+    "코어드라몬(녹)": {
+      "scale": 1.72,
+      "form": "용",
+      "evidence": "강한 뒷다리와 비늘을 가진 용형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=coredramon_g"
+    },
+    "코어드라몬(청)": {
+      "scale": 1.7,
+      "form": "용",
+      "evidence": "발달한 날개와 비늘을 가진 용형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=coredramon_b"
+    },
+    "쿠가몬": {
+      "scale": 1.6,
+      "form": "곤충",
+      "evidence": "집게와 갑각이 발달한 곤충형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=kuwagamon"
+    },
+    "크리사리몬": {
+      "scale": 1.1,
+      "form": "특이형",
+      "evidence": "촉수와 단단한 껍질의 번데기형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=chrysalimon"
+    },
+    "토리에몬": {
+      "scale": 1.14,
+      "form": "수인",
+      "evidence": "긴 다리와 귀를 가진 토끼 수인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=turuiemon"
+    },
+    "티라노몬": {
+      "scale": 1.8,
+      "form": "공룡",
+      "evidence": "두꺼운 꼬리와 턱을 가진 공룡형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=tyranomon"
+    },
+    "펙크몬": {
+      "scale": 1.3,
+      "form": "조류",
+      "evidence": "긴 다리의 날지 못하는 조류형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=peckmon"
+    },
+    "프리지몬": {
+      "scale": 1.38,
+      "form": "짐승",
+      "evidence": "눈으로 이루어진 곰 같은 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=yukidarumon"
+    },
+    "필몬": {
+      "scale": 1.3,
+      "form": "짐승",
+      "evidence": "많은 가시를 가진 네발 짐승형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=filmon"
+    },
+    "해바라기몬": {
+      "scale": 1.2,
+      "form": "식물",
+      "evidence": "큰 꽃잎과 잎을 가진 해바라기형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=sunflowmon"
+    },
+    "황금아르마몬": {
+      "scale": 1.65,
+      "form": "공룡",
+      "evidence": "갑주와 꼬리 곤봉을 가진 곡룡형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=ankylomon"
+    },
+    "가루다몬": {
+      "scale": 1.95,
+      "form": "조류 수인",
+      "evidence": "큰 날개와 강한 다리의 조인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=garudamon"
+    },
+    "고래몬": {
+      "scale": 2.65,
+      "form": "거대 수생",
+      "evidence": "거대종 중에서도 손꼽히는 거대한 몸체",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=whamon"
+    },
+    "그라운드라몬": {
+      "scale": 2.15,
+      "form": "용",
+      "evidence": "거대한 등쪽 팔과 육중한 몸을 가진 지룡형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=groundramon"
+    },
+    "데이터몬": {
+      "scale": 0.42,
+      "form": "소형 기계",
+      "evidence": "공식 설명의 초소형 치료용 기계형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=nanomon"
+    },
+    "도루그레몬": {
+      "scale": 2.05,
+      "form": "짐승용",
+      "evidence": "거대한 체구의 짐승용형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=doruguremon"
+    },
+    "도사몬": {
+      "scale": 1.24,
+      "form": "인간형",
+      "evidence": "음양사의 모습을 한 수인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=taomon"
+    },
+    "디지타몬": {
+      "scale": 0.85,
+      "form": "소형 특이형",
+      "evidence": "알 껍데기에서 다리만 드러낸 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=digitamamon"
+    },
+    "라이즈그레이몬": {
+      "scale": 2.12,
+      "form": "공룡",
+      "evidence": "거대한 몸체를 기계화한 공룡형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=rizegreymon"
+    },
+    "라일라몬": {
+      "scale": 0.95,
+      "form": "인간형 식물",
+      "evidence": "꽃잎과 가느다란 팔다리의 요정형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=lilamon"
+    },
+    "래피드몬": {
+      "scale": 1.24,
+      "form": "수인 기계",
+      "evidence": "녹색 완전체의 날씬한 푸들형 체격",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=rapidmon"
+    },
+    "레이디데블몬": {
+      "scale": 1.23,
+      "form": "인간형",
+      "evidence": "날개와 긴 팔을 가진 여성형 악마",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=ladydevimon"
+    },
+    "로더레오몬": {
+      "scale": 1.8,
+      "form": "짐승 기계",
+      "evidence": "건설 기계와 같은 무거운 사자형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=loaderleomon"
+    },
+    "루체몬[폴다운]": {
+      "scale": 1.3,
+      "form": "인간형",
+      "evidence": "성인형 체격으로 변한 천사와 악마의 모습",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=rucemonfalldownmode"
+    },
+    "릴리몬": {
+      "scale": 0.78,
+      "form": "인간형 식물",
+      "evidence": "작은 소녀의 모습을 한 요정형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=lilimon"
+    },
+    "마하가오가몬": {
+      "scale": 1.52,
+      "form": "수인 기계",
+      "evidence": "추진기와 장갑을 두른 근육질 수인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=machgaogamon"
+    },
+    "메가드라몬": {
+      "scale": 2.05,
+      "form": "장신 용",
+      "evidence": "긴 몸통과 날개의 기계화된 용형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=megadramon"
+    },
+    "메가로그라우몬": {
+      "scale": 2.15,
+      "form": "공룡 기계",
+      "evidence": "이름처럼 거대해진 기계화 마룡형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=megalogrowmon"
+    },
+    "메가시드라몬": {
+      "scale": 2.14,
+      "form": "장신 수생",
+      "evidence": "시드라몬보다 크게 발달한 수생 용형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=megaseadramon"
+    },
+    "메탈그레이몬": {
+      "scale": 2.15,
+      "form": "공룡 기계",
+      "evidence": "백신형의 육중한 공룡 몸체와 기계 장갑",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=metalgreymon-v"
+    },
+    "메탈티라노몬": {
+      "scale": 2,
+      "form": "공룡 기계",
+      "evidence": "티라노몬을 기계화한 육중한 체형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=metaltyranomon"
+    },
+    "묘티스몬": {
+      "scale": 1.28,
+      "form": "인간형",
+      "evidence": "망토를 두른 흡혈귀형 인간 체격",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=vamdemon"
+    },
+    "블랙메가로그라우몬": {
+      "scale": 2.15,
+      "form": "공룡 기계",
+      "evidence": "메가로그라우몬과 같은 기계화 마룡 체격",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=blackmegalogrowmon"
+    },
+    "블루메라몬": {
+      "scale": 1.38,
+      "form": "인간형",
+      "evidence": "강화된 푸른 불꽃의 직립 체형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=bluemeramon"
+    },
+    "프린스콩알몬": {
+      "scale": 0.9,
+      "form": "소형 돌연변이형",
+      "evidence": "왕관과 왕실 장식을 갖춘 둥근 몸체. 프린스콩알몬 3D 모델의 비율.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=princemamemon"
+    },
+    "사이버드라몬": {
+      "scale": 1.47,
+      "form": "용인",
+      "evidence": "탄력 있는 갑옷을 두른 기존 용인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=cyberdramon"
+    },
+    "세이버헉몬": {
+      "scale": 1.45,
+      "form": "용",
+      "evidence": "성장한 몸과 칼날 사지의 용형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=saviorhuckmon"
+    },
+    "슈퍼스타몬": {
+      "scale": 0.95,
+      "form": "소형 특이형",
+      "evidence": "별 모양의 강화된 갑옷 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=superstarmon"
+    },
+    "스컬그레이몬": {
+      "scale": 2.1,
+      "form": "공룡",
+      "evidence": "거대한 뼈와 뿔로 이루어진 공룡형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=skullgreymon"
+    },
+    "스컬사탄몬": {
+      "scale": 1.25,
+      "form": "인간형",
+      "evidence": "마른 골격과 긴 팔다리의 악마형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=skullsatamon"
+    },
+    "실피드몬": {
+      "scale": 1.22,
+      "form": "수인",
+      "evidence": "새와 짐승의 특징이 결합한 수인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=silphymon"
+    },
+    "아트라캅테리몬": {
+      "scale": 2.08,
+      "form": "곤충",
+      "evidence": "캅테리몬보다 약 1.5배 큰 체구를 화면에 압축 반영",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=atlurkabuterimon"
+    },
+    "안티라몬": {
+      "scale": 1.58,
+      "form": "수인",
+      "evidence": "긴 팔다리를 가진 토끼 성수형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=andiramon_2"
+    },
+    "에어로브이드라몬": {
+      "scale": 1.9,
+      "form": "용",
+      "evidence": "브이드라몬보다 자란 몸체와 큰 날개",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=earov-dramon"
+    },
+    "에테몬": {
+      "scale": 1.2,
+      "form": "수인",
+      "evidence": "원숭이 봉제 인형을 닮은 직립 체격",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=etemon"
+    },
+    "엔젤우몬": {
+      "scale": 1.18,
+      "form": "인간형",
+      "evidence": "여성 모습을 한 천사형 체격",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=angewomon"
+    },
+    "오로치몬": {
+      "scale": 2.2,
+      "form": "장신 용",
+      "evidence": "여덟 머리를 가진 거대한 뱀형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=orochimon"
+    },
+    "왕개굴몬": {
+      "scale": 1.75,
+      "form": "수생",
+      "evidence": "개굴몬 계열보다 굵고 큰 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=tonosamagekomon"
+    },
+    "왕쿠가몬": {
+      "scale": 1.95,
+      "form": "곤충",
+      "evidence": "쿠가몬 계열에서 커진 갑각과 집게",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=okuwamon"
+    },
+    "워가루몬": {
+      "scale": 1.32,
+      "form": "수인",
+      "evidence": "가루몬에서 직립한 늑대 수인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=weregarrumon"
+    },
+    "워가루몬(흑)": {
+      "scale": 1.32,
+      "form": "수인",
+      "evidence": "워가루몬과 같은 직립 늑대 체격",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=weregarurumon_black"
+    },
+    "윙드라몬": {
+      "scale": 2,
+      "form": "용",
+      "evidence": "큰 날개와 튼튼한 몸의 천룡형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=wingdramon"
+    },
+    "인펠몬": {
+      "scale": 1.6,
+      "form": "특이형",
+      "evidence": "길게 뻗는 다리를 가진 거미형 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=infermon"
+    },
+    "쥬드몬": {
+      "scale": 1.9,
+      "form": "수인",
+      "evidence": "큰 갑각과 강한 상체의 해수형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=zudomon"
+    },
+    "쥬레이몬": {
+      "scale": 2.1,
+      "form": "식물",
+      "evidence": "우드몬에서 더욱 자란 오래된 거목형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=jyureimon"
+    },
+    "캐논벌몬": {
+      "scale": 2.12,
+      "form": "곤충 기계",
+      "evidence": "거대한 벌 형태의 기계화된 몸체",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=cannonbeemon"
+    },
+    "콩알몬": {
+      "scale": 0.4,
+      "form": "소형 특이형",
+      "evidence": "작은 몸체에 커다란 손을 가진 돌연변이형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=mamemon"
+    },
+    "트리케라몬": {
+      "scale": 1.95,
+      "form": "공룡",
+      "evidence": "세 뿔과 두꺼운 갑각의 공룡형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=triceramon"
+    },
+    "파일드라몬": {
+      "scale": 1.58,
+      "form": "용인",
+      "evidence": "용과 곤충의 특징이 결합한 직립 체격",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=paildramon"
+    },
+    "팬더몬": {
+      "scale": 1.28,
+      "form": "수인",
+      "evidence": "판다 봉제 인형을 닮은 체형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=pandamon"
+    },
+    "팬텀몬": {
+      "scale": 1.38,
+      "form": "인간형",
+      "evidence": "망토와 긴 팔을 가진 사신형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=fantomon"
+    },
+    "퍼펫몬": {
+      "scale": 1.4,
+      "form": "수인",
+      "evidence": "두껍고 둥근 곰 인형형 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=monzaemon"
+    },
+    "펌프몬": {
+      "scale": 0.86,
+      "form": "소형 수인",
+      "evidence": "호박 머리를 가진 봉제 인형형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=pumpmon"
+    },
+    "홀리엔젤몬": {
+      "scale": 1.27,
+      "form": "인간형",
+      "evidence": "여덟 날개와 갑옷의 천사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=holyangemon"
+    },
+    "화이트레오몬": {
+      "scale": 1.28,
+      "form": "수인",
+      "evidence": "얼음 갑주를 두른 직립 사자형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=panjyamon"
+    },
+    "히샤류우몬": {
+      "scale": 1.92,
+      "form": "장신 용",
+      "evidence": "공중을 헤엄치는 길고 큰 용형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=hisyaryumon"
+    },
+    "히포그리포몬": {
+      "scale": 1.7,
+      "form": "환수",
+      "evidence": "새와 짐승의 특징이 결합한 네발 환수형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=hippogriffomon"
+    },
+    "그랜쿠가몬": {
+      "scale": 2.22,
+      "form": "곤충",
+      "evidence": "발달한 집게와 큰 갑각의 곤충형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=grankuwagamon"
+    },
+    "넵튠몬": {
+      "scale": 1.45,
+      "form": "인간형",
+      "evidence": "갑옷을 두른 바다의 신인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=neptunemon"
+    },
+    "노블펌프몬": {
+      "scale": 1.32,
+      "form": "인간형",
+      "evidence": "신사처럼 직립한 호박 머리 체형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=noblepumpmon"
+    },
+    "듀나스몬": {
+      "scale": 1.7,
+      "form": "용인",
+      "evidence": "용의 힘을 가진 육중한 성기사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=dynasmon"
+    },
+    "듀크몬": {
+      "scale": 1.38,
+      "form": "인간형",
+      "evidence": "갑옷과 망토를 두른 성기사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=dukemon"
+    },
+    "디아블로몬": {
+      "scale": 1.8,
+      "form": "특이형",
+      "evidence": "매우 긴 팔과 다리를 가진 악마형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=diablomon"
+    },
+    "라센몬": {
+      "scale": 1.65,
+      "form": "짐승 수인",
+      "evidence": "나선 가시와 굵은 팔을 가진 수인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=rasenmon"
+    },
+    "러스트티라노몬": {
+      "scale": 2.4,
+      "form": "공룡 기계",
+      "evidence": "대형 기계화 공룡의 육중한 골격",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=rusttyranomon"
+    },
+    "레이브몬": {
+      "scale": 1.3,
+      "form": "인간형",
+      "evidence": "날개와 금속 깃털의 조인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=ravmon"
+    },
+    "로드나이트몬": {
+      "scale": 1.34,
+      "form": "인간형",
+      "evidence": "날씬한 갑옷의 성기사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=lordknightmon"
+    },
+    "로제몬": {
+      "scale": 1.13,
+      "form": "인간형 식물",
+      "evidence": "장미를 형상화한 여성형 요정",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=rosemon"
+    },
+    "로터스몬": {
+      "scale": 1.12,
+      "form": "인간형 식물",
+      "evidence": "연꽃을 형상화한 여성형 요정",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=lotusmon"
+    },
+    "리리스몬": {
+      "scale": 1.18,
+      "form": "인간형",
+      "evidence": "여성의 모습을 한 마왕형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=lilithmon"
+    },
+    "리바이어몬": {
+      "scale": 2.9,
+      "form": "거대 수생",
+      "evidence": "디지털 월드 최대급의 거대한 악어형 몸체",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=leviamon"
+    },
+    "마린엔젤몬": {
+      "scale": 0.36,
+      "form": "소형 요정",
+      "evidence": "애니메이션 공식 소개에서도 작은 궁극체로 묘사",
+      "basis": "anime-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=marinangemon",
+      "additionalReference": "https://www.toei-anim.co.jp/tv/digimon_t/chara/marineengemon.html"
+    },
+    "마스테몬": {
+      "scale": 1.35,
+      "form": "인간형",
+      "evidence": "천사와 악마가 융합한 여성형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=mastemon"
+    },
+    "마왕몬": {
+      "scale": 1.65,
+      "form": "인간형",
+      "evidence": "망토와 날개를 지닌 굵은 악마형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=demon"
+    },
+    "메탈가루몬": {
+      "scale": 1.55,
+      "form": "짐승 기계",
+      "evidence": "전신이 기계화된 네발 늑대형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=metalgarurumon"
+    },
+    "메탈시드라몬": {
+      "scale": 2.4,
+      "form": "장신 수생",
+      "evidence": "전신이 장갑으로 덮인 긴 수생 용형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=metalseadramon"
+    },
+    "메탈에테몬": {
+      "scale": 1.38,
+      "form": "수인 기계",
+      "evidence": "금속으로 강화된 원숭이형 체격",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=metaletemon"
+    },
+    "미네르바몬": {
+      "scale": 0.9,
+      "form": "인간형",
+      "evidence": "소녀 모습의 작은 체구를 가진 신인형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=minervamon"
+    },
+    "미라쥬가오가몬": {
+      "scale": 1.72,
+      "form": "수인 기계",
+      "evidence": "전신 갑옷과 긴 발톱의 수인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=miragegaogamon"
+    },
+    "바이킹몬": {
+      "scale": 1.9,
+      "form": "수인",
+      "evidence": "육중한 몸체와 털을 가진 바이킹형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=vikemon"
+    },
+    "반쵸릴리몬": {
+      "scale": 0.92,
+      "form": "인간형 식물",
+      "evidence": "릴리몬 계열의 작은 요정형 골격",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=bancholilimon"
+    },
+    "발두르몬": {
+      "scale": 2.4,
+      "form": "거대 조류",
+      "evidence": "공식 도감에서 매우 넓은 날개폭을 가진 거대 조류로 묘사",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=valdurmon"
+    },
+    "발키리몬": {
+      "scale": 1.38,
+      "form": "인간형",
+      "evidence": "날개와 갑옷을 두른 전사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=valkyrimon"
+    },
+    "베놈묘티스몬": {
+      "scale": 2.65,
+      "form": "거대 악마",
+      "evidence": "거대한 몸체의 흡혈 마수형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=venomvamdemon"
+    },
+    "베르제브몬": {
+      "scale": 1.28,
+      "form": "인간형",
+      "evidence": "가죽옷과 총기를 가진 직립 마왕형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=beelzebumon"
+    },
+    "베리얼묘티스몬": {
+      "scale": 2.08,
+      "form": "악마",
+      "evidence": "갑각과 큰 날개의 무거운 악마형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=belialvamdemon"
+    },
+    "벨페몬": {
+      "scale": 0.95,
+      "form": "짐승",
+      "evidence": "슬립 모드의 작고 둥근 짐승형 외형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=belphemonsleepmode"
+    },
+    "볼트몬": {
+      "scale": 1.55,
+      "form": "인간형",
+      "evidence": "두꺼운 근육과 기계 부품의 직립 체형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=boltmon"
+    },
+    "브레이크드라몬": {
+      "scale": 2.5,
+      "form": "거대 기계",
+      "evidence": "거대한 건설 기계의 몸체",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=breakdramon"
+    },
+    "블랙메탈가루몬": {
+      "scale": 1.55,
+      "form": "짐승 기계",
+      "evidence": "메탈가루몬과 같은 기본 골격의 검은 기계형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=metalgarurumon_black"
+    },
+    "블랙워그레이몬": {
+      "scale": 1.35,
+      "form": "용인",
+      "evidence": "워그레이몬과 같은 인간형 골격",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=blackwargreymon"
+    },
+    "블리츠그레이몬": {
+      "scale": 1.65,
+      "form": "용인 기계",
+      "evidence": "넓은 장갑과 화기를 장착한 그레이몬 계열",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=blitzgreymon"
+    },
+    "샤벨레오몬": {
+      "scale": 1.75,
+      "form": "짐승",
+      "evidence": "긴 송곳니와 갈기를 가진 네발 고대 짐승형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=saberleomon"
+    },
+    "샤인그레이몬": {
+      "scale": 1.85,
+      "form": "용인",
+      "evidence": "큰 날개와 긴 다리의 빛을 두른 용인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=shinegreymon"
+    },
+    "샤크라몬": {
+      "scale": 1.2,
+      "form": "인간형",
+      "evidence": "무녀를 닮은 여성형 신인 체격",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=sakuyamon"
+    },
+    "세라피몬": {
+      "scale": 1.43,
+      "form": "인간형",
+      "evidence": "열 날개와 전신 갑옷의 천사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=seraphimon"
+    },
+    "세인트가르고몬": {
+      "scale": 2.5,
+      "form": "거대 기계",
+      "evidence": "거대한 몸체와 무장을 가진 기계형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=saintgalgomon"
+    },
+    "슬레이어드라몬": {
+      "scale": 1.68,
+      "form": "용인",
+      "evidence": "전신 갑주와 날개의 용인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=slayerdramon"
+    },
+    "알파몬": {
+      "scale": 1.48,
+      "form": "인간형",
+      "evidence": "두꺼운 갑옷과 망토의 성기사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=alphamon"
+    },
+    "알포스브이드라몬": {
+      "scale": 1.5,
+      "form": "용인",
+      "evidence": "날씬한 장갑과 큰 날개의 성기사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=ulforcevdramon"
+    },
+    "오류우몬": {
+      "scale": 2.18,
+      "form": "장신 용",
+      "evidence": "전신 갑주를 두른 길고 큰 짐승용형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=ouryumon"
+    },
+    "오파니몬": {
+      "scale": 1.36,
+      "form": "인간형",
+      "evidence": "여성 모습과 전신 갑옷의 천사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=ofanimon"
+    },
+    "워그레이몬": {
+      "scale": 1.35,
+      "form": "용인",
+      "evidence": "거대한 그레이몬 계열과 달리 인간형으로 응축된 체격",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=wargreymon"
+    },
+    "제스몬": {
+      "scale": 1.58,
+      "form": "용인",
+      "evidence": "날렵한 갑주와 칼날 사지의 성기사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=jesmon"
+    },
+    "카오스듀크몬": {
+      "scale": 1.38,
+      "form": "인간형",
+      "evidence": "듀크몬과 같은 기본 성기사 골격",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=chaosdukemon"
+    },
+    "케루비몬(선)": {
+      "scale": 1.9,
+      "form": "짐승",
+      "evidence": "큰 귀와 넓은 몸통의 성수형 천사",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=cherubimon"
+    },
+    "케루비몬(악)": {
+      "scale": 1.9,
+      "form": "짐승",
+      "evidence": "케루비몬과 같은 큰 성수형 골격",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=cherubimon-vice"
+    },
+    "쿠즈하몬": {
+      "scale": 1.2,
+      "form": "인간형",
+      "evidence": "샤크라몬 계열의 여성형 신인 체격",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=kuzuhamon"
+    },
+    "크레니엄몬": {
+      "scale": 1.65,
+      "form": "인간형",
+      "evidence": "육중한 갑옷을 두른 성기사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=craniummon"
+    },
+    "크레스가루몬": {
+      "scale": 1.38,
+      "form": "수인",
+      "evidence": "가루몬 계열에서 직립한 갑옷의 짐승기사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=cresgarurumon"
+    },
+    "타이거베스파몬": {
+      "scale": 1.45,
+      "form": "인간형 곤충",
+      "evidence": "갑옷과 벌 날개를 가진 날씬한 사이보그형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=tigervespamon"
+    },
+    "타이타몬": {
+      "scale": 2.25,
+      "form": "거대 수인",
+      "evidence": "거대한 체구를 가진 전신형",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=titamon"
+    },
+    "택티몬": {
+      "scale": 1.55,
+      "form": "인간형",
+      "evidence": "긴 갑옷과 무장을 지닌 무사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=tactimon"
+    },
+    "파워드라몬": {
+      "scale": 2.38,
+      "form": "공룡 기계",
+      "evidence": "전신이 금속 기계로 된 육중한 용형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=mugendramon"
+    },
+    "플래티넘워매몬": {
+      "scale": 0.82,
+      "form": "소형 특이형",
+      "evidence": "워매몬 계열의 낮고 작은 몸체",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=platinumnumemon"
+    },
+    "플레시오몬": {
+      "scale": 2.35,
+      "form": "거대 수생",
+      "evidence": "긴 목과 큰 지느러미의 수장룡형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=plesiomon"
+    },
+    "피노키몬": {
+      "scale": 0.9,
+      "form": "소형 수인",
+      "evidence": "나무 인형을 닮은 짧은 팔다리 체형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=pinochimon"
+    },
+    "페닉스몬": {
+      "scale": 2.18,
+      "form": "거대 조류",
+      "evidence": "네 장의 큰 날개를 가진 성스러운 불새형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=hououmon"
+    },
+    "피에몬": {
+      "scale": 1.26,
+      "form": "인간형",
+      "evidence": "광대 모습을 한 직립 마인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=piemon"
+    },
+    "헤라클레스캅테리몬": {
+      "scale": 2.28,
+      "form": "곤충",
+      "evidence": "큰 갑각과 집게를 함께 가진 곤충형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=heraklekabuterimon"
+    },
+    "헤비레오몬": {
+      "scale": 2,
+      "form": "짐승 기계",
+      "evidence": "두꺼운 중장갑을 두른 무거운 사자형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=heavyleomon"
+    },
+    "두프트몬[레오파드]": {
+      "scale": 1.6,
+      "form": "짐승",
+      "evidence": "표범 형태로 변한 네발 성기사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=duftmonleopardmode"
+    },
+    "라센몬[격앙]": {
+      "scale": 1.85,
+      "form": "짐승",
+      "evidence": "여러 꼬리와 강한 팔을 지닌 격앙 형태",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=rasenmon_f"
+    },
+    "레이브몬[버스트]": {
+      "scale": 1.3,
+      "form": "인간형",
+      "evidence": "레이브몬의 몸체를 유지한 버스트 모드",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=ravmonburstmode"
+    },
+    "로제몬[버스트]": {
+      "scale": 1.13,
+      "form": "인간형 식물",
+      "evidence": "로제몬의 몸체를 유지한 버스트 모드",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=rosemonburstmode"
+    },
+    "루체몬[사탄]": {
+      "scale": 2.65,
+      "form": "거대 용",
+      "evidence": "거대한 용 형태의 최종 마왕 모습",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=lucemonsatanmode"
+    },
+    "미라쥬가오가몬[버스트]": {
+      "scale": 1.72,
+      "form": "수인 기계",
+      "evidence": "미라쥬가오가몬의 몸체를 유지한 버스트 모드",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=miragegaogamon:burstmode"
+    },
+    "벨페몬[레이지]": {
+      "scale": 2.5,
+      "form": "거대 짐승",
+      "evidence": "잠에서 깨어 거대해진 분노 형태",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=belphemonragemode"
+    },
+    "샤인그레이몬[루인]": {
+      "scale": 1.85,
+      "form": "용인",
+      "evidence": "샤인그레이몬의 골격을 유지한 어둠의 형태",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=shinegreymon_ruin"
+    },
+    "샤인그레이몬[버스트]": {
+      "scale": 1.85,
+      "form": "용인",
+      "evidence": "샤인그레이몬의 골격을 유지한 버스트 모드",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=shinegreymonburstmode"
+    },
+    "아마게몬": {
+      "scale": 2.65,
+      "form": "거대 특이형",
+      "evidence": "긴 몸체와 굵은 사지를 가진 거대 합성형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=armagemon"
+    },
+    "알파몬[왕룡검]": {
+      "scale": 1.48,
+      "form": "인간형",
+      "evidence": "왕룡검을 장착해도 알파몬의 본체 체격 유지",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=alphamon:ouryuken"
+    },
+    "엑자몬": {
+      "scale": 2.8,
+      "form": "거대 용",
+      "evidence": "막대한 데이터를 지닌 거체와 큰 날개의 용제",
+      "basis": "explicit-size",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=examon"
+    },
+    "오메가몬": {
+      "scale": 1.65,
+      "form": "인간형",
+      "evidence": "두 디지몬의 특징을 합친 성기사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=omegamon"
+    },
+    "오메가몬[알터-S]": {
+      "scale": 1.7,
+      "form": "인간형",
+      "evidence": "다른 무장과 장갑을 가진 오메가몬 계열",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=omegamon-alter-s"
+    },
+    "오메가몬[즈왈트]": {
+      "scale": 1.65,
+      "form": "인간형",
+      "evidence": "오메가몬과 같은 기본 골격의 검은 성기사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=omegamon_zwart"
+    },
+    "오파니몬[폴다운]": {
+      "scale": 1.36,
+      "form": "인간형",
+      "evidence": "오파니몬의 여성형 천사 골격을 유지한 형태",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=ofanimonfalldownmode"
+    },
+    "황제드라몬[파이터]": {
+      "scale": 2.1,
+      "form": "용인",
+      "evidence": "용형에서 직립 전사형으로 변한 큰 체격",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=imperialdramonfightermode"
+    },
+    "황제드라몬[팔라딘]": {
+      "scale": 2.1,
+      "form": "용인",
+      "evidence": "파이터 모드의 본체 체격을 유지한 성기사 형태",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=imperialdramonpaladinmode"
+    },
+    "가무드라몬": {
+      "scale": 0.67,
+      "form": "Small Dragon",
+      "evidence": "Small Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=gumdramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304011/"
+    },
+    "쟈자몬": {
+      "scale": 0.68,
+      "form": "Bird Dragon",
+      "evidence": "Bird Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=jazamon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/312124/"
+    },
+    "샤우트몬": {
+      "scale": 0.72,
+      "form": "Small Dragon",
+      "evidence": "Small Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=shoutmon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324498/"
+    },
+    "황금톱니몬": {
+      "scale": 0.6,
+      "form": "Machine",
+      "evidence": "Machine 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=solarmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304034/"
+    },
+    "보보몬": {
+      "scale": 0.64,
+      "form": "Rock Dragon",
+      "evidence": "Rock Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=vorvomon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304075/"
+    },
+    "즈바몬": {
+      "scale": 0.68,
+      "form": "Weapon",
+      "evidence": "Weapon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=zubamon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304211/"
+    },
+    "타임몬": {
+      "scale": 0.95,
+      "form": "Machine",
+      "evidence": "Machine 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=clockmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304101/"
+    },
+    "사이크로몬": {
+      "scale": 1.45,
+      "form": "Dragon Man",
+      "evidence": "Dragon Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=cyclomon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304189/"
+    },
+    "골드워매몬": {
+      "scale": 0.64,
+      "form": "Mutation",
+      "evidence": "Mutation 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=goldnumemon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304056/"
+    },
+    "쟈자드몬": {
+      "scale": 1.27,
+      "form": "Machine Dragon",
+      "evidence": "Machine Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=jazardmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/312125/"
+    },
+    "라보보몬": {
+      "scale": 1.42,
+      "form": "Rock Dragon",
+      "evidence": "Rock Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=lavorvomon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304062/"
+    },
+    "메이쿠몬": {
+      "scale": 0.74,
+      "form": "Unknown",
+      "evidence": "Unknown 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=meicoomon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/324495/"
+    },
+    "모야몬": {
+      "scale": 0.77,
+      "form": "Invade",
+      "evidence": "Invade 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=nanimon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304113/"
+    },
+    "달팽이워매몬": {
+      "scale": 0.7,
+      "form": "Crustacean",
+      "evidence": "Crustacean 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digi-api.com/api/v1/digimon/257",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304193/"
+    },
+    "소서리몬": {
+      "scale": 1.04,
+      "form": "Demon Man",
+      "evidence": "Demon Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=sorcerimon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304221/"
+    },
+    "즈바이거몬": {
+      "scale": 1.04,
+      "form": "Weapon",
+      "evidence": "Weapon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=zubaeagermon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/305407/"
+    },
+    "안드로몬": {
+      "scale": 1.52,
+      "form": "Cyborg",
+      "evidence": "Cyborg 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=andromon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/302503/"
+    },
+    "블랙킹워매몬": {
+      "scale": 0.87,
+      "form": "Mollusk",
+      "evidence": "Mollusk 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=blackkingnumemon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304213/"
+    },
+    "듀라몬": {
+      "scale": 1.55,
+      "form": "Weapon",
+      "evidence": "Weapon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=duramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/305408/"
+    },
+    "기가드라몬": {
+      "scale": 1.9,
+      "form": "Cyborg",
+      "evidence": "Cyborg 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=gigadramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304129/"
+    },
+    "아이언레오몬": {
+      "scale": 1.38,
+      "form": "Beast Man",
+      "evidence": "Beast Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=grappuleomon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304130/"
+    },
+    "쟈자리히몬": {
+      "scale": 1.8,
+      "form": "Machine Dragon",
+      "evidence": "Machine Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=jazarichmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/312126/"
+    },
+    "키메라몬": {
+      "scale": 2.15,
+      "form": "Composite",
+      "evidence": "Composite 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=chimairamon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304060/"
+    },
+    "라보가리타몬": {
+      "scale": 1.86,
+      "form": "Rock Dragon",
+      "evidence": "Rock Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=lavogaritamon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304063/"
+    },
+    "메이크랙몬[비셔스]": {
+      "scale": 1.27,
+      "form": "Unknown",
+      "evidence": "Unknown 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=meicrackmon_v",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/302507/"
+    },
+    "메탈콩알몬": {
+      "scale": 0.51,
+      "form": "Cyborg",
+      "evidence": "Cyborg 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=metalmamemon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304155/"
+    },
+    "피콜몬": {
+      "scale": 0.45,
+      "form": "Fairy",
+      "evidence": "Fairy 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=picklemon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304133/"
+    },
+    "데드메라몬": {
+      "scale": 1.6,
+      "form": "Flame",
+      "evidence": "Flame 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=deathmeramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304135/"
+    },
+    "베이더몬": {
+      "scale": 1.15,
+      "form": "Space Alien",
+      "evidence": "Space Alien 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=vademon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304157/"
+    },
+    "에이션트가루몬": {
+      "scale": 2.05,
+      "form": "Ancient Beast",
+      "evidence": "Ancient Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=ancientgarurumon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/308035/"
+    },
+    "에이션트그레이몬": {
+      "scale": 2.45,
+      "form": "Ancient Dragon",
+      "evidence": "Ancient Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=ancientgreymon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304639/"
+    },
+    "아포카리몬": {
+      "scale": 2.8,
+      "form": "Species Unknown",
+      "evidence": "Species Unknown 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=apoclymon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324555/"
+    },
+    "아레스타드라몬": {
+      "scale": 1.45,
+      "form": "Dragon",
+      "evidence": "Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=arresterdramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/324496/"
+    },
+    "반쵸레오몬": {
+      "scale": 1.65,
+      "form": "Beast Man",
+      "evidence": "Beast Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=bancholeomon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/303998/"
+    },
+    "발바몬": {
+      "scale": 1.62,
+      "form": "Demon Lord",
+      "evidence": "Demon Lord 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=barbamon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/303999/"
+    },
+    "베르제브몬[X항체]": {
+      "scale": 1.69,
+      "form": "Demon Lord",
+      "evidence": "Demon Lord 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=beelzebumon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/308179/"
+    },
+    "카오스드라몬": {
+      "scale": 2.5,
+      "form": "Machine",
+      "evidence": "Machine 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=chaosdramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304160/"
+    },
+    "크레니엄몬[X항체]": {
+      "scale": 1.88,
+      "form": "Holy Knight",
+      "evidence": "Holy Knight 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=craniummon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327693/"
+    },
+    "듀란다몬": {
+      "scale": 1.96,
+      "form": "Holy Sword",
+      "evidence": "Holy Sword 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=durandamon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/305409/"
+    },
+    "듀나스몬[X항체]": {
+      "scale": 2.04,
+      "form": "Holy Knight",
+      "evidence": "Holy Knight 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=dynasmon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327695/"
+    },
+    "이바몬": {
+      "scale": 1.36,
+      "form": "Cyborg",
+      "evidence": "Cyborg 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=ebemon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304190/"
+    },
+    "듀크몬[X항체]": {
+      "scale": 1.74,
+      "form": "Holy Knight",
+      "evidence": "Holy Knight 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=dukemon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304490/"
+    },
+    "간쿠몬": {
+      "scale": 1.7,
+      "form": "Holy Knight",
+      "evidence": "Holy Knight 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=gankoomon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304201/"
+    },
+    "그랜드로코몬": {
+      "scale": 2.43,
+      "form": "Machine",
+      "evidence": "Machine 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=grandlocomon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304203/"
+    },
+    "하이안드로몬": {
+      "scale": 1.65,
+      "form": "Cyborg",
+      "evidence": "Cyborg 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=hiandromon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304162/"
+    },
+    "제스몬[X항체]": {
+      "scale": 1.84,
+      "form": "Holy Knight",
+      "evidence": "Holy Knight 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=jesmon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/311328/"
+    },
+    "할배몬": {
+      "scale": 0.89,
+      "form": "Ancient",
+      "evidence": "Ancient 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=jijimon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304224/"
+    },
+    "킹에테몬": {
+      "scale": 1.43,
+      "form": "Puppet",
+      "evidence": "Puppet 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=kingetemon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304489/"
+    },
+    "홀리드라몬": {
+      "scale": 2.18,
+      "form": "Holy Dragon",
+      "evidence": "Holy Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=holydramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304191/"
+    },
+    "메탈가루몬[X항체]": {
+      "scale": 1.81,
+      "form": "Cyborg",
+      "evidence": "Cyborg 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=metalgarurumon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304069/"
+    },
+    "메탈릭드라몬": {
+      "scale": 2.22,
+      "form": "Sky Dragon",
+      "evidence": "Sky Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=metallicdramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/312127/"
+    },
+    "밀레니엄몬": {
+      "scale": 2.58,
+      "form": "Composite",
+      "evidence": "Composite 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=millenniumon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304071/"
+    },
+    "오메가몬[알터-B]": {
+      "scale": 2.1,
+      "form": "Holy Knight",
+      "evidence": "Holy Knight 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=omegamon_alter-b",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304226/"
+    },
+    "오메가몬[머시풀]": {
+      "scale": 2.12,
+      "form": "Holy Knight",
+      "evidence": "Holy Knight 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=omegamon_merciful",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327715/"
+    },
+    "오메가몬[X항체]": {
+      "scale": 2.08,
+      "form": "Holy Knight",
+      "evidence": "Holy Knight 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=omegamon-x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/305434/"
+    },
+    "오메가몬[즈왈트-D]": {
+      "scale": 2.06,
+      "form": "Holy Knight",
+      "evidence": "Holy Knight 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=omegamonzwart_d",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304227/"
+    },
+    "라구엘몬": {
+      "scale": 1.86,
+      "form": "Unknown",
+      "evidence": "Unknown 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=raguelmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304618/"
+    },
+    "스사노오몬": {
+      "scale": 2.22,
+      "form": "God Man",
+      "evidence": "God Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=susanoomon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304225/"
+    },
+    "알포스브이드라몬[X항체]": {
+      "scale": 1.85,
+      "form": "Holy Knight",
+      "evidence": "Holy Knight 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=ulforcevdramon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/305922/"
+    },
+    "볼케닉드라몬": {
+      "scale": 2.3,
+      "form": "Earth Dragon",
+      "evidence": "Earth Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=volcanicdramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304039/"
+    },
+    "워그레이몬[X항체]": {
+      "scale": 1.85,
+      "form": "Dragon Man",
+      "evidence": "Dragon Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=wargreymon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304076/"
+    },
+    "블랙워그레이몬[X항체]": {
+      "scale": 1.85,
+      "form": "Dragon Man",
+      "evidence": "Dragon Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=blackwargreymon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304076/"
+    },
+    "매그너몬": {
+      "scale": 1.03,
+      "form": "Holy Knight",
+      "evidence": "Holy Knight 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=magnamon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304228/"
+    },
+    "매그너몬[X항체]": {
+      "scale": 1.28,
+      "form": "Holy Knight",
+      "evidence": "Holy Knight 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=magnamon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/305406/"
+    },
+    "래피드몬[아머]": {
+      "scale": 1.18,
+      "form": "Holy Knight",
+      "evidence": "Holy Knight 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=rapidmon_gold",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/311329/"
+    },
+    "꼬마몬": {
+      "scale": 0.42,
+      "form": "Baby Dragon",
+      "evidence": "Baby Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=chibimon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327401/"
+    },
+    "베어몬": {
+      "scale": 0.76,
+      "form": "Beast",
+      "evidence": "Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=bearmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327408/"
+    },
+    "에리스몬": {
+      "scale": 0.67,
+      "form": "Mammal",
+      "evidence": "Mammal 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=herissmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327410/"
+    },
+    "레드펭귄몬": {
+      "scale": 0.65,
+      "form": "Bird",
+      "evidence": "Bird 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=muchomon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327412/"
+    },
+    "테이파몬": {
+      "scale": 0.64,
+      "form": "Holy Beast",
+      "evidence": "Holy Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=bakumon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327413/"
+    },
+    "토이아구몬": {
+      "scale": 0.64,
+      "form": "Puppet",
+      "evidence": "Puppet 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=toyagumon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324604/"
+    },
+    "토이아구몬(흑)": {
+      "scale": 0.64,
+      "form": "Puppet",
+      "evidence": "Puppet 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=toyagumon_black",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327414/"
+    },
+    "레드꼬끼몬": {
+      "scale": 1,
+      "form": "Giant Bird",
+      "evidence": "Giant Bird 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=akatorimon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327416/"
+    },
+    "다이노휴몬": {
+      "scale": 1.34,
+      "form": "Dragon Man",
+      "evidence": "Dragon Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=dinohumon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327418/"
+    },
+    "그리즈몬": {
+      "scale": 1.38,
+      "form": "Beast",
+      "evidence": "Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=gryzmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327421/"
+    },
+    "오메카몬": {
+      "scale": 0.93,
+      "form": "Puppet",
+      "evidence": "Puppet 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=omekamon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327422/"
+    },
+    "탱크몬": {
+      "scale": 1.14,
+      "form": "Cyborg",
+      "evidence": "Cyborg 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=tankmon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324287/"
+    },
+    "태스크몬": {
+      "scale": 1.53,
+      "form": "Dinosaur",
+      "evidence": "Dinosaur 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=tuskmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327423/"
+    },
+    "아르고몬[완전체]": {
+      "scale": 1.82,
+      "form": "Mutation",
+      "evidence": "Mutation 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=algomon-ultimate",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327424/"
+    },
+    "챠츠라몬": {
+      "scale": 1.43,
+      "form": "Holy Beast",
+      "evidence": "Holy Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=caturamon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327425/"
+    },
+    "인다라몬": {
+      "scale": 1.82,
+      "form": "Holy Beast",
+      "evidence": "Holy Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=indaramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327426/"
+    },
+    "굼비라몬": {
+      "scale": 0.51,
+      "form": "Holy Beast",
+      "evidence": "Holy Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=kumbhiramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327427/"
+    },
+    "마지라몬": {
+      "scale": 2.06,
+      "form": "Holy Dragon",
+      "evidence": "Holy Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=majiramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327429/"
+    },
+    "마쿠라몬": {
+      "scale": 1.2,
+      "form": "Holy Beast",
+      "evidence": "Holy Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=makuramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327430/"
+    },
+    "데블시드라몬": {
+      "scale": 1.65,
+      "form": "Aquatic",
+      "evidence": "Aquatic 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=waruseadramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327438/"
+    },
+    "메이크랙몬": {
+      "scale": 1.27,
+      "form": "Beast Man",
+      "evidence": "Beast Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=meicrackmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327432/"
+    },
+    "메피스몬": {
+      "scale": 1.52,
+      "form": "Fallen Angel",
+      "evidence": "Fallen Angel 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=mephismon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327433/"
+    },
+    "미히라몬": {
+      "scale": 1.72,
+      "form": "Holy Beast",
+      "evidence": "Holy Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=mihiramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327434/"
+    },
+    "파지라몬": {
+      "scale": 1.61,
+      "form": "Holy Beast",
+      "evidence": "Holy Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=pajiramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327436/"
+    },
+    "산티라몬": {
+      "scale": 1.85,
+      "form": "Holy Beast",
+      "evidence": "Holy Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=sandiramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327437/"
+    },
+    "신드라몬": {
+      "scale": 1.13,
+      "form": "Holy Bird",
+      "evidence": "Holy Bird 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=sinduramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327439/"
+    },
+    "스티필몬": {
+      "scale": 1.48,
+      "form": "Beast Man",
+      "evidence": "Beast Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=stiffilmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327440/"
+    },
+    "바지라몬": {
+      "scale": 1.66,
+      "form": "Holy Beast",
+      "evidence": "Holy Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=vajramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327441/"
+    },
+    "비가라몬": {
+      "scale": 1.96,
+      "form": "Holy Beast",
+      "evidence": "Holy Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=vikaralamon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327442/"
+    },
+    "아르고몬": {
+      "scale": 2.2,
+      "form": "Mutation",
+      "evidence": "Mutation 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=algomon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327444/"
+    },
+    "청룡몬": {
+      "scale": 2.62,
+      "form": "Holy Dragon",
+      "evidence": "Holy Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=qinglongmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327445/"
+    },
+    "백호몬": {
+      "scale": 2.28,
+      "form": "Holy Beast",
+      "evidence": "Holy Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=baihumon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327446/"
+    },
+    "반쵸록몬": {
+      "scale": 2,
+      "form": "Mineral",
+      "evidence": "Mineral 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=banchogolemon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327447/"
+    },
+    "반쵸스팅몬": {
+      "scale": 1.83,
+      "form": "Insect",
+      "evidence": "Insect 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=banchostingmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327449/"
+    },
+    "현무몬": {
+      "scale": 2.54,
+      "form": "Holy Beast",
+      "evidence": "Holy Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=xuanwumon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327450/"
+    },
+    "가르프몬": {
+      "scale": 2.36,
+      "form": "Demon Beast",
+      "evidence": "Demon Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=gulfmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327676/"
+    },
+    "황룡몬": {
+      "scale": 2.93,
+      "form": "God Beast",
+      "evidence": "God Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=huanglongmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327452/"
+    },
+    "러블리엔젤몬": {
+      "scale": 1.3,
+      "form": "Warrior",
+      "evidence": "Warrior 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=lovelyangemon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327455/"
+    },
+    "미타마몬": {
+      "scale": 1.67,
+      "form": "God Beast",
+      "evidence": "God Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=mitamamon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327457/"
+    },
+    "라지엘몬": {
+      "scale": 1.72,
+      "form": "Ophan",
+      "evidence": "Ophan 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=rasielmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327460/"
+    },
+    "가이오몬[엄도의형]": {
+      "scale": 1.85,
+      "form": "Dragon Man",
+      "evidence": "Dragon Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=gaioumon_itto",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327462/"
+    },
+    "주작몬": {
+      "scale": 2.43,
+      "form": "Holy Bird",
+      "evidence": "Holy Bird 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=zhuqiaomon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327463/"
+    },
+    "아구몬[용기의유대]": {
+      "scale": 1.86,
+      "form": "Unknown",
+      "evidence": "Unknown 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=agumon_kizuna",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327464/"
+    },
+    "파피몬[우정의유대]": {
+      "scale": 1.94,
+      "form": "Unknown",
+      "evidence": "Unknown 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=gabumon_kizuna",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327465/"
+    },
+    "듀크몬[크림슨]": {
+      "scale": 1.91,
+      "form": "Holy Knight",
+      "evidence": "Holy Knight 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=dukemoncrimsonmode",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327719/"
+    },
+    "멧돼지몬": {
+      "scale": 1.09,
+      "form": "Mammal",
+      "evidence": "Mammal 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=boarmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327466/"
+    },
+    "황소몬": {
+      "scale": 1.24,
+      "form": "Mammal",
+      "evidence": "Mammal 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=bullmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327467/"
+    },
+    "골드브이드라몬": {
+      "scale": 1.28,
+      "form": "Mythical Dragon",
+      "evidence": "Mythical Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=goldv-dramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327468/"
+    },
+    "링스몬": {
+      "scale": 1.06,
+      "form": "Beast",
+      "evidence": "Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=lynxmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327469/"
+    },
+    "토토몬": {
+      "scale": 0.85,
+      "form": "Beast",
+      "evidence": "Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=opossummon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327470/"
+    },
+    "프라리몬": {
+      "scale": 0.82,
+      "form": "Beast",
+      "evidence": "Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=prairiemon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327471/"
+    },
+    "백사몬": {
+      "scale": 1.26,
+      "form": "Mythical Beast",
+      "evidence": "Mythical Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=quetzalmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327472/"
+    },
+    "비트몬": {
+      "scale": 0.79,
+      "form": "Mammal",
+      "evidence": "Mammal 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=bitmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327473/"
+    },
+    "번개드라몬": {
+      "scale": 1.17,
+      "form": "Beast",
+      "evidence": "Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=lighdramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327474/"
+    },
+    "사수몬": {
+      "scale": 1.53,
+      "form": "Mythical Beast",
+      "evidence": "Mythical Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=sagittarimon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327475/"
+    },
+    "시프몬": {
+      "scale": 0.92,
+      "form": "Mammal",
+      "evidence": "Mammal 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=sheepmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327476/"
+    },
+    "백조몬": {
+      "scale": 1.12,
+      "form": "Bird",
+      "evidence": "Bird 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=swanmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327477/"
+    },
+    "알카디몬[유년기]": {
+      "scale": 0.42,
+      "form": "Unknown",
+      "evidence": "Unknown 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digi-api.com/api/v1/digimon/270",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324341/"
+    },
+    "알카디몬[성장기]": {
+      "scale": 0.75,
+      "form": "Bewitching Beast",
+      "evidence": "Bewitching Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=arkadimon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324342/"
+    },
+    "츄몬": {
+      "scale": 0.47,
+      "form": "Beast",
+      "evidence": "Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=tyumon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324321/"
+    },
+    "루나몬": {
+      "scale": 0.68,
+      "form": "Mammal",
+      "evidence": "Mammal 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=lunamon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324275/"
+    },
+    "머슈몬": {
+      "scale": 0.64,
+      "form": "Plant",
+      "evidence": "Plant 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=mushmon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324286/"
+    },
+    "시스터몬 블랑": {
+      "scale": 0.88,
+      "form": "Puppet",
+      "evidence": "Puppet 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=sistermonblanc",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324397/"
+    },
+    "시스터몬 블랑[각성]": {
+      "scale": 0.94,
+      "form": "Puppet",
+      "evidence": "Puppet 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=sistermon_blanc_Awake",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324398/"
+    },
+    "아그니몬": {
+      "scale": 1.23,
+      "form": "Demon Man",
+      "evidence": "Demon Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=agnimon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/331596/"
+    },
+    "알카디몬[성숙기]": {
+      "scale": 1.4,
+      "form": "Bewitching Beast",
+      "evidence": "Bewitching Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digi-api.com/api/v1/digimon/417",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324343/"
+    },
+    "실리컨몬": {
+      "scale": 1.15,
+      "form": "Ancient Fish",
+      "evidence": "Ancient Fish 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=coelamon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324280/"
+    },
+    "머드프리지몬": {
+      "scale": 1.12,
+      "form": "Unknown",
+      "evidence": "Unknown 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=tuchidarumon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/335815/"
+    },
+    "록몬": {
+      "scale": 1.48,
+      "form": "Mineral",
+      "evidence": "Mineral 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=golemon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324338/"
+    },
+    "그레이몬(청)": {
+      "scale": 1.51,
+      "form": "Dinosaur",
+      "evidence": "Dinosaur 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=greymon_blue",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304043/"
+    },
+    "후디에몬": {
+      "scale": 1.05,
+      "form": "Insect",
+      "evidence": "Insect 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=hudiemon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324324/"
+    },
+    "레키스몬": {
+      "scale": 1.08,
+      "form": "Beast Man",
+      "evidence": "Beast Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=lekismon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324276/"
+    },
+    "볼프몬": {
+      "scale": 1.28,
+      "form": "Warrior",
+      "evidence": "Warrior 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=wolfmon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/331599/"
+    },
+    "라프타드라몬": {
+      "scale": 1.43,
+      "form": "Cyborg",
+      "evidence": "Cyborg 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=raptordramon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324414/"
+    },
+    "레어몬": {
+      "scale": 1.18,
+      "form": "Undead",
+      "evidence": "Undead 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=raremon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324285/"
+    },
+    "상굴몬": {
+      "scale": 1.29,
+      "form": "Demon Beast",
+      "evidence": "Demon Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=sangloupmon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324415/"
+    },
+    "시스터몬 느와르": {
+      "scale": 1.16,
+      "form": "Puppet",
+      "evidence": "Puppet 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=sistermonnoir",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324401/"
+    },
+    "시스터몬 느와르[각성]": {
+      "scale": 1.23,
+      "form": "Puppet",
+      "evidence": "Puppet 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=sistermon_noir_Awake",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324402/"
+    },
+    "유니몬": {
+      "scale": 1.23,
+      "form": "Mythical Beast",
+      "evidence": "Mythical Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=yunimon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324282/"
+    },
+    "알카디몬[완전체]": {
+      "scale": 1.95,
+      "form": "Bewitching Beast",
+      "evidence": "Bewitching Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digi-api.com/api/v1/digimon/418",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324344/"
+    },
+    "브리트라몬": {
+      "scale": 1.8,
+      "form": "Demon Dragon",
+      "evidence": "Demon Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=vritramon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/331595/"
+    },
+    "캐치콩알몬": {
+      "scale": 0.65,
+      "form": "Mutation",
+      "evidence": "Mutation 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=catchmamemon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324323/"
+    },
+    "치린몬": {
+      "scale": 1.58,
+      "form": "Holy Beast",
+      "evidence": "Holy Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=tyilinmon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324409/"
+    },
+    "크레세몬": {
+      "scale": 1.4,
+      "form": "Demon Man",
+      "evidence": "Demon Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=crescemon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324277/"
+    },
+    "야타가라몬": {
+      "scale": 1.59,
+      "form": "Bewitching Bird",
+      "evidence": "Bewitching Bird 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=yatagaramon_axcel",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324565/"
+    },
+    "다이노몬": {
+      "scale": 1.45,
+      "form": "Mutation",
+      "evidence": "Mutation 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=dinobeemon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324394/"
+    },
+    "드라고몬": {
+      "scale": 1.7,
+      "form": "Aquatic Beast Man",
+      "evidence": "Aquatic Beast Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=dagomon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324274/"
+    },
+    "그레이드몬": {
+      "scale": 1.49,
+      "form": "Warrior",
+      "evidence": "Warrior 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=grademon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324410/"
+    },
+    "가름몬": {
+      "scale": 1.52,
+      "form": "Cyborg",
+      "evidence": "Cyborg 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=garummon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/331598/"
+    },
+    "나이트몬": {
+      "scale": 1.78,
+      "form": "Warrior",
+      "evidence": "Warrior 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=knightmon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324569/"
+    },
+    "마타돌몬": {
+      "scale": 1.45,
+      "form": "Undead",
+      "evidence": "Undead 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=matadrmon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324412/"
+    },
+    "토우몬": {
+      "scale": 1.55,
+      "form": "Mutation",
+      "evidence": "Mutation 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=shakkoumon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324573/"
+    },
+    "볼케몬": {
+      "scale": 1.61,
+      "form": "Cyborg",
+      "evidence": "Cyborg 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=volcamon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324352/"
+    },
+    "알카디몬": {
+      "scale": 2.43,
+      "form": "Bewitching Beast",
+      "evidence": "Bewitching Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digi-api.com/api/v1/digimon/419",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324345/"
+    },
+    "디아나몬": {
+      "scale": 1.64,
+      "form": "God Man",
+      "evidence": "God Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=dianamon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324278/"
+    },
+    "도루고라몬": {
+      "scale": 2.12,
+      "form": "Beast Dragon",
+      "evidence": "Beast Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=dorugoramon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324393/"
+    },
+    "카이젤그레이몬": {
+      "scale": 1.97,
+      "form": "Dragon Warrior",
+      "evidence": "Dragon Warrior 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=kaisergreymon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/331594/"
+    },
+    "갓드라몬": {
+      "scale": 2.16,
+      "form": "Holy Dragon",
+      "evidence": "Holy Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=goddramon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324339/"
+    },
+    "그란드라큐몬": {
+      "scale": 2.12,
+      "form": "Demon Beast",
+      "evidence": "Demon Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=granddracumon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324416/"
+    },
+    "그리포몬": {
+      "scale": 1.91,
+      "form": "Mythical Beast",
+      "evidence": "Mythical Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=griffomon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324417/"
+    },
+    "저스티몬": {
+      "scale": 1.54,
+      "form": "Cyborg",
+      "evidence": "Cyborg 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=justimon_blitzarm",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324579/"
+    },
+    "슬레이프몬": {
+      "scale": 1.85,
+      "form": "Holy Knight",
+      "evidence": "Holy Knight 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=sleipmon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324418/"
+    },
+    "메기드라몬": {
+      "scale": 2.25,
+      "form": "Evil Dragon",
+      "evidence": "Evil Dragon 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=megidramon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324340/"
+    },
+    "메르크리몬": {
+      "scale": 1.7,
+      "form": "God Man",
+      "evidence": "God Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=mercurymon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324419/"
+    },
+    "파일볼케몬": {
+      "scale": 1.82,
+      "form": "Cyborg",
+      "evidence": "Cyborg 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=pilevolcamon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324353/"
+    },
+    "가이오몬": {
+      "scale": 1.8,
+      "form": "Dragon Man",
+      "evidence": "Dragon Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=gaioumon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324582/"
+    },
+    "타이런트캅테리몬": {
+      "scale": 2.31,
+      "form": "Insect",
+      "evidence": "Insect 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=tyrantkabuterimon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324583/"
+    },
+    "알카디몬[초궁극체]": {
+      "scale": 2.9,
+      "form": "Bewitching Beast",
+      "evidence": "Bewitching Beast 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digi-api.com/api/v1/digimon/639",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324273/"
+    },
+    "카오스몬": {
+      "scale": 2.02,
+      "form": "Unique",
+      "evidence": "Unique 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=chaosmon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324508/"
+    },
+    "카오스몬[발두르암]": {
+      "scale": 2.02,
+      "form": "Unique",
+      "evidence": "Unique 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=chaosmonvaldurarm",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324508/"
+    },
+    "화염드라몬": {
+      "scale": 1.01,
+      "form": "Dragon Man",
+      "evidence": "Dragon Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=fladramon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324497/"
+    },
+    "오메가샤우트몬": {
+      "scale": 1.7,
+      "form": "Dragon Man",
+      "evidence": "Dragon Man 체형과 해당 3D 모델의 몸통·사지·날개 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=omegashoutmon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324541/"
+    },
+    "가드로몬(골드)": {
+      "scale": 1.3,
+      "form": "Machine",
+      "evidence": "Machine 체형과 해당 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digi-api.com/api/v1/digimon/1200",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324628/"
+    },
+    "아이스데블몬": {
+      "scale": 1.6,
+      "form": "Fallen Angel",
+      "evidence": "Fallen Angel 체형과 해당 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=icedevimon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/326172/"
+    },
+    "아트라캅테리몬(청)": {
+      "scale": 2,
+      "form": "Insectoid",
+      "evidence": "Insectoid 체형과 해당 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digi-api.com/api/v1/digimon/40",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327431/"
+    },
+    "두프트몬": {
+      "scale": 1.5,
+      "form": "Holy Knight",
+      "evidence": "Holy Knight 체형과 해당 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=duftmon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324487/"
+    },
+    "매그너가루몬[SV]": {
+      "scale": 1.6,
+      "form": "Warrior",
+      "evidence": "Warrior 체형과 해당 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님.",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=magnagarurumon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/331597/"
+    },
+    "에이션트볼케몬": {
+      "scale": 2.1,
+      "form": "Ancient Mineral",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=ancientvolcamon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304500/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "매드레오몬[암드]": {
+      "scale": 1.65,
+      "form": "Undead",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=madleomon:armedmode",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304501/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "바리스타몬": {
+      "scale": 1.35,
+      "form": "Machine",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=baristamon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304502/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "바스테몬": {
+      "scale": 1.35,
+      "form": "Beast Man",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=bastemon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304503/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "블래스트몬": {
+      "scale": 2.1,
+      "form": "Mineral",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=blastmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304504/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "치비카메몬": {
+      "scale": 0.65,
+      "form": "Cyborg",
+      "basis": "form-inference",
+      "reference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304505/",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304505/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "큐트몬": {
+      "scale": 0.65,
+      "form": "Pixie",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=cutemon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304506/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "사이버드라몬[크로스워즈]": {
+      "scale": 1.8,
+      "form": "Alien Humanoid",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=cyberdramon-xwars",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304507/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "왕펭귄몬": {
+      "scale": 1.9,
+      "form": "Cyborg",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=daipenmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304508/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "도루루몬": {
+      "scale": 1.25,
+      "form": "Beast",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=dorulumon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304509/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "그레이몬[크로스워즈]": {
+      "scale": 1.55,
+      "form": "Dinosaur",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=greymon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304512/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "메일버드라몬": {
+      "scale": 1.3,
+      "form": "Machine",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=mailbirdramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304517/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "맘몬": {
+      "scale": 1.75,
+      "form": "Ancient Beast",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=mammon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304518/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "메탈그레이몬[크로스워즈]": {
+      "scale": 1.85,
+      "form": "Cyborg",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=metalgreymon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304521/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "메탈그레이몬[사이버런처]": {
+      "scale": 2,
+      "form": "Enhancement",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=metalgreymon_cyberlauncher",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304522/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "모니터몬": {
+      "scale": 0.65,
+      "form": "CRT",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=monitamon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304523/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "파라오몬": {
+      "scale": 1.9,
+      "form": "Wizard",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=pharaohmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304525/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "샤우트몬[X2]": {
+      "scale": 1.55,
+      "form": "Enhancement",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=shoutmonx2",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304528/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "샤우트몬[X3]": {
+      "scale": 1.7,
+      "form": "Composite",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=shoutmonx3",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304529/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "샤우트몬[X4]": {
+      "scale": 1.9,
+      "form": "Composite",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=shoutmonx4",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304530/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "스패로우몬": {
+      "scale": 0.8,
+      "form": "Bird",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=sparrowmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304531/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "스타몬즈": {
+      "scale": 0.7,
+      "form": "Major",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=starmons",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304532/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "다크티라노몬": {
+      "scale": 1.45,
+      "form": "Dinosaur",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=darktyranomon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digitalbeastbootleg/asset/327903/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "유피테르몬": {
+      "scale": 1.6,
+      "form": "Deity",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=jupitermon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digitalbeastbootleg/asset/327910/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "코에몬": {
+      "scale": 0.75,
+      "form": "Beast",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=koemon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digitalbeastbootleg/asset/327912/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "타겟몬": {
+      "scale": 1.05,
+      "form": "Puppet",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=targetmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digitalbeastbootleg/asset/327913/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "바그라몬": {
+      "scale": 2.15,
+      "form": "Evil King",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=bagramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digitalbeastbootleg/asset/327911/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "데크스몬": {
+      "scale": 2.4,
+      "form": "Unanalyzable",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_en/detail.php?directory_name=death-x-mon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digitalbeastbootleg/asset/327904/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "위그드라실 7D6": {
+      "scale": 2.4,
+      "form": "Administrator Program",
+      "basis": "form-inference",
+      "reference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304092/",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304092/",
+      "evidence": "공식 프로필의 체형과 실제 3D 모델의 몸통·사지 비율을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "울퉁몬": {
+      "scale": 0.75,
+      "form": "Mineral",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=gottsumon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327725/",
+      "evidence": "공식 프로필의 체형과 검증한 실제 3D 모델을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "두프트몬[X항체]": {
+      "scale": 1.6,
+      "form": "Holy Knight",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=duftmon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/310676/",
+      "evidence": "공식 프로필의 체형과 검증한 실제 3D 모델을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "슬레이프몬[X항체]": {
+      "scale": 1.65,
+      "form": "Holy Knight",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=sleipmon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/310680/",
+      "evidence": "공식 프로필의 체형과 검증한 실제 3D 모델을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "베르제브몬[블래스트]": {
+      "scale": 1.65,
+      "form": "Evil King",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=beelzebumonblastmode",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonlinks/asset/310678/",
+      "evidence": "공식 프로필의 체형과 검증한 실제 3D 모델을 반영한 게임 표시 크기. 공식 신장 수치가 아님."
+    },
+    "와이즈몬": {
+      "scale": 1.15,
+      "form": "Demon Man",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=wisemon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324292/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "운석몬": {
+      "scale": 0.95,
+      "form": "Ore",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=insekimon",
+      "additionalReference": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324571/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "쿠즈하몬[무녀 모드]": {
+      "scale": 1.3,
+      "form": "Shaman",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=kuzuhamon_miko",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327454/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "케레스몬": {
+      "scale": 2.35,
+      "form": "신인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=ceresmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/339861/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "에오스몬[궁극체]": {
+      "scale": 1.65,
+      "form": "불명",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=eosmon_lv6",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/348665/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "킹체스몬": {
+      "scale": 1.15,
+      "form": "퍼펫형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=kingchessmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/335388/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "마르스몬": {
+      "scale": 1.5,
+      "form": "신인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=marsmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/343800/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "플루토몬": {
+      "scale": 1.8,
+      "form": "신인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=plutomon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342266/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "퀸체스몬": {
+      "scale": 1.5,
+      "form": "퍼펫형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=queenchessmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/335389/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "라플레시몬": {
+      "scale": 1.65,
+      "form": "요정형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=rafflesimon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/327565/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "라이덴몬": {
+      "scale": 2.1,
+      "form": "머신형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=raidenmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/336809/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "베누스몬": {
+      "scale": 1.5,
+      "form": "신인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=venusmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/328635/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "지드가루몬": {
+      "scale": 1.65,
+      "form": "사이보그형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=zdgarurumon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/333938/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "발바몬[X항체]": {
+      "scale": 1.7,
+      "form": "마왕형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=barbamon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/344562/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "비숍체스몬": {
+      "scale": 1.3,
+      "form": "퍼펫형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=bishopchessmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/335390/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "케루비몬(선)[X항체]": {
+      "scale": 2,
+      "form": "지천사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=cherubimon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/341945/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "다이노타이거몬": {
+      "scale": 1.65,
+      "form": "고대짐승형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=dinotigermon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/341209/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "도르빅크몬": {
+      "scale": 1.8,
+      "form": "용인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=dorbickmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/349381/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "이랑몬": {
+      "scale": 1.7,
+      "form": "신인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=erlangmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/349940/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "풍신몬": {
+      "scale": 1.8,
+      "form": "머신형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=fujinmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/336099/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "간쿠몬[X항체]": {
+      "scale": 1.65,
+      "form": "성기사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=gankoomon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342973/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "기가시드라몬": {
+      "scale": 2,
+      "form": "사이보그형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=gigaseadramon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/332680/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "갓드라몬[X항체]": {
+      "scale": 1.85,
+      "form": "성룡형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=goddramon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/346506/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "환쿤몬": {
+      "scale": 2.1,
+      "form": "수생형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=huankunmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/339866/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "제트메르바몬": {
+      "scale": 1.7,
+      "form": "강화형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=jetmervamon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342268/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "유노몬": {
+      "scale": 1.6,
+      "form": "신인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=junomon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/341207/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "유노몬[히스테릭 모드]": {
+      "scale": 1.75,
+      "form": "신인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=junomon_hysteric",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342267/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "리리스몬[X항체]": {
+      "scale": 1.85,
+      "form": "마왕형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=lilithmon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/344112/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "메기드라몬[X항체]": {
+      "scale": 2.1,
+      "form": "사룡형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=megidramon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/349382/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "오그도몬": {
+      "scale": 2.5,
+      "form": "화신형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=ogudomon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/349384/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "오파니몬[X항체]": {
+      "scale": 1.85,
+      "form": "좌천사형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=ofanimon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342265/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "페닉스몬[X항체]": {
+      "scale": 1.85,
+      "form": "성수형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=hououmon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/344563/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "룩체스몬": {
+      "scale": 1.5,
+      "form": "퍼펫형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=rookchessmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/335391/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "로제몬[X항체]": {
+      "scale": 1.6,
+      "form": "요정형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=rosemon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/347504/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "샤크라몬[X항체]": {
+      "scale": 1.75,
+      "form": "신인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=sakuyamon_x",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/348928/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "수신몬": {
+      "scale": 1.75,
+      "form": "머신형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=suijinmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/328693/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "탁탑몬": {
+      "scale": 1.65,
+      "form": "신인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=takutoumon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/347871/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "얼티메이트카오스몬": {
+      "scale": 2.4,
+      "form": "특이형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=ultimatechaosmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/344564/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "불카누스몬": {
+      "scale": 1.6,
+      "form": "신인형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=vulcanusmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/334387/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "샹펑몬": {
+      "scale": 2.1,
+      "form": "성조형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=xiangpengmon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/339867/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    },
+    "지드밀레니엄몬": {
+      "scale": 2.4,
+      "form": "사신형",
+      "basis": "form-inference",
+      "reference": "https://digimon.net/reference_ko/detail.php?directory_name=zeedmillenniumon",
+      "additionalReference": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/341947/",
+      "evidence": "공식 프로필과 실제 모델의 체형을 반영한 게임 표시 크기."
+    }
+  }
+}

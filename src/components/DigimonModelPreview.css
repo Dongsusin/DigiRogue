@@ -1,0 +1,17 @@
+.digimon-model-preview { position: relative; display: grid; place-items: center; }
+/* The artwork box classes carried by the wrapper use pixelated scaling; the 3D canvas must not. */
+.digimon-model-preview__canvas { position: absolute; inset: 0; pointer-events: none; image-rendering: auto; }
+.digimon-model-preview__canvas canvas { display: block; width: 100%; height: 100%; image-rendering: auto; }
+.digimon-model-preview__canvas:not([data-preview-ready='true']) { visibility: hidden; }
+.digimon-model-preview[data-facing='front'] { overflow: hidden; }
+/* A wide render scales by height, just like the orthographic camera. The viewport
+   clips the spare horizontal margin, rather than cropping wide limbs in the file. */
+.digimon-model-preview[data-facing='front'] > .digimon-model-preview__poster { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: auto; max-width: none; height: 100%; pointer-events: none; image-rendering: auto; }
+.digimon-model-preview:has(.digimon-model-preview__canvas[data-preview-ready='true']) > .digimon-model-preview__poster { visibility: hidden; }
+.digimon-model-preview[data-facing='front'] .digimon-model-preview__anchor > img { visibility: hidden; }
+.digimon-model-preview__retry { position: absolute; bottom: 4px; z-index: 2; padding: 6px 10px; border: 1px solid #6e8d9b; border-radius: 5px; background: #152b3de8; color: #e9f3fa; font: inherit; font-size: 12px; cursor: pointer; }
+.digimon-model-preview__anchor { position: absolute; inset: 0; min-width: 0; min-height: 0; display: grid; place-items: center; }
+/* Leave headroom around the model for attack and victory poses. */
+.digimon-model-preview--3d .digimon-model-preview__anchor { inset: 8%; }
+.digimon-model-preview .digimon-model-preview__anchor > img { position: static; width: 100%; height: 100%; max-height: 100%; min-height: 0; object-fit: contain; }
+.digimon-model-preview__anchor[data-model-ready="true"] > img { visibility: hidden; }

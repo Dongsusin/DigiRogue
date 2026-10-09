@@ -1,0 +1,5222 @@
+{
+ "$comment": "Species -> The Models Resource archive (<archive>.zip). Build: node scripts/import-digimon-models.mjs",
+ "깜몬": {
+  "slug": "botamon",
+  "english": "Botamon",
+  "archive": "304081",
+  "game": "mobile_digimonlinks",
+  "asset": "Botamon"
+ },
+ "도도몬": {
+  "slug": "dodomon",
+  "english": "Dodomon",
+  "archive": "327394",
+  "game": "mobile_digimonrearise",
+  "asset": "Dodomon"
+ },
+ "뽀글몬": {
+  "slug": "pabumon",
+  "english": "Pabumon",
+  "archive": "302508",
+  "game": "mobile_digimonlinks",
+  "asset": "Pabumon"
+ },
+ "유라몬": {
+  "slug": "yuramon",
+  "english": "Yuramon",
+  "archive": "327399",
+  "game": "mobile_digimonrearise",
+  "asset": "Yuramon"
+ },
+ "쟈리몬": {
+  "slug": "jyarimon",
+  "english": "Jyarimon",
+  "archive": "327395",
+  "game": "mobile_digimonrearise",
+  "asset": "Jyarimon"
+ },
+ "제리몬": {
+  "slug": "zerimon",
+  "english": "Zerimon",
+  "archive": "327400",
+  "game": "mobile_digimonrearise",
+  "asset": "Zerimon"
+ },
+ "쿠라몬": {
+  "slug": "kuramon",
+  "english": "Kuramon",
+  "archive": "304205",
+  "game": "mobile_digimonlinks",
+  "asset": "Kuramon"
+ },
+ "포요몬": {
+  "slug": "poyomon",
+  "english": "Poyomon",
+  "archive": "304084",
+  "game": "mobile_digimonlinks",
+  "asset": "Poyomon"
+ },
+ "푸니몬": {
+  "slug": "punimon",
+  "english": "Punimon",
+  "archive": "304167",
+  "game": "mobile_digimonlinks",
+  "asset": "Punimon"
+ },
+ "프스몬": {
+  "slug": "pusumon",
+  "english": "Pusumon",
+  "archive": "327397",
+  "game": "mobile_digimonrearise",
+  "asset": "Pusumon"
+ },
+ "하얀몬": {
+  "slug": "yukimibotamon",
+  "english": "YukimiBotamon",
+  "archive": "327398",
+  "game": "mobile_digimonrearise",
+  "asset": "YukimiBotamon"
+ },
+ "구미몬": {
+  "slug": "gummymon",
+  "english": "Gummymon",
+  "archive": "327404",
+  "game": "mobile_digimonrearise",
+  "asset": "Gummymon"
+ },
+ "둥실몬": {
+  "slug": "bukamon",
+  "english": "Bukamon",
+  "archive": "304198",
+  "game": "mobile_digimonlinks",
+  "asset": "Bukamon"
+ },
+ "모티몬": {
+  "slug": "motimon",
+  "english": "Motimon",
+  "archive": "304112",
+  "game": "mobile_digimonlinks",
+  "asset": "Motimon"
+ },
+ "뿔몬": {
+  "slug": "tsunomon",
+  "english": "Tsunomon",
+  "archive": "304172",
+  "game": "mobile_digimonlinks",
+  "asset": "Tsunomon"
+ },
+ "시드몬": {
+  "slug": "tanemon",
+  "english": "Tanemon",
+  "archive": "304194",
+  "game": "mobile_digimonlinks",
+  "asset": "Tanemon"
+ },
+ "야옹몬": {
+  "slug": "nyaromon",
+  "english": "Nyaromon",
+  "archive": "304206",
+  "game": "mobile_digimonlinks",
+  "asset": "Nyaromon"
+ },
+ "어니몬": {
+  "slug": "yokomon",
+  "english": "Yokomon",
+  "archive": "304196",
+  "game": "mobile_digimonlinks",
+  "asset": "Yokomon"
+ },
+ "와냐몬": {
+  "slug": "wanyamon",
+  "english": "Wanyamon",
+  "archive": "304089",
+  "game": "mobile_digimonlinks",
+  "asset": "Wanyamon"
+ },
+ "우파몬": {
+  "slug": "upamon",
+  "english": "Upamon",
+  "archive": "287804",
+  "game": "pc_computer_digimonmasters",
+  "asset": "Upamon"
+ },
+ "츠메몬": {
+  "slug": "tsumemon",
+  "english": "Tsumemon",
+  "archive": "304210",
+  "game": "mobile_digimonlinks",
+  "asset": "Tsumemon"
+ },
+ "코로몬": {
+  "slug": "koromon",
+  "english": "Koromon",
+  "archive": "324325",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Koromon",
+  "rotateX": 90
+ },
+ "토코몬": {
+  "slug": "tokomon",
+  "english": "Tokomon",
+  "archive": "304087",
+  "game": "mobile_digimonlinks",
+  "asset": "Tokomon"
+ },
+ "퍼그몬": {
+  "slug": "pagumon",
+  "english": "Pagumon",
+  "archive": "304207",
+  "game": "mobile_digimonlinks",
+  "asset": "Pagumon"
+ },
+ "푸치메라몬": {
+  "slug": "demimeramon",
+  "english": "DemiMeramon",
+  "archive": "327509",
+  "game": "mobile_digimonnewcentury",
+  "asset": "DemiMeramon"
+ },
+ "가오몬": {
+  "slug": "gaomon",
+  "english": "Gaomon",
+  "archive": "304005",
+  "game": "mobile_digimonlinks",
+  "asset": "Gaomon"
+ },
+ "가지몬": {
+  "slug": "gazimon",
+  "english": "Gazimon",
+  "archive": "304202",
+  "game": "mobile_digimonlinks",
+  "asset": "Gazimon"
+ },
+ "고부리몬": {
+  "slug": "goblimon",
+  "english": "Goblimon",
+  "archive": "304053",
+  "game": "mobile_digimonlinks",
+  "asset": "Goblimon"
+ },
+ "길몬": {
+  "slug": "guilmon",
+  "english": "Guilmon",
+  "archive": "304010",
+  "game": "mobile_digimonlinks",
+  "asset": "Guilmon"
+ },
+ "도루몬": {
+  "slug": "dorumon",
+  "english": "Dorumon",
+  "archive": "304050",
+  "game": "mobile_digimonlinks",
+  "asset": "Dorumon"
+ },
+ "드라코몬": {
+  "slug": "dracomon",
+  "english": "Dracomon",
+  "archive": "304051",
+  "game": "mobile_digimonlinks",
+  "asset": "Dracomon"
+ },
+ "드라큐몬": {
+  "slug": "dracmon",
+  "english": "Dracmon",
+  "archive": "324283",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Dracmon",
+  "rotateX": 90
+ },
+ "라라몬": {
+  "slug": "lalamon",
+  "english": "Lalamon",
+  "archive": "304014",
+  "game": "mobile_digimonlinks",
+  "asset": "Lalamon",
+  "closeIdleLoop": true
+ },
+ "레나몬": {
+  "slug": "renamon",
+  "english": "Renamon",
+  "archive": "301612",
+  "game": "mobile_digimonlinks",
+  "asset": "Renamon"
+ },
+ "로프몬": {
+  "slug": "lopmon",
+  "english": "Lopmon",
+  "archive": "304217",
+  "game": "mobile_digimonlinks",
+  "asset": "Lopmon"
+ },
+ "루체몬": {
+  "slug": "lucemon",
+  "english": "Lucemon",
+  "archive": "304109",
+  "game": "mobile_digimonlinks",
+  "asset": "Lucemon"
+ },
+ "류우다몬": {
+  "slug": "ryudamon",
+  "english": "Ryudamon",
+  "archive": "311327",
+  "game": "mobile_digimonlinks",
+  "asset": "Ryudamon"
+ },
+ "모노드라몬": {
+  "slug": "monodramon",
+  "english": "Monodramon",
+  "archive": "324608",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Monodramon",
+  "rotateX": 90
+ },
+ "베타몬": {
+  "slug": "betamon",
+  "english": "Betamon",
+  "archive": "304099",
+  "game": "mobile_digimonlinks",
+  "asset": "Betamon"
+ },
+ "브이몬": {
+  "slug": "veemon",
+  "english": "Veemon",
+  "archive": "304074",
+  "game": "mobile_digimonlinks",
+  "asset": "Veemon"
+ },
+ "샤코몬": {
+  "slug": "syakomon",
+  "english": "Syakomon",
+  "archive": "304222",
+  "game": "mobile_digimonlinks",
+  "asset": "Syakomon"
+ },
+ "쉬라몬": {
+  "slug": "gomamon",
+  "english": "Gomamon",
+  "archive": "304090",
+  "game": "mobile_digimonlinks",
+  "asset": "Gomamon"
+ },
+ "스윔몬": {
+  "slug": "swimmon",
+  "english": "Swimmon",
+  "archive": "289942",
+  "game": "pc_computer_digimonmasters",
+  "asset": "Swimmon"
+ },
+ "아구몬": {
+  "slug": "agumon",
+  "english": "Agumon",
+  "archive": "302502",
+  "game": "mobile_digimonlinks",
+  "asset": "Agumon / BlackAgumon"
+ },
+ "아구몬(흑)": {
+  "slug": "blackagumon",
+  "english": "BlackAgumon",
+  "archive": "302502",
+  "game": "mobile_digimonlinks",
+  "asset": "Agumon / BlackAgumon",
+  "textureSwap": [
+   "chr050",
+   "chr143"
+  ]
+ },
+ "아기벌몬": {
+  "slug": "fanbeemon",
+  "english": "FanBeemon",
+  "archive": "324337",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "FanBeemon",
+  "rotateX": 90
+ },
+ "에렉몬": {
+  "slug": "elecmon",
+  "english": "Elecmon",
+  "archive": "324503",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Elecmon",
+  "rotateX": 90
+ },
+ "올챙몬": {
+  "slug": "otamamon",
+  "english": "Otamamon",
+  "archive": "324500",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Otamamon",
+  "rotateX": 90
+ },
+ "울퉁몬": {
+  "slug": "gotsumon",
+  "english": "Gotsumon",
+  "archive": "327725",
+  "game": "mobile_digimonrearise",
+  "asset": "Gotsumon",
+  "url": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327725/",
+  "entry": "Gotsumon/chr595 2.89.dae",
+  "animationEntry": "Gotsumon/chr595.fbx",
+  "closeIdleLoop": true
+ },
+ "추추몬": {
+  "slug": "wormmon",
+  "english": "Wormmon",
+  "archive": "304126",
+  "game": "mobile_digimonlinks",
+  "asset": "Wormmon"
+ },
+ "츠카이몬": {
+  "slug": "tsukaimon",
+  "english": "Tsukaimon",
+  "archive": "304072",
+  "game": "mobile_digimonlinks",
+  "asset": "Patamon / Tsukaimon",
+  "textures": {
+   "*": "chr255_m.png"
+  }
+ },
+ "캔들몬": {
+  "slug": "candlemon",
+  "english": "Candlemon",
+  "archive": "327510",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Candlemon"
+ },
+ "케라몬": {
+  "slug": "keramon",
+  "english": "Keramon",
+  "archive": "324288",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Keramon",
+  "rotateX": 90
+ },
+ "코스파이더몬": {
+  "slug": "kodokugumon",
+  "english": "Kodokugumon",
+  "archive": "327514",
+  "game": "mobile_digimonnewcentury",
+  "asset": "KoDokugumon"
+ },
+ "쿠다몬": {
+  "slug": "kudamon",
+  "english": "Kudamon",
+  "archive": "304013",
+  "game": "mobile_digimonlinks",
+  "asset": "Kudamon"
+ },
+ "테리어몬": {
+  "slug": "terriermon",
+  "english": "Terriermon",
+  "archive": "324559",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Terriermon",
+  "rotateX": 90
+ },
+ "텐타몬": {
+  "slug": "tentomon",
+  "english": "Tentomon",
+  "archive": "324499",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Tentomon",
+  "rotateX": 90
+ },
+ "토이아구몬": {
+  "slug": "toyagumon",
+  "english": "ToyAgumon",
+  "archive": "324604",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "ToyAgumon",
+  "entry": "ToyAgumon/chr708.fbx",
+  "rotateX": 90,
+  "upright": {
+   "top": "J_head",
+   "base": [
+    "J_foot_l",
+    "J_foot_r"
+   ]
+  }
+ },
+ "톱니몬": {
+  "slug": "hagurumon",
+  "english": "Hagurumon",
+  "archive": "304012",
+  "game": "mobile_digimonlinks",
+  "asset": "Hagurumon"
+ },
+ "팅커몬": {
+  "slug": "tinkermon",
+  "english": "Tinkermon",
+  "archive": "327563",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Tinkermon"
+ },
+ "파닥몬": {
+  "slug": "patamon",
+  "english": "Patamon",
+  "archive": "304072",
+  "game": "mobile_digimonlinks",
+  "asset": "Patamon / Tsukaimon"
+ },
+ "파피몬": {
+  "slug": "gabumon",
+  "english": "Gabumon",
+  "archive": "304052",
+  "game": "mobile_digimonlinks",
+  "asset": "Gabumon / BlackGabumon"
+ },
+ "파피몬(흑)": {
+  "slug": "blackgabumon",
+  "english": "BlackGabumon",
+  "archive": "304052",
+  "game": "mobile_digimonlinks",
+  "asset": "Gabumon / BlackGabumon",
+  "textureSwap": [
+   "chr151",
+   "chr713"
+  ]
+ },
+ "팔몬": {
+  "slug": "palmon",
+  "english": "Palmon",
+  "archive": "304115",
+  "game": "mobile_digimonlinks",
+  "asset": "Palmon"
+ },
+ "팔코몬": {
+  "slug": "falcomon",
+  "english": "Falcomon",
+  "archive": "304200",
+  "game": "mobile_digimonlinks",
+  "asset": "Falcomon"
+ },
+ "플롯트몬": {
+  "slug": "salamon",
+  "english": "Salamon",
+  "archive": "304117",
+  "game": "mobile_digimonlinks",
+  "asset": "Salamon"
+ },
+ "피요몬": {
+  "slug": "biyomon",
+  "english": "Biyomon",
+  "archive": "304046",
+  "game": "mobile_digimonlinks",
+  "asset": "Biyomon"
+ },
+ "피코데블몬": {
+  "slug": "demidevimon",
+  "english": "DemiDevimon",
+  "archive": "304049",
+  "game": "mobile_digimonlinks",
+  "asset": "DemiDevimon"
+ },
+ "헉몬": {
+  "slug": "hackmon",
+  "english": "Hackmon",
+  "archive": "324483",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Hackmon",
+  "rotateX": 90
+ },
+ "호크몬": {
+  "slug": "hawkmon",
+  "english": "Hawkmon",
+  "archive": "304204",
+  "game": "mobile_digimonlinks",
+  "asset": "Hawkmon"
+ },
+ "가드로몬": {
+  "slug": "guardromon",
+  "english": "Guardromon",
+  "archive": "304091",
+  "game": "mobile_digimonlinks",
+  "asset": "Guardromon"
+ },
+ "가루몬": {
+  "slug": "garurumon",
+  "english": "Garurumon",
+  "archive": "304006",
+  "game": "mobile_digimonlinks",
+  "asset": "Garurumon / BlackGarurmon"
+ },
+ "가루몬(흑)": {
+  "slug": "blackgarurumon",
+  "english": "BlackGarurumon",
+  "archive": "304006",
+  "game": "mobile_digimonlinks",
+  "asset": "Garurumon / BlackGarurumon",
+  "textureSwap": [
+   "chr012",
+   "chr714"
+  ]
+ },
+ "가오가몬": {
+  "slug": "gaogamon",
+  "english": "Gaogamon",
+  "archive": "304004",
+  "game": "mobile_digimonlinks",
+  "asset": "Gaogamon"
+ },
+ "가트몬": {
+  "slug": "gatomon",
+  "english": "Gatomon",
+  "archive": "304007",
+  "game": "mobile_digimonlinks",
+  "asset": "Gatomon / BlackGatomon",
+  "entry": "chr092 With Animations.fbx"
+ },
+ "개굴몬": {
+  "slug": "gekomon",
+  "english": "Gekomon",
+  "archive": "304105",
+  "game": "mobile_digimonlinks",
+  "asset": "Gekomon"
+ },
+ "고스몬": {
+  "slug": "bakemon",
+  "english": "Bakemon",
+  "archive": "303997",
+  "game": "mobile_digimonlinks",
+  "asset": "Bakemon"
+ },
+ "구미호몬": {
+  "slug": "kyubimon",
+  "english": "Kyubimon",
+  "archive": "304108",
+  "game": "mobile_digimonlinks",
+  "asset": "Kyubimon"
+ },
+ "그라우몬": {
+  "slug": "growlmon",
+  "english": "Growlmon",
+  "archive": "304009",
+  "game": "mobile_digimonlinks",
+  "asset": "Growlmon"
+ },
+ "그레이몬": {
+  "slug": "greymon",
+  "english": "Greymon",
+  "archive": "304043",
+  "game": "mobile_digimonlinks",
+  "asset": "Greymon / BlackGreymon"
+ },
+ "니드몬": {
+  "slug": "togemon",
+  "english": "Togemon",
+  "archive": "304120",
+  "game": "mobile_digimonlinks",
+  "asset": "Togemon"
+ },
+ "데블몬": {
+  "slug": "devimon",
+  "english": "Devimon",
+  "archive": "304003",
+  "game": "mobile_digimonlinks",
+  "asset": "Devimon / IceDevimon"
+ },
+ "데크스도루가몬": {
+  "slug": "dexdorugamon",
+  "english": "DexDorugamon",
+  "archive": "289343",
+  "game": "pc_computer_digimonmasters",
+  "asset": "DexDorugamon"
+ },
+ "델타몬": {
+  "slug": "deltamon",
+  "english": "Deltamon",
+  "archive": "341944",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Deltamon"
+ },
+ "도루가몬": {
+  "slug": "dorugamon",
+  "english": "Dorugamon",
+  "archive": "304102",
+  "game": "mobile_digimonlinks",
+  "asset": "Dorugamon"
+ },
+ "두리몬": {
+  "slug": "drimogemon",
+  "english": "Drimogemon",
+  "archive": "327522",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Drimogemon"
+ },
+ "레오몬": {
+  "slug": "leomon",
+  "english": "Leomon",
+  "archive": "304016",
+  "game": "mobile_digimonlinks",
+  "asset": "Leomon / IceLeomon"
+ },
+ "레파몬": {
+  "slug": "reppamon",
+  "english": "Reppamon",
+  "archive": "304029",
+  "game": "mobile_digimonlinks",
+  "asset": "Reppamon"
+ },
+ "말벌몬": {
+  "slug": "waspmon",
+  "english": "Waspmon",
+  "archive": "304195",
+  "game": "mobile_digimonlinks",
+  "asset": "Waspmon"
+ },
+ "메라몬": {
+  "slug": "meramon",
+  "english": "Meramon",
+  "archive": "304023",
+  "game": "mobile_digimonlinks",
+  "asset": "Meramon / BlueMeramon"
+ },
+ "모노크로몬": {
+  "slug": "monochromon",
+  "english": "Monochromon",
+  "archive": "324281",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Monochromon",
+  "rotateX": 90
+ },
+ "옐로우워매몬": {
+  "slug": "geremon",
+  "english": "Geremon",
+  "archive": "304025",
+  "game": "mobile_digimonlinks",
+  "asset": "Numemon / Geremon",
+  "textureSwap": [
+   "chr070",
+   "chr729"
+  ]
+ },
+ "미케몬": {
+  "slug": "mikemon",
+  "english": "Mikemon",
+  "archive": "289931",
+  "game": "pc_computer_digimonmasters",
+  "asset": "Mikemon"
+ },
+ "버드라몬": {
+  "slug": "birdramon",
+  "english": "Birdramon",
+  "archive": "304045",
+  "game": "mobile_digimonlinks",
+  "asset": "Birdramon"
+ },
+ "베지몬": {
+  "slug": "vegiemon",
+  "english": "Vegiemon",
+  "archive": "304088",
+  "game": "mobile_digimonlinks",
+  "asset": "Vegiemon"
+ },
+ "브이드라몬": {
+  "slug": "veedramon",
+  "english": "Veedramon",
+  "archive": "304122",
+  "game": "mobile_digimonlinks",
+  "asset": "Veedramon"
+ },
+ "블랙가트몬": {
+  "slug": "blackgatomon",
+  "english": "BlackGatomon",
+  "archive": "304007",
+  "game": "mobile_digimonlinks",
+  "asset": "Gatomon / BlackGatomon",
+  "entry": "chr092 With Animations.fbx",
+  "textureSwap": [
+   "chr092",
+   "chr043"
+  ]
+ },
+ "블랙그라우몬": {
+  "slug": "blackgrowlmon",
+  "english": "BlackGrowlmon",
+  "archive": "336997",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Growlmon / BlackGrowlmon",
+  "entry": "m216_d.fbx"
+ },
+ "소울몬": {
+  "slug": "soulmon",
+  "english": "Soulmon",
+  "archive": "287812",
+  "game": "pc_computer_digimonmasters",
+  "asset": "Soulmon"
+ },
+ "스나이몬": {
+  "slug": "snimon",
+  "english": "Snimon",
+  "archive": "307590",
+  "game": "psp_digimonadventure",
+  "asset": "Snimon"
+ },
+ "스카몬": {
+  "slug": "sukamon",
+  "english": "Sukamon",
+  "archive": "304086",
+  "game": "mobile_digimonlinks",
+  "asset": "Sukamon / PlatinumSukamon"
+ },
+ "스타몬": {
+  "slug": "starmon",
+  "english": "Starmon",
+  "archive": "304035",
+  "game": "mobile_digimonlinks",
+  "asset": "Starmon"
+ },
+ "스트라이크드라몬": {
+  "slug": "strikedramon",
+  "english": "Strikedramon",
+  "archive": "324395",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Strikedramon",
+  "rotateX": 90
+ },
+ "스팅몬": {
+  "slug": "stingmon",
+  "english": "Stingmon",
+  "archive": "304036",
+  "game": "mobile_digimonlinks",
+  "asset": "Stingmon"
+ },
+ "시드라몬": {
+  "slug": "seadramon",
+  "english": "Seadramon",
+  "archive": "304118",
+  "game": "mobile_digimonlinks",
+  "asset": "Seadramon"
+ },
+ "실즈드라몬": {
+  "slug": "sealsdramon",
+  "english": "Sealsdramon",
+  "archive": "287879",
+  "game": "pc_computer_digimonmasters",
+  "asset": "Sealsdramon"
+ },
+ "아이기오몬": {
+  "slug": "aegiomon",
+  "english": "Aegiomon",
+  "archive": "328632",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Aegiomon"
+ },
+ "에어드라몬": {
+  "slug": "airdramon",
+  "english": "Airdramon",
+  "archive": "324336",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Airdramon",
+  "rotateX": 90
+ },
+ "에이프몬": {
+  "slug": "apemon",
+  "english": "Apemon",
+  "archive": "288779",
+  "game": "pc_computer_digimonmasters",
+  "asset": "Apemon"
+ },
+ "엑스브이몬": {
+  "slug": "exveemon",
+  "english": "ExVeemon",
+  "archive": "304103",
+  "game": "mobile_digimonlinks",
+  "asset": "ExVeemon"
+ },
+ "엔젤몬": {
+  "slug": "angemon",
+  "english": "Angemon",
+  "archive": "303994",
+  "game": "mobile_digimonlinks",
+  "asset": "Angemon"
+ },
+ "연체몬": {
+  "slug": "gesomon",
+  "english": "Gesomon",
+  "archive": "327526",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Gesomon"
+ },
+ "우가몬": {
+  "slug": "ogremon",
+  "english": "Ogremon",
+  "archive": "304114",
+  "game": "mobile_digimonlinks",
+  "asset": "Ogremon"
+ },
+ "우드몬": {
+  "slug": "woodmon",
+  "english": "Woodmon",
+  "archive": "304125",
+  "game": "mobile_digimonlinks",
+  "asset": "Woodmon"
+ },
+ "워매몬": {
+  "slug": "numemon",
+  "english": "Numemon",
+  "archive": "304025",
+  "game": "mobile_digimonlinks",
+  "asset": "Numemon / Geremon"
+ },
+ "원뿔몬": {
+  "slug": "ikkakumon",
+  "english": "Ikkakumon",
+  "archive": "304106",
+  "game": "mobile_digimonlinks",
+  "asset": "Ikkakumon"
+ },
+ "위자몬": {
+  "slug": "wizardmon",
+  "english": "Wizardmon",
+  "archive": "304124",
+  "game": "mobile_digimonlinks",
+  "asset": "Wizardmon"
+ },
+ "지오그레이몬": {
+  "slug": "geogreymon",
+  "english": "GeoGreymon",
+  "archive": "304008",
+  "game": "mobile_digimonlinks",
+  "asset": "GeoGreymon"
+ },
+ "캅테리몬": {
+  "slug": "kabuterimon",
+  "english": "Kabuterimon",
+  "archive": "324504",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Kabuterimon",
+  "rotateX": 90
+ },
+ "코어드라몬(녹)": {
+  "slug": "coredramon-green",
+  "english": "Coredramon (Green)",
+  "archive": "304048",
+  "game": "mobile_digimonlinks",
+  "asset": "Coredramon (Green) / Coredramon (Blue)",
+  "textures": {
+   "*": "chr209a01 Updated.png"
+  }
+ },
+ "코어드라몬(청)": {
+  "slug": "coredramon-blue",
+  "english": "Coredramon (Blue)",
+  "archive": "304048",
+  "game": "mobile_digimonlinks",
+  "asset": "Coredramon (Green) / Coredramon (Blue)",
+  "textures": {
+   "*": "chr218a01 Updated.png"
+  }
+ },
+ "쿠가몬": {
+  "slug": "kuwagamon",
+  "english": "Kuwagamon",
+  "archive": "304107",
+  "game": "mobile_digimonlinks",
+  "asset": "Kuwagamon"
+ },
+ "티라노몬": {
+  "slug": "tyrannomon",
+  "english": "Tyrannomon",
+  "archive": "304121",
+  "game": "mobile_digimonlinks",
+  "asset": "Tyrannomon"
+ },
+ "펙크몬": {
+  "slug": "peckmon",
+  "english": "Peckmon",
+  "archive": "304208",
+  "game": "mobile_digimonlinks",
+  "asset": "Peckmon"
+ },
+ "프리지몬": {
+  "slug": "frigimon",
+  "english": "Frigimon",
+  "archive": "304104",
+  "game": "mobile_digimonlinks",
+  "asset": "Frigimon"
+ },
+ "플라이몬": {
+  "slug": "flymon",
+  "english": "Flymon",
+  "archive": "327525",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Flymon"
+ },
+ "필몬": {
+  "slug": "filmon",
+  "english": "Filmon",
+  "archive": "327419",
+  "game": "mobile_digimonrearise",
+  "asset": "Filmon"
+ },
+ "해바라기몬": {
+  "slug": "sunflowmon",
+  "english": "Sunflowmon",
+  "archive": "304037",
+  "game": "mobile_digimonlinks",
+  "asset": "Sunflowmon"
+ },
+ "황금아르마몬": {
+  "slug": "ankylomon",
+  "english": "Ankylomon",
+  "archive": "324557",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Ankylomon",
+  "rotateX": 90
+ },
+ "가루다몬": {
+  "slug": "garudamon",
+  "english": "Garudamon",
+  "archive": "304055",
+  "game": "mobile_digimonlinks",
+  "asset": "Garudamon"
+ },
+ "고래몬": {
+  "slug": "whamon",
+  "english": "Whamon",
+  "archive": "304041",
+  "game": "mobile_digimonlinks",
+  "asset": "Whamon"
+ },
+ "그라운드라몬": {
+  "slug": "groundramon",
+  "english": "Groundramon",
+  "archive": "304057",
+  "game": "mobile_digimonlinks",
+  "asset": "Groundramon"
+ },
+ "네오데블몬": {
+  "slug": "neodevimon",
+  "english": "NeoDevimon",
+  "archive": "287785",
+  "game": "pc_computer_digimonmasters",
+  "asset": "NeoDevimon"
+ },
+ "데이터몬": {
+  "slug": "datamon",
+  "english": "Datamon",
+  "archive": "324567",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Datamon",
+  "rotateX": 90
+ },
+ "도사몬": {
+  "slug": "taomon",
+  "english": "Taomon",
+  "archive": "304136",
+  "game": "mobile_digimonlinks",
+  "asset": "Taomon"
+ },
+ "디지타몬": {
+  "slug": "digitamamon",
+  "english": "Digitamamon",
+  "archive": "324568",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Digitamamon",
+  "rotateX": 90
+ },
+ "라이즈그레이몬": {
+  "slug": "rizegreymon",
+  "english": "RizeGreymon",
+  "archive": "304030",
+  "game": "mobile_digimonlinks",
+  "asset": "RizeGreymon"
+ },
+ "라일라몬": {
+  "slug": "lilamon",
+  "english": "Lilamon",
+  "archive": "304018",
+  "game": "mobile_digimonlinks",
+  "asset": "Lilamon"
+ },
+ "레이디데블몬": {
+  "slug": "ladydevimon",
+  "english": "LadyDevimon",
+  "archive": "304061",
+  "game": "mobile_digimonlinks",
+  "asset": "LadyDevimon"
+ },
+ "로더레오몬": {
+  "slug": "loaderliomon",
+  "english": "Loaderliomon",
+  "archive": "327428",
+  "game": "mobile_digimonrearise",
+  "asset": "LoaderLiomon"
+ },
+ "루체몬[폴다운]": {
+  "slug": "lucemon-falldown-mode",
+  "english": "Lucemon Falldown Mode",
+  "archive": "304019",
+  "game": "mobile_digimonlinks",
+  "asset": "Lucemon Chaos Mode"
+ },
+ "릴리몬": {
+  "slug": "lillymon",
+  "english": "Lillymon",
+  "archive": "324570",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Lillymon",
+  "rotateX": 90
+ },
+ "마하가오가몬": {
+  "slug": "machgaogamon",
+  "english": "MachGaogamon",
+  "archive": "304020",
+  "game": "mobile_digimonlinks",
+  "asset": "MachGaogamon"
+ },
+ "메가드라몬": {
+  "slug": "megadramon",
+  "english": "Megadramon",
+  "archive": "304065",
+  "game": "mobile_digimonlinks",
+  "asset": "Megadramon"
+ },
+ "메가로그라우몬": {
+  "slug": "wargrowlmon",
+  "english": "WarGrowlmon",
+  "archive": "304077",
+  "game": "mobile_digimonlinks",
+  "asset": "WarGrowlmon"
+ },
+ "메가시드라몬": {
+  "slug": "megaseadramon",
+  "english": "MegaSeadramon",
+  "archive": "304067",
+  "game": "mobile_digimonlinks",
+  "asset": "MegaSeadramon"
+ },
+ "메탈그레이몬": {
+  "slug": "metalgreymon",
+  "english": "MetalGreymon",
+  "archive": "304070",
+  "game": "mobile_digimonlinks",
+  "asset": "MetalGreymon / BlackMetalGreymon"
+ },
+ "메탈티라노몬": {
+  "slug": "metaltyrannomon",
+  "english": "MetalTyrannomon",
+  "archive": "304111",
+  "game": "mobile_digimonlinks",
+  "asset": "MetalTyrannomon"
+ },
+ "묘티스몬": {
+  "slug": "myotismon",
+  "english": "Myotismon",
+  "archive": "324413",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Myotismon",
+  "rotateX": 90
+ },
+ "배드퍼펫몬": {
+  "slug": "warumonzaemon",
+  "english": "WaruMonzaemon",
+  "archive": "335728",
+  "game": "mobile_digimonnewcentury",
+  "asset": "WaruMonzaemon"
+ },
+ "블루메라몬": {
+  "slug": "bluemeramon",
+  "english": "BlueMeramon",
+  "archive": "304023",
+  "game": "mobile_digimonlinks",
+  "asset": "Meramon / BlueMeramon",
+  "textureSwap": [
+   "chr010",
+   "chr177"
+  ]
+ },
+ "슈퍼스타몬": {
+  "slug": "superstarmon",
+  "english": "SuperStarmon",
+  "archive": "304038",
+  "game": "mobile_digimonlinks",
+  "asset": "SuperStarmon"
+ },
+ "스컬그레이몬": {
+  "slug": "skullgreymon",
+  "english": "SkullGreymon",
+  "archive": "304134",
+  "game": "mobile_digimonlinks",
+  "asset": "SkullGreymon"
+ },
+ "스컬사탄몬": {
+  "slug": "skullsatamon",
+  "english": "SkullSatamon",
+  "archive": "324354",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "SkullSatamon",
+  "rotateX": 90
+ },
+ "스콜피오몬": {
+  "slug": "anomalocarimon",
+  "english": "Anomalocarimon",
+  "archive": "327547",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Scorpiomon"
+ },
+ "실피드몬": {
+  "slug": "silphymon",
+  "english": "Silphymon",
+  "archive": "324574",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Silphymon",
+  "rotateX": 90
+ },
+ "아이기오투스몬": {
+  "slug": "aegiochusmon",
+  "english": "Aegiochusmon",
+  "archive": "328633",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Aegiochusmon"
+ },
+ "아트라캅테리몬": {
+  "slug": "megakabuterimon",
+  "english": "MegaKabuterimon",
+  "archive": "304066",
+  "game": "mobile_digimonlinks",
+  "asset": "MegaKabuterimon"
+ },
+ "에테몬": {
+  "slug": "etemon",
+  "english": "Etemon",
+  "archive": "304082",
+  "game": "mobile_digimonlinks",
+  "asset": "Etemon"
+ },
+ "엔젤우몬": {
+  "slug": "angewomon",
+  "english": "Angewomon",
+  "archive": "303995",
+  "game": "mobile_digimonlinks",
+  "asset": "Angewomon"
+ },
+ "오로치몬": {
+  "slug": "orochimon",
+  "english": "Orochimon",
+  "archive": "327435",
+  "game": "mobile_digimonrearise",
+  "asset": "Orochimon"
+ },
+ "왕개굴몬": {
+  "slug": "shogungekomon",
+  "english": "ShogunGekomon",
+  "archive": "304119",
+  "game": "mobile_digimonlinks",
+  "asset": "ShogunGekomon"
+ },
+ "워가루몬": {
+  "slug": "weregarurumon",
+  "english": "WereGarurumon",
+  "archive": "304078",
+  "game": "mobile_digimonlinks",
+  "asset": "WereGarurumon / ShadowWereGarurumon"
+ },
+ "워가루몬(흑)": {
+  "slug": "weregarurumon-black",
+  "english": "WereGarurumon (Black)",
+  "archive": "304078",
+  "game": "mobile_digimonlinks",
+  "asset": "WereGarurumon / ShadowWereGarurumon",
+  "textureSwap": [
+   "chr140",
+   "chr715"
+  ]
+ },
+ "윙드라몬": {
+  "slug": "wingdramon",
+  "english": "Wingdramon",
+  "archive": "304079",
+  "game": "mobile_digimonlinks",
+  "asset": "Wingdramon"
+ },
+ "인펠몬": {
+  "slug": "infermon",
+  "english": "Infermon",
+  "archive": "324290",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Infermon",
+  "rotateX": 90
+ },
+ "쥬드몬": {
+  "slug": "zudomon",
+  "english": "Zudomon",
+  "archive": "304127",
+  "game": "mobile_digimonlinks",
+  "asset": "Zudomon"
+ },
+ "쥬레이몬": {
+  "slug": "cherrymon",
+  "english": "Cherrymon",
+  "archive": "304100",
+  "game": "mobile_digimonlinks",
+  "asset": "Cherrymon"
+ },
+ "파일드라몬": {
+  "slug": "paildramon",
+  "english": "Paildramon",
+  "archive": "304132",
+  "game": "mobile_digimonlinks",
+  "asset": "Paildramon"
+ },
+ "패롯몬": {
+  "slug": "parrotmon",
+  "english": "Parrotmon",
+  "archive": "327546",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Parrotmon"
+ },
+ "팬텀몬": {
+  "slug": "phantomon",
+  "english": "Phantomon",
+  "archive": "324284",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Phantomon",
+  "rotateX": 90
+ },
+ "퍼펫몬": {
+  "slug": "monzaemon",
+  "english": "Monzaemon",
+  "archive": "304024",
+  "game": "mobile_digimonlinks",
+  "asset": "Monzaemon"
+ },
+ "펌프몬": {
+  "slug": "pumpkinmon",
+  "english": "Pumpkinmon",
+  "archive": "324572",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Pumpkinmon",
+  "rotateX": 90
+ },
+ "홀리엔젤몬": {
+  "slug": "magnaangemon",
+  "english": "MagnaAngemon",
+  "archive": "304064",
+  "game": "mobile_digimonlinks",
+  "asset": "MagnaAngemon"
+ },
+ "화이트레오몬": {
+  "slug": "iceleomon",
+  "english": "IceLeomon",
+  "archive": "304016",
+  "game": "mobile_digimonlinks",
+  "asset": "Leomon / IceLeomon",
+  "textureSwap": [
+   "chr072",
+   "chr409"
+  ]
+ },
+ "히샤류우몬": {
+  "slug": "hisyaryumon",
+  "english": "Hisyaryumon",
+  "archive": "311325",
+  "game": "mobile_digimonlinks",
+  "asset": "Hisyaryumon"
+ },
+ "그랜쿠가몬": {
+  "slug": "grankuwagamon",
+  "english": "GranKuwagamon",
+  "archive": "304161",
+  "game": "mobile_digimonlinks",
+  "asset": "GranKuwagamon"
+ },
+ "넵튠몬": {
+  "slug": "neptunemon",
+  "english": "Neptunemon",
+  "archive": "324351",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Neptunemon",
+  "rotateX": 90
+ },
+ "두프트몬": {
+  "slug": "duftmon",
+  "english": "Leopardmon",
+  "archive": "324487",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Leopardmon / Leopard Mode",
+  "entry": "Leopardmon & Leopard Mode/chr903 NX.fbx",
+  "autoOrient": true
+ },
+ "듀나스몬": {
+  "slug": "dynasmon",
+  "english": "Dynasmon",
+  "archive": "324578",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Dynasmon",
+  "rotateX": 90
+ },
+ "듀크몬": {
+  "slug": "gallantmon",
+  "english": "Gallantmon",
+  "archive": "304054",
+  "game": "mobile_digimonlinks",
+  "asset": "Gallantmon / Crimson Mode / ChaosGallantmon",
+  "entry": "Gallantmon Crimson Mode ChaosGallantmon/chr126 with animations.fbx"
+ },
+ "디아블로몬": {
+  "slug": "diaboromon",
+  "english": "Diaboromon",
+  "archive": "324291",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Diaboromon",
+  "rotateX": 90
+ },
+ "라센몬": {
+  "slug": "rasenmon",
+  "english": "Rasenmon",
+  "archive": "327459",
+  "game": "mobile_digimonrearise",
+  "asset": "Rasenmon / Rasenmon Fury Mode",
+  "entry": "chr638_b.fbx"
+ },
+ "레이브몬": {
+  "slug": "ravemon",
+  "english": "Ravemon",
+  "archive": "324581",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Ravemon",
+  "rotateX": 90
+ },
+ "로제몬": {
+  "slug": "rosemon",
+  "english": "Rosemon",
+  "archive": "304031",
+  "game": "mobile_digimonlinks",
+  "asset": "Rosemon / Burst Mode",
+  "entry": "Rosemon Rosemon Burst Mode/chr057 With Animations.fbx"
+ },
+ "로터스몬": {
+  "slug": "lotosmon",
+  "english": "Lotosmon",
+  "archive": "324580",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Lotosmon",
+  "rotateX": 90
+ },
+ "리리스몬": {
+  "slug": "lilithmon",
+  "english": "Lilithmon",
+  "archive": "304015",
+  "game": "mobile_digimonlinks",
+  "asset": "Lilithmon"
+ },
+ "리바이어몬": {
+  "slug": "leviamon",
+  "english": "Leviamon",
+  "archive": "304017",
+  "game": "mobile_digimonlinks",
+  "asset": "Leviamon"
+ },
+ "마린엔젤몬": {
+  "slug": "marineangemon",
+  "english": "MarineAngemon",
+  "archive": "304021",
+  "game": "mobile_digimonlinks",
+  "asset": "MarineAngemon"
+ },
+ "메탈가루몬": {
+  "slug": "metalgarurumon",
+  "english": "MetalGarurumon",
+  "archive": "304068",
+  "game": "mobile_digimonlinks",
+  "asset": "MetalGarurumon / BlackMetalGarurumon"
+ },
+ "메탈시드라몬": {
+  "slug": "metalseadramon",
+  "english": "MetalSeadramon",
+  "archive": "304163",
+  "game": "mobile_digimonlinks",
+  "asset": "MetalSeadramon"
+ },
+ "메탈에테몬": {
+  "slug": "metaletemon",
+  "english": "MetalEtemon",
+  "archive": "304083",
+  "game": "mobile_digimonlinks",
+  "asset": "MetalEtemon"
+ },
+ "미네르바몬": {
+  "slug": "minervamon",
+  "english": "Minervamon",
+  "archive": "304218",
+  "game": "mobile_digimonlinks",
+  "asset": "Minervamon"
+ },
+ "미라쥬가오가몬": {
+  "slug": "miragegaogamon",
+  "english": "MirageGaogamon",
+  "archive": "304044",
+  "game": "mobile_digimonlinks",
+  "asset": "MirageGaogamon / Burst Mode",
+  "entry": "MirageGaogamon/chr095 With Animations.fbx"
+ },
+ "바이킹몬": {
+  "slug": "vikemon",
+  "english": "Vikemon",
+  "archive": "304123",
+  "game": "mobile_digimonlinks",
+  "asset": "Vikemon"
+ },
+ "발두르몬": {
+  "slug": "valdurmon",
+  "english": "Valdurmon",
+  "archive": "324585",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Varodurumon",
+  "rotateX": 90
+ },
+ "베놈묘티스몬": {
+  "slug": "venommyotismon",
+  "english": "VenomMyotismon",
+  "archive": "324586",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "VenomMyotismon",
+  "rotateX": 90
+ },
+ "베누스몬": {
+  "slug": "venusmon",
+  "english": "Venusmon",
+  "archive": "328635",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Venusmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/328635/",
+  "entry": "Venusmon/Slightly Prude/u172_m.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": []
+ },
+ "베르제브몬": {
+  "slug": "beelzemon",
+  "english": "Beelzemon",
+  "archive": "304000",
+  "game": "mobile_digimonlinks",
+  "asset": "Beelzemon"
+ },
+ "블랙메탈가루몬": {
+  "slug": "blackmetalgarurumon",
+  "english": "BlackMetalGarurumon",
+  "archive": "304068",
+  "game": "mobile_digimonlinks",
+  "asset": "MetalGarurumon / BlackMetalGarurumon",
+  "textureSwap": [
+   "chr135",
+   "chr182"
+  ]
+ },
+ "블랙워그레이몬": {
+  "slug": "blackwargreymon",
+  "english": "BlackWarGreymon",
+  "archive": "304040",
+  "game": "mobile_digimonlinks",
+  "asset": "WarGreymon / BlackWarGreymon",
+  "textureSwap": [
+   "chr027",
+   "chr175"
+  ]
+ },
+ "블리츠그레이몬": {
+  "slug": "blitzgreymon",
+  "english": "BlitzGreymon",
+  "archive": "308036",
+  "game": "mobile_digimonlinks",
+  "asset": "BlitzGreymon"
+ },
+ "샤벨레오몬": {
+  "slug": "saberleomon",
+  "english": "SaberLeomon",
+  "archive": "304169",
+  "game": "mobile_digimonlinks",
+  "asset": "SaberLeomon"
+ },
+ "샤인그레이몬": {
+  "slug": "shinegreymon",
+  "english": "ShineGreymon",
+  "archive": "304032",
+  "game": "mobile_digimonlinks",
+  "asset": "ShineGreymon / Ruin Mode / Burst Mode",
+  "entry": "Animations/chr094 With Animations.fbx"
+ },
+ "샤크라몬": {
+  "slug": "sakuyamon",
+  "english": "Sakuyamon",
+  "archive": "304170",
+  "game": "mobile_digimonlinks",
+  "asset": "Sakuyamon / Kuzuhamon",
+  "entry": "chr425 with animations.fbx"
+ },
+ "세라피몬": {
+  "slug": "seraphimon",
+  "english": "Seraphimon",
+  "archive": "304085",
+  "game": "mobile_digimonlinks",
+  "asset": "Seraphimon"
+ },
+ "세인트가르고몬": {
+  "slug": "megagargomon",
+  "english": "MegaGargomon",
+  "archive": "324562",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "MegaGargomon",
+  "rotateX": 90
+ },
+ "수신몬": {
+  "slug": "suijinmon",
+  "english": "Suijinmon",
+  "archive": "328693",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Suijinmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/328693/",
+  "entry": "Suijinmon/u175_m.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": []
+ },
+ "슬레이어드라몬": {
+  "slug": "slayerdramon",
+  "english": "Slayerdramon",
+  "archive": "304073",
+  "game": "mobile_digimonlinks",
+  "asset": "Slayerdramon"
+ },
+ "아누비스몬": {
+  "slug": "anubismon",
+  "english": "Anubismon",
+  "archive": "327549",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Anubismon"
+ },
+ "알파몬": {
+  "slug": "alphamon",
+  "english": "Alphamon",
+  "archive": "304152",
+  "game": "mobile_digimonlinks",
+  "asset": "Alphamon"
+ },
+ "알포스브이드라몬": {
+  "slug": "ulforceveedramon",
+  "english": "UlforceVeedramon",
+  "archive": "304156",
+  "game": "mobile_digimonlinks",
+  "asset": "UlforceVeedramon"
+ },
+ "오류우몬": {
+  "slug": "ouryumon",
+  "english": "Ouryumon",
+  "archive": "311326",
+  "game": "mobile_digimonlinks",
+  "asset": "Ouryumon"
+ },
+ "오파니몬": {
+  "slug": "ophanimon",
+  "english": "Ophanimon",
+  "archive": "304164",
+  "game": "mobile_digimonlinks",
+  "asset": "Ophanimon"
+ },
+ "워그레이몬": {
+  "slug": "wargreymon",
+  "english": "WarGreymon",
+  "archive": "304040",
+  "game": "mobile_digimonlinks",
+  "asset": "WarGreymon / BlackWarGreymon"
+ },
+ "유피테르몬": {
+  "slug": "jupitermon",
+  "english": "Jupitermon",
+  "archive": "327910",
+  "game": "mobile_digitalbeastbootleg",
+  "asset": "Jupitermon",
+  "url": "https://models.spriters-resource.com/mobile/digitalbeastbootleg/asset/327910/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Jupitermon/1770004801_skin.prefab.fbx",
+  "rotateX": 0,
+  "rotationY": 0
+ },
+ "제스몬": {
+  "slug": "jesmon",
+  "english": "Jesmon",
+  "archive": "304215",
+  "game": "mobile_digimonlinks",
+  "asset": "Jesmon"
+ },
+ "지드가루몬": {
+  "slug": "zdgarurumon",
+  "english": "ZeedGarurumon",
+  "archive": "333938",
+  "game": "mobile_digimonnewcentury",
+  "asset": "ZeedGarurumon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/333938/",
+  "entry": "ZeedGarurumon/u200_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "beast"
+  },
+  "dropClips": []
+ },
+ "케루비몬(악)": {
+  "slug": "cherubimon-evil",
+  "english": "Cherubimon (Evil)",
+  "archive": "324575",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Cherubimon (Evil)",
+  "rotateX": 90
+ },
+ "쿠즈하몬": {
+  "slug": "kuzuhamon",
+  "english": "Kuzuhamon",
+  "archive": "304170",
+  "game": "mobile_digimonlinks",
+  "asset": "Sakuyamon / Kuzuhamon",
+  "entry": "chr425 with animations.fbx",
+  "textureSwap": [
+   "chr425",
+   "chr754"
+  ]
+ },
+ "크레스가루몬": {
+  "slug": "cresgarurumon",
+  "english": "CresGarurumon",
+  "archive": "308180",
+  "game": "mobile_digimonlinks",
+  "asset": "CresGarurumon"
+ },
+ "타이거베스파몬": {
+  "slug": "tigervespamon",
+  "english": "TigerVespamon",
+  "archive": "304223",
+  "game": "mobile_digimonlinks",
+  "asset": "TigerVespamon"
+ },
+ "타이타몬": {
+  "slug": "titamon",
+  "english": "Titamon",
+  "archive": "304171",
+  "game": "mobile_digimonlinks",
+  "asset": "Titamon"
+ },
+ "택티몬": {
+  "slug": "tactimon",
+  "english": "Tactimon",
+  "archive": "304533",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Tactimon"
+ },
+ "파워드라몬": {
+  "slug": "machinedramon",
+  "english": "Machinedramon",
+  "archive": "304110",
+  "game": "mobile_digimonlinks",
+  "asset": "Machinedramon"
+ },
+ "플레시오몬": {
+  "slug": "plesiomon",
+  "english": "Plesiomon",
+  "archive": "304192",
+  "game": "mobile_digimonlinks",
+  "asset": "Plesiomon"
+ },
+ "피노키몬": {
+  "slug": "puppetmon",
+  "english": "Puppetmon",
+  "archive": "304168",
+  "game": "mobile_digimonlinks",
+  "asset": "Puppetmon"
+ },
+ "페닉스몬": {
+  "slug": "phoenixmon",
+  "english": "Phoenixmon",
+  "archive": "304059",
+  "game": "mobile_digimonlinks",
+  "asset": "Phoenixmon"
+ },
+ "피에몬": {
+  "slug": "piedmon",
+  "english": "Piedmon",
+  "archive": "304165",
+  "game": "mobile_digimonlinks",
+  "asset": "Piedmon"
+ },
+ "헤라클레스캅테리몬": {
+  "slug": "herculeskabuterimon",
+  "english": "HerculesKabuterimon",
+  "archive": "304058",
+  "game": "mobile_digimonlinks",
+  "asset": "HerculesKabuterimon"
+ },
+ "황제드라몬": {
+  "slug": "imperialdramon",
+  "english": "Imperialdramon",
+  "archive": "287789",
+  "game": "pc_computer_digimonmasters",
+  "asset": "Imperialdramon"
+ },
+ "다이노타이거몬": {
+  "slug": "dinotigermon",
+  "english": "Dinotigermon",
+  "archive": "341209",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Dinotigermon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/341209/",
+  "entry": "Dinotigermon/s130_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "beast"
+  },
+  "dropClips": [
+   "victory"
+  ]
+ },
+ "두프트몬[레오파드]": {
+  "slug": "leopard-mode",
+  "english": "Leopard Mode",
+  "archive": "304216",
+  "game": "mobile_digimonlinks",
+  "asset": "Leopardmon Leopard Mode"
+ },
+ "라센몬[격앙]": {
+  "slug": "rasenmon-fury-mode",
+  "english": "Rasenmon Fury Mode",
+  "archive": "327459",
+  "game": "mobile_digimonrearise",
+  "asset": "Rasenmon / Rasenmon Fury Mode",
+  "entry": "Fury Mode/chr640.fbx"
+ },
+ "로제몬[버스트]": {
+  "slug": "rosemon-burst-mode",
+  "english": "Rosemon Burst Mode",
+  "archive": "304031",
+  "game": "mobile_digimonlinks",
+  "asset": "Rosemon / Burst Mode",
+  "entry": "Rosemon Burst Mode/chr779 With Animations.fbx"
+ },
+ "미라쥬가오가몬[버스트]": {
+  "slug": "miragegaogamon-burst-mode",
+  "english": "MirageGaogamon Burst Mode",
+  "archive": "304044",
+  "game": "mobile_digimonlinks",
+  "asset": "MirageGaogamon / Burst Mode",
+  "entry": "Burst Mode/chr777 With Animatoins.fbx"
+ },
+ "벨페몬[레이지]": {
+  "slug": "belphemon-rage-mode",
+  "english": "Belphemon Rage Mode",
+  "archive": "304001",
+  "game": "mobile_digimonlinks",
+  "asset": "Belphemon Rage Mode",
+  "textures": {
+   "*": "chr040a01_RGB.png"
+  }
+ },
+ "아마게몬": {
+  "slug": "armageddemon",
+  "english": "Armageddemon",
+  "archive": "307372",
+  "game": "mobile_digimonlinks",
+  "asset": "Armageddemon"
+ },
+ "알파몬[왕룡검]": {
+  "slug": "alphamon-ouryuken",
+  "english": "Alphamon Ouryuken",
+  "archive": "324489",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Alphamon / Alphamon NX / Alphamon Ouryuken",
+  "entry": "Ouryuken/chr766.fbx",
+  "rotateX": 90,
+  "upright": {
+   "top": "J_head",
+   "base": [
+    "J_leg04_l",
+    "J_leg04_r"
+   ]
+  }
+ },
+ "엑자몬": {
+  "slug": "examon",
+  "english": "Examon",
+  "archive": "324279",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Examon",
+  "rotateX": 90
+ },
+ "오메가몬": {
+  "slug": "omnimon",
+  "english": "Omnimon",
+  "archive": "304026",
+  "game": "mobile_digimonlinks",
+  "asset": "Omnimon / Omnimon Zwart"
+ },
+ "오메가몬[즈왈트]": {
+  "slug": "omnimon-zwart",
+  "english": "Omnimon Zwart",
+  "archive": "304026",
+  "game": "mobile_digimonlinks",
+  "asset": "Omnimon / Omnimon Zwart",
+  "textureSwap": [
+   "chr088",
+   "chr757"
+  ]
+ },
+ "황제드라몬[파이터]": {
+  "slug": "imperialdramon-fighter-mode",
+  "english": "Imperialdramon Fighter Mode",
+  "archive": "304153",
+  "game": "mobile_digimonlinks",
+  "asset": "Imperialdramon Fighter Mode / Paladin Mode",
+  "entry": "Imperialdramon Fighter Mode Paladin Mode/chr419 With animations.fbx"
+ },
+ "황제드라몬[팔라딘]": {
+  "slug": "imperialdramon-paladin-mode",
+  "english": "Imperialdramon Paladin Mode",
+  "archive": "304153",
+  "game": "mobile_digimonlinks",
+  "asset": "Imperialdramon Fighter Mode / Paladin Mode",
+  "entry": "Paladin Mode/chr420 With Animations.fbx"
+ },
+ "카오스듀크몬": {
+  "slug": "chaosgallantmon",
+  "english": "ChaosGallantmon",
+  "archive": "304054",
+  "game": "mobile_digimonlinks",
+  "asset": "Gallantmon / Crimson Mode / ChaosGallantmon",
+  "entry": "Gallantmon Crimson Mode ChaosGallantmon/chr126 with animations.fbx",
+  "textureSwap": [
+   "chr126",
+   "chr150"
+  ]
+ },
+ "모크몬": {
+  "slug": "mokumon",
+  "english": "Mokumon",
+  "archive": "327506",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Mokumon"
+ },
+ "코코몬": {
+  "slug": "kokomon",
+  "english": "Kokomon",
+  "archive": "327405",
+  "game": "mobile_digimonrearise",
+  "asset": "Kokomon"
+ },
+ "피치몬": {
+  "slug": "pichimon",
+  "english": "Pichimon",
+  "archive": "327396",
+  "game": "mobile_digimonrearise",
+  "asset": "Pichimon"
+ },
+ "기기몬": {
+  "slug": "gigimon",
+  "english": "Gigimon",
+  "archive": "327403",
+  "game": "mobile_digimonrearise",
+  "asset": "Gigimon"
+ },
+ "치코몬": {
+  "slug": "chibomon",
+  "english": "Chibomon",
+  "archive": "327392",
+  "game": "mobile_digimonrearise",
+  "asset": "Chibomon"
+ },
+ "도리몬": {
+  "slug": "dorimon",
+  "english": "Dorimon",
+  "archive": "327402",
+  "game": "mobile_digimonrearise",
+  "asset": "Dorimon"
+ },
+ "야몬": {
+  "slug": "yaamon",
+  "english": "Yaamon",
+  "archive": "327564",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Yaamon"
+ },
+ "프스리몬": {
+  "slug": "pusurimon",
+  "english": "Pusurimon",
+  "archive": "327406",
+  "game": "mobile_digimonrearise",
+  "asset": "Pusurimon"
+ },
+ "사이케몬": {
+  "slug": "psychemon",
+  "english": "Psychemon",
+  "archive": "342144",
+  "game": "pc_computer_digimonworldnextorder",
+  "asset": "Psychemon"
+ },
+ "아르마몬": {
+  "slug": "armadillomon",
+  "english": "Armadillomon",
+  "archive": "304197",
+  "game": "mobile_digimonlinks",
+  "asset": "Armadillomon"
+ },
+ "임프몬": {
+  "slug": "impmon",
+  "english": "Impmon",
+  "archive": "324501",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Impmon",
+  "rotateX": 90
+ },
+ "카메몬": {
+  "slug": "kamemon",
+  "english": "Kamemon",
+  "archive": "327411",
+  "game": "mobile_digimonrearise",
+  "asset": "Kamemon"
+ },
+ "코만드라몬": {
+  "slug": "commandramon",
+  "english": "Commandramon",
+  "archive": "287877",
+  "game": "pc_computer_digimonmasters",
+  "asset": "Commandramon"
+ },
+ "쿠네몬": {
+  "slug": "kunemon",
+  "english": "Kunemon",
+  "archive": "288809",
+  "game": "pc_computer_digimonmasters",
+  "asset": "Kunemon"
+ },
+ "가르고몬": {
+  "slug": "gargomon",
+  "english": "Gargomon",
+  "archive": "304214",
+  "game": "mobile_digimonlinks",
+  "asset": "Gargomon"
+ },
+ "가재드라몬": {
+  "slug": "ebidramon",
+  "english": "Ebidramon",
+  "archive": "327523",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Ebidramon"
+ },
+ "긴류우몬": {
+  "slug": "ginryumon",
+  "english": "Ginryumon",
+  "archive": "311324",
+  "game": "mobile_digimonlinks",
+  "asset": "Ginryumon"
+ },
+ "레드꼬끼몬": {
+  "slug": "akatorimon",
+  "english": "Akatorimon",
+  "archive": "327416",
+  "game": "mobile_digimonrearise",
+  "asset": "Akatorimon",
+  "entry": "Akatorimon/chr572.fbx"
+ },
+ "도베르몬": {
+  "slug": "dobermon",
+  "english": "Dobermon",
+  "archive": "327520",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Dobermon"
+ },
+ "무사몬": {
+  "slug": "musyamon",
+  "english": "Musyamon",
+  "archive": "337030",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Musyamon"
+ },
+ "바오헉몬": {
+  "slug": "baohuckmon",
+  "english": "BaoHuckmon",
+  "archive": "324484",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "BaoHuckmon",
+  "rotateX": 90
+ },
+ "아이스몬": {
+  "slug": "icemon",
+  "english": "Icemon",
+  "archive": "324505",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Icemon",
+  "rotateX": 90
+ },
+ "아큐라몬": {
+  "slug": "aquilamon",
+  "english": "Aquilamon",
+  "archive": "303996",
+  "game": "mobile_digimonlinks",
+  "asset": "Aquilamon"
+ },
+ "위치몬": {
+  "slug": "witchmon",
+  "english": "Witchmon",
+  "archive": "327559",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Witchmon"
+ },
+ "크리사리몬": {
+  "slug": "chrysalimon",
+  "english": "Chrysalimon",
+  "archive": "324289",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Chrysalimon",
+  "rotateX": 90
+ },
+ "토리에몬": {
+  "slug": "turuiemon",
+  "english": "Turuiemon",
+  "archive": "324482",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Turuiemon",
+  "rotateX": 90
+ },
+ "피드몬": {
+  "slug": "piddomon",
+  "english": "Piddomon",
+  "archive": "342136",
+  "game": "pc_computer_digimonworldnextorder",
+  "asset": "Piddomon"
+ },
+ "도루그레몬": {
+  "slug": "dorugreymon",
+  "english": "Dorugreymon",
+  "archive": "304128",
+  "game": "mobile_digimonlinks",
+  "asset": "DoruGreymon"
+ },
+ "래피드몬": {
+  "slug": "rapidmon",
+  "english": "Rapidmon",
+  "archive": "304219",
+  "game": "mobile_digimonlinks",
+  "asset": "Rapidmon"
+ },
+ "블랙메가로그라우몬": {
+  "slug": "blackwargrowlmon",
+  "english": "BlackWarGrowlmon",
+  "archive": "327443",
+  "game": "mobile_digimonrearise",
+  "asset": "WarGrowlmon / BlackWarGrowlmon",
+  "textures": {
+   "*": "e049a01.png"
+  }
+ },
+ "프린스콩알몬": {
+  "slug": "princemamemon",
+  "english": "PrinceMamemon",
+  "archive": "304166",
+  "game": "mobile_digimonlinks",
+  "asset": "PrinceMamemon"
+ },
+ "사이버드라몬": {
+  "slug": "cyberdramon",
+  "english": "Cyberdramon",
+  "archive": "324566",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Cyberdramon",
+  "rotateX": 90
+ },
+ "세이버헉몬": {
+  "slug": "saviorhuckmon",
+  "english": "SaviorHuckmon",
+  "archive": "324485",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "SaviorHuckmon",
+  "rotateX": 90
+ },
+ "아수라몬": {
+  "slug": "asuramon",
+  "english": "Asuramon",
+  "archive": "334386",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Asuramon"
+ },
+ "안티라몬": {
+  "slug": "antylamon",
+  "english": "Antylamon",
+  "archive": "324563",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Antylamon",
+  "rotateX": 90,
+  "dropClips": [
+   "special01"
+  ]
+ },
+ "안티라몬(데바)": {
+  "slug": "antylamon-deva",
+  "english": "Antylamon (Deva)",
+  "archive": "289338",
+  "game": "pc_computer_digimonmasters",
+  "asset": "Antylamon (Good)"
+ },
+ "에어로브이드라몬": {
+  "slug": "aeroveedramon",
+  "english": "AeroVeedramon",
+  "archive": "304098",
+  "game": "mobile_digimonlinks",
+  "asset": "AeroVeedramon"
+ },
+ "와이즈몬": {
+  "slug": "wisemon",
+  "english": "Wisemon",
+  "archive": "324292",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Wisemon",
+  "url": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324292/",
+  "entry": "Wisemon/chr726.fbx",
+  "autoOrient": true,
+  "closeIdleLoop": true
+ },
+ "왕쿠가몬": {
+  "slug": "okuwamon",
+  "english": "Okuwamon",
+  "archive": "304131",
+  "game": "mobile_digimonlinks",
+  "asset": "Okuwamon"
+ },
+ "운석몬": {
+  "slug": "meteormon",
+  "english": "Meteormon",
+  "archive": "324571",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Meteormon",
+  "url": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324571/",
+  "entry": "Meteormon/chr756.fbx",
+  "autoOrient": true,
+  "closeIdleLoop": true,
+  "clipNames": {
+   "chr756_armature|chr595_bd02": "down",
+   "chr756_armature|chr595_bv01": "victory",
+   "chr756_armature|chr595_br01": "move",
+   "chr756_armature|chr595_ba02": "attack02",
+   "chr756_armature|chr595_bs01": "special01",
+   "chr756_armature|chr595_bg01": "guard",
+   "chr756_armature|chr595_bd01": "damage",
+   "chr756_armature|chr595_ba01": "attack01",
+   "chr756_armature|chr595_bn01": "idle",
+   "chr756_armature|chr595_bs02": "special02"
+  }
+ },
+ "캐논벌몬": {
+  "slug": "cannonbeemon",
+  "english": "CannonBeemon",
+  "archive": "324564",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "CannonBeemon",
+  "rotateX": 90
+ },
+ "콩알몬": {
+  "slug": "mamemon",
+  "english": "Mamemon",
+  "archive": "304154",
+  "game": "mobile_digimonlinks",
+  "asset": "Mamemon"
+ },
+ "트리케라몬": {
+  "slug": "triceramon",
+  "english": "Triceramon",
+  "archive": "324322",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Triceramon",
+  "rotateX": 90
+ },
+ "팬더몬": {
+  "slug": "pandamon",
+  "english": "Pandamon",
+  "archive": "304027",
+  "game": "mobile_digimonlinks",
+  "asset": "Pandamon"
+ },
+ "히포그리포몬": {
+  "slug": "hippogryphonmon",
+  "english": "HippoGryphonmon",
+  "archive": "324411",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "HippoGryphonmon",
+  "rotateX": 90
+ },
+ "노블펌프몬": {
+  "slug": "noblepumpkinmon",
+  "english": "NoblePumpkinmon",
+  "archive": "327458",
+  "game": "mobile_digimonrearise",
+  "asset": "NoblePumpkinmon"
+ },
+ "다크드라몬": {
+  "slug": "darkdramon",
+  "english": "Darkdramon",
+  "archive": "287878",
+  "game": "pc_computer_digimonmasters",
+  "asset": "Darkdramon"
+ },
+ "러스트티라노몬": {
+  "slug": "rusttyrannomon",
+  "english": "RustTyrannomon",
+  "archive": "304116",
+  "game": "mobile_digimonlinks",
+  "asset": "RustTyranomon"
+ },
+ "로드나이트몬": {
+  "slug": "crusadermon",
+  "english": "Crusadermon",
+  "archive": "304199",
+  "game": "mobile_digimonlinks",
+  "asset": "Crusadermon"
+ },
+ "마르스몬": {
+  "slug": "marsmon",
+  "english": "Marsmon",
+  "archive": "343800",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Marsmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/343800/",
+  "entry": "Marsmon/u250_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": []
+ },
+ "마스테몬": {
+  "slug": "mastemon",
+  "english": "Mastemon",
+  "archive": "304022",
+  "game": "mobile_digimonlinks",
+  "asset": "Mastemon"
+ },
+ "마왕몬": {
+  "slug": "daemon",
+  "english": "Daemon",
+  "archive": "304002",
+  "game": "mobile_digimonlinks",
+  "asset": "Daemon"
+ },
+ "반쵸릴리몬": {
+  "slug": "bancholillymon",
+  "english": "BanchoLillymon",
+  "archive": "327448",
+  "game": "mobile_digimonrearise",
+  "asset": "BanchoLillymon"
+ },
+ "발키리몬": {
+  "slug": "valkyrimon",
+  "english": "Valkyrimon",
+  "archive": "324584",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Valkyrimon",
+  "rotateX": 90
+ },
+ "베리얼묘티스몬": {
+  "slug": "malomyotismon",
+  "english": "MaloMyotismon",
+  "archive": "327456",
+  "game": "mobile_digimonrearise",
+  "asset": "MaloMyotismon"
+ },
+ "벨페몬": {
+  "slug": "belphemon",
+  "english": "Belphemon",
+  "archive": "304158",
+  "game": "mobile_digimonlinks",
+  "asset": "Belphemon Sleep Mode"
+ },
+ "볼트몬": {
+  "slug": "boltmon",
+  "english": "Boltmon",
+  "archive": "304159",
+  "game": "mobile_digimonlinks",
+  "asset": "Boltmon"
+ },
+ "브레이크드라몬": {
+  "slug": "breakdramon",
+  "english": "Breakdramon",
+  "archive": "304047",
+  "game": "mobile_digimonlinks",
+  "asset": "Breakdramon"
+ },
+ "저스티몬": {
+  "slug": "justimon",
+  "english": "Justimon",
+  "archive": "324579",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Justimon",
+  "entry": "Justimon/chr737.fbx",
+  "rotateX": 90
+ },
+ "케루비몬(선)": {
+  "slug": "cherubimon-good",
+  "english": "Cherubimon (Good)",
+  "archive": "324576",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Cherubimon (Good)",
+  "rotateX": 90
+ },
+ "크레니엄몬": {
+  "slug": "craniamon",
+  "english": "Craniamon",
+  "archive": "324577",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Craniamon",
+  "rotateX": 90
+ },
+ "푸쿠몬": {
+  "slug": "pukumon",
+  "english": "Pukumon",
+  "archive": "334385",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Pukumon"
+ },
+ "풍신몬": {
+  "slug": "fujinmon",
+  "english": "Fujinmon",
+  "archive": "336099",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Fujinmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/336099/",
+  "entry": "Fujinmon/u222_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": []
+ },
+ "플래티넘워매몬": {
+  "slug": "platinumnumemon",
+  "english": "PlatinumNumemon",
+  "archive": "304028",
+  "game": "mobile_digimonlinks",
+  "asset": "PlatinumNumemon"
+ },
+ "플루토몬": {
+  "slug": "plutomon",
+  "english": "Plutomon",
+  "archive": "342266",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Plutomon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342266/",
+  "entry": "Plutomon/u243_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": []
+ },
+ "헤비레오몬": {
+  "slug": "heavyleomon",
+  "english": "HeavyLeomon",
+  "archive": "327451",
+  "game": "mobile_digimonrearise",
+  "asset": "HeavyLeomon"
+ },
+ "기가시드라몬": {
+  "slug": "gigaseadramon",
+  "english": "GigaSeadramon",
+  "archive": "332680",
+  "game": "mobile_digimonnewcentury",
+  "asset": "GigaSeadramon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/332680/",
+  "entry": "GigaSeadramon/u199_m.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "serpent",
+   "downLean": [
+    0.12,
+    0.18
+   ],
+   "hurtBlend": 0
+  },
+  "dropClips": []
+ },
+ "라이덴몬": {
+  "slug": "raidenmon",
+  "english": "Raidenmon",
+  "archive": "336809",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Raidenmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/336809/",
+  "entry": "Raidenmon/s121_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": [
+   "special01"
+  ]
+ },
+ "라플레시몬": {
+  "slug": "rafflesimon",
+  "english": "Rafflesimon",
+  "archive": "327565",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Rafflesimon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/327565/",
+  "entry": "Rafflesimon/u158_m.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": []
+ },
+ "레이브몬[버스트]": {
+  "slug": "ravemon-burst-mode",
+  "english": "Ravemon Burst Mode",
+  "archive": "304220",
+  "game": "mobile_digimonlinks",
+  "asset": "Ravemon Burst Mode",
+  "dropClips": [
+   "special01"
+  ]
+ },
+ "루체몬[사탄]": {
+  "slug": "lucemon-shadowlord-mode",
+  "english": "Lucemon Shadowlord Mode",
+  "archive": "324554",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Lucemon Shadowlord Mode",
+  "rotateX": 90
+ },
+ "샤인그레이몬[루인]": {
+  "slug": "shinegreymon-ruin-mode",
+  "english": "ShineGreymon Ruin Mode",
+  "archive": "304032",
+  "game": "mobile_digimonlinks",
+  "asset": "ShineGreymon / Ruin Mode / Burst Mode",
+  "entry": "Ruin & Burst Mode/Animations/chr776.fbx",
+  "textureSwap": [
+   "chr776",
+   "chr780"
+  ]
+ },
+ "샤인그레이몬[버스트]": {
+  "slug": "shinegreymon-burst-mode",
+  "english": "ShineGreymon Burst Mode",
+  "archive": "304032",
+  "game": "mobile_digimonlinks",
+  "asset": "ShineGreymon / Ruin Mode / Burst Mode",
+  "entry": "Ruin & Burst Mode/Animations/chr776.fbx"
+ },
+ "샤크라몬[무녀]": {
+  "slug": "sakuyamon-miko-mode",
+  "english": "Sakuyamon Miko Mode",
+  "archive": "327461",
+  "game": "mobile_digimonrearise",
+  "asset": "Sakuyamon Maid Mode"
+ },
+ "오메가몬[알터-S]": {
+  "slug": "omnimon-alter-s",
+  "english": "Omnimon Alter-S",
+  "archive": "308181",
+  "game": "mobile_digimonlinks",
+  "asset": "Omnimon Alter-S"
+ },
+ "오파니몬[폴다운]": {
+  "slug": "ophanimon-falldown-mode",
+  "english": "Ophanimon Falldown Mode",
+  "archive": "305588",
+  "game": "mobile_digimonlinks",
+  "asset": "Ophanimon Falldown Mode"
+ },
+ "카오스드라몬": {
+  "slug": "chaosdromon",
+  "english": "Chaosdromon",
+  "archive": "304160",
+  "game": "mobile_digimonlinks",
+  "asset": "Chaosdromon",
+  "entry": "Chaosdromon/Animations/chr422.fbx"
+ },
+ "카오스피에몬": {
+  "slug": "chaospiedmon",
+  "english": "ChaosPiedmon",
+  "archive": "288332",
+  "game": "pc_computer_digimonmasters",
+  "asset": "ChaosPiedmon"
+ },
+ "쿠즈하몬[무녀]": {
+  "slug": "kuzuhamon-miko-mode",
+  "english": "Kuzuhamon Miko Mode",
+  "archive": "327454",
+  "game": "mobile_digimonrearise",
+  "asset": "Kuzuhamon Maid Mode"
+ },
+ "가무드라몬": {
+  "slug": "gumdramon",
+  "english": "Gumdramon",
+  "archive": "304011",
+  "game": "mobile_digimonlinks",
+  "asset": "Gumdramon",
+  "entry": "Gumdramon/Animations/chr292 With Animations.fbx"
+ },
+ "쟈자몬": {
+  "slug": "jazamon",
+  "english": "Jazamon",
+  "archive": "312124",
+  "game": "mobile_digimonlinks",
+  "asset": "Jazamon",
+  "entry": "Jazamon/chr121 with animations.fbx"
+ },
+ "샤우트몬": {
+  "slug": "shoutmon",
+  "english": "Shoutmon",
+  "archive": "324498",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Shoutmon",
+  "entry": "Shoutmon/chr682 anims.fbx",
+  "rotateX": 90,
+  "upright": {
+   "top": "J_head",
+   "base": [
+    "J_L_foot",
+    "J_R_foot"
+   ]
+  }
+ },
+ "황금톱니몬": {
+  "slug": "solarmon",
+  "english": "Solarmon",
+  "archive": "304034",
+  "game": "mobile_digimonlinks",
+  "asset": "Solarmon",
+  "entry": "Solarmon/chr728 with animations.fbx"
+ },
+ "보보몬": {
+  "slug": "vorvomon",
+  "english": "Vorvomon",
+  "archive": "304075",
+  "game": "mobile_digimonlinks",
+  "asset": "Vorvomon",
+  "entry": "Vobomon/Animations/chr121.fbx"
+ },
+ "즈바몬": {
+  "slug": "zubamon",
+  "english": "Zubamon",
+  "archive": "304211",
+  "game": "mobile_digimonlinks",
+  "asset": "Zubamon",
+  "entry": "Zubamon/chr697 with animations.fbx"
+ },
+ "타임몬": {
+  "slug": "clockmon",
+  "english": "Clockmon",
+  "archive": "304101",
+  "game": "mobile_digimonlinks",
+  "asset": "Clockmon",
+  "entry": "Clockmon/chr398 with animations.fbx"
+ },
+ "사이크로몬": {
+  "slug": "cyclonemon",
+  "english": "Cyclonemon",
+  "archive": "304189",
+  "game": "mobile_digimonlinks",
+  "asset": "Cyclonemon",
+  "entry": "Cyclonemon/chr452 with animations.fbx"
+ },
+ "골드워매몬": {
+  "slug": "goldnumemon",
+  "english": "GoldNumemon",
+  "archive": "304056",
+  "game": "mobile_digimonlinks",
+  "asset": "GoldNumemon",
+  "entry": "GoldNumemon/chr113 With animations.fbx"
+ },
+ "쟈자드몬": {
+  "slug": "jazardmon",
+  "english": "Jazardmon",
+  "archive": "312125",
+  "game": "mobile_digimonlinks",
+  "asset": "Jazardmon",
+  "entry": "Jazadomon/chr123 with animations.fbx"
+ },
+ "라보보몬": {
+  "slug": "lavorvomon",
+  "english": "Lavorvomon",
+  "archive": "304062",
+  "game": "mobile_digimonlinks",
+  "asset": "Lavorvomon",
+  "entry": "Lavobomon/chr122 With Animations.fbx"
+ },
+ "메이쿠몬": {
+  "slug": "meicoomon",
+  "english": "Meicoomon",
+  "archive": "324495",
+  "game": "mobile_digimonlinks",
+  "asset": "Meicoomon",
+  "textures": {
+   "*": "d065_c00.png"
+  },
+  "entry": "Meicoomon/chr065 with anims.fbx"
+ },
+ "모야몬": {
+  "slug": "nanimon",
+  "english": "Nanimon",
+  "archive": "304113",
+  "game": "mobile_digimonlinks",
+  "asset": "Nanimon",
+  "entry": "Nanimon/chr375 with animations.fbx"
+ },
+ "달팽이워매몬": {
+  "slug": "shellnumemon",
+  "english": "ShellNumemon",
+  "archive": "304193",
+  "game": "mobile_digimonlinks",
+  "asset": "ShellNumemon",
+  "entry": "ShellNumemon/chr455 with animations.fbx"
+ },
+ "소서리몬": {
+  "slug": "sorcermon",
+  "english": "Sorcermon",
+  "archive": "304221",
+  "game": "mobile_digimonlinks",
+  "asset": "Sorcermon",
+  "entry": "Sorcermon/chr755 with animations.fbx"
+ },
+ "즈바이거몬": {
+  "slug": "zubaeagermon",
+  "english": "ZubaEagermon",
+  "archive": "305407",
+  "game": "mobile_digimonlinks",
+  "asset": "ZubaEagermon",
+  "entry": "ZubaEagermon/chr698 with animations.fbx"
+ },
+ "안드로몬": {
+  "slug": "andromon",
+  "english": "Andromon",
+  "archive": "302503",
+  "game": "mobile_digimonlinks",
+  "asset": "Andromon",
+  "entry": "Andromon/chr342 with animations.fbx"
+ },
+ "블랙킹워매몬": {
+  "slug": "blackkingnumemon",
+  "english": "BlackKingNumemon",
+  "archive": "304213",
+  "game": "mobile_digimonlinks",
+  "asset": "BlackKingNumemon",
+  "entry": "BlackKingNumemon/chr753 with animations.fbx"
+ },
+ "듀라몬": {
+  "slug": "duramon",
+  "english": "Duramon",
+  "archive": "305408",
+  "game": "mobile_digimonlinks",
+  "asset": "Duramon",
+  "entry": "Duramon/chr699 with animations.fbx"
+ },
+ "기가드라몬": {
+  "slug": "gigadramon",
+  "english": "Gigadramon",
+  "archive": "304129",
+  "game": "mobile_digimonlinks",
+  "asset": "Gigadramon",
+  "entry": "Gigadramon/chr402 with animations.fbx"
+ },
+ "아이언레오몬": {
+  "slug": "grapleomon",
+  "english": "GrapLeomon",
+  "archive": "304130",
+  "game": "mobile_digimonlinks",
+  "asset": "GrapLeomon",
+  "entry": "GrapLeomon/chr403 with animations.fbx"
+ },
+ "쟈자리히몬": {
+  "slug": "jazarichmon",
+  "english": "Jazarichmon",
+  "archive": "312126",
+  "game": "mobile_digimonlinks",
+  "asset": "Jazarichmon",
+  "entry": "Jazarihhimon/chr125 with animations.fbx"
+ },
+ "키메라몬": {
+  "slug": "kimeramon",
+  "english": "Kimeramon",
+  "archive": "304060",
+  "game": "mobile_digimonlinks",
+  "asset": "Kimeramon",
+  "entry": "Kimeramon/chr229 with animations.fbx"
+ },
+ "라보가리타몬": {
+  "slug": "lavogaritamon",
+  "english": "Lavogaritamon",
+  "archive": "304063",
+  "game": "mobile_digimonlinks",
+  "asset": "Lavogaritamon",
+  "entry": "Lavogaritamon/chr124 With Animations.fbx"
+ },
+ "메이크랙몬[비셔스]": {
+  "slug": "meicrackmon-vicious-mode",
+  "english": "Meicrackmon Vicious Mode",
+  "archive": "302507",
+  "game": "mobile_digimonlinks",
+  "asset": "Meicrackmon Vicious Mode",
+  "entry": "Meicrackmon/chr243 with animations.fbx"
+ },
+ "메탈콩알몬": {
+  "slug": "metalmamemon",
+  "english": "MetalMamemon",
+  "archive": "304155",
+  "game": "mobile_digimonlinks",
+  "asset": "MetalMamemon",
+  "entry": "MetalMamemon/chr413 with animations.fbx"
+ },
+ "피콜몬": {
+  "slug": "piximon",
+  "english": "Piximon",
+  "archive": "304133",
+  "game": "mobile_digimonlinks",
+  "asset": "Piximon",
+  "entry": "Piximon/chr410 with animations.fbx"
+ },
+ "데드메라몬": {
+  "slug": "skullmeramon",
+  "english": "SkullMeramon",
+  "archive": "304135",
+  "game": "mobile_digimonlinks",
+  "asset": "SkullMeramon",
+  "entry": "SkullMeramon/chr406 with animations.fbx"
+ },
+ "베이더몬": {
+  "slug": "vademon",
+  "english": "Vademon",
+  "archive": "304157",
+  "game": "mobile_digimonlinks",
+  "asset": "Vademon",
+  "entry": "Vademon/chr411 with animations.fbx"
+ },
+ "에이션트가루몬": {
+  "slug": "ancientgarurumon",
+  "english": "AncientGarurumon",
+  "archive": "308035",
+  "game": "mobile_digimonlinks",
+  "asset": "AncientGarurumon",
+  "entry": "AncientGarurumon/chr331 With Animations.fbx"
+ },
+ "에이션트그레이몬": {
+  "slug": "ancientgreymon",
+  "english": "AncientGreymon",
+  "archive": "304639",
+  "game": "mobile_digimonlinks",
+  "asset": "AncientGreymon",
+  "entry": "AncientGreymon/chr329 With Animations.fbx"
+ },
+ "아포카리몬": {
+  "slug": "apocalymon",
+  "english": "Apocalymon",
+  "archive": "324555",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Apocalymon",
+  "autoOrient": true,
+  "entry": "Apocalymon/chr328.fbx"
+ },
+ "아레스타드라몬": {
+  "slug": "arresterdramon",
+  "english": "Arresterdramon",
+  "archive": "324496",
+  "game": "mobile_digimonlinks",
+  "asset": "Arresterdramon",
+  "entry": "Arresterdramon/chr063 with anims.fbx"
+ },
+ "반쵸레오몬": {
+  "slug": "bancholeomon",
+  "english": "BanchoLeomon",
+  "archive": "303998",
+  "game": "mobile_digimonlinks",
+  "asset": "BanchoLeomon",
+  "entry": "BanchoLeomon/chr049 With Animations.fbx"
+ },
+ "발바몬": {
+  "slug": "barbamon",
+  "english": "Barbamon",
+  "archive": "303999",
+  "game": "mobile_digimonlinks",
+  "asset": "Barbamon",
+  "entry": "Barbamon/chr036 With Animations.fbx"
+ },
+ "베르제브몬[X항체]": {
+  "slug": "beelzemon-x",
+  "english": "Beelzemon X",
+  "archive": "308179",
+  "game": "mobile_digimonlinks",
+  "asset": "Beelzemon X",
+  "entry": "Beelzemon X/chr430 With Animations.fbx"
+ },
+ "크레니엄몬[X항체]": {
+  "slug": "craniamon-x",
+  "english": "Craniamon X",
+  "archive": "327693",
+  "game": "mobile_digimonrearise",
+  "asset": "Craniamon X",
+  "entry": "Craniamon X/chr736.fbx"
+ },
+ "듀란다몬": {
+  "slug": "durandamon",
+  "english": "Durandamon",
+  "archive": "305409",
+  "game": "mobile_digimonlinks",
+  "asset": "Durandamon",
+  "entry": "Durandamon/chr700 with animations.fbx"
+ },
+ "듀나스몬[X항체]": {
+  "slug": "dynasmon-x",
+  "english": "Dynasmon X",
+  "archive": "327695",
+  "game": "mobile_digimonrearise",
+  "asset": "Dynasmon X",
+  "entry": "Dynasmon X/chr433.fbx"
+ },
+ "이바몬": {
+  "slug": "ebemon",
+  "english": "Ebemon",
+  "archive": "304190",
+  "game": "mobile_digimonlinks",
+  "asset": "Ebemon",
+  "entry": "Ebemon/chr451 with animations.fbx"
+ },
+ "듀크몬[X항체]": {
+  "slug": "gallantmon-x",
+  "english": "Gallantmon X",
+  "archive": "304490",
+  "game": "mobile_digimonlinks",
+  "asset": "Gallantmon X",
+  "entry": "Gallantmon x/chr358 with animations.fbx"
+ },
+ "간쿠몬": {
+  "slug": "gankoomon",
+  "english": "Gankoomon",
+  "archive": "304201",
+  "game": "mobile_digimonlinks",
+  "asset": "Gankoomon",
+  "entry": "Gankoomon/chr688 with animations.fbx"
+ },
+ "그랜드로코몬": {
+  "slug": "granlocomon",
+  "english": "GranLocomon",
+  "archive": "304203",
+  "game": "mobile_digimonlinks",
+  "asset": "GranLocomon",
+  "entry": "GranLocomon/chr704 with animations.fbx"
+ },
+ "하이안드로몬": {
+  "slug": "hiandromon",
+  "english": "HiAndromon",
+  "archive": "304162",
+  "game": "mobile_digimonlinks",
+  "asset": "HiAndromon",
+  "entry": "HiAndromon/chr426 with animations.fbx"
+ },
+ "제스몬[X항체]": {
+  "slug": "jesmon-x",
+  "english": "Jesmon X",
+  "archive": "311328",
+  "game": "mobile_digimonlinks",
+  "asset": "Jesmon X",
+  "entry": "Jesmon X/chr468 with animations.fbx"
+ },
+ "할배몬": {
+  "slug": "jijimon",
+  "english": "Jijimon",
+  "archive": "304224",
+  "game": "mobile_digimonlinks",
+  "asset": "Jijimon",
+  "entry": "Jijimon/chr061 with animations.fbx"
+ },
+ "킹에테몬": {
+  "slug": "kingetemon",
+  "english": "KingEtemon",
+  "archive": "304489",
+  "game": "mobile_digimonlinks",
+  "asset": "KingEtemon",
+  "entry": "KingEtemon/chr127 with animations.fbx"
+ },
+ "홀리드라몬": {
+  "slug": "magnadramon",
+  "english": "Magnadramon",
+  "archive": "304191",
+  "game": "mobile_digimonlinks",
+  "asset": "Magnadramon",
+  "entry": "Magnadramon/chr453 with animations.fbx"
+ },
+ "메탈가루몬[X항체]": {
+  "slug": "metalgarurumon-x",
+  "english": "MetalGarurumon X",
+  "archive": "304069",
+  "game": "mobile_digimonlinks",
+  "asset": "MetalGarurumon X",
+  "entry": "MetalGarurumon X/chr108 With Animations.fbx"
+ },
+ "메탈릭드라몬": {
+  "slug": "metallicdramon",
+  "english": "Metallicdramon",
+  "archive": "312127",
+  "game": "mobile_digimonlinks",
+  "asset": "Metallicdramon",
+  "entry": "Metallicdramon/chr008 with animations.fbx"
+ },
+ "밀레니엄몬": {
+  "slug": "millenniummon",
+  "english": "Millenniummon",
+  "archive": "304071",
+  "game": "mobile_digimonlinks",
+  "asset": "Millenniummon",
+  "entry": "Millenniummon/chr230 with animations.fbx"
+ },
+ "오메가몬[알터-B]": {
+  "slug": "omnimon-alter-b",
+  "english": "Omnimon Alter-B",
+  "archive": "304226",
+  "game": "mobile_digimonlinks",
+  "asset": "Omnimon Alter-B",
+  "entry": "Omnimon Alter-B/g010_master with animations.fbx"
+ },
+ "오메가몬[머시풀]": {
+  "slug": "omnimon-merciful-mode",
+  "english": "Omnimon Merciful Mode",
+  "archive": "327715",
+  "game": "mobile_digimonrearise",
+  "asset": "Omnimon Merciful Mode",
+  "entry": "Omnimon Merciful Mode/chr448.fbx"
+ },
+ "오메가몬[X항체]": {
+  "slug": "omnimon-x",
+  "english": "Omnimon X",
+  "archive": "305434",
+  "game": "mobile_digimonlinks",
+  "asset": "Omnimon X",
+  "entry": "Omnimon X/chr357 With animations.fbx"
+ },
+ "오메가몬[즈왈트-D]": {
+  "slug": "omnimon-zwart-d",
+  "english": "Omnimon Zwart D",
+  "archive": "304227",
+  "game": "mobile_digimonlinks",
+  "asset": "Omnimon Zwart D",
+  "entry": "Omnimon Zwart D/g008_master with animations.fbx"
+ },
+ "라구엘몬": {
+  "slug": "raguelmon",
+  "english": "Raguelmon",
+  "archive": "304618",
+  "game": "mobile_digimonlinks",
+  "asset": "Raguelmon",
+  "entry": "Raguelmon/chr443 with animations.fbx"
+ },
+ "스사노오몬": {
+  "slug": "susanoomon",
+  "english": "Susanoomon",
+  "archive": "304225",
+  "game": "mobile_digimonlinks",
+  "asset": "Susanoomon",
+  "entry": "Susanoomon/f068 with animations.fbx"
+ },
+ "알포스브이드라몬[X항체]": {
+  "slug": "ulforceveedramon-x",
+  "english": "UlforceVeedramon X",
+  "archive": "305922",
+  "game": "mobile_digimonlinks",
+  "asset": "UlforceVeedramon X",
+  "entry": "UlforceVeedramon X/Animations/chr418.fbx"
+ },
+ "볼케닉드라몬": {
+  "slug": "volcanicdramon",
+  "english": "Volcanicdramon",
+  "archive": "304039",
+  "game": "mobile_digimonlinks",
+  "asset": "Volcanicdramon",
+  "entry": "Volcanicdramon/chr007 With Animations.fbx"
+ },
+ "워그레이몬[X항체]": {
+  "slug": "wargreymon-x",
+  "english": "WarGreymon X",
+  "archive": "304076",
+  "game": "mobile_digimonlinks",
+  "asset": "WarGreymon X / BlackWarGreymon X",
+  "entry": "WarGreymon X BlackWarGreymon X/chr110 With Animations.fbx"
+ },
+ "블랙워그레이몬[X항체]": {
+  "slug": "blackwargreymon-x",
+  "english": "BlackWarGreymon X",
+  "archive": "304076",
+  "game": "mobile_digimonlinks",
+  "asset": "WarGreymon X / BlackWarGreymon X",
+  "textures": {
+   "chr110a01": "chr339_m1.png",
+   "chr110a02": "chr339_m2.png"
+  },
+  "entry": "WarGreymon X BlackWarGreymon X/chr110 With Animations.fbx"
+ },
+ "매그너몬": {
+  "slug": "magnamon",
+  "english": "Magnamon",
+  "archive": "304228",
+  "game": "mobile_digimonlinks",
+  "asset": "Magnamon",
+  "entry": "Magnamon/chr382 with animations.fbx"
+ },
+ "매그너몬[X항체]": {
+  "slug": "magnamon-x",
+  "english": "Magnamon X",
+  "archive": "305406",
+  "game": "mobile_digimonlinks",
+  "asset": "Magnamon X",
+  "entry": "Magnamon X/chr432 with animations.fbx"
+ },
+ "래피드몬[아머]": {
+  "slug": "rapidmon-armor",
+  "english": "Rapidmon (Armor)",
+  "archive": "311329",
+  "game": "mobile_digimonlinks",
+  "asset": "Rapidmon (Armor)",
+  "entry": "Rapidmon (Armor)/chr751 with animations.fbx"
+ },
+ "꼬마몬": {
+  "slug": "demiveemon",
+  "english": "DemiVeemon",
+  "archive": "327401",
+  "game": "mobile_digimonrearise",
+  "asset": "DemiVeemon",
+  "entry": "DemiVeemon/chr517.fbx"
+ },
+ "베어몬": {
+  "slug": "bearmon",
+  "english": "Bearmon",
+  "archive": "327408",
+  "game": "mobile_digimonrearise",
+  "asset": "Bearmon",
+  "entry": "Bearmon/chr234.fbx"
+ },
+ "에리스몬": {
+  "slug": "herissmon",
+  "english": "Herissmon",
+  "archive": "327410",
+  "game": "mobile_digimonrearise",
+  "asset": "Herissmon",
+  "entry": "Herissmon/chr635.fbx"
+ },
+ "레드펭귄몬": {
+  "slug": "muchomon",
+  "english": "Muchomon",
+  "archive": "327412",
+  "game": "mobile_digimonrearise",
+  "asset": "Muchomon",
+  "entry": "Muchomon/chr623.fbx"
+ },
+ "테이파몬": {
+  "slug": "tapirmon",
+  "english": "Tapirmon",
+  "archive": "327413",
+  "game": "mobile_digimonrearise",
+  "asset": "Tapirmon",
+  "entry": "Tapirmon/chr231.fbx"
+ },
+ "토이아구몬(흑)": {
+  "slug": "shadowtoyagumon",
+  "english": "ShadowToyAgumon",
+  "archive": "327414",
+  "game": "mobile_digimonrearise",
+  "asset": "ToyAgumon / ShadowToyAgumon",
+  "textures": {
+   "*": "c038a01.png"
+  },
+  "entry": "ToyAgumon ShadowToyAgumon/chr708.fbx"
+ },
+ "다이노휴몬": {
+  "slug": "dinohyumon",
+  "english": "Dinohyumon",
+  "archive": "327418",
+  "game": "mobile_digimonrearise",
+  "asset": "Dinohyumon",
+  "entry": "Dinohyumon/chr474.fbx"
+ },
+ "그리즈몬": {
+  "slug": "grizzlymon",
+  "english": "Grizzlymon",
+  "archive": "327421",
+  "game": "mobile_digimonrearise",
+  "asset": "Grizzlymon",
+  "entry": "Grizzlymon/chr235.fbx"
+ },
+ "오메카몬": {
+  "slug": "omekamon",
+  "english": "Omekamon",
+  "archive": "327422",
+  "game": "mobile_digimonrearise",
+  "asset": "Omekamon",
+  "entry": "Omekamon/chr200.fbx"
+ },
+ "탱크몬": {
+  "slug": "tankmon",
+  "english": "Tankmon",
+  "archive": "324287",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Tankmon",
+  "rotateX": 90,
+  "entry": "Tankmon/chr621.fbx"
+ },
+ "태스크몬": {
+  "slug": "tuskmon",
+  "english": "Tuskmon",
+  "archive": "327423",
+  "game": "mobile_digimonrearise",
+  "asset": "Tuskmon",
+  "entry": "Tuskmon/chr598.fbx"
+ },
+ "아르고몬[완전체]": {
+  "slug": "argomon-ultimate",
+  "english": "Argomon (Ultimate)",
+  "archive": "327424",
+  "game": "mobile_digimonrearise",
+  "asset": "Argomon (Ultimate)",
+  "entry": "Argomon (Ultimate)/chr469.fbx"
+ },
+ "챠츠라몬": {
+  "slug": "caturamon",
+  "english": "Caturamon",
+  "archive": "327425",
+  "game": "mobile_digimonrearise",
+  "asset": "Caturamon",
+  "entry": "Caturamon/chr665.fbx"
+ },
+ "인다라몬": {
+  "slug": "indramon",
+  "english": "Indramon",
+  "archive": "327426",
+  "game": "mobile_digimonrearise",
+  "asset": "Indramon",
+  "entry": "Indramon/chr661.fbx"
+ },
+ "굼비라몬": {
+  "slug": "kumbhiramon",
+  "english": "Kumbhiramon",
+  "archive": "327427",
+  "game": "mobile_digimonrearise",
+  "asset": "Kumbhiramon",
+  "entry": "Kumbhiramon/chr655.fbx"
+ },
+ "마지라몬": {
+  "slug": "majiramon",
+  "english": "Majiramon",
+  "archive": "327429",
+  "game": "mobile_digimonrearise",
+  "asset": "Majiramon",
+  "entry": "Majiramon/chr659.fbx"
+ },
+ "마쿠라몬": {
+  "slug": "makuramon",
+  "english": "Makuramon",
+  "archive": "327430",
+  "game": "mobile_digimonrearise",
+  "asset": "Makuramon",
+  "entry": "Makuramon/chr663.fbx"
+ },
+ "데블시드라몬": {
+  "slug": "waruseadramon",
+  "english": "WaruSeadramon",
+  "archive": "327438",
+  "game": "mobile_digimonrearise",
+  "asset": "MegaSeadramon / WaruSeadramon",
+  "textureSwap": [
+   "chr132a01",
+   "chr132b01"
+  ],
+  "entry": "Seadramon WaruSeadramon/chr132.fbx"
+ },
+ "메이크랙몬": {
+  "slug": "meicrackmon",
+  "english": "Meicrackmon",
+  "archive": "327432",
+  "game": "mobile_digimonrearise",
+  "asset": "Meicrackmon",
+  "entry": "Meicrackmon/chr444.fbx"
+ },
+ "메피스몬": {
+  "slug": "mephistomon",
+  "english": "Mephistomon",
+  "archive": "327433",
+  "game": "mobile_digimonrearise",
+  "asset": "Mephistomon",
+  "entry": "Mephistomon/chr471.fbx"
+ },
+ "미히라몬": {
+  "slug": "mihiramon",
+  "english": "Mihiramon",
+  "archive": "327434",
+  "game": "mobile_digimonrearise",
+  "asset": "Mihiramon",
+  "entry": "Mihiramon/chr657 anims.fbx"
+ },
+ "파지라몬": {
+  "slug": "pajiramon",
+  "english": "Pajiramon",
+  "archive": "327436",
+  "game": "mobile_digimonrearise",
+  "asset": "Pajiramon",
+  "entry": "Pajiramon/chr662 anims.fbx"
+ },
+ "산티라몬": {
+  "slug": "sandiramon",
+  "english": "Sandiramon",
+  "archive": "327437",
+  "game": "mobile_digimonrearise",
+  "asset": "Sandiramon",
+  "entry": "Sandiramon/chr660.fbx"
+ },
+ "신드라몬": {
+  "slug": "sinduramon",
+  "english": "Sinduramon",
+  "archive": "327439",
+  "game": "mobile_digimonrearise",
+  "asset": "Sinduramon",
+  "entry": "Sinduramon/chr664.fbx"
+ },
+ "스티필몬": {
+  "slug": "stefilmon",
+  "english": "Stefilmon",
+  "archive": "327440",
+  "game": "mobile_digimonrearise",
+  "asset": "Stefilmon",
+  "entry": "Stefilmon/chr637.fbx"
+ },
+ "바지라몬": {
+  "slug": "vajramon",
+  "english": "Vajramon",
+  "archive": "327441",
+  "game": "mobile_digimonrearise",
+  "asset": "Vajramon",
+  "entry": "Vajramon/chr656.fbx"
+ },
+ "비가라몬": {
+  "slug": "vikaralamon",
+  "english": "Vikaralamon",
+  "archive": "327442",
+  "game": "mobile_digimonrearise",
+  "asset": "Vikaralamon",
+  "entry": "Vikaralamon/chr666.fbx"
+ },
+ "아르고몬": {
+  "slug": "argomon-mega",
+  "english": "Argomon (Mega)",
+  "archive": "327444",
+  "game": "mobile_digimonrearise",
+  "asset": "Argomon (Mega)",
+  "entry": "Argomon (Mega)/chr470.fbx"
+ },
+ "청룡몬": {
+  "slug": "azulongmon",
+  "english": "Azulongmon",
+  "archive": "327445",
+  "game": "mobile_digimonrearise",
+  "asset": "Azulongmon",
+  "entry": "Azulongmon/chr204.fbx"
+ },
+ "백호몬": {
+  "slug": "baihumon",
+  "english": "Baihumon",
+  "archive": "327446",
+  "game": "mobile_digimonrearise",
+  "asset": "Baihumon",
+  "entry": "Baihumon/chr205.fbx"
+ },
+ "반쵸록몬": {
+  "slug": "banchogolemon",
+  "english": "BanchoGolemon",
+  "archive": "327447",
+  "game": "mobile_digimonrearise",
+  "asset": "BanchoGolemon",
+  "entry": "BanchoGolemon/chr487.fbx"
+ },
+ "반쵸스팅몬": {
+  "slug": "banchostingmon",
+  "english": "BanchoStingmon",
+  "archive": "327449",
+  "game": "mobile_digimonrearise",
+  "asset": "BanchoStingmon",
+  "entry": "BanchoStingmon/chr485.fbx"
+ },
+ "현무몬": {
+  "slug": "ebonwumon",
+  "english": "Ebonwumon",
+  "archive": "327450",
+  "game": "mobile_digimonrearise",
+  "asset": "Ebonwumon",
+  "entry": "Ebonwumon/chr202.fbx"
+ },
+ "가르프몬": {
+  "slug": "gulfmon",
+  "english": "Gulfmon",
+  "archive": "327676",
+  "game": "mobile_digimonrearise",
+  "asset": "Gulfmon",
+  "entry": "Gulfmon/chr472.fbx"
+ },
+ "황룡몬": {
+  "slug": "huanglongmon",
+  "english": "Huanglongmon",
+  "archive": "327452",
+  "game": "mobile_digimonrearise",
+  "asset": "Huanglongmon",
+  "entry": "Huanglongmon/chr201.fbx"
+ },
+ "러블리엔젤몬": {
+  "slug": "lovelyangemon",
+  "english": "LovelyAngemon",
+  "archive": "327455",
+  "game": "mobile_digimonrearise",
+  "asset": "LovelyAngemon",
+  "entry": "LovelyAngemon/chr481.fbx"
+ },
+ "미타마몬": {
+  "slug": "mitamamon",
+  "english": "Mitamamon",
+  "archive": "327457",
+  "game": "mobile_digimonrearise",
+  "asset": "Mitamamon",
+  "entry": "Mitamamon/chr482.fbx"
+ },
+ "라지엘몬": {
+  "slug": "rasielmon",
+  "english": "Rasielmon",
+  "archive": "327460",
+  "game": "mobile_digimonrearise",
+  "asset": "Rasielmon",
+  "entry": "Rasielmon/chr445.fbx"
+ },
+ "가이오몬[엄도의형]": {
+  "slug": "samudramon-fierce-blade-mode",
+  "english": "Samudramon Fierce Blade Mode",
+  "archive": "327462",
+  "game": "mobile_digimonrearise",
+  "asset": "Samudramon Fierce Blade Mode",
+  "entry": "Samudramon Fierce Blade Mode/chr483.fbx"
+ },
+ "주작몬": {
+  "slug": "zhuqiaomon",
+  "english": "Zhuqiaomon",
+  "archive": "327463",
+  "game": "mobile_digimonrearise",
+  "asset": "Zhuqiaomon",
+  "entry": "Zhuqiaomon/chr203.fbx"
+ },
+ "아구몬[용기의유대]": {
+  "slug": "agumon-bond-of-bravery",
+  "english": "Agumon (Bond of Bravery)",
+  "archive": "327464",
+  "game": "mobile_digimonrearise",
+  "asset": "Agumon (Bond of Bravery)",
+  "entry": "Agumon (Bond of Bravery)/chr489.fbx"
+ },
+ "파피몬[우정의유대]": {
+  "slug": "gabumon-bond-of-friendship",
+  "english": "Gabumon (Bond of Friendship)",
+  "archive": "327465",
+  "game": "mobile_digimonrearise",
+  "asset": "Gabumon (Bond of Friendship)",
+  "entry": "Gabumon (Bond of Friendship)/chr490.fbx"
+ },
+ "듀크몬[크림슨]": {
+  "slug": "gallantmon-crimson-mode",
+  "english": "Gallantmon Crimson Mode",
+  "archive": "327719",
+  "game": "mobile_digimonrearise",
+  "asset": "Gallantmon Crimson Mode",
+  "entry": "Gallantmon Crimson Mode/chr105.fbx"
+ },
+ "멧돼지몬": {
+  "slug": "boarmon",
+  "english": "Boarmon",
+  "archive": "327466",
+  "game": "mobile_digimonrearise",
+  "asset": "Boarmon",
+  "entry": "Boarmon/chr279.fbx"
+ },
+ "황소몬": {
+  "slug": "bullmon",
+  "english": "Bullmon",
+  "archive": "327467",
+  "game": "mobile_digimonrearise",
+  "asset": "Bullmon",
+  "entry": "Bullmon/chr257.fbx"
+ },
+ "골드브이드라몬": {
+  "slug": "goldveedramon",
+  "english": "GoldVeedramon",
+  "archive": "327468",
+  "game": "mobile_digimonrearise",
+  "asset": "GoldVeedramon",
+  "entry": "GoldVeedramon/d051.fbx"
+ },
+ "링스몬": {
+  "slug": "lynxmon",
+  "english": "Lynxmon",
+  "archive": "327469",
+  "game": "mobile_digimonrearise",
+  "asset": "Lynxmon",
+  "entry": "Lynxmon/chr270.fbx"
+ },
+ "토토몬": {
+  "slug": "opossummon",
+  "english": "Opossummon",
+  "archive": "327470",
+  "game": "mobile_digimonrearise",
+  "asset": "Opossummon",
+  "entry": "Opossummon/chr277.fbx"
+ },
+ "프라리몬": {
+  "slug": "prairiemon",
+  "english": "Prairiemon",
+  "archive": "327471",
+  "game": "mobile_digimonrearise",
+  "asset": "Prairiemon",
+  "entry": "Prairiemon/chr294.fbx"
+ },
+ "백사몬": {
+  "slug": "quetzalmon",
+  "english": "Quetzalmon",
+  "archive": "327472",
+  "game": "mobile_digimonrearise",
+  "asset": "Quetzalmon",
+  "entry": "Quetzalmon/chr258.fbx"
+ },
+ "비트몬": {
+  "slug": "rabbitmon",
+  "english": "Rabbitmon",
+  "archive": "327473",
+  "game": "mobile_digimonrearise",
+  "asset": "Rabbitmon",
+  "entry": "Rabbitmon/chr271.fbx"
+ },
+ "번개드라몬": {
+  "slug": "raidramon",
+  "english": "Raidramon",
+  "archive": "327474",
+  "game": "mobile_digimonrearise",
+  "asset": "Raidramon",
+  "entry": "Raidramon/chr139.fbx"
+ },
+ "사수몬": {
+  "slug": "sagittarimon",
+  "english": "Sagittarimon",
+  "archive": "327475",
+  "game": "mobile_digimonrearise",
+  "asset": "Sagittarimon",
+  "entry": "Sagittarimon/chr247.fbx"
+ },
+ "시프몬": {
+  "slug": "sheepmon",
+  "english": "Sheepmon",
+  "archive": "327476",
+  "game": "mobile_digimonrearise",
+  "asset": "Sheepmon",
+  "entry": "Sheepmon/chr283.fbx"
+ },
+ "백조몬": {
+  "slug": "swanmon",
+  "english": "Swanmon",
+  "archive": "327477",
+  "game": "mobile_digimonrearise",
+  "asset": "Swanmon",
+  "entry": "Swanmon/chr272.fbx"
+ },
+ "알카디몬[유년기]": {
+  "slug": "arcadiamon-in-training",
+  "english": "Arcadiamon (In-Training)",
+  "archive": "324341",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Arcadiamon (In-Training)",
+  "autoOrient": true,
+  "entry": "Arcadiamon (In-Training)/chr062.fbx",
+  "rotateX": 90,
+  "upright": {
+   "top": "J_center",
+   "base": [
+    "J_foot03_A_L",
+    "J_foot03_A_R",
+    "J_foot03_B_L",
+    "J_foot03_B_R",
+    "J_foot03_C_L",
+    "J_foot03_C_R"
+   ],
+   "minUp": 0.8
+  }
+ },
+ "알카디몬[성장기]": {
+  "slug": "arcadiamon-rookie",
+  "english": "Arcadiamon (Rookie)",
+  "archive": "324342",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Arcadiamon (Rookie)",
+  "rotateX": 90,
+  "entry": "Arcadiamon (Rookie)/chr063.fbx"
+ },
+ "츄몬": {
+  "slug": "chuumon",
+  "english": "Chuumon",
+  "archive": "324321",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Chuumon",
+  "rotateX": 90,
+  "entry": "Chuumon/chr020.fbx"
+ },
+ "루나몬": {
+  "slug": "lunamon",
+  "english": "Lunamon",
+  "archive": "324275",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Lunamon",
+  "rotateX": 90,
+  "entry": "Lunamon/chr002.fbx"
+ },
+ "머슈몬": {
+  "slug": "mushroomon",
+  "english": "Mushroomon",
+  "archive": "324286",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Mushroomon",
+  "rotateX": 90,
+  "entry": "Mushroomon/chr607.fbx"
+ },
+ "시스터몬 블랑": {
+  "slug": "sistermon-blanc",
+  "english": "Sistermon Blanc",
+  "archive": "324397",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Sistermon Blanc",
+  "autoOrient": true,
+  "entry": "Sistermon Blanc/chr781.fbx"
+ },
+ "시스터몬 블랑[각성]": {
+  "slug": "sistermon-blanc-awakened",
+  "english": "Sistermon Blanc (Awakened)",
+  "archive": "324398",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Sistermon Blanc (Awakened)",
+  "autoOrient": true,
+  "entry": "Sistermon Blanc (Awakened)/chr782.fbx"
+ },
+ "아그니몬": {
+  "slug": "agunimon",
+  "english": "Agunimon",
+  "archive": "331596",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Agunimon",
+  "rotateX": 90,
+  "entry": "Agunimon/chr676.fbx"
+ },
+ "알카디몬[성숙기]": {
+  "slug": "arcadiamon-champion",
+  "english": "Arcadiamon (Champion)",
+  "archive": "324343",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Arcadiamon (Champion)",
+  "entry": "Arcadiamon (Champion)/chr064.fbx",
+  "rotateX": 90,
+  "upright": {
+   "top": "J_center",
+   "base": [
+    "J_foot_l",
+    "J_foot_r"
+   ]
+  }
+ },
+ "실리컨몬": {
+  "slug": "coelamon",
+  "english": "Coelamon",
+  "archive": "324280",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Coelamon",
+  "rotateX": 90,
+  "entry": "Coelamon/chr130.fbx"
+ },
+ "머드프리지몬": {
+  "slug": "mudfrigimon",
+  "english": "MudFrigimon",
+  "archive": "335815",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Frigimon / MudFrigimon",
+  "textureSwap": [
+   "chr370",
+   "chr759"
+  ],
+  "entry": "Frigimon MudFrigimon/chr370.fbx",
+  "rotateX": 90
+ },
+ "록몬": {
+  "slug": "golemon",
+  "english": "Golemon",
+  "archive": "324338",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Golemon",
+  "rotateX": 90,
+  "entry": "Golemon/chr005.fbx"
+ },
+ "그레이몬(청)": {
+  "slug": "blackgreymon",
+  "english": "BlackGreymon",
+  "archive": "304043",
+  "game": "mobile_digimonlinks",
+  "asset": "Greymon / BlackGreymon",
+  "textureSwap": [
+   "chr326",
+   "chr712"
+  ],
+  "entry": "Greymon BlackGreyMon/chr326 with animations.fbx"
+ },
+ "후디에몬": {
+  "slug": "hudiemon",
+  "english": "Hudiemon",
+  "archive": "324324",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Hudiemon",
+  "autoOrient": true,
+  "entry": "Hudiemon/chr022.fbx"
+ },
+ "레키스몬": {
+  "slug": "lekismon",
+  "english": "Lekismon",
+  "archive": "324276",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Lekismon",
+  "autoOrient": true,
+  "entry": "Lekismon/chr003.fbx"
+ },
+ "볼프몬": {
+  "slug": "lobomon",
+  "english": "Lobomon",
+  "archive": "331599",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Lobomon",
+  "entry": "Lobomon/chr680.fbx",
+  "rotateX": 90,
+  "upright": {
+   "top": "J_head",
+   "base": [
+    "J_foot_l",
+    "J_foot_r"
+   ]
+  }
+ },
+ "라프타드라몬": {
+  "slug": "raptordramon",
+  "english": "Raptordramon",
+  "archive": "324414",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Raptordramon",
+  "autoOrient": true,
+  "entry": "Raptordramon/chr025.fbx"
+ },
+ "레어몬": {
+  "slug": "raremon",
+  "english": "Raremon",
+  "archive": "324285",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Raremon",
+  "rotateX": 90,
+  "entry": "Raremon/chr590.fbx"
+ },
+ "상굴몬": {
+  "slug": "sangloupmon",
+  "english": "Sangloupmon",
+  "archive": "324415",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Sangloupmon",
+  "autoOrient": true,
+  "entry": "Sangloupmon/chr030.fbx"
+ },
+ "시스터몬 느와르": {
+  "slug": "sistermon-noir",
+  "english": "Sistermon Noir",
+  "archive": "324401",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Sistermon Noir",
+  "autoOrient": true,
+  "entry": "Sistermon Noir/chr783.fbx"
+ },
+ "시스터몬 느와르[각성]": {
+  "slug": "sistermon-noir-awakened",
+  "english": "Sistermon Noir (Awakened)",
+  "archive": "324402",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Sistermon Noir (Awakened)",
+  "autoOrient": true,
+  "entry": "Sistermon Noir (Awakened)/chr784.fbx"
+ },
+ "유니몬": {
+  "slug": "unimon",
+  "english": "Unimon",
+  "archive": "324282",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Unimon",
+  "rotateX": 90,
+  "entry": "Unimon/chr548.fbx"
+ },
+ "알카디몬[완전체]": {
+  "slug": "arcadiamon-ultimate",
+  "english": "Arcadiamon (Ultimate)",
+  "archive": "324344",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Arcadiamon (Ultimate)",
+  "autoOrient": true,
+  "entry": "Arcadiamon (Ultimate)/chr065.fbx"
+ },
+ "브리트라몬": {
+  "slug": "burninggreymon",
+  "english": "BurningGreymon",
+  "archive": "331595",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "BurningGreymon",
+  "entry": "BurningGreymon/chr679.fbx",
+  "rotateX": 90,
+  "upright": {
+   "top": "J_head",
+   "base": [
+    "J_foot_l",
+    "J_foot_r"
+   ]
+  }
+ },
+ "캐치콩알몬": {
+  "slug": "catchmamemon",
+  "english": "CatchMamemon",
+  "archive": "324323",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "CatchMamemon",
+  "autoOrient": true,
+  "entry": "CatchMamemon/chr044.fbx"
+ },
+ "치린몬": {
+  "slug": "chirinmon",
+  "english": "Chirinmon",
+  "archive": "324409",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Chirinmon",
+  "rotateX": 90,
+  "entry": "Chirinmon/chr084.fbx"
+ },
+ "크레세몬": {
+  "slug": "crescemon",
+  "english": "Crescemon",
+  "archive": "324277",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Crescemon",
+  "autoOrient": true,
+  "entry": "Crescemon/chr004.fbx"
+ },
+ "야타가라몬": {
+  "slug": "crowmon",
+  "english": "Crowmon",
+  "archive": "324565",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Crowmon",
+  "autoOrient": true,
+  "entry": "Crowmon/chr721.fbx"
+ },
+ "다이노몬": {
+  "slug": "dinobeemon",
+  "english": "Dinobeemon",
+  "archive": "324394",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Dinobeemon",
+  "autoOrient": true,
+  "entry": "Dinobeemon/chr023.fbx"
+ },
+ "드라고몬": {
+  "slug": "dragomon",
+  "english": "Dragomon",
+  "archive": "324274",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Dragomon",
+  "autoOrient": true,
+  "entry": "Dragomon/chr129.fbx"
+ },
+ "그레이드몬": {
+  "slug": "grademon",
+  "english": "Grademon",
+  "archive": "324410",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Grademon",
+  "autoOrient": true,
+  "entry": "Grademon/chr026.fbx"
+ },
+ "가름몬": {
+  "slug": "kendogarurumon",
+  "english": "KendoGarurumon",
+  "archive": "331598",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "KendoGarurumon",
+  "entry": "KendoGarurumon/chr681.fbx",
+  "rotateX": 90,
+  "upright": {
+   "top": "J_center",
+   "base": [
+    "J_foot01_l",
+    "J_foot01_r"
+   ]
+  }
+ },
+ "나이트몬": {
+  "slug": "knightmon",
+  "english": "Knightmon",
+  "archive": "324569",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Knightmon",
+  "autoOrient": true,
+  "entry": "Knightmon/chr718.fbx"
+ },
+ "마타돌몬": {
+  "slug": "matadormon",
+  "english": "Matadormon",
+  "archive": "324412",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Matadormon",
+  "autoOrient": true,
+  "entry": "Matadormon/chr031.fbx"
+ },
+ "토우몬": {
+  "slug": "shakkoumon",
+  "english": "Shakkoumon",
+  "archive": "324573",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Shakkoumon",
+  "rotateX": 90,
+  "entry": "Shakkoumon/chr723.fbx"
+ },
+ "볼케몬": {
+  "slug": "volcamon",
+  "english": "Volcamon",
+  "archive": "324352",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Volcamon",
+  "autoOrient": true,
+  "entry": "Volcamon/chr059.fbx"
+ },
+ "알카디몬": {
+  "slug": "arcadiamon-mega",
+  "english": "Arcadiamon (Mega)",
+  "archive": "324345",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Arcadiamon (Mega)",
+  "autoOrient": true,
+  "entry": "Arcadiamon (Mega)/chr066.fbx"
+ },
+ "디아나몬": {
+  "slug": "dianamon",
+  "english": "Dianamon",
+  "archive": "324278",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Dianamon",
+  "entry": "Dianamon/chr733.fbx",
+  "rotateX": 90,
+  "upright": {
+   "top": "J_head",
+   "base": [
+    "J_foot_l",
+    "J_foot_r"
+   ]
+  }
+ },
+ "도루고라몬": {
+  "slug": "dorugoramon",
+  "english": "Dorugoramon",
+  "archive": "324393",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Dorugoramon",
+  "autoOrient": true,
+  "entry": "Dorugoramon/chr019.fbx"
+ },
+ "카이젤그레이몬": {
+  "slug": "emperorgreymon",
+  "english": "EmperorGreymon",
+  "archive": "331594",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "EmperorGreymon",
+  "entry": "EmperorGreymon/chr677.fbx",
+  "rotateX": 90
+ },
+ "갓드라몬": {
+  "slug": "goldramon",
+  "english": "Goldramon",
+  "archive": "324339",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Goldramon",
+  "autoOrient": true,
+  "entry": "Goldramon/chr048.fbx"
+ },
+ "그란드라큐몬": {
+  "slug": "grandracmon",
+  "english": "GranDracmon",
+  "archive": "324416",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "GranDracmon",
+  "autoOrient": true,
+  "entry": "GranDracmon/chr032.fbx"
+ },
+ "그리포몬": {
+  "slug": "gryphonmon",
+  "english": "Gryphonmon",
+  "archive": "324417",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Gryphonmon",
+  "rotateX": 90,
+  "entry": "Gryphonmon/chr083.fbx"
+ },
+ "슬레이프몬": {
+  "slug": "kentaurosmon",
+  "english": "Kentaurosmon",
+  "archive": "324418",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Kentaurosmon",
+  "autoOrient": true,
+  "entry": "Kentaurosmon/chr086.fbx"
+ },
+ "메기드라몬": {
+  "slug": "megidramon",
+  "english": "Megidramon",
+  "archive": "324340",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Megidramon",
+  "autoOrient": true,
+  "entry": "Megidramon/chr047.fbx"
+ },
+ "메르크리몬": {
+  "slug": "merukimon",
+  "english": "Merukimon",
+  "archive": "324419",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Merukimon",
+  "autoOrient": true,
+  "entry": "Merukimon/chr080.fbx"
+ },
+ "파일볼케몬": {
+  "slug": "pilevolcamon",
+  "english": "PileVolcamon",
+  "archive": "324353",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "PileVolcamon",
+  "autoOrient": true,
+  "entry": "PileVolcamon/chr060.fbx"
+ },
+ "가이오몬": {
+  "slug": "samudramon",
+  "english": "Samudramon",
+  "archive": "324582",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Samudramon",
+  "entry": "Samudramon/chr744.fbx",
+  "rotateX": 90
+ },
+ "타이런트캅테리몬": {
+  "slug": "tyrantkabuterimon",
+  "english": "TyrantKabuterimon",
+  "archive": "324583",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "TyrantKabuterimon",
+  "autoOrient": true,
+  "entry": "TyrantKabuterimon/chr128.fbx",
+  "rotateX": 90,
+  "upright": {
+   "top": "J_head",
+   "base": "J_tail03",
+   "minUp": 0.8
+  },
+  "alphaModes": {
+   "chr128a02": "BLEND"
+  }
+ },
+ "알카디몬[초궁극체]": {
+  "slug": "arcadiamon-ultra",
+  "english": "Arcadiamon (Ultra)",
+  "archive": "324273",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Arcadiamon (Ultra)",
+  "autoOrient": true,
+  "entry": "Arcadiamon (Ultra)/chr067.fbx"
+ },
+ "카오스몬": {
+  "slug": "chaosmon",
+  "english": "Chaosmon",
+  "archive": "324508",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Chaosmon / Chaosmon Valdur Arm",
+  "autoOrient": true,
+  "entry": "Chaosmon  Chaosmon VA/chr772.fbx"
+ },
+ "카오스몬[발두르암]": {
+  "slug": "chaosmon-valdur-arm",
+  "english": "Chaosmon Valdur Arm",
+  "archive": "324508",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Chaosmon / Chaosmon Valdur Arm",
+  "entry": "Chaosmon  Chaosmon VA/Valdur Arm/chr118.fbx",
+  "autoOrient": true
+ },
+ "화염드라몬": {
+  "slug": "flamedramon",
+  "english": "Flamedramon",
+  "archive": "324497",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Flamedramon",
+  "entry": "Flamedramon/chr716 anims.fbx",
+  "rotateX": 90,
+  "upright": {
+   "top": "J_head",
+   "base": [
+    "J_foot01_l",
+    "J_foot01_r"
+   ]
+  }
+ },
+ "오메가샤우트몬": {
+  "slug": "omnishoutmon",
+  "english": "OmniShoutmon",
+  "archive": "324541",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "OmniShoutmon",
+  "entry": "OmniShoutmon/chr683.fbx",
+  "rotateX": 90
+ },
+ "가드로몬(골드)": {
+  "slug": "guardromon-gold",
+  "english": "Guardromon (Gold)",
+  "archive": "324628",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Guardromon / Guardromon (Gold)",
+  "entry": "Guardromon Guardromon (Gold)/chr341.fbx",
+  "textureSwap": [
+   "chr341",
+   "chr760"
+  ],
+  "autoOrient": true,
+  "rotateX": 90,
+  "upright": {
+   "top": "J_mune",
+   "base": [
+    "J_asi_L",
+    "J_asi_R"
+   ],
+   "minUp": 0.8
+  }
+ },
+ "아이스데블몬": {
+  "slug": "icedevimon",
+  "english": "IceDevimon",
+  "archive": "326172",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "Devimon / IceDevimon",
+  "entry": "Devimon IceDevimon/chr093.fbx",
+  "textureSwap": [
+   "chr093",
+   "chr730"
+  ],
+  "rotateX": 90
+ },
+ "아트라캅테리몬(청)": {
+  "slug": "megakabuterimon-blue",
+  "english": "MegaKabuterimon (Blue)",
+  "archive": "327431",
+  "game": "mobile_digimonrearise",
+  "asset": "MegaKabuterimon (Red / Blue)",
+  "entry": "MegaKabuterimon (Red Blue)/chr305.fbx",
+  "textureSwap": [
+   "chr305",
+   "e047"
+  ]
+ },
+ "매그너가루몬[SV]": {
+  "slug": "magnagarurumon-sv",
+  "english": "MagnaGarurumon (SV)",
+  "archive": "331597",
+  "game": "pc_computer_digimonstorycybersleuthcompleteedition",
+  "asset": "MagnaGarurumon / MagnaGarurumon (SV)",
+  "entry": "MagnaGarurumon MagnaGarurumon (SV)/chr678.fbx",
+  "rotateX": 90
+ },
+ "에이션트볼케몬": {
+  "slug": "ancientvolcanomon",
+  "english": "AncientVolcanomon",
+  "archive": "304500",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "AncientVolcanomon",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304500/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "AncientVolcanomon/026_ANCIENTVOLCAMON.fbx",
+  "rotateX": 0,
+  "upright": {
+   "top": "head",
+   "base": [
+    "L_foot",
+    "R_foot"
+   ],
+   "minUp": 0.45
+  },
+  "rotationY": 3.141592653589793
+ },
+ "매드레오몬[암드]": {
+  "slug": "madleomon-armed-mode",
+  "english": "MadLeomon Armed Mode",
+  "archive": "304501",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Armed MadLeomon",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304501/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Armed MadLeomon/024_MADLEOMON_ARMOREDMODE.fbx",
+  "rotateX": 0,
+  "upright": {
+   "top": "head",
+   "base": [
+    "L_foot",
+    "R_foot"
+   ],
+   "minUp": 0.45
+  },
+  "rotationY": 3.141592653589793
+ },
+ "바리스타몬": {
+  "slug": "ballistamon",
+  "english": "Ballistamon",
+  "archive": "304502",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Ballistamon",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304502/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Ballistamon/007_BALLISTAMON.fbx",
+  "rotateX": 0,
+  "rotationY": 0,
+  "upright": {
+   "top": "head",
+   "base": [
+    "L_foot",
+    "R_foot"
+   ],
+   "minUp": 0.8
+  }
+ },
+ "바스테몬": {
+  "slug": "bastemon",
+  "english": "Bastemon",
+  "archive": "304503",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Beastmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304503/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Beastmon/D122BAST.fbx",
+  "rotateX": 0,
+  "rotationY": 0
+ },
+ "블래스트몬": {
+  "slug": "blastmon",
+  "english": "Blastmon",
+  "archive": "304504",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Blastmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304504/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Blastmon/022_BLASTMON.fbx",
+  "rotateX": 0,
+  "upright": {
+   "top": "head",
+   "base": [
+    "L_foot",
+    "R_foot"
+   ],
+   "minUp": 0.45
+  },
+  "rotationY": 3.141592653589793
+ },
+ "치비카메몬": {
+  "slug": "chibikamemon",
+  "english": "Chibikamemon",
+  "archive": "304505",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Chibitortomon",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304505/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Chibitortomon/019_CHIBITORTOMON.fbx",
+  "rotateX": 0,
+  "upright": {
+   "top": "head",
+   "base": [
+    "L_foot",
+    "R_foot"
+   ],
+   "minUp": 0.45
+  },
+  "rotationY": 3.141592653589793
+ },
+ "큐트몬": {
+  "slug": "cutemon",
+  "english": "Cutemon",
+  "archive": "304506",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Cutemon",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304506/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Cutemon/075_CUTEMON.fbx",
+  "rotateX": 0,
+  "upright": {
+   "top": "head",
+   "base": [
+    "L_foot",
+    "R_foot"
+   ],
+   "minUp": 0.45
+  },
+  "rotationY": 3.141592653589793
+ },
+ "사이버드라몬[크로스워즈]": {
+  "slug": "cyberdramon-2010",
+  "english": "Cyberdramon (2010)",
+  "archive": "304507",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Cyberdramon (2010)",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304507/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Cyberdramon (2010)/016_CYBERDRAMON.fbx",
+  "rotateX": 0,
+  "rotationY": 0
+ },
+ "왕펭귄몬": {
+  "slug": "daipenmon",
+  "english": "Daipenmon",
+  "archive": "304508",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Daipenmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304508/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Daipenmon/027_DAIPENMON.fbx",
+  "rotateX": 0,
+  "rotationY": 0
+ },
+ "도루루몬": {
+  "slug": "dorulumon",
+  "english": "Dorulumon",
+  "archive": "304509",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Dorulumon",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304509/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Dorulumon/008_DORULUMON.fbx",
+  "rotateX": 0,
+  "rotationY": 0
+ },
+ "그레이몬[크로스워즈]": {
+  "slug": "greymon-2010",
+  "english": "Greymon (2010)",
+  "archive": "304512",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Greymon (2010)",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304512/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Greymon (2010)/012_GREYMON.fbx",
+  "rotateX": 0,
+  "rotationY": 0
+ },
+ "메일버드라몬": {
+  "slug": "mailbirdramon",
+  "english": "MailBirdramon",
+  "archive": "304517",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "MailBirdramon",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304517/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "MailBirdramon/013_MAILBIRDRAMON.fbx",
+  "rotateX": 0,
+  "rotationY": 3.141592653589793,
+  "upright": {
+   "top": "body",
+   "base": [
+    "L_foot",
+    "R_foot"
+   ],
+   "minUp": 0.4
+  }
+ },
+ "맘몬": {
+  "slug": "mammothmon",
+  "english": "Mammothmon",
+  "archive": "304518",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Mammothmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304518/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Mammothmon/029_MAMMON.fbx",
+  "rotateX": 0,
+  "rotationY": 3.141592653589793
+ },
+ "메탈그레이몬[크로스워즈]": {
+  "slug": "metalgreymon-2010",
+  "english": "MetalGreymon (2010)",
+  "archive": "304521",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "MetalGreymon (2010)",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304521/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "MetalGreymon (2010)/014_METALGREYMON.fbx",
+  "rotateX": 0,
+  "rotationY": 0
+ },
+ "메탈그레이몬[사이버런처]": {
+  "slug": "metalgreymon-cyber-launcher",
+  "english": "MetalGreymon Cyber Launcher",
+  "archive": "304522",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "MetalGreymon(2010) + Cyberdramon (2010)",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304522/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "MetalGreymon(2010) Cyberdramon (2010)/015_METALGREYMON_CYBERDRAMON.fbx",
+  "rotateX": 0,
+  "upright": {
+   "top": "head",
+   "base": [
+    "L_foot",
+    "R_foot"
+   ],
+   "minUp": 0.45
+  },
+  "rotationY": 3.141592653589793
+ },
+ "모니터몬": {
+  "slug": "monitamon",
+  "english": "Monitamon",
+  "archive": "304523",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Monitamon",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304523/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Monitamon/011_MONITAMON.fbx",
+  "rotateX": 0,
+  "rotationY": 3.141592653589793
+ },
+ "파라오몬": {
+  "slug": "pharaohmon",
+  "english": "Pharaohmon",
+  "archive": "304525",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Pharaohmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304525/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Pharaohmon/038_PHARAOHMON.fbx",
+  "rotateX": 0,
+  "rotationY": 3.141592653589793
+ },
+ "샤우트몬[X2]": {
+  "slug": "shoutmon-x2",
+  "english": "Shoutmon X2",
+  "archive": "304528",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Shoutmon X2",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304528/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Shoutmon X2/004_SHOUTMONx2.fbx",
+  "rotateX": 0,
+  "upright": {
+   "top": "head",
+   "base": [
+    "L_foot",
+    "R_foot"
+   ],
+   "minUp": 0.45
+  },
+  "rotationY": 3.141592653589793
+ },
+ "샤우트몬[X3]": {
+  "slug": "shoutmon-x3",
+  "english": "Shoutmon X3",
+  "archive": "304529",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Shoutmon X3",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304529/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Shoutmon X3/005_SHOUTMONx3.fbx",
+  "rotateX": 0,
+  "rotationY": 0
+ },
+ "샤우트몬[X4]": {
+  "slug": "shoutmon-x4",
+  "english": "Shoutmon X4",
+  "archive": "304530",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Shoutmon X4",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304530/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Shoutmon X4/006_SHOUTMONx4.fbx",
+  "rotateX": 0,
+  "upright": {
+   "top": "head",
+   "base": [
+    "L_foot",
+    "R_foot"
+   ],
+   "minUp": 0.45
+  },
+  "rotationY": 0
+ },
+ "스패로우몬": {
+  "slug": "sparrowmon",
+  "english": "Sparrowmon",
+  "archive": "304531",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Sparrowmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304531/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Sparrowmon/010_SPARROWMON.fbx",
+  "rotateX": 0,
+  "rotationY": 0
+ },
+ "스타몬즈": {
+  "slug": "starmons",
+  "english": "Starmons",
+  "archive": "304532",
+  "game": "mobile_digimonfusionfighters",
+  "asset": "Starmons",
+  "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304532/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Starmons/009_STARMONS.fbx",
+  "rotateX": 0,
+  "rotationY": 0
+ },
+ "다크티라노몬": {
+  "slug": "darktyrannomon",
+  "english": "DarkTyrannomon",
+  "archive": "327903",
+  "game": "mobile_digitalbeastbootleg",
+  "asset": "DarkTyrannomon",
+  "url": "https://models.spriters-resource.com/mobile/digitalbeastbootleg/asset/327903/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "DarkTyrannomon/1771004701_skin.prefab.fbx",
+  "rotateX": 0,
+  "rotationY": 0
+ },
+ "코에몬": {
+  "slug": "monmon",
+  "english": "Monmon",
+  "archive": "327912",
+  "game": "mobile_digitalbeastbootleg",
+  "asset": "Monmon",
+  "url": "https://models.spriters-resource.com/mobile/digitalbeastbootleg/asset/327912/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Monmon/1780006101_skin.prefab.fbx",
+  "rotateX": 0,
+  "rotationY": 0
+ },
+ "타겟몬": {
+  "slug": "targetmon",
+  "english": "Targetmon",
+  "archive": "327913",
+  "game": "mobile_digitalbeastbootleg",
+  "asset": "Targetmon",
+  "url": "https://models.spriters-resource.com/mobile/digitalbeastbootleg/asset/327913/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "entry": "Targetmon/1771006101.prefab.fbx",
+  "rotateX": 0,
+  "rotationY": 0
+ },
+ "바그라몬": {
+  "slug": "bagramon",
+  "english": "Bagramon",
+  "archive": "327911",
+  "game": "mobile_digitalbeastbootleg",
+  "asset": "Bagramon",
+  "url": "https://models.spriters-resource.com/mobile/digitalbeastbootleg/asset/327911/",
+  "autoOrient": true,
+  "entry": "Bagramon/1770007401_skin.prefab.fbx",
+  "rotateX": 0,
+  "rotationY": 0
+ },
+ "데크스몬": {
+  "slug": "dexmon",
+  "english": "Dexmon",
+  "archive": "327904",
+  "game": "mobile_digitalbeastbootleg",
+  "asset": "Dexmon",
+  "url": "https://models.spriters-resource.com/mobile/digitalbeastbootleg/asset/327904/",
+  "autoOrient": true,
+  "entry": "Dexmon/1770007501.prefab.fbx",
+  "rotateX": 0,
+  "rotationY": 0
+ },
+ "위그드라실 7D6": {
+  "slug": "yggdrasil-7d6",
+  "english": "Yggdrasil 7D6",
+  "archive": "304092",
+  "game": "mobile_digimonlinks",
+  "asset": "Yggdrasil_7D6",
+  "url": "https://models.spriters-resource.com/mobile/digimonlinks/asset/304092/",
+  "uploader": "Hallow",
+  "autoOrient": true,
+  "keepScaleNodes": [
+   "GRP_mesh"
+  ],
+  "entry": "Yggdrasil_7D6/chr360 With Animations.fbx",
+  "rotateX": 0,
+  "rotationY": 0
+ },
+ "두프트몬[X항체]": {
+  "slug": "leopardmon-x",
+  "english": "Leopardmon X",
+  "archive": "310676",
+  "game": "mobile_digimonlinks",
+  "asset": "Leopardmon X",
+  "url": "https://models.spriters-resource.com/mobile/digimonlinks/asset/310676/",
+  "entry": "Leopardmon X/chr717.dae",
+  "rotateX": 90,
+  "legacyFbx": {
+   "entry": "Leopardmon X/chr717 With Animations.fbx",
+   "positionScale": 6.199999809265137,
+   "inspect": false,
+   "ranges": {
+    "idle": [
+     8.133333333333333,
+     11.4
+    ],
+    "attack01": [
+     0,
+     2
+    ],
+    "attack02": [
+     2.033333333333333,
+     4.033333333333333
+    ],
+    "damage": [
+     4.066666666666666,
+     5.033333333333333
+    ],
+    "down": [
+     6.066666666666666,
+     8.1
+    ]
+   }
+  },
+  "closeIdleLoop": true
+ },
+ "슬레이프몬[X항체]": {
+  "slug": "kentaurosmon-x",
+  "english": "Kentaurosmon X",
+  "archive": "310680",
+  "game": "mobile_digimonlinks",
+  "asset": "Kentaurosmon X",
+  "url": "https://models.spriters-resource.com/mobile/digimonlinks/asset/310680/",
+  "entry": "Kentaurosmon X/chr467.dae",
+  "rotateX": 90,
+  "legacyFbx": {
+   "entry": "Kentaurosmon X/chr467 with animations.fbx",
+   "positionScale": 5.5,
+   "inspect": false,
+   "ranges": {
+    "idle": [
+     13.333333333333334,
+     16.633333333333333
+    ],
+    "attack01": [
+     0,
+     2
+    ],
+    "attack02": [
+     2.033333333333333,
+     4.033333333333333
+    ],
+    "damage": [
+     4.466666666666667,
+     5.7
+    ],
+    "down": [
+     6.7,
+     9.2
+    ]
+   }
+  },
+  "closeIdleLoop": true
+ },
+ "베르제브몬[블래스트]": {
+  "slug": "beelzemon-blast-mode",
+  "english": "Beelzemon Blast Mode",
+  "archive": "310678",
+  "game": "mobile_digimonlinks",
+  "asset": "Beelzemon Blast Mode",
+  "url": "https://models.spriters-resource.com/mobile/digimonlinks/asset/310678/",
+  "entry": "Beelzemon Blast Mode/chr775.dae",
+  "rotateX": 90,
+  "legacyFbx": {
+   "entry": "Beelzemon Blast Mode/chr775 with animations.fbx",
+   "positionScale": 7.900000095367432,
+   "inspect": false,
+   "ranges": {
+    "idle": [
+     9.7,
+     12.966666666666667
+    ],
+    "attack01": [
+     0,
+     2
+    ],
+    "attack02": [
+     2.033333333333333,
+     4.033333333333333
+    ],
+    "damage": [
+     4.066666666666666,
+     5.033333333333333
+    ],
+    "down": [
+     6.8,
+     9.533333333333333
+    ],
+    "special01": [
+     28.9,
+     33.86666666666667
+    ]
+   }
+  },
+  "closeIdleLoop": true
+ },
+ "쿠즈하몬[무녀 모드]": {
+  "slug": "kuzuhamon-miko-mode",
+  "english": "Kuzuhamon (Miko Mode)",
+  "archive": "327454",
+  "game": "mobile_digimonrearise",
+  "asset": "Kuzuhamon (Maid Mode)",
+  "url": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327454/",
+  "entry": "Kuzuhamon Maid Mode/chr566.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "clipNames": {
+   "chr565_bn01_rd": "idle",
+   "chr565_bg01_rd": "guard",
+   "chr565_bs01_rd": "special01",
+   "chr565_bd02_rd": "down",
+   "chr565_bv01_rd": "victory",
+   "chr565_ba02_rd": "attack02",
+   "chr565_br01_rd": "move",
+   "chr565_ba01_rd": "attack01",
+   "chr565_bd01_rd": "damage"
+  }
+ },
+ "케레스몬": {
+  "slug": "ceresmon",
+  "english": "Ceresmon",
+  "archive": "339861",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Ceresmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/339861/",
+  "entry": "Ceresmon/u196_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "winged"
+  },
+  "dropClips": []
+ },
+ "에오스몬[궁극체]": {
+  "slug": "eosmon-lv6",
+  "english": "Eosmon (Mega)",
+  "archive": "348665",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Eosmon (Mega)",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/348665/",
+  "entry": "Eosmon/u273_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "winged"
+  },
+  "dropClips": []
+ },
+ "킹체스몬": {
+  "slug": "kingchessmon",
+  "english": "KingChessmon",
+  "archive": "335388",
+  "game": "mobile_digimonnewcentury",
+  "asset": "KingChessmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/335388/",
+  "entry": "KingChessmon/u173_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": [
+   "special01",
+   "attack01"
+  ]
+ },
+ "퀸체스몬": {
+  "slug": "queenchessmon",
+  "english": "QueenChessmon",
+  "archive": "335389",
+  "game": "mobile_digimonnewcentury",
+  "asset": "QueenChessmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/335389/",
+  "entry": "QueenChessmon/u190_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": [
+   "attack01"
+  ]
+ },
+ "발바몬[X항체]": {
+  "slug": "barbamon-x",
+  "english": "Barbamon X",
+  "archive": "344562",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Barbamon X",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/344562/",
+  "entry": "Barbamon X/x119_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": []
+ },
+ "비숍체스몬": {
+  "slug": "bishopchessmon",
+  "english": "BishopChessmon (White)",
+  "archive": "335390",
+  "game": "mobile_digimonnewcentury",
+  "asset": "BishopChessmon (White)",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/335390/",
+  "entry": "BishopChessmon (White)/c168_d.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": []
+ },
+ "케루비몬(선)[X항체]": {
+  "slug": "cherubimon-x",
+  "english": "Cherubimon (Good) X",
+  "archive": "341945",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Cherubimon (Good) X",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/341945/",
+  "entry": "Cherubimon (Good) X/x112_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped",
+   "hurtBlend": 0
+  },
+  "dropClips": [
+   "down",
+   "attack01"
+  ]
+ },
+ "도르빅크몬": {
+  "slug": "dorbickmon",
+  "english": "Dorbickmon",
+  "archive": "349381",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Dorbickmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/349381/",
+  "entry": "Dorbickmon/u270_fbx.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": [
+   "special02"
+  ]
+ },
+ "이랑몬": {
+  "slug": "erlangmon",
+  "english": "Erlangmon",
+  "archive": "349940",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Erlangmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/349940/",
+  "entry": "Zhenjunmon/x140_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": [],
+  "clipNames": {
+   "skill2_display": "special01"
+  }
+ },
+ "간쿠몬[X항체]": {
+  "slug": "gankoomon-x",
+  "english": "Gankoomon X",
+  "archive": "342973",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Gankoomon X",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342973/",
+  "entry": "Gankoomon X/x116_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": [
+   "attack01"
+  ]
+ },
+ "갓드라몬[X항체]": {
+  "slug": "goddramon-x",
+  "english": "Goldramon X",
+  "archive": "346506",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Goldramon X",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/346506/",
+  "entry": "Goldramon X/x127_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "winged"
+  },
+  "dropClips": []
+ },
+ "환쿤몬": {
+  "slug": "huankunmon",
+  "english": "Huankunmon",
+  "archive": "339866",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Huankunmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/339866/",
+  "entry": "Huankunmon/c213_d.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "serpent"
+  },
+  "dropClips": []
+ },
+ "제트메르바몬": {
+  "slug": "jetmervamon",
+  "english": "JetMervamon",
+  "archive": "342268",
+  "game": "mobile_digimonnewcentury",
+  "asset": "JetMervamon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342268/",
+  "entry": "JetMervamon/s132_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": [
+   "special02",
+   "victory"
+  ]
+ },
+ "유노몬": {
+  "slug": "junomon",
+  "english": "Junomon",
+  "archive": "341207",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Junomon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/341207/",
+  "entry": "Junomon/u239_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": []
+ },
+ "유노몬[히스테릭 모드]": {
+  "slug": "junomon-hysteric",
+  "english": "Junomon Hysteric Mode",
+  "archive": "342267",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Junomon Hysteric Mode",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342267/",
+  "entry": "Junomon Hysteric Mode/s133_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": [
+   "victory"
+  ]
+ },
+ "리리스몬[X항체]": {
+  "slug": "lilithmon-x",
+  "english": "Lilithmon X",
+  "archive": "344112",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Lilithmon X",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/344112/",
+  "entry": "Lilithmon X/x118_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": []
+ },
+ "메기드라몬[X항체]": {
+  "slug": "megidramon-x",
+  "english": "Megidramon X",
+  "archive": "349382",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Megidramon X",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/349382/",
+  "entry": "Megidramon X/x131_m.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "winged"
+  },
+  "dropClips": []
+ },
+ "오그도몬": {
+  "slug": "ogudomon",
+  "english": "Ogudomon",
+  "archive": "349384",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Ogudomon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/349384/",
+  "entry": "Ogudomon/s142_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "beast"
+  },
+  "dropClips": []
+ },
+ "오파니몬[X항체]": {
+  "slug": "ofanimon-x",
+  "english": "Ophanimon X",
+  "archive": "342265",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Ophanimon X",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342265/",
+  "entry": "Ophanimon X/x115_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": [
+   "special02"
+  ]
+ },
+ "페닉스몬[X항체]": {
+  "slug": "hououmon-x",
+  "english": "Phoenixmon X",
+  "archive": "344563",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Phoenixmon X",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/344563/",
+  "entry": "Phoenixmon X/x121_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "winged"
+  },
+  "dropClips": [
+   "attack01"
+  ]
+ },
+ "룩체스몬": {
+  "slug": "rookchessmon",
+  "english": "RookChessmon (Black)",
+  "archive": "335391",
+  "game": "mobile_digimonnewcentury",
+  "asset": "RookChessmon (Black)",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/335391/",
+  "entry": "RookChessmon (Black)/c177_d.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "machine"
+  },
+  "dropClips": []
+ },
+ "로제몬[X항체]": {
+  "slug": "rosemon-x",
+  "english": "Rosemon X",
+  "archive": "347504",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Rosemon X",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/347504/",
+  "entry": "Rosemon X/x128_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": []
+ },
+ "샤크라몬[X항체]": {
+  "slug": "sakuyamon-x",
+  "english": "Sakuyamon X",
+  "archive": "348928",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Sakuyamon X",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/348928/",
+  "entry": "Sakuyamon X/x125_fbx.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": []
+ },
+ "탁탑몬": {
+  "slug": "takutoumon",
+  "english": "Takutoumon",
+  "archive": "347871",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Takutoumon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/347871/",
+  "entry": "Takutoumon/u276_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": [
+   "attack01"
+  ]
+ },
+ "얼티메이트카오스몬": {
+  "slug": "ultimatechaosmon",
+  "english": "UltimateChaosmon",
+  "archive": "344564",
+  "game": "mobile_digimonnewcentury",
+  "asset": "UltimateChaosmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/344564/",
+  "entry": "UltimateChaosmon/s135_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": [],
+  "clipNames": {
+   "skill2_display": "special01"
+  }
+ },
+ "불카누스몬": {
+  "slug": "vulcanusmon",
+  "english": "Vulcanusmon",
+  "archive": "334387",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Vulcanusmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/334387/",
+  "entry": "Vulcanusmon/u203_m.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "biped"
+  },
+  "dropClips": []
+ },
+ "샹펑몬": {
+  "slug": "xiangpengmon",
+  "english": "Xiangpengmon",
+  "archive": "339867",
+  "game": "mobile_digimonnewcentury",
+  "asset": "Xiangpengmon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/339867/",
+  "entry": "Xiangpengmon/u235_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "winged"
+  },
+  "dropClips": []
+ },
+ "지드밀레니엄몬": {
+  "slug": "zeedmillenniumon",
+  "english": "ZeedMillenniummon",
+  "archive": "341947",
+  "game": "mobile_digimonnewcentury",
+  "asset": "ZeedMillenniummon",
+  "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/341947/",
+  "entry": "ZeedMillenniummon/s129_p.fbx",
+  "autoOrient": false,
+  "rotateX": 0,
+  "closeIdleLoop": true,
+  "authoredMotion": {
+   "profile": "serpent"
+  },
+  "dropClips": []
+ }
+}

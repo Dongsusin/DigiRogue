@@ -1,10 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
+import GameViewport from './components/GameViewport.jsx'
+import LocalGame from './components/LocalGame.jsx'
+import AuthProvider from './auth/AuthProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <GameViewport><AuthProvider><LocalGame /></AuthProvider></GameViewport>
   </StrictMode>,
 )

@@ -1,0 +1,1772 @@
+{
+  "깜몬": {
+    "id": "regeneration"
+  },
+  "도도몬": {
+    "id": "regeneration"
+  },
+  "뽀글몬": {
+    "id": "ocean"
+  },
+  "쿠라몬": {
+    "id": "charge"
+  },
+  "포요몬": {
+    "id": "regeneration"
+  },
+  "푸니몬": {
+    "id": "receptive"
+  },
+  "프스몬": {
+    "id": "regeneration"
+  },
+  "하얀몬": {
+    "id": "regeneration"
+  },
+  "치코몬": {
+    "id": "signature"
+  },
+  "도리몬": {
+    "id": "data-ward"
+  },
+  "둥실몬": {
+    "id": "tranquil"
+  },
+  "모티몬": {
+    "id": "regeneration"
+  },
+  "뿔몬": {
+    "id": "data-ward"
+  },
+  "시드몬": {
+    "id": "regeneration"
+  },
+  "야옹몬": {
+    "id": "clean-body"
+  },
+  "어니몬": {
+    "id": "signature"
+  },
+  "와냐몬": {
+    "id": "elusive"
+  },
+  "츠메몬": {
+    "id": "charge"
+  },
+  "코로몬": {
+    "id": "signature"
+  },
+  "토코몬": {
+    "id": "tranquil"
+  },
+  "퍼그몬": {
+    "id": "venom-art"
+  },
+  "프스리몬": {
+    "id": "signature"
+  },
+  "꼬마몬": {
+    "id": "opening"
+  },
+  "알카디몬[유년기]": {
+    "id": "sturdy"
+  },
+  "가오몬": {
+    "id": "swift"
+  },
+  "가지몬": {
+    "id": "venom-body"
+  },
+  "고부리몬": {
+    "id": "brawler"
+  },
+  "길몬": {
+    "id": "resolve"
+  },
+  "도루몬": {
+    "id": "ferocity",
+    "families": [
+      "용족"
+    ]
+  },
+  "드라코몬": {
+    "id": "ocean",
+    "families": [
+      "용족"
+    ]
+  },
+  "드라큐몬": {
+    "id": "drain",
+    "families": [
+      "용족"
+    ]
+  },
+  "라라몬": {
+    "id": "forest"
+  },
+  "레나몬": {
+    "id": "swift"
+  },
+  "로프몬": {
+    "id": "magic-ward"
+  },
+  "루체몬": {
+    "id": "radiance"
+  },
+  "류우다몬": {
+    "id": "precision",
+    "families": [
+      "용족"
+    ]
+  },
+  "모노드라몬": {
+    "id": "opening",
+    "families": [
+      "용족"
+    ]
+  },
+  "베타몬": {
+    "id": "ocean"
+  },
+  "브이몬": {
+    "id": "opening"
+  },
+  "샤코몬": {
+    "id": "armor"
+  },
+  "쉬라몬": {
+    "id": "receptive"
+  },
+  "아구몬": {
+    "id": "flame"
+  },
+  "아구몬(흑)": {
+    "id": "flame"
+  },
+  "아기벌몬": {
+    "id": "insulated"
+  },
+  "아르마몬": {
+    "id": "armor"
+  },
+  "에렉몬": {
+    "id": "voltage"
+  },
+  "올챙몬": {
+    "id": "receptive"
+  },
+  "임프몬": {
+    "id": "venom-art"
+  },
+  "추추몬": {
+    "id": "signature"
+  },
+  "츠카이몬": {
+    "id": "venom-art"
+  },
+  "카메몬": {
+    "id": "armor"
+  },
+  "케라몬": {
+    "id": "charge"
+  },
+  "쿠다몬": {
+    "id": "elusive"
+  },
+  "테리어몬": {
+    "id": "tranquil"
+  },
+  "텐타몬": {
+    "id": "insulated"
+  },
+  "톱니몬": {
+    "id": "armor"
+  },
+  "파닥몬": {
+    "id": "healer"
+  },
+  "파피몬": {
+    "id": "flame"
+  },
+  "파피몬(흑)": {
+    "id": "flame"
+  },
+  "팔몬": {
+    "id": "venom-art"
+  },
+  "팔코몬": {
+    "id": "elusive"
+  },
+  "플롯트몬": {
+    "id": "clean-body"
+  },
+  "피요몬": {
+    "id": "storm"
+  },
+  "피코데블몬": {
+    "id": "venom-art"
+  },
+  "헉몬": {
+    "id": "resolve"
+  },
+  "호크몬": {
+    "id": "storm"
+  },
+  "가무드라몬": {
+    "id": "elusive",
+    "families": [
+      "용족"
+    ]
+  },
+  "쟈자몬": {
+    "id": "steel"
+  },
+  "샤우트몬": {
+    "id": "resolve"
+  },
+  "황금톱니몬": {
+    "id": "voltage"
+  },
+  "보보몬": {
+    "id": "signature"
+  },
+  "즈바몬": {
+    "id": "steel"
+  },
+  "베어몬": {
+    "id": "brawler"
+  },
+  "에리스몬": {
+    "id": "sturdy"
+  },
+  "레드펭귄몬": {
+    "id": "flame"
+  },
+  "테이파몬": {
+    "id": "tranquil"
+  },
+  "토이아구몬": {
+    "id": "block"
+  },
+  "토이아구몬(흑)": {
+    "id": "block"
+  },
+  "알카디몬[성장기]": {
+    "id": "sturdy"
+  },
+  "츄몬": {
+    "id": "venom-body"
+  },
+  "루나몬": {
+    "id": "receptive"
+  },
+  "머슈몬": {
+    "id": "venom-body"
+  },
+  "시스터몬 블랑": {
+    "id": "healer"
+  },
+  "가드로몬": {
+    "id": "armor"
+  },
+  "가루몬": {
+    "id": "swift"
+  },
+  "가루몬(흑)": {
+    "id": "swift"
+  },
+  "가르고몬": {
+    "id": "focus"
+  },
+  "가오가몬": {
+    "id": "swift"
+  },
+  "가트몬": {
+    "id": "clean-body"
+  },
+  "개굴몬": {
+    "id": "receptive"
+  },
+  "고스몬": {
+    "id": "venom-art"
+  },
+  "구미호몬": {
+    "id": "swift"
+  },
+  "그라우몬": {
+    "id": "resolve",
+    "families": [
+      "용족"
+    ]
+  },
+  "그레이몬": {
+    "id": "flame",
+    "families": [
+      "용족"
+    ]
+  },
+  "긴류우몬": {
+    "id": "precision",
+    "families": [
+      "용족"
+    ]
+  },
+  "니드몬": {
+    "id": "regeneration"
+  },
+  "데블몬": {
+    "id": "darkness"
+  },
+  "도루가몬": {
+    "id": "ferocity",
+    "families": [
+      "용족"
+    ]
+  },
+  "레오몬": {
+    "id": "brawler"
+  },
+  "레파몬": {
+    "id": "radiance"
+  },
+  "말벌몬": {
+    "id": "insulated"
+  },
+  "메라몬": {
+    "id": "flame-body"
+  },
+  "모노크로몬": {
+    "id": "armor"
+  },
+  "옐로우워매몬": {
+    "id": "swift"
+  },
+  "바오헉몬": {
+    "id": "resolve"
+  },
+  "버드라몬": {
+    "id": "flame-body",
+    "families": [
+      "용족"
+    ]
+  },
+  "베지몬": {
+    "id": "venom-body"
+  },
+  "브이드라몬": {
+    "id": "opening",
+    "families": [
+      "용족"
+    ]
+  },
+  "블랙가트몬": {
+    "id": "revenge"
+  },
+  "스카몬": {
+    "id": "venom-body"
+  },
+  "스타몬": {
+    "id": "precision"
+  },
+  "스트라이크드라몬": {
+    "id": "opening",
+    "families": [
+      "용족"
+    ]
+  },
+  "스팅몬": {
+    "id": "precision"
+  },
+  "시드라몬": {
+    "id": "ocean",
+    "families": [
+      "용족"
+    ]
+  },
+  "아이스몬": {
+    "id": "frost"
+  },
+  "아큐라몬": {
+    "id": "storm"
+  },
+  "에어드라몬": {
+    "id": "storm",
+    "families": [
+      "용족"
+    ]
+  },
+  "엑스브이몬": {
+    "id": "opening"
+  },
+  "엔젤몬": {
+    "id": "healer"
+  },
+  "우가몬": {
+    "id": "brawler"
+  },
+  "우드몬": {
+    "id": "forest"
+  },
+  "워매몬": {
+    "id": "venom-body"
+  },
+  "원뿔몬": {
+    "id": "frost"
+  },
+  "위자몬": {
+    "id": "sorcerer"
+  },
+  "지오그레이몬": {
+    "id": "flame",
+    "families": [
+      "용족"
+    ]
+  },
+  "캅테리몬": {
+    "id": "armor"
+  },
+  "코어드라몬(녹)": {
+    "id": "forest",
+    "families": [
+      "용족"
+    ]
+  },
+  "코어드라몬(청)": {
+    "id": "sorcerer",
+    "families": [
+      "용족"
+    ]
+  },
+  "쿠가몬": {
+    "id": "predator"
+  },
+  "크리사리몬": {
+    "id": "magic-ward"
+  },
+  "토리에몬": {
+    "id": "swift"
+  },
+  "티라노몬": {
+    "id": "ferocity",
+    "families": [
+      "용족"
+    ]
+  },
+  "펙크몬": {
+    "id": "elusive"
+  },
+  "프리지몬": {
+    "id": "frost"
+  },
+  "필몬": {
+    "id": "voltage"
+  },
+  "해바라기몬": {
+    "id": "forest"
+  },
+  "황금아르마몬": {
+    "id": "critical-guard"
+  },
+  "타임몬": {
+    "id": "magic-ward"
+  },
+  "사이크로몬": {
+    "id": "focus"
+  },
+  "골드워매몬": {
+    "id": "critical-guard"
+  },
+  "쟈자드몬": {
+    "id": "steel"
+  },
+  "라보보몬": {
+    "id": "flame"
+  },
+  "메이쿠몬": {
+    "id": "revenge"
+  },
+  "모야몬": {
+    "id": "sturdy"
+  },
+  "달팽이워매몬": {
+    "id": "block"
+  },
+  "소서리몬": {
+    "id": "sorcerer"
+  },
+  "즈바이거몬": {
+    "id": "steel"
+  },
+  "아레스타드라몬": {
+    "id": "elusive",
+    "families": [
+      "용족"
+    ]
+  },
+  "레드꼬끼몬": {
+    "id": "block"
+  },
+  "다이노휴몬": {
+    "id": "brawler"
+  },
+  "그리즈몬": {
+    "id": "brawler"
+  },
+  "오메카몬": {
+    "id": "magic-ward"
+  },
+  "탱크몬": {
+    "id": "focus"
+  },
+  "태스크몬": {
+    "id": "ferocity"
+  },
+  "멧돼지몬": {
+    "id": "ferocity"
+  },
+  "황소몬": {
+    "id": "flame"
+  },
+  "골드브이드라몬": {
+    "id": "opening",
+    "families": [
+      "용족"
+    ]
+  },
+  "링스몬": {
+    "id": "flame"
+  },
+  "토토몬": {
+    "id": "block"
+  },
+  "프라리몬": {
+    "id": "tranquil"
+  },
+  "백사몬": {
+    "id": "storm"
+  },
+  "비트몬": {
+    "id": "tranquil"
+  },
+  "번개드라몬": {
+    "id": "opening",
+    "families": [
+      "용족"
+    ]
+  },
+  "사수몬": {
+    "id": "clean-body"
+  },
+  "시프몬": {
+    "id": "sorcerer"
+  },
+  "백조몬": {
+    "id": "storm"
+  },
+  "아그니몬": {
+    "id": "flame"
+  },
+  "알카디몬[성숙기]": {
+    "id": "sturdy"
+  },
+  "실리컨몬": {
+    "id": "ocean"
+  },
+  "머드프리지몬": {
+    "id": "frost"
+  },
+  "록몬": {
+    "id": "earth"
+  },
+  "그레이몬(청)": {
+    "id": "flame",
+    "families": [
+      "용족"
+    ]
+  },
+  "후디에몬": {
+    "id": "clean-body"
+  },
+  "레키스몬": {
+    "id": "swift"
+  },
+  "볼프몬": {
+    "id": "iron-will"
+  },
+  "라프타드라몬": {
+    "id": "steel",
+    "families": [
+      "용족"
+    ]
+  },
+  "레어몬": {
+    "id": "venom-body"
+  },
+  "상굴몬": {
+    "id": "ferocity"
+  },
+  "시스터몬 느와르": {
+    "id": "precision"
+  },
+  "유니몬": {
+    "id": "tranquil"
+  },
+  "화염드라몬": {
+    "id": "flame",
+    "families": [
+      "용족"
+    ]
+  },
+  "가루다몬": {
+    "id": "storm"
+  },
+  "고래몬": {
+    "id": "ocean"
+  },
+  "그라운드라몬": {
+    "id": "ocean",
+    "families": [
+      "용족"
+    ]
+  },
+  "데이터몬": {
+    "id": "data-ward"
+  },
+  "도루그레몬": {
+    "id": "ferocity",
+    "families": [
+      "용족"
+    ]
+  },
+  "도사몬": {
+    "id": "sorcerer"
+  },
+  "디지타몬": {
+    "id": "earth"
+  },
+  "라이즈그레이몬": {
+    "id": "focus",
+    "families": [
+      "용족"
+    ]
+  },
+  "라일라몬": {
+    "id": "forest"
+  },
+  "래피드몬": {
+    "id": "swift"
+  },
+  "레이디데블몬": {
+    "id": "darkness"
+  },
+  "로더레오몬": {
+    "id": "focus"
+  },
+  "루체몬[폴다운]": {
+    "id": "ruthless"
+  },
+  "릴리몬": {
+    "id": "forest"
+  },
+  "마하가오가몬": {
+    "id": "swift"
+  },
+  "메가드라몬": {
+    "id": "focus",
+    "families": [
+      "용족"
+    ]
+  },
+  "메가로그라우몬": {
+    "id": "resolve",
+    "families": [
+      "용족"
+    ]
+  },
+  "메가시드라몬": {
+    "id": "ocean",
+    "families": [
+      "용족"
+    ]
+  },
+  "메탈그레이몬": {
+    "id": "focus",
+    "families": [
+      "용족"
+    ]
+  },
+  "메탈티라노몬": {
+    "id": "ferocity",
+    "families": [
+      "용족"
+    ]
+  },
+  "묘티스몬": {
+    "id": "drain"
+  },
+  "블랙메가로그라우몬": {
+    "id": "revenge",
+    "families": [
+      "용족"
+    ]
+  },
+  "블루메라몬": {
+    "id": "flame-body"
+  },
+  "프린스콩알몬": {
+    "id": "signature"
+  },
+  "사이버드라몬": {
+    "id": "opening",
+    "families": [
+      "용족"
+    ]
+  },
+  "세이버헉몬": {
+    "id": "resolve"
+  },
+  "슈퍼스타몬": {
+    "id": "precision"
+  },
+  "스컬그레이몬": {
+    "id": "sturdy",
+    "families": [
+      "용족"
+    ]
+  },
+  "스컬사탄몬": {
+    "id": "ruthless"
+  },
+  "실피드몬": {
+    "id": "storm"
+  },
+  "아트라캅테리몬": {
+    "id": "armor"
+  },
+  "안티라몬": {
+    "id": "signature"
+  },
+  "에어로브이드라몬": {
+    "id": "opening",
+    "families": [
+      "용족"
+    ]
+  },
+  "에테몬": {
+    "id": "regeneration"
+  },
+  "엔젤우몬": {
+    "id": "healer"
+  },
+  "오로치몬": {
+    "id": "drain"
+  },
+  "왕개굴몬": {
+    "id": "receptive"
+  },
+  "왕쿠가몬": {
+    "id": "predator"
+  },
+  "워가루몬": {
+    "id": "swift"
+  },
+  "워가루몬(흑)": {
+    "id": "swift"
+  },
+  "윙드라몬": {
+    "id": "storm",
+    "families": [
+      "용족"
+    ]
+  },
+  "인펠몬": {
+    "id": "charge"
+  },
+  "쥬드몬": {
+    "id": "signature"
+  },
+  "쥬레이몬": {
+    "id": "forest"
+  },
+  "캐논벌몬": {
+    "id": "voltage"
+  },
+  "콩알몬": {
+    "id": "data-ward"
+  },
+  "트리케라몬": {
+    "id": "armor"
+  },
+  "파일드라몬": {
+    "id": "sorcerer",
+    "families": [
+      "용족"
+    ]
+  },
+  "팬더몬": {
+    "id": "brawler"
+  },
+  "팬텀몬": {
+    "id": "darkness"
+  },
+  "퍼펫몬": {
+    "id": "ruthless"
+  },
+  "펌프몬": {
+    "id": "ruthless"
+  },
+  "홀리엔젤몬": {
+    "id": "healer"
+  },
+  "화이트레오몬": {
+    "id": "brawler"
+  },
+  "히샤류우몬": {
+    "id": "precision",
+    "families": [
+      "용족"
+    ]
+  },
+  "히포그리포몬": {
+    "id": "storm"
+  },
+  "안드로몬": {
+    "id": "armor"
+  },
+  "블랙킹워매몬": {
+    "id": "critical-guard"
+  },
+  "듀라몬": {
+    "id": "steel"
+  },
+  "기가드라몬": {
+    "id": "focus",
+    "families": [
+      "용족"
+    ]
+  },
+  "아이언레오몬": {
+    "id": "brawler"
+  },
+  "쟈자리히몬": {
+    "id": "steel"
+  },
+  "키메라몬": {
+    "id": "ferocity"
+  },
+  "라보가리타몬": {
+    "id": "flame"
+  },
+  "메이크랙몬[비셔스]": {
+    "id": "venom-body"
+  },
+  "메탈콩알몬": {
+    "id": "steel"
+  },
+  "피콜몬": {
+    "id": "elusive"
+  },
+  "데드메라몬": {
+    "id": "flame-body"
+  },
+  "베이더몬": {
+    "id": "sorcerer"
+  },
+  "아르고몬[완전체]": {
+    "id": "charge"
+  },
+  "챠츠라몬": {
+    "id": "virus-bane"
+  },
+  "인다라몬": {
+    "id": "storm"
+  },
+  "굼비라몬": {
+    "id": "earth"
+  },
+  "마지라몬": {
+    "id": "storm"
+  },
+  "마쿠라몬": {
+    "id": "iron-will"
+  },
+  "데블시드라몬": {
+    "id": "ocean",
+    "families": [
+      "용족"
+    ]
+  },
+  "메이크랙몬": {
+    "id": "venom-body"
+  },
+  "메피스몬": {
+    "id": "ruthless"
+  },
+  "미히라몬": {
+    "id": "storm"
+  },
+  "파지라몬": {
+    "id": "focus"
+  },
+  "산티라몬": {
+    "id": "virus-bane"
+  },
+  "신드라몬": {
+    "id": "voltage",
+    "families": [
+      "용족"
+    ]
+  },
+  "스티필몬": {
+    "id": "revenge"
+  },
+  "바지라몬": {
+    "id": "earth"
+  },
+  "비가라몬": {
+    "id": "earth"
+  },
+  "시스터몬 블랑[각성]": {
+    "id": "healer"
+  },
+  "시스터몬 느와르[각성]": {
+    "id": "precision"
+  },
+  "알카디몬[완전체]": {
+    "id": "sturdy"
+  },
+  "브리트라몬": {
+    "id": "flame"
+  },
+  "캐치콩알몬": {
+    "id": "data-ward"
+  },
+  "치린몬": {
+    "id": "radiance"
+  },
+  "크레세몬": {
+    "id": "swift"
+  },
+  "야타가라몬": {
+    "id": "elusive"
+  },
+  "다이노몬": {
+    "id": "precision"
+  },
+  "드라고몬": {
+    "id": "ocean",
+    "families": [
+      "용족"
+    ]
+  },
+  "그레이드몬": {
+    "id": "brawler",
+    "families": [
+      "용족"
+    ]
+  },
+  "가름몬": {
+    "id": "swift"
+  },
+  "나이트몬": {
+    "id": "armor"
+  },
+  "마타돌몬": {
+    "id": "drain"
+  },
+  "토우몬": {
+    "id": "magic-ward"
+  },
+  "볼케몬": {
+    "id": "brawler"
+  },
+  "그랜쿠가몬": {
+    "id": "predator"
+  },
+  "넵튠몬": {
+    "id": "ocean"
+  },
+  "노블펌프몬": {
+    "id": "regeneration"
+  },
+  "듀나스몬": {
+    "id": "virus-bane"
+  },
+  "듀크몬": {
+    "id": "resolve"
+  },
+  "디아블로몬": {
+    "id": "sturdy"
+  },
+  "라센몬": {
+    "id": "voltage"
+  },
+  "러스트티라노몬": {
+    "id": "ferocity",
+    "families": [
+      "용족"
+    ]
+  },
+  "레이브몬": {
+    "id": "elusive"
+  },
+  "로드나이트몬": {
+    "id": "brawler"
+  },
+  "로제몬": {
+    "id": "healer"
+  },
+  "로터스몬": {
+    "id": "healer"
+  },
+  "리리스몬": {
+    "id": "ruthless"
+  },
+  "리바이어몬": {
+    "id": "bloodlust"
+  },
+  "마린엔젤몬": {
+    "id": "healer"
+  },
+  "마스테몬": {
+    "id": "darkness"
+  },
+  "마왕몬": {
+    "id": "ruthless"
+  },
+  "메탈가루몬": {
+    "id": "iron-will"
+  },
+  "메탈시드라몬": {
+    "id": "ocean",
+    "families": [
+      "용족"
+    ]
+  },
+  "메탈에테몬": {
+    "id": "regeneration"
+  },
+  "미네르바몬": {
+    "id": "brawler"
+  },
+  "미라쥬가오가몬": {
+    "id": "swift"
+  },
+  "바이킹몬": {
+    "id": "frost"
+  },
+  "반쵸릴리몬": {
+    "id": "precision"
+  },
+  "발두르몬": {
+    "id": "radiance"
+  },
+  "발키리몬": {
+    "id": "storm"
+  },
+  "베놈묘티스몬": {
+    "id": "venom-body"
+  },
+  "베르제브몬": {
+    "id": "revenge"
+  },
+  "베리얼묘티스몬": {
+    "id": "drain"
+  },
+  "벨페몬": {
+    "id": "revenge"
+  },
+  "볼트몬": {
+    "id": "voltage"
+  },
+  "브레이크드라몬": {
+    "id": "charge",
+    "families": [
+      "용족"
+    ]
+  },
+  "블랙메탈가루몬": {
+    "id": "frost"
+  },
+  "블랙워그레이몬": {
+    "id": "revenge",
+    "families": [
+      "용족"
+    ]
+  },
+  "블리츠그레이몬": {
+    "id": "voltage",
+    "families": [
+      "용족"
+    ]
+  },
+  "샤벨레오몬": {
+    "id": "ferocity"
+  },
+  "샤인그레이몬": {
+    "id": "flame",
+    "families": [
+      "용족"
+    ]
+  },
+  "샤크라몬": {
+    "id": "signature"
+  },
+  "세라피몬": {
+    "id": "radiance"
+  },
+  "세인트가르고몬": {
+    "id": "focus"
+  },
+  "슬레이어드라몬": {
+    "id": "predator",
+    "families": [
+      "용족"
+    ]
+  },
+  "알파몬": {
+    "id": "guardian"
+  },
+  "알포스브이드라몬": {
+    "id": "opening",
+    "families": [
+      "용족"
+    ]
+  },
+  "오류우몬": {
+    "id": "brawler",
+    "families": [
+      "용족"
+    ]
+  },
+  "오파니몬": {
+    "id": "healer"
+  },
+  "워그레이몬": {
+    "id": "dragon-bane",
+    "families": [
+      "용족"
+    ]
+  },
+  "제스몬": {
+    "id": "resolve"
+  },
+  "카오스듀크몬": {
+    "id": "resolve"
+  },
+  "케루비몬(선)": {
+    "id": "magic-ward"
+  },
+  "케루비몬(악)": {
+    "id": "darkness"
+  },
+  "쿠즈하몬": {
+    "id": "sorcerer"
+  },
+  "크레니엄몬": {
+    "id": "guardian"
+  },
+  "크레스가루몬": {
+    "id": "dual-knight"
+  },
+  "타이거베스파몬": {
+    "id": "swift"
+  },
+  "타이타몬": {
+    "id": "predator"
+  },
+  "택티몬": {
+    "id": "brawler"
+  },
+  "파워드라몬": {
+    "id": "charge",
+    "families": [
+      "용족"
+    ]
+  },
+  "플래티넘워매몬": {
+    "id": "critical-guard"
+  },
+  "플레시오몬": {
+    "id": "ocean"
+  },
+  "피노키몬": {
+    "id": "forest"
+  },
+  "페닉스몬": {
+    "id": "radiance"
+  },
+  "피에몬": {
+    "id": "ruthless"
+  },
+  "헤라클레스캅테리몬": {
+    "id": "armor"
+  },
+  "헤비레오몬": {
+    "id": "armor"
+  },
+  "에이션트가루몬": {
+    "id": "swift"
+  },
+  "에이션트그레이몬": {
+    "id": "flame",
+    "families": [
+      "용족"
+    ]
+  },
+  "아포카리몬": {
+    "id": "darkness"
+  },
+  "반쵸레오몬": {
+    "id": "brawler"
+  },
+  "발바몬": {
+    "id": "darkness"
+  },
+  "카오스드라몬": {
+    "id": "charge",
+    "families": [
+      "용족"
+    ]
+  },
+  "듀란다몬": {
+    "id": "steel"
+  },
+  "이바몬": {
+    "id": "charge"
+  },
+  "간쿠몬": {
+    "id": "resolve"
+  },
+  "그랜드로코몬": {
+    "id": "iron-will"
+  },
+  "하이안드로몬": {
+    "id": "armor"
+  },
+  "할배몬": {
+    "id": "sturdy"
+  },
+  "킹에테몬": {
+    "id": "critical-guard"
+  },
+  "홀리드라몬": {
+    "id": "healer",
+    "families": [
+      "용족"
+    ]
+  },
+  "메탈릭드라몬": {
+    "id": "steel",
+    "families": [
+      "용족"
+    ]
+  },
+  "라구엘몬": {
+    "id": "healer"
+  },
+  "볼케닉드라몬": {
+    "id": "flame",
+    "families": [
+      "용족"
+    ]
+  },
+  "매그너몬": {
+    "id": "guardian"
+  },
+  "래피드몬[아머]": {
+    "id": "swift"
+  },
+  "아르고몬": {
+    "id": "charge"
+  },
+  "청룡몬": {
+    "id": "storm"
+  },
+  "백호몬": {
+    "id": "virus-bane"
+  },
+  "반쵸록몬": {
+    "id": "earth"
+  },
+  "반쵸스팅몬": {
+    "id": "precision"
+  },
+  "현무몬": {
+    "id": "forest"
+  },
+  "가르프몬": {
+    "id": "darkness"
+  },
+  "황룡몬": {
+    "id": "radiance"
+  },
+  "러블리엔젤몬": {
+    "id": "healer"
+  },
+  "미타마몬": {
+    "id": "sorcerer"
+  },
+  "라지엘몬": {
+    "id": "healer"
+  },
+  "주작몬": {
+    "id": "radiance"
+  },
+  "알카디몬": {
+    "id": "sturdy"
+  },
+  "디아나몬": {
+    "id": "sorcerer"
+  },
+  "도루고라몬": {
+    "id": "ferocity",
+    "families": [
+      "용족"
+    ]
+  },
+  "카이젤그레이몬": {
+    "id": "flame",
+    "families": [
+      "용족"
+    ]
+  },
+  "갓드라몬": {
+    "id": "radiance",
+    "families": [
+      "용족"
+    ]
+  },
+  "그란드라큐몬": {
+    "id": "drain",
+    "families": [
+      "용족"
+    ]
+  },
+  "그리포몬": {
+    "id": "storm"
+  },
+  "저스티몬": {
+    "id": "radiance"
+  },
+  "슬레이프몬": {
+    "id": "swift"
+  },
+  "메기드라몬": {
+    "id": "resolve",
+    "families": [
+      "용족"
+    ]
+  },
+  "메르크리몬": {
+    "id": "swift"
+  },
+  "파일볼케몬": {
+    "id": "brawler"
+  },
+  "가이오몬": {
+    "id": "revenge"
+  },
+  "타이런트캅테리몬": {
+    "id": "armor"
+  },
+  "알카디몬[초궁극체]": {
+    "id": "sturdy"
+  },
+  "오메가샤우트몬": {
+    "id": "resolve"
+  },
+  "두프트몬[레오파드]": {
+    "id": "armor"
+  },
+  "라센몬[격앙]": {
+    "id": "bloodlust"
+  },
+  "레이브몬[버스트]": {
+    "id": "elusive"
+  },
+  "로제몬[버스트]": {
+    "id": "drain"
+  },
+  "루체몬[사탄]": {
+    "id": "bloodlust"
+  },
+  "미라쥬가오가몬[버스트]": {
+    "id": "swift"
+  },
+  "벨페몬[레이지]": {
+    "id": "bloodlust"
+  },
+  "샤인그레이몬[루인]": {
+    "id": "revenge",
+    "families": [
+      "용족"
+    ]
+  },
+  "샤인그레이몬[버스트]": {
+    "id": "resolve",
+    "families": [
+      "용족"
+    ]
+  },
+  "아마게몬": {
+    "id": "charge"
+  },
+  "알파몬[왕룡검]": {
+    "id": "guardian"
+  },
+  "엑자몬": {
+    "id": "guardian",
+    "families": [
+      "용족"
+    ]
+  },
+  "오메가몬": {
+    "id": "dual-knight"
+  },
+  "오메가몬[알터-S]": {
+    "id": "dual-knight"
+  },
+  "오메가몬[즈왈트]": {
+    "id": "darkness"
+  },
+  "오파니몬[폴다운]": {
+    "id": "ruthless"
+  },
+  "황제드라몬[파이터]": {
+    "id": "brawler",
+    "families": [
+      "용족"
+    ]
+  },
+  "황제드라몬[팔라딘]": {
+    "id": "virus-bane",
+    "families": [
+      "용족"
+    ]
+  },
+  "베르제브몬[X항체]": {
+    "id": "revenge"
+  },
+  "크레니엄몬[X항체]": {
+    "id": "guardian"
+  },
+  "듀나스몬[X항체]": {
+    "id": "virus-bane"
+  },
+  "듀크몬[X항체]": {
+    "id": "resolve"
+  },
+  "제스몬[X항체]": {
+    "id": "resolve"
+  },
+  "메탈가루몬[X항체]": {
+    "id": "iron-will"
+  },
+  "밀레니엄몬": {
+    "id": "sturdy"
+  },
+  "오메가몬[알터-B]": {
+    "id": "ruthless"
+  },
+  "오메가몬[머시풀]": {
+    "id": "healer"
+  },
+  "오메가몬[X항체]": {
+    "id": "dual-knight"
+  },
+  "오메가몬[즈왈트-D]": {
+    "id": "revenge"
+  },
+  "스사노오몬": {
+    "id": "radiance"
+  },
+  "알포스브이드라몬[X항체]": {
+    "id": "opening",
+    "families": [
+      "용족"
+    ]
+  },
+  "워그레이몬[X항체]": {
+    "id": "dragon-bane",
+    "families": [
+      "용족"
+    ]
+  },
+  "블랙워그레이몬[X항체]": {
+    "id": "revenge",
+    "families": [
+      "용족"
+    ]
+  },
+  "매그너몬[X항체]": {
+    "id": "guardian"
+  },
+  "가이오몬[엄도의형]": {
+    "id": "revenge"
+  },
+  "아구몬[용기의유대]": {
+    "id": "resolve"
+  },
+  "파피몬[우정의유대]": {
+    "id": "swift"
+  },
+  "듀크몬[크림슨]": {
+    "id": "opening"
+  },
+  "카오스몬": {
+    "id": "darkness"
+  },
+  "카오스몬[발두르암]": {
+    "id": "darkness"
+  },
+  "가드로몬(골드)": {
+    "id": "armor"
+  },
+  "아이스데블몬": {
+    "id": "frost"
+  },
+  "아트라캅테리몬(청)": {
+    "id": "armor"
+  },
+  "두프트몬": {
+    "id": "guardian"
+  },
+  "매그너가루몬[SV]": {
+    "id": "radiance"
+  },
+  "에이션트볼케몬": {
+    "id": "earth"
+  },
+  "매드레오몬[암드]": {
+    "id": "resolve"
+  },
+  "바리스타몬": {
+    "id": "armor"
+  },
+  "바스테몬": {
+    "id": "drain"
+  },
+  "블래스트몬": {
+    "id": "critical-guard"
+  },
+  "치비카메몬": {
+    "id": "ocean"
+  },
+  "큐트몬": {
+    "id": "healer"
+  },
+  "사이버드라몬[크로스워즈]": {
+    "id": "opening",
+    "families": [
+      "용족"
+    ]
+  },
+  "왕펭귄몬": {
+    "id": "frost"
+  },
+  "도루루몬": {
+    "id": "swift"
+  },
+  "그레이몬[크로스워즈]": {
+    "id": "flame",
+    "families": [
+      "용족"
+    ]
+  },
+  "메일버드라몬": {
+    "id": "focus"
+  },
+  "맘몬": {
+    "id": "frost"
+  },
+  "메탈그레이몬[크로스워즈]": {
+    "id": "steel",
+    "families": [
+      "용족"
+    ]
+  },
+  "메탈그레이몬[사이버런처]": {
+    "id": "focus"
+  },
+  "모니터몬": {
+    "id": "elusive"
+  },
+  "파라오몬": {
+    "id": "venom-art"
+  },
+  "샤우트몬[X2]": {
+    "id": "armor"
+  },
+  "샤우트몬[X3]": {
+    "id": "resolve"
+  },
+  "샤우트몬[X4]": {
+    "id": "signature"
+  },
+  "스패로우몬": {
+    "id": "swift"
+  },
+  "스타몬즈": {
+    "id": "precision"
+  },
+  "다크티라노몬": {
+    "id": "ferocity",
+    "families": [
+      "용족"
+    ]
+  },
+  "유피테르몬": {
+    "id": "voltage"
+  },
+  "코에몬": {
+    "id": "focus"
+  },
+  "타겟몬": {
+    "id": "focus"
+  },
+  "바그라몬": {
+    "id": "ruthless"
+  },
+  "데크스몬": {
+    "id": "darkness"
+  },
+  "위그드라실 7D6": {
+    "id": "magic-ward"
+  },
+  "울퉁몬": {
+    "id": "armor"
+  },
+  "두프트몬[X항체]": {
+    "id": "elusive"
+  },
+  "슬레이프몬[X항체]": {
+    "id": "dual-knight"
+  },
+  "베르제브몬[블래스트]": {
+    "id": "signature"
+  },
+  "와이즈몬": {
+    "id": "revenge"
+  },
+  "운석몬": {
+    "id": "armor"
+  },
+  "쿠즈하몬[무녀 모드]": {
+    "id": "magic-ward"
+  },
+  "케레스몬": {
+    "id": "forest"
+  },
+  "에오스몬[궁극체]": {
+    "id": "focus"
+  },
+  "킹체스몬": {
+    "id": "magic-ward"
+  },
+  "마르스몬": {
+    "id": "brawler"
+  },
+  "플루토몬": {
+    "id": "ferocity"
+  },
+  "퀸체스몬": {
+    "id": "steel"
+  },
+  "라플레시몬": {
+    "id": "forest"
+  },
+  "라이덴몬": {
+    "id": "voltage"
+  },
+  "베누스몬": {
+    "id": "healer"
+  },
+  "지드가루몬": {
+    "id": "focus"
+  },
+  "발바몬[X항체]": {
+    "id": "sorcerer"
+  },
+  "비숍체스몬": {
+    "id": "magic-ward"
+  },
+  "케루비몬(선)[X항체]": {
+    "id": "magic-ward"
+  },
+  "다이노타이거몬": {
+    "id": "predator"
+  },
+  "도르빅크몬": {
+    "id": "flame"
+  },
+  "이랑몬": {
+    "id": "swift"
+  },
+  "풍신몬": {
+    "id": "swift"
+  },
+  "간쿠몬[X항체]": {
+    "id": "resolve"
+  },
+  "기가시드라몬": {
+    "id": "ocean"
+  },
+  "갓드라몬[X항체]": {
+    "id": "radiance"
+  },
+  "환쿤몬": {
+    "id": "ocean"
+  },
+  "제트메르바몬": {
+    "id": "swift"
+  },
+  "유노몬": {
+    "id": "resolve"
+  },
+  "유노몬[히스테릭 모드]": {
+    "id": "revenge"
+  },
+  "리리스몬[X항체]": {
+    "id": "drain"
+  },
+  "메기드라몬[X항체]": {
+    "id": "ferocity"
+  },
+  "오그도몬": {
+    "id": "magic-ward"
+  },
+  "오파니몬[X항체]": {
+    "id": "healer"
+  },
+  "페닉스몬[X항체]": {
+    "id": "flame"
+  },
+  "룩체스몬": {
+    "id": "armor"
+  },
+  "로제몬[X항체]": {
+    "id": "drain"
+  },
+  "샤크라몬[X항체]": {
+    "id": "magic-ward"
+  },
+  "수신몬": {
+    "id": "ocean"
+  },
+  "탁탑몬": {
+    "id": "magic-ward"
+  },
+  "얼티메이트카오스몬": {
+    "id": "ferocity"
+  },
+  "불카누스몬": {
+    "id": "steel"
+  },
+  "샹펑몬": {
+    "id": "storm"
+  },
+  "지드밀레니엄몬": {
+    "id": "darkness"
+  }
+}

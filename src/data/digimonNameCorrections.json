@@ -1,0 +1,537 @@
+{
+  "revision": 1,
+  "verifiedAt": "2026-10-02",
+  "corrections": [
+    {
+      "from": "넵툰몬",
+      "to": "넵튠몬",
+      "english": "Neptunemon",
+      "model": "/models/digimon/neptunemon.glb",
+      "directory": "neptunemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=neptunemon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "피닉스몬",
+      "to": "페닉스몬",
+      "english": "Phoenixmon",
+      "model": "/models/digimon/phoenixmon.glb",
+      "directory": "hououmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=hououmon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "헤라클래스캅테리몬",
+      "to": "헤라클레스캅테리몬",
+      "english": "HerculesKabuterimon",
+      "model": "/models/digimon/herculeskabuterimon.glb",
+      "directory": "heraklekabuterimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=heraklekabuterimon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "바르바몬",
+      "to": "발바몬",
+      "english": "Barbamon",
+      "model": "/models/digimon/barbamon.glb",
+      "directory": "barbamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=barbamon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "지지몬",
+      "to": "할배몬",
+      "english": "Jijimon",
+      "model": "/models/digimon/jijimon.glb",
+      "directory": "jijimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=jijimon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "반쵸골레몬",
+      "to": "반쵸록몬",
+      "english": "BanchoGolemon",
+      "model": "/models/digimon/banchogolemon.glb",
+      "directory": "banchogolemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=banchogolemon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "걸프몬",
+      "to": "가르프몬",
+      "english": "Gulfmon",
+      "model": "/models/digimon/gulfmon.glb",
+      "directory": "gulfmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gulfmon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "그랜드라큐몬",
+      "to": "그란드라큐몬",
+      "english": "GranDracmon",
+      "model": "/models/digimon/grandracmon.glb",
+      "directory": "granddracumon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=granddracumon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "모야몬",
+      "to": "옐로우워매몬",
+      "english": "Geremon",
+      "model": "/models/digimon/geremon.glb",
+      "directory": "geremon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=geremon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "워메몬",
+      "to": "워매몬",
+      "english": "Numemon",
+      "model": "/models/digimon/numemon.glb",
+      "directory": "numemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=numemon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "팩몬",
+      "to": "펙크몬",
+      "english": "Peckmon",
+      "model": "/models/digimon/peckmon.glb",
+      "directory": "peckmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=peckmon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "클록몬",
+      "to": "타임몬",
+      "english": "Clockmon",
+      "model": "/models/digimon/clockmon.glb",
+      "directory": "clockmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=clockmon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "사이클로몬",
+      "to": "사이크로몬",
+      "english": "Cyclonemon",
+      "model": "/models/digimon/cyclonemon.glb",
+      "directory": "cyclomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=cyclomon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "골드워메몬",
+      "to": "골드워매몬",
+      "english": "GoldNumemon",
+      "model": "/models/digimon/goldnumemon.glb",
+      "directory": "goldnumemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=goldnumemon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "재자드몬",
+      "to": "쟈자드몬",
+      "english": "Jazardmon",
+      "model": "/models/digimon/jazardmon.glb",
+      "directory": "jazardmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=jazardmon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "나니몬",
+      "to": "모야몬",
+      "english": "Nanimon",
+      "model": "/models/digimon/nanimon.glb",
+      "directory": "nanimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=nanimon",
+      "overlapsExistingName": true
+    },
+    {
+      "from": "꼬끼몬",
+      "to": "레드꼬끼몬",
+      "english": "Akatorimon",
+      "model": "/models/digimon/akatorimon.glb",
+      "directory": "akatorimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=akatorimon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "터스크몬",
+      "to": "태스크몬",
+      "english": "Tuskmon",
+      "model": "/models/digimon/tuskmon.glb",
+      "directory": "tuskmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=tuskmon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "보어몬",
+      "to": "멧돼지몬",
+      "english": "Boarmon",
+      "model": "/models/digimon/boarmon.glb",
+      "directory": "boarmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=boarmon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "불몬",
+      "to": "황소몬",
+      "english": "Bullmon",
+      "model": "/models/digimon/bullmon.glb",
+      "directory": "bullmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=bullmon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "링크스몬",
+      "to": "링스몬",
+      "english": "Lynxmon",
+      "model": "/models/digimon/lynxmon.glb",
+      "directory": "lynxmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=lynxmon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "오포소몬",
+      "to": "토토몬",
+      "english": "Opossummon",
+      "model": "/models/digimon/opossummon.glb",
+      "directory": "opossummon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=opossummon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "프레리몬",
+      "to": "프라리몬",
+      "english": "Prairiemon",
+      "model": "/models/digimon/prairiemon.glb",
+      "directory": "prairiemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=prairiemon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "케찰몬",
+      "to": "백사몬",
+      "english": "Quetzalmon",
+      "model": "/models/digimon/quetzalmon.glb",
+      "directory": "quetzalmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=quetzalmon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "래빗몬",
+      "to": "비트몬",
+      "english": "Rabbitmon",
+      "model": "/models/digimon/rabbitmon.glb",
+      "directory": "bitmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=bitmon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "라이드라몬",
+      "to": "번개드라몬",
+      "english": "Raidramon",
+      "model": "/models/digimon/raidramon.glb",
+      "directory": "lighdramon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=lighdramon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "사지타리몬",
+      "to": "사수몬",
+      "english": "Sagittarimon",
+      "model": "/models/digimon/sagittarimon.glb",
+      "directory": "sagittarimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=sagittarimon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "스완몬",
+      "to": "백조몬",
+      "english": "Swanmon",
+      "model": "/models/digimon/swanmon.glb",
+      "directory": "swanmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=swanmon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "실러캔몬",
+      "to": "실리컨몬",
+      "english": "Coelamon",
+      "model": "/models/digimon/coelamon.glb",
+      "directory": "coelamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=coelamon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "골레몬",
+      "to": "록몬",
+      "english": "Golemon",
+      "model": "/models/digimon/golemon.glb",
+      "directory": "golemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=golemon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "랩터드라몬",
+      "to": "라프타드라몬",
+      "english": "Raptordramon",
+      "model": "/models/digimon/raptordramon.glb",
+      "directory": "raptordramon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=raptordramon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "상그루프몬",
+      "to": "상굴몬",
+      "english": "Sangloupmon",
+      "model": "/models/digimon/sangloupmon.glb",
+      "directory": "sangloupmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=sangloupmon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "츄카이몬",
+      "to": "츠카이몬",
+      "english": "Tsukaimon",
+      "model": "/models/digimon/tsukaimon.glb",
+      "directory": "tukaimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=tukaimon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "껌드라몬",
+      "to": "가무드라몬",
+      "english": "Gumdramon",
+      "model": "/models/digimon/gumdramon.glb",
+      "directory": "gumdramon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gumdramon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "재즈몬",
+      "to": "쟈자몬",
+      "english": "Jazamon",
+      "model": "/models/digimon/jazamon.glb",
+      "directory": "jazamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=jazamon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "솔라몬",
+      "to": "황금톱니몬",
+      "english": "Solarmon",
+      "model": "/models/digimon/solarmon.glb",
+      "directory": "solarmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=solarmon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "보르보몬",
+      "to": "보보몬",
+      "english": "Vorvomon",
+      "model": "/models/digimon/vorvomon.glb",
+      "directory": "vorvomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=vorvomon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "무쵸몬",
+      "to": "레드펭귄몬",
+      "english": "Muchomon",
+      "model": "/models/digimon/muchomon.glb",
+      "directory": "muchomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=muchomon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "바쿠몬",
+      "to": "테이파몬",
+      "english": "Tapirmon",
+      "model": "/models/digimon/tapirmon.glb",
+      "directory": "bakumon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=bakumon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "머쉬몬",
+      "to": "머슈몬",
+      "english": "Mushroomon",
+      "model": "/models/digimon/mushroomon.glb",
+      "directory": "mushmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=mushmon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "뿌띠몬",
+      "to": "프린스콩알몬",
+      "english": "PrinceMamemon",
+      "model": "/models/digimon/princemamemon.glb",
+      "directory": "princemamemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=princemamemon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "히사류우몬",
+      "to": "히샤류우몬",
+      "english": "Hisyaryumon",
+      "model": "/models/digimon/hisyaryumon.glb",
+      "directory": "hisyaryumon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=hisyaryumon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "블랙킹워메몬",
+      "to": "블랙킹워매몬",
+      "english": "BlackKingNumemon",
+      "model": "/models/digimon/blackkingnumemon.glb",
+      "directory": "blackkingnumemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=blackkingnumemon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "그래플레오몬",
+      "to": "아이언레오몬",
+      "english": "GrapLeomon",
+      "model": "/models/digimon/grapleomon.glb",
+      "directory": "grappuleomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=grappuleomon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "재자리히몬",
+      "to": "쟈자리히몬",
+      "english": "Jazarichmon",
+      "model": "/models/digimon/jazarichmon.glb",
+      "directory": "jazarichmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=jazarichmon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "차츠라몬",
+      "to": "챠츠라몬",
+      "english": "Caturamon",
+      "model": "/models/digimon/caturamon.glb",
+      "directory": "caturamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=caturamon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "디노비몬",
+      "to": "다이노몬",
+      "english": "Dinobeemon",
+      "model": "/models/digimon/dinobeemon.glb",
+      "directory": "dinobeemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=dinobeemon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "꼬마몬",
+      "to": "치코몬",
+      "english": "Chibomon",
+      "model": "/models/digimon/chibomon.glb",
+      "directory": "chicomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=chicomon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "치비몬",
+      "to": "꼬마몬",
+      "english": "DemiVeemon",
+      "model": "/models/digimon/demiveemon.glb",
+      "directory": "chibimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=chibimon",
+      "overlapsExistingName": true
+    },
+    {
+      "from": "껍질워메몬",
+      "to": "달팽이워매몬",
+      "english": "ShellNumemon",
+      "model": "/models/digimon/shellnumemon.glb",
+      "directory": "karatukinumemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=karatukinumemon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "루체몬[풀다운]",
+      "to": "루체몬[폴다운]",
+      "english": "Lucemon Falldown Mode",
+      "model": "/models/digimon/lucemon-falldown-mode.glb",
+      "directory": "rucemonfalldownmode",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=rucemonfalldownmode",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "오파니몬[풀다운]",
+      "to": "오파니몬[폴다운]",
+      "english": "Ophanimon Falldown Mode",
+      "model": "/models/digimon/ophanimon-falldown-mode.glb",
+      "directory": "ofanimonfalldownmode",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=ofanimonfalldownmode",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "이그드라실 7D6",
+      "to": "위그드라실 7D6",
+      "english": "Yggdrasil 7D6",
+      "model": "/models/digimon/yggdrasil-7d6.glb",
+      "directory": "yggdrasill7d6",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=yggdrasill7d6",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "아르카디몬",
+      "to": "알카디몬",
+      "english": "Arcadiamon (Mega)",
+      "model": "/models/digimon/arcadiamon-mega.glb",
+      "directory": "arkadimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=arkadimon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "아르카디몬[성장기]",
+      "to": "알카디몬[성장기]",
+      "english": "Arcadiamon (Rookie)",
+      "model": "/models/digimon/arcadiamon-rookie.glb",
+      "directory": "arkadimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=arkadimon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "아르카디몬[유년기]",
+      "to": "알카디몬[유년기]",
+      "english": "Arcadiamon (In-Training)",
+      "model": "/models/digimon/arcadiamon-in-training.glb",
+      "directory": "arkadimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=arkadimon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "아르카디몬[성숙기]",
+      "to": "알카디몬[성숙기]",
+      "english": "Arcadiamon (Champion)",
+      "model": "/models/digimon/arcadiamon-champion.glb",
+      "directory": "arkadimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=arkadimon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "아르카디몬[완전체]",
+      "to": "알카디몬[완전체]",
+      "english": "Arcadiamon (Ultimate)",
+      "model": "/models/digimon/arcadiamon-ultimate.glb",
+      "directory": "arkadimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=arkadimon",
+      "overlapsExistingName": false
+    },
+    {
+      "from": "아르카디몬[초궁극체]",
+      "to": "알카디몬[초궁극체]",
+      "english": "Arcadiamon (Ultra)",
+      "model": "/models/digimon/arcadiamon-ultra.glb",
+      "directory": "arkadimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=arkadimon",
+      "overlapsExistingName": false
+    }
+  ]
+}

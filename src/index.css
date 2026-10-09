@@ -9,6 +9,11 @@
   text-rendering: optimizeSpeed;
 }
 
+.local-guest-label { color: #b7dfe9; font-size: 12px; letter-spacing: .08em; }
+.title-band__inner:has(.local-guest-label) { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.local-storage-error { color: #eaf2ff; padding: 40px; text-align: center; }
+.local-storage-error button { background: #c5f0ff; color: #11202c; padding: 12px 24px; border: 0; border-radius: 8px; cursor: pointer; }
+
 * {
   box-sizing: border-box;
 }

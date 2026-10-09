@@ -1,0 +1,110 @@
+{
+  "passed": true,
+  "game": {
+    "bossProfiles": 113,
+    "rivalProfiles": 100,
+    "newLineages": 29,
+    "maps": 34,
+    "combinations": 6800,
+    "minimumStartingSpecies": 3,
+    "actualBattleCreations": 5440,
+    "bossTests": {
+      "passed": 9,
+      "failed": 0,
+      "exitCode": 0
+    },
+    "regressionTests": {
+      "passed": 105,
+      "failed": 0,
+      "exitCode": 0
+    },
+    "checks": [
+      {
+        "name": "syntax src/data/regionalBossProfiles.js",
+        "exitCode": 0
+      },
+      {
+        "name": "syntax src/battle/encounterVariety.js",
+        "exitCode": 0
+      },
+      {
+        "name": "syntax src/data/bossProfiles.js",
+        "exitCode": 0
+      },
+      {
+        "name": "syntax src/data/rivalProfiles.js",
+        "exitCode": 0
+      },
+      {
+        "name": "syntax src/battle/bossEncounters.js",
+        "exitCode": 0
+      },
+      {
+        "name": "syntax src/battle/rivalEncounters.js",
+        "exitCode": 0
+      },
+      {
+        "name": "syntax scripts/verify-boss-variety.mjs",
+        "exitCode": 0
+      },
+      {
+        "name": "escape + regional-support + balance regression",
+        "exitCode": 0
+      },
+      {
+        "name": "runtime assets",
+        "exitCode": 0
+      },
+      {
+        "name": "production build",
+        "exitCode": 0
+      },
+      {
+        "name": "distribution assets",
+        "exitCode": 0
+      }
+    ],
+    "visibleScenes": 12,
+    "consoleErrors": [],
+    "localHttpErrors": []
+  },
+  "video": {
+    "file": "C:/Users/pdwea/Develop/media/digilog-trailer-2026-10-09/digilog-gameplay-trailer-v9-1080p.mp4",
+    "duration": 94.63333333333334,
+    "frames": 2839,
+    "bytes": 75376753,
+    "checks": 30,
+    "commands": 8,
+    "sha256": "05b46353a464ebed13d09a49e3ffe7e531fbfee84e0008dd62840019156b77a6",
+    "middleFramesIdentical": true,
+    "bgmPacketsIdentical": true
+  },
+  "changedFiles": [
+    "src/data/regionalBossProfiles.js",
+    "src/data/bossProfiles.js",
+    "src/data/rivalProfiles.js",
+    "src/battle/encounterVariety.js",
+    "src/battle/bossEncounters.js",
+    "src/battle/rivalEncounters.js",
+    "scripts/verify-boss-variety.mjs",
+    "scripts/verify-regional-support.mjs",
+    "package.json"
+  ],
+  "sha256": {
+    "src/data/regionalBossProfiles.js": "2e471d0883672596357ea9d0c8e4369d70f6690a7a1d72910b9f0c535f3299cd",
+    "src/data/bossProfiles.js": "a1717e7089c3959f0fa0fcbff72601ef36ff2ec4e810c1d778e65ea642ed639d",
+    "src/data/rivalProfiles.js": "e14299fe93bae4215ae3be39448ccc72084176c7b03472b655e9f394b798f6db",
+    "src/battle/encounterVariety.js": "bd69aaad16fc14a318abb2314f9f1c4ac38a7acefb27acb954ad5c60aeee347b",
+    "src/battle/bossEncounters.js": "8e781b9996c8bfa31371fd647c1ec91c45315dfc401b6b022976c09a638de8e1",
+    "src/battle/rivalEncounters.js": "b5c86d38ac4dcef8abf6951bc14a403c8606f8858a3c5d0b8ecc6d6cdccbdef0",
+    "scripts/verify-boss-variety.mjs": "fdf736f79cd881db18d5ff4f1343b3a71fc16ab2113c3383409a4dafb8fc51cb",
+    "scripts/verify-regional-support.mjs": "f6b4e5851b09503e16486439f9a7c6f66a8498796839d202c49555f832609a6d",
+    "package.json": "58cd208713c1b2e61db4639a8311bd5ecddedea5bab65d5b6a82299b74aadb03"
+  },
+  "notVerified": [
+    "Full manual 200-stage playthrough",
+    "Deployment to the live website",
+    "YouTube upload",
+    "Full-length manual audio playback"
+  ]
+}

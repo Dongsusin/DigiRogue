@@ -1,0 +1,29 @@
+.status-condition-badge {
+  display: inline-flex; align-items: center; justify-content: center; gap: 4px; flex-shrink: 0;
+  padding: 3px 6px; border: 1px solid color-mix(in srgb, var(--status-color) 58%, #20354a);
+  border-radius: 5px; background: color-mix(in srgb, var(--status-color) 18%, #102032);
+  color: var(--status-color); font: 600 11px/1.15 var(--battle-ui-font, sans-serif); cursor: help;
+  box-shadow: inset 0 1px #ffffff0c; white-space: nowrap;
+}
+.status-condition-badge svg { width: 13px; height: 13px; flex-shrink: 0; }
+.status-condition-badge b { margin-left: 2px; font-size: 9px; font-weight: 500; opacity: .85; }
+.status-condition-badge:hover, .status-condition-badge:focus-visible { border-color: var(--status-color); background: color-mix(in srgb, var(--status-color) 28%, #102032); outline: 1px solid var(--status-color); outline-offset: 2px; }
+.status-condition-tooltip {
+  position: absolute; z-index: 240; box-sizing: border-box; padding: 12px; border: 1px solid color-mix(in srgb, var(--status-color) 60%, #304358);
+  border-radius: 9px; background: #101e30fc; color: #e6edf6; box-shadow: 0 8px 24px #0009;
+  pointer-events: none; font: 400 12px/1.65 var(--battle-ui-font, sans-serif); overflow: hidden; text-align: left;
+}
+.status-condition-tooltip header { display: flex; align-items: center; gap: 8px; padding-bottom: 9px; border-bottom: 1px solid #abcaff20; }
+.status-condition-tooltip__icon { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px; background: color-mix(in srgb, var(--status-color) 16%, #102032); color: var(--status-color); }
+.status-condition-tooltip__icon svg { width: 25px; height: 25px; }
+.status-condition-tooltip header small { display: block; font-size: 9px; color: #9ab0c5; line-height: 1.3; }
+.status-condition-tooltip h3 { margin: 2px 0 0; color: var(--status-color); font-size: 16px; line-height: 1.3; }
+.status-condition-tooltip header b { margin-left: auto; align-self: center; color: var(--status-color); font-size: 11px; }
+.status-condition-tooltip ul { padding: 0 0 0 14px; margin: 10px 0; }
+.status-condition-tooltip li { padding-left: 1px; margin: 3px 0; word-break: keep-all; }
+.status-condition-tooltip li::marker { color: var(--status-color); }
+.status-condition-tooltip p { margin: 0; padding-top: 8px; border-top: 1px solid #abcaff20; font-size: 10px; color: #a6bbcf; word-break: keep-all; }
+.combatant-effects-row { position: absolute; inset: 52px 7px auto 7px; height: 18px; display: flex; align-items: center; gap: 5px; min-width: 0; }
+.combatant-effects-row .status-condition-badge { font-size: 9px; padding: 2px 4px; gap: 3px; }
+.combatant-effects-row .status-condition-badge svg { width: 11px; height: 11px; }
+.combatant-effects-row .combatant-effects { position: static; min-width: 0; flex: 1; overflow: hidden; }

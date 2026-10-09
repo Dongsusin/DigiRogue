@@ -1,0 +1,19 @@
+.item-luck { --luck-color: #adbfcd; display: flex; align-items: center; flex-shrink: 0; gap: 20px; margin: 0; padding: 7px 13px; border: 1px solid color-mix(in srgb, var(--luck-color) 55%, #14293a); border-radius: 6px; background: #102737ed; color: var(--luck-color); font-family: var(--battle-ui-font, var(--font-pixel)); }
+.item-luck[data-grade='D'] { --luck-color: #9fe2be; }
+.item-luck[data-grade='C'] { --luck-color: #83dce4; }
+.item-luck[data-grade='B'] { --luck-color: #87b9ff; }
+.item-luck[data-grade='A'] { --luck-color: #d5a5f9; }
+.item-luck[data-grade='S'] { --luck-color: #f5cb7c; }
+.item-luck[data-grade='SS'] { --luck-color: #ffdfa0; background: linear-gradient(110deg, #493919, #172838); box-shadow: inset 0 0 16px #ffdb7820; }
+.item-luck__grade { display: flex; align-items: center; gap: 8px; white-space: nowrap; font-size: 12px; }
+.item-luck__grade > span:first-child { font-size: 18px; }
+.item-luck__grade strong { min-width: 25px; font: 700 22px/1 var(--font-pixel-mono); text-align: center; }
+.item-luck--expanded { margin: 12px 16px 0; padding: 12px 16px; }
+.item-luck--expanded .item-luck__grade strong { font-size: 30px; min-width: 45px; }
+.item-luck__progress { flex: 1; min-width: 0; }
+.item-luck__progress ol { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; margin: 0; padding: 0; list-style: none; }
+.item-luck__progress li { padding: 5px 0; border: 1px solid #415769; border-radius: 3px; color: #7894a7; background: #0b1d2c; text-align: center; font: 12px var(--font-pixel-mono); }
+.item-luck__progress .is-reached { border-color: #6b8074; color: #bed6c7; background: #294337; }
+.item-luck__progress .is-current { border-color: var(--luck-color); color: var(--luck-color); background: color-mix(in srgb, var(--luck-color) 15%, #122638); box-shadow: 0 0 8px color-mix(in srgb, var(--luck-color) 20%, transparent); }
+.item-luck__progress p { display: flex; justify-content: space-between; gap: 8px; margin: 7px 0 0; color: #a9c1d1; font-size: 10px; }
+@container game-design (max-width: 900px) { .item-luck--expanded { gap: 12px; padding: 10px; } .item-luck__progress ol { gap: 3px; } .item-luck__grade { font-size: 11px; gap: 5px; } }

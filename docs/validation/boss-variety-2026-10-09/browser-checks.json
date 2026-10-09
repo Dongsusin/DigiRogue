@@ -1,0 +1,286 @@
+{
+  "passed": true,
+  "exitCode": 0,
+  "shots": [
+    {
+      "id": "water-sea",
+      "expected": "메탈시드라몬",
+      "file": "C:/Users/pdwea/Develop/digirouge/docs/validation/boss-variety-2026-10-09/water-sea.png",
+      "map": "용의눈호수",
+      "stage": 100,
+      "enemies": [
+        {
+          "id": "boss-100-regional-sea-serpent-wild",
+          "name": "메탈시드라몬",
+          "hp": 708,
+          "maxHp": 708,
+          "segments": 4,
+          "profile": "regional-sea-serpent-wild"
+        }
+      ],
+      "canvas": [
+        {
+          "width": 1280,
+          "height": 592
+        }
+      ]
+    },
+    {
+      "id": "water-moon",
+      "expected": "디아나몬",
+      "file": "C:/Users/pdwea/Develop/digirouge/docs/validation/boss-variety-2026-10-09/water-moon.png",
+      "map": "용의눈호수",
+      "stage": 100,
+      "enemies": [
+        {
+          "id": "boss-100-regional-moon-watch-wild",
+          "name": "디아나몬",
+          "hp": 617,
+          "maxHp": 617,
+          "segments": 4,
+          "profile": "regional-moon-watch-wild"
+        }
+      ],
+      "canvas": [
+        {
+          "width": 1280,
+          "height": 592
+        }
+      ]
+    },
+    {
+      "id": "water-lake",
+      "expected": "플레시오몬",
+      "file": "C:/Users/pdwea/Develop/digirouge/docs/validation/boss-variety-2026-10-09/water-lake.png",
+      "map": "용의눈호수",
+      "stage": 100,
+      "enemies": [
+        {
+          "id": "boss-100-regional-marsh-chorus-wild",
+          "name": "플레시오몬",
+          "hp": 590,
+          "maxHp": 590,
+          "segments": 4,
+          "profile": "regional-marsh-chorus-wild"
+        }
+      ],
+      "canvas": [
+        {
+          "width": 1280,
+          "height": 592
+        }
+      ]
+    },
+    {
+      "id": "waste-crown",
+      "expected": "메탈에테몬",
+      "file": "C:/Users/pdwea/Develop/digirouge/docs/validation/boss-variety-2026-10-09/waste-crown.png",
+      "map": "쓰레기의 산",
+      "stage": 100,
+      "enemies": [
+        {
+          "id": "boss-100-regional-scrap-monkey-wild",
+          "name": "메탈에테몬",
+          "hp": 753,
+          "maxHp": 753,
+          "segments": 4,
+          "profile": "regional-scrap-monkey-wild"
+        }
+      ],
+      "canvas": [
+        {
+          "width": 1280,
+          "height": 592
+        }
+      ]
+    },
+    {
+      "id": "waste-chief",
+      "expected": "타이타몬",
+      "file": "C:/Users/pdwea/Develop/digirouge/docs/validation/boss-variety-2026-10-09/waste-chief.png",
+      "map": "쓰레기의 산",
+      "stage": 100,
+      "enemies": [
+        {
+          "id": "boss-100-regional-goblin-chief-wild",
+          "name": "타이타몬",
+          "hp": 800,
+          "maxHp": 800,
+          "segments": 4,
+          "profile": "regional-goblin-chief-wild"
+        }
+      ],
+      "canvas": [
+        {
+          "width": 1280,
+          "height": 592
+        }
+      ]
+    },
+    {
+      "id": "waste-watch",
+      "expected": "하이안드로몬",
+      "file": "C:/Users/pdwea/Develop/digirouge/docs/validation/boss-variety-2026-10-09/waste-watch.png",
+      "map": "쓰레기의 산",
+      "stage": 100,
+      "enemies": [
+        {
+          "id": "boss-100-regional-factory-watch-wild",
+          "name": "하이안드로몬",
+          "hp": 705,
+          "maxHp": 705,
+          "segments": 4,
+          "profile": "regional-factory-watch-wild"
+        }
+      ],
+      "canvas": [
+        {
+          "width": 1280,
+          "height": 592
+        }
+      ]
+    },
+    {
+      "id": "network-infection",
+      "expected": "디아블로몬",
+      "file": "C:/Users/pdwea/Develop/digirouge/docs/validation/boss-variety-2026-10-09/network-infection.png",
+      "map": "다크 웹",
+      "stage": 150,
+      "enemies": [
+        {
+          "id": "boss-150-regional-net-infection-wild",
+          "name": "디아블로몬",
+          "hp": 939,
+          "maxHp": 939,
+          "segments": 4,
+          "profile": "regional-net-infection-wild"
+        }
+      ],
+      "canvas": [
+        {
+          "width": 1280,
+          "height": 592
+        }
+      ]
+    },
+    {
+      "id": "network-devourer",
+      "expected": "알카디몬",
+      "file": "C:/Users/pdwea/Develop/digirouge/docs/validation/boss-variety-2026-10-09/network-devourer.png",
+      "map": "다크 웹",
+      "stage": 150,
+      "enemies": [
+        {
+          "id": "boss-150-regional-data-devourer-wild",
+          "name": "알카디몬",
+          "hp": 948,
+          "maxHp": 948,
+          "segments": 4,
+          "profile": "regional-data-devourer-wild"
+        }
+      ],
+      "canvas": [
+        {
+          "width": 1280,
+          "height": 592
+        }
+      ]
+    },
+    {
+      "id": "network-hunter",
+      "expected": "저스티몬",
+      "file": "C:/Users/pdwea/Develop/digirouge/docs/validation/boss-variety-2026-10-09/network-hunter.png",
+      "map": "다크 웹",
+      "stage": 150,
+      "enemies": [
+        {
+          "id": "boss-150-regional-cyber-hunter-wild",
+          "name": "저스티몬",
+          "hp": 991,
+          "maxHp": 991,
+          "segments": 4,
+          "profile": "regional-cyber-hunter-wild"
+        }
+      ],
+      "canvas": [
+        {
+          "width": 1280,
+          "height": 592
+        }
+      ]
+    },
+    {
+      "id": "holy-saint",
+      "expected": "제스몬",
+      "file": "C:/Users/pdwea/Develop/digirouge/docs/validation/boss-variety-2026-10-09/holy-saint.png",
+      "map": "가디언 팰리스",
+      "stage": 130,
+      "enemies": [
+        {
+          "id": "boss-130-regional-sword-saint",
+          "name": "제스몬",
+          "hp": 859,
+          "maxHp": 859,
+          "segments": 4,
+          "profile": "regional-sword-saint"
+        }
+      ],
+      "canvas": [
+        {
+          "width": 1280,
+          "height": 592
+        }
+      ]
+    },
+    {
+      "id": "holy-beast",
+      "expected": "슬레이프몬",
+      "file": "C:/Users/pdwea/Develop/digirouge/docs/validation/boss-variety-2026-10-09/holy-beast.png",
+      "map": "가디언 팰리스",
+      "stage": 130,
+      "enemies": [
+        {
+          "id": "boss-130-regional-holy-beast",
+          "name": "슬레이프몬",
+          "hp": 819,
+          "maxHp": 819,
+          "segments": 4,
+          "profile": "regional-holy-beast"
+        }
+      ],
+      "canvas": [
+        {
+          "width": 1280,
+          "height": 592
+        }
+      ]
+    },
+    {
+      "id": "holy-dragon",
+      "expected": "오류우몬",
+      "file": "C:/Users/pdwea/Develop/digirouge/docs/validation/boss-variety-2026-10-09/holy-dragon.png",
+      "map": "가디언 팰리스",
+      "stage": 130,
+      "enemies": [
+        {
+          "id": "boss-130-regional-dragon-samurai",
+          "name": "오류우몬",
+          "hp": 822,
+          "maxHp": 822,
+          "segments": 4,
+          "profile": "regional-dragon-samurai"
+        }
+      ],
+      "canvas": [
+        {
+          "width": 1280,
+          "height": 592
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "responses": [],
+  "isolatedMemoryStorage": true,
+  "serverLog": "{\"ready\":true,\"url\":\"http://127.0.0.1:5183/\",\"actualEntry\":\"C:/Users/pdwea/Develop/digirouge/index.html\",\"sourceFilesModified\":false}\n"
+}

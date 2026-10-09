@@ -1,0 +1,1319 @@
+{
+  "addedAt": "2026-10-04",
+  "names": [
+    "케레스몬",
+    "에오스몬[궁극체]",
+    "킹체스몬",
+    "마르스몬",
+    "플루토몬",
+    "퀸체스몬",
+    "라플레시몬",
+    "라이덴몬",
+    "베누스몬",
+    "지드가루몬",
+    "발바몬[X항체]",
+    "비숍체스몬",
+    "케루비몬(선)[X항체]",
+    "다이노타이거몬",
+    "도르빅크몬",
+    "이랑몬",
+    "풍신몬",
+    "간쿠몬[X항체]",
+    "기가시드라몬",
+    "갓드라몬[X항체]",
+    "환쿤몬",
+    "제트메르바몬",
+    "유노몬",
+    "유노몬[히스테릭 모드]",
+    "리리스몬[X항체]",
+    "메기드라몬[X항체]",
+    "오그도몬",
+    "오파니몬[X항체]",
+    "페닉스몬[X항체]",
+    "룩체스몬",
+    "로제몬[X항체]",
+    "샤크라몬[X항체]",
+    "수신몬",
+    "탁탑몬",
+    "얼티메이트카오스몬",
+    "불카누스몬",
+    "샹펑몬",
+    "지드밀레니엄몬"
+  ],
+  "branches": {
+    "로터스몬": [
+      "케레스몬",
+      "라플레시몬"
+    ],
+    "룩체스몬": [
+      "킹체스몬",
+      "퀸체스몬"
+    ],
+    "비숍체스몬": [
+      "킹체스몬",
+      "퀸체스몬"
+    ],
+    "화이트레오몬": [
+      "마르스몬",
+      "다이노타이거몬"
+    ],
+    "로제몬": [
+      "라플레시몬",
+      "로제몬[X항체]"
+    ],
+    "풍신몬": [
+      "라이덴몬"
+    ],
+    "수신몬": [
+      "라이덴몬"
+    ],
+    "엔젤우몬": [
+      "베누스몬"
+    ],
+    "릴리몬": [
+      "베누스몬"
+    ],
+    "워가루몬": [
+      "지드가루몬"
+    ],
+    "마하가오가몬": [
+      "지드가루몬"
+    ],
+    "발바몬": [
+      "발바몬[X항체]",
+      "오그도몬"
+    ],
+    "케루비몬(선)": [
+      "케루비몬(선)[X항체]"
+    ],
+    "메가드라몬": [
+      "도르빅크몬"
+    ],
+    "메피스몬": [
+      "다이노타이거몬"
+    ],
+    "데드메라몬": [
+      "도르빅크몬"
+    ],
+    "안드로몬": [
+      "풍신몬",
+      "수신몬",
+      "불카누스몬"
+    ],
+    "사이버드라몬": [
+      "풍신몬"
+    ],
+    "간쿠몬": [
+      "간쿠몬[X항체]"
+    ],
+    "메가시드라몬": [
+      "기가시드라몬"
+    ],
+    "메탈시드라몬": [
+      "기가시드라몬"
+    ],
+    "갓드라몬": [
+      "갓드라몬[X항체]"
+    ],
+    "실피드몬": [
+      "유노몬"
+    ],
+    "샤크라몬": [
+      "유노몬",
+      "샤크라몬[X항체]"
+    ],
+    "유노몬": [
+      "유노몬[히스테릭 모드]"
+    ],
+    "리리스몬": [
+      "리리스몬[X항체]",
+      "오그도몬"
+    ],
+    "메기드라몬": [
+      "메기드라몬[X항체]"
+    ],
+    "마왕몬": [
+      "오그도몬"
+    ],
+    "오파니몬": [
+      "오파니몬[X항체]"
+    ],
+    "페닉스몬": [
+      "페닉스몬[X항체]"
+    ],
+    "메탈콩알몬": [
+      "수신몬"
+    ],
+    "카오스몬": [
+      "얼티메이트카오스몬"
+    ],
+    "발두르몬": [
+      "얼티메이트카오스몬"
+    ],
+    "슬레이프몬": [
+      "얼티메이트카오스몬"
+    ],
+    "볼케몬": [
+      "불카누스몬"
+    ],
+    "환쿤몬": [
+      "샹펑몬"
+    ]
+  },
+  "directions": {
+    "케레스몬": [
+      {
+        "style": "breath",
+        "anchor": "head"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "에오스몬[궁극체]": [
+      {
+        "style": "beam",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "킹체스몬": [
+      {
+        "style": "orb",
+        "anchor": "head"
+      },
+      {
+        "style": "punch",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "마르스몬": [
+      {
+        "style": "punch",
+        "anchor": "hands"
+      }
+    ],
+    "플루토몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "portal",
+        "anchor": "chest"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "퀸체스몬": [
+      {
+        "style": "spear",
+        "anchor": "weapon"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "라플레시몬": [
+      {
+        "style": "ring",
+        "anchor": "body"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "라이덴몬": [
+      {
+        "style": "beam",
+        "anchor": "hands"
+      },
+      {
+        "style": "punch",
+        "anchor": "hands"
+      }
+    ],
+    "베누스몬": [
+      {
+        "style": "ring",
+        "anchor": "body"
+      },
+      {
+        "style": "heart",
+        "anchor": "mouth"
+      },
+      {
+        "style": "ring",
+        "anchor": "body"
+      }
+    ],
+    "지드가루몬": [
+      {
+        "style": "beam",
+        "anchor": "back"
+      },
+      {
+        "style": "missile",
+        "anchor": "back"
+      },
+      {
+        "style": "breath",
+        "anchor": "mouth"
+      }
+    ],
+    "발바몬[X항체]": [
+      {
+        "style": "orb",
+        "anchor": "weapon"
+      },
+      {
+        "style": "portal",
+        "anchor": "weapon"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "비숍체스몬": [
+      {
+        "style": "beam",
+        "anchor": "weapon"
+      },
+      {
+        "style": "ring",
+        "anchor": "weapon"
+      },
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      }
+    ],
+    "케루비몬(선)[X항체]": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "ring",
+        "anchor": "body"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "다이노타이거몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "sound",
+        "anchor": "mouth"
+      }
+    ],
+    "도르빅크몬": [
+      {
+        "style": "flame",
+        "anchor": "weapon"
+      },
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      },
+      {
+        "style": "breath",
+        "anchor": "hands"
+      }
+    ],
+    "이랑몬": [
+      {
+        "style": "spear",
+        "anchor": "weapon"
+      },
+      {
+        "style": "beam",
+        "anchor": "eyes"
+      }
+    ],
+    "풍신몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "vortex",
+        "anchor": "hands"
+      }
+    ],
+    "간쿠몬[X항체]": [
+      {
+        "style": "punch",
+        "anchor": "hands"
+      },
+      {
+        "style": "flame",
+        "anchor": "back"
+      }
+    ],
+    "기가시드라몬": [
+      {
+        "style": "beam",
+        "anchor": "mouth"
+      },
+      {
+        "style": "missile",
+        "anchor": "back"
+      }
+    ],
+    "갓드라몬[X항체]": [
+      {
+        "style": "beam",
+        "anchor": "mouth"
+      },
+      {
+        "style": "ring",
+        "anchor": "body"
+      }
+    ],
+    "환쿤몬": [
+      {
+        "style": "breath",
+        "anchor": "mouth"
+      },
+      {
+        "style": "orb",
+        "anchor": "body"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "제트메르바몬": [
+      {
+        "style": "missile",
+        "anchor": "back"
+      },
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "heart",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "heart",
+        "anchor": "hands"
+      }
+    ],
+    "유노몬": [
+      {
+        "style": "spear",
+        "anchor": "weapon"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "heart",
+        "anchor": "hands"
+      }
+    ],
+    "유노몬[히스테릭 모드]": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "chest"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "리리스몬[X항체]": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "메기드라몬[X항체]": [
+      {
+        "style": "breath",
+        "anchor": "mouth"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "오그도몬": [
+      {
+        "style": "sound",
+        "anchor": "mouth"
+      },
+      {
+        "style": "hammer",
+        "anchor": "feet"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "오파니몬[X항체]": [
+      {
+        "style": "spear",
+        "anchor": "weapon"
+      },
+      {
+        "style": "ring",
+        "anchor": "body"
+      }
+    ],
+    "페닉스몬[X항체]": [
+      {
+        "style": "feather",
+        "anchor": "wings"
+      }
+    ],
+    "룩체스몬": [
+      {
+        "style": "hammer",
+        "anchor": "feet"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "로제몬[X항체]": [
+      {
+        "style": "whip",
+        "anchor": "weapon"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "샤크라몬[X항체]": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "ring",
+        "anchor": "body"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "수신몬": [
+      {
+        "style": "beam",
+        "anchor": "hands"
+      },
+      {
+        "style": "missile",
+        "anchor": "back"
+      }
+    ],
+    "탁탑몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "portal",
+        "anchor": "hands"
+      }
+    ],
+    "얼티메이트카오스몬": [
+      {
+        "style": "beam",
+        "anchor": "hands"
+      },
+      {
+        "style": "giantOrb",
+        "anchor": "overhead"
+      }
+    ],
+    "불카누스몬": [
+      {
+        "style": "flame",
+        "anchor": "hands"
+      },
+      {
+        "style": "missile",
+        "anchor": "hands"
+      },
+      {
+        "style": "bomb",
+        "anchor": "hands"
+      }
+    ],
+    "샹펑몬": [
+      {
+        "style": "vortex",
+        "anchor": "wings"
+      },
+      {
+        "style": "feather",
+        "anchor": "wings"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "지드밀레니엄몬": [
+      {
+        "style": "portal",
+        "anchor": "hands"
+      }
+    ]
+  },
+  "items": {
+    "발바몬[X항체]": {
+      "from": [
+        "발바몬"
+      ],
+      "itemName": "X항체 인자 · 발바몬",
+      "itemId": "item-evolution-x-barbamon-x",
+      "imageUrl": "/items/evolution/canonical/x-antibody.png",
+      "rarity": "rogue",
+      "level": 60,
+      "method": "X 진화"
+    },
+    "케루비몬(선)[X항체]": {
+      "from": [
+        "케루비몬(선)"
+      ],
+      "itemName": "X항체 인자 · 케루비몬(선)",
+      "itemId": "item-evolution-x-cherubimon-x",
+      "imageUrl": "/items/evolution/canonical/x-antibody.png",
+      "rarity": "rogue",
+      "level": 60,
+      "method": "X 진화"
+    },
+    "간쿠몬[X항체]": {
+      "from": [
+        "간쿠몬"
+      ],
+      "itemName": "X항체 인자 · 간쿠몬",
+      "itemId": "item-evolution-x-gankoomon-x",
+      "imageUrl": "/items/evolution/canonical/x-antibody.png",
+      "rarity": "rogue",
+      "level": 60,
+      "method": "X 진화"
+    },
+    "갓드라몬[X항체]": {
+      "from": [
+        "갓드라몬"
+      ],
+      "itemName": "X항체 인자 · 갓드라몬",
+      "itemId": "item-evolution-x-goddramon-x",
+      "imageUrl": "/items/evolution/canonical/x-antibody.png",
+      "rarity": "rogue",
+      "level": 60,
+      "method": "X 진화"
+    },
+    "리리스몬[X항체]": {
+      "from": [
+        "리리스몬"
+      ],
+      "itemName": "X항체 인자 · 리리스몬",
+      "itemId": "item-evolution-x-lilithmon-x",
+      "imageUrl": "/items/evolution/canonical/x-antibody.png",
+      "rarity": "rogue",
+      "level": 60,
+      "method": "X 진화"
+    },
+    "메기드라몬[X항체]": {
+      "from": [
+        "메기드라몬"
+      ],
+      "itemName": "X항체 인자 · 메기드라몬",
+      "itemId": "item-evolution-x-megidramon-x",
+      "imageUrl": "/items/evolution/canonical/x-antibody.png",
+      "rarity": "rogue",
+      "level": 60,
+      "method": "X 진화"
+    },
+    "오파니몬[X항체]": {
+      "from": [
+        "오파니몬"
+      ],
+      "itemName": "X항체 인자 · 오파니몬",
+      "itemId": "item-evolution-x-ofanimon-x",
+      "imageUrl": "/items/evolution/canonical/x-antibody.png",
+      "rarity": "rogue",
+      "level": 60,
+      "method": "X 진화"
+    },
+    "페닉스몬[X항체]": {
+      "from": [
+        "페닉스몬"
+      ],
+      "itemName": "X항체 인자 · 페닉스몬",
+      "itemId": "item-evolution-x-hououmon-x",
+      "imageUrl": "/items/evolution/canonical/x-antibody.png",
+      "rarity": "rogue",
+      "level": 60,
+      "method": "X 진화"
+    },
+    "로제몬[X항체]": {
+      "from": [
+        "로제몬"
+      ],
+      "itemName": "X항체 인자 · 로제몬",
+      "itemId": "item-evolution-x-rosemon-x",
+      "imageUrl": "/items/evolution/canonical/x-antibody.png",
+      "rarity": "rogue",
+      "level": 60,
+      "method": "X 진화"
+    },
+    "샤크라몬[X항체]": {
+      "from": [
+        "샤크라몬"
+      ],
+      "itemName": "X항체 인자 · 샤크라몬",
+      "itemId": "item-evolution-x-sakuyamon-x",
+      "imageUrl": "/items/evolution/canonical/x-antibody.png",
+      "rarity": "rogue",
+      "level": 60,
+      "method": "X 진화"
+    }
+  },
+  "modes": {
+    "유노몬[히스테릭 모드]": {
+      "from": [
+        "유노몬"
+      ],
+      "level": 55,
+      "method": "모드 체인지"
+    }
+  },
+  "levels": {
+    "케레스몬": 50,
+    "에오스몬[궁극체]": 50,
+    "킹체스몬": 50,
+    "마르스몬": 50,
+    "플루토몬": 50,
+    "퀸체스몬": 50,
+    "라플레시몬": 50,
+    "라이덴몬": 50,
+    "베누스몬": 50,
+    "지드가루몬": 50,
+    "발바몬[X항체]": 60,
+    "비숍체스몬": 28,
+    "케루비몬(선)[X항체]": 60,
+    "다이노타이거몬": 50,
+    "도르빅크몬": 50,
+    "이랑몬": 50,
+    "풍신몬": 50,
+    "간쿠몬[X항체]": 60,
+    "기가시드라몬": 50,
+    "갓드라몬[X항체]": 60,
+    "환쿤몬": 28,
+    "제트메르바몬": 50,
+    "유노몬": 50,
+    "유노몬[히스테릭 모드]": 55,
+    "리리스몬[X항체]": 60,
+    "메기드라몬[X항체]": 60,
+    "오그도몬": 70,
+    "오파니몬[X항체]": 60,
+    "페닉스몬[X항체]": 60,
+    "룩체스몬": 28,
+    "로제몬[X항체]": 60,
+    "샤크라몬[X항체]": 60,
+    "수신몬": 50,
+    "탁탑몬": 50,
+    "얼티메이트카오스몬": 70,
+    "불카누스몬": 50,
+    "샹펑몬": 50,
+    "지드밀레니엄몬": 70
+  },
+  "jogress": [
+    {
+      "targetName": "라플레시몬",
+      "materials": [
+        "로제몬",
+        "로터스몬"
+      ],
+      "level": 60
+    },
+    {
+      "targetName": "얼티메이트카오스몬",
+      "materials": [
+        "카오스몬",
+        "발두르몬",
+        "슬레이프몬"
+      ],
+      "level": 70
+    }
+  ],
+  "cinematics": {
+    "케레스몬": {
+      "template": "adventure",
+      "backdrop": "stripes",
+      "palette": [
+        "#7ccc63",
+        "#f7e591",
+        "#326c50"
+      ],
+      "motif": {
+        "kind": "forest"
+      },
+      "sourceSpin": 0.15
+    },
+    "에오스몬[궁극체]": {
+      "template": "radiant",
+      "backdrop": "stripes",
+      "palette": [
+        "#f9e9ac",
+        "#ffffff",
+        "#728eea"
+      ],
+      "motif": {
+        "kind": "stars"
+      },
+      "sourceSpin": 0.15
+    },
+    "킹체스몬": {
+      "template": "dark",
+      "backdrop": "void",
+      "palette": [
+        "#a17de0",
+        "#edb5dc",
+        "#262342"
+      ],
+      "motif": {
+        "kind": "assembly"
+      },
+      "sourceSpin": 0.15
+    },
+    "마르스몬": {
+      "template": "adventure",
+      "backdrop": "stripes",
+      "palette": [
+        "#ff7949",
+        "#fff0b3",
+        "#a32924"
+      ],
+      "motif": {
+        "kind": "magma"
+      },
+      "sourceSpin": 0.15
+    },
+    "플루토몬": {
+      "template": "dark",
+      "backdrop": "void",
+      "palette": [
+        "#a17de0",
+        "#edb5dc",
+        "#262342"
+      ],
+      "motif": {
+        "kind": "soul"
+      },
+      "sourceSpin": 0.15
+    },
+    "퀸체스몬": {
+      "template": "adventure",
+      "backdrop": "stripes",
+      "palette": [
+        "#91bed1",
+        "#eafaff",
+        "#475986"
+      ],
+      "motif": {
+        "kind": "assembly"
+      },
+      "sourceSpin": 0.15,
+      "armor": true
+    },
+    "라플레시몬": {
+      "template": "jogress",
+      "backdrop": "helix",
+      "palette": [
+        "#7ccc63",
+        "#f7e591",
+        "#326c50"
+      ],
+      "motif": {
+        "kind": "forest"
+      },
+      "sourceSpin": 0.15
+    },
+    "라이덴몬": {
+      "template": "adventure",
+      "backdrop": "stripes",
+      "palette": [
+        "#f8cb4a",
+        "#eaffff",
+        "#547fca"
+      ],
+      "motif": {
+        "kind": "plasma"
+      },
+      "sourceSpin": 0.15
+    },
+    "베누스몬": {
+      "template": "radiant",
+      "backdrop": "stripes",
+      "palette": [
+        "#f9e9ac",
+        "#ffffff",
+        "#728eea"
+      ],
+      "motif": {
+        "kind": "healing"
+      },
+      "sourceSpin": 0.15
+    },
+    "지드가루몬": {
+      "template": "adventure",
+      "backdrop": "stripes",
+      "palette": [
+        "#91bed1",
+        "#eafaff",
+        "#475986"
+      ],
+      "motif": {
+        "kind": "forge"
+      },
+      "sourceSpin": 0.15,
+      "armor": true
+    },
+    "발바몬[X항체]": {
+      "template": "xantibody",
+      "backdrop": "glitch",
+      "palette": [
+        "#a17de0",
+        "#edb5dc",
+        "#262342"
+      ],
+      "motif": {
+        "kind": "soul"
+      },
+      "sourceSpin": 0.15,
+      "armor": true
+    },
+    "비숍체스몬": {
+      "template": "radiant",
+      "backdrop": "stripes",
+      "palette": [
+        "#f9e9ac",
+        "#ffffff",
+        "#728eea"
+      ],
+      "motif": {
+        "kind": "assembly"
+      },
+      "sourceSpin": 0.15
+    },
+    "케루비몬(선)[X항체]": {
+      "template": "xantibody",
+      "backdrop": "glitch",
+      "palette": [
+        "#f9e9ac",
+        "#ffffff",
+        "#728eea"
+      ],
+      "motif": {
+        "kind": "stars"
+      },
+      "sourceSpin": 0.15,
+      "armor": true
+    },
+    "다이노타이거몬": {
+      "template": "adventure",
+      "backdrop": "stripes",
+      "palette": [
+        "#c69a66",
+        "#fff3c5",
+        "#6d6360"
+      ],
+      "motif": {
+        "kind": "crystal"
+      },
+      "sourceSpin": 0.15
+    },
+    "도르빅크몬": {
+      "template": "adventure",
+      "backdrop": "stripes",
+      "palette": [
+        "#ff7949",
+        "#fff0b3",
+        "#a32924"
+      ],
+      "motif": {
+        "kind": "magma"
+      },
+      "sourceSpin": 0.15
+    },
+    "이랑몬": {
+      "template": "radiant",
+      "backdrop": "stripes",
+      "palette": [
+        "#f9e9ac",
+        "#ffffff",
+        "#728eea"
+      ],
+      "motif": {
+        "kind": "stars"
+      },
+      "sourceSpin": 0.15
+    },
+    "풍신몬": {
+      "template": "adventure",
+      "backdrop": "stripes",
+      "palette": [
+        "#76ddcb",
+        "#eaffee",
+        "#647cb2"
+      ],
+      "motif": {
+        "kind": "jet"
+      },
+      "sourceSpin": 0.15
+    },
+    "간쿠몬[X항체]": {
+      "template": "xantibody",
+      "backdrop": "glitch",
+      "palette": [
+        "#ff7949",
+        "#fff0b3",
+        "#a32924"
+      ],
+      "motif": {
+        "kind": "magma"
+      },
+      "sourceSpin": 0.15,
+      "armor": true
+    },
+    "기가시드라몬": {
+      "template": "adventure",
+      "backdrop": "stripes",
+      "palette": [
+        "#5fcdea",
+        "#d4f7ff",
+        "#316b96"
+      ],
+      "motif": {
+        "kind": "tide"
+      },
+      "sourceSpin": 0.15
+    },
+    "갓드라몬[X항체]": {
+      "template": "xantibody",
+      "backdrop": "glitch",
+      "palette": [
+        "#f9e9ac",
+        "#ffffff",
+        "#728eea"
+      ],
+      "motif": {
+        "kind": "stars"
+      },
+      "sourceSpin": 0.15,
+      "armor": true
+    },
+    "환쿤몬": {
+      "template": "adventure",
+      "backdrop": "stripes",
+      "palette": [
+        "#5fcdea",
+        "#d4f7ff",
+        "#316b96"
+      ],
+      "motif": {
+        "kind": "tide"
+      },
+      "sourceSpin": 0.15
+    },
+    "제트메르바몬": {
+      "template": "adventure",
+      "backdrop": "stripes",
+      "palette": [
+        "#91bed1",
+        "#eafaff",
+        "#475986"
+      ],
+      "motif": {
+        "kind": "forge"
+      },
+      "sourceSpin": 0.15,
+      "armor": true
+    },
+    "유노몬": {
+      "template": "adventure",
+      "backdrop": "stripes",
+      "palette": [
+        "#f8cb4a",
+        "#eaffff",
+        "#547fca"
+      ],
+      "motif": {
+        "kind": "thunder"
+      },
+      "sourceSpin": 0.15
+    },
+    "유노몬[히스테릭 모드]": {
+      "template": "mode",
+      "backdrop": "prism",
+      "palette": [
+        "#a17de0",
+        "#edb5dc",
+        "#262342"
+      ],
+      "motif": {
+        "kind": "soul"
+      },
+      "sourceSpin": 0.15
+    },
+    "리리스몬[X항체]": {
+      "template": "xantibody",
+      "backdrop": "glitch",
+      "palette": [
+        "#a17de0",
+        "#edb5dc",
+        "#262342"
+      ],
+      "motif": {
+        "kind": "soul"
+      },
+      "sourceSpin": 0.15,
+      "armor": true
+    },
+    "메기드라몬[X항체]": {
+      "template": "xantibody",
+      "backdrop": "glitch",
+      "palette": [
+        "#a17de0",
+        "#edb5dc",
+        "#262342"
+      ],
+      "motif": {
+        "kind": "soul"
+      },
+      "sourceSpin": 0.15,
+      "armor": true
+    },
+    "오그도몬": {
+      "template": "dark",
+      "backdrop": "void",
+      "palette": [
+        "#a17de0",
+        "#edb5dc",
+        "#262342"
+      ],
+      "motif": {
+        "kind": "deletion"
+      },
+      "sourceSpin": 0.15
+    },
+    "오파니몬[X항체]": {
+      "template": "xantibody",
+      "backdrop": "glitch",
+      "palette": [
+        "#f9e9ac",
+        "#ffffff",
+        "#728eea"
+      ],
+      "motif": {
+        "kind": "stars"
+      },
+      "sourceSpin": 0.15,
+      "armor": true
+    },
+    "페닉스몬[X항체]": {
+      "template": "xantibody",
+      "backdrop": "glitch",
+      "palette": [
+        "#ff7949",
+        "#fff0b3",
+        "#a32924"
+      ],
+      "motif": {
+        "kind": "magma"
+      },
+      "sourceSpin": 0.15,
+      "armor": true
+    },
+    "룩체스몬": {
+      "template": "adventure",
+      "backdrop": "stripes",
+      "palette": [
+        "#c69a66",
+        "#fff3c5",
+        "#6d6360"
+      ],
+      "motif": {
+        "kind": "assembly"
+      },
+      "sourceSpin": 0.15
+    },
+    "로제몬[X항체]": {
+      "template": "xantibody",
+      "backdrop": "glitch",
+      "palette": [
+        "#7ccc63",
+        "#f7e591",
+        "#326c50"
+      ],
+      "motif": {
+        "kind": "forest"
+      },
+      "sourceSpin": 0.15,
+      "armor": true
+    },
+    "샤크라몬[X항체]": {
+      "template": "xantibody",
+      "backdrop": "glitch",
+      "palette": [
+        "#f9e9ac",
+        "#ffffff",
+        "#728eea"
+      ],
+      "motif": {
+        "kind": "stars"
+      },
+      "sourceSpin": 0.15,
+      "armor": true
+    },
+    "수신몬": {
+      "template": "adventure",
+      "backdrop": "stripes",
+      "palette": [
+        "#5fcdea",
+        "#d4f7ff",
+        "#316b96"
+      ],
+      "motif": {
+        "kind": "tide"
+      },
+      "sourceSpin": 0.15
+    },
+    "탁탑몬": {
+      "template": "radiant",
+      "backdrop": "stripes",
+      "palette": [
+        "#f9e9ac",
+        "#ffffff",
+        "#728eea"
+      ],
+      "motif": {
+        "kind": "relic"
+      },
+      "sourceSpin": 0.15
+    },
+    "얼티메이트카오스몬": {
+      "template": "jogress",
+      "backdrop": "helix",
+      "palette": [
+        "#a17de0",
+        "#edb5dc",
+        "#262342"
+      ],
+      "motif": {
+        "kind": "deletion"
+      },
+      "sourceSpin": 0.15
+    },
+    "불카누스몬": {
+      "template": "adventure",
+      "backdrop": "stripes",
+      "palette": [
+        "#91bed1",
+        "#eafaff",
+        "#475986"
+      ],
+      "motif": {
+        "kind": "forge"
+      },
+      "sourceSpin": 0.15,
+      "armor": true
+    },
+    "샹펑몬": {
+      "template": "adventure",
+      "backdrop": "stripes",
+      "palette": [
+        "#76ddcb",
+        "#eaffee",
+        "#647cb2"
+      ],
+      "motif": {
+        "kind": "jet"
+      },
+      "sourceSpin": 0.15
+    },
+    "지드밀레니엄몬": {
+      "template": "dark",
+      "backdrop": "void",
+      "palette": [
+        "#a17de0",
+        "#edb5dc",
+        "#262342"
+      ],
+      "motif": {
+        "kind": "program"
+      },
+      "sourceSpin": 0.15
+    }
+  }
+}

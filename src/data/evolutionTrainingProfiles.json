@@ -1,0 +1,3050 @@
+{
+  "깜몬": {
+    "stats": [
+      "hp",
+      "attack"
+    ]
+  },
+  "도도몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "뽀글몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "쿠라몬": {
+    "stats": [
+      "hp",
+      "specialDefense"
+    ]
+  },
+  "포요몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "푸니몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "프스몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "하얀몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "치코몬": {
+    "stats": [
+      "hp",
+      "attack"
+    ]
+  },
+  "도리몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "둥실몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "모티몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "뿔몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "시드몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "야옹몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "어니몬": {
+    "stats": [
+      "hp",
+      "attack"
+    ]
+  },
+  "와냐몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "츠메몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "코로몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "토코몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "퍼그몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "프스리몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "꼬마몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "알카디몬[유년기]": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "가오몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "가지몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "고부리몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "길몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "도루몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "드라코몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "드라큐몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "라라몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "레나몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "로프몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "루체몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "류우다몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "모노드라몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "베타몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "브이몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "샤코몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "쉬라몬": {
+    "stats": [
+      "hp",
+      "attack"
+    ]
+  },
+  "아구몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "아구몬(흑)": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "아기벌몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "아르마몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "에렉몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "올챙몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "임프몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "추추몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "츠카이몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "카메몬": {
+    "stats": [
+      "defense",
+      "attack"
+    ]
+  },
+  "케라몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "쿠다몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "테리어몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "텐타몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "톱니몬": {
+    "stats": [
+      "defense",
+      "attack"
+    ]
+  },
+  "파닥몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "파피몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "파피몬(흑)": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "팔몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "팔코몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "플롯트몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "피요몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "피코데블몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "헉몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "호크몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "가무드라몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "쟈자몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "샤우트몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "황금톱니몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "보보몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "즈바몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "베어몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "에리스몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "레드펭귄몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "테이파몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "토이아구몬": {
+    "stats": [
+      "defense",
+      "attack"
+    ]
+  },
+  "토이아구몬(흑)": {
+    "stats": [
+      "defense",
+      "attack"
+    ]
+  },
+  "알카디몬[성장기]": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "츄몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "루나몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "머슈몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "시스터몬 블랑": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "치비카메몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "큐트몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "모니터몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "스패로우몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "스타몬즈": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "코에몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "가드로몬": {
+    "stats": [
+      "defense",
+      "attack"
+    ]
+  },
+  "가루몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "가루몬(흑)": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "가르고몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "가오가몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "가트몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "개굴몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "고스몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "구미호몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "그라우몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "그레이몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "긴류우몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "니드몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "데블몬": {
+    "stats": [
+      "specialAttack",
+      "speed"
+    ]
+  },
+  "도루가몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "레오몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "레파몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "말벌몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "메라몬": {
+    "stats": [
+      "specialAttack",
+      "speed"
+    ]
+  },
+  "모노크로몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "옐로우워매몬": {
+    "stats": [
+      "hp",
+      "specialDefense"
+    ]
+  },
+  "바오헉몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "버드라몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "베지몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "브이드라몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "블랙가트몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "스카몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "스타몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "스트라이크드라몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "스팅몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "시드라몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "아이스몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "아큐라몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "에어드라몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "엑스브이몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "엔젤몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "우가몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "우드몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "워매몬": {
+    "stats": [
+      "hp",
+      "specialDefense"
+    ]
+  },
+  "원뿔몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "위자몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "지오그레이몬": {
+    "stats": [
+      "attack",
+      "defense"
+    ]
+  },
+  "캅테리몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "코어드라몬(녹)": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "코어드라몬(청)": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "쿠가몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "크리사리몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "토리에몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "티라노몬": {
+    "stats": [
+      "hp",
+      "attack"
+    ]
+  },
+  "펙크몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "프리지몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "필몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "해바라기몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "황금아르마몬": {
+    "stats": [
+      "defense",
+      "specialDefense"
+    ]
+  },
+  "타임몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "사이크로몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "골드워매몬": {
+    "stats": [
+      "defense",
+      "specialDefense"
+    ]
+  },
+  "쟈자드몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "라보보몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "메이쿠몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "모야몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "달팽이워매몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "소서리몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "즈바이거몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "아레스타드라몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "레드꼬끼몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "다이노휴몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "그리즈몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "오메카몬": {
+    "stats": [
+      "defense",
+      "attack"
+    ]
+  },
+  "탱크몬": {
+    "stats": [
+      "defense",
+      "attack"
+    ]
+  },
+  "태스크몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "멧돼지몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "황소몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "골드브이드라몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "링스몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "토토몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "프라리몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "백사몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "비트몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "번개드라몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "사수몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "시프몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "백조몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "아그니몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "알카디몬[성숙기]": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "실리컨몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "머드프리지몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "록몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "그레이몬(청)": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "후디에몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "레키스몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "볼프몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "라프타드라몬": {
+    "stats": [
+      "defense",
+      "attack"
+    ]
+  },
+  "레어몬": {
+    "stats": [
+      "hp",
+      "specialDefense"
+    ]
+  },
+  "상굴몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "시스터몬 느와르": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "유니몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "화염드라몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "가드로몬(골드)": {
+    "stats": [
+      "defense",
+      "attack"
+    ]
+  },
+  "아이스데블몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "매드레오몬[암드]": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "바리스타몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "도루루몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "그레이몬[크로스워즈]": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "메일버드라몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "샤우트몬[X2]": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "샤우트몬[X3]": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "샤우트몬[X4]": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "다크티라노몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "타겟몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "가루다몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "고래몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "그라운드라몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "데이터몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "도루그레몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "도사몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "디지타몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "라이즈그레이몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "라일라몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "래피드몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "레이디데블몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "로더레오몬": {
+    "stats": [
+      "defense",
+      "attack"
+    ]
+  },
+  "루체몬[폴다운]": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "릴리몬": {
+    "stats": [
+      "specialAttack",
+      "speed"
+    ]
+  },
+  "마하가오가몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "메가드라몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "메가로그라우몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "메가시드라몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "메탈그레이몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "메탈티라노몬": {
+    "stats": [
+      "defense",
+      "attack"
+    ]
+  },
+  "묘티스몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "블랙메가로그라우몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "블루메라몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "프린스콩알몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "사이버드라몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "세이버헉몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "슈퍼스타몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "스컬그레이몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "스컬사탄몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "실피드몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "아트라캅테리몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "안티라몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "에어로브이드라몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "에테몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "엔젤우몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "오로치몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "왕개굴몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "왕쿠가몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "워가루몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "워가루몬(흑)": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "윙드라몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "인펠몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "쥬드몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "쥬레이몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "캐논벌몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "콩알몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "트리케라몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "파일드라몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "팬더몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "팬텀몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "퍼펫몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "펌프몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "홀리엔젤몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "화이트레오몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "히샤류우몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "히포그리포몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "안드로몬": {
+    "stats": [
+      "defense",
+      "attack"
+    ]
+  },
+  "블랙킹워매몬": {
+    "stats": [
+      "hp",
+      "specialDefense"
+    ]
+  },
+  "듀라몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "기가드라몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "아이언레오몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "쟈자리히몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "키메라몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "라보가리타몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "메이크랙몬[비셔스]": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "메탈콩알몬": {
+    "stats": [
+      "defense",
+      "attack"
+    ]
+  },
+  "피콜몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "데드메라몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "베이더몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "아르고몬[완전체]": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "챠츠라몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "인다라몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "굼비라몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "마지라몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "마쿠라몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "데블시드라몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "메이크랙몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "메피스몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "미히라몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "파지라몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "산티라몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "신드라몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "스티필몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "바지라몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "비가라몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "시스터몬 블랑[각성]": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "시스터몬 느와르[각성]": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "알카디몬[완전체]": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "브리트라몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "캐치콩알몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "치린몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "크레세몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "야타가라몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "다이노몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "드라고몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "그레이드몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "가름몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "나이트몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "마타돌몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "토우몬": {
+    "stats": [
+      "defense",
+      "specialDefense"
+    ]
+  },
+  "볼케몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "아트라캅테리몬(청)": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "바스테몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "사이버드라몬[크로스워즈]": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "맘몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "메탈그레이몬[크로스워즈]": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "메탈그레이몬[사이버런처]": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "그랜쿠가몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "넵튠몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "노블펌프몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "듀나스몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "듀크몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "디아블로몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "라센몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "러스트티라노몬": {
+    "stats": [
+      "defense",
+      "attack"
+    ]
+  },
+  "레이브몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "로드나이트몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "로제몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "로터스몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "리리스몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "리바이어몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "마린엔젤몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "마스테몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "마왕몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "메탈가루몬": {
+    "stats": [
+      "specialAttack",
+      "speed"
+    ]
+  },
+  "메탈시드라몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "메탈에테몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "미네르바몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "미라쥬가오가몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "바이킹몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "반쵸릴리몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "발두르몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "발키리몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "베놈묘티스몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "베르제브몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "베리얼묘티스몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "벨페몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "볼트몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "브레이크드라몬": {
+    "stats": [
+      "defense",
+      "attack"
+    ]
+  },
+  "블랙메탈가루몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "블랙워그레이몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "블리츠그레이몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "샤벨레오몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "샤인그레이몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "샤크라몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "세라피몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "세인트가르고몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "슬레이어드라몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "알파몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "알포스브이드라몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "오류우몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "오파니몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "워그레이몬": {
+    "stats": [
+      "attack",
+      "defense"
+    ]
+  },
+  "제스몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "카오스듀크몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "케루비몬(선)": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "케루비몬(악)": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "쿠즈하몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "크레니엄몬": {
+    "stats": [
+      "defense",
+      "specialDefense"
+    ]
+  },
+  "크레스가루몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "타이거베스파몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "타이타몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "택티몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "파워드라몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "플래티넘워매몬": {
+    "stats": [
+      "defense",
+      "specialDefense"
+    ]
+  },
+  "플레시오몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "피노키몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "페닉스몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "피에몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "헤라클레스캅테리몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "헤비레오몬": {
+    "stats": [
+      "defense",
+      "attack"
+    ]
+  },
+  "에이션트가루몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "에이션트그레이몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "아포카리몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "반쵸레오몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "발바몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "카오스드라몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "듀란다몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "이바몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "간쿠몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "그랜드로코몬": {
+    "stats": [
+      "defense",
+      "attack"
+    ]
+  },
+  "하이안드로몬": {
+    "stats": [
+      "defense",
+      "attack"
+    ]
+  },
+  "할배몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "킹에테몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "홀리드라몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "메탈릭드라몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "라구엘몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "볼케닉드라몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "매그너몬": {
+    "stats": [
+      "defense",
+      "specialDefense"
+    ]
+  },
+  "래피드몬[아머]": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "아르고몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "청룡몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "백호몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "반쵸록몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "반쵸스팅몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "현무몬": {
+    "stats": [
+      "defense",
+      "specialDefense"
+    ]
+  },
+  "가르프몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "황룡몬": {
+    "stats": [
+      "defense",
+      "specialDefense"
+    ]
+  },
+  "러블리엔젤몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "미타마몬": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "라지엘몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "주작몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "알카디몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "디아나몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "도루고라몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "카이젤그레이몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "갓드라몬": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "그란드라큐몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "그리포몬": {
+    "stats": [
+      "speed",
+      "specialAttack"
+    ]
+  },
+  "저스티몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "슬레이프몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "메기드라몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "메르크리몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "파일볼케몬": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "가이오몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "타이런트캅테리몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "알카디몬[초궁극체]": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "오메가샤우트몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "두프트몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "매그너가루몬[SV]": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "에이션트볼케몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "블래스트몬": {
+    "stats": [
+      "defense",
+      "specialDefense"
+    ]
+  },
+  "왕펭귄몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "파라오몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "유피테르몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "바그라몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "데크스몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "두프트몬[레오파드]": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "라센몬[격앙]": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "레이브몬[버스트]": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "로제몬[버스트]": {
+    "stats": [
+      "specialDefense",
+      "specialAttack"
+    ]
+  },
+  "루체몬[사탄]": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "미라쥬가오가몬[버스트]": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "벨페몬[레이지]": {
+    "stats": [
+      "attack",
+      "hp"
+    ]
+  },
+  "샤인그레이몬[루인]": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "샤인그레이몬[버스트]": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "아마게몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "알파몬[왕룡검]": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "엑자몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "오메가몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "오메가몬[알터-S]": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "오메가몬[즈왈트]": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "오파니몬[폴다운]": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "황제드라몬[파이터]": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "황제드라몬[팔라딘]": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "베르제브몬[X항체]": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "크레니엄몬[X항체]": {
+    "stats": [
+      "defense",
+      "specialDefense"
+    ]
+  },
+  "듀나스몬[X항체]": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "듀크몬[X항체]": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "제스몬[X항체]": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "메탈가루몬[X항체]": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "밀레니엄몬": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "오메가몬[알터-B]": {
+    "stats": [
+      "specialAttack",
+      "hp"
+    ]
+  },
+  "오메가몬[머시풀]": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "오메가몬[X항체]": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "오메가몬[즈왈트-D]": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "스사노오몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "알포스브이드라몬[X항체]": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "워그레이몬[X항체]": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "블랙워그레이몬[X항체]": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "매그너몬[X항체]": {
+    "stats": [
+      "defense",
+      "specialDefense"
+    ]
+  },
+  "가이오몬[엄도의형]": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "아구몬[용기의유대]": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "파피몬[우정의유대]": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "듀크몬[크림슨]": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "카오스몬": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "카오스몬[발두르암]": {
+    "stats": [
+      "attack",
+      "specialAttack"
+    ]
+  },
+  "위그드라실 7D6": {
+    "stats": [
+      "defense",
+      "specialDefense"
+    ]
+  },
+  "와이즈몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "운석몬": {
+    "stats": [
+      "defense",
+      "specialDefense"
+    ]
+  },
+  "쿠즈하몬[무녀 모드]": {
+    "stats": [
+      "specialDefense",
+      "hp"
+    ]
+  },
+  "케레스몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "에오스몬[궁극체]": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "킹체스몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "마르스몬": {
+    "stats": [
+      "attack",
+      "defense"
+    ]
+  },
+  "플루토몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "퀸체스몬": {
+    "stats": [
+      "attack",
+      "defense"
+    ]
+  },
+  "라플레시몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "라이덴몬": {
+    "stats": [
+      "attack",
+      "defense"
+    ]
+  },
+  "베누스몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "지드가루몬": {
+    "stats": [
+      "attack",
+      "defense"
+    ]
+  },
+  "발바몬[X항체]": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "비숍체스몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "케루비몬(선)[X항체]": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "다이노타이거몬": {
+    "stats": [
+      "attack",
+      "defense"
+    ]
+  },
+  "도르빅크몬": {
+    "stats": [
+      "attack",
+      "defense"
+    ]
+  },
+  "이랑몬": {
+    "stats": [
+      "attack",
+      "defense"
+    ]
+  },
+  "풍신몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "간쿠몬[X항체]": {
+    "stats": [
+      "attack",
+      "defense"
+    ]
+  },
+  "기가시드라몬": {
+    "stats": [
+      "attack",
+      "defense"
+    ]
+  },
+  "갓드라몬[X항체]": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "환쿤몬": {
+    "stats": [
+      "attack",
+      "defense"
+    ]
+  },
+  "제트메르바몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "유노몬": {
+    "stats": [
+      "attack",
+      "defense"
+    ]
+  },
+  "유노몬[히스테릭 모드]": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "리리스몬[X항체]": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "메기드라몬[X항체]": {
+    "stats": [
+      "attack",
+      "defense"
+    ]
+  },
+  "오그도몬": {
+    "stats": [
+      "attack",
+      "defense"
+    ]
+  },
+  "오파니몬[X항체]": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "페닉스몬[X항체]": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "룩체스몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "로제몬[X항체]": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "샤크라몬[X항체]": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "수신몬": {
+    "stats": [
+      "attack",
+      "defense"
+    ]
+  },
+  "탁탑몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "얼티메이트카오스몬": {
+    "stats": [
+      "attack",
+      "defense"
+    ]
+  },
+  "불카누스몬": {
+    "stats": [
+      "defense",
+      "hp"
+    ]
+  },
+  "샹펑몬": {
+    "stats": [
+      "speed",
+      "attack"
+    ]
+  },
+  "지드밀레니엄몬": {
+    "stats": [
+      "attack",
+      "defense"
+    ]
+  }
+}
