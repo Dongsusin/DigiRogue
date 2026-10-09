@@ -1778,6 +1778,13 @@
   height: clamp(48px, calc(5 * var(--game-vw)), 68px);
 }
 
+.reward-item__image--card {
+  box-sizing: border-box;
+  padding: 4px 6px;
+  object-fit: contain;
+  image-rendering: auto;
+}
+
 /* Preserve the proportions of the official artwork, including wide Digimentals. */
 img[src^="/items/evolution/canonical/"] {
   object-fit: contain;
@@ -2321,6 +2328,26 @@ img[src^="/items/evolution/canonical/"]:is(
 
 .evolution-party-member {
   min-height: clamp(54px, calc(7.2 * var(--game-vh)), 72px);
+}
+
+.evolution-party-member--ready {
+  isolation: isolate;
+  background: linear-gradient(110deg, #b98324, #fff0ad 35%, #e4b64e 68%, #ffd974);
+}
+
+.evolution-party-member--ready::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  z-index: -1;
+  clip-path: inherit;
+  background: linear-gradient(135deg, #0b587d, #123c56);
+  box-shadow: inset 0 0 18px #ffd26b33;
+  pointer-events: none;
+}
+
+.evolution-party-member--ready .party-member__hp-text {
+  color: #ffe28b;
 }
 
 .evolution-detail {

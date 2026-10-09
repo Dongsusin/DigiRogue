@@ -8589,7 +8589,10 @@ function App() {
     (_, index) => partyMembers[index] ?? null
   )
   const evolutionPartyMembers = partyMembers.filter((member) => !isCombatantEgg(member))
-  const readyEvolutionMemberCount = evolutionPartyMembers.filter(member => getReadyEvolutionPreviewTargets(member, gameState?.inventory, evolutionPartyMembers, gameState?.evolutionMemory).length > 0).length
+  const readyEvolutionMemberIds = new Set(evolutionPartyMembers
+    .filter(member => getReadyEvolutionPreviewTargets(member, gameState?.inventory, evolutionPartyMembers, gameState?.evolutionMemory).length > 0)
+    .map(member => member.id))
+  const readyEvolutionMemberCount = readyEvolutionMemberIds.size
   const evolutionPartySlots = Array.from(
     { length: Math.max(PARTY_SLOT_COUNT, partyMembers.length) },
     (_, index) => partyMembers[index] ?? null
@@ -9499,7 +9502,7 @@ function App() {
                               onPointerEnter={isRevealingReward ? undefined : (event) => openItemTooltip(event, item)}
                             >
                               <img
-                                className="reward-item__image"
+                                className={`reward-item__image${!isRevealingReward && item.cardCode ? ' reward-item__image--card' : ''}`}
                                 src={isRevealingReward ? REWARD_REVEAL_IMAGE_URL : item.imageUrl}
                                 alt=""
                               />
@@ -9698,7 +9701,8 @@ function App() {
                                   <button
                                     key={member.id}
                                     type="button"
-                                    className={'party-member evolution-party-member' + (member.isEgg ? ' party-member--egg' : '')}
+                                    className={'party-member evolution-party-member' + (member.isEgg ? ' party-member--egg' : '') + (readyEvolutionMemberIds.has(member.id) ? ' evolution-party-member--ready' : '')}
+                                    aria-label={readyEvolutionMemberIds.has(member.id) ? `${member.name} · 진화 가능` : undefined}
                                     disabled={Boolean(member.isEgg)}
                                     onClick={() => handleSelectEvolutionMember(member.id)}
                                   >
