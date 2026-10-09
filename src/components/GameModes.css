@@ -1,4 +1,5 @@
 .game-mode-switcher { --mode-accent: #80d8eb; display: grid; grid-template-columns: 28px minmax(0, 1fr) 28px; align-items: center; gap: 2px; min-height: 34px; flex-shrink: 0; border: 1px solid #536d82; border-radius: 4px; background: #112438; color: var(--mode-accent); font: 13px var(--font-pixel); }
+.game-mode-switcher[data-mode=hard] { --mode-accent: #ffad82; }
 .game-mode-switcher[data-mode=daily] { --mode-accent: #f9c675; }
 .game-mode-switcher[data-mode=endless] { --mode-accent: #c5a3ff; }
 .game-mode-switcher > span { display: flex; align-items: center; justify-content: center; gap: 4px; text-align: center; }

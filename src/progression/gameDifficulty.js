@@ -3,6 +3,13 @@
 export const STAGE_LEVEL_CAPS = Object.freeze([
   14, 22, 32, 42, 52, 62, 72, 82, 92, 102, 112, 122, 132, 142, 152, 162, 172, 182, 192, 200,
 ])
+// Separate, deterministic hard profile. These bonuses never change another mode
+// or depend on the player's current upgrades, wins, losses, or random roll.
+export const HARD_MODE_BALANCE = Object.freeze({
+  levelScaleStart: 1.08, levelScaleEnd: 1.18, levelBonusStart: 2, levelBonusEnd: 6,
+  wildHp: 1.1, wildHpGrowth: .16, wildStats: 1.0325, wildStatsGrowth: .0675,
+  bossHp: 1.18, bossHpGrowth: .225, bossStats: 1.045, bossStatsGrowth: .085,
+})
 const stageOf = stage => Math.min(200, Math.max(1, Math.floor(Number(stage) || 1)))
 export const getStageLevelCap = (stage, mode = 'classic') => mode === 'endless' ? Infinity : STAGE_LEVEL_CAPS[Math.floor((stageOf(stage) - 1) / 10)]
 
@@ -16,10 +23,15 @@ export function getStageEnemyLevelRange(stage, mode = 'classic') {
     return [ceiling - 13, ceiling]
   }
   const safeStage = stageOf(stage), band = Math.floor((safeStage - 1) / 10)
-  return [band === 0 ? 3 : Math.floor(STAGE_LEVEL_CAPS[band - 1] * .88), Math.max(3, STAGE_LEVEL_CAPS[band] - (band < 5 ? 4 : 2))]
+  const range = [band === 0 ? 3 : Math.floor(STAGE_LEVEL_CAPS[band - 1] * .88), Math.max(3, STAGE_LEVEL_CAPS[band] - (band < 5 ? 4 : 2))]
+  if (mode !== 'hard') return range
+  const progress = (safeStage - 1) / 199, profile = HARD_MODE_BALANCE
+  const scale = profile.levelScaleStart + (profile.levelScaleEnd - profile.levelScaleStart) * progress
+  const bonus = profile.levelBonusStart + (profile.levelBonusEnd - profile.levelBonusStart) * progress
+  return range.map(level => Math.max(1, Math.round(level * scale + bonus)))
 }
 
-export function getEnemyDifficultyModifiers(combatant) {
+function getBaseEnemyDifficultyModifiers(combatant) {
   if (combatant?.specialQuest && combatant?.enemyStage) {
     const stage = stageOf(combatant.enemyStage)
     return { hp: 1.6 + stage * .002, stats: 1.1 + stage * .0005 }
@@ -32,6 +44,15 @@ export function getEnemyDifficultyModifiers(combatant) {
   const progress = (stageOf(combatant.enemyStage) - 1) / 199
   if (combatant.rivalEncounter) return { hp: (combatant.enemyStage < 20 ? 1.1 : 1.2) + progress * .3, stats: 1.02 + progress * .1 }
   return { hp: 1.08 + progress * .18, stats: 1.01 + progress * .09 }
+}
+
+export function getEnemyDifficultyModifiers(combatant) {
+  const base = getBaseEnemyDifficultyModifiers(combatant)
+  if (combatant?.enemyGameMode !== 'hard' || (!combatant.enemyStage && !combatant.isBoss)) return base
+  const progress = (stageOf(combatant.enemyStage ?? combatant.bossStage) - 1) / 199
+  const profile = HARD_MODE_BALANCE, boss = combatant.isBoss || combatant.rivalEncounter || combatant.specialQuest
+  return { hp: base.hp * (boss ? profile.bossHp + profile.bossHpGrowth * progress : profile.wildHp + profile.wildHpGrowth * progress),
+    stats: base.stats * (boss ? profile.bossStats + profile.bossStatsGrowth * progress : profile.wildStats + profile.wildStatsGrowth * progress) }
 }
 
 export function enforceCombatantLevelCap(combatant, cap, refresh) {

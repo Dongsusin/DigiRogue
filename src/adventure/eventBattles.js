@@ -1,3 +1,4 @@
+import { isHardMode, normalizeGameMode } from '../progression/gameModes.js'
 import { createPassiveState } from '../battle/passives.js'
 import { applyMapEnvironment } from '../battle/mapEnvironment.js'
 
@@ -8,11 +9,12 @@ export function getEventBattlePreview(state, battle) {
   const base = state.explorationEvent?.battle?.baseLevel ?? (levels.length ? Math.round(levels.reduce((sum, level) => sum + level, 0) / levels.length)
     : Math.max(1, Math.round((state.player?.level ?? 1) * .9))
   )
-  const level = Math.max(1, Math.min(state.levelCap ?? 100, base + (battle.levelDelta ?? 0)))
+  const enemyCeiling = isHardMode(state) ? Infinity : state.levelCap ?? 100
+  const level = Math.max(1, Math.min(enemyCeiling, base + (battle.levelDelta ?? 0)))
   const allies = (state.party ?? []).filter(unit => !unit.isEgg && unit.currentHp > 0).length
   return { level, opponents: battle.opponents, formation: `${Math.min(allies, battle.opponents.length)}대${battle.opponents.length}`,
     rule: battle.rule, difficulty: battle.specialQuest ? '시련' : battle.levelDelta > 0 ? '도전' : '일반',
-    waves: battle.waves?.map(wave => ({ opponents: wave.opponents, level: Math.min(state.levelCap ?? 100, base + wave.levelDelta) })) }
+    waves: battle.waves?.map(wave => ({ opponents: wave.opponents, level: Math.max(1, Math.min(enemyCeiling, base + (wave.levelDelta ?? 0))) })) }
 }
 
 export function buildEventBattle(state, { createCombatant, allDigimonLookup, getActiveAllyIdsForParty, refreshCombatantStats }) {
@@ -27,7 +29,7 @@ export function buildEventBattle(state, { createCombatant, allDigimonLookup, get
   const enemies = spec.opponents.map((name, index) => {
     const enemy = createCombatant({ id: `${event.id}-${event.storyId}-${battle.routeId}-wave${battle.waveIndex ?? 0}-${index}`, name,
       data: allDigimonLookup.get(name), level: preview.level })
-    return refreshCombatantStats({ ...enemy, enemyStage: state.currentStage, specialQuest: spec.specialQuest === true, battleGuards: { ...spec.guards } }, { preserveMaxHpDelta: true })
+    return refreshCombatantStats({ ...enemy, enemyStage: state.currentStage, enemyGameMode: normalizeGameMode(state.gameMode), specialQuest: spec.specialQuest === true, battleGuards: { ...spec.guards } }, { preserveMaxHpDelta: true })
   })
   const activeAllyIds = getActiveAllyIdsForParty(party, [state.player?.id, ...(state.activeAllyIds ?? [])].filter(Boolean), enemies.length)
   const player = party.find(member => member.id === activeAllyIds[0])

@@ -1,5 +1,6 @@
 import { prepareCombatantForStage } from '../src/battle/regionModifiers.js'
 import { pickWildEncounterNames } from '../src/progression/gameDifficulty.js'
+import { isHardMode } from '../src/progression/gameModes.js'
 import { attachRegionalSupport } from '../src/battle/regionalSupport.js'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
@@ -203,7 +204,7 @@ test('the same species in consecutive stages receives distinct renderer identiti
   const marker = 'const buildBaseEnemyParty =', start = app.indexOf(marker), end = app.indexOf('const applyEnemyDifficulty =', start)
   assert(start >= 0 && end > start)
   const make = vm.runInNewContext('(' + app.slice(start + marker.length, end).trim() + ')', {
-    pickWildEncounterNames, normalizeGameMode: () => 'classic', getEncounterProfileStage: stage => stage, isBossStage: () => false,
+    pickWildEncounterNames, isHardMode, normalizeGameMode: () => 'classic', getEncounterProfileStage: stage => stage, isBossStage: () => false,
     createRivalEncounter: () => [], getMapNameForStage: () => '시작의마을', getLevelCapForStage: () => 10,
     getEnemyLevelForStage: () => 3, allDigimonLookup: new Map([['프스몬', { stage: '유아기' }]]),
     shuffleItems: names => [...names], isPlayableDigimon: () => true, MAX_ENEMY_COMBATANTS: 2,

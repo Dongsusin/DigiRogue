@@ -23,7 +23,7 @@ import SaveSlotsDialog from './components/SaveSlotsDialog.jsx'
 import GameDialog from './components/GameDialog.jsx'
 import GameModeSwitcher from './components/GameModeSwitcher.jsx'
 import DailyStarterSelection from './components/DailyStarterSelection.jsx'
-import { normalizeGameMode, getGameMode, isDailyMode, isEndlessMode, getModeStageLimit, getEncounterProfileStage,
+import { normalizeGameMode, getGameMode, isDailyMode, isHardMode, isEndlessMode, getModeStageLimit, getEncounterProfileStage,
   canPlayGameMode, allowsScanning, isModeItemAllowed, getDailyDate, createDailyChallenge, isDailyTeamValid } from './progression/gameModes.js'
 import { MODE_PROGRESS_STORAGE_KEY, loadModeProgress, saveModeProgress, recordModeVictory } from './progression/modeProgress.js'
 import { useLocalProgress } from './progression/useLocalProgress.js'
@@ -302,7 +302,7 @@ const parseSavedGameState = (rawSaveData) => {
       const current = hydrateDigimonPassive({ ...unit, name: speciesData.이름, imageName: speciesData.이름,
         speciesStage: speciesData.stage, speciesData, imageUrl: speciesData.imageUrl,
         evolutionHistory: (unit.evolutionHistory ?? []).filter(name => allDigimonLookup.has(name) && isPlayableDigimon(name)),
-        ...(ally || isRegionalSupport(unit) ? {} : { enemyStage: Number(savedGameState.currentStage) }), trainerSkills: ally ? trainerSkills : {} })
+        ...(ally || isRegionalSupport(unit) ? { enemyGameMode: undefined } : { enemyStage: Number(savedGameState.currentStage), enemyGameMode: gameMode }), trainerSkills: ally ? trainerSkills : {} })
       const refreshed = refreshCombatantStats(unit.balanceRevision === BALANCE_REVISION && unit.speciesStage === speciesData.stage ? current
         : { ...current, baseStats: createBaseStats(speciesData),
           baseStatTotal: getBaseStatTotal(createBaseStats(speciesData)), balanceRevision: BALANCE_REVISION })
@@ -3668,7 +3668,7 @@ const getEnemyLevelForStage = (stage, gameMode = 'classic') => {
   return getRandomIntInclusive(progressiveMinimum, progressiveMaximum)
 }
 
-const getBossLevelForStage = (stage, gameMode = 'classic') => Math.max(1, getEnemyLevelRangeForStage(stage, gameMode)[1] - (stage <= 50 ? 4 : 2))
+const getBossLevelForStage = (stage, gameMode = 'classic') => Math.max(1, getEnemyLevelRangeForStage(stage, gameMode)[1] - (isHardMode(gameMode) ? 0 : stage <= 50 ? 4 : 2))
 
 const getExperienceReward = (enemy) =>
   Math.max(
@@ -5225,6 +5225,7 @@ const createBossCombatant = ({ stage, name, data, gameMode = 'classic' }) => {
       ...combatant,
       isBoss: true,
       bossStage: stage,
+      enemyGameMode: gameMode,
       bossHpSegmentCount: hpBreakpoints.length + 1,
       bossHpMarkers: hpBreakpoints,
       bossHpBreakpoints: hpBreakpoints,
@@ -5244,7 +5245,7 @@ const evolveBossCombatant = (combatant, targetData) => {
   const hpRatio = combatant.currentHp / Math.max(1, combatant.maxHp)
   const evolved = createEvolvedCombatant(combatant, targetData)
   const next = refreshCombatantStats({ ...evolved, isBoss: combatant.isBoss, bossStage: combatant.bossStage,
-    rivalEncounter: combatant.rivalEncounter, enemyStage: combatant.enemyStage,
+    rivalEncounter: combatant.rivalEncounter, enemyStage: combatant.enemyStage, enemyGameMode: combatant.enemyGameMode,
     bossEncounter: combatant.bossEncounter, bossHpBreakpoints: combatant.bossHpBreakpoints,
     bossHpMarkers: combatant.bossHpMarkers, bossHpSegmentCount: combatant.bossHpSegmentCount,
     skillCooldowns: combatant.skillCooldowns, battleGuards: combatant.battleGuards })
@@ -5285,7 +5286,7 @@ const buildBaseEnemyParty = (stage, encounterPool, encounterCount, bossEncounter
 
   const rivals = createRivalEncounter({ stage: profileStage, mapName: options.mapName ?? getMapNameForStage(stage, gameMode),
     rivalState: options.rivalState, speciesLookup: allDigimonLookup, createCombatant,
-    level: Math.min(getLevelCapForStage(stage, gameMode), getEnemyLevelForStage(stage, gameMode) + (stage < 20 ? -1 : 1)) })
+    level: Math.min(isHardMode(gameMode) ? Infinity : getLevelCapForStage(stage, gameMode), getEnemyLevelForStage(stage, gameMode) + (stage < 20 ? -1 : 1)) })
   if (rivals.length) return rivals
   const shuffledNames = pickWildEncounterNames(encounterPool.filter(isPlayableDigimon), allDigimonLookup, Math.min(MAX_ENEMY_COMBATANTS, encounterCount), stage)
 
@@ -5304,12 +5305,12 @@ const buildBaseEnemyParty = (stage, encounterPool, encounterCount, bossEncounter
   })
 }
 
-const applyEnemyDifficulty = (unit, stage) => {
-  if (unit.isBoss) return { ...unit, enemyStage: stage }
-  return refreshCombatantStats({ ...unit, enemyStage: stage }, { preserveMaxHpDelta: true })
-}
+const applyEnemyDifficulty = (unit, stage, gameMode) =>
+  refreshCombatantStats({ ...unit, enemyStage: stage, enemyGameMode: gameMode }, { preserveMaxHpDelta: true })
 
-const buildEnemyParty = (stage, ...args) => buildBaseEnemyParty(stage, ...args).map(unit => applyEnemyDifficulty(unit, stage))
+const buildEnemyParty = (stage, encounterPool, encounterCount, bossEncounterPool = [], options = {}) =>
+  buildBaseEnemyParty(stage, encounterPool, encounterCount, bossEncounterPool, options)
+    .map(unit => applyEnemyDifficulty(unit, stage, normalizeGameMode(options.gameMode)))
 
 const createDigitDrop = (drop, index) => ({
   ...drop,
@@ -5618,7 +5619,7 @@ function App() {
   const grantTrainerVictory = (state, logs) => {
     const nextModeProgress = recordModeVictory(modeProgressRef.current, state)
     if (JSON.stringify(nextModeProgress) !== JSON.stringify(modeProgressRef.current) && saveModeProgress(progressStorage, nextModeProgress)) {
-      if (!modeProgressRef.current.classicCleared && nextModeProgress.classicCleared) logs.push('클래식 클리어! 데일리 모드와 무한 모드가 열렸습니다.')
+      if (!modeProgressRef.current.classicCleared && nextModeProgress.classicCleared) logs.push('캐주얼 클리어! 하드·데일리·무한 모드가 열렸습니다.')
       modeProgressRef.current = nextModeProgress
       setModeProgress(nextModeProgress)
     }
@@ -7200,7 +7201,7 @@ function App() {
       return false
     }
     if (!canPlayGameMode(snapshot.gameMode, modeProgressRef.current)) {
-      setSaveDialog(current => ({ ...current, error: '클래식을 1회 클리어하면 이 모드의 저장을 이어할 수 있습니다.' }))
+      setSaveDialog(current => ({ ...current, error: '캐주얼을 1회 클리어하면 이 모드의 저장을 이어할 수 있습니다.' }))
       return false
     }
     const { saveResumeUi = null, ...savedRun } = snapshot

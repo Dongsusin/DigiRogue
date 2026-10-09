@@ -7,7 +7,8 @@ export function normalizeModeProgress(value) {
     .filter(([date, stage]) => /^\d{4}-\d{2}-\d{2}$/.test(date) && stageValue(stage))
     .sort(([a], [b]) => b.localeCompare(a)).slice(0, 90))
   return { version: 1, classicCleared: value?.classicCleared === true,
-    classicBest: Math.min(200, stageValue(value?.classicBest)), endlessBest: stageValue(value?.endlessBest), dailyRecords }
+    classicBest: Math.min(200, stageValue(value?.classicBest)),
+    hardCleared: value?.hardCleared === true, hardBest: Math.min(200, stageValue(value?.hardBest)), endlessBest: stageValue(value?.endlessBest), dailyRecords }
 }
 export const isMainBattleWon = state => Boolean(Number.isSafeInteger(state?.currentStage) && state.currentStage > 0 &&
   state.explorationEvent?.phase !== 'battle' && state.enemies?.length && state.enemies.every(unit => unit.currentHp <= 0) &&
@@ -18,6 +19,8 @@ export function recordModeVictory(value, state) {
   const mode = normalizeGameMode(state.gameMode), stage = state.currentStage
   if (mode === 'classic') return { ...progress, classicBest: Math.max(progress.classicBest, Math.min(200, stage)),
     classicCleared: progress.classicCleared || stage === 200 }
+  if (mode === 'hard') return { ...progress, hardBest: Math.max(progress.hardBest, Math.min(200, stage)),
+    hardCleared: progress.hardCleared || stage === 200 }
   if (isDailyMode(state) && /^\d{4}-\d{2}-\d{2}$/.test(state.dailyDate ?? '')) return normalizeModeProgress({ ...progress,
     dailyRecords: { ...progress.dailyRecords, [state.dailyDate]: Math.max(progress.dailyRecords[state.dailyDate] ?? 0, stage) } })
   if (mode === 'endless') return { ...progress, endlessBest: Math.max(progress.endlessBest, stage) }

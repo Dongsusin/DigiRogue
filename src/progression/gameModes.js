@@ -1,5 +1,6 @@
 export const GAME_MODES = Object.freeze([
-  { id: 'classic', name: '클래식' },
+  { id: 'classic', name: '캐주얼' },
+  { id: 'hard', name: '하드' },
   { id: 'daily', name: '데일리' },
   { id: 'endless', name: '무한' },
 ])
@@ -7,6 +8,7 @@ export const normalizeGameMode = mode => GAME_MODES.some(entry => entry.id === m
 export const getGameMode = mode => GAME_MODES.find(entry => entry.id === normalizeGameMode(mode))
 export const getNextGameMode = (mode, direction = 1) => GAME_MODES[(GAME_MODES.findIndex(entry => entry.id === normalizeGameMode(mode)) + (direction < 0 ? -1 : 1) + GAME_MODES.length) % GAME_MODES.length].id
 export const isDailyMode = state => (typeof state === 'string' ? state : state?.gameMode) === 'daily'
+export const isHardMode = mode => (typeof mode === 'string' ? mode : mode?.gameMode) === 'hard'
 export const isEndlessMode = mode => (typeof mode === 'string' ? mode : mode?.gameMode) === 'endless'
 export const getModeStageLimit = mode => isEndlessMode(mode) ? Infinity : 200
 export const getEncounterProfileStage = (stage, mode) => isEndlessMode(mode) ? (Math.max(1, Math.floor(stage)) - 1) % 200 + 1 : stage
