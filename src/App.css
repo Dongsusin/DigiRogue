@@ -2220,6 +2220,8 @@ img[src^="/items/evolution/canonical/"]:is(
 }
 
 .evolution-screen__panel {
+  min-height: 0;
+  grid-template-rows: auto minmax(0, 1fr);
   position: relative;
   display: grid;
   gap: clamp(12px, calc(1.4 * var(--game-vw)), 18px);
@@ -2306,6 +2308,10 @@ img[src^="/items/evolution/canonical/"]:is(
 }
 
 .evolution-screen__party-list {
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(245, 173, 82, 0.94) rgba(31, 26, 40, 0.92);
+  overscroll-behavior: contain;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(7px, calc(0.9 * var(--game-vw)), 11px);

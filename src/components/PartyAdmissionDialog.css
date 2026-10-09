@@ -1,0 +1,24 @@
+.party-admission { width: min(800px, 100%); }
+.party-admission .game-dialog__header { flex-shrink: 0; }
+.party-admission .game-dialog__body { display: flex; flex-direction: column; gap: 14px; overflow: hidden; }
+.party-admission__incoming { display: flex; align-items: center; gap: 16px; flex-shrink: 0; border: 1px solid #65849b; border-radius: 8px; padding: 10px 16px; background: #204157; }
+.party-admission__incoming img { width: 70px; height: 70px; object-fit: contain; }
+.party-admission__incoming strong { color: #fff0c2; font-size: 18px; }
+.party-admission__incoming p { margin: 5px 0 0; color: #bad3e3; font-size: 12px; }
+.party-admission__incoming > span { margin-left: auto; color: #f0cd83; font-size: 11px; white-space: nowrap; }
+.party-admission__roster { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; gap: 8px; min-height: 0; max-height: 330px; overflow-y: auto; padding: 4px 10px 4px 4px; scrollbar-width: thin; scrollbar-color: #e9b767 #122a3d; overscroll-behavior: contain; touch-action: pan-y; }
+.party-admission__roster::-webkit-scrollbar { width: 10px; }
+.party-admission__roster::-webkit-scrollbar-track { background: #122a3d; border-radius: 6px; }
+.party-admission__roster::-webkit-scrollbar-thumb { background: #e9b767; border: 2px solid #122a3d; border-radius: 6px; }
+.party-admission__member { min-width: 0; min-height: 78px; display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 1px solid #56768e; border-radius: 7px; background: #182f44; color: #e5f1f9; text-align: left; font: inherit; cursor: pointer; }
+.party-admission__member img { width: 54px; height: 54px; flex-shrink: 0; object-fit: contain; }
+.party-admission__member > span:nth-child(2) { min-width: 0; }
+.party-admission__member strong { display: block; font-size: 13px; overflow-wrap: anywhere; }
+.party-admission__member small { display: block; margin-top: 4px; color: #b3cbda; font-size: 10px; }
+.party-admission__member:hover:not(:disabled), .party-admission__member[aria-pressed='true'] { border-color: #f2c879; background: #385363; box-shadow: inset 3px 0 #f2c879; }
+.party-admission__member:disabled { opacity: .5; cursor: default; }
+.party-admission__member small.party-admission__protected { color: #f4cc8f; }
+.party-admission__check { margin-left: auto; width: 16px; flex-shrink: 0; color: #ffe2a6; }
+.party-admission .game-dialog__footer { flex-wrap: wrap; gap: 10px; }
+.party-admission__decision { width: 100%; min-height: 18px; color: #d7e9f3; }
+.party-admission__actions { width: 100%; display: flex; justify-content: flex-end; gap: 10px; }

@@ -84,7 +84,7 @@ export function describeAnalysisGains(gains) {
   return gains.map(gain => `${gain.name} 스캔율 ${gain.before}% → ${gain.after}%${gain.after === 100 ? ' · 보상 화면에서 부화 가능' : ''}`)
 }
 
-export function hatchAnalyzedDigimon(state, name, createMember) {
+export function hatchAnalyzedDigimon(state, name, createMember, replacementId = null) {
   name = canonicalDigimonName(name)
   if (!allowsScanning(state)) return { ok: false, state, error: '데일리 모드에서는 스캔 데이터를 부화할 수 없습니다.' }
   if (!isPlayableDigimon(name)) return { ok: false, state, error: '이 디지몬의 데이터를 부화할 수 없습니다.' }
@@ -93,9 +93,11 @@ export function hatchAnalyzedDigimon(state, name, createMember) {
   const serial = Math.max(0, Math.floor(Number(state.scanHatchCount) || 0)) + 1
   const member = createMember(name, `scan-${state.currentStage}-${serial}-${name}`)
   if (!member || member.isEgg || !isPlayableDigimon(member) || !(member.currentHp > 0) || state.party.some(unit => unit.id === member.id)) return { ok: false, state, error: '이 디지몬의 데이터를 부화할 수 없습니다.' }
+  const admission = admitPartyMember(state, member, replacementId)
+  if (!admission.ok) return admission
   const unlockedSpecies = [...new Set([...(state.unlockedSpecies ?? []), name])]
-  return { ok: true, member, state: { ...state, scanHatchCount: serial, unlockedSpecies,
-    digimonAnalysis: withoutUnlockedAnalysis(state.digimonAnalysis, unlockedSpecies), party: [...state.party, member] } }
+  return { ...admission, state: { ...admission.state, scanHatchCount: serial, unlockedSpecies,
+    digimonAnalysis: withoutUnlockedAnalysis(state.digimonAnalysis, unlockedSpecies) } }
 }
 
 export function createRewardCheckpoint(reward, stage) {
@@ -115,3 +117,4 @@ import { getTrainerScanGain } from '../progression/trainerSkills.js'
 import { isPlayableDigimon } from '../data/speciesAvailability.js'
 import { allowsScanning, isModeItemAllowed } from '../progression/gameModes.js'
 import { canonicalDigimonName, getDigimonNameAliases } from '../data/digimonNames.js'
+import { admitPartyMember } from './partyAdmission.js'

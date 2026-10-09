@@ -48,7 +48,7 @@ export default function SaveSlotsDialog({ mode, slots, currentState, busy, error
           {occupied ? <>
             <span className="save-slot__location"><b>{getGameMode(state.gameMode).name} · STAGE {state.currentStage}</b><span>{state.dailyDate ?? state.currentMap}</span></span>
             <span className="save-slot__party">{state.party.slice(0, 8).map((unit, index) => <span key={unit?.id ?? index}>
-              {getDigimonThumbnailUrl(unit?.imageName ?? unit?.name) ? <img src={getDigimonThumbnailUrl(unit.imageName ?? unit.name)} alt={unit.name} /> : <span className="save-slot__egg" aria-label={unit?.name}>◇</span>}
+              {unit?.isEgg || getDigimonThumbnailUrl(unit?.imageName ?? unit?.name) ? <img src={unit.isEgg ? unit.imageUrl : getDigimonThumbnailUrl(unit.imageName ?? unit.name)} alt={unit.name} /> : <span className="save-slot__egg" aria-label={unit?.name}>◇</span>}
             </span>)}</span>
             <span className="save-slot__details"><span>{state.party.length}마리 · {(state.gold ?? 0).toLocaleString('ko-KR')} G</span><time>{savedTime(slot.savedAt)}</time></span>
           </> : <span className="save-slot__empty"><span aria-hidden="true">{slot.status === 'invalid' ? '!' : '+'}</span>

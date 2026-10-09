@@ -36,7 +36,7 @@ export default function FaintReplacementPanel({ party, activeAllyIds, replacemen
       <div className="faint-replacement__list" aria-label="교체 디지몬 목록">
         {party.map(member => {
           const available = candidateIds.has(member.id)
-          const reason = member.isEgg ? '부화 대기' : member.currentHp <= 0 ? '전투 불능'
+          const reason = member.isEgg ? '부화까지 ' + member.eggStagesRemaining + '스테이지' : member.currentHp <= 0 ? '전투 불능'
             : activeAllyIds.includes(member.id) ? '출전 중' : '내보내기'
           const hpRatio = Math.max(0, Math.min(100, member.currentHp / Math.max(1, member.maxHp) * 100))
           return (

@@ -64,6 +64,8 @@ import BattleItemMenu from './components/BattleItemMenu.jsx'
 import AdventureBattleBadge from './components/AdventureBattleBadge.jsx'
 import FaintReplacementPanel from './components/FaintReplacementPanel.jsx'
 import ScanIncubator from './components/ScanIncubator.jsx'
+import PartyAdmissionDialog from './components/PartyAdmissionDialog.jsx'
+import { admitPartyMember, queuePartyAdmission, dismissPartyAdmission, normalizePartyCapacity } from './battle/partyAdmission.js'
 import DigimonLevel from './components/DigimonLevel.jsx'
 import ExplorationEvent from './components/ExplorationEvent.jsx'
 import { appendBattleHistory } from './battle/battleInfo.js'
@@ -327,8 +329,13 @@ const parseSavedGameState = (rawSaveData) => {
     const savedSupport = savedGameState.regionalSupport
     const validSupport = savedSupport && savedSupport.stage === savedGameState.currentStage && savedSupport.mapName === savedGameState.currentMap
     const supportUnit = validSupport ? refreshUnit({ ...savedSupport.unit, regionalSupport: true, trainerSkills: {} }) : null
-    const resumedState = {
+    const pendingPartyAdmissions = (savedGameState.pendingPartyAdmissions ?? [])
+      .filter(request => ['egg', 'scan', 'overflow'].includes(request?.kind))
+      .map(request => ({ ...request, member: refreshUnit(request.member, true) }))
+      .filter(request => request.member)
+    const resumedState = normalizePartyCapacity({
       ...savedGameState,
+      pendingPartyAdmissions,
       eventMemory: upgradeRegionalTrustMemory(savedGameState.eventMemory),
       regionalSupport: supportUnit ? { ...savedSupport, unit: { ...supportUnit, regionalSupport: true, trainerSkills: {} } } : null,
       gameMode,
@@ -349,10 +356,10 @@ const parseSavedGameState = (rawSaveData) => {
         ? savedGameState.actedAllyIds.filter(id => party.some(unit => unit?.id === id)) : [],
       pendingAllyActions: parsedSaveData.kind === 'manual' && Array.isArray(savedGameState.pendingAllyActions)
         ? savedGameState.pendingAllyActions.filter(action => action?.side === 'ally' && party.some(unit => unit?.id === action.actorId && isCombatantAbleToBattle(unit))) : [],
-    }
-    if (!party.some(unit => unit?.id === resumedState.actingAllyId)) resumedState.actingAllyId = player.id
+    })
+    if (!resumedState.party.some(unit => unit?.id === resumedState.actingAllyId)) resumedState.actingAllyId = resumedState.player.id
     // Older saves may lack a formation. Once assigned, vacancies require a choice.
-    resumedState.activeAllyIds ??= getActiveAllyIdsForParty(party, [player.id], getBattleAllyLimit(resumedState))
+    resumedState.activeAllyIds ??= getActiveAllyIdsForParty(resumedState.party, [resumedState.player.id], getBattleAllyLimit(resumedState))
     resumedState.awaitingReplacement = Boolean(getFaintReplacement(resumedState))
     return upgradeExplorationEvent(recordEncounterAnalysis(resumedState))
   } catch {
@@ -5427,6 +5434,7 @@ function App() {
   const [rewardTab, setRewardTab] = useState('items')
   const [hatchMessage, setHatchMessage] = useState('')
   const hatchInFlightRef = useRef(false)
+  const [partyAdmissionError, setPartyAdmissionError] = useState('')
   const [evolutionState, setEvolutionState] = useState(null)
   const [evolutionScene, setEvolutionScene] = useState(null)
   const evolutionCompletionRef = useRef(null)
@@ -7097,6 +7105,7 @@ function App() {
     hatchInFlightRef.current = false
     setRewardTab('items')
     setHatchMessage('')
+    setPartyAdmissionError('')
     gameAudio.stopAll()
     setItemTooltip(null)
     clearHitEffectQueue()
@@ -7689,23 +7698,48 @@ function App() {
     setEvolutionScene(scene)
   }
 
-  const handleHatchScan = (name) => {
+  const persistPartyDecision = next => {
+    next = { ...next, awaitingReplacement: Boolean(getFaintReplacement(next)) }
+    latestGameStateRef.current = next
+    setGameState(next)
+    saveStageGameState(next)
+    setPartyAdmissionError('')
+  }
+
+  const requestPartyAdmission = request => {
+    const current = latestGameStateRef.current ?? gameState
+    if (!current || current.pendingPartyAdmissions?.length) return
+    const next = queuePartyAdmission({ ...current,
+      rewardCheckpoint: rewardState ? createRewardCheckpoint(rewardState, current.currentStage) : current.rewardCheckpoint }, request)
+    setActiveCombatantInfo(null)
+    setItemTooltip(null)
+    persistPartyDecision(next)
+  }
+
+  const handleHatchScan = (name, replacementId = null, admissionId = null) => {
     if (!allowsScanning(gameState)) return
     if (!gameState || !rewardState || rewardState.isResolving || rewardState.isRevealing || rewardState.pendingTarget ||
       evolutionState || hatchInFlightRef.current) return
     const current = latestGameStateRef.current ?? gameState
+    const request = current.pendingPartyAdmissions?.[0]
+    if (request && (request.kind !== 'scan' || request.member.id !== admissionId)) return
     const result = hatchAnalyzedDigimon(current, name, (species, id) => {
+      if (request) return request.member
       const data = allDigimonLookup.get(species)
       return data ? createCombatant({ id, name: species, imageUrl: data.imageUrl, data, stageName: data.stage, level: scanHatchLevel,
         trainerSkills: current.trainerSkills }) : null
-    })
-    if (!result.ok) { setHatchMessage(result.error); return }
+    }, replacementId)
+    if (result.requiresReplacement) {
+      requestPartyAdmission({ kind: 'scan', member: result.member, scanName: name })
+      return
+    }
+    if (!result.ok) { setHatchMessage(result.error); setPartyAdmissionError(result.error); return }
     hatchInFlightRef.current = true
     setRewardState(previous => ({ ...previous, isResolving: true }))
     setHatchMessage(name)
     const checkpoint = createRewardCheckpoint(rewardState, current.currentStage)
     playEvolutionScene([], result.member, () => {
-      const next = { ...result.state, rewardCheckpoint: checkpoint }
+      const next = { ...dismissPartyAdmission(result.state, admissionId), rewardCheckpoint: checkpoint }
       latestGameStateRef.current = next
       setGameState(next)
       saveStageGameState(next)
@@ -7715,7 +7749,9 @@ function App() {
     }, 'hatch')
   }
 
-  const completeRewardItemUse = ({ rewardItem, source, targetId = null, targetIds = [] }) => {
+  const completeRewardItemUse = ({ rewardItem, source, targetId = null, targetIds = [], replacementId = null, admissionId = null }) => {
+    const request = (latestGameStateRef.current ?? gameState)?.pendingPartyAdmissions?.[0]
+    if (request && (request.kind !== 'egg' || request.member.id !== admissionId || request.itemId !== rewardItem?.id || request.source !== source)) return
     if (!gameState || !rewardItem || !isModeItemAllowed(rewardItem, gameState)) {
       return
     }
@@ -7789,22 +7825,22 @@ function App() {
     }
 
     if (rewardItem.digiEggName) {
-      const nextEgg = createDigiEggCombatant({
+      const nextEgg = request?.member ?? createDigiEggCombatant({
         id: `egg-${gameState.currentStage}-${currentParty.length + 1}-${Date.now()}`,
         eggName: rewardItem.digiEggName,
         hatchPool: rewardItem.hatchPool ?? [],
         trainerSkills: gameState.trainerSkills,
         townSupport: gameState.townSupport,
       })
-      const nextParty = [...currentParty, nextEgg]
-      const nextPlayer =
-        getCombatantById(nextParty, gameState.player?.id) ?? gameState.player ?? nextParty[0] ?? null
-
+      const admission = admitPartyMember({ ...gameState, party: currentParty }, nextEgg, replacementId)
+      if (admission.requiresReplacement) {
+        requestPartyAdmission({ kind: 'egg', member: nextEgg, itemId: rewardItem.id, source })
+        return
+      }
+      if (!admission.ok) { setPartyAdmissionError(admission.error); return }
       finishRewardUse({
-        ...gameState,
+        ...dismissPartyAdmission(admission.state, admissionId),
         gold: source === 'fixed' ? (gameState.gold ?? 0) - (rewardItem.price ?? 0) : gameState.gold,
-        player: nextPlayer,
-        party: nextParty,
       })
       return
     }
@@ -8023,6 +8059,7 @@ function App() {
   }
 
   const handleSelectEvolutionMember = (memberId) => {
+    if (isCombatantEgg(getCombatantById(gameState?.party, memberId))) return
     setEvolutionState({
       mode: 'detail',
       selectedMemberId: memberId,
@@ -8245,6 +8282,33 @@ function App() {
     setScreenMode('adventure')
   }
 
+  const handleConfirmPartyAdmission = replacementId => {
+    if (hatchInFlightRef.current || rewardState?.isResolving || evolutionScene) return
+    const current = latestGameStateRef.current ?? gameState
+    const request = current?.pendingPartyAdmissions?.[0]
+    if (!request) return
+    if (request.kind === 'scan') {
+      handleHatchScan(request.scanName, replacementId, request.member.id)
+    } else if (request.kind === 'egg') {
+      const rewardItem = rewardItemLookup.get(request.itemId)
+      if (!rewardState || !rewardItem) { setPartyAdmissionError('보상을 다시 불러온 뒤 선택해 주세요.'); return }
+      completeRewardItemUse({ rewardItem, source: request.source, replacementId, admissionId: request.member.id })
+    } else {
+      const result = admitPartyMember(current, request.member, replacementId)
+      if (!result.ok) { setPartyAdmissionError(result.error); return }
+      persistPartyDecision(dismissPartyAdmission(result.state, request.member.id))
+    }
+  }
+
+  const handleCancelPartyAdmission = () => {
+    if (hatchInFlightRef.current || rewardState?.isResolving || evolutionScene) return
+    const current = latestGameStateRef.current ?? gameState
+    const request = current?.pendingPartyAdmissions?.[0]
+    if (!request) return
+    persistPartyDecision(dismissPartyAdmission(current, request.member.id))
+    if (request.kind === 'scan') setHatchMessage(request.member.name + ' 영입을 취소했습니다.')
+  }
+
   const matchupGuideButton = (
     <button type="button" className="matchup-guide-button" aria-haspopup="dialog" aria-expanded={isMatchupGuideOpen}
       onClick={() => { setActiveCombatantInfo(null); setItemTooltip(null); setIsMatchupGuideOpen(true) }}>
@@ -8460,14 +8524,14 @@ function App() {
       )
     : 0
   const rewardTargetSlots = Array.from(
-    { length: Math.max(PARTY_SLOT_COUNT, rewardTargetMembers.length) },
-    (_, index) => rewardTargetMembers[index] ?? null
+    { length: Math.max(PARTY_SLOT_COUNT, partyMembers.length) },
+    (_, index) => partyMembers[index] ?? null
   )
   const evolutionPartyMembers = partyMembers.filter((member) => !isCombatantEgg(member))
   const readyEvolutionMemberCount = evolutionPartyMembers.filter(member => getReadyEvolutionPreviewTargets(member, gameState?.inventory, evolutionPartyMembers, gameState?.evolutionMemory).length > 0).length
   const evolutionPartySlots = Array.from(
-    { length: Math.max(PARTY_SLOT_COUNT, evolutionPartyMembers.length) },
-    (_, index) => evolutionPartyMembers[index] ?? null
+    { length: Math.max(PARTY_SLOT_COUNT, partyMembers.length) },
+    (_, index) => partyMembers[index] ?? null
   )
   const selectedEvolutionMember = evolutionState?.selectedMemberId
     ? getCombatantById(evolutionPartyMembers, evolutionState.selectedMemberId)
@@ -8486,7 +8550,8 @@ function App() {
   const hasExplorationScene = Boolean(gameState?.explorationEvent && gameState.explorationEvent.phase !== 'battle')
   const showExplorationEvent = Boolean(hasExplorationScene && !activeSkillReplaceEvent && !evolutionScene)
   const isInfoDialogOpen = isHistoryOpen || isTurnOrderOpen || Boolean(effectDetailsCombatant)
-  const isAdventureBlocked = Boolean(evolutionScene || showExplorationEvent || isInfoDialogOpen || isItemPanelOpen)
+  const partyAdmission = gameState?.pendingPartyAdmissions?.[0] ?? null
+  const isAdventureBlocked = Boolean(evolutionScene || showExplorationEvent || isInfoDialogOpen || isItemPanelOpen || partyAdmission)
   const skillConsoleEntries = isSkillConsoleOpen ? battleSkillSlots.flatMap((name, index) => {
     if (!name) return []
     const data = getSkillData(name, actingAlly)
@@ -9467,16 +9532,14 @@ function App() {
                                 >
                                   <img className="party-member__image" src={member.imageUrl} alt="" />
                                   <span className="party-member__name">{member.name}</span>
-                                  <DigimonLevel className="party-member__level" level={member.level} levelCap={gameState?.levelCap} />
-                                  <span className="party-member__hp">
-                                    <span
-                                      className="party-member__hp-fill"
-                                      style={{ width: `${hpRatio}%` }}
-                                    />
-                                  </span>
-                                  <span className="party-member__hp-text">
-                                    {member.currentHp}/{member.maxHp}
-                                  </span>
+                                  {member.isEgg ? <>
+                                    <span className="party-member__level">{DIGI_EGG_STAGE}</span>
+                                    <span className="party-member__egg-text">부화까지 {member.eggStagesRemaining}스테이지</span>
+                                  </> : <>
+                                    <DigimonLevel className="party-member__level" level={member.level} levelCap={gameState?.levelCap} />
+                                    <span className="party-member__hp"><span className="party-member__hp-fill" style={{ width: `${hpRatio}%` }} /></span>
+                                    <span className="party-member__hp-text">{member.currentHp}/{member.maxHp}</span>
+                                  </>}
                                 </button>
                               )
                             })}
@@ -9574,21 +9637,20 @@ function App() {
                                   <button
                                     key={member.id}
                                     type="button"
-                                    className="party-member evolution-party-member"
+                                    className={'party-member evolution-party-member' + (member.isEgg ? ' party-member--egg' : '')}
+                                    disabled={Boolean(member.isEgg)}
                                     onClick={() => handleSelectEvolutionMember(member.id)}
                                   >
                                     <img className="party-member__image" src={member.imageUrl} alt="" />
                                     <span className="party-member__name">{member.name}</span>
-                                    <DigimonLevel className="party-member__level" level={member.level} levelCap={gameState?.levelCap} />
-                                    <span className="party-member__hp">
-                                      <span
-                                        className="party-member__hp-fill"
-                                        style={{ width: `${hpRatio}%` }}
-                                      />
-                                    </span>
-                                    <span className="party-member__hp-text">
-                                      진화 {evolutionCount}
-                                    </span>
+                                    {member.isEgg ? <>
+                                      <span className="party-member__level">{DIGI_EGG_STAGE}</span>
+                                      <span className="party-member__egg-text">부화까지 {member.eggStagesRemaining}스테이지</span>
+                                    </> : <>
+                                      <DigimonLevel className="party-member__level" level={member.level} levelCap={gameState?.levelCap} />
+                                      <span className="party-member__hp"><span className="party-member__hp-fill" style={{ width: `${hpRatio}%` }} /></span>
+                                      <span className="party-member__hp-text">진화 {evolutionCount}</span>
+                                    </>}
                                   </button>
                                 )
                               })}
@@ -9997,6 +10059,9 @@ function App() {
         </div>
       </section>
       {isMatchupGuideOpen && <MatchupGuideModal onClose={() => setIsMatchupGuideOpen(false)} />}
+      {screenMode === 'adventure' && partyAdmission && !saveDialog && !evolutionScene && !rewardState?.isResolving && <PartyAdmissionDialog
+        key={partyAdmission.member.id} state={gameState} request={partyAdmission} error={partyAdmissionError}
+        onReplace={handleConfirmPartyAdmission} onCancel={handleCancelPartyAdmission} />}
       {saveDialog && <SaveSlotsDialog key={saveDialog.mode} mode={saveDialog.mode} slots={saveSlots}
         currentState={gameState} busy={saveDialog.mode === 'exit' && getSaveTransitionBusy()} error={saveDialog.error}
         onClose={() => setSaveDialog(null)} onConfirm={saveDialog.mode === 'exit' ? handleSaveAndExit : handleLoadSaveSlot} />}

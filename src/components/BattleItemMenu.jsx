@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import GameDialog from './GameDialog.jsx'
+import { ownedBattleUnits, isRegionalSupport } from '../battle/regionalSupport.js'
 import { BATTLE_CONSUMABLES, BATTLE_ITEM_CATEGORIES, getBattleItemCategory, getBattleItemTargets, getBattleItemUnit } from '../battle/battleItems.js'
 import { getItemScanGain } from '../data/adventureItems.js'
 import { getScanPreview } from '../battle/digimonAnalysis.js'
@@ -21,6 +22,8 @@ export default function BattleItemMenu({ state, actor, onUse, onClose }) {
     (category === '전체' || getBattleItemCategory(item) === category))
     .sort((a, b) => Number(countOf(b) > 0) - Number(countOf(a) > 0) || Number(Boolean(a.cardCode)) - Number(Boolean(b.cardCode)))
   const targets = selected ? getBattleItemTargets(state, selected, actor.id) : []
+  const targetIds = new Set(targets.map(unit => unit.id))
+  const displayedTargets = selected?.effect.targetSide === 'enemy' ? targets : [...ownedBattleUnits(state.party), ...targets.filter(isRegionalSupport)]
   const useItem = item => {
     if (item.effect.scan || item.effect.scope === 'all') onUse(item.id, null)
     else setSelected(item)
@@ -34,9 +37,9 @@ export default function BattleItemMenu({ state, actor, onUse, onClose }) {
       <div className="battle-card-selected" data-item-form={selected.cardCode ? 'card' : 'supply'}>
         <img src={selected.imageUrl} alt="" /><div><h3>{selected.name}</h3><p>{selected.description}</p>
         <span className="battle-card-target-side">{selected.effect.targetSide === 'enemy' ? '적 디지몬 선택' : selected.effect.revive ? '부활시킬 예비 디지몬 선택' : '아군 디지몬 선택'}</span></div></div>
-      <div className="battle-card-target-list">{targets.map(unit => <button type="button" key={unit.id}
+      <div className="battle-card-target-list">{displayedTargets.map(unit => <button type="button" key={unit.id} disabled={!targetIds.has(unit.id)}
         onClick={() => onUse(selected.id, unit.id)} aria-label={unit.name + '에게 ' + selected.name + ' 사용'}>
-        <strong>{unit.name}</strong><span>{unit.currentHp > 0 ? 'HP ' + unit.currentHp + ' / ' + unit.maxHp : '전투 불능'}</span>
+        <strong>{unit.name}</strong><span>{unit.isEgg ? '부화까지 ' + unit.eggStagesRemaining + '스테이지' : unit.currentHp > 0 ? 'HP ' + unit.currentHp + ' / ' + unit.maxHp : '전투 불능'}</span>
         {selected.effect.cooldownReduction > 0 && <small>기술 대기 최대 {Math.max(0, ...Object.values(unit.skillCooldowns ?? {}))}턴</small>}
         {unit.statusEffect && <small>{unit.statusEffect.type}</small>}
       </button>)}</div>

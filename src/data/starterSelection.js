@@ -1,7 +1,8 @@
 import { DIGIMON_STAGES } from './digimonStages.js'
+import { PARTY_CAPACITY } from './partyLimits.js'
 export const STARTER_STAGES = DIGIMON_STAGES
 export const STARTER_PARTY_COST_LIMIT = 10
-export const STARTER_TEAM_LIMIT = 8
+export const STARTER_TEAM_LIMIT = PARTY_CAPACITY
 export const STARTING_PLAYER_LEVEL = 5
 
 // Numbering belongs to this game's roster and remains stable when browsing or sorting.
