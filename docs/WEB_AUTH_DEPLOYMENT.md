@@ -66,6 +66,10 @@ public 리소스 경로가 달라지면 정적 호스팅 설정을 다시 생성
 node scripts/prepare-vercel-preview.mjs
 ~~~
 
+
+
+Git LFS로 관리되는 모델·음원은 원본 파일을 내려받은 로컬 소스에서 Vercel CLI로 배포한다. Git 소스 배포는 포인터 파일이 그대로 게시될 수 있으므로 사용하지 않는다. 배포 직후 대표 GLB의 헤더와 원본 해시, 실제 전투 모델 로딩까지 확인한다.
+
 스크립트의 기존 파일명은 유지하지만 Firebase 주소 인수는 받지 않는다. Vercel CLI에 권한 있는 계정으로 로그인한 상태에서 같은 팀·프로젝트에 게시한다.
 
 ~~~powershell

@@ -70,6 +70,16 @@ export function writeSaveSlot(storage, id, gameState, resumeUi = null) {
   } catch { return false }
 }
 
+// Delete through the active profile/launcher adapter, never the whole storage.
+export function deleteSaveSlot(storage, id) {
+  const key = SAVE_SLOTS.find(slot => slot.id === id)?.key
+  if (!key || !storage || storage.persistent === false) return false
+  try {
+    storage.removeItem(key)
+    return storage.getItem(key) === null
+  } catch { return false }
+}
+
 export function defaultSaveSlot(slots, mode) {
   if (mode === 'exit') return slots.find(slot => !slot.automatic && slot.status !== 'ready')?.id ?? 'manual-1'
   return slots.filter(slot => slot.status === 'ready')

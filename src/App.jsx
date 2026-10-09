@@ -44,7 +44,7 @@ import { TRAINER_SKILLS_STORAGE_KEY, loadTrainerProgress, saveTrainerProgress, n
 import { normalizeEvolutionMemory, mergeEvolutionMemory, hasEvolutionMemory, rememberItemEvolution, inferEvolutionMemory } from './progression/evolutionMemory.js'
 import { loadScanProgress } from './progression/scanProgress.js'
 import { SAVE_DATA_VERSION, SAVE_SLOTS, getSaveSlotKey, readSaveSlot, readSaveSlots,
-  writeSaveSlot, createSaveResumeUi, isSaveTransitionBusy } from './progression/saveSlots.js'
+  writeSaveSlot, deleteSaveSlot, createSaveResumeUi, isSaveTransitionBusy } from './progression/saveSlots.js'
 import { normalizeRegionStatModifiers, mergeRegionStatModifier, prepareCombatantForStage, REGION_EFFECT_TEXT } from './battle/regionModifiers.js'
 import { cleanCombatantFields, removeRetiredCombatantData } from './progression/retiredCombatantData.js'
 import { getStageLevelCap, getStageEnemyLevelRange, getEnemyDifficultyModifiers, getAdventureExperienceMultiplier, pickWildEncounterNames, enforceCombatantLevelCap } from './progression/gameDifficulty.js'
@@ -5475,7 +5475,7 @@ function App() {
     })
   }, [subscribeLocal, getLocalSnapshot])
   const [saveSlots, setSaveSlots] = useState(() => readSaveSlots(progressStorage, parseSavedGameState))
-  const hasSaveData = saveSlots.some(slot => slot.status === 'ready')
+  const hasSaveData = saveSlots.some(slot => slot.status !== 'empty')
   const currentMenuKey = selectedMenuKey === 'continue' && !hasSaveData ? 'new-game' : selectedMenuKey
   const [saveDialog, setSaveDialog] = useState(null)
   const saveExitInFlightRef = useRef(false)
@@ -7245,6 +7245,15 @@ function App() {
       setSaveDialog(current => ({ ...current, error: '저장하지 못했습니다. 저장 공간을 확인한 뒤 다시 시도해 주세요.' }))
       return false
     }
+  }
+
+  const handleDeleteSaveSlot = slotId => {
+    if (saveDialog?.mode !== 'load' || !deleteSaveSlot(progressStorage, slotId)) {
+      return { ok: false, error: '저장 기록을 삭제하지 못했습니다. 저장 공간을 확인한 뒤 다시 시도해 주세요.' }
+    }
+    setSaveSlots(readSaveSlots(progressStorage, parseSavedGameState))
+    setSaveDialog(current => current && { ...current, error: '' })
+    return { ok: true }
   }
 
   const handleLoadSaveSlot = slotId => {
@@ -10135,7 +10144,7 @@ function App() {
         onReplace={handleConfirmPartyAdmission} onCancel={handleCancelPartyAdmission} />}
       {saveDialog && <SaveSlotsDialog key={saveDialog.mode} mode={saveDialog.mode} slots={saveSlots}
         currentState={gameState} busy={saveDialog.mode === 'exit' && getSaveTransitionBusy()} error={saveDialog.error}
-        onClose={() => setSaveDialog(null)} onConfirm={saveDialog.mode === 'exit' ? handleSaveAndExit : handleLoadSaveSlot} />}
+        onDelete={handleDeleteSaveSlot} onClose={() => setSaveDialog(null)} onConfirm={saveDialog.mode === 'exit' ? handleSaveAndExit : handleLoadSaveSlot} />}
     </main>
   )
 }

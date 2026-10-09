@@ -17,6 +17,7 @@
     "test:quests": "node --test scripts/verify-quest-risk.mjs",
     "test:town": "node --test scripts/verify-town.mjs",
     "test:scan": "node --test scripts/verify-scan-rates.mjs",
+    "test:saves": "node --test scripts/verify-save-slots.mjs",
     "test:auth": "node --test scripts/verify-auth.mjs",
     "test:network-budget": "node scripts/verify-network-budget.mjs",
     "test:guest-budget": "node scripts/verify-guest-budget.mjs",
