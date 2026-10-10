@@ -1,0 +1,58 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Session metadata only. Retain authTime after logout to reject older tokens.
+    match /activeSessions/{uid} {
+      function owner() {
+        return request.auth != null && request.auth.uid == uid
+          && request.auth.token.firebase.sign_in_provider != 'anonymous';
+      }
+      function validSession() {
+        let next = request.resource.data;
+        return next.keys().hasAll(['sessionId', 'previousSessionId', 'authTime', 'createdAt', 'claimExpiresAt'])
+          && next.keys().hasOnly(['sessionId', 'previousSessionId', 'authTime', 'createdAt', 'claimExpiresAt'])
+          && next.sessionId is string && (next.sessionId == '' || next.sessionId.matches('^[a-f0-9-]{36}$'))
+          && next.previousSessionId is string && (next.previousSessionId == '' || next.previousSessionId.matches('^[a-f0-9-]{36}$'))
+          && next.authTime is int && next.authTime == request.auth.token.auth_time
+          && next.createdAt == request.time
+          && next.claimExpiresAt is timestamp && next.claimExpiresAt > request.time
+          && next.claimExpiresAt <= request.time + duration.value(15, 's');
+      }
+      function freshLogin() {
+        return request.time - timestamp.value(request.auth.token.auth_time * 1000) < duration.value(5, 'm');
+      }
+      allow get: if owner();
+      allow create: if owner() && validSession() && freshLogin()
+        && request.resource.data.sessionId != '' && request.resource.data.previousSessionId == '';
+      allow update: if owner() && validSession() && (
+        (freshLogin() && request.resource.data.authTime > resource.data.authTime
+          && request.resource.data.previousSessionId == '' && request.resource.data.sessionId != '')
+        || (request.resource.data.authTime == resource.data.authTime && resource.data.sessionId != ''
+          && request.resource.data.previousSessionId == resource.data.sessionId)
+      );
+    }
+    match /players/{uid}/progress/collection {
+      allow get: if request.auth != null && request.auth.uid == uid;
+      allow create, update: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['version', 'species'])
+        && request.resource.data.version == 1
+        && request.resource.data.species is map
+        && request.resource.data.species.size() <= 500;
+    }
+    match /players/{uid}/progress/{record} {
+      function owner() { return request.auth != null && request.auth.uid == uid; }
+      function gameRecord() { return record in ['save-auto', 'save-1', 'save-2', 'save-3', 'training', 'modes']; }
+      function validRecord() {
+        return request.resource.data.keys().hasOnly(['version', 'revision', 'payload', 'deviceId', 'updatedAt'])
+          && request.resource.data.version == 1
+          && request.resource.data.revision is int
+          && request.resource.data.updatedAt is int && request.resource.data.updatedAt > 0
+          && request.resource.data.deviceId is string && request.resource.data.deviceId.size() <= 120
+          && (request.resource.data.payload == null || (request.resource.data.payload is string && request.resource.data.payload.size() <= 750000));
+      }
+      allow get: if owner() && gameRecord();
+      allow create: if owner() && gameRecord() && validRecord() && request.resource.data.revision == 1;
+      allow update: if owner() && gameRecord() && validRecord() && request.resource.data.revision == resource.data.revision + 1;
+    }
+  }
+}

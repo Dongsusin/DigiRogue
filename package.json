@@ -18,7 +18,7 @@
     "test:town": "node --test scripts/verify-town.mjs",
     "test:scan": "node --test scripts/verify-scan-rates.mjs",
     "test:saves": "node --test scripts/verify-save-slots.mjs",
-    "test:auth": "node --test scripts/verify-auth.mjs",
+    "test:auth": "node --test scripts/verify-auth.mjs scripts/verify-account-session.mjs",
     "test:network-budget": "node scripts/verify-network-budget.mjs",
     "test:guest-budget": "node scripts/verify-guest-budget.mjs",
     "test:hosting-budget": "node scripts/verify-hosting-budget.mjs",

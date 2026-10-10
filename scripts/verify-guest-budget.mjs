@@ -2,20 +2,33 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import vm from 'node:vm'
 import { ensureLocalGuest } from '../src/progression/launcherStorage.js'
+import { createAccountSession, SESSION_KEY, SESSION_MESSAGES } from '../src/auth/accountSession.js'
 const source = fs.readFileSync(new URL('../src/auth/AuthProvider.jsx', import.meta.url), 'utf8')
   .replace(/^import[\s\S]*?from ['"][^'"]+['"]\s*\n/gm, '')
   .replace('export default function AuthProvider', 'function AuthProvider')
+  .replace('let sessionStore, sessionStorePromise', 'let sessionStore = testSessionStore, sessionStorePromise')
+  .replace(/const loadStore = [^\n]+/, 'const loadStore = () => Promise.resolve(testSessionStore)')
   .replace(/return <AuthContext.Provider[^\n]+/, 'return null')
 const backend = () => { const map = new Map(); return {
   getItem: key => map.get(key) ?? null, setItem: (key, value) => map.set(key, String(value)),
   removeItem: key => map.delete(key),
 } }
-function provider(storage = backend(), { savedUser = null, persistence = Promise.resolve(), retire = Promise.resolve() } = {}) {
+function provider(storage = backend(), { savedUser = null, persistence = Promise.resolve(), retire = Promise.resolve(), restoreSession = false } = {}) {
   const state = [], effects = [], calls = { anonymous: 0, signOut: 0, googlePopup: 0, googleLink: 0 }
   let actions, count = 0
   const auth = { currentUser: savedUser }
+  const tabStorage = backend(), sessions = new Map()
+  if (restoreSession && savedUser) { tabStorage.setItem(SESSION_KEY, JSON.stringify({ uid: savedUser.uid, sessionId: 'existing' })); sessions.set(savedUser.uid, 'existing') }
+  const testSessionStore = {
+    async claim(uid, previous, next, takeover) { if (!takeover && sessions.get(uid) !== previous) throw Object.assign(new Error(), { code: 'session/replaced' }); sessions.set(uid,next) },
+    async read(uid) { return sessions.get(uid) ?? null },
+    watch() { return () => {} },
+    async release(uid,id) { if (sessions.get(uid) === id) sessions.delete(uid) },
+  }
   const context = vm.createContext({
-    window: {}, navigator: { onLine: false }, AuthContext: {},
+    window: { sessionStorage: tabStorage, addEventListener() {}, removeEventListener() {} },
+    document: { visibilityState: 'visible', addEventListener() {}, removeEventListener() {} },
+    navigator: { onLine: false }, AuthContext: {}, createAccountSession, SESSION_MESSAGES, testSessionStore,
     firebaseAuth: auth, authPersistenceReady: persistence,
     useState: initial => { const key = count++; state[key] = initial; return [initial, value => { state[key] = value }] },
     useRef: initial => ({ current: initial }),
@@ -32,7 +45,7 @@ function provider(storage = backend(), { savedUser = null, persistence = Promise
   vm.runInContext(source + '\nAuthProvider({children:null})', context)
   return { state, calls, actions, effects, storage }
 }
-const settle = async () => { for (let i = 0; i < 12; i++) await Promise.resolve() }
+const settle = async () => { for (let i = 0; i < 40; i++) await Promise.resolve() }
 const tests = [], test = (name, run) => tests.push({ name, run })
 test('guest entry is local, stable, and makes zero Firebase anonymous sign-ins', async () => {
   const storage = backend(); storage.setItem('digirogue-save-v1', 'existing-guest-save')
@@ -55,8 +68,8 @@ test('restoring an old anonymous account stops token refresh and preserves guest
   assert.equal(p.state[0]?.isLocalGuest, true); assert.equal(p.calls.signOut, 1)
   assert.equal(storage.getItem('digirogue-save-v1'), 'previous')
 })
-test('Google restoration keeps the Google identity and does not sign it out', async () => {
-  const p = provider(backend(), { savedUser: { uid: 'google', displayName: 'Player', isAnonymous: false } })
+test('Google restoration with a valid ownership token keeps its identity', async () => {
+  const p = provider(backend(), { savedUser: { uid: 'google', displayName: 'Player', isAnonymous: false }, restoreSession: true })
   p.effects.forEach(effect => effect()); await settle()
   assert.equal(p.state[0]?.uid, 'google'); assert.equal(p.state[0]?.isAnonymous, false); assert.equal(p.calls.signOut, 0)
 })
@@ -78,6 +91,12 @@ test('logout waits for an existing anonymous retirement instead of racing a seco
   const logout = p.actions.logout(); await settle()
   assert.equal(p.calls.signOut, 1)
   finish(); await logout; assert.equal(p.state[0], null)
+})
+test('legacy Google persistence without a session token requests a fresh login', async () => {
+  const p = provider(backend(), { savedUser: { uid: 'google', isAnonymous: false } })
+  p.effects.forEach(effect => effect()); await settle()
+  assert.equal(p.state[0], null); assert.equal(p.calls.signOut, 1)
+  assert.match(p.state[4], /다시 로그인/)
 })
 let passed = 0
 for (const { name, run } of tests) {

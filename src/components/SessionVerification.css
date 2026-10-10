@@ -1,0 +1,7 @@
+.session-game { width: 100%; height: 100%; }
+.session-verification {
+  position: absolute; inset: 0; z-index: 10000;
+  display: grid; place-items: center;
+  color: #e6f7ff; background: rgba(5, 17, 29, .92);
+  font-size: 20px; letter-spacing: .06em;
+}

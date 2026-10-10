@@ -2,6 +2,7 @@ import { lazy, Suspense, useMemo, useState } from 'react'
 import GameApp from './GameApp.jsx'
 import GameLoadingScreen from './GameLoadingScreen.jsx'
 import LoginScreen from './LoginScreen.jsx'
+import './SessionVerification.css'
 import { useAuthSession } from '../auth/AuthContext.js'
 import { loadGameModule } from '../loading/gameModule.js'
 import { initializeLauncherStorage, browserStorage, createLocalStorage } from '../progression/localStorage.js'
@@ -27,8 +28,11 @@ export default function LocalGame() {
   // Heavy game and 3D bundles are only requested after choosing an entry method.
   loadGameModule().catch(() => {})
   return <Suspense fallback={<GameLoadingScreen />}>
-    <LocalProgressProvider key={auth.identity.uid + ':' + auth.identity.isAnonymous} storage={profile}>
-      <GameApp />
-    </LocalProgressProvider>
+    <div className="session-game" inert={auth.sessionChecking || undefined}>
+      <LocalProgressProvider key={auth.identity.uid + ':' + auth.identity.isAnonymous} storage={profile}>
+        <GameApp />
+      </LocalProgressProvider>
+    </div>
+    {auth.sessionChecking && <div className="session-verification" role="status" aria-live="polite">로그인 연결 확인 중…</div>}
   </Suspense>
 }
