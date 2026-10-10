@@ -2381,7 +2381,7 @@ const selectRandomRewardItemsByRarity = (items, count = 3, trainerSkills = {}) =
   while (selectedItems.length < count && candidates.length > 0) {
     const selectedRarity = selectWeightedRewardRarity(candidates, trainerSkills)
     const rarityCandidates = candidates.filter((item) => getRewardItemRarity(item) === selectedRarity)
-    const selectedItem = pickTrainerRewardItem(rarityCandidates.length ? rarityCandidates : candidates, trainerSkills, Math.random)
+    const selectedItem = pickTrainerRewardItem(rarityCandidates.length ? rarityCandidates : candidates, Math.random)
 
     if (!selectedItem) {
       break

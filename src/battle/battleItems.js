@@ -65,7 +65,7 @@ export function drawBattleCardDrops(inventory, count, seed, trainerSkills = {}, 
     const weights = [{ key: 'common', weight: 4 }, { key: 'good', weight: 8 }, { key: 'rare', weight: 1 }]
       .filter(tier => candidates.some(item => item.rarity === tier.key))
     const rarity = pickLuckRewardRarity(weights, luck, random)
-    const chosen = pickTrainerRewardItem(candidates.filter(item => item.rarity === rarity), trainerSkills, random)
+    const chosen = pickTrainerRewardItem(candidates.filter(item => item.rarity === rarity), random)
     drops.push(chosen.id)
     held[chosen.id] = (held[chosen.id] ?? 0) + 1
   }

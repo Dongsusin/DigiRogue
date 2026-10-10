@@ -87,7 +87,7 @@ export default function TrainerSkillTree({ progress, onLearn, onBack, onReset })
     if (next) { selectNode(next); nodeRefs.current.get(next.id)?.focus() }
   }
   const groupLabels = { budget: '팀 코스트 한도 · 공통 교감', general: category === 'items' ? '행운 훈련' : tab === 'evolution' ? '진화 훈련' : '공통 훈련',
-    stage: '진화 단계', attribute: '속성', type: '종족 · 타입', specialty: '물자 전문화' }
+    stage: '진화 단계', attribute: '속성', type: '종족 · 타입' }
   const tabs = category === 'stats' ? [...Object.entries(TRAINER_STATS), ['evolution', '진화'], ['boss', '보스 피해']] :
     category === 'growth' ? [['exp', '경험치'], ['scan', '스캔율']] : []
   return <section className="trainer-skills" aria-label="테이머 스킬">

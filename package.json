@@ -26,6 +26,7 @@
     "simulate:balance": "node scripts/simulate-adventure-balance.mjs",
     "test:bosses": "node --test scripts/verify-boss-variety.mjs",
     "test:party": "node --test scripts/verify-party-admission.mjs",
+    "test:trainer-skills": "node --test scripts/verify-trainer-item-skills.mjs scripts/verify-trainer-skill-layout.mjs",
     "test:skills": "node --test scripts/verify-skill-learning.mjs",
     "test:hard": "node --test scripts/verify-hard-mode.mjs",
     "simulate:hard": "node scripts/simulate-adventure-balance.mjs --hard",

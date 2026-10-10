@@ -17,7 +17,7 @@ export const TRAINER_STATS = { hp: 'HP', attack: '공격', defense: '방어', sp
 export const TRAINER_CATEGORIES = [
   { id: 'cost', name: '코스트', icon: 'bond', subtitle: '팀 확장 · 디지몬 교감' },
   { id: 'stats', name: '능력치', icon: 'attack', subtitle: '개별 능력치 · 진화 · 보스 공략' },
-  { id: 'items', name: '아이템', icon: 'item', subtitle: '행운 등급 · 물자 탐색' },
+  { id: 'items', name: '아이템', icon: 'item', subtitle: '행운 등급' },
   { id: 'growth', name: '경험치 및 스캔율', icon: 'scan', subtitle: '육성 · 데이터 수집' },
 ]
 
@@ -110,11 +110,6 @@ for (const [id, name, luckTier, price, required] of [
   ['rare', '행운 훈련 II', 1, 1, 'items-good'], ['rogue', '행운 훈련 III', 2, 2, 'items-rare'], ['master', '행운 훈련 IV', 3, 3, 'items-rogue'],
 ]) define(`items-${id}`, 'items', name, '단계마다 행운 +1. 모든 행운 훈련을 합산하며 최대 SS등급까지 성장합니다.',
   { kind: 'luck', luckTier, amount: 1 }, { price, maxRank: id === 'rare' ? 5 : 3, icon: 'luck', requires: [{ id: required, rank: 2 }] })
-for (const [group, name] of [['card', '카드 탐지'], ['egg', '디지에그 탐색'], ['growth', '육성 물자'], ['recovery', '회복 물자'], ['equipment', '장비 수색']]) {
-  define(`items-find-${group}`, 'items', name, `같은 보상 등급에서 ${name.split(' ')[0]} 아이템의 추첨 가중치를 단계마다 7.5% 높입니다.`,
-    { kind: 'item', itemGroup: group, amount: .075 }, { icon: 'item', group: 'specialty', requires: [{ id: 'items-good', rank: 1 }] })
-}
-
 define('growth-exp', 'growth', '함께하는 성장', '전투 경험치를 단계마다 2% 늘립니다. 대기 파티에도 적용됩니다.',
   { kind: 'experience', amount: .02 }, { tab: 'exp', maxRank: 5, icon: 'exp' })
 define('growth-exp-reserve', 'growth', '뒤따르는 동료', '대기 중인 동료의 전투 경험치를 단계마다 2.5% 더 늘립니다.',
@@ -285,20 +280,10 @@ export function getTrainerBossMultiplier(attacker, defender, skill, side = 'ally
 }
 export const getTrainerScanGain = (ranks, base, target, mode = 'event') => Math.min(100, base + sum(ranks, 'scan', target, effect => !effect.mode || effect.mode === mode))
 export const getTrainerLuck = ranks => resolveItemLuck(sum(normalizeTrainerRanks(ranks), 'luck'))
-function isItemGroup(item, group) {
-  if (group === 'card') return Boolean(item.cardCode)
-  if (group === 'egg') return Boolean(item.digiEggName)
-  if (group === 'growth') return Boolean(item.digicloneKey || item.levelUpAmount || item.partyLevelUpAmount)
-  if (group === 'recovery') return Boolean(item.healAmount || item.partyHealAmount || item.healFull || item.partyHealFull || item.reviveRatio)
-  if (group === 'equipment') return Boolean(item.battleItemKey || item.utilityKey || item.typeUpKey || item.attributeUpKey || item.recoveryProgramKey)
-  return false
-}
-export function pickTrainerRewardItem(items, ranks, random = Math.random) {
+// Luck chooses the rarity before this draw; items within that rarity are equally likely.
+export function pickTrainerRewardItem(items, random = Math.random) {
   if (!items.length) return null
-  const weights = items.map(item => 1 + sum(ranks, 'item', null, effect => isItemGroup(item, effect.itemGroup)))
-  let roll = random() * weights.reduce((total, weight) => total + weight, 0)
-  for (let i = 0; i < items.length; i++) { roll -= weights[i]; if (roll < 0) return items[i] }
-  return items.at(-1)
+  return items[Math.min(items.length - 1, Math.max(0, Math.floor(random() * items.length)))]
 }
 
 export function loadTrainerProgress(storage) {

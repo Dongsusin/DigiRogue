@@ -4,7 +4,7 @@ import { TRAINER_SKILLS } from '../progression/trainerSkills.js'
 // for two label lines, a rank, and the tile's focus ring before placing a row.
 const groups = [
   ['budget', 4, 158], ['general', 4, 158], ['stage', 7, 84],
-  ['attribute', 6, 84], ['type', 6, 84], ['specialty', 3, 210],
+  ['attribute', 6, 84], ['type', 6, 84],
 ]
 const rowPitch = 120
 const sectionGap = 156
