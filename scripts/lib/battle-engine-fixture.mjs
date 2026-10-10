@@ -13,13 +13,13 @@ export async function loadBattleEngine({ difficultySource } = {}) {
     'buildStartingParty','buildEnemyParty','getEncounterGroupForStage','getMapEncounterGroups','getBossEncounterNamesForStage',
     'getEncounterCountForStage','getRandomConnectedMapName','getConnectedMapNames','getMapNameForStage','getLevelCapForStage','getEvolutionOptions','createEvolvedCombatant',
     'resolveBattleTurnActions','createBattleTurnAction','createEnemyBattleTurnActions','getBattleAllyLimit',
-    'getCommandSkillNames','scoreSkill','getMatchupResult','recoverAfterVictory','applyPartyExperienceGain',
+    'getCommandSkillNames','getCombatantEquippedItems','scoreSkill','getMatchupResult','recoverAfterVictory','applyPartyExperienceGain',
     'levelUpCombatant','parseSavedGameState','applySupportEffectToTarget','resolveTurnEndCombatantEffects',
     'evolveBossCombatant','createReturnedEvolutionCombatant','createJogressCombatant','resolveJogressEvolution','resolveManualEvolution','resolveJogressSkillChoice','getPendingJogressSkillEvents',
     'getNewSkillLearnNamesForLevel','getSkillLearnEventsForLevelRange','applyExperienceAmount',
     'createRewardSelection','applyInstantRewardEffect','applyPartyHealRewardEffect','applyDigicloneRewardEffect',
     'applyLevelUpRewardEffect','getEvolutionRoute','isBossStage','getStageClearGoldReward','isRewardItemUsableByCombatant',
-    'addRewardInventoryItem','applyMapEnvironment','prepareCombatantForStage','fixedRewardItems']
+    'addRewardInventoryItem','applyMapEnvironment','prepareCombatantForStage','fixedRewardItems','randomRewardItemPool']
   const entry = join(directory, 'entry.mjs')
   await writeFile(entry, 'export {' + names.join(',') + '} from ' + JSON.stringify(root + '/src/App.jsx'))
   await build({ configFile: false, root, publicDir: false, logLevel: 'silent',

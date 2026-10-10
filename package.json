@@ -32,7 +32,8 @@
     "test:hard": "node --test scripts/verify-hard-mode.mjs",
     "simulate:hard": "node scripts/simulate-adventure-balance.mjs --hard",
     "test:dex": "node --test scripts/verify-digimon-dex.mjs",
-    "test:effects": "node --test scripts/verify-canon-skill-effects.mjs scripts/verify-attack-attachment.mjs"
+    "test:effects": "node --test scripts/verify-canon-skill-effects.mjs scripts/verify-attack-attachment.mjs",
+    "test:evolution-inspection": "node --test scripts/verify-evolution-inspection.mjs"
   },
   "dependencies": {
     "firebase": "^13.0.0",

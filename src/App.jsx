@@ -58,6 +58,7 @@ import { isPlayableDigimon } from './data/speciesAvailability.js'
 import { getDigimonDisplayScale } from './data/digimonSizes.js'
 import BattleLog from './components/BattleLog.jsx'
 import BattlePopover from './components/BattlePopover.jsx'
+import EquipmentTooltip from './components/EquipmentTooltip.jsx'
 import StatusConditionBadge from './components/StatusConditionBadge.jsx'
 import { getStatusEffectDefinition, STATUS_EARLY_CURE_CHANCE, createStatusCue, statusTransitionCues } from './battle/statusConditions.js'
 import { BattleHistory, CombatantEffects, CombatantEffectsDialog } from './components/BattleInfo.jsx'
@@ -3154,6 +3155,31 @@ const getDigicloneMultiplier = (digiclones, statKey) => {
   return 1 + cloneCount * 0.06
 }
 
+const getCombatantEquippedItems = (combatant) => {
+  if (!combatant || combatant.isEgg) return []
+  const groups = [
+    { items: typeUpRewardItems, field: 'typePowerUps', key: 'typeUpKey', normalize: normalizeTypePowerUps, max: TYPE_POWER_UP_MAX, flag: 'isTypeUp' },
+    { items: attributeUpRewardItems, field: 'attributePowerUps', key: 'attributeUpKey', normalize: normalizeAttributePowerUps, max: ATTRIBUTE_POWER_UP_MAX, flag: 'isAttributeUp' },
+    { items: digicloneRewardItems, field: 'digiclones', key: 'digicloneKey', normalize: normalizeDigiclones, max: DIGICLONE_MAX, flag: 'isDigiclone' },
+    { items: recoveryProgramRewardItems, field: 'recoveryPrograms', key: 'recoveryProgramKey', normalize: normalizeRecoveryPrograms, max: RECOVERY_PROGRAM_MAX, flag: 'isRecoveryProgram' },
+    { items: battleItemRewardItems, field: 'battleItems', key: 'battleItemKey', normalize: normalizeBattleItems, max: 0, flag: 'isBattleItem' },
+  ]
+  return groups.flatMap(group => {
+    const counts = group.normalize(combatant[group.field])
+    return group.items.flatMap(item => {
+      const value = counts[item[group.key]] ?? 0
+      if (value <= 0) return []
+      const maxCount = item.maxOwnedPerCombatant ?? group.max
+      const effectDescription = group.flag === 'isDigiclone'
+        ? (STAT_LABEL_MAP[item.digicloneKey] ?? item.name) + ' ' + Math.round((getDigicloneMultiplier(combatant.digiclones, item.digicloneKey) - 1) * 100) + '% 증가'
+        : item.description
+      return [{ id: item.id, name: item.name, imageUrl: item.imageUrl, effectDescription, value, maxCount,
+        description: effectDescription + '\n적용 수량: ' + value + '/' + maxCount,
+        isMaxed: maxCount > 0 && value >= maxCount, [group.flag]: true }]
+    })
+  })
+}
+
 const getTypePowerMultiplier = (combatant) => {
   const combatantType = combatant?.type
 
@@ -5536,6 +5562,7 @@ function App() {
   const [previewedSkill, setPreviewedSkill] = useState(null)
   const [activeCombatantInfo, setActiveCombatantInfo] = useState(null)
   const [itemTooltip, setItemTooltip] = useState(null)
+  const [equipmentTooltip, setEquipmentTooltip] = useState(null)
   const [currentLogs, setCurrentLogs] = useState([])
   const [battleHistory, setBattleHistory] = useState([])
   const [isHistoryOpen, setIsHistoryOpen] = useState(false)
@@ -5553,6 +5580,7 @@ function App() {
   const evolutionCompletionRef = useRef(null)
   const [mapSelectionState, setMapSelectionState] = useState(null)
   const [skillReplaceState, setSkillReplaceState] = useState(null)
+  useEffect(() => { setEquipmentTooltip(null) }, [evolutionState?.mode, evolutionState?.selectedMemberId, evolutionState?.confirmTargetName])
   const battlePlaybackRef = useRef(null)
   const [hitEffects, setHitEffects] = useState([])
   const [attackMotions, setAttackMotions] = useState([])
@@ -8151,6 +8179,10 @@ function App() {
     )
   }
 
+  const showEvolutionEquipment = (event, member) => {
+    setEquipmentTooltip(getCombatantEquippedItems(member).length ? { anchor: event.currentTarget, memberId: member.id } : null)
+  }
+
   const handleOpenEvolutionParty = () => {
     if (!gameState || rewardState?.isResolving) {
       return
@@ -8501,111 +8533,11 @@ function App() {
       }
     })
     .filter(Boolean)
-  const activeTypeUpHudItems = typeUpRewardItems
-    .map((item) => {
-      const count = normalizeTypePowerUps(hudCombatant?.typePowerUps)[item.typeUpKey] ?? 0
-
-      if (count <= 0) {
-        return null
-      }
-
-      return {
-        id: item.id,
-        name: item.name,
-        description: `${item.description}\n적용 수량: ${count}/${TYPE_POWER_UP_MAX}`,
-        imageUrl: item.imageUrl,
-        value: count,
-        isMaxed: count >= TYPE_POWER_UP_MAX,
-        isTypeUp: true,
-      }
-    })
-    .filter(Boolean)
-  const activeAttributeUpHudItems = attributeUpRewardItems
-    .map((item) => {
-      const count = normalizeAttributePowerUps(hudCombatant?.attributePowerUps)[item.attributeUpKey] ?? 0
-
-      if (count <= 0) {
-        return null
-      }
-
-      return {
-        id: item.id,
-        name: item.name,
-        description: `${item.description}\n적용 수량: ${count}/${ATTRIBUTE_POWER_UP_MAX}`,
-        imageUrl: item.imageUrl,
-        value: count,
-        isMaxed: count >= ATTRIBUTE_POWER_UP_MAX,
-        isAttributeUp: true,
-      }
-    })
-    .filter(Boolean)
-  const activeDigicloneHudItems = digicloneRewardItems
-    .map((item) => {
-      const count = normalizeDigiclones(hudCombatant?.digiclones)[item.digicloneKey] ?? 0
-
-      if (count <= 0) {
-        return null
-      }
-
-      return {
-        id: item.id,
-        name: item.name,
-        description: `${STAT_LABEL_MAP[item.digicloneKey] ?? item.name} ${count * 10}% 증가\n적용 수량: ${count}/${DIGICLONE_MAX}`,
-        imageUrl: item.imageUrl,
-        value: count,
-        isMaxed: count >= DIGICLONE_MAX,
-        isDigiclone: true,
-      }
-    })
-    .filter(Boolean)
-  const activeRecoveryProgramHudItems = recoveryProgramRewardItems
-    .map((item) => {
-      const count = normalizeRecoveryPrograms(hudCombatant?.recoveryPrograms)[item.recoveryProgramKey] ?? 0
-
-      if (count <= 0) {
-        return null
-      }
-
-      return {
-        id: item.id,
-        name: item.name,
-        description: `${item.description}\n적용 수량: ${count}/${RECOVERY_PROGRAM_MAX}`,
-        imageUrl: item.imageUrl,
-        value: count,
-        isMaxed: count >= RECOVERY_PROGRAM_MAX,
-        isRecoveryProgram: true,
-      }
-    })
-    .filter(Boolean)
-  const activeBattleItemHudItems = battleItemRewardItems
-    .map((item) => {
-      const count = normalizeBattleItems(hudCombatant?.battleItems)[item.battleItemKey] ?? 0
-
-      if (count <= 0) {
-        return null
-      }
-
-      const maxCount = item.maxOwnedPerCombatant ?? 0
-
-      return {
-        id: item.id,
-        name: item.name,
-        description: `${item.description}\n적용 수량: ${count}/${maxCount}`,
-        imageUrl: item.imageUrl,
-        value: count,
-        isMaxed: maxCount > 0 && count >= maxCount,
-        isBattleItem: true,
-      }
-    })
-    .filter(Boolean)
+  const equippedHudItems = getCombatantEquippedItems(hudCombatant)
   const adventureHudItems = [
     ...inventoryHudItems,
     ...activeBuffHudItems,
-    ...activeTypeUpHudItems,
-    ...activeAttributeUpHudItems,
-    ...activeDigicloneHudItems,
-    ...activeRecoveryProgramHudItems,
-    ...activeBattleItemHudItems,
+    ...equippedHudItems,
   ]
   const mapSelectionOptions = mapSelectionState?.options?.length
     ? mapSelectionState.options
@@ -8658,6 +8590,7 @@ function App() {
     ? getJogressEvolutionMembers(selectedEvolutionMember, evolutionPartyMembers, pendingEvolutionOption.recipe, evolutionState.confirmPartnerIds)
     : []
   const visibleEnemies = gameState?.enemies?.filter((enemy) => isCombatantAbleToBattle(enemy)) ?? []
+  const equipmentTooltipMember = partyMembers.find(member => member.id === equipmentTooltip?.memberId)
   const effectDetailsCombatant = [...partyMembers, ...(gameState?.regionalSupport?.unit ? [gameState.regionalSupport.unit] : []), ...(gameState?.enemies ?? [])].find(member => member.id === effectDetailsId)
   const hasExplorationScene = Boolean(gameState?.explorationEvent && gameState.explorationEvent.phase !== 'battle')
   const showExplorationEvent = Boolean(hasExplorationScene && !activeSkillReplaceEvent && !evolutionScene)
@@ -9141,6 +9074,10 @@ function App() {
                     <p>{itemTooltip.item.description}</p>
                   </BattlePopover>
                 )}
+
+                {evolutionState && equipmentTooltip && equipmentTooltipMember && !evolutionScene && <EquipmentTooltip
+                  anchor={equipmentTooltip.anchor} combatant={equipmentTooltipMember}
+                  items={getCombatantEquippedItems(equipmentTooltipMember)} onClose={() => setEquipmentTooltip(null)} />}
 
                 <div className="adventure-field" data-ground-y={mapPresentation.groundY}>
                   <AdventureBattleBadge state={gameState} />
@@ -9718,6 +9655,8 @@ function App() {
                                     className={'party-member evolution-party-member' + (member.isEgg ? ' party-member--egg' : '') + (readyEvolutionMemberIds.has(member.id) ? ' evolution-party-member--ready' : '')}
                                     aria-label={readyEvolutionMemberIds.has(member.id) ? `${member.name} · 진화 가능` : undefined}
                                     disabled={Boolean(member.isEgg)}
+                                    onPointerEnter={event => showEvolutionEquipment(event, member)}
+                                    onFocus={event => showEvolutionEquipment(event, member)}
                                     onClick={() => handleSelectEvolutionMember(member.id)}
                                   >
                                     <img className="party-member__image" src={member.imageUrl} alt="" />
@@ -9736,7 +9675,10 @@ function App() {
                             </div>
                           ) : selectedEvolutionMember ? (
                             <div className="evolution-detail">
-                              <section className="evolution-detail__current">
+                              <section className="evolution-detail__current" tabIndex={0}
+                                aria-label={selectedEvolutionMember.name + ' 장착 아이템 보기'}
+                                onPointerEnter={event => showEvolutionEquipment(event, selectedEvolutionMember)}
+                                onFocus={event => showEvolutionEquipment(event, selectedEvolutionMember)}>
                                 <DigimonModelPreview
                                   className="evolution-detail__current-image"
                                   name={selectedEvolutionMember.imageName ?? selectedEvolutionMember.name}

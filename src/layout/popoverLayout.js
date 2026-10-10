@@ -20,9 +20,12 @@ export function placePopover(anchor, bounds, size, preferred = 'bottom', gap = 1
   let x
   let y
 
-  if (preferred === 'side' && Math.max(left, right) >= width) {
-    placement = right >= width ? 'right' : 'left'
-    x = placement === 'right' ? anchor.right + gap : anchor.left - gap - width
+  // Passive image grids can overlap their trigger when neither side fits.
+  // Keep the full canvas height so a wide trigger cannot clip equipped icons.
+  if (preferred === 'overlay' || (preferred === 'side' && Math.max(left, right) >= width)) {
+    placement = right >= width ? 'right' : left >= width ? 'left' : 'overlay'
+    x = placement === 'right' ? anchor.right + gap
+      : placement === 'left' ? anchor.left - gap - width : anchor.left + (anchor.width - width) / 2
     y = anchor.top + (anchor.height - Math.min(size.height, maxHeight)) / 2
   } else {
     const below = Math.max(0, bounds.bottom - Math.max(bounds.top, anchor.bottom + gap))

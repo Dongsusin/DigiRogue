@@ -4,7 +4,7 @@ import { placePopover, toLocalRect } from '../layout/popoverLayout.js'
 import './BattlePopover.css'
 
 // Portal into the unscrolled battle stage, keeping the same 16:9 scale.
-export default function BattlePopover({ anchor, onClose, children, header, label, interactive = false, placement = 'bottom', width = 320 }) {
+export default function BattlePopover({ anchor, onClose, children, header, label, interactive = false, placement = 'bottom', width = 320, anchorKeys = true, className = '' }) {
   const panelRef = useRef(null)
   const scrollRef = useRef(null)
   const contentRef = useRef(null)
@@ -75,7 +75,7 @@ export default function BattlePopover({ anchor, onClose, children, header, label
         event.preventDefault()
         anchor.focus({ preventScroll: true })
         onClose()
-      } else if (event.target === anchor && ['Enter', ' ', 'ArrowDown'].includes(event.key)) {
+      } else if (anchorKeys && event.target === anchor && ['Enter', ' ', 'ArrowDown'].includes(event.key)) {
         event.preventDefault()
         const firstControl = interactive ? panel.querySelector('[role="tab"]') ?? panel.querySelector('button') : panel
         firstControl?.focus()
@@ -97,13 +97,13 @@ export default function BattlePopover({ anchor, onClose, children, header, label
       document.removeEventListener('focusin', onFocus)
       document.removeEventListener('keydown', onKeyDown)
     }
-  }, [anchor, id, interactive, onClose])
+  }, [anchor, id, interactive, onClose, anchorKeys])
 
   if (!container) return null
   // Portals still bubble React events through the model's trigger. Keep
   // close/tab/scroll controls from reopening it or swallowing ArrowDown.
   return createPortal(
-    <div ref={panelRef} id={id} className={`game-popover ${interactive ? 'game-popover--interactive' : 'game-popover--item'}`}
+    <div ref={panelRef} id={id} className={`game-popover ${interactive ? 'game-popover--interactive' : 'game-popover--item'} ${className}`}
       role={interactive ? 'dialog' : 'tooltip'} aria-label={label} tabIndex={-1} style={{ visibility: 'hidden' }}
       onClick={event => event.stopPropagation()} onFocus={event => event.stopPropagation()}
       onKeyDown={event => { if (event.key !== 'Escape') event.stopPropagation() }}>

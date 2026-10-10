@@ -1,0 +1,5 @@
+.game-design .equipment-tooltip { padding: 10px; gap: 0; pointer-events: none; }
+.game-design .equipment-tooltip .game-popover__scroll { overflow: visible; padding: 0; scrollbar-gutter: auto; }
+.equipment-tooltip__list { display: grid; grid-template-columns: repeat(var(--equipment-columns), 40px); gap: 6px; margin: 0; padding: 0; list-style: none; }
+.equipment-tooltip__item { display: grid; place-items: center; width: 40px; height: 40px; box-sizing: border-box; padding: 3px; border: 1px solid #507891; border-radius: 5px; background: #173349; }
+.equipment-tooltip__item > img { display: block; width: 32px; height: 32px; object-fit: contain; }
