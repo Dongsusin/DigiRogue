@@ -1,12 +1,14 @@
 import * as THREE from 'three'
 import { clamp01 } from './battle3dMath.js'
-import { skillMesh, makeVortex, makeGlyph, makeEnergyObject, makeImpactMarks } from './skillEffectGeometry.js'
+import { skillMesh, makeVortex, makeGlyph, makeEnergyObject, makeImpactMarks, makeFlameObject, makeFlameBreath, makeSpiralFlame, animateSkillObject } from './skillEffectGeometry.js'
 
 const FORWARD = new THREE.Vector3(0, 0, 1)
 const UP = new THREE.Vector3(0, 1, 0)
 const VORTEX_AXIS = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1,0,0),Math.PI/2)
 const TAU = Math.PI * 2
 const point = value => typeof value === 'function' ? value() : value.clone()
+const strikePlan = (plan, index) => plan.shotColors?.length
+  ? { ...plan, palette: { ...plan.palette, color: plan.shotColors[index % plan.shotColors.length] } } : plan
 
 // Geometry follows the skill's object (arrow, missile, feather…), never its damage element.
 // Materials belong to an effect; geometries are pooled by BattleEffects and disposed with it.
@@ -30,11 +32,18 @@ export function makeSkillObject(fx, plan) {
     case 'bullet':
       mesh(g.rod, core, [.75, .75, 1.9]); glow(.5, 0xffd36e); break
     case 'missile':
+      if (plan.motif === 'harpoon') {
+        g.harpoon ??= new THREE.ConeGeometry(.26, 2.1, 12).rotateX(Math.PI / 2)
+        mesh(g.harpoon, 0xe8edf3, [1, 1, 1], [0, 0, .1], true)
+        for (let i = 0; i < 3; i++) mesh(g.torus, 0xabbfd1, [.23 - i * .035, .23 - i * .035, .3], [0, 0, -.65 + i * .23], true)
+        glow(.45, color).position.z = -.9
+        break
+      }
       mesh(g.rod, 0xcbd5df, [3, 3, 1.25], [0, 0, 0], true)
-      mesh(g.dart, 0xf55e48, [.75, .75, .75], [0, 0, .78], true)
+      mesh(g.dart, plan.motif === 'freezeMissile' ? color : 0xf55e48, [.75, .75, .75], [0, 0, .78], true)
       mesh(g.cube, 0x8f9daf, [.65, .06, .4], [0, 0, -.4], true)
       mesh(g.cube, 0x8f9daf, [.06, .65, .4], [0, 0, -.4], true)
-      glow(.65, 0xff9b38).position.z = -.75; break
+      glow(.65, plan.motif === 'freezeMissile' ? color : 0xff9b38).position.z = -.75; break
     case 'arrow':
     case 'needle':
       mesh(g.rod, core, [.4, .4, 2.5])
@@ -81,10 +90,15 @@ export function makeSkillObject(fx, plan) {
       for (let i = 0; i < 3; i++) mesh(g.torus, i === 1 ? core : color, [1 - i * .2, 1 - i * .2, 1], [0, 0, -i * .45])
       break
     case 'heart': mesh(g.heart, 0xff72b8, [1, 1, 1]); glow(1.5, 0xff69ab); break
-    case 'crystal': mesh(g.shard, core, [.4, .55, 1.2]); glow(1); break
+    case 'crystal':
+      if (plan.motif === 'diamondStorm') {
+        mesh(g.shard, core, [.24, .55, .07], [0, 0, 0], true)
+        mesh(g.shard, color, [.27, .58, .04]).material.opacity = .22
+      } else { mesh(g.shard, core, [.4, .55, 1.2]); glow(1) }
+      break
     case 'fish':
-      mesh(g.sphere, 0x9edfea, [.28, .45, .8], [0, 0, 0], true)
-      mesh(g.dart, 0x74badc, [1.4, .8, .8], [0, 0, -.85], true); break
+      mesh(g.sphere, plan.motif === 'marchingFishes' ? color : 0x9edfea, [.28, .45, .8], [0, 0, 0], true)
+      mesh(g.dart, plan.motif === 'marchingFishes' ? color : 0x74badc, [1.4, .8, .8], [0, 0, -.85], true); break
     case 'gear':
       mesh(g.torus, 0xb7c4d5, [.8, .8, .8], [0, 0, 0], true)
       for (let i = 0; i < 10; i++) { const a = i / 10 * TAU; mesh(g.cube, 0xb7c4d5, [.25, .28, .2], [Math.cos(a) * .85, Math.sin(a) * .85, 0], true).rotation.z = a }
@@ -98,6 +112,7 @@ export function makeSkillObject(fx, plan) {
       for (let i = 0; i < 8; i++) { const spoke = mesh(g.rod, core, [.3, .3, 2.4]); spoke.rotation.set(Math.PI / 2, 0, i * Math.PI / 4) }
       break
     case 'vortex': {
+      if (plan.motif === 'spiralFlame') { group.add(makeSpiralFlame(fx, plan.palette)); break }
       const cyclone = makeVortex(fx, plan.palette); cyclone.rotation.x = Math.PI / 2; group.add(cyclone); break
     }
     case 'wave':
@@ -116,18 +131,19 @@ export class SkillEffects {
   charge(emitter, plan, start, duration, scale) {
     if (['contact', 'native'].includes(plan.delivery) || ['bullet', 'missile', 'arrow', 'rock', 'seed', 'fish'].includes(plan.shape)) return
     const fx = this.fx, group = new THREE.Group()
+    group.name = 'skill-charge:' + (plan.motif || plan.shape)
     const glow = fx.sprite(fx.textures.glow, plan.palette.color, 1)
     group.add(glow)
     const ring = new THREE.Mesh(fx.geometries.torus, fx.additive(plan.palette.core, .55))
     group.add(ring)
-    const globe = ['giantOrb', 'hellfire'].includes(plan.styleId) ? makeSkillObject(fx, plan) : null
+    const globe = (['giantOrb', 'hellfire'].includes(plan.styleId) || plan.motif === 'flowerCannon') ? makeSkillObject(fx, plan) : null
     if (globe) group.add(globe)
     fx.add({ group, start, duration, update: p => {
       group.position.copy(point(emitter))
       const radius = scale * plan.size * (.08 + p * .22)
       glow.scale.setScalar(radius * 3); glow.material.opacity = p * .75
       ring.scale.setScalar(radius); ring.rotation.set(p * 3, p * 4, p * 5); ring.material.opacity = p * .6
-      if (globe) globe.scale.setScalar(scale * plan.size * .25 * p)
+      if (globe) { globe.scale.setScalar(scale * plan.size * .25 * p); animateSkillObject(globe, p) }
     } })
   }
 
@@ -183,23 +199,25 @@ export class SkillEffects {
   }
 
   launch(emitter, target, plan, start, duration, scale, index = 0) {
-    if (plan.shotColors) plan={...plan,palette:{...plan.palette,color:plan.shotColors[index%plan.shotColors.length]}}
+    if (plan.motif === 'marchingFishes') plan = { ...plan, palette: { ...plan.palette, color: [0xf27f65, 0x61caff, 0xffd56a, 0xa8eb93, 0xbc9bff][index % 5] } }
+    plan = strikePlan(plan, index)
     if (['contact', 'native'].includes(plan.delivery)) return
     if (['beam', 'tether'].includes(plan.delivery)) return this.beam(emitter, target, plan, start, duration, scale)
     if (plan.delivery === 'field') return this.field(target, plan, start, duration, scale)
     const fx = this.fx, group = new THREE.Group(), from = point(emitter), to = target.clone()
+    group.name = 'skill-projectile:' + (plan.motif || plan.shape)
     const head = makeSkillObject(fx, plan)
-    const size = scale * plan.size * .25
+    const size = scale * plan.size * (plan.shape === 'fireball' ? .33 : .25)
     head.scale.setScalar(size); group.add(head)
     if (['bullet', 'missile'].includes(plan.shape)) {
       const muzzle = new THREE.Group(); muzzle.position.copy(from)
-      const flash = fx.sprite(fx.textures.spark, 0xffdc8c, size * 3); muzzle.add(flash)
+      const flash = fx.sprite(fx.textures.spark, ['freezeMissile', 'harpoon'].includes(plan.motif) ? plan.palette.core : 0xffdc8c, size * 3); muzzle.add(flash)
       fx.add({ group: muzzle, start, duration: 90 * duration / plan.travelMs, update: p => { flash.scale.setScalar(size * (3 - p * 2)); flash.material.opacity = (1 - p) * .85 } })
     }
     const direction = to.clone().sub(from).normalize()
     const facing = new THREE.Quaternion().setFromUnitVectors(FORWARD, direction)
     const trail = Array.from({ length: ['bullet', 'arrow', 'needle'].includes(plan.shape) ? 3 : 7 }, (_, i) => {
-      const sprite = fx.sprite(['fireball','missile','meteor'].includes(plan.shape) ? fx.textures.smoke : ['leaf','seed','feather'].includes(plan.shape) ? fx.textures.leaf : fx.textures.glow, plan.shape === 'missile' ? 0xff9b38 : plan.palette.color, size * (1 - i / 9))
+      const sprite = fx.sprite(['fireball','missile','meteor'].includes(plan.shape) ? fx.textures.smoke : ['leaf','seed','feather'].includes(plan.shape) ? fx.textures.leaf : fx.textures.glow, plan.shape === 'missile' && !['freezeMissile', 'harpoon'].includes(plan.motif) ? 0xff9b38 : plan.palette.color, size * (1 - i / 9))
       group.add(sprite); return sprite
     })
     const arc = plan.trajectory === 'lob' ? scale * (.3 + index * .06) : plan.formation === 'rain' ? scale * 1.2 : 0
@@ -207,8 +225,8 @@ export class SkillEffects {
     const positionAt = p => from.clone().lerp(to, p).add(new THREE.Vector3(0, Math.sin(p * Math.PI) * (arc + Math.abs(fan) * scale * .35), Math.sin(p * Math.PI) * fan * scale))
     fx.add({ group, start, duration, update: p => {
       head.position.copy(positionAt(p)); head.quaternion.copy(facing)
-      if (['blade', 'gear', 'leaf', 'feather', 'web', 'vortex'].includes(plan.shape)) head.rotateZ(p * 7)
-      head.traverse(child=>{ if(child.userData.flame!=null)child.scale.z=.6+Math.sin(p*18+child.userData.flame)*.22; if(child.userData.orbit!=null)child.rotation.z=p*7+child.userData.orbit })
+      if ((['blade', 'gear', 'leaf', 'feather', 'web', 'vortex'].includes(plan.shape) || plan.motif === 'diamondStorm')) head.rotateZ(p * 7)
+      animateSkillObject(head, p)
       for (const child of head.children) if (child.userData.wing) child.rotation.z = Math.sin(p * 25) * .5 * child.userData.wing
       trail.forEach((sprite, i) => {
         const t = Math.max(0, p - (i + 1) * .035)
@@ -220,20 +238,24 @@ export class SkillEffects {
   beam(emitter, to, plan, start, duration, scale) {
     const fx=this.fx,group=new THREE.Group(),g=fx.geometries,size=scale*plan.size*.09
     const flame=plan.shape==='flame',frost=plan.shape==='frost',vine=plan.shape==='vine',electric=plan.shape==='lightning'
-    const petals=plan.motif==='petals',data=plan.motif==='data',color=vine?0x64ba64:plan.palette.color
+    const petals=plan.motif==='petals',data=plan.motif==='data',color=plan.palette.color
     group.name='skill-beam:'+ (plan.motif||plan.shape)
     g.breathCone??=new THREE.CylinderGeometry(1,.1,1,20,1,true).translate(0,.5,0)
-    const outer=skillMesh(fx,group,flame||frost?g.breathCone:g.cylinder,color,[1,1,1],[0,0,0],flame?.12:.25)
+    const outer=flame ? makeFlameBreath(fx,plan.palette) : skillMesh(fx,group,frost?g.breathCone:g.cylinder,color,[1,1,1],[0,0,0],.25)
+    if(flame)group.add(outer)
     const inner=skillMesh(fx,group,g.cylinder,plan.palette.core,[1,1,1],[0,0,0],electric?.18:.5)
     let bolts=[]
     if(electric||vine) {
       bolts=Array.from({length:electric?3:1},()=>{const b=fx.ribbon(Array.from({length:13},()=>new THREE.Vector3()),size*(electric?.35:.5),fx.additive(color,.8));group.add(b);return b})
       outer.visible=inner.visible=false
     }
-    const motes=Array.from({length:flame||frost||petals?10:6},(_,i)=>{
-      const geometry=frost?g.shard:petals?g.shard:data?g.cube:flame?g.shard:g.torus
+    const motes=Array.from({length:flame?0:frost||petals?10:6},(_,i)=>{
+      const geometry=frost?g.shard:petals?g.shard:data?g.cube:vine?g.spike:flame?g.shard:g.torus
       return skillMesh(fx,group,geometry,i%3?color:plan.palette.core,[1,1,1],[0,0,0],.6)
     })
+    // Tongues advect down a widening breath instead of a rigid glowing cylinder.
+    const flames = flame ? Array.from({length:5},()=> { const f=makeFlameObject(fx,plan.palette,2); group.add(f); return f }) : []
+    if(flame) inner.visible = false
     const hand=plan.motif==='spectralHand'?makeSkillObject(fx,{...plan,shape:'fist'}):null
     if(hand)group.add(hand)
     fx.add({group,start,duration:duration+120,update:(p,dt,now)=>{
@@ -244,8 +266,18 @@ export class SkillEffects {
       const fade=1-clamp01((now-start-duration)/120),q=new THREE.Quaternion().setFromUnitVectors(UP,axis)
       for(const [i,m]of [outer,inner].entries()) {
         m.quaternion.copy(q);const radius=size*(i?.28:flame||frost?3.2:1)
-        m.scale.set(radius,length,radius);m.material.opacity=(i?.55:flame?.16:.25)*fade
+        m.scale.set(radius,length,radius);m.material.opacity=(i?.55:flame?.62:.25)*fade
       }
+      animateSkillObject(outer,(now-start)/500)
+      flames.forEach((f,i)=>{
+        const progress=((now-start)/550+i/flames.length)%1, along=progress*t
+        f.position.copy(to).sub(from).multiplyScalar(along)
+        f.quaternion.setFromUnitVectors(FORWARD,axis)
+        const spread=size*(.9+along*2.2),gate=Math.sin(progress*Math.PI)*fade
+        f.scale.set(spread,spread,size*(4+along*3))
+        animateSkillObject(f,(now-start)/500+i)
+        f.traverse(n=>{if(n.material)n.material.opacity=(n.userData.baseOpacity??.6)*gate})
+      })
       bolts.forEach((b,j)=>{
         const pts=Array.from({length:13},(_,i)=>{
           const f=i/12,v=direction.clone().multiplyScalar(f),edge=Math.sin(f*Math.PI)
@@ -259,12 +291,13 @@ export class SkillEffects {
         const f=((i/motes.length+(now-start)/380)%1)*t
         m.position.copy(to).sub(from).multiplyScalar(f)
         m.quaternion.setFromUnitVectors(FORWARD,axis)
-        if(flame||frost||petals) {
+        if (vine) { m.scale.set(size*.7,size*2,size*.7);m.rotation.z=i*.8 }
+        else if(flame||frost||petals) {
           m.position.y+=Math.sin(i*2+now*.01)*size*f*2
           m.position.z+=Math.cos(i*3+now*.012)*size*f*2
           m.scale.set(size*(.7+f*2),size*(flame?1+f*2.5:2),size*(flame?3: .5))
         } else m.scale.setScalar(size*(data?.7:1.4))
-        m.rotation.z+=i*.9;m.material.opacity=(flame?.48:.65)*fade
+        m.rotation.z+=i*.9;m.material.opacity=(flame?.18:.65)*fade
       })
       if(hand){hand.position.copy(direction);hand.quaternion.setFromUnitVectors(FORWARD,axis);hand.scale.setScalar(size*3)}
     }})
@@ -303,7 +336,8 @@ export class SkillEffects {
     }})
   }
 
-  impact(to, plan, start, duration, height, critical = false) {
+  impact(to, plan, start, duration, height, critical = false, index = plan.shots - 1) {
+    plan = strikePlan(plan, index)
     const fx=this.fx,group=new THREE.Group(),scale=Math.min(2.4,Math.max(.7,height))*(critical?1.2:1)
     group.name='skill-impact:'+plan.impactKind;group.position.copy(to)
     const flash=fx.sprite(fx.textures.glow,plan.palette.core,scale*.75);group.add(flash)
@@ -317,6 +351,7 @@ export class SkillEffects {
       if(!started){fx.shake=Math.max(fx.shake,critical?.12:plan.shape==='bullet'?.025:.055);started=true}
       flash.material.opacity=(1-clamp01(p*4))*.8
       marks.scale.setScalar(scale*(.22+p*.7))
+      animateSkillObject(marks,p)
       if(plan.impactKind==='tornado')marks.rotation.y=p*TAU*2
       marks.traverse(n=>{if(n.material)n.material.opacity=(n.userData.baseOpacity??.65)*(1-p)**1.5})
       sparks.forEach(s=>{s.sprite.position.copy(s.velocity).multiplyScalar(p*.65);s.sprite.material.opacity=(1-p)**2})

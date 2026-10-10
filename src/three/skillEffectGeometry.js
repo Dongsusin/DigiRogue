@@ -10,6 +10,80 @@ export function skillMesh(fx, group, geometry, color, scale = [1,1,1], position 
   return mesh
 }
 
+// Palette-driven flames keep the same outer/core colors at every stage of a move.
+// A pooled envelope plus moving tongues replaces the rigid octahedral fire ball.
+export function makeFlameObject(fx, palette, tongues = 4) {
+  const group = new THREE.Group(), g = fx.geometries
+  g.flameEnvelope ??= new THREE.SphereGeometry(1, 20, 12)
+  const shell = skillMesh(fx, group, g.flameEnvelope, palette.color, [.52, .52, .68], [0, 0, -.12], .78)
+  shell.material.blending = THREE.NormalBlending
+  shell.material.side = THREE.FrontSide; shell.material.toneMapped = false
+  const phase = { value: 0 }, outer = { value: new THREE.Color(palette.color) }, core = { value: new THREE.Color(palette.core) }
+  shell.material.userData.flamePhase = phase
+  shell.material.customProgramCacheKey = () => 'digirouge-flame-v1'
+  shell.material.onBeforeCompile = shader => {
+    Object.assign(shader.uniforms, { uFlamePhase: phase, uFlameOuter: outer, uFlameCore: core })
+    shader.vertexShader = 'uniform float uFlamePhase; varying vec3 vFlamePosition;\n' + shader.vertexShader
+    shader.vertexShader = shader.vertexShader.replace('#include <begin_vertex>',
+      '#include <begin_vertex>\nvFlamePosition = position;\nfloat tail = 1.0 - smoothstep(-1.0, 0.8, position.z);\nfloat swirl = atan(position.y, position.x) * 3.0 + position.z * 9.0 + uFlamePhase * 12.0;\ntransformed.xy *= (0.58 + 0.42 * (1.0 - tail)) * (1.0 + tail * 0.18 * sin(swirl));\ntransformed.xy += tail * vec2(sin(position.z * 5.0 + uFlamePhase * 9.0), cos(position.z * 6.0 + uFlamePhase * 11.0)) * 0.09;\ntransformed.z = position.z * (1.0 + tail * 0.65);')
+    shader.fragmentShader = 'uniform float uFlamePhase; uniform vec3 uFlameOuter; uniform vec3 uFlameCore; varying vec3 vFlamePosition;\n' + shader.fragmentShader
+    shader.fragmentShader = shader.fragmentShader.replace('#include <opaque_fragment>',
+      'float flameAngle = atan(vFlamePosition.y, vFlamePosition.x);\nfloat flameNoise = sin(flameAngle * 5.0 + vFlamePosition.z * 13.0 + uFlamePhase * 17.0) * sin(flameAngle * 3.0 - vFlamePosition.z * 9.0 + uFlamePhase * 11.0);\nfloat flameHeat = clamp((1.0 - length(vFlamePosition.xy)) * 0.75 + flameNoise * 0.18, 0.0, 1.0);\noutgoingLight = mix(uFlameOuter, uFlameCore, flameHeat * 0.65);\ndiffuseColor.a *= smoothstep(-1.0, -0.65, vFlamePosition.z) * (0.55 + 0.45 * flameHeat);\n#include <opaque_fragment>')
+  }
+  skillMesh(fx, group, g.sphere, palette.core, [.16, .16, .28], [0, 0, .12], .6)
+  for (let i = 0; i < tongues; i++) {
+    const a = i / tongues * TAU
+    const tongue = skillMesh(fx, group, g.flameEnvelope, i % 2 ? palette.color : palette.core,
+      [.12, .12, .52], [Math.cos(a) * .23, Math.sin(a) * .23, -.48], .38)
+    tongue.rotation.set(Math.sin(a) * .18, Math.cos(a) * .18, 0)
+    tongue.userData.flame = i; tongue.userData.flameLength = .52
+  }
+  group.userData.kind = 'flame'; return group
+}
+
+export function makeFlameBreath(fx, palette) {
+  const g = fx.geometries
+  g.flameBreath ??= new THREE.CylinderGeometry(1, .08, 1, 24, 12, true).translate(0, .5, 0)
+  const mesh = new THREE.Mesh(g.flameBreath, fx.additive(palette.color, .62))
+  mesh.material.blending = THREE.NormalBlending; mesh.material.side = THREE.FrontSide; mesh.material.toneMapped = false
+  const phase = { value: 0 }, outer = { value: new THREE.Color(palette.color) }, core = { value: new THREE.Color(palette.core) }
+  mesh.material.userData.flamePhase = phase
+  mesh.material.customProgramCacheKey = () => 'digirouge-flame-breath-v1'
+  mesh.material.onBeforeCompile = shader => {
+    Object.assign(shader.uniforms, { uFlamePhase: phase, uFlameOuter: outer, uFlameCore: core })
+    shader.vertexShader = 'uniform float uFlamePhase; varying vec3 vBreathPosition;\n' + shader.vertexShader
+    shader.vertexShader = shader.vertexShader.replace('#include <begin_vertex>',
+      '#include <begin_vertex>\nvBreathPosition = position;\nfloat breathA = atan(position.z, position.x);\nfloat breathFlow = sin(position.y * 22.0 - uFlamePhase * 15.0 + breathA * 3.0);\ntransformed.xz *= 0.88 + breathFlow * 0.12;\ntransformed.x += position.y * position.y * sin(position.y * 11.0 - uFlamePhase * 8.0) * 0.12;\ntransformed.z += position.y * position.y * cos(position.y * 14.0 - uFlamePhase * 9.0) * 0.12;')
+    shader.fragmentShader = 'uniform float uFlamePhase; uniform vec3 uFlameOuter; uniform vec3 uFlameCore; varying vec3 vBreathPosition;\n' + shader.fragmentShader
+    shader.fragmentShader = shader.fragmentShader.replace('#include <opaque_fragment>',
+      'float breathA = atan(vBreathPosition.z, vBreathPosition.x);\nfloat breathFlow = sin(vBreathPosition.y * 26.0 - uFlamePhase * 19.0 + breathA * 5.0);\nfloat breathHeat = breathFlow * 0.5 + 0.5;\noutgoingLight = mix(uFlameOuter, uFlameCore, breathHeat * 0.4);\ndiffuseColor.a *= (0.4 + breathHeat * 0.6) * (1.0 - smoothstep(0.78, 1.0, vBreathPosition.y));\n#include <opaque_fragment>')
+  }
+  mesh.userData.baseOpacity = .62
+  return mesh
+}
+
+export function animateSkillObject(object, time) {
+  object.traverse(child => {
+    if (child.material?.userData.flamePhase) child.material.userData.flamePhase.value = time
+    if (child.userData.flame != null) child.scale.z = (child.userData.flameLength ?? .7) * (1 + Math.sin(time * 18 + child.userData.flame) * .25)
+    if (child.userData.orbit != null) child.rotation.z = time * 7 + child.userData.orbit
+  })
+}
+
+export function makeSpiralFlame(fx, palette) {
+  const group = new THREE.Group(), g = fx.geometries
+  g.spectralSpiral ??= new THREE.TubeGeometry(new THREE.CatmullRomCurve3(Array.from({ length: 65 }, (_, i) => {
+    const t = i / 64, a = t * TAU * 2.4, r = .12 + Math.sin(t * Math.PI) * .32
+    return new THREE.Vector3(Math.cos(a) * r, Math.sin(a) * r, .8 - t * 1.8)
+  })), 64, .065, 6, false)
+  for (let i = 0; i < 3; i++) {
+    const helix = skillMesh(fx, group, g.spectralSpiral, i === 1 ? palette.core : palette.color, [1, 1, 1], [0, 0, 0], .72)
+    helix.rotation.z = i * TAU / 3
+  }
+  const flame = makeFlameObject(fx, palette, 2); flame.scale.setScalar(.6); group.add(flame)
+  group.userData.kind = 'spiralFlame'; return group
+}
+
 export function makeVortex(fx, palette, { golden = false } = {}) {
   if (golden) return makeGoldenVortex(fx,palette)
   const group = new THREE.Group(), g = fx.geometries
@@ -93,16 +167,21 @@ export function makeEnergyObject(fx,plan) {
   const group=new THREE.Group(),g=fx.geometries,{color,core}=plan.palette,motif=plan.motif||'energy'
   const ball=(r,tone,opacity=.7)=>skillMesh(fx,group,g.sphere,tone,[r,r,r],[0,0,0],opacity)
   const glow=fx.sprite(fx.textures.glow,color,1.7);group.add(glow)
-  if(['solar','fireball','hellfire','inferno'].includes(motif)||plan.shape==='fireball') {
-    ball(.52,color,.45);ball(.29,core,.85)
-    for(let i=0;i<7;i++) {
-      const a=i/7*TAU, flame=skillMesh(fx,group,g.shard,i%2?color:core,[.14,.14,.7],[Math.cos(a)*.34,Math.sin(a)*.34,-.34],.5)
-      flame.rotation.y=Math.sin(a)*.3;flame.userData.flame=i
-    }
+  if(['solar','blueFlame','fireball','hellfire','inferno','meteorWing'].includes(motif)||plan.shape==='fireball') {
+    const flame=makeFlameObject(fx,plan.palette)
+    // Gaia Force and other solar orbs retain a round body; launched fire has a trailing tip.
+    if(plan.shape==='orb'){flame.scale.z=.6;ball(.45,color,.3)}
+    group.add(flame)
     if(motif==='hellfire') {
       const halo=skillMesh(fx,group,g.torus,0xd51d84,[.66,.66,.7]);halo.rotation.y=.5
       for(let i=0;i<3;i++)skillMesh(fx,group,g.arc,color,[.7,.7,.7]).rotation.set(i,0,i*2)
     }
+  } else if(motif==='electroOrb') {
+    ball(.38,color,.5);ball(.22,core,.8)
+    g.electricArc ??= new THREE.TubeGeometry(new THREE.CatmullRomCurve3(Array.from({length:17},(_,i)=>{
+      const a=i/16*TAU,r=i%2?.52:.68;return new THREE.Vector3(Math.cos(a)*r,Math.sin(a)*r,0)
+    })),32,.025,4,false)
+    for(let i=0;i<3;i++){const arc=skillMesh(fx,group,g.electricArc,i?color:core,[1,1,1]);arc.rotation.set(i*.9,i*.7,0);arc.userData.orbit=i}
   } else if(motif==='holy'||motif==='cross') {
     ball(.35,core,.7)
     group.add(makeGlyph(fx,plan.palette,'cross'));group.children.at(-1).scale.setScalar(.7)
@@ -118,7 +197,7 @@ export function makeEnergyObject(fx,plan) {
     const disk=skillMesh(fx,group,g.sphere,0x170d29,[.55,.55,.18],[0,0,0],.85)
     disk.material.blending=THREE.NormalBlending
     group.add(makeGlyph(fx,plan.palette,motif));group.children.at(-1).scale.setScalar(.65)
-  } else if(['petals','fruit','nature'].includes(motif)) {
+  } else if(['petals','flowerCannon','fruit','nature'].includes(motif)) {
     ball(.23,core,.6)
     for(let i=0;i<7;i++) {
       const a=i/7*TAU,leaf=skillMesh(fx,group,g.shard,color,[.16,.30,.045],[Math.cos(a)*.45,Math.sin(a)*.45,0],.75)
@@ -163,7 +242,7 @@ export function makeImpactMarks(fx,plan) {
   } else if(k==='lightning') {
     for(let i=0;i<6;i++){const m=skillMesh(fx,group,g.shard,core,[.045,.55,.045],[(i-2.5)*.12,0,0],.9);m.rotation.z=(i%2?1:-1)*.6}
   } else if(k==='flame'||k==='darkBurst'||k==='explosion') {
-    group.add(makeEnergyObject(fx,{...plan,shape:'fireball',motif:k==='darkBurst'?'hellfire':'solar'}))
+    group.add(k==='darkBurst' ? makeEnergyObject(fx,{...plan,shape:'orb',motif:'shadow'}) : makeFlameObject(fx,plan.palette))
     if(k==='explosion')ring(.55,Math.PI/2)
   } else if(k==='beam') {ring(.65);for(let i=0;i<5;i++)skillMesh(fx,group,g.shard,core,[.03,.45,.03]).rotation.z=i*TAU/5}
   else if(k==='shot') {for(let i=0;i<4;i++)skillMesh(fx,group,g.shard,core,[.025,.35,.025]).rotation.z=i*Math.PI/4}

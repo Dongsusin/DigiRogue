@@ -17,7 +17,7 @@ import { SWITCH_OUT_MS, SWITCH_IN_DELAY_MS, SWITCH_IN_MS, switchOpacity } from '
 import { getVisibleModelBounds } from './modelParts.js'
 import { getModelGroundBounds, createGroundOcclusion } from './modelGrounding.js'
 import { defeatPresentation, defeatPose } from './defeatPresentation.js'
-import { clamp01, clipPlaybackRate, CLIP_ROLES, effectStyle, EventLedger, HIT_MS, pickClip } from './battle3dMath.js'
+import { clamp01, clipPlaybackRate, CLIP_ROLES, EventLedger, HIT_MS, pickClip } from './battle3dMath.js'
 import { DAMAGE_TEXT_MS, getDamageFeedback } from '../battle/damageFeedback.js'
 import { ModelAssetCache } from './ModelAssetCache.js'
 import { getRenderPixelRatio } from './renderResolution.js'
@@ -853,7 +853,7 @@ export class BattleRenderer {
           (strike.impactMs - strike.releaseMs) / speed, actor.height * (actor.modelHeight ?? 1), index)
         // Earlier pellets have cosmetic impacts. Only the final hit updates HP and hit reaction.
         if (index < plan.strikes.length - 1 && !targetEvent.isMiss) this.skillFx.impact(target, plan,
-          start + strike.impactMs / speed, 280 / speed, actor.height * .45)
+          start + strike.impactMs / speed, 280 / speed, actor.height * .45, false, index)
       }
     }
   }
@@ -888,7 +888,7 @@ export class BattleRenderer {
     if (!point) return
     const height = target ? target.height * (target.modelHeight ?? 1) : 1
     point.y += height * 0.5 + 0.2
-    const feedback = getDamageFeedback(event, effectStyle(event.attribute, event.skillName).color)
+    const feedback = getDamageFeedback(event, (event.presentation || resolveAttackPresentation(event)).palette.color)
     this.fx.damageNumber(point, feedback, start, DAMAGE_TEXT_MS / (event.speed || this.speed))
   }
 
