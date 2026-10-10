@@ -27,6 +27,7 @@
     "test:bosses": "node --test scripts/verify-boss-variety.mjs",
     "test:party": "node --test scripts/verify-party-admission.mjs",
     "test:trainer-skills": "node --test scripts/verify-trainer-item-skills.mjs scripts/verify-trainer-skill-layout.mjs",
+    "test:jogress": "node --test scripts/verify-jogress-inheritance.mjs",
     "test:skills": "node --test scripts/verify-skill-learning.mjs",
     "test:hard": "node --test scripts/verify-hard-mode.mjs",
     "simulate:hard": "node scripts/simulate-adventure-balance.mjs --hard",

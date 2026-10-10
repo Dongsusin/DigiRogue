@@ -939,13 +939,34 @@ const getNewDigimonSkillNamesForLevelRange = (data, fromLevel, toLevel) => {
   return getAllDigimonSkillNamesForLevel(data, toLevel).filter(skillName => !previouslyAvailable.has(skillName))
 }
 
+const normalizeInheritedSkills = (names) => [...new Set(Array.isArray(names) ? names : [])]
+  .filter(name => allSkillLookup.has(name))
+
+const getPendingJogressSkillEvents = (party = []) => party.flatMap(member =>
+  normalizeInheritedSkills(member?.pendingJogressSkills).filter(name => !member.skills?.includes(name))
+    .map(name => ({ ...createSkillLearnEvent(member, name, member.level),
+      id: `jogress-${member.id}-${name}`, source: 'jogress' })))
+
+const resolveJogressSkillChoice = (combatant, newSkillName, oldSkillName = null) => {
+  if (!combatant?.pendingJogressSkills?.includes(newSkillName) || !allSkillLookup.has(newSkillName) ||
+    (oldSkillName && !combatant.skills?.includes(oldSkillName))) return null
+  const skills = oldSkillName
+    ? [...new Set(combatant.skills.map(name => name === oldSkillName ? newSkillName : name))].slice(0, MAX_COMBATANT_SKILL_COUNT)
+    : [...combatant.skills]
+  const pendingJogressSkills = normalizeInheritedSkills(combatant.pendingJogressSkills)
+    .filter(name => name !== newSkillName && !skills.includes(name))
+  return { ...combatant, skills, pendingJogressSkills,
+    inheritedSkills: normalizeInheritedSkills(combatant.inheritedSkills)
+      .filter(name => skills.includes(name) || pendingJogressSkills.includes(name)) }
+}
+
 const mergeCombatantSkillNamesForLevel = (combatant, level) => {
   if (!combatant?.speciesData) {
     return combatant?.skills ?? []
   }
 
   const learnableSkills = getAllDigimonSkillNamesForLevel(combatant.speciesData, level)
-  const learnableSkillSet = new Set(learnableSkills)
+  const learnableSkillSet = new Set([...learnableSkills, ...normalizeInheritedSkills(combatant.inheritedSkills)])
   const currentSkills = (combatant.skills?.length
     ? combatant.skills
     : getDigimonSkillNamesForLevel(combatant.speciesData, level)
@@ -3326,6 +3347,18 @@ const getReadyEvolutionPreviewTargets = (combatant, inventory = {}, party = [], 
       imageUrl: option.targetData.imageUrl,
     }))
 
+// Keep the player's selected inheritance when a later form adds its own moves.
+const carryEvolutionInheritance = (previous, next) => {
+  if (!previous.inheritedSkills?.length && !previous.pendingJogressSkills?.length) return {}
+  const inheritedSkills = normalizeInheritedSkills([...(previous.inheritedSkills ?? []), ...(previous.pendingJogressSkills ?? [])])
+  const selected = (previous.skills ?? []).filter(name => inheritedSkills.includes(name))
+  const candidates = [...new Set([...selected, ...next.skills])]
+  const skills = candidates.slice(0, MAX_COMBATANT_SKILL_COUNT)
+  const pendingJogressSkills = normalizeInheritedSkills([...(previous.pendingJogressSkills ?? []), ...candidates.slice(MAX_COMBATANT_SKILL_COUNT)])
+    .filter(name => !skills.includes(name))
+  return { skills, pendingJogressSkills, inheritedSkills: inheritedSkills.filter(name => skills.includes(name) || pendingJogressSkills.includes(name)) }
+}
+
 const createEvolvedCombatant = (combatant, targetData) => {
   if (!combatant || !targetData || (!combatant.isBoss && !isPlayableDigimon(targetData))) {
     return combatant
@@ -3346,6 +3379,7 @@ const createEvolvedCombatant = (combatant, targetData) => {
     digiclones: combatant.digiclones,
     recoveryPrograms: combatant.recoveryPrograms,
     battleItems: combatant.battleItems,
+    inheritedSkills: normalizeInheritedSkills(combatant.inheritedSkills).filter(name => combatant.skills?.includes(name)),
     trainerSkills: combatant.trainerSkills,
     passiveState: combatant.passiveState,
     statusEffect: combatant.statusEffect,
@@ -3354,6 +3388,7 @@ const createEvolvedCombatant = (combatant, targetData) => {
 
   return {
     ...evolvedCombatant,
+    ...carryEvolutionInheritance(combatant, evolvedCombatant),
     battleMap: combatant.battleMap,
     battleAnomaly: combatant.battleAnomaly,
     currentHp:
@@ -3440,20 +3475,34 @@ const createJogressCombatant = (primaryCombatant, partnerCombatants, targetData)
       ) / materialCombatants.length
     )
   )
+  const level = Math.max(1, Math.floor(materialCombatants.reduce((total, member) => total + (member.level ?? 1), 0) / materialCombatants.length))
+  // Reuse each existing normalizer for both valid keys and the per-item stack limit.
+  const mergeEquipment = (field, normalize) => normalize(materialCombatants.reduce((counts, member) => {
+    for (const [key, value] of Object.entries(normalize(member[field]))) {
+      counts[key] = (counts[key] ?? 0) + (Number.isFinite(value) ? value : 0)
+    }
+    return counts
+  }, {}))
+  const inheritedSkills = normalizeInheritedSkills(materialCombatants.flatMap(member =>
+    (member.skills ?? []).filter(name => !member.speciesData?.기술?.includes(name))))
+  const allSkills = [...new Set([...(targetData.기술 ?? []), ...inheritedSkills, ...getDigimonSkillNamesForLevel(targetData, level)])]
+  const experienceRatio = materialCombatants.reduce((total, member) => total +
+    Math.max(0, Math.min(1, (member.experience ?? 0) / Math.max(1, member.experienceToNext ?? 1))), 0) / materialCombatants.length
   const jogressCombatant = createCombatant({
     id: primaryCombatant.id,
     name: targetData.이름,
     imageUrl: targetData.imageUrl ?? '',
     data: targetData,
-    level: Math.max(...materialCombatants.map((combatant) => combatant.level ?? 1)),
-    experience: Math.max(...materialCombatants.map((combatant) => combatant.experience ?? 0)),
+    level,
+    experience: 0,
+    inheritedSkills,
     activeBuffs: primaryCombatant.activeBuffs,
     statModifiers: primaryCombatant.statModifiers,
-    typePowerUps: primaryCombatant.typePowerUps,
-    attributePowerUps: primaryCombatant.attributePowerUps,
-    digiclones: primaryCombatant.digiclones,
-    recoveryPrograms: primaryCombatant.recoveryPrograms,
-    battleItems: primaryCombatant.battleItems,
+    typePowerUps: mergeEquipment('typePowerUps', normalizeTypePowerUps),
+    attributePowerUps: mergeEquipment('attributePowerUps', normalizeAttributePowerUps),
+    digiclones: mergeEquipment('digiclones', normalizeDigiclones),
+    recoveryPrograms: mergeEquipment('recoveryPrograms', normalizeRecoveryPrograms),
+    battleItems: mergeEquipment('battleItems', normalizeBattleItems),
     trainerSkills: primaryCombatant.trainerSkills,
     passiveState: mergePassiveStates(materialCombatants),
     statusEffect: null,
@@ -3462,6 +3511,10 @@ const createJogressCombatant = (primaryCombatant, partnerCombatants, targetData)
 
   return {
     ...jogressCombatant,
+    battleMap: primaryCombatant.battleMap,
+    battleAnomaly: primaryCombatant.battleAnomaly,
+    experience: Math.min(jogressCombatant.experienceToNext - 1, Math.floor(jogressCombatant.experienceToNext * experienceRatio)),
+    pendingJogressSkills: allSkills.filter(name => !jogressCombatant.skills.includes(name)),
     currentHp: Math.max(1, Math.min(jogressCombatant.maxHp, Math.floor(jogressCombatant.maxHp * hpRatio))),
     evolutionHistory: [...(primaryCombatant.evolutionHistory ?? []), primaryCombatant.name],
   }
@@ -3503,6 +3556,7 @@ const createReturnedEvolutionCombatant = (combatant) => {
     digiclones: combatant.digiclones,
     recoveryPrograms: combatant.recoveryPrograms,
     battleItems: combatant.battleItems,
+    inheritedSkills: normalizeInheritedSkills(combatant.inheritedSkills).filter(name => combatant.skills?.includes(name)),
     trainerSkills: combatant.trainerSkills,
     passiveState: combatant.passiveState,
     statusEffect: combatant.statusEffect,
@@ -3511,6 +3565,7 @@ const createReturnedEvolutionCombatant = (combatant) => {
 
   return {
     ...returnedCombatant,
+    ...carryEvolutionInheritance(combatant, returnedCombatant),
     currentHp:
       combatant.currentHp <= 0
         ? 0
@@ -3534,6 +3589,7 @@ const createCombatant = ({
   digiclones,
   recoveryPrograms,
   battleItems,
+  inheritedSkills,
   trainerSkills,
   passiveState,
   statusEffect,
@@ -3547,6 +3603,7 @@ const createCombatant = ({
   const resolvedDigiclones = normalizeDigiclones(digiclones)
   const resolvedRecoveryPrograms = normalizeRecoveryPrograms(recoveryPrograms)
   const resolvedBattleItems = normalizeBattleItems(battleItems)
+  const resolvedInheritedSkills = normalizeInheritedSkills(inheritedSkills)
   const speciesPassive = getDigimonPassive(name)
   const resolvedStatusEffect = speciesPassive?.statusImmunities?.includes(statusEffect?.type) ? null : normalizeStatusEffect(statusEffect)
   const resolvedTrainerSkills = normalizeTrainerRanks(trainerSkills)
@@ -3576,6 +3633,7 @@ const createCombatant = ({
     recoveryPrograms: resolvedRecoveryPrograms,
     battleItems: resolvedBattleItems,
     trainerSkills: resolvedTrainerSkills,
+    ...(resolvedInheritedSkills.length ? { inheritedSkills: resolvedInheritedSkills } : {}),
     statusEffect: resolvedStatusEffect,
     level,
     experience,
@@ -3591,7 +3649,7 @@ const createCombatant = ({
     defense: battleStats.defense,
     specialDefense: battleStats.specialDefense,
     speed: battleStats.speed,
-    skills: getDigimonSkillNamesForLevel(data, level),
+    skills: [...new Set([...(data?.기술 ?? []), ...resolvedInheritedSkills, ...getDigimonSkillNamesForLevel(data, level)])].slice(0, MAX_COMBATANT_SKILL_COUNT),
     balanceRevision: BALANCE_REVISION,
     skillCooldowns: {},
     battleGuards: {},
@@ -5995,6 +6053,12 @@ function App() {
     })
   }
 
+  // Persist unresolved inheritance on the combatant so automatic saves can resume it.
+  useEffect(() => {
+    if (!gameState || evolutionScene) return
+    queueSkillReplacementEvents(getPendingJogressSkillEvents(syncPartyMember(gameState.party, gameState.player)))
+  }, [gameState?.party, evolutionScene])
+
   const advanceSkillReplacementQueue = () => {
     setSkillReplaceState((current) => {
       if (!current?.queue?.length) {
@@ -6014,60 +6078,41 @@ function App() {
     })
   }
 
+  const commitSkillReplacementChoice = (activeEvent, oldSkillName = null) => {
+    const current = latestGameStateRef.current ?? gameState
+    if (!current || !activeEvent?.combatantId) return false
+    const currentParty = syncPartyMember(current.party, current.player)
+    const targetMember = getCombatantById(currentParty, activeEvent.combatantId)
+    if (!targetMember) return false
+    let updatedMember
+    if (activeEvent.source === 'jogress') {
+      updatedMember = resolveJogressSkillChoice(targetMember, activeEvent.newSkillName, oldSkillName)
+    } else if (oldSkillName && targetMember.skills?.includes(oldSkillName)) {
+      const skills = [...new Set(targetMember.skills.map(name => name === oldSkillName ? activeEvent.newSkillName : name))]
+        .slice(0, MAX_COMBATANT_SKILL_COUNT)
+      updatedMember = { ...targetMember, skills,
+        ...(targetMember.inheritedSkills ? { inheritedSkills: normalizeInheritedSkills(targetMember.inheritedSkills)
+          .filter(name => skills.includes(name) || targetMember.pendingJogressSkills?.includes(name)) } : {}) }
+    }
+    if (!updatedMember) return false
+    const party = replacePartyMember(currentParty, updatedMember)
+    const nextState = { ...current, party,
+      player: current.player?.id === updatedMember.id ? updatedMember : getCombatantById(party, current.player?.id) ?? current.player }
+    latestGameStateRef.current = nextState
+    setGameState(nextState)
+    if (activeEvent.source === 'jogress') saveStageGameState(nextState)
+    return true
+  }
+
   const handleSkipSkillReplacement = () => {
+    const event = skillReplaceState?.queue?.[skillReplaceState.index ?? 0]
+    if (event?.source === 'jogress') commitSkillReplacementChoice(event)
     advanceSkillReplacementQueue()
   }
 
   const handleReplaceSkill = (oldSkillName) => {
-    const activeEvent = skillReplaceState?.queue?.[skillReplaceState.index ?? 0]
-
-    if (!activeEvent?.combatantId || !oldSkillName) {
-      advanceSkillReplacementQueue()
-      return
-    }
-
-    setGameState((current) => {
-      if (!current) {
-        return current
-      }
-
-      const currentParty = syncPartyMember(current.party, current.player)
-      const targetMember = getCombatantById(currentParty, activeEvent.combatantId)
-
-      if (!targetMember) {
-        return current
-      }
-
-      let hasReplaced = false
-      const nextSkills = (targetMember.skills ?? []).map((skillName) => {
-        if (!hasReplaced && skillName === oldSkillName) {
-          hasReplaced = true
-          return activeEvent.newSkillName
-        }
-
-        return skillName
-      })
-
-      if (!hasReplaced) {
-        return current
-      }
-
-      const updatedMember = {
-        ...targetMember,
-        skills: [...new Set(nextSkills)].slice(0, MAX_COMBATANT_SKILL_COUNT),
-      }
-      const nextParty = replacePartyMember(currentParty, updatedMember)
-      const nextPlayer =
-        current.player?.id === updatedMember.id
-          ? updatedMember
-          : getCombatantById(nextParty, current.player?.id) ?? current.player
-
-      return {
-        ...current,
-        player: nextPlayer,
-        party: nextParty,
-      }
-    })
+    const event = skillReplaceState?.queue?.[skillReplaceState.index ?? 0]
+    commitSkillReplacementChoice(event, oldSkillName)
     advanceSkillReplacementQueue()
   }
 
@@ -9779,11 +9824,11 @@ function App() {
                   </div>
                 )}
 
-                {activeSkillReplaceEvent && skillReplaceCombatant ? (
+                {activeSkillReplaceEvent && skillReplaceCombatant && !evolutionScene ? (
                   <div className="skill-replace-screen" role="dialog" aria-modal="true">
                     <div className="skill-replace-screen__panel">
                       <div className="skill-replace-screen__header">
-                        <span className="skill-replace-screen__eyebrow">새 기술</span>
+                        <span className="skill-replace-screen__eyebrow">{activeSkillReplaceEvent.source === 'jogress' ? '조그레스 기술 계승' : '새 기술'}</span>
                         <strong className="skill-replace-screen__title">
                           {skillReplaceCombatant.name}은(는) {activeSkillReplaceEvent.newSkillName}을(를) 배우려 한다.
                         </strong>
@@ -9799,7 +9844,7 @@ function App() {
                       </div>
 
                       <p className="skill-replace-screen__prompt">
-                        잊을 기술을 선택해줘. 배우지 않으면 현재 기술 구성을 유지한다.
+                        {activeSkillReplaceEvent.source === 'jogress' ? '기술은 최대 8개까지 보유할 수 있습니다. 교체할 기술을 선택하거나 계승하지 않을 수 있습니다.' : '잊을 기술을 선택해줘. 배우지 않으면 현재 기술 구성을 유지한다.'}
                       </p>
 
                       <div className="skill-replace-screen__skills">
@@ -9823,7 +9868,7 @@ function App() {
                         className="skill-replace-screen__skip"
                         onClick={handleSkipSkillReplacement}
                       >
-                        배우지 않는다
+                        {activeSkillReplaceEvent.source === 'jogress' ? '계승하지 않는다' : '배우지 않는다'}
                       </button>
                     </div>
                   </div>
