@@ -1,3 +1,4 @@
+import MainMenu from './components/MainMenu.jsx'
 import TownScreen from './components/TownScreen.jsx'
 import { versionedResourceUrl } from './data/resourceUrl.js'
 import { applyTownStartingSupport, getTownEggStages } from './progression/townProgress.js'
@@ -111,15 +112,6 @@ import { ADVENTURE_BATTLE_ITEMS, ADVENTURE_UTILITY_ITEMS, hasAdventureItem, getI
   getItemStatusDamageMultiplier, getItemHealingMultiplier, getAdventureAttackModifiers } from './data/adventureItems.js'
 import './App.css'
 import './battle-ui.css'
-
-const menuItems = [
-  { label: '\uC0C8\uB85C\uD558\uAE30', key: 'new-game', disabled: false },
-  { label: '\uC774\uC5B4\uD558\uAE30', key: 'continue', disabled: true },
-  { label: '스킬', key: 'skills', disabled: false },
-  { label: '마을', key: 'town', disabled: false },
-  { label: '도감', key: 'dex', disabled: false },
-  { label: '\uC124\uC815', key: 'settings', disabled: false },
-]
 
 const battleMenuItems = [
   { label: '\uACF5\uACA9', key: 'attack', active: true },
@@ -8675,7 +8667,7 @@ function App() {
 
   return (
     <main
-      className={['main-screen', screenMode === 'adventure' ? 'main-screen--adventure' : '']
+      className={['main-screen', screenMode === 'menu' ? 'main-screen--menu' : '', screenMode === 'adventure' ? 'main-screen--adventure' : '']
         .filter(Boolean)
         .join(' ')}
       style={mainScreenStyle}
@@ -8737,9 +8729,9 @@ function App() {
           <div className="title-band__inner">
             <img className="title-band__logo" src="/Title.png" alt="DigiRogue" />
             <div className="profile-controls">
-              <span className="local-guest-label">{authSession?.identity?.isAnonymous === false ? authSession.identity.displayName : '게스트'} · 이 기기에 저장</span>
+              <span className="local-guest-label"><span className="profile-controls__status-dot" aria-hidden="true" />{authSession?.identity?.isAnonymous === false ? authSession.identity.displayName : '게스트'} · 이 기기에 저장</span>
               {authSession && !authSession.launcher && <>
-                {authSession.identity?.isAnonymous && <button type="button" disabled={authSession.busy} onClick={authSession.google}>Google 계정 연결</button>}
+                {authSession.identity?.isAnonymous && <button type="button" className="profile-controls__connect" disabled={authSession.busy} onClick={authSession.google}>Google 계정 연결</button>}
                 <button type="button" disabled={authSession.busy} onClick={authSession.logout}>로그아웃</button>
               </>}
             </div>
@@ -8778,45 +8770,7 @@ function App() {
             .join(' ')}
         >
           {screenMode === 'menu' ? (
-            <aside className="menu-panel">
-              <nav className="menu-panel__list" aria-label={'\uBA54\uC778 \uBA54\uB274'}>
-                {menuItems.map((item) => {
-                  const isContinueItem = item.key === 'continue'
-                  const isDisabled = isContinueItem ? !hasSaveData : item.disabled
-                  const isCurrent = !isDisabled && item.key === currentMenuKey
-
-                  return (
-                    <button
-                      key={item.key}
-                      type="button"
-                      className={[
-                        'menu-item',
-                        isCurrent ? 'menu-item--current' : '',
-                        isDisabled ? 'menu-item--disabled' : '',
-                      ]
-                        .filter(Boolean)
-                        .join(' ')}
-                      disabled={isDisabled}
-                      onMouseEnter={(event) => {
-                        if (isDisabled) return
-                        setSelectedMenuKey(item.key)
-                        if (event.currentTarget.parentElement.contains(document.activeElement)) {
-                          event.currentTarget.focus({ preventScroll: true })
-                        }
-                      }}
-                      onFocus={() => setSelectedMenuKey(item.key)}
-                      onClick={() => handleMenuAction(item.key)}
-                    >
-                      <span className="menu-item__marker" aria-hidden="true">
-                        {isCurrent ? '\u25B6' : ''}
-                      </span>
-                      <span>{item.label}</span>
-                      {item.key === 'skills' && <small className="menu-item__skill-points">{getTrainerPoints(trainerProgress)} SP</small>}
-                    </button>
-                  )
-                })}
-              </nav>
-            </aside>
+            <MainMenu hasSaveData={hasSaveData} currentKey={currentMenuKey} skillPoints={getTrainerPoints(trainerProgress)} onSelect={setSelectedMenuKey} onAction={handleMenuAction} />
           ) : screenMode === 'skills' ? (
             <TrainerSkillTree progress={trainerProgress} onLearn={handleTrainerLearn} onReset={handleTrainerReset} onBack={() => setScreenMode('menu')} />
           ) : screenMode === 'town' ? (
