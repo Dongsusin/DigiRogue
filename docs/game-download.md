@@ -1,0 +1,13 @@
+# Game data installation
+
+After choosing Google or guest entry, the game waits for a complete installation before loading its main screen. The progress screen shows completed files, installed megabytes and percentage. Failed transfers have a retry button and keep every verified, completed file.
+
+The production postbuild first losslessly compresses all GLBs, then writes dist/game-assets.json from the actual output. This includes models, portraits, maps, item art, music, fonts, HTML and compiled game modules. Each model has one download representation (.glb.br); its SHA-256 revision and installed byte count describe the decoded GLB. No full-roster scene decoding or GPU upload is performed. Existing bounded model leases still control rendering memory.
+
+The browser uses the digirogue-game-assets-v1 CacheStorage cache. Files are accepted only after their exact byte count and SHA-256 revision match. The service worker serves these verified responses to the existing image, module, audio and GLB URLs. Encoded transport headers are removed from already-decoded cached bodies. Cached audio supports byte ranges. Authentication, API requests and other origins are excluded.
+
+Every new visit checks the manifest with no-store. Unchanged cache entries are reused; changed or missing entries are downloaded again. Cache entries use content revisions rather than overwriting the last installation. The completed manifest switches only after every file is verified; an interrupted update leaves the previous complete release usable offline. An entry page left open across a deployment reloads before installing a different entry bundle. Downloads in concurrent tabs share a browser lock where supported. Save slots and account/guest progression are never deleted or put in the asset cache. Browser storage can still be removed by the user or evicted by the browser; the next entry will install any missing data again.
+
+Installed launcher builds use files already on disk and skip the browser installation. Local Vite development generates its manifest from public and uses raw GLBs. Vite preview and Vercel serve Brotli model files with explicit encoding headers. The manifest and service-worker script must stay revalidatable rather than immutable.
+
+Checks: npm run test:download, npm run test:hosting-budget, npm run test:guest-budget, npm run test:auth, npm run verify, npm run build, and node scripts/verify-runtime.mjs --dist. Browser QA additionally covers cold entry, interruption/retry, unchanged revisit, a cached model preview and BGM settings wording. Playback tests still apply to audio playback; the initial installation intentionally downloads all music files even when playback is muted.

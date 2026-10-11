@@ -150,6 +150,11 @@
       "glob": "/타입/:path*",
       "location": "https://digirouge.co.kr/타입/:path",
       "statusCode": 301
+    },
+    {
+      "glob": "/game-cache-sw.js",
+      "location": "https://digirouge.co.kr/game-cache-sw.js",
+      "statusCode": 301
     }
   ]
 }

@@ -8,7 +8,7 @@
     "dev": "vite",
     "prebuild": "node scripts/generate-resource-versions.mjs",
     "build": "vite build",
-    "postbuild": "node scripts/compress-model-assets.mjs",
+    "postbuild": "node scripts/prepare-game-download.mjs",
     "preview": "vite preview",
     "verify": "node scripts/verify-runtime.mjs",
     "test:items": "node --test scripts/verify-battle-items.mjs scripts/verify-adventure-items.mjs",
@@ -35,7 +35,8 @@
     "test:dex": "node --test scripts/verify-digimon-dex.mjs",
     "test:effects": "node --test scripts/verify-canon-skill-effects.mjs scripts/verify-attack-attachment.mjs",
     "test:evolution-inspection": "node --test scripts/verify-evolution-inspection.mjs",
-    "test:matchups": "node --test scripts/verify-matchup-balance.mjs"
+    "test:matchups": "node --test scripts/verify-matchup-balance.mjs",
+    "test:download": "node --test scripts/verify-game-download.mjs"
   },
   "dependencies": {
     "firebase": "^13.0.0",

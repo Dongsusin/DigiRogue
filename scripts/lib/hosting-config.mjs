@@ -19,6 +19,7 @@ export function createHostingConfig(entries) {
         source, has: [{ type: 'query', key: 'v', value: '[a-f0-9]{16}' }],
         headers: cache('public, max-age=31536000, immutable'),
       })),
+      ...['/game-assets.json', '/game-cache-sw.js'].map(source => ({ source, headers: cache('no-cache') })),
       { source: '/', headers: cache('no-cache') },
       { source: '/index.html', headers: cache('no-cache') },
     ],

@@ -8358,7 +8358,7 @@ function App() {
 
                       <div className="settings-bgm-entry">
                         <div className="settings-bgm-entry__copy">
-                          <span className="settings-row__label">AI 제작 BGM</span>
+                          <span className="settings-row__label">BGM</span>
                           <span className="settings-bgm-entry__summary">
                             활성 {gameSettings.enabledBgmUrls.length}/{bgmTracks.length}곡 · 장면별 자동 재생
                           </span>
@@ -8378,12 +8378,12 @@ function App() {
                 </div>
 
                 {isBgmSettingsOpen && settingsTab === 'audio' && (
-                  <div className="settings-bgm-window" role="dialog" aria-modal="true" aria-label="AI 제작 BGM 설정">
+                  <div className="settings-bgm-window" role="dialog" aria-modal="true" aria-label="BGM 설정">
                     <div className="settings-bgm-window__panel">
                       <div className="settings-bgm-window__header">
                         <div className="settings-bgm-window__title-group">
                           <span className="settings-bgm-window__eyebrow">오디오</span>
-                          <h2 className="settings-bgm-window__title">AI 제작 BGM</h2>
+                          <h2 className="settings-bgm-window__title">BGM</h2>
                         </div>
                         <span className="settings-bgm-window__count">
                           {gameSettings.enabledBgmUrls.length}/{bgmTracks.length}

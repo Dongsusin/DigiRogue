@@ -31,6 +31,8 @@ recoverable previous Hosting version. Never disable Authentication or delete
 accounts/saves. Verify actual model bytes, encoded responses, music and a
 Unicode path before this change; verify old-URL redirects and auth afterward.
 
+The entry download now installs all static game files, including music, before the main screen. See game-download.md for the persistent cache, revision checks and retry flow. This initial installation is intentional network traffic; the following restrictions apply to playback requests after installation.
+
 Music starts only after a gesture while audible, online and visible. Hiding or
 muting pauses playback and cancels retries. Returning resumes the same track.
 Failures back off 5, 10, 20 and 40 seconds, then stop. Duplicate errors cannot

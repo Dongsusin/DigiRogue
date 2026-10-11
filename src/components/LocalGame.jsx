@@ -4,7 +4,7 @@ import GameLoadingScreen from './GameLoadingScreen.jsx'
 import LoginScreen from './LoginScreen.jsx'
 import './SessionVerification.css'
 import { useAuthSession } from '../auth/AuthContext.js'
-import { loadGameModule } from '../loading/gameModule.js'
+import GameDownloadGate from './GameDownloadGate.jsx'
 import { initializeLauncherStorage, browserStorage, createLocalStorage } from '../progression/localStorage.js'
 const LocalProgressProvider = lazy(() => import('./LocalProgressProvider.jsx'))
 function prepareStorage() {
@@ -25,14 +25,13 @@ export default function LocalGame() {
   if (!ready || !auth?.ready) return <GameLoadingScreen />
   if (!auth.identity) return <LoginScreen />
   if (auth.busy) return <GameLoadingScreen />
-  // Heavy game and 3D bundles are only requested after choosing an entry method.
-  loadGameModule().catch(() => {})
-  return <Suspense fallback={<GameLoadingScreen />}>
+  // Enter the game only after every shipped asset is installed in the persistent cache.
+  return <GameDownloadGate><Suspense fallback={<GameLoadingScreen />}>
     <div className="session-game" inert={auth.sessionChecking || undefined}>
       <LocalProgressProvider key={auth.identity.uid + ':' + auth.identity.isAnonymous} storage={profile}>
         <GameApp />
       </LocalProgressProvider>
     </div>
     {auth.sessionChecking && <div className="session-verification" role="status" aria-live="polite">로그인 연결 확인 중…</div>}
-  </Suspense>
+  </Suspense></GameDownloadGate>
 }
