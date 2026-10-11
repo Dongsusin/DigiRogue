@@ -3,3 +3,7 @@
 .equipment-tooltip__list { display: grid; grid-template-columns: repeat(var(--equipment-columns), 40px); gap: 6px; margin: 0; padding: 0; list-style: none; }
 .equipment-tooltip__item { display: grid; place-items: center; width: 40px; height: 40px; box-sizing: border-box; padding: 3px; border: 1px solid #507891; border-radius: 5px; background: #173349; }
 .equipment-tooltip__item > img { display: block; width: 32px; height: 32px; object-fit: contain; }
+.game-design .equipment-tooltip .game-popover__header { padding: 0; border: 0; }
+.game-design .equipment-tooltip:has(.equipment-tooltip__list) { gap: 10px; }
+.game-design .equipment-tooltip .equipment-tooltip__list { padding-top: 10px; border-top: 1px solid #38556b; }
+.game-design .combatant-info > .equipment-tooltip__list { margin-top: 12px; grid-template-columns: repeat(auto-fit, 40px); }

@@ -1,3 +1,4 @@
+import CombatantSummary from './CombatantSummary.jsx'
 import { useState } from 'react'
 import GameDialog from './GameDialog.jsx'
 import { ownedBattleUnits, isRegionalSupport } from '../battle/regionalSupport.js'
@@ -9,7 +10,7 @@ import { isModeItemAllowed } from '../progression/gameModes.js'
 import { getItemRarityLabel } from '../data/itemRarities.js'
 import './AdventureContent.css'
 
-export default function BattleItemMenu({ state, actor, onUse, onClose }) {
+export default function BattleItemMenu({ state, actor, onUse, onClose, onInspect }) {
   const [selected, setSelected] = useState(null)
   const [category, setCategory] = useState('전체')
   const [form, setForm] = useState('all')
@@ -38,8 +39,9 @@ export default function BattleItemMenu({ state, actor, onUse, onClose }) {
         <img src={selected.imageUrl} alt="" /><div><h3>{selected.name}</h3><p>{selected.description}</p>
         <span className="battle-card-target-side">{selected.effect.targetSide === 'enemy' ? '적 디지몬 선택' : selected.effect.revive ? '부활시킬 예비 디지몬 선택' : '아군 디지몬 선택'}</span></div></div>
       <div className="battle-card-target-list">{displayedTargets.map(unit => <button type="button" key={unit.id} disabled={!targetIds.has(unit.id)}
+        onPointerEnter={event => onInspect?.(event, unit)} onFocus={event => onInspect?.(event, unit)}
         onClick={() => onUse(selected.id, unit.id)} aria-label={unit.name + '에게 ' + selected.name + ' 사용'}>
-        <strong>{unit.name}</strong><span>{unit.isEgg ? '부화까지 ' + unit.eggStagesRemaining + '스테이지' : unit.currentHp > 0 ? 'HP ' + unit.currentHp + ' / ' + unit.maxHp : '전투 불능'}</span>
+        <CombatantSummary combatant={unit} levelCap={state.levelCap} />
         {selected.effect.cooldownReduction > 0 && <small>기술 대기 최대 {Math.max(0, ...Object.values(unit.skillCooldowns ?? {}))}턴</small>}
         {unit.statusEffect && <small>{unit.statusEffect.type}</small>}
       </button>)}</div>

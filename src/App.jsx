@@ -58,7 +58,8 @@ import { isPlayableDigimon } from './data/speciesAvailability.js'
 import { getDigimonDisplayScale } from './data/digimonSizes.js'
 import BattleLog from './components/BattleLog.jsx'
 import BattlePopover from './components/BattlePopover.jsx'
-import EquipmentTooltip from './components/EquipmentTooltip.jsx'
+import EquipmentTooltip, { EquippedItemGrid } from './components/EquipmentTooltip.jsx'
+import CombatantSummary, { CombatantTraits } from './components/CombatantSummary.jsx'
 import StatusConditionBadge from './components/StatusConditionBadge.jsx'
 import { getStatusEffectDefinition, STATUS_EARLY_CURE_CHANCE, createStatusCue, statusTransitionCues } from './battle/statusConditions.js'
 import { BattleHistory, CombatantEffects, CombatantEffectsDialog } from './components/BattleInfo.jsx'
@@ -1068,21 +1069,6 @@ const getDigimonAttributeIconUrl = (attribute) => {
   const iconName = ATTRIBUTE_ICON_FILE_MAP[attribute] ?? attribute
 
   return iconName ? createPublicAssetUrl('속성', `${iconName}.png`) : null
-}
-
-const DigimonTraitIcon = ({ className, src, label }) => {
-  if (!src) {
-    return null
-  }
-
-  return (
-    <img
-      className={['digimon-status__trait', className].filter(Boolean).join(' ')}
-      src={src}
-      alt={label}
-      title={label}
-    />
-  )
 }
 
 const MatchupGuideBadge = ({ kind, name, compact = false }) => {
@@ -2812,39 +2798,20 @@ const CombatantStatChart = ({ combatant }) => {
   )
 }
 
-const CombatantIdentityStrip = ({ combatant, levelCap }) => {
-  if (!combatant) {
-    return null
-  }
-
-  const typeIconUrl = getDigimonTypeIconUrl(combatant.type)
-  const attributeIconUrl = getDigimonAttributeIconUrl(combatant.attribute)
-
-  return (
-    <div className="combatant-info__identity">
-      <strong className="combatant-info__name">{combatant.name}</strong>
-      <StatusConditionBadge combatant={combatant} className="combatant-info__status" />
-      <span className="combatant-info__pill">{formatInfoValue(combatant.speciesStage)}</span>
-      <span className="combatant-info__pill">{combatant.speciesData?.전투역할 ?? '균형형'}</span>
-      <span className="combatant-info__pill combatant-info__pill--trait">
-        {typeIconUrl ? <img className="combatant-info__icon" src={typeIconUrl} alt="" /> : null}
-        {formatInfoValue(combatant.type)}
-      </span>
-      <span className="combatant-info__pill combatant-info__pill--trait">
-        {attributeIconUrl ? (
-          <img className="combatant-info__icon" src={attributeIconUrl} alt="" />
-        ) : null}
-        {formatInfoValue(combatant.attribute)}
-      </span>
-      <DigimonLevel className="combatant-info__level" level={combatant.level} levelCap={levelCap} />
-    </div>
-  )
-}
+const CombatantIdentityStrip = ({ combatant, levelCap }) => <>
+  <CombatantSummary combatant={combatant} levelCap={levelCap} />
+  <div className="combatant-info__identity">
+    <StatusConditionBadge combatant={combatant} className="combatant-info__status" />
+    <span className="combatant-info__pill">{formatInfoValue(combatant.speciesStage)}</span>
+    <span className="combatant-info__pill">{combatant.speciesData?.전투역할 ?? '균형형'}</span>
+  </div>
+</>
 
 export const CombatantInfoPanel = ({
   combatant,
   levelCap,
   side,
+  items = [],
   anchor,
   onClose,
 }) => {
@@ -2863,6 +2830,7 @@ export const CombatantInfoPanel = ({
       <PassiveAbility combatant={combatant} showState />
 
       {side !== 'enemy' ? <CombatantStatChart combatant={combatant} /> : null}
+      <EquippedItemGrid items={items} />
     </div>
     </BattlePopover>
   )
@@ -6045,6 +6013,7 @@ function App() {
   const openCombatantInfo = (combatantInfoId, element) => {
     if (battlePanelMode !== 'commands' || isPartyPanelOpen || isItemPanelOpen || rewardState || mapSelectionState || evolutionState) return
     setItemTooltip(null)
+    setEquipmentTooltip(null)
     setActiveCombatantInfo({ id: combatantInfoId, anchor: element })
   }
 
@@ -6055,6 +6024,7 @@ function App() {
   const inspectCombatantEffects = (id) => {
     setActiveCombatantInfo(null)
     setItemTooltip(null)
+    setEquipmentTooltip(null)
     setEffectDetailsId(id)
   }
 
@@ -8179,8 +8149,10 @@ function App() {
     )
   }
 
-  const showEvolutionEquipment = (event, member) => {
-    setEquipmentTooltip(getCombatantEquippedItems(member).length ? { anchor: event.currentTarget, memberId: member.id } : null)
+  const showCombatantTooltip = (event, member) => {
+    setItemTooltip(null)
+    setActiveCombatantInfo(null)
+    setEquipmentTooltip({ anchor: event.currentTarget, memberId: member.id, member })
   }
 
   const handleOpenEvolutionParty = () => {
@@ -8590,12 +8562,14 @@ function App() {
     ? getJogressEvolutionMembers(selectedEvolutionMember, evolutionPartyMembers, pendingEvolutionOption.recipe, evolutionState.confirmPartnerIds)
     : []
   const visibleEnemies = gameState?.enemies?.filter((enemy) => isCombatantAbleToBattle(enemy)) ?? []
-  const equipmentTooltipMember = partyMembers.find(member => member.id === equipmentTooltip?.memberId)
+  const equipmentTooltipMember = [...partyMembers, ...(gameState?.enemies ?? []), ...(gameState?.regionalSupport?.unit ? [gameState.regionalSupport.unit] : [])]
+    .find(member => member.id === equipmentTooltip?.memberId) ?? equipmentTooltip?.member
   const effectDetailsCombatant = [...partyMembers, ...(gameState?.regionalSupport?.unit ? [gameState.regionalSupport.unit] : []), ...(gameState?.enemies ?? [])].find(member => member.id === effectDetailsId)
   const hasExplorationScene = Boolean(gameState?.explorationEvent && gameState.explorationEvent.phase !== 'battle')
   const showExplorationEvent = Boolean(hasExplorationScene && !activeSkillReplaceEvent && !evolutionScene)
   const isInfoDialogOpen = isHistoryOpen || isTurnOrderOpen || Boolean(effectDetailsCombatant)
   const partyAdmission = gameState?.pendingPartyAdmissions?.[0] ?? null
+  useEffect(() => { setEquipmentTooltip(null) }, [screenMode, battlePanelMode, rewardState?.pendingTarget, partyAdmission?.member.id, gameState?.currentStage, saveDialog, faintReplacement?.faintedIds?.[0]])
   const isAdventureBlocked = Boolean(evolutionScene || showExplorationEvent || isInfoDialogOpen || isItemPanelOpen || partyAdmission)
   const skillConsoleEntries = isSkillConsoleOpen ? battleSkillSlots.flatMap((name, index) => {
     if (!name) return []
@@ -9075,9 +9049,6 @@ function App() {
                   </BattlePopover>
                 )}
 
-                {evolutionState && equipmentTooltip && equipmentTooltipMember && !evolutionScene && <EquipmentTooltip
-                  anchor={equipmentTooltip.anchor} combatant={equipmentTooltipMember}
-                  items={getCombatantEquippedItems(equipmentTooltipMember)} onClose={() => setEquipmentTooltip(null)} />}
 
                 <div className="adventure-field" data-ground-y={mapPresentation.groundY}>
                   <AdventureBattleBadge state={gameState} />
@@ -9109,8 +9080,6 @@ function App() {
                         0,
                         Math.min(100, (ally.currentHp / ally.maxHp) * 100)
                       )
-                      const allyTypeIconUrl = getDigimonTypeIconUrl(ally.type)
-                      const allyAttributeIconUrl = getDigimonAttributeIconUrl(ally.attribute)
                       const isActingAlly = ally.id === actingAlly?.id
                       const allyExpRatio = isActingAlly
                         ? displayedPlayerExpRatio
@@ -9163,6 +9132,7 @@ function App() {
                             {renderBattleSprite(ally, 'ally')}
                             <CombatantInfoPanel
                               combatant={ally}
+                              items={getCombatantEquippedItems(ally)}
                               levelCap={gameState?.levelCap}
                               anchor={activeCombatantInfo?.id === `player-${ally.id}` ? activeCombatantInfo.anchor : null}
                               onClose={closeCombatantInfo}
@@ -9177,23 +9147,16 @@ function App() {
                             data-targeted={commandTargetIds.includes(ally.id)}
                             data-hp-state={allyHpRatio <= 25 ? 'critical' : allyHpRatio <= 50 ? 'low' : 'healthy'}
                             role="group"
-                            aria-label={`${ally.name} 체력과 경험치`}
+                            aria-label={`${ally.name} 체력과 경험치`} tabIndex={0}
+                            onPointerEnter={event => showCombatantTooltip(event, ally)}
+                            onFocus={event => { if (event.target === event.currentTarget) showCombatantTooltip(event, ally) }}
                           >
                             <p className="digimon-status__name">
                               {isRegionalSupport(ally) && <span className="digimon-status__support-label">동료 · 자동</span>}
                               <span className="digimon-status__name-text">{ally.name}</span>
-                              <DigimonTraitIcon
-                                className="digimon-status__trait--type"
-                                src={allyTypeIconUrl}
-                                label={`${ally.type} 타입`}
-                              />
-                              <DigimonTraitIcon
-                                className="digimon-status__trait--attribute"
-                                src={allyAttributeIconUrl}
-                                label={`${ally.attribute} 속성`}
-                              />
                               <DigimonLevel className="digimon-status__level" level={ally.level} levelCap={gameState?.levelCap} />
                             </p>
+                            <CombatantTraits combatant={ally} />
                             <div className="digimon-status__hp" role="progressbar" aria-label={`${ally.name} 체력`} aria-valuemin={0} aria-valuemax={ally.maxHp} aria-valuenow={ally.currentHp}>
                               <span
                                 className="digimon-status__hp-fill"
@@ -9237,8 +9200,6 @@ function App() {
                         0,
                         Math.min(100, (enemy.currentHp / enemy.maxHp) * 100)
                       )
-                      const enemyTypeIconUrl = getDigimonTypeIconUrl(enemy.type)
-                      const enemyAttributeIconUrl = getDigimonAttributeIconUrl(enemy.attribute)
 
                       return (
                         <div
@@ -9296,6 +9257,7 @@ function App() {
                             {hasDigimonDetector ? (
                               <CombatantInfoPanel
                                 combatant={enemy}
+                                items={getCombatantEquippedItems(enemy)}
                                 levelCap={gameState?.levelCap}
                                 anchor={activeCombatantInfo?.id === `enemy-${enemy.id}` ? activeCombatantInfo.anchor : null}
                                 onClose={closeCombatantInfo}
@@ -9317,25 +9279,18 @@ function App() {
                             data-targeted={commandTargetIds.includes(enemy.id)}
                             data-active={battleFocus.side === 'enemy' && battleFocus.actorId === enemy.id}
                             data-active-label={focusLabel}
-                            aria-label={`${enemy.name} 체력`}
+                            aria-label={`${enemy.name} 체력`} tabIndex={0}
+                            onPointerEnter={event => showCombatantTooltip(event, enemy)}
+                            onFocus={event => { if (event.target === event.currentTarget) showCombatantTooltip(event, enemy) }}
                           >
                             <p className="digimon-status__name">
                               {enemy.isBoss ? (
                                 <span className="digimon-status__boss-label">BOSS</span>
                               ) : null}
                               <span className="digimon-status__name-text">{enemy.name}</span>
-                              <DigimonTraitIcon
-                                className="digimon-status__trait--type"
-                                src={enemyTypeIconUrl}
-                                label={`${enemy.type} 타입`}
-                              />
-                              <DigimonTraitIcon
-                                className="digimon-status__trait--attribute"
-                                src={enemyAttributeIconUrl}
-                                label={`${enemy.attribute} 속성`}
-                              />
                               <DigimonLevel className="digimon-status__level" level={enemy.level} levelCap={gameState?.levelCap} />
                             </p>
+                            <CombatantTraits combatant={enemy} />
                             <div className="digimon-status__hp" role="progressbar" aria-label={`${enemy.name} 체력`} aria-valuemin={0} aria-valuemax={enemy.maxHp} aria-valuenow={enemy.currentHp}>
                               <span
                                 className="digimon-status__hp-fill digimon-status__hp-fill--enemy"
@@ -9543,10 +9498,13 @@ function App() {
                                     .filter(Boolean)
                                     .join(' ')}
                                   disabled={!(isJogressSelection ? isJogressUsable : isUsable) || rewardState.isResolving}
+                                  onPointerEnter={event => showCombatantTooltip(event, member)}
+                                  onFocus={event => showCombatantTooltip(event, member)}
                                   onClick={() => handleSelectRewardTarget(member.id)}
                                 >
                                   <img className="party-member__image" src={member.imageUrl} alt="" />
                                   <span className="party-member__name">{member.name}</span>
+                                  <CombatantTraits combatant={member} />
                                   {member.isEgg ? <>
                                     <span className="party-member__level">{DIGI_EGG_STAGE}</span>
                                     <span className="party-member__egg-text">부화까지 {member.eggStagesRemaining}스테이지</span>
@@ -9655,19 +9613,20 @@ function App() {
                                     className={'party-member evolution-party-member' + (member.isEgg ? ' party-member--egg' : '') + (readyEvolutionMemberIds.has(member.id) ? ' evolution-party-member--ready' : '')}
                                     aria-label={readyEvolutionMemberIds.has(member.id) ? `${member.name} · 진화 가능` : undefined}
                                     disabled={Boolean(member.isEgg)}
-                                    onPointerEnter={event => showEvolutionEquipment(event, member)}
-                                    onFocus={event => showEvolutionEquipment(event, member)}
+                                    onPointerEnter={event => showCombatantTooltip(event, member)}
+                                    onFocus={event => showCombatantTooltip(event, member)}
                                     onClick={() => handleSelectEvolutionMember(member.id)}
                                   >
                                     <img className="party-member__image" src={member.imageUrl} alt="" />
                                     <span className="party-member__name">{member.name}</span>
+                                    <CombatantTraits combatant={member} />
                                     {member.isEgg ? <>
                                       <span className="party-member__level">{DIGI_EGG_STAGE}</span>
                                       <span className="party-member__egg-text">부화까지 {member.eggStagesRemaining}스테이지</span>
                                     </> : <>
                                       <DigimonLevel className="party-member__level" level={member.level} levelCap={gameState?.levelCap} />
                                       <span className="party-member__hp"><span className="party-member__hp-fill" style={{ width: `${hpRatio}%` }} /></span>
-                                      <span className="party-member__hp-text">진화 {evolutionCount}</span>
+                                      <span className="party-member__hp-text">{member.currentHp}/{member.maxHp} · 진화 {evolutionCount}</span>
                                     </>}
                                   </button>
                                 )
@@ -9676,9 +9635,9 @@ function App() {
                           ) : selectedEvolutionMember ? (
                             <div className="evolution-detail">
                               <section className="evolution-detail__current" tabIndex={0}
-                                aria-label={selectedEvolutionMember.name + ' 장착 아이템 보기'}
-                                onPointerEnter={event => showEvolutionEquipment(event, selectedEvolutionMember)}
-                                onFocus={event => showEvolutionEquipment(event, selectedEvolutionMember)}>
+                                aria-label={selectedEvolutionMember.name + ' 정보 보기'}
+                                onPointerEnter={event => showCombatantTooltip(event, selectedEvolutionMember)}
+                                onFocus={event => showCombatantTooltip(event, selectedEvolutionMember)}>
                                 <DigimonModelPreview
                                   className="evolution-detail__current-image"
                                   name={selectedEvolutionMember.imageName ?? selectedEvolutionMember.name}
@@ -9690,6 +9649,7 @@ function App() {
                                   <p className="evolution-detail__meta">
                                     <DigimonLevel level={selectedEvolutionMember.level} levelCap={gameState?.levelCap} /> · {selectedEvolutionMember.speciesStage}
                                   </p>
+                                  <p className="evolution-detail__meta">HP {selectedEvolutionMember.currentHp} / {selectedEvolutionMember.maxHp}</p>
                                   <div className="evolution-detail__traits">
                                     <span>{selectedEvolutionMember.type}</span>
                                     <span>{selectedEvolutionMember.attribute}</span>
@@ -9864,12 +9824,13 @@ function App() {
 
                 {isFaintReplacementOpen && !rewardState && !activeSkillReplaceEvent && !evolutionState && (
                   <FaintReplacementPanel party={partyMembers} activeAllyIds={gameState.activeAllyIds}
-                    replacement={faintReplacement} onSelect={handleFaintReplacement} />
+                    replacement={faintReplacement} onSelect={handleFaintReplacement} onInspect={showCombatantTooltip} levelCap={gameState?.levelCap} />
                 )}
 
                 {isPartyPanelOpen && !rewardState && actingAlly && (
                   <div className="party-screen" aria-label="보유 디지몬">
-                    <div className="party-screen__current" aria-label="현재 행동 디지몬">
+                    <div className="party-screen__current" aria-label="현재 행동 디지몬" tabIndex={0}
+                      onPointerEnter={event => showCombatantTooltip(event, actingAlly)} onFocus={event => showCombatantTooltip(event, actingAlly)}>
                       <DigimonModelPreview
                         className="party-screen__current-image"
                         name={actingAlly.imageName ?? actingAlly.name}
@@ -9878,6 +9839,7 @@ function App() {
                       </DigimonModelPreview>
                       <div className="party-screen__current-card">
                         <p className="party-screen__name">{actingAlly.name}</p>
+                        <CombatantTraits combatant={actingAlly} />
                         <DigimonLevel as="p" className="party-screen__level" level={actingAlly.level} levelCap={gameState?.levelCap} />
                         <div className="party-screen__hp">
                           <span
@@ -9919,10 +9881,13 @@ function App() {
                               .filter(Boolean)
                               .join(' ')}
                             disabled={isDisabled}
+                            onPointerEnter={event => showCombatantTooltip(event, member)}
+                            onFocus={event => showCombatantTooltip(event, member)}
                             onClick={() => handleSwitchPartyMember(member.id)}
                           >
                             <img className="party-member__image" src={member.imageUrl} alt="" />
                             <span className="party-member__name">{member.name}</span>
+                            <CombatantTraits combatant={member} />
                             <span className="party-member__level">
                               {isEgg ? DIGI_EGG_STAGE : <DigimonLevel level={member.level} levelCap={gameState?.levelCap} />}
                             </span>
@@ -9970,6 +9935,7 @@ function App() {
                     hoveredTargetId={hoveredEnemyTargetId}
                     onSelectSkill={handleSkillSelect}
                     onSelectTarget={handleAttackTargetSelect}
+                    onInspect={showCombatantTooltip}
                     onPreviewTarget={handleTargetPreview}
                     onClearTarget={handleTargetPreviewClear}
                     onPreviewSkill={index => setPreviewedSkill({ actorId: actingAlly?.id, index })}
@@ -10067,7 +10033,7 @@ function App() {
               </div>
 
               {isItemPanelOpen && !rewardState && actingAlly && <BattleItemMenu state={{ ...gameState, party: battleContext.party, activeAllyIds }} actor={actingAlly}
-                onUse={handleUseBattleItem} onClose={() => { setBattlePanelMode('commands'); setSelectedBattleCommand('attack') }} />}
+                onUse={handleUseBattleItem} onInspect={showCombatantTooltip} onClose={() => { setBattlePanelMode('commands'); setSelectedBattleCommand('attack') }} />}
               {isHistoryOpen && <BattleHistory history={battleHistory} onClose={() => setIsHistoryOpen(false)} />}
               {isTurnOrderOpen && <BattleTurnDetails rows={turnPreview} onClose={() => setIsTurnOrderOpen(false)} />}
               {effectDetailsCombatant && !isHistoryOpen && <CombatantEffectsDialog combatant={effectDetailsCombatant} statusDuration={STATUS_DURATION_TURNS} onClose={() => setEffectDetailsId(null)} />}
@@ -10079,10 +10045,13 @@ function App() {
           )}
         </div>
       </section>
+      {equipmentTooltip && equipmentTooltipMember && !evolutionScene && !saveDialog && <EquipmentTooltip
+        anchor={equipmentTooltip.anchor} combatant={equipmentTooltipMember} levelCap={gameState?.levelCap}
+        items={getCombatantEquippedItems(equipmentTooltipMember)} onClose={() => setEquipmentTooltip(null)} />}
       {isMatchupGuideOpen && <MatchupGuideModal onClose={() => setIsMatchupGuideOpen(false)} />}
       {screenMode === 'adventure' && partyAdmission && !saveDialog && !evolutionScene && !rewardState?.isResolving && <PartyAdmissionDialog
         key={partyAdmission.member.id} state={gameState} request={partyAdmission} error={partyAdmissionError}
-        onReplace={handleConfirmPartyAdmission} onCancel={handleCancelPartyAdmission} />}
+        onReplace={handleConfirmPartyAdmission} onCancel={handleCancelPartyAdmission} onInspect={showCombatantTooltip} />}
       {saveDialog && <SaveSlotsDialog key={saveDialog.mode} mode={saveDialog.mode} slots={saveSlots}
         currentState={gameState} busy={saveDialog.mode === 'exit' && getSaveTransitionBusy()} error={saveDialog.error}
         onDelete={handleDeleteSaveSlot} onClose={() => setSaveDialog(null)} onConfirm={saveDialog.mode === 'exit' ? handleSaveAndExit : handleLoadSaveSlot} />}

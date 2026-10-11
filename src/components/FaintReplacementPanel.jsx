@@ -1,7 +1,9 @@
+import { CombatantTraits } from './CombatantSummary.jsx'
+import DigimonLevel from './DigimonLevel.jsx'
 import { useEffect, useRef } from 'react'
 import './FaintReplacementPanel.css'
 
-export default function FaintReplacementPanel({ party, activeAllyIds, replacement, onSelect }) {
+export default function FaintReplacementPanel({ party, activeAllyIds, replacement, onSelect, onInspect, levelCap }) {
   const panelRef = useRef(null)
   const faintedId = replacement.faintedIds[0]
   const fainted = party.find(member => member.id === faintedId)
@@ -41,12 +43,14 @@ export default function FaintReplacementPanel({ party, activeAllyIds, replacemen
           const hpRatio = Math.max(0, Math.min(100, member.currentHp / Math.max(1, member.maxHp) * 100))
           return (
             <button type="button" key={member.id} className="faint-replacement__member"
+              onPointerEnter={event => onInspect?.(event, member)} onFocus={event => onInspect?.(event, member)}
               disabled={!available} onClick={() => onSelect(member.id)}
               aria-label={`${member.name}, ${reason}${member.isEgg ? '' : `, HP ${member.currentHp}/${member.maxHp}`}`}>
               <img src={member.imageUrl} alt="" className="faint-replacement__portrait" />
               <span className="faint-replacement__details">
                 <span className="faint-replacement__name">{member.name}</span>
-                <span className="faint-replacement__level">{member.isEgg ? '디지에그' : `Lv.${member.level}`}</span>
+                <span className="faint-replacement__level">{member.isEgg ? '디지에그' : <DigimonLevel level={member.level} levelCap={levelCap} />}</span>
+                <CombatantTraits combatant={member} />
                 {!member.isEgg && <>
                   <span className="faint-replacement__hp" aria-hidden="true">
                     <span style={{ width: `${hpRatio}%` }} />

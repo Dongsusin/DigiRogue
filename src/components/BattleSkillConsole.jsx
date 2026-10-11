@@ -1,3 +1,4 @@
+import { CombatantTraits } from './CombatantSummary.jsx'
 import { useCallback, useLayoutEffect, useRef, useState } from 'react'
 import { MatchupBadge } from './BattleInfo.jsx'
 import SkillInfoTooltip from './SkillInfoTooltip.jsx'
@@ -13,7 +14,7 @@ export function BattleCommandIcon({ command = 'attack' }) {
 }
 
 export default function BattleSkillConsole({ actor, skills, targets, selectedSkillIndex, choosingTarget,
-  hoveredTargetId, onSelectSkill, onSelectTarget, onPreviewTarget, onClearTarget, onPreviewSkill, onClearSkill, onBack, onClose }) {
+  hoveredTargetId, onSelectSkill, onSelectTarget, onPreviewTarget, onClearTarget, onPreviewSkill, onClearSkill, onBack, onClose, onInspect }) {
   const rootRef = useRef(null)
   const [detail, setDetail] = useState(null)
   const selectedSkill = skills.find(skill => skill.index === selectedSkillIndex)
@@ -80,8 +81,10 @@ export default function BattleSkillConsole({ actor, skills, targets, selectedSki
 
   return <section className="digi-skill-console" aria-label="기술 명령" ref={rootRef} tabIndex={-1} onKeyDown={navigate}>
     <header className="digi-skill-console__header">
-      <div className="digi-skill-console__portrait"><img src={actor.imageUrl} alt="" /></div>
+      <div className="digi-skill-console__portrait" tabIndex={0} aria-label={actor.name + ' 정보 보기'}
+        onPointerEnter={event => { dismissDetail(); onInspect?.(event, actor) }} onFocus={event => { dismissDetail(); onInspect?.(event, actor) }}><img src={actor.imageUrl} alt="" /></div>
       <div className="digi-skill-console__identity"><span>DIGIVICE / COMMAND</span><h2>{actor.name}<small>Lv. {actor.level}</small></h2>
+        <CombatantTraits combatant={actor} />
         <p><i aria-hidden="true" />{choosingTarget ? '공격 대상 지정' : '파트너 명령 대기'}</p></div>
       <button type="button" className="digi-skill-console__close" aria-label="기술창 닫기" onClick={closeConsole}>×</button>
     </header>
@@ -94,12 +97,13 @@ export default function BattleSkillConsole({ actor, skills, targets, selectedSki
         {targets.map((target, index) => <button type="button" key={target.id} data-skill-command
           disabled={Boolean(forcedTarget && forcedTarget.id !== target.id)}
           className={`digi-target${hoveredTargetId === target.id ? ' digi-target--active' : ''}`}
-          onPointerEnter={() => onPreviewTarget(target.id)} onPointerLeave={onClearTarget}
-          onFocus={() => onPreviewTarget(target.id)} onBlur={onClearTarget} onClick={() => onSelectTarget(target.id)}>
+          onPointerEnter={event => { dismissDetail(); onPreviewTarget(target.id); onInspect?.(event, target) }} onPointerLeave={onClearTarget}
+          onFocus={event => { dismissDetail(); onPreviewTarget(target.id); onInspect?.(event, target) }} onBlur={onClearTarget} onClick={() => onSelectTarget(target.id)}>
           <span className="digi-target__reticle" aria-hidden="true"><img src={target.imageUrl} alt="" /></span>
           <span className="digi-target__identity"><small>TARGET {String(index + 1).padStart(2, '0')} / Lv. {target.level}{forcedTarget?.id === target.id ? ' / 도발 중' : ''}</small><strong>{target.name}</strong>
+            <CombatantTraits combatant={target} />
             <span className="digi-target__hp" role="meter" aria-label={`${target.name} HP`} aria-valuenow={target.currentHp} aria-valuemin={0} aria-valuemax={target.maxHp}>
-              <i style={{ width: `${Math.min(100, Math.max(0, target.currentHp / target.maxHp * 100))}%` }} /></span></span>
+              <i style={{ width: `${Math.min(100, Math.max(0, target.currentHp / target.maxHp * 100))}%` }} /></span><span className="digi-target__hp-text">HP {target.currentHp} / {target.maxHp}</span></span>
           {!selectedSkill?.support && <MatchupBadge multiplier={selectedSkill?.targets.find(item => item.id === target.id)?.multiplier ?? 1} />}
         </button>)}
       </div>

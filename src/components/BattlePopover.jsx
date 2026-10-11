@@ -9,7 +9,7 @@ export default function BattlePopover({ anchor, onClose, children, header, label
   const scrollRef = useRef(null)
   const contentRef = useRef(null)
   const id = useId()
-  const container = anchor?.closest('.adventure-stage')
+  const container = anchor?.closest('.game-dialog-backdrop') ?? anchor?.closest('.adventure-stage')
 
   useLayoutEffect(() => {
     const panel = panelRef.current
@@ -20,7 +20,7 @@ export default function BattlePopover({ anchor, onClose, children, header, label
       panel.dataset.scrollEnd = String(scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight - 1)
     }
     const update = () => {
-      if (!anchor.isConnected) return
+      if (!anchor.isConnected) { onClose(); return }
       const frame = container.getBoundingClientRect()
       const anchorRect = anchor.getBoundingClientRect()
       const strip = anchor.closest('.adventure-inventory-strip')?.getBoundingClientRect()
@@ -30,7 +30,7 @@ export default function BattlePopover({ anchor, onClose, children, header, label
       }
       const local = toLocalRect(anchorRect, frame, container.clientWidth, container.clientHeight)
       const bounds = { left: 12, right: container.clientWidth - 12,
-        top: interactive ? 96 : 12, bottom: container.clientHeight - 96 }
+        top: interactive ? 96 : 12, bottom: container.clientHeight - (interactive ? 96 : 12) }
       panel.style.width = Math.min(width, bounds.right - bounds.left) + 'px'
       // Include the unclipped contents of the nested scroll area, even after
       // switching tabs or resizing a panel that is already height-constrained.
@@ -46,17 +46,21 @@ export default function BattlePopover({ anchor, onClose, children, header, label
     observer.observe(contentRef.current)
     observer.observe(anchor)
     observer.observe(container.closest('.game-frame-slot') ?? container)
+    // A defeated unit or a closed modal can remove its trigger without a resize.
+    const lifetime = new MutationObserver(() => { if (!anchor.isConnected) onClose() })
+    lifetime.observe(container.closest('.game-design') ?? container, { childList: true, subtree: true })
     // Scrolling inventory rows moves the anchor without resizing it.
     container.addEventListener('scroll', update, true)
     scroll.addEventListener('scroll', updateScroll, { passive: true })
     window.addEventListener('resize', update)
     return () => {
       observer.disconnect()
+      lifetime.disconnect()
       container.removeEventListener('scroll', update, true)
       scroll.removeEventListener('scroll', updateScroll)
       window.removeEventListener('resize', update)
     }
-  }, [anchor, container, interactive, placement, width, header])
+  }, [anchor, container, interactive, placement, width, header, onClose])
 
   useEffect(() => {
     const panel = panelRef.current
@@ -69,13 +73,22 @@ export default function BattlePopover({ anchor, onClose, children, header, label
       if (!inside(event.target)) closeTimer = window.setTimeout(onClose, 180)
     }
     const onPointerDown = (event) => { if (!inside(event.target)) onClose() }
-    const onFocus = (event) => { if (!inside(event.target)) onClose() }
-    const onKeyDown = (event) => {
+    const onFocus = (event) => {
+      clearClose()
+      // Let a newly focused trigger replace this popover before closing the old one.
+      // Cleanup cancels this callback when the anchor changes in the same event.
+      if (!inside(event.target)) closeTimer = window.setTimeout(onClose, 0)
+    }
+    const onEscape = (event) => {
       if (event.key === 'Escape') {
+        event.stopPropagation()
         event.preventDefault()
         anchor.focus({ preventScroll: true })
         onClose()
-      } else if (anchorKeys && event.target === anchor && ['Enter', ' ', 'ArrowDown'].includes(event.key)) {
+      }
+    }
+    const onKeyDown = (event) => {
+      if (anchorKeys && event.target === anchor && ['Enter', ' ', 'ArrowDown'].includes(event.key)) {
         event.preventDefault()
         const firstControl = interactive ? panel.querySelector('[role="tab"]') ?? panel.querySelector('button') : panel
         firstControl?.focus()
@@ -87,6 +100,7 @@ export default function BattlePopover({ anchor, onClose, children, header, label
     document.addEventListener('pointermove', onPointerMove, { passive: true })
     document.addEventListener('pointerdown', onPointerDown, true)
     document.addEventListener('focusin', onFocus)
+    document.addEventListener('keydown', onEscape, true)
     document.addEventListener('keydown', onKeyDown)
     return () => {
       clearClose()
@@ -95,6 +109,7 @@ export default function BattlePopover({ anchor, onClose, children, header, label
       document.removeEventListener('pointermove', onPointerMove)
       document.removeEventListener('pointerdown', onPointerDown, true)
       document.removeEventListener('focusin', onFocus)
+      document.removeEventListener('keydown', onEscape, true)
       document.removeEventListener('keydown', onKeyDown)
     }
   }, [anchor, id, interactive, onClose, anchorKeys])
@@ -109,7 +124,7 @@ export default function BattlePopover({ anchor, onClose, children, header, label
       onKeyDown={event => { if (event.key !== 'Escape') event.stopPropagation() }}>
       {interactive && <button className="game-popover__close" type="button" aria-label="디지몬 정보 닫기" onClick={() => { anchor.focus({ preventScroll: true }); onClose() }}>×</button>}
       {header && <div className="game-popover__header">{header}</div>}
-      <div ref={scrollRef} className="game-popover__scroll" tabIndex={0} role="region" aria-label={`${label} 내용`}>
+      <div ref={scrollRef} className="game-popover__scroll" tabIndex={interactive || anchorKeys ? 0 : undefined} role="region" aria-label={`${label} 내용`}>
         <div ref={contentRef} className="game-popover__content">{children}</div>
       </div>
     </div>, container

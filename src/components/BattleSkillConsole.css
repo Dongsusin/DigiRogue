@@ -100,3 +100,8 @@
   .digi-skill-console__keyboard { display: none; }
   .digi-skill-console__touch { display: inline; }
 }
+
+.digi-skill-console__identity > .combatant-traits { display: flex; margin: 4px 0; letter-spacing: 0; line-height: 1.3; }
+.digi-skill-console__portrait:focus-visible { outline: 2px solid #8ee1f3; outline-offset: 2px; }
+.digi-target__identity > .combatant-traits { margin: 0 0 6px; }
+.digi-target__hp-text { display: block; margin-top: 3px; color: #bad9e5; font-size: 10px; line-height: 12px; }
