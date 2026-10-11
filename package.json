@@ -33,7 +33,8 @@
     "simulate:hard": "node scripts/simulate-adventure-balance.mjs --hard",
     "test:dex": "node --test scripts/verify-digimon-dex.mjs",
     "test:effects": "node --test scripts/verify-canon-skill-effects.mjs scripts/verify-attack-attachment.mjs",
-    "test:evolution-inspection": "node --test scripts/verify-evolution-inspection.mjs"
+    "test:evolution-inspection": "node --test scripts/verify-evolution-inspection.mjs",
+    "test:matchups": "node --test scripts/verify-matchup-balance.mjs"
   },
   "dependencies": {
     "firebase": "^13.0.0",

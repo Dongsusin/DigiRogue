@@ -6,12 +6,12 @@ export const STAGE_LEVEL_CAPS = Object.freeze([
 // Daily and endless inherit casual enemy pressure, while hard keeps its own
 // profile. Neither depends on player upgrades, wins, losses, or outcome rolls.
 export const CASUAL_MODE_BALANCE = Object.freeze({
-  wildHp: 1.02, wildHpGrowth: .33, wildStats: 1.01, wildStatsGrowth: .21,
+  wildHp: 1.02, wildHpGrowth: .46, wildStats: 1.01, wildStatsGrowth: .35,
   bossHp: 1.08, bossHpGrowth: .57, bossStats: 1.02, bossStatsGrowth: .23,
 })
 export const HARD_MODE_BALANCE = Object.freeze({
   levelScaleStart: 1.08, levelScaleEnd: 1.18, levelBonusStart: 2, levelBonusEnd: 6,
-  wildHp: 1.1, wildHpGrowth: .16, wildStats: 1.0325, wildStatsGrowth: .0675,
+  wildHp: 1.1, wildHpGrowth: .3, wildStats: 1.0325, wildStatsGrowth: .1475,
   bossHp: 1.18, bossHpGrowth: .225, bossStats: 1.045, bossStatsGrowth: .085,
 })
 const stageOf = stage => Math.min(200, Math.max(1, Math.floor(Number(stage) || 1)))
@@ -33,6 +33,13 @@ export function getStageEnemyLevelRange(stage, mode = 'classic') {
   const scale = profile.levelScaleStart + (profile.levelScaleEnd - profile.levelScaleStart) * progress
   const bonus = profile.levelBonusStart + (profile.levelBonusEnd - profile.levelBonusStart) * progress
   return range.map(level => Math.max(1, Math.round(level * scale + bonus)))
+}
+
+// Raise only ordinary wildlife's floor. Bosses, rivals and scripted quests keep
+// getStageEnemyLevelRange, so their levels and pattern timing do not move.
+export function getWildEnemyLevelRange(stage, mode = 'classic') {
+  const [low, high] = getStageEnemyLevelRange(stage, mode)
+  return [stage <= 30 ? low : Math.min(high, low + Math.ceil((high - low) * .3)), high]
 }
 
 function getBaseEnemyDifficultyModifiers(combatant) {
@@ -57,6 +64,13 @@ export function getEnemyDifficultyModifiers(combatant) {
   if (!profile || (!combatant.enemyStage && !combatant.isBoss)) return base
   const progress = (stageOf(combatant.enemyStage ?? combatant.bossStage) - 1) / 199
   const boss = combatant.isBoss || combatant.rivalEncounter || combatant.specialQuest
+  // Scripted minions formerly used the old wild profile, not the leader's
+  // profile. Preserve that baseline as well as the bosses themselves.
+  if (!boss && combatant.bossEncounter) {
+    const hard = combatant.enemyGameMode === 'hard'
+    return { hp: base.hp * (hard ? 1.1 + .16 * progress : 1.02 + .33 * progress),
+      stats: base.stats * (hard ? 1.0325 + .0675 * progress : 1.01 + .21 * progress) }
+  }
   return { hp: base.hp * (boss ? profile.bossHp + profile.bossHpGrowth * progress : profile.wildHp + profile.wildHpGrowth * progress),
     stats: base.stats * (boss ? profile.bossStats + profile.bossStatsGrowth * progress : profile.wildStats + profile.wildStatsGrowth * progress) }
 }
@@ -91,7 +105,13 @@ export function pickWildEncounterNames(pool, speciesLookup, count, stage, random
   const candidates = timed.length ? timed : all.sort((a, b) => speciesLookup.get(a).전투총합 - speciesLookup.get(b).전투총합).slice(0, 2)
   const chosen = []
   while (chosen.length < count && candidates.length) {
-    const weights = candidates.map(name => Math.max(.08, (1 - Math.max(0, speciesLookup.get(name).전투총합 - ceiling * .8) / (ceiling * .25)) ** 2))
+    // Preserve the learning bands, then gradually admit more map-legal strong
+    // species. Identity and power ceilings never depend on the player's party.
+    const pressure = Math.min(1, Math.max(0, (stageOf(stage) - 30) / 70))
+    const weights = candidates.map(name => {
+      const weight = 1 - Math.max(0, speciesLookup.get(name).전투총합 - ceiling * .8) / (ceiling * .25)
+      return Math.max(.08, weight ** 2) * (1 - pressure) + Math.max(.35, weight) * pressure
+    })
     let roll = random() * weights.reduce((sum, value) => sum + value, 0)
     let index = weights.length - 1
     for (let i = 0; i < weights.length; i++) { roll -= weights[i]; if (roll < 0) { index = i; break } }

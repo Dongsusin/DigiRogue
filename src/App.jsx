@@ -48,7 +48,7 @@ import { SAVE_DATA_VERSION, SAVE_SLOTS, getSaveSlotKey, readSaveSlot, readSaveSl
   writeSaveSlot, deleteSaveSlot, createSaveResumeUi, isSaveTransitionBusy } from './progression/saveSlots.js'
 import { normalizeRegionStatModifiers, mergeRegionStatModifier, prepareCombatantForStage, REGION_EFFECT_TEXT } from './battle/regionModifiers.js'
 import { cleanCombatantFields, removeRetiredCombatantData } from './progression/retiredCombatantData.js'
-import { getStageLevelCap, getStageEnemyLevelRange, getEnemyDifficultyModifiers, getAdventureExperienceMultiplier, pickWildEncounterNames, enforceCombatantLevelCap } from './progression/gameDifficulty.js'
+import { getStageLevelCap, getStageEnemyLevelRange, getWildEnemyLevelRange, getEnemyDifficultyModifiers, getAdventureExperienceMultiplier, pickWildEncounterNames, enforceCombatantLevelCap } from './progression/gameDifficulty.js'
 import { STARTER_TEAM_LIMIT, STARTING_PLAYER_LEVEL, createStarterCatalog, getStarterTeamSummary } from './data/starterSelection.js'
 import EvolutionCutscene from './components/EvolutionCutscene.jsx'
 import EvolutionBranches from './components/EvolutionBranches.jsx'
@@ -97,7 +97,8 @@ import { isEscapeBlocked, rollRunAttempt } from './battle/escape.js'
 import { gameAudio } from './audio/GameAudio.js'
 import { BALANCE_REVISION, BASIC_SKILLS, balanceSpecies, balanceSkill, GUARD_DESCRIPTIONS } from './balance/catalog.js'
 import { getSkillCooldown, startSkillCooldown, tickBattleTimers, getCommandSkillNames, getStatusDuration,
-  scoreSkill, recoverAfterVictory, CRITICAL_HIT_CHANCE, CRITICAL_HIT_MULTIPLIER } from './balance/combat.js'
+  scoreSkill, chooseSkillTarget, recoverAfterVictory, CRITICAL_HIT_CHANCE, CRITICAL_HIT_MULTIPLIER } from './balance/combat.js'
+import { typeAdvantageMap, attributeAdvantageMap, getMatchupResult } from './balance/matchups.js'
 import { DAMAGE_TEXT_MS } from './battle/damageFeedback.js'
 import { getDigimonPassive, getDigimonPassiveId } from './data/digimonPassives.js'
 import PassiveAbility from './components/PassiveAbility.jsx'
@@ -1032,27 +1033,6 @@ const getSkillLearnEventsForLevelRange = (combatant, fromLevel, toLevel) => {
   return events
 }
 
-const typeAdvantageMap = {
-  데이터: ['백신'],
-  백신: ['바이러스'],
-  바이러스: ['데이터'],
-  프리: ['불명'],
-  불명: ['프리'],
-}
-
-const attributeAdvantageMap = {
-  불: ['나무', '흙'],
-  나무: ['흙', '번개'],
-  흙: ['번개', '강철'],
-  번개: ['강철', '얼음'],
-  강철: ['얼음', '바람'],
-  얼음: ['바람', '어둠'],
-  바람: ['어둠', '빛'],
-  어둠: ['빛', '물'],
-  빛: ['물', '불'],
-  물: ['불', '나무'],
-}
-
 const DIGIMON_TYPE_ICON_NAMES = new Set(['데이터', '무', '바이러스', '백신', '불명', '프리'])
 const ATTRIBUTE_ICON_FILE_MAP = {
   화염: '불',
@@ -1114,8 +1094,8 @@ const MatchupGuideModal = ({ onClose }) => {
       className="matchup-guide-panel" backdropClassName="matchup-guide-overlay"
       returnFocusSelector=".matchup-guide-button"
       footer={<div className="matchup-guide-footer">
-        <span>한 가지 유리 x1.5 · 모두 유리 x2</span>
-        <span>한 가지 불리 x0.75 · 모두 불리 x0.5</span>
+        <span>타입 x2 / x0.5 · 속성 x1.5 / x0.75</span>
+        <span>각 상성을 곱해 적용 · 모두 유리 x3 · 모두 불리 x0.375</span>
       </div>}>
       <p className="matchup-guide-summary">
         디지몬 타입과 기술 속성의 상성에 따라 피해량이 달라집니다. 유리한 상대를 공략해 보세요.
@@ -1146,7 +1126,7 @@ const MatchupGuideModal = ({ onClose }) => {
           <div className="matchup-guide-wheel" aria-label="속성 상성 순환표">
             <div className="matchup-guide-wheel__ring" aria-hidden="true" />
             <div className="matchup-guide-wheel__core">
-              <strong>x2</strong>
+              <strong>x1.5</strong>
               <span>유리</span>
             </div>
             {attributeEntries.map(([attribute], index) => {
@@ -2913,52 +2893,6 @@ const getSkillEffectDescription = (skillData) => {
   return effects.length > 0 ? effects.join(' ') : null
 }
 
-const getChartRelation = (chart, attackValue, defendValue) => {
-  if (!attackValue || attackValue === '무' || !defendValue || defendValue === '무') {
-    return 0
-  }
-
-  const strongAgainst = chart[attackValue] ?? []
-  const counterAgainst = chart[defendValue] ?? []
-
-  if (strongAgainst.includes(defendValue)) {
-    return 1
-  }
-
-  if (counterAgainst.includes(attackValue)) {
-    return -1
-  }
-
-  return 0
-}
-
-const getFinalMultiplier = (typeRelation, attributeRelation) => {
-  const favorableCount = [typeRelation, attributeRelation].filter((value) => value > 0).length
-  const unfavorableCount = [typeRelation, attributeRelation].filter((value) => value < 0).length
-
-  if (favorableCount === 2) {
-    return 2
-  }
-
-  if (favorableCount === 1 && unfavorableCount === 0) {
-    return 1.5
-  }
-
-  if (favorableCount === 1 && unfavorableCount === 1) {
-    return 1
-  }
-
-  if (favorableCount === 0 && unfavorableCount === 2) {
-    return 0.5
-  }
-
-  if (favorableCount === 0 && unfavorableCount === 1) {
-    return 0.75
-  }
-
-  return 1
-}
-
 const getAccuracyValue = (accuracyText) => {
   const numericValue = Number.parseInt(String(accuracyText ?? '100').replace('%', ''), 10)
   return Number.isNaN(numericValue) ? 100 : numericValue
@@ -3753,9 +3687,9 @@ const progressDigiEggPartyByStage = (party, inventory = {}) => {
 
 const getEnemyLevelRangeForStage = (stage, gameMode = 'classic') => getStageEnemyLevelRange(stage, gameMode)
 
-const getEnemyLevelForStage = (stage, gameMode = 'classic') => {
+const getEnemyLevelForStage = (stage, gameMode = 'classic', ordinary = false, roll = Math.random()) => {
   const safeStage = isEndlessMode(gameMode) ? Math.max(stage, 1) : Math.min(Math.max(stage, 1), TOTAL_STAGE_COUNT)
-  const [minimumLevel, maximumLevel] = getEnemyLevelRangeForStage(safeStage, gameMode)
+  const [minimumLevel, maximumLevel] = ordinary ? getWildEnemyLevelRange(safeStage, gameMode) : getEnemyLevelRangeForStage(safeStage, gameMode)
   const stageProgress = ((safeStage - 1) % STAGES_PER_MAP) / Math.max(1, STAGES_PER_MAP - 1)
   const levelSpan = Math.max(0, maximumLevel - minimumLevel)
   const scaledLevel = minimumLevel + levelSpan * stageProgress
@@ -3763,7 +3697,7 @@ const getEnemyLevelForStage = (stage, gameMode = 'classic') => {
   const progressiveMinimum = Math.max(minimumLevel, Math.floor(scaledLevel) - variance)
   const progressiveMaximum = Math.min(maximumLevel, Math.ceil(scaledLevel) + variance)
 
-  return getRandomIntInclusive(progressiveMinimum, progressiveMaximum)
+  return progressiveMinimum + Math.floor(roll * (progressiveMaximum - progressiveMinimum + 1))
 }
 
 const getBossLevelForStage = (stage, gameMode = 'classic') => Math.max(1, getEnemyLevelRangeForStage(stage, gameMode)[1] - (isHardMode(gameMode) ? 0 : stage <= 50 ? 4 : 2))
@@ -3819,6 +3753,17 @@ const getBoostedExperienceAmount = (baseExperience, inventory = {}) =>
 
 const getLivingEnemyIndex = (enemies) => enemies.findIndex((enemy) => enemy.currentHp > 0)
 
+// Scripted enemies keep their existing targeting. Ordinary wildlife commits to
+// the same visible matchup/defense evaluation used to choose its technique.
+const getEnemySkillTarget = (enemy, skillData, opponents) => {
+  if (enemy.isBoss || enemy.rivalEncounter || enemy.specialQuest || enemy.bossEncounter) {
+    return getFinalBossTarget(enemy, opponents) ?? getRandomCombatant(opponents)?.id ?? null
+  }
+  return chooseSkillTarget(enemy, skillData, opponents, (actor, skill, target) =>
+    getMatchupResult({ attackerType: actor.type, skillAttribute: skill.속성,
+      defenderType: target.type, defenderAttribute: target.attribute }).multiplier)?.id ?? null
+}
+
 const getRandomEnemySkill = (enemy, allies = [enemy], opponents = []) => {
   if (!enemy) return null
   const finalMove = getFinalBossMove(enemy)
@@ -3832,21 +3777,6 @@ const getRandomEnemySkill = (enemy, allies = [enemy], opponents = []) => {
   const best = Math.max(0, ...options.map(option => option.score))
   const candidates = options.filter(option => best === 0 || option.score >= best * 0.8)
   return candidates[Math.floor(Math.random() * candidates.length)]?.name ?? null
-}
-
-const getMatchupResult = ({ attackerType, skillAttribute, defenderType, defenderAttribute }) => {
-  const typeRelation = getChartRelation(typeAdvantageMap, attackerType, defenderType)
-  const attributeRelation = getChartRelation(
-    attributeAdvantageMap,
-    skillAttribute,
-    defenderAttribute
-  )
-
-  return {
-    typeRelation,
-    attributeRelation,
-    multiplier: getFinalMultiplier(typeRelation, attributeRelation),
-  }
 }
 
 const refreshCombatantStats = (
@@ -4804,6 +4734,10 @@ const resolveEnemyPartyActions = ({ enemies, party, activeAllyIds, inventory = {
       ?? getFirstLivingPartyMember(nextParty, activeAllyIds)
     const enemySkill = bossTurn.skill?.기술명 ?? getRandomEnemySkill(nextEnemy, nextEnemies, nextParty.filter(unit => activeAllyIds.includes(unit.id)))
     const enemySkillData = bossTurn.skill ?? (enemySkill ? getSkillData(enemySkill, nextEnemy) : null)
+    if (!nextEnemy.isBoss && !nextEnemy.rivalEncounter && !nextEnemy.specialQuest && !nextEnemy.bossEncounter) {
+      const candidates = nextParty.filter(unit => activeAllyIds.includes(unit.id) && isCombatantAbleToBattle(unit))
+      targetAlly = getCombatantById(nextParty, getEnemySkillTarget(nextEnemy, enemySkillData, candidates))
+    }
     const isAreaAttack = isSkillAreaAttack(enemySkillData)
 
     if (!targetAlly) {
@@ -4963,7 +4897,7 @@ const createEnemyBattleTurnActions = ({ enemies, party, activeAllyIds, startOrde
         side: 'enemy',
         actor: enemy,
         skillName: enemySkill,
-        targetId: getFinalBossTarget(enemy, livingActiveAllies) ?? getRandomCombatant(livingActiveAllies)?.id ?? null,
+        targetId: getEnemySkillTarget(enemy, getSkillData(enemySkill, enemy), livingActiveAllies),
         order: startOrder + index,
       }), bossPhase: enemy.bossEncounter?.phase }
     })
@@ -5390,16 +5324,19 @@ const buildBaseEnemyParty = (stage, encounterPool, encounterCount, bossEncounter
 
   return shuffledNames.slice(0, Math.min(MAX_ENEMY_COMBATANTS, encounterCount)).map((name, index) => {
     const data = allDigimonLookup.get(name)
-    const level = getEnemyLevelForStage(stage, gameMode)
+    const roll = Math.random()
+    const level = getEnemyLevelForStage(stage, gameMode, true, roll)
+    // Story trials retain the old level sample without consuming another roll.
+    const storyBaseLevel = getEnemyLevelForStage(stage, gameMode, false, roll)
 
-    return createCombatant({
+    return { ...createCombatant({
       id: `enemy-${stage}-${name}-${index}`,
       name,
       imageUrl: data?.imageUrl ?? '',
       data,
       level,
       stageName: data?.stage ?? null,
-    })
+    }), storyBaseLevel }
   })
 }
 

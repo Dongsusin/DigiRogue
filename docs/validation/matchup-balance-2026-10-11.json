@@ -1,0 +1,232 @@
+{
+  "date": "2026-10-11",
+  "baselineCommit": "cbf3f40532440ece81d5f403f70c9652f4fe4d66",
+  "bossCases": 340,
+  "bossesUnchanged": true,
+  "bossSnapshotSha256": "dc4377ac9975ed8a3a626e8023aa35474aa59bcfa73f81ff6ab042ba61b3a1c3",
+  "checks": {
+    "matchups": {
+      "exitCode": 0,
+      "passed": 17
+    },
+    "fullSuite": {
+      "exitCode": 0,
+      "passed": 406,
+      "scope": "24 tracked Node test scripts from balance-only staged source snapshot"
+    },
+    "build": {
+      "exitCode": 0
+    },
+    "browser": {
+      "guideMultipliersCorrect": true,
+      "actualDamage": {
+        "allyHp": [
+          24,
+          22
+        ],
+        "enemyHp": [
+          20,
+          8
+        ],
+        "directDamage": 11,
+        "burnDamage": 1
+      },
+      "resumeHp": [
+        22,
+        8
+      ],
+      "consoleErrors": 0
+    },
+    "runtime": {
+      "exitCode": 0,
+      "models": 512,
+      "clips": 4273,
+      "maps": 34
+    },
+    "lint": {
+      "exitCode": 1,
+      "status": "not_run",
+      "reason": "ESLint executable not installed in local node_modules; no lint results produced."
+    },
+    "maxSimulation": {
+      "exitCode": 0,
+      "source": "release-max.json, completed module-level engine simulation before separation of the concurrent audio UI changes"
+    },
+    "isolatedMaxRepeat": {
+      "status": "interrupted",
+      "reason": "Process ended externally without completion record; not counted as a completed check."
+    }
+  },
+  "runs": {
+    "beforeBasic": {
+      "mode": "classic",
+      "maxProgression": false,
+      "seedStart": 0,
+      "roundLimit": 300,
+      "runs": 48,
+      "clears": 6,
+      "defeats": 40,
+      "unresolved": 2,
+      "medianStage": 123,
+      "teamCosts": [
+        9,
+        9,
+        9,
+        9,
+        9,
+        9
+      ]
+    },
+    "afterBasic": {
+      "mode": "classic",
+      "maxProgression": false,
+      "solo": false,
+      "seedStart": 0,
+      "roundLimit": 300,
+      "runs": 48,
+      "clears": 0,
+      "defeats": 46,
+      "unresolved": 2,
+      "medianStage": 67,
+      "teamCosts": [
+        9,
+        9,
+        9,
+        9,
+        9,
+        9
+      ]
+    },
+    "beforeMax": {
+      "mode": "classic",
+      "maxProgression": true,
+      "seedStart": 0,
+      "roundLimit": 300,
+      "runs": 24,
+      "clears": 17,
+      "defeats": 2,
+      "unresolved": 5,
+      "medianStage": 200,
+      "teamCosts": [
+        8,
+        25,
+        24,
+        25,
+        25,
+        23,
+        25,
+        25
+      ]
+    },
+    "afterMax": {
+      "mode": "classic",
+      "maxProgression": true,
+      "solo": false,
+      "seedStart": 0,
+      "roundLimit": 300,
+      "runs": 24,
+      "clears": 17,
+      "defeats": 6,
+      "unresolved": 1,
+      "medianStage": 200,
+      "teamCosts": [
+        8,
+        25,
+        24,
+        25,
+        25,
+        23,
+        25,
+        25
+      ]
+    },
+    "afterBasicHoldout": {
+      "mode": "classic",
+      "maxProgression": false,
+      "solo": false,
+      "seedStart": 1000,
+      "roundLimit": 1000,
+      "runs": 96,
+      "clears": 0,
+      "defeats": 91,
+      "unresolved": 5,
+      "medianStage": 69,
+      "teamCosts": [
+        9,
+        9,
+        9,
+        9,
+        9,
+        9
+      ]
+    },
+    "beforeSoloMax": {
+      "mode": "classic",
+      "maxProgression": true,
+      "solo": true,
+      "seedStart": 0,
+      "roundLimit": 300,
+      "runs": 24,
+      "clears": 9,
+      "defeats": 15,
+      "unresolved": 0,
+      "medianStage": 117,
+      "teamCosts": [
+        1,
+        1,
+        1,
+        18,
+        17,
+        24
+      ]
+    },
+    "afterSoloMax": {
+      "mode": "classic",
+      "maxProgression": true,
+      "solo": true,
+      "seedStart": 0,
+      "roundLimit": 300,
+      "runs": 24,
+      "clears": 0,
+      "defeats": 24,
+      "unresolved": 0,
+      "medianStage": 43,
+      "teamCosts": [
+        1,
+        1,
+        1,
+        18,
+        17,
+        24
+      ]
+    }
+  },
+  "sourceSha256": {
+    "src/App.jsx": "f00ca3bd287f1f1f5dad0b52888a99f2090fd0099b254fc7cfea95eaa76183b1",
+    "src/balance/matchups.js": "4bc138e1174fab7a0517b09dfdd19508e33be6936cc991407713148d2b29f768",
+    "src/balance/combat.js": "f256dc1e13d81d34b9b90003f5a19c96b59071ee852717671ab0a3f84fa49de8",
+    "src/battle/statusConditions.js": "9fd927b0914fa917c8bef19b5a2e436870b8f2ef96b38f2e441207ece9b8fe9c",
+    "src/progression/gameDifficulty.js": "e0da22c086a5ee15bb30aaa87f949345bd5419ce5895cefcc9103d3d5041bad1",
+    "src/adventure/eventBattles.js": "feafd228b165cbcc87cc2973d347145e491f85a7e6f7855385593bab33b25f85"
+  },
+  "limits": [
+    "Automatic policy omits combat items, voluntary mid-battle switches, scanning/egg recruitment, quests and regional supporters.",
+    "The measured clear counts are policy benchmarks, not player win rates.",
+    "Shared matchup and skill scoring changes apply to bosses as well; dedicated boss stats, levels, HP segments and scripted patterns are unchanged."
+  ],
+  "independentReview": {
+    "reviewer": "Boyle",
+    "findingsResolved": 2,
+    "focused": {
+      "exitCode": 0,
+      "passed": 17
+    },
+    "storyTrialCases": 48,
+    "saveRestorationCases": 96,
+    "scope": "Reviewed matchup/status/difficulty/save wiring, then independently confirmed both identified fixes; did not rerun full suite/build/UI/long simulations."
+  },
+  "releaseIsolation": {
+    "source": "Staged balance-only source snapshot with original cached 15 BGM tracks",
+    "excludedConcurrentWork": "Separate in-progress AI music replacement and its UI/build/test changes"
+  }
+}

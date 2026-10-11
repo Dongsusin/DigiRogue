@@ -6,13 +6,13 @@ import { tmpdir } from 'node:os'
 import { join, resolve, dirname, basename } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
-export async function loadBattleEngine({ difficultySource } = {}) {
+export async function loadBattleEngine({ difficultySource, sourceOverrides = {} } = {}) {
   const root = resolve(fileURLToPath(new URL('../../', import.meta.url))).replaceAll('\\', '/')
   const directory = await mkdtemp(join(tmpdir(), 'digilog-balance-'))
   const names = ['mapData','allDigimonLookup','allSkillLookup','getSkillData','createCombatant','refreshCombatantStats',
     'buildStartingParty','buildEnemyParty','getEncounterGroupForStage','getMapEncounterGroups','getBossEncounterNamesForStage',
     'getEncounterCountForStage','getRandomConnectedMapName','getConnectedMapNames','getMapNameForStage','getLevelCapForStage','getEvolutionOptions','createEvolvedCombatant',
-    'resolveBattleTurnActions','createBattleTurnAction','createEnemyBattleTurnActions','getBattleAllyLimit',
+    'resolveAttackAction','getEnemyLevelForStage','resolveBattleTurnActions','createBattleTurnAction','createEnemyBattleTurnActions','getBattleAllyLimit',
     'getCommandSkillNames','getCombatantEquippedItems','scoreSkill','getMatchupResult','recoverAfterVictory','applyPartyExperienceGain',
     'levelUpCombatant','parseSavedGameState','applySupportEffectToTarget','resolveTurnEndCombatantEffects',
     'evolveBossCombatant','createReturnedEvolutionCombatant','createJogressCombatant','resolveJogressEvolution','resolveManualEvolution','resolveJogressSkillChoice','getPendingJogressSkillEvents',
@@ -25,7 +25,9 @@ export async function loadBattleEngine({ difficultySource } = {}) {
   await build({ configFile: false, root, publicDir: false, logLevel: 'silent',
     plugins: [{ name: 'battle-test-exports', enforce: 'pre', transform(code, id) {
       if (difficultySource && id.replaceAll('\\', '/') === root + '/src/progression/gameDifficulty.js') return difficultySource
-      if (id.replaceAll('\\', '/') !== root + '/src/App.jsx') return null
+      const override = sourceOverrides[id.replaceAll('\\', '/').replace(root + '/', '')]
+      if (override != null) code = override
+      if (id.replaceAll('\\', '/') !== root + '/src/App.jsx') return override ?? null
       return code.slice(0, code.indexOf('function App()')) + '\nexport {' + names.join(',') + '}\n'
     } }], build: { outDir: join(directory, 'bundle'), emptyOutDir: false, minify: false,
       lib: { entry, formats: ['es'], fileName: 'engine' }, rolldownOptions: { output: { codeSplitting: false } } },

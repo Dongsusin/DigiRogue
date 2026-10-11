@@ -5,7 +5,7 @@ import { applyMapEnvironment } from '../battle/mapEnvironment.js'
 // Optional story fights reuse the normal command, damage, scan and replacement rules.
 // Preview and creation share a deterministic roster; reopening a save cannot reroll it.
 export function getEventBattlePreview(state, battle) {
-  const levels = (state.enemies ?? []).map(unit => unit.level).filter(Number.isFinite)
+  const levels = (state.enemies ?? []).map(unit => unit.storyBaseLevel ?? unit.level).filter(Number.isFinite)
   const base = state.explorationEvent?.battle?.baseLevel ?? (levels.length ? Math.round(levels.reduce((sum, level) => sum + level, 0) / levels.length)
     : Math.max(1, Math.round((state.player?.level ?? 1) * .9))
   )

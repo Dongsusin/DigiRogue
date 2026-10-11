@@ -1,6 +1,7 @@
-import { getStatusDuration } from '../balance/combat.js'
 import { getItemStatusDamageMultiplier } from '../data/adventureItems.js'
 import { getPassiveStatusDamageMultiplier } from './passives.js'
+
+export const getStatusDuration = type => ['착란', '행동불능', '혼수상태'].includes(type) ? 1 : 3
 
 export const STATUS_EARLY_CURE_CHANCE = 30
 export const STATUS_CONDITIONS = Object.freeze({

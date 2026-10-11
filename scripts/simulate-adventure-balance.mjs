@@ -10,7 +10,9 @@ const args=process.argv.slice(2), positional=args.filter(arg=>!arg.startsWith('-
 const mode=args.includes('--hard')?'hard':'classic', maxProgression=args.includes('--max-progression')||mode==='hard';
 const roundLimit=Math.max(100,Math.min(5000,Math.floor(Number(args.find(arg=>arg.startsWith('--round-limit='))?.split('=')[1])||100)));
 const difficultyFile=args.find(arg=>arg.startsWith('--difficulty-file='))?.slice('--difficulty-file='.length);
-const e = await loadBattleEngine(difficultyFile?{difficultySource:await readFile(resolve(difficultyFile),'utf8')}:{});
+const baselineDir=args.find(arg=>arg.startsWith('--baseline-dir='))?.slice('--baseline-dir='.length);
+const sourceOverrides=baselineDir?Object.fromEntries(await Promise.all(['src/App.jsx','src/balance/combat.js','src/balance/catalog.js','src/progression/gameDifficulty.js'].map(async file=>[file,await readFile(resolve(baselineDir,file),'utf8')]))):{};
+const e = await loadBattleEngine(difficultyFile?{difficultySource:await readFile(resolve(difficultyFile),'utf8'),sourceOverrides}:{sourceOverrides});
 const seedStart=Math.max(0,Math.floor(Number(args.find(arg=>arg.startsWith('--seed-start='))?.split('=')[1])||0));
 const out=resolve(positional[0]??(tmpdir()+'/digilog-adventure-balance.json')), count=Math.max(1,Math.min(300,Math.floor(Number(positional[1])||96)));
 const trainerSkills=maxProgression?normalizeTrainerRanks(Object.fromEntries(TRAINER_SKILLS.map(node=>[node.id,node.maxRank]))):{};
@@ -60,7 +62,8 @@ for(let stage=1;stage<=200;stage++){
 }
 return{seed,names,cleared:200,outcome:'clear',turns,faints,gold,bossTurns,checkpoints,totalDrops,routes}}
 const core=['아구몬','파피몬','팔몬','파닥몬','텐타몬','쉬라몬','피요몬','플롯트몬'];
-const teams=maxProgression?[core,['워그레이몬',...core.slice(1)],['메탈가루몬',...core.filter(n=>n!=='파피몬')],
+const solo=args.includes('--solo');
+const teams=solo?(maxProgression?[['아구몬'],['파피몬'],['팔몬'],['워그레이몬'],['메탈가루몬'],['오메가몬']]:[['아구몬'],['파피몬'],['팔몬']]):maxProgression?[core,['워그레이몬',...core.slice(1)],['메탈가루몬',...core.filter(n=>n!=='파피몬')],
  ['릴리몬','그레이몬','파닥몬','쉬라몬','텐타몬','피요몬'],['엔젤몬','가루몬','아구몬','팔몬','텐타몬','쉬라몬','피요몬'],
  ['로제몬',...core.filter(n=>n!=='팔몬')],['마린엔젤몬','엔젤몬','아구몬'],['오메가몬','파닥몬']]:
  [['아구몬','파피몬','팔몬'],['파닥몬','텐타몬','쉬라몬'],['아구몬','피요몬','파닥몬'],['팔몬','피요몬','플롯트몬'],['파피몬','텐타몬','플롯트몬'],['아구몬','쉬라몬','피요몬']];
@@ -68,5 +71,5 @@ const teamCosts=teams.map(names=>names.reduce((sum,name)=>sum+getTrainerStarterC
 if(teamCosts.some(cost=>cost>getTrainerCostLimit(trainerSkills)))throw new Error('Starting cost exceeds the real budget');
 const results=[];
 for(let i=0;i<count;i++){results.push(run((i+seedStart)*7919+17,teams[(i+seedStart)%teams.length]));if((i+1)%12===0)console.log('Completed '+(i+1)+'/'+count+' runs')}
-const summary={mode,maxProgression,seedStart,roundLimit,difficultyFile:difficultyFile?resolve(difficultyFile):undefined,teamCosts,casualProfile:mode==='classic'&&!difficultyFile?CASUAL_MODE_BALANCE:undefined,hardProfile:mode==='hard'&&!difficultyFile?HARD_MODE_BALANCE:undefined,trainerNodes:Object.keys(trainerSkills).length,townSupport:town?{buildings:town.buildings,selectedSupport:town.selectedSupport}:null,runs:count,clears:results.filter(r=>r.cleared===200).length,defeats:results.filter(r=>r.outcome==='defeat').length,unresolved:results.filter(r=>r.outcome==='unresolved').length,medianStage:results.map(r=>r.cleared).sort((a,b)=>a-b)[Math.floor(count/2)],earliestLoss:Math.min(...results.map(r=>r.cleared)),results};
+const summary={mode,maxProgression,solo,seedStart,roundLimit,baselineDir:baselineDir?resolve(baselineDir):undefined,difficultyFile:difficultyFile?resolve(difficultyFile):undefined,teamCosts,casualProfile:mode==='classic'&&!difficultyFile&&!baselineDir?CASUAL_MODE_BALANCE:undefined,hardProfile:mode==='hard'&&!difficultyFile&&!baselineDir?HARD_MODE_BALANCE:undefined,trainerNodes:Object.keys(trainerSkills).length,townSupport:town?{buildings:town.buildings,selectedSupport:town.selectedSupport}:null,runs:count,clears:results.filter(r=>r.cleared===200).length,defeats:results.filter(r=>r.outcome==='defeat').length,unresolved:results.filter(r=>r.outcome==='unresolved').length,medianStage:results.map(r=>r.cleared).sort((a,b)=>a-b)[Math.floor(count/2)],earliestLoss:Math.min(...results.map(r=>r.cleared)),results};
 await writeFile(out,JSON.stringify(summary,null,2));console.log(JSON.stringify({...summary,results:undefined,report:out},null,2));
