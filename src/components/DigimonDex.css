@@ -15,8 +15,6 @@
 .dex-family:hover { color: #fff; border-color: #7cb4c7; background: #234b6088; }
 .dex-family--active, .dex-family--active:hover { border-color: #eac17c; background: linear-gradient(110deg, #85532d, #423826); box-shadow: inset 3px 0 #ffc773; color: #fff1d5; }
 .dex-family--active .dex-family__arrow { color: #ffd68b; opacity: 1; }
-.dex-family--other { margin-top: 6px; border-top-color: #63879b; }
-.dex-family__symbol { width: 38px; text-align: center; color: #a3cbd8; font-size: 31px; }
 .dex-chart { min-width: 0; min-height: 0; display: flex; flex-direction: column; border: 1px solid #456b82; border-radius: 5px; overflow: hidden; background: #091a27; }
 .dex-chart__toolbar { min-height: 55px; padding: 9px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-shrink: 0; background: #193142; border-bottom: 1px solid #50758a66; }
 .dex-chart h2 { margin: 0; color: #e8f0e9; font-size: 15px; font-weight: 500; }
@@ -32,7 +30,7 @@
 .dex-viewport::-webkit-scrollbar-track, .dex-viewport::-webkit-scrollbar-corner { background: #102433; }
 .dex-viewport::-webkit-scrollbar-thumb { background: #6a9daf; border: 3px solid #102433; border-radius: 8px; }
 .dex-viewport::-webkit-scrollbar-thumb:hover { background: #acdce6; }
-.dex-canvas-space { position: relative; min-width: 100%; min-height: 100%; }
+.dex-canvas-space { position: relative; min-height: 100%; margin-inline: auto; }
 .dex-canvas { position: absolute; left: 0; top: 0; transform-origin: left top; }
 .dex-connections { position: absolute; inset: 0; overflow: visible; pointer-events: none; }
 .dex-connection { fill: none; stroke: #789baa; stroke-width: 2; stroke-linecap: square; stroke-linejoin: round; opacity: 0.7; }
@@ -41,6 +39,7 @@
 .dex-connection--dim { opacity: 0.12; }
 .dex-node { position: absolute; display: grid; place-items: center; padding: 4px; border: 1px solid transparent; border-radius: 10px; background: #0a1b29; color: #9ab3c1; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .dex-node img { width: 100%; height: 100%; min-width: 0; min-height: 0; object-fit: contain; image-rendering: auto; filter: drop-shadow(0 4px 3px #0006); pointer-events: none; }
+.dex-node:not(.dex-node--egg) img { object-fit: cover; }
 .dex-node--egg { padding: 13px; border-color: #ba925966; border-radius: 50%; background: radial-gradient(ellipse, #bf96552b, #0a1b29 72%); }
 .dex-node:hover, .dex-node--active { border-color: #f5c77f; background-color: #1c3543; box-shadow: 0 0 15px #ffcc6f18; }
 .dex-node--unknown { background-color: #0a1b29; }
@@ -62,3 +61,8 @@
 @media (prefers-reduced-motion: reduce) {
   .dex-screen *, .dex-screen *::before, .dex-screen *::after { scroll-behavior: auto; }
 }
+
+.dex-node__branch { position: absolute; bottom: -8px; left: calc(50% - 10px); width: 20px; height: 20px; display: grid; place-items: center; border: 1px solid #6d9baf; border-radius: 50%; background: #17394c; color: #d7f6ff; font: 16px/1 sans-serif; box-shadow: 0 2px 5px #0006; }
+.dex-node[aria-expanded="false"] .dex-node__branch { border-color: #e6bc77; color: #ffe1a9; }
+.dex-node--reference .dex-node__branch { border-radius: 5px; border-color: #7196ae; color: #bedcf5; }
+.dex-node:hover .dex-node__branch, .dex-node:focus-visible .dex-node__branch { border-color: #ffdc98; background: #38536a; color: #fff0c7; }

@@ -1,5 +1,5 @@
 import { getEvolutionTreeBranches } from '../data/evolutionRules.js'
-import { getDigimonThumbnailUrl } from '../data/digimonModels.js'
+import { getDigimonPreviewUrl } from '../data/digimonModels.js'
 import { isPlayableDigimon } from '../data/speciesAvailability.js'
 import { getCollectionStatus } from '../progression/digimonCollection.js'
 
@@ -43,21 +43,6 @@ export function buildEggEvolutionGraph(egg, lookup) {
     { id: 'egg:' + egg.이름, kind: 'egg', name: egg.이름 })
 }
 
-// Some encounter-only families do not descend from any current hatch pool.
-// Keep them in a separate forest, with their real onward routes and no invented
-// egg links, so the encyclopedia still covers the entire playable catalog.
-export function buildUnlinkedEvolutionGraph(eggs, lookup) {
-  const covered = new Set(eggs.flatMap(egg => buildEggEvolutionGraph(egg, lookup).nodes)
-    .filter(node => node.kind === 'digimon').map(node => node.id))
-  const remaining = [...lookup.keys()].filter(name => !covered.has(name) && isPlayableDigimon(lookup.get(name)))
-  const hasParent = new Set(remaining.flatMap(name => getEvolutionTreeBranches(name, lookup).map(branch => branch.name)))
-  const roots = remaining.filter(name => !hasParent.has(name))
-  const forest = buildEvolutionGraph(roots, lookup)
-  const included = new Set(forest.nodes.map(node => node.id))
-  // A future completely cyclic family may have no parentless entry.
-  return buildEvolutionGraph([...roots, ...remaining.filter(name => !included.has(name))], lookup)
-}
-
 export function getDexNodeDisplay(node, collection) {
   if (node.kind === 'egg') return {
     known: true, label: node.name + '의 디지에그', imageUrl: '/아이템/디지에그/' + node.name + '.png',
@@ -65,7 +50,7 @@ export function getDexNodeDisplay(node, collection) {
   if (getCollectionStatus(collection, node.name) === 'unknown') {
     return { known: false, label: '미발견 디지몬', imageUrl: '' }
   }
-  return { known: true, label: node.name, imageUrl: getDigimonThumbnailUrl(node.imageName) }
+  return { known: true, label: node.name, imageUrl: getDigimonPreviewUrl(node.imageName) }
 }
 
 export function getDexRelatedEdges(graph, nodeId) {
@@ -86,101 +71,84 @@ export function getDexRelatedEdges(graph, nodeId) {
     (descendants.has(edge.from) && descendants.has(edge.to))).map(edge => edge.id))
 }
 
-// A spanning tree groups each branch. Extra incoming
-// connections (e.g. two Jogress materials) remain real edges rather than copied
-// Digimon. Longest-path columns keep same-generation form changes readable.
-export function layoutDigimonDex(graph) {
+// Each portrait has one visible parent. A shared evolution gets a leaf reference
+// in the other branch instead of a long crossing connector. The gameplay graph
+// is untouched, and every real route still owns exactly one displayed edge.
+export function layoutDigimonDex(graph, { expandedIds = null } = {}) {
   if (!graph.nodes.length) return { nodes: [], edges: [], width: 164, height: 164 }
-  const size = 92, columnPitch = 174, rowPitch = 128, padding = 36
-  const adjacency = new Map(graph.nodes.map(node => [node.id, []]))
-  const incoming = new Map(graph.nodes.map(node => [node.id, 0]))
+  const size = 92, gap = 36, rowPitch = 174, padding = 36
+  const source = new Map(graph.nodes.map(node => [node.id, node]))
+  const outgoing = new Map(graph.nodes.map(node => [node.id, []])), incoming = new Set()
   for (const edge of graph.edges) {
-    adjacency.get(edge.from)?.push(edge.to)
-    incoming.set(edge.to, (incoming.get(edge.to) ?? 0) + 1)
+    if (!source.has(edge.from) || !source.has(edge.to)) continue
+    outgoing.get(edge.from).push(edge); incoming.add(edge.to)
   }
-  const rank = new Map([[graph.rootId, 0]])
-  const queue = graph.nodes.filter(node => !incoming.get(node.id)).map(node => node.id)
-  for (let i = 0; i < queue.length; i++) {
-    const from = queue[i]
-    for (const to of adjacency.get(from) ?? []) {
-      rank.set(to, Math.max(rank.get(to) ?? 0, (rank.get(from) ?? 0) + 1))
-      incoming.set(to, incoming.get(to) - 1)
-      if (incoming.get(to) === 0) queue.push(to)
+  const occurrences = new Map(), children = new Map(), treeEdges = [], roots = [], queue = []
+  const place = (id, parentId = null, depth = 0) => {
+    occurrences.set(id, { ...source.get(id), sourceId: id, parentId, depth })
+    children.set(id, []); queue.push(id)
+  }
+  const addRoot = id => {
+    if (!source.has(id) || occurrences.has(id)) return
+    roots.push(id); place(id)
+  }
+  addRoot(graph.rootId)
+  for (const node of graph.nodes) if (!incoming.has(node.id)) addRoot(node.id)
+  let cursor = 0
+  const drain = () => {
+    for (; cursor < queue.length; cursor++) {
+      const id = queue[cursor], parent = occurrences.get(id)
+      for (const edge of outgoing.get(id)) {
+        let childId = edge.to, reference = occurrences.has(childId)
+        if (reference) {
+          childId = 'reference:' + edge.id
+          occurrences.set(childId, { ...source.get(edge.to), id: childId, sourceId: edge.to,
+            parentId: id, depth: parent.depth + 1, referenceTo: edge.to })
+          children.set(childId, [])
+        } else place(childId, id, parent.depth + 1)
+        children.get(id).push(childId)
+        treeEdges.push({ ...edge, to: childId, primary: !reference })
+      }
     }
   }
-  // Cyclic data must never hang or hide a node. Actual game routes are a DAG;
-  // this fallback puts future cyclic forms after their first discovered parent.
-  const tree = new Map(), placed = new Set(), primary = new Set()
-  const span = (id, depth = 0) => {
-    placed.add(id)
-    if (!rank.has(id) || incoming.get(id) > 0) rank.set(id, depth)
-    const children = []
-    for (const next of adjacency.get(id) ?? []) {
-      if (placed.has(next)) continue
-      children.push(next)
-      primary.add(JSON.stringify([id, next]))
-      span(next, (rank.get(id) ?? depth) + 1)
-    }
-    tree.set(id, children)
+  drain()
+  // A malformed cyclic forest still terminates and remains inspectable.
+  for (const node of graph.nodes) if (!occurrences.has(node.id)) { addRoot(node.id); drain() }
+
+  const widths = new Map(), visible = new Set()
+  const measure = id => {
+    visible.add(id)
+    const branch = children.get(id), expanded = expandedIds === null || expandedIds.has(id)
+    const widthsBelow = expanded ? branch.map(measure) : []
+    const width = Math.max(size, widthsBelow.reduce((total, width) => total + width, 0) + Math.max(0, widthsBelow.length - 1) * gap)
+    widths.set(id, width); return width
   }
-  span(graph.rootId)
-  for (const node of graph.nodes) if (!placed.has(node.id)) span(node.id)
-  // Pack each column independently. Reserving whole subtrees would leave the
-  // opening generations almost empty whenever a late form has many branches.
-  const rows = new Map(), parent = new Map(), preorder = new Map()
-  let order = 0
-  const indexTree = id => {
-    preorder.set(id, order++)
-    for (const child of tree.get(id) ?? []) { parent.set(child, id); indexTree(child) }
+  for (const root of roots) measure(root)
+  const nodes = []
+  const position = (id, left, top) => {
+    const node = occurrences.get(id), branch = children.get(id).filter(child => visible.has(child))
+    let nextLeft = left, bottom = top + node.depth * rowPitch + size
+    for (const child of branch) { bottom = Math.max(bottom, position(child, nextLeft, top)); nextLeft += widths.get(child) + gap }
+    const first = branch.length ? occurrences.get(branch[0]).x : left + widths.get(id) / 2 - size / 2
+    // Keep the first hatch-to-evolution chain under the egg. Centering a parent
+    // over hundreds of open descendants would put every child outside the
+    // opening viewport and leave only a long, apparently empty connector.
+    Object.assign(node, { size, x: first, y: top + node.depth * rowPitch,
+      childCount: children.get(id).length, expanded: branch.length > 0 })
+    nodes.push(node)
+    return bottom
   }
-  indexTree(graph.rootId)
-  for (const node of graph.nodes) if (!preorder.has(node.id)) indexTree(node.id)
-  const columns = new Map()
-  for (const node of graph.nodes) {
-    const column = rank.get(node.id) ?? 0
-    if (!columns.has(column)) columns.set(column, [])
-    columns.get(column).push(node.id)
-  }
-  for (const column of [...columns.keys()].sort((a, b) => a - b)) {
-    const members = columns.get(column)
-    const preferred = id => rows.get(parent.get(id)) ?? 0
-    members.sort((a, b) => preferred(a) - preferred(b) || preorder.get(a) - preorder.get(b))
-    let previousRow = -1
-    for (const id of members) {
-      const row = Math.max(preferred(id), previousRow + 1)
-      rows.set(id, row); previousRow = row
-    }
-  }
-  const nodes = graph.nodes.map(node => ({ ...node, size,
-    x: padding + (rank.get(node.id) ?? 0) * columnPitch,
-    y: padding + rows.get(node.id) * rowPitch,
-  }))
-  const positions = new Map(nodes.map(node => [node.id, node]))
-  const width = Math.max(...nodes.map(node => node.x + size), size) + padding
-  let height = Math.max(...nodes.map(node => node.y + size), size) + padding
-  let returnLane = 0
-  const edges = graph.edges.map(edge => {
-    const from = positions.get(edge.from), to = positions.get(edge.to)
-    const startX = from.x + size, startY = from.y + size / 2
-    const endX = to.x, endY = to.y + size / 2
-    const branchX = startX + 18 + (rows.get(from.id) % 5) * 8
-    let points
-    if (endX <= startX) {
-      const laneY = height + 20 + returnLane++ * 10
-      points = [[startX, startY], [branchX, startY], [branchX, laneY], [endX - 20, laneY], [endX - 20, endY], [endX, endY]]
-    } else {
-      // Route a merge through the gaps between rows and columns if its direct
-      // horizontal leg would cross another portrait.
-      const blocked = nodes.some(node => node.id !== from.id && node.id !== to.id &&
-        endY > node.y - 6 && endY < node.y + size + 6 && node.x < endX && node.x + size > branchX)
-      points = blocked
-        ? [[startX, startY], [branchX, startY], [branchX, from.y + size + 18], [endX - 24, from.y + size + 18], [endX - 24, endY], [endX, endY]]
-        : [[startX, startY], [branchX, startY], [branchX, endY], [endX, endY]]
-    }
-    return { ...edge, primary: primary.has(edge.id), points,
-      path: points.map(([x, y], i) => (i ? 'L' : 'M') + x + ',' + y).join(' '),
-    }
+  const width = Math.max(...roots.map(root => widths.get(root))) + padding * 2
+  let top = padding
+  for (const root of roots) top = position(root, (width - widths.get(root)) / 2, top) + 84
+  nodes.sort((a, b) => a.depth - b.depth || a.x - b.x)
+  const edges = treeEdges.filter(edge => visible.has(edge.from) && visible.has(edge.to)).map(edge => {
+    const from = occurrences.get(edge.from), to = occurrences.get(edge.to)
+    const startX = from.x + size / 2, startY = from.y + size
+    const endX = to.x + size / 2, endY = to.y, branchY = (startY + endY) / 2
+    const points = [[startX, startY], [startX, branchY], [endX, branchY], [endX, endY]]
+    return { ...edge, points, path: points.map(([x, y], i) => (i ? 'L' : 'M') + x + ',' + y).join(' ') }
   })
-  height += returnLane ? 30 + returnLane * 10 : 0
+  const height = Math.max(...nodes.map(node => node.y + size)) + padding
   return { nodes, edges, width, height }
 }

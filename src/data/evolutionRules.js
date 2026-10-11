@@ -6,6 +6,7 @@ import expansion3 from './rosterExpansion3.json' with { type: 'json' }
 import expansion4 from './rosterExpansion4.json' with { type: 'json' }
 import expansion5 from './rosterExpansion5.json' with { type: 'json' }
 import expansion6 from './rosterExpansion6.json' with { type: 'json' }
+import treeConnections from './evolutionTreeConnections.json' with { type: 'json' }
 import { isPlayableDigimon } from './speciesAvailability.js'
 import { getDigimonTrainingStage } from './digimonStages.js'
 export const EVOLUTION_LEVELS = { 유아기: 1, 유년기: 2, 성장기: 4, 성숙기: 10, 완전체: 25, 궁극체: 45, 초궁극체: 65, 아머체: 10, 하이브리드체: 10 }
@@ -13,6 +14,7 @@ export const EVOLUTION_LEVELS = { 유아기: 1, 유년기: 2, 성장기: 4, 성�
 const levelOverrides = {
   ...expansion5.levels,
   ...expansion6.levels,
+  ...treeConnections.levels,
   엔젤몬: 12, 데블몬: 12, 가트몬: 12, 블랙가트몬: 12,
   도루가몬: 12, 긴류우몬: 12, 바오헉몬: 12,
   스컬그레이몬: 28, 홀리엔젤몬: 28, 엔젤우몬: 28, 레이디데블몬: 28,
@@ -26,6 +28,7 @@ export const JOGRESS_RECIPES = [
   ...expansion.jogress,
   ...expansion3.jogress,
   ...expansion6.jogress,
+  ...treeConnections.jogress,
   { targetName: '파일드라몬', materials: ['엑스브이몬', '스팅몬'], level: 25 },
   { targetName: '실피드몬', materials: ['아큐라몬', '가트몬'], level: 25 },
   { targetName: '마스테몬', materials: ['엔젤우몬', '레이디데블몬'], level: 50 },
@@ -62,6 +65,7 @@ const modeChanges = {
   ...expansion4.modes,
   ...expansion5.modes,
   ...expansion6.modes,
+  ...treeConnections.modes,
 }
 
 // Explicit branches only. No shared-element/type generator: it would create unrelated families.
@@ -118,7 +122,7 @@ export function getEvolutionTargets(raw) {
     ...JOGRESS_RECIPES.filter(recipe => recipe.materials.includes(name)).map(recipe => recipe.targetName),
     ...Object.entries({ ...ITEM_EVOLUTION_REQUIREMENTS, ...modeChanges }).filter(([, rule]) => rule.from.includes(name)).map(([target]) => target),
   ]
-  return [...new Set([...(EVOLUTION_BRANCH_OVERRIDES[name] ?? raw.진화가능 ?? []), ...(expansion.branches[name] ?? []), ...(expansion2.branches[name] ?? []), ...(expansion3.branches[name] ?? []), ...(expansion4.branches[name] ?? []), ...(expansion5.branches[name] ?? []), ...(expansion6.branches[name] ?? []), ...additional])]
+  return [...new Set([...(EVOLUTION_BRANCH_OVERRIDES[name] ?? raw.진화가능 ?? []), ...(expansion.branches[name] ?? []), ...(expansion2.branches[name] ?? []), ...(expansion3.branches[name] ?? []), ...(expansion4.branches[name] ?? []), ...(expansion5.branches[name] ?? []), ...(expansion6.branches[name] ?? []), ...(treeConnections.branches[name] ?? []), ...additional])]
     .filter(target => target !== name && getEvolutionRoute(name, target))
 }
 

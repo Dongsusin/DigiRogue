@@ -1,30 +1,36 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { buildEggEvolutionGraph, buildUnlinkedEvolutionGraph, getDexNodeDisplay,
+import { buildEggEvolutionGraph, getDexNodeDisplay,
   getDexRelatedEdges, layoutDigimonDex } from '../layout/digimonDexLayout.js'
 import './DigimonDex.css'
 
-const OTHER_FAMILY = 'other-families'
 const DEFAULT_ZOOM = 0.8
+const chartOffset = (layout, zoom, viewport) => Math.max(0, (viewport.clientWidth - layout.width * zoom) / 2)
 const clampZoom = value => Math.max(0.5, Math.min(1.5, Math.round(value * 10) / 10))
 
 export default function DigimonDex({ eggs, lookup, collection, onBack }) {
-  const [familyId, setFamilyId] = useState(eggs[0]?.이름 ?? OTHER_FAMILY)
+  const [familyId, setFamilyId] = useState(eggs[0]?.이름 ?? '')
   const [zoom, setZoom] = useState(DEFAULT_ZOOM)
   const [hoveredId, setHoveredId] = useState(null)
   const [focusedId, setFocusedId] = useState(null)
   const [dragging, setDragging] = useState(false)
+  const [expandedIds, setExpandedIds] = useState(null)
   const viewportRef = useRef(null), backRef = useRef(null), dragRef = useRef(null)
-  const nodeRefs = useRef(new Map()), zoomScrollRef = useRef(null)
-  const otherGraph = useMemo(() => buildUnlinkedEvolutionGraph(eggs, lookup), [eggs, lookup])
+  const nodeRefs = useRef(new Map()), zoomScrollRef = useRef(null), branchScrollRef = useRef(null)
   const egg = eggs.find(item => item.이름 === familyId)
-  const graph = useMemo(() => egg ? buildEggEvolutionGraph(egg, lookup) : otherGraph, [egg, lookup, otherGraph])
-  const layout = useMemo(() => layoutDigimonDex(graph), [graph])
+  const graph = useMemo(() => egg ? buildEggEvolutionGraph(egg, lookup) : { nodes: [], edges: [] }, [egg, lookup])
+  const fullLayout = useMemo(() => layoutDigimonDex(graph), [graph])
+  const fullNodes = useMemo(() => new Map(fullLayout.nodes.map(node => [node.id, node])), [fullLayout])
+  const initialExpandedIds = useMemo(() => new Set(fullLayout.nodes
+    .filter(node => !node.referenceTo).map(node => node.id)), [fullLayout])
+  const expanded = expandedIds ?? initialExpandedIds
+  const layout = useMemo(() => layoutDigimonDex(graph, { expandedIds: expanded }), [graph, expanded])
   const portraits = useMemo(() => layout.nodes.map(node => ({ ...node, display: getDexNodeDisplay(node, collection) })), [layout, collection])
   const activeId = hoveredId ?? focusedId
-  const relatedEdges = useMemo(() => getDexRelatedEdges(graph, activeId), [graph, activeId])
-  const relatedNodes = useMemo(() => relatedEdges ? new Set([activeId, ...graph.edges
-    .filter(edge => relatedEdges.has(edge.id)).flatMap(edge => [edge.from, edge.to])]) : null, [graph, relatedEdges, activeId])
-  const title = egg ? egg.이름 + '의 디지에그' : '기타 계통'
+  const activeSourceId = fullNodes.get(activeId)?.sourceId
+  const relatedEdges = useMemo(() => getDexRelatedEdges(graph, activeSourceId), [graph, activeSourceId])
+  const relatedNodes = useMemo(() => relatedEdges ? new Set([activeSourceId, ...graph.edges
+    .filter(edge => relatedEdges.has(edge.id)).flatMap(edge => [edge.from, edge.to])]) : null, [graph, relatedEdges, activeSourceId])
+  const title = egg ? egg.이름 + '의 디지에그' : '디지에그'
 
   useEffect(() => {
     backRef.current?.focus({ preventScroll: true })
@@ -40,27 +46,42 @@ export default function DigimonDex({ eggs, lookup, collection, onBack }) {
   }, [onBack])
   useLayoutEffect(() => {
     if (!viewportRef.current) return
-    viewportRef.current.scrollLeft = 0
+    const root = layout.nodes.find(node => node.id === graph.rootId) ?? layout.nodes[0]
+    viewportRef.current.scrollLeft = root ? chartOffset(layout, DEFAULT_ZOOM, viewportRef.current) + (root.x + root.size / 2) * DEFAULT_ZOOM - viewportRef.current.clientWidth / 2 : 0
     viewportRef.current.scrollTop = 0
   }, [familyId])
   useLayoutEffect(() => {
     const pending = zoomScrollRef.current, viewport = viewportRef.current
     if (!pending || !viewport) return
-    viewport.scrollLeft = pending.x * zoom - viewport.clientWidth / 2
+    viewport.scrollLeft = chartOffset(layout, zoom, viewport) + pending.x * zoom - viewport.clientWidth / 2
     viewport.scrollTop = pending.y * zoom - viewport.clientHeight / 2
     zoomScrollRef.current = null
   }, [zoom])
 
+  useLayoutEffect(() => {
+    const pending = branchScrollRef.current, viewport = viewportRef.current
+    if (!pending || !viewport) return
+    const node = layout.nodes.find(node => node.id === pending.id)
+    if (node) {
+      viewport.scrollLeft = chartOffset(layout, zoom, viewport) + (node.x + node.size / 2) * zoom - (pending.center ? viewport.clientWidth / 2 : pending.x)
+      viewport.scrollTop = pending.top ? 0 : (node.y + node.size / 2) * zoom - (pending.center ? viewport.clientHeight / 2 : pending.y)
+      if (pending.center) nodeRefs.current.get(node.id)?.focus({ preventScroll: true })
+    }
+    branchScrollRef.current = null
+  }, [layout, zoom])
+
   const selectFamily = id => {
+    if (id === familyId) { resetView(); return }
     viewportRef.current?.scrollTo({ left: 0, top: 0 })
-    setFamilyId(id); setZoom(DEFAULT_ZOOM); setHoveredId(null); setFocusedId(null)
+    setFamilyId(id); setZoom(DEFAULT_ZOOM); setHoveredId(null); setFocusedId(null); setExpandedIds(null)
+    branchScrollRef.current = null
     zoomScrollRef.current = null
   }
   const changeZoom = value => {
     const next = clampZoom(value), viewport = viewportRef.current
     if (next === zoom || !viewport) return
     zoomScrollRef.current = {
-      x: (viewport.scrollLeft + viewport.clientWidth / 2) / zoom,
+      x: (viewport.scrollLeft + viewport.clientWidth / 2 - chartOffset(layout, zoom, viewport)) / zoom,
       y: (viewport.scrollTop + viewport.clientHeight / 2) / zoom,
     }
     setZoom(next)
@@ -68,7 +89,18 @@ export default function DigimonDex({ eggs, lookup, collection, onBack }) {
   const resetView = () => {
     zoomScrollRef.current = null
     setZoom(DEFAULT_ZOOM)
-    viewportRef.current?.scrollTo({ left: 0, top: 0 })
+    branchScrollRef.current = null
+    setExpandedIds(null); setHoveredId(null); setFocusedId(null)
+    const root = fullNodes.get(graph.rootId) ?? fullLayout.nodes[0]
+    // The default tree has its own width; recenter after restoring collapsed branches.
+    branchScrollRef.current = root ? { id: root.id, center: true, top: true } : null
+    if (expandedIds === null && zoom === DEFAULT_ZOOM) {
+      const visibleRoot = layout.nodes.find(node => node.id === root?.id)
+      if (visibleRoot && viewportRef.current) viewportRef.current.scrollTo({
+        left: chartOffset(layout, DEFAULT_ZOOM, viewportRef.current) + (visibleRoot.x + visibleRoot.size / 2) * DEFAULT_ZOOM - viewportRef.current.clientWidth / 2,
+        top: 0 })
+      branchScrollRef.current = null
+    }
   }
   const moveFocus = (event, node) => {
     if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return
@@ -83,6 +115,23 @@ export default function DigimonDex({ eggs, lookup, collection, onBack }) {
     const target = nodeRefs.current.get(candidates[0]?.id)
     target?.focus({ preventScroll: true })
     target?.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+  }
+  const toggleBranch = node => {
+    const viewport = viewportRef.current
+    if (!viewport || (!node.childCount && !node.referenceTo)) return
+    const next = new Set(expanded)
+    if (node.referenceTo) {
+      let target = fullNodes.get(node.referenceTo)
+      while (target) { next.add(target.id); target = fullNodes.get(target.parentId) }
+      branchScrollRef.current = { id: node.referenceTo, center: true }
+    } else {
+      branchScrollRef.current = { id: node.id,
+        x: chartOffset(layout, zoom, viewport) + (node.x + node.size / 2) * zoom - viewport.scrollLeft,
+        y: (node.y + node.size / 2) * zoom - viewport.scrollTop }
+      if (next.has(node.id)) next.delete(node.id)
+      else next.add(node.id)
+    }
+    setHoveredId(null); setExpandedIds(next)
   }
   const startDrag = event => {
     if (event.pointerType !== 'mouse' || event.button !== 0 || event.target.closest('.dex-node')) return
@@ -112,12 +161,6 @@ export default function DigimonDex({ eggs, lookup, collection, onBack }) {
               <span>{item.이름}</span><span className="dex-family__arrow" aria-hidden="true">›</span>
             </button>
           ))}
-          {otherGraph.nodes.length > 0 && (
-            <button type="button" className={'dex-family dex-family--other' + (familyId === OTHER_FAMILY ? ' dex-family--active' : '')}
-              aria-pressed={familyId === OTHER_FAMILY} onClick={() => selectFamily(OTHER_FAMILY)}>
-              <span className="dex-family__symbol" aria-hidden="true">◇</span><span>기타 계통</span><span className="dex-family__arrow" aria-hidden="true">›</span>
-            </button>
-          )}
         </nav>
         <div className="dex-chart">
           <header className="dex-chart__toolbar">
@@ -150,19 +193,26 @@ export default function DigimonDex({ eggs, lookup, collection, onBack }) {
                 {portraits.map(node => (
                   <button type="button" key={node.id} className={[
                     'dex-node', node.kind === 'egg' ? 'dex-node--egg' : '',
+                    node.referenceTo ? 'dex-node--reference' : '',
                     !node.display.known ? 'dex-node--unknown' : '',
                     activeId === node.id ? 'dex-node--active' : '',
-                    relatedNodes && !relatedNodes.has(node.id) ? 'dex-node--dim' : '',
+                    relatedNodes && !relatedNodes.has(node.sourceId) ? 'dex-node--dim' : '',
                   ].filter(Boolean).join(' ')}
                     style={{ left: node.x, top: node.y, width: node.size, height: node.size }}
                     ref={element => { if (element) nodeRefs.current.set(node.id, element); else nodeRefs.current.delete(node.id) }}
                     tabIndex={node.id === (focusedId ?? graph.rootId) ? 0 : -1}
                     aria-label={node.display.label} title={node.display.known ? node.display.label : undefined}
+                    aria-expanded={node.childCount ? node.expanded : undefined}
+                    aria-description={node.referenceTo ? '연결된 진화 가지로 이동합니다.' : node.childCount ? '다음 진화 가지를 펼치거나 접습니다.' : undefined}
+                    onClick={() => toggleBranch(node)}
                     onMouseEnter={() => setHoveredId(node.id)} onMouseLeave={() => setHoveredId(null)}
                     onFocus={() => setFocusedId(node.id)} onBlur={() => setFocusedId(null)} onKeyDown={event => moveFocus(event, node)}>
                     {node.display.known
                       ? <img src={node.display.imageUrl} alt={node.display.label} loading="lazy" decoding="async" width="92" height="92" draggable="false" />
                       : <span className="dex-node__question" aria-hidden="true">?</span>}
+                    {(node.childCount > 0 || node.referenceTo) && <span className="dex-node__branch" aria-hidden="true">
+                      {node.referenceTo ? '↗' : node.expanded ? '−' : '+'}
+                    </span>}
                   </button>
                 ))}
               </div>
