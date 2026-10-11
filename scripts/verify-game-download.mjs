@@ -167,10 +167,10 @@ test('literal percent and Korean item filenames are encoded safely and reused',a
   assert.equal(await (await cache.match(origin+item.url)).text(),'chip')
 })
 
-test('plus-sign item filenames keep the actual public URL and cache encoded equivalents',async()=>{
-  const item=asset('/items/exp+.png','xp'),cache=new MemoryCache(),calls=[]
+test('plus-sign item filenames download the CDN-safe encoded URL and cache both request forms',async()=>{
+  const item={...asset('/items/exp+.png','xp'),url:'/items/exp%2B.png?v='+hash('xp')},cache=new MemoryCache(),calls=[]
   await run([item],{cache,fetcher:async url=>{calls.push(url);return response('xp')}})
-  assert.equal(calls[0],origin+'/items/exp+.png?v='+hash('xp'))
+  assert.equal(calls[0],origin+'/items/exp%2B.png?v='+hash('xp'))
   await cache.put(origin+'/game-assets.json',Response.json(manifest([item])))
   const worker=await workerHarness(cache)
   assert.equal(await (await worker.request(origin+'/items/exp+.png')).text(),'xp')
@@ -197,4 +197,10 @@ test('an entry from an older deployment reloads instead of mounting incompatible
   environment.location.reload=()=>{reloaded++}
   await assert.rejects(subject.prepareGameDownload({environment}),/업데이트|새로고침/)
   assert.equal(reloaded,1);assert.equal(files,0);assert.equal(cache.entries.size,0)
+})
+
+test('production manifest percent-encodes plus filenames for the hosting CDN',async()=>{
+  const dir=await fs.mkdtemp(path.join(os.tmpdir(),'digirogue-plus-'))
+  try {await fs.writeFile(path.join(dir,'boost+.png'),'xp');const result=await generator.createGameAssetManifest(dir);assert.equal(result.assets[0].url,'/boost%2B.png?v='+hash('xp'))}
+  finally {await fs.rm(dir,{recursive:true,force:true})}
 })

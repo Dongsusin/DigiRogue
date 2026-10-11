@@ -10,7 +10,7 @@ async function installedAssets(cache) {
   const promise = saved.json().then(manifest => {
     const urls = new Map(manifest.assets.map(asset => {
       const url = new URL(asset.url, self.location.origin)
-      return [url.pathname.replace(/%2B/gi, '+'), url.href]
+      return [url.pathname.replaceAll('+', '%2B').replace(/%2b/gi, '%2B'), url.href]
     }))
     installed = { version: manifest.version, urls }
     return urls
@@ -26,7 +26,7 @@ self.addEventListener('fetch', event => {
     url.pathname === '/game-assets.json' || !(/\.(?:glb(?:\.br)?|png|webp|jpe?g|gif|svg|ico|ogg|m4a|mp3|wav|mp4|webm|woff2?|ttf|json|js|css|html)$/i.test(url.pathname) || request.mode === 'navigate')) return
   event.respondWith((async () => {
     const cache = await caches.open(GAME_CACHE)
-    const path = url.pathname.replace(/%2B/gi, '+')
+    const path = url.pathname.replaceAll('+', '%2B').replace(/%2b/gi, '%2B')
     // Navigation checks for new releases. Offline fallback uses one completely installed release.
     if (request.mode === 'navigate') {
       try { return await fetch(request) } catch {

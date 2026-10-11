@@ -1,7 +1,7 @@
 export const GAME_ASSET_CACHE = 'digirogue-game-assets-v1'
 export const GAME_MANIFEST_PATH = '/game-assets.json'
 export const REVISION_HEADER = 'X-Digirogue-Revision'
-const assetKey = (path, origin) => new URL(path.split('/').map(part => encodeURIComponent(part).replaceAll('%2B', '+')).join('/'), origin).href
+const assetKey = (path, origin) => new URL(path.split('/').map(encodeURIComponent).join('/'), origin).href
 const cacheKey = (asset, origin) => assetKey(asset.path, origin) + '?v=' + asset.revision
 
 export function validateGameManifest(manifest, origin) {
