@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import { createHash } from 'node:crypto'
 import { createHostingConfig } from './lib/hosting-config.mjs'
+import { bgmTracks } from '../src/audio/bgmCatalog.js'
 
 const root = new URL('../', import.meta.url)
 const config = JSON.parse(fs.readFileSync(new URL('vercel.json', root)))
@@ -58,13 +59,14 @@ test('model and music URLs carry a content revision while unrelated URLs stay un
   const versions = JSON.parse(fs.readFileSync(new URL('src/data/resourceVersions.json', root)))
   assert.equal(versionedResourceUrl('/models/digimon/guardromon.glb'), '/models/digimon/guardromon.glb.br?v=' + versions['/models/digimon/guardromon.glb'])
   assert.equal(versionedResourceUrl('/models/digimon/guardromon.glb', { compressedModels: false }), '/models/digimon/guardromon.glb?v=' + versions['/models/digimon/guardromon.glb'])
-  assert.equal(versionedResourceUrl('/BGM/Brave Heart.m4a?download=1#track'), '/BGM/Brave Heart.m4a?download=1&v=' + versions['/BGM/Brave Heart.m4a'] + '#track')
+  const theme = bgmTracks[0].url
+  assert.equal(versionedResourceUrl(theme + '?download=1#track'), theme + '?download=1&v=' + versions[theme] + '#track')
   for (const url of ['/api/account', '/unknown.glb', 'https://example.com/model.glb', 'blob:local', 'data:model']) assert.equal(versionedResourceUrl(url), url)
 })
 test('all model/music revisions match the actual files and no player data is versioned', () => {
   const versions = JSON.parse(fs.readFileSync(new URL('src/data/resourceVersions.json', root)))
-  const files = ['/models/digimon', '/BGM'].flatMap(dir => fs.readdirSync(new URL('public' + dir + '/', root))
-    .filter(name => /\.(glb|m4a)$/.test(name)).map(name => dir + '/' + name))
+  const files = ['/models/digimon', '/BGM'].flatMap(dir => fs.readdirSync(new URL('public' + dir + '/', root), { recursive: true })
+    .filter(name => /\.(glb|m4a|ogg)$/.test(name)).map(name => dir + '/' + name.replaceAll('\\', '/')))
   assert.deepEqual(Object.keys(versions).sort(), files.sort())
   for (const url of files) {
     const bytes = fs.readFileSync(new URL('public' + url, root))
@@ -75,9 +77,12 @@ test('the live model loader and every music start use the versioned URL helper',
   const loader = fs.readFileSync(new URL('src/three/sharedModelAssets.js', root), 'utf8')
   assert(/loadAsync\(versionedResourceUrl\(url\)\)/.test(loader))
   const app = fs.readFileSync(new URL('src/App.jsx', root), 'utf8')
-  const music = app.slice(app.indexOf('const BackgroundMusic ='), app.indexOf('\nconst ButtonClickSound'))
+  const music = fs.readFileSync(new URL('src/audio/BgmPlayer.js', root), 'utf8')
+  const wrapper = app.slice(app.indexOf('const BackgroundMusic ='), app.indexOf('\nconst ButtonClickSound'))
+  assert(wrapper.includes('new BgmPlayer('), 'The live music component must use the validated player')
   assert.equal((music.match(/audio.src = nextTrack.url/g) ?? []).length, 0)
-  assert.equal((music.match(/audio.src = versionedResourceUrl\(nextTrack.url\)/g) ?? []).length, 3)
+  assert(music.includes('this.versionUrl('), 'Every music URL must go through the injected revision helper')
+  assert(wrapper.includes('versionUrl: versionedResourceUrl'), 'The live player must inject the content revision helper')
 })
 test('Firebase legacy asset URLs redirect to Vercel without touching reserved authentication', () => {
   const plan = JSON.parse(fs.readFileSync(new URL('hosting-redirects.json', root)))

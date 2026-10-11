@@ -1,0 +1,173 @@
+{
+  "passed": true,
+  "completedAt": "2026-10-11T10:15:25.147Z",
+  "nodeVersion": "v24.14.0",
+  "trackCount": 10,
+  "sceneCounts": {
+    "title": 2,
+    "exploration": 2,
+    "battle": 2,
+    "boss": 2,
+    "rest": 2
+  },
+  "tracks": [
+    {
+      "title": "디지털 새벽",
+      "url": "/BGM/ai/digital-dawn.ogg",
+      "scene": "title",
+      "revision": "78fb71f650676a8a"
+    },
+    {
+      "title": "패킷 초원",
+      "url": "/BGM/ai/packet-meadow.ogg",
+      "scene": "exploration",
+      "revision": "1a1957e265a1c6c0"
+    },
+    {
+      "title": "서킷 브레이커",
+      "url": "/BGM/ai/circuit-breakers.ogg",
+      "scene": "battle",
+      "revision": "9ee85a3d01884811"
+    },
+    {
+      "title": "오버클럭",
+      "url": "/BGM/ai/overclock-apex.ogg",
+      "scene": "boss",
+      "revision": "c586ea3d9a1779e6"
+    },
+    {
+      "title": "돌아오는 신호",
+      "url": "/BGM/ai/homeward-signal.ogg",
+      "scene": "rest",
+      "revision": "94c3378863fbd593"
+    },
+    {
+      "title": "네온 지평선",
+      "url": "/BGM/ai/neon-horizon.ogg",
+      "scene": "title",
+      "revision": "6c536e43dd60ed43"
+    },
+    {
+      "title": "프리즘 숲길",
+      "url": "/BGM/ai/prism-canopy.ogg",
+      "scene": "exploration",
+      "revision": "9c53fdf6ff41f55a"
+    },
+    {
+      "title": "펄스 러너",
+      "url": "/BGM/ai/pulse-runners.ogg",
+      "scene": "battle",
+      "revision": "13474626fcebf11a"
+    },
+    {
+      "title": "싱귤래리티 코어",
+      "url": "/BGM/ai/singularity-core.ogg",
+      "scene": "boss",
+      "revision": "b8a7a47e4ed8e07c"
+    },
+    {
+      "title": "별빛 항구",
+      "url": "/BGM/ai/starlight-harbor.ogg",
+      "scene": "rest",
+      "revision": "c2ae75189509cd20"
+    }
+  ],
+  "sourceSha256": {
+    "src/audio/bgmCatalog.js": "fb21b462242fea8bc2e35e5972fe4a4a80dc522dd3de7799647a9dc5cb3fff0c",
+    "src/audio/bgmSettings.js": "1e8666d89b015260fc53562066ce5ec34843672f5c0eb239b8a40e519614cd49",
+    "src/audio/bgmScene.js": "52d35dfc0a8378cd35ca68d3c9ec5ed6051725332723e165125a70655084d962",
+    "src/audio/BgmPlayer.js": "ee69179912824f0ed6c76e24fc74ec2a74de8db75af3e4a494b083c56f468a6c",
+    "src/App.jsx": "62851f3b19a1cb9204025e80b1d045a24444a2c29efc70e90c303f842f77bf3d",
+    "scripts/verify-bgm.mjs": "9b33596fde7661c2cbf87c64b1cc1b029c265e71c7a4f1cc4773fd3baa152689",
+    "scripts/verify-bgm-player.mjs": "b6db259009bf4458628e214248a86a8feb57e4ffa7c29c5bd17b306bbf98020b",
+    "scripts/verify-network-budget.mjs": "9103d9aabc28f47995811cd623db71fea7e36334534b62c7b4b2f29ad3030364",
+    "scripts/verify-hosting-budget.mjs": "37873e908c3780335ece3346b3dda42321679a71e278fc7f755f8d644d9ebc25",
+    "scripts/verify-runtime.mjs": "eca02ec95f8422753560380fc0ec399ade1783aceaaec56893c92c0e57f225cb"
+  },
+  "checks": [
+    {
+      "name": "bgm-unit-and-player",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--test",
+        "scripts/verify-bgm.mjs",
+        "scripts/verify-bgm-player.mjs"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "logPath": "C:/Users/pdwea/Develop/digirouge/.cache/bgm-ai-10-bgm-unit-and-player.log",
+      "testCount": 27
+    },
+    {
+      "name": "music-network-budget",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/verify-network-budget.mjs"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "logPath": "C:/Users/pdwea/Develop/digirouge/.cache/bgm-ai-10-music-network-budget.log",
+      "testCount": 7
+    },
+    {
+      "name": "hosting-budget",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/verify-hosting-budget.mjs"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "logPath": "C:/Users/pdwea/Develop/digirouge/.cache/bgm-ai-10-hosting-budget.log",
+      "testCount": 11
+    },
+    {
+      "name": "source-runtime",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/verify-runtime.mjs"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "logPath": "C:/Users/pdwea/Develop/digirouge/.cache/bgm-ai-10-source-runtime.log",
+      "testCount": null,
+      "runtime": {
+        "ok": true,
+        "assets": "C:\\Users\\pdwea\\Develop\\digirouge\\public",
+        "models": 512,
+        "clips": 4273,
+        "modelBytes": 510085580,
+        "portraits": 1024,
+        "bgm": 10,
+        "maps": 34,
+        "battleCards": 20,
+        "battleSupplies": 7,
+        "adventureItems": 35
+      }
+    },
+    {
+      "name": "dist-runtime",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/verify-runtime.mjs",
+        "--dist"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "logPath": "C:/Users/pdwea/Develop/digirouge/.cache/bgm-ai-10-dist-runtime.log",
+      "runtime": {
+        "ok": true,
+        "assets": "C:\\Users\\pdwea\\Develop\\digirouge\\dist",
+        "models": 512,
+        "clips": 4273,
+        "modelBytes": 510085580,
+        "portraits": 1024,
+        "bgm": 10,
+        "maps": 34,
+        "battleCards": 20,
+        "battleSupplies": 7,
+        "adventureItems": 35
+      }
+    }
+  ],
+  "scope": "Actual settings, scene resolver and player code with deterministic browser/media boundaries; runtime checks cover both public assets and the built dist package. Codec playback and live browser/deployment checks are recorded separately."
+}

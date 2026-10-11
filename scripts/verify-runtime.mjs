@@ -8,6 +8,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { DIGIMON_MODELS, missingRequiredClips, hasAuthoredAttackMotion, getDigimonThumbnailUrl, getDigimonPreviewUrl } from '../src/data/digimonModels.js'
+import { bgmTracks } from '../src/audio/bgmCatalog.js'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const assets = path.join(root, process.argv.includes('--dist') ? 'dist' : 'public')
@@ -41,13 +42,10 @@ for (const egg of readJson(path.join(root, 'data/디지몬/디지에그.json')))
 const maps = readJson(path.join(root, 'data/map.json'))
 for (const [area, data] of Object.entries(maps)) for (const pool of Object.values(data.등장디지몬 || {})) for (const name of pool) assert(roster.has(name), area + ': unknown encounter ' + name)
 const app = fs.readFileSync(path.join(root, 'src/App.jsx'), 'utf8')
-const musicBlock = app.slice(app.indexOf('const bgmTracks = ['), app.indexOf('const BGM_VOLUME'))
-const musicUrls = [...musicBlock.matchAll(/url: ['"]([^'"\r\n]+\.m4a)['"]/g)].map(match => match[1])
-// One title contains an apostrophe; its double-quoted URL is matched separately.
-for (const match of musicBlock.matchAll(/url: "([^"\r\n]+\.m4a)"/g)) if (!musicUrls.includes(match[1])) musicUrls.push(match[1])
-assert.equal(musicUrls.length, 15, 'Music catalog incomplete')
+const musicUrls = bgmTracks.map(track => track.url)
+assert.equal(new Set(musicUrls).size, 10, 'AI music catalog incomplete or duplicated')
 for (const url of musicUrls) assert(fs.statSync(path.join(assets, url)).size > 0, 'Missing BGM: ' + url)
-assert(!fs.readdirSync(path.join(assets, 'BGM')).some(file => file.endsWith('.mp4')), 'Obsolete BGM video')
+assert(!fs.readdirSync(path.join(assets, 'BGM'), { recursive: true }).some(file => /\.(m4a|mp4)$/i.test(file)), 'Retired BGM audio/video must not ship')
 for (const folder of ['테이머', 'SFX', '도감', '이미지', '애니메이션']) assert(!fs.existsSync(path.join(assets, folder)), 'Unused asset folder: ' + folder)
 const cardIds = new Set()
 for (const item of BATTLE_CARDS) {

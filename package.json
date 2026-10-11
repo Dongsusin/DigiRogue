@@ -12,6 +12,7 @@
     "preview": "vite preview",
     "verify": "node scripts/verify-runtime.mjs",
     "test:items": "node --test scripts/verify-battle-items.mjs scripts/verify-adventure-items.mjs",
+    "test:bgm": "node --test scripts/verify-bgm.mjs scripts/verify-bgm-player.mjs",
     "test:escape": "node --test scripts/verify-escape.mjs",
     "test:regions": "node --test scripts/verify-regional-support.mjs",
     "test:quests": "node --test scripts/verify-quest-risk.mjs",

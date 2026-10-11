@@ -11,7 +11,7 @@ redirects are removed. Regenerate routing with
 node scripts/prepare-vercel-preview.mjs (no Firebase origin argument).
 The production team must support the source upload size (currently Pro).
 
-Before dev/build, generate-resource-versions.mjs hashes 512 GLB and 15 M4A files.
+Before dev/build, generate-resource-versions.mjs recursively hashes GLB models and the ten original AI-composed OGG tracks. Legacy Digimon recordings are removed from public assets and rebuilt output.
 Saved preferences retain their original paths. Download URLs add a content hash;
 production model URLs additionally select explicit .glb.br static files.
 Local development uses raw GLB. The postbuild compressor verifies lossless

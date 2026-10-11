@@ -13,3 +13,13 @@ docs/**
 .vercel
 .vercel/**
 *.log
+.cache
+.cache/**
+artifacts
+artifacts/**
+output
+output/**
+playwright-report
+playwright-report/**
+test-results
+test-results/**

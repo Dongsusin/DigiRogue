@@ -1,0 +1,239 @@
+{
+  "passed": true,
+  "completedAt": "2026-10-11T10:21:48.697Z",
+  "scope": "Ten original AI themes and production deployment",
+  "origin": "https://digirouge.co.kr",
+  "deployment": {
+    "id": "dpl_3QMZ9GJDYHmf5iefGEXRxxhCtAir",
+    "url": "digilog-web-preview-h399z4qtn-dongsusins-projects.vercel.app",
+    "readyState": "READY"
+  },
+  "trackCount": 10,
+  "totalDurationSeconds": 1183.17,
+  "totalAudioBytes": 12848364,
+  "sourceAndDistSha256": "10/10 match generation manifest",
+  "legacySourceAndDistAudioFiles": 0,
+  "originalFiveFilesPreserved": true,
+  "tests": "docs/validation/bgm-ai-10-tests-2026-10-11.json",
+  "liveAudio": {
+    "checkedAt": "2026-10-11T10:17:15.369Z",
+    "origin": "https://digirouge.co.kr",
+    "trackCount": 10,
+    "totalBytes": 12848364,
+    "manifestMatches": true,
+    "tracks": [
+      {
+        "id": "digital-dawn",
+        "url": "/BGM/ai/digital-dawn.ogg",
+        "bytes": 1526216,
+        "sha256": "78fb71f650676a8aefb6f8e96981d6f6ef3d92b24b2471ddfedc7c80eb9e6c75",
+        "status": 200
+      },
+      {
+        "id": "packet-meadow",
+        "url": "/BGM/ai/packet-meadow.ogg",
+        "bytes": 1329638,
+        "sha256": "1a1957e265a1c6c043f63a37f9c8add3bdb524f18168bc5cdd6b7ea8b114c0cb",
+        "status": 200
+      },
+      {
+        "id": "circuit-breakers",
+        "url": "/BGM/ai/circuit-breakers.ogg",
+        "bytes": 1162239,
+        "sha256": "9ee85a3d01884811635911e98a73262884c4d3f866436f03a76315bfbae79042",
+        "status": 200
+      },
+      {
+        "id": "overclock-apex",
+        "url": "/BGM/ai/overclock-apex.ogg",
+        "bytes": 1132493,
+        "sha256": "c586ea3d9a1779e6b9bac32e2e2c6d5199d1489930c685d0efde63c9f4112655",
+        "status": 200
+      },
+      {
+        "id": "homeward-signal",
+        "url": "/BGM/ai/homeward-signal.ogg",
+        "bytes": 1279401,
+        "sha256": "94c3378863fbd593b763334471915d11f2043d54a265a0f6cfe42014b25392b1",
+        "status": 200
+      },
+      {
+        "id": "neon-horizon",
+        "url": "/BGM/ai/neon-horizon.ogg",
+        "bytes": 1357507,
+        "sha256": "6c536e43dd60ed43a002c675f94bc03e8c507d4ba7cffaedb5fba85de4e397fb",
+        "status": 200
+      },
+      {
+        "id": "prism-canopy",
+        "url": "/BGM/ai/prism-canopy.ogg",
+        "bytes": 1522332,
+        "sha256": "9c53fdf6ff41f55ad4081223248faa8acb7e2f5815bb53efb3338e9906dcc5aa",
+        "status": 200
+      },
+      {
+        "id": "pulse-runners",
+        "url": "/BGM/ai/pulse-runners.ogg",
+        "bytes": 1244538,
+        "sha256": "13474626fcebf11aea40db3e2009a9988a381f6ea96f57ee19870b67f9c7139b",
+        "status": 200
+      },
+      {
+        "id": "singularity-core",
+        "url": "/BGM/ai/singularity-core.ogg",
+        "bytes": 1081945,
+        "sha256": "b8a7a47e4ed8e07c7644d5e8e20ab7dd3c401ffa1fc1239e8ffec478fa81c6e4",
+        "status": 200
+      },
+      {
+        "id": "starlight-harbor",
+        "url": "/BGM/ai/starlight-harbor.ogg",
+        "bytes": 1212055,
+        "sha256": "c2ae75189509cd20ef2c432017801fe09a2ccfa0bee5b67b1e39f2ee455e82fc",
+        "status": 200
+      }
+    ],
+    "legacy": [
+      {
+        "path": "/BGM/Brave%20Heart.m4a",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8"
+      },
+      {
+        "path": "/BGM/Butter-Fly.m4a",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8"
+      }
+    ]
+  },
+  "browser": {
+    "origin": "https://digirouge.co.kr",
+    "engine": "Chrome",
+    "mediaChecks": [
+      {
+        "track": "neon-horizon",
+        "media": [
+          {
+            "currentTime": 14.376958,
+            "duration": 128.002902,
+            "loop": false,
+            "paused": false,
+            "readyState": 4,
+            "src": "https://digirouge.co.kr/BGM/ai/neon-horizon.ogg?v=6c536e43dd60ed43"
+          }
+        ]
+      },
+      {
+        "track": "prism-canopy",
+        "media": [
+          {
+            "currentTime": 8.43879,
+            "duration": 137.14576,
+            "loop": false,
+            "paused": false,
+            "readyState": 4,
+            "src": "https://digirouge.co.kr/BGM/ai/prism-canopy.ogg?v=9c53fdf6ff41f55a"
+          }
+        ]
+      },
+      {
+        "track": "pulse-runners",
+        "media": [
+          {
+            "currentTime": 8.051148,
+            "duration": 106.669569,
+            "loop": false,
+            "paused": false,
+            "readyState": 4,
+            "src": "https://digirouge.co.kr/BGM/ai/pulse-runners.ogg?v=13474626fcebf11a"
+          }
+        ]
+      },
+      {
+        "track": "singularity-core",
+        "media": [
+          {
+            "currentTime": 8.851481,
+            "duration": 93.661429,
+            "loop": false,
+            "paused": false,
+            "readyState": 4,
+            "src": "https://digirouge.co.kr/BGM/ai/singularity-core.ogg?v=b8a7a47e4ed8e07c"
+          }
+        ]
+      },
+      {
+        "track": "starlight-harbor",
+        "media": [
+          {
+            "currentTime": 8.077606,
+            "duration": 133.956395,
+            "loop": false,
+            "paused": false,
+            "readyState": 4,
+            "src": "https://digirouge.co.kr/BGM/ai/starlight-harbor.ogg?v=c2ae75189509cd20"
+          }
+        ]
+      },
+      {
+        "track": "preview-restored-title",
+        "media": [
+          {
+            "currentTime": 49.549489,
+            "loop": false,
+            "paused": false,
+            "readyState": 4,
+            "src": "https://digirouge.co.kr/BGM/ai/neon-horizon.ogg?v=6c536e43dd60ed43"
+          }
+        ]
+      },
+      {
+        "track": "all-off",
+        "media": [
+          {
+            "paused": true,
+            "readyState": 4,
+            "src": "https://digirouge.co.kr/BGM/ai/neon-horizon.ogg?v=6c536e43dd60ed43"
+          }
+        ]
+      },
+      {
+        "track": "all-off-after-reload",
+        "media": [
+          {
+            "paused": true,
+            "readyState": 0,
+            "src": "",
+            "srcAttribute": null
+          }
+        ]
+      },
+      {
+        "track": "all-on-restored",
+        "media": [
+          {
+            "currentTime": 42.619723,
+            "loop": false,
+            "paused": false,
+            "readyState": 4,
+            "src": "https://digirouge.co.kr/BGM/ai/neon-horizon.ogg?v=6c536e43dd60ed43"
+          }
+        ]
+      }
+    ],
+    "verified": [
+      "10/10 themes shown in settings",
+      "five new previews reach readyState4 and play",
+      "preview stop restores original title position",
+      "all OFF pauses audio",
+      "all OFF persists after reload without src",
+      "all ON restores original settings and playback"
+    ],
+    "screenshot": "artifacts/bgm/ai-bgm-10-live.png"
+  },
+  "unverified": [
+    "Subjective listening assessment",
+    "Full manual adventure and boss playthrough",
+    "Other browser and device QA"
+  ]
+}

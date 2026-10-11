@@ -5441,3 +5441,25 @@ img[src^="/items/evolution/canonical/"]:is(
 }
 
 .reward-screen__evolution-badge { text-shadow: none; }
+
+/* Original soundtrack library */
+.settings-bgm--window { grid-template-rows: auto auto minmax(0, 1fr); }
+.settings-bgm__description { margin: 0; padding: 10px 12px; color: #c8d6ea; font-family: var(--font-pixel-mono); font-size: clamp(.72rem, 1.1vw, .88rem); line-height: 1.45; border-bottom: 1px solid #645371; }
+.settings-bgm__toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 9px 10px; }
+.settings-bgm__bulk { display: flex; gap: 6px; }
+.settings-bgm__bulk button, .settings-bgm__preview, .settings-bgm__retry { border: 2px solid #77658b; background: #393046; color: #e6def0; padding: 6px 9px; font-family: var(--font-pixel); font-size: clamp(.72rem, 1.05vw, .92rem); cursor: pointer; }
+.settings-bgm__status { flex: 1 1 180px; color: #9cddef; font-family: var(--font-pixel-mono); font-size: clamp(.7rem, 1vw, .84rem); line-height: 1.4; }
+.settings-bgm__item { grid-template-columns: minmax(0, 1fr) auto auto; }
+.settings-bgm__item--playing { box-shadow: inset 0 0 0 2px #6acfa5; background: #364d4a; }
+.settings-bgm__track { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.settings-bgm__scene { color: #b8b1cd; font-family: var(--font-pixel-mono); font-size: clamp(.66rem, .95vw, .8rem); line-height: 1.35; }
+.settings-bgm__preview[aria-pressed="true"] { border-color: #7ce3c4; background: #295a51; color: #d3fff0; }
+.settings-bgm__preview:disabled { opacity: .4; cursor: default; }
+.settings-bgm__preview:focus-visible, .settings-bgm__bulk button:focus-visible, .settings-bgm__toggle:focus-visible { outline: 3px solid #ffe380; outline-offset: 2px; }
+@media (max-width: 600px) {
+  .settings-bgm__item { gap: 5px; padding: 7px 6px; }
+  .settings-bgm__preview { padding: 6px; }
+  .settings-bgm__toggle { min-width: 42px; padding: 6px; }
+  .settings-bgm__scene { font-size: .62rem; }
+  .settings-bgm__toolbar { gap: 6px; }
+}

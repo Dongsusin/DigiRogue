@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "date": "2026-10-11",
+  "scope": "AI-only BGM, local source and production build",
+  "checks": {
+    "bgmSettingsScenesAndPlayer": {
+      "passed": 24,
+      "failed": 0
+    },
+    "networkBudget": {
+      "passed": 7,
+      "failed": 0
+    },
+    "hostingBudget": {
+      "passed": 11,
+      "failed": 0
+    },
+    "productionBuild": "passed",
+    "distRuntime": "passed",
+    "sourceAndBuildAudioSha256": "5/5 identical to generation manifest",
+    "legacySourceAndBuildAudioFiles": 0,
+    "decodedAudio": "5/5 finite 44100 Hz stereo, peak below 0 dBFS"
+  },
+  "browser": {
+    "engine": "Chrome",
+    "origin": "http://127.0.0.1:5174",
+    "readyState4Playback": [
+      "digital-dawn",
+      "packet-meadow",
+      "circuit-breakers",
+      "overclock-apex",
+      "homeward-signal"
+    ],
+    "verified": [
+      "title native loop",
+      "five track playback and preview switching",
+      "preview stop restores title",
+      "all OFF removes src and pauses",
+      "all OFF persists after reload and new tab",
+      "all ON restores playback",
+      "town automatically selects rest native loop"
+    ],
+    "screenshot": "artifacts/bgm/ai-bgm-settings.png"
+  },
+  "durationSeconds": 583.7479999999999,
+  "audioBytes": 6429987,
+  "unverified": [
+    "subjective listening assessment",
+    "full manual adventure/boss playthrough",
+    "other browser/device QA",
+    "live website deployment"
+  ]
+}

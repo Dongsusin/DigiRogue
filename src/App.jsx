@@ -96,6 +96,10 @@ import { BATTLE_LOG_FINAL_DELAY_MS, createBattleLog,
 import { SWITCH_OUT_MS, SWITCH_IN_DELAY_MS, SWITCH_TOTAL_MS, createSwitchEvents } from './three/switchPresentation.js'
 import { isEscapeBlocked, rollRunAttempt } from './battle/escape.js'
 import { gameAudio } from './audio/GameAudio.js'
+import { bgmTracks } from './audio/bgmCatalog.js'
+import { createDefaultBgmSettings, sanitizeBgmSettings, getEnabledBgmTracks } from './audio/bgmSettings.js'
+import { BgmPlayer } from './audio/BgmPlayer.js'
+import { resolveBgmScene } from './audio/bgmScene.js'
 import { BALANCE_REVISION, BASIC_SKILLS, balanceSpecies, balanceSkill, GUARD_DESCRIPTIONS } from './balance/catalog.js'
 import { getSkillCooldown, startSkillCooldown, tickBattleTimers, getCommandSkillNames, getStatusDuration,
   scoreSkill, chooseSkillTarget, recoverAfterVictory, CRITICAL_HIT_CHANCE, CRITICAL_HIT_MULTIPLIER } from './balance/combat.js'
@@ -124,27 +128,7 @@ const battleMenuItems = [
   { label: '\uB3C4\uB9DD', key: 'run', active: false },
 ]
 
-const bgmTracks = [
-  { title: 'Brave Heart', url: '/BGM/Brave Heart.m4a' },
-  { title: 'Butter-Fly', url: '/BGM/Butter-Fly.m4a' },
-  { title: "I've got the power", url: "/BGM/I've got the power.m4a" },
-  { title: 'Power Up', url: '/BGM/Power Up.m4a' },
-  { title: 'Stay For You', url: '/BGM/Stay For You.m4a' },
-  { title: 'To My Wish', url: '/BGM/To My Wish.m4a' },
-  { title: '날지켜줘', url: '/BGM/날지켜줘.m4a' },
-  { title: '내일을 찾아', url: '/BGM/내일을 찾아.m4a' },
-  { title: '더 프론티어', url: '/BGM/더 프론티어.m4a' },
-  { title: '새로운 진화', url: '/BGM/새로운 진화.m4a' },
-  { title: '안녕! 디지몬', url: '/BGM/안녕! 디지몬.m4a' },
-  { title: '에볼루션', url: '/BGM/에볼루션.m4a' },
-  { title: '외롭지 않아', url: '/BGM/외롭지 않아.m4a' },
-  { title: '질주', url: '/BGM/질주.m4a' },
-  { title: '찾아라 비밀의 열쇠', url: '/BGM/찾아라 비밀의 열쇠.m4a' },
-]
 const BGM_VOLUME = 0.28
-const BGM_FADE_IN_MS = 1800
-const BGM_FADE_OUT_MS = 2400
-const BGM_FADE_OUT_SECONDS = 3
 const SETTINGS_STORAGE_KEY = 'digirogue-settings-v1'
 const SPEED_OPTIONS = [1, 1.5, 2]
 const EVOLUTION_SPEED_OPTIONS = [1, 1.5, 2, 'skip']
@@ -160,7 +144,7 @@ const createDefaultSettings = () => ({
   masterVolume: 100,
   bgmVolume: 80,
   sfxVolume: 80,
-  enabledBgmUrls: bgmTracks.map((track) => track.url),
+  ...createDefaultBgmSettings(),
 })
 
 const normalizeSettingNumber = (value, fallback, options) => {
@@ -175,11 +159,6 @@ const normalizeVolumeSetting = (value, fallback = 100) => {
 
 const sanitizeSettings = (settings) => {
   const defaults = createDefaultSettings()
-  const enabledBgmUrls = Array.isArray(settings?.enabledBgmUrls)
-    ? [...new Set(settings.enabledBgmUrls
-      .map((url) => typeof url === 'string' ? url.replace(/\.mp4$/, '.m4a') : url)
-      .filter((url) => bgmTracks.some((track) => track.url === url)))]
-    : defaults.enabledBgmUrls
 
   return {
     gameSpeed: normalizeSettingNumber(settings?.gameSpeed, defaults.gameSpeed, SPEED_OPTIONS),
@@ -191,7 +170,7 @@ const sanitizeSettings = (settings) => {
     masterVolume: normalizeVolumeSetting(settings?.masterVolume, defaults.masterVolume),
     bgmVolume: normalizeVolumeSetting(settings?.bgmVolume, defaults.bgmVolume),
     sfxVolume: normalizeVolumeSetting(settings?.sfxVolume, defaults.sfxVolume),
-    enabledBgmUrls,
+    ...sanitizeBgmSettings(settings),
   }
 }
 
@@ -227,11 +206,6 @@ const getEffectiveBgmVolume = (settings) =>
 
 const getEffectiveSfxVolume = (settings) =>
   getVolumeRatio(settings.masterVolume) * getVolumeRatio(settings.sfxVolume)
-
-const getEnabledBgmTracks = (settings) => {
-  const enabledUrlSet = new Set(settings.enabledBgmUrls ?? [])
-  return bgmTracks.filter((track) => enabledUrlSet.has(track.url))
-}
 
 const getScaledDuration = (duration, speed) => {
   const numericSpeed = Number(speed)
@@ -1178,304 +1152,34 @@ const MatchupGuideModal = ({ onClose }) => {
   )
 }
 
-const createShuffledBgmQueue = (previousUrl = null, sourceTracks = bgmTracks) => {
-  const queue = [...sourceTracks]
-
-  for (let index = queue.length - 1; index > 0; index -= 1) {
-    const randomIndex = Math.floor(Math.random() * (index + 1))
-    ;[queue[index], queue[randomIndex]] = [queue[randomIndex], queue[index]]
-  }
-
-  if (queue.length > 1 && queue[0]?.url === previousUrl) {
-    ;[queue[0], queue[1]] = [queue[1], queue[0]]
-  }
-
-  return queue
-}
-
-const BackgroundMusic = ({ settings }) => {
-  const safeSettings = sanitizeSettings(settings)
-  const initialEnabledTracks = getEnabledBgmTracks(safeSettings)
+const BackgroundMusic = ({ settings, scene = 'title', previewUrl = null, onStatus, onPreviewEnd, retrySignal = 0 }) => {
   const audioRef = useRef(null)
-  const enabledTracksRef = useRef(initialEnabledTracks)
-  const targetVolumeRef = useRef(getEffectiveBgmVolume(safeSettings))
-  const baseVolumeRef = useRef(getEffectiveBgmVolume(safeSettings))
-  const queueRef = useRef(createShuffledBgmQueue(null, initialEnabledTracks))
-  const currentTrackRef = useRef(null)
-  const fadeFrameRef = useRef(null)
-  const hasStartedRef = useRef(false)
-  const hasUserGestureRef = useRef(false)
-  const isFadingOutRef = useRef(false)
-  const retryTimerRef = useRef(null)
-  const retryFailuresRef = useRef(0)
-
+  const playerRef = useRef(null)
+  const callbacks = useRef({ onStatus, onPreviewEnd })
+  callbacks.current = { onStatus, onPreviewEnd }
+  const safe = sanitizeSettings(settings)
+  const optionsRef = useRef(null)
+  optionsRef.current = {
+    tracks: getEnabledBgmTracks(safe, scene),
+    volume: getEffectiveBgmVolume(safe),
+    contextKey: scene,
+    previewTrack: safe.enabledBgmUrls.includes(previewUrl) ? bgmTracks.find(track => track.url === previewUrl) : null,
+  }
   useEffect(() => {
-    const audio = audioRef.current
-    const enabledTracks = getEnabledBgmTracks(safeSettings)
-
-    enabledTracksRef.current = enabledTracks
-    targetVolumeRef.current = getEffectiveBgmVolume(safeSettings)
-    queueRef.current = queueRef.current.filter((track) =>
-      enabledTracks.some((enabledTrack) => enabledTrack.url === track.url)
-    )
-
-    if (!audio) {
-      return
-    }
-
-    if (targetVolumeRef.current <= 0 || document.hidden || navigator.onLine === false) {
-      audio.pause()
-      window.clearTimeout(retryTimerRef.current)
-      retryTimerRef.current = null
-      return
-    }
-
-    if (enabledTracks.length === 0) {
-      audio.pause()
-      window.clearTimeout(retryTimerRef.current)
-      retryTimerRef.current = null
-      audio.removeAttribute('src')
-      currentTrackRef.current = null
-      hasStartedRef.current = false
-      queueRef.current = []
-      return
-    }
-
-    if (!currentTrackRef.current && !hasStartedRef.current && hasUserGestureRef.current) {
-      queueRef.current = createShuffledBgmQueue(null, enabledTracks)
-      const nextTrack = queueRef.current.shift() ?? enabledTracks[0]
-      currentTrackRef.current = nextTrack
-      audio.pause()
-      audio.src = versionedResourceUrl(nextTrack.url)
-      audio.currentTime = 0
-      audio.volume = targetVolumeRef.current
-      baseVolumeRef.current = targetVolumeRef.current
-      audio.play()
-        .then(() => {
-          hasStartedRef.current = true
-        })
-        .catch(() => {
-          hasStartedRef.current = false
-          audio.pause()
-        })
-      return
-    }
-
-    if (
-      currentTrackRef.current &&
-      !enabledTracks.some((track) => track.url === currentTrackRef.current?.url)
-    ) {
-      queueRef.current = createShuffledBgmQueue(null, enabledTracks)
-
-      if (hasStartedRef.current) {
-        const nextTrack = queueRef.current.shift() ?? enabledTracks[0]
-        currentTrackRef.current = nextTrack
-        audio.pause()
-        audio.src = versionedResourceUrl(nextTrack.url)
-        audio.currentTime = 0
-        audio.volume = targetVolumeRef.current
-        baseVolumeRef.current = targetVolumeRef.current
-        audio.play().catch(() => {
-          hasStartedRef.current = false
-          audio.pause()
-        })
-        return
-      }
-
-      audio.pause()
-      audio.removeAttribute('src')
-      currentTrackRef.current = null
-      return
-    }
-
-    if (hasStartedRef.current) {
-      baseVolumeRef.current = targetVolumeRef.current
-      audio.volume = baseVolumeRef.current * gameAudio.getBgmDucking()
-      if (audio.paused && retryTimerRef.current === null && retryFailuresRef.current < 4) audio.play().catch(() => {})
-    }
-  }, [
-    safeSettings.masterVolume,
-    safeSettings.bgmVolume,
-    safeSettings.enabledBgmUrls,
-  ])
-
-  useEffect(() => {
-    const audio = audioRef.current
-
-    if (!audio) {
-      return undefined
-    }
-
-    let disposed = false
-    const canStream = () => !disposed && !document.hidden && navigator.onLine !== false
-      && targetVolumeRef.current > 0 && enabledTracksRef.current.length > 0
-    const cancelRetry = () => {
-      window.clearTimeout(retryTimerRef.current)
-      retryTimerRef.current = null
-    }
-
-    const cancelFade = () => {
-      if (fadeFrameRef.current) {
-        window.cancelAnimationFrame(fadeFrameRef.current)
-        fadeFrameRef.current = null
-      }
-    }
-
-    const fadeVolume = (targetVolume, durationMs) => {
-      cancelFade()
-      const startVolume = baseVolumeRef.current
-      const startedAt = window.performance.now()
-
-      const tick = (currentTime) => {
-        const progress = Math.max(0, Math.min(1, (currentTime - startedAt) / durationMs))
-        const easedProgress = 1 - (1 - progress) ** 3
-        baseVolumeRef.current = startVolume + (targetVolume - startVolume) * easedProgress
-        audio.volume = baseVolumeRef.current * gameAudio.getBgmDucking()
-
-        if (progress < 1) {
-          fadeFrameRef.current = window.requestAnimationFrame(tick)
-        } else {
-          baseVolumeRef.current = targetVolume
-          audio.volume = targetVolume * gameAudio.getBgmDucking()
-          fadeFrameRef.current = null
-        }
-      }
-
-      fadeFrameRef.current = window.requestAnimationFrame(tick)
-    }
-
-    const getNextTrack = () => {
-      const enabledTracks = enabledTracksRef.current
-
-      if (enabledTracks.length === 0) {
-        return null
-      }
-
-      if (queueRef.current.length === 0) {
-        queueRef.current = createShuffledBgmQueue(currentTrackRef.current?.url, enabledTracks)
-      }
-
-      return queueRef.current.shift() ?? enabledTracks[0]
-    }
-
-    const playNextTrack = async () => {
-      if (!canStream() || retryFailuresRef.current > 4) return
-      const nextTrack = getNextTrack()
-
-      if (!nextTrack) {
-        audio.pause()
-        hasStartedRef.current = false
-        currentTrackRef.current = null
-        return
-      }
-
-      currentTrackRef.current = nextTrack
-      isFadingOutRef.current = false
-      audio.pause()
-      audio.src = versionedResourceUrl(nextTrack.url)
-      audio.volume = 0
-      baseVolumeRef.current = 0
-      audio.currentTime = 0
-
-      try {
-        await audio.play()
-        if (!canStream()) { audio.pause(); return }
-        hasStartedRef.current = true
-        fadeVolume(targetVolumeRef.current, BGM_FADE_IN_MS)
-      } catch {
-        hasStartedRef.current = false
-        audio.pause()
-      }
-    }
-
-    const startAfterUserGesture = () => {
-      hasUserGestureRef.current = true
-
-      if (!canStream() || hasStartedRef.current || retryTimerRef.current !== null || retryFailuresRef.current >= 4) {
-        return
-      }
-
-      playNextTrack()
-    }
-
-    const handleTimeUpdate = () => {
-      if (
-        isFadingOutRef.current ||
-        !Number.isFinite(audio.duration) ||
-        audio.duration <= BGM_FADE_OUT_SECONDS
-      ) {
-        return
-      }
-
-      if (audio.duration - audio.currentTime <= BGM_FADE_OUT_SECONDS) {
-        isFadingOutRef.current = true
-        fadeVolume(0, BGM_FADE_OUT_MS)
-      }
-    }
-
-    const handleEnded = () => {
-      playNextTrack()
-    }
-
-    const handleError = () => {
-      if (!canStream() || retryTimerRef.current !== null || retryFailuresRef.current >= 4) return
-      const delay = 5000 * 2 ** retryFailuresRef.current++
-      retryTimerRef.current = window.setTimeout(() => {
-        retryTimerRef.current = null
-        void playNextTrack()
-      }, delay)
-    }
-
-    const handlePlaying = () => { retryFailuresRef.current = 0; cancelRetry() }
-    const resumePlayback = () => {
-      if (!canStream() || !hasUserGestureRef.current || retryFailuresRef.current >= 4) return
-      if (!currentTrackRef.current || !audio.src) { void playNextTrack(); return }
-      if (audio.paused) audio.play().then(() => {
-        if (!canStream()) { audio.pause(); return }
-        hasStartedRef.current = true
-        fadeVolume(targetVolumeRef.current, BGM_FADE_IN_MS)
-      }).catch(() => {})
-    }
-    const suspendPlayback = () => { cancelRetry(); cancelFade(); audio.pause() }
-    const handleVisibility = () => document.hidden ? suspendPlayback() : resumePlayback()
-    const handleOnline = () => { retryFailuresRef.current = 0; resumePlayback() }
-
-    // Keep track fades and user volume intact; only the audible mix dips during attacks.
-    let mixFrameId
-    const mixMusicFrame = () => {
-      if (!audio.paused) audio.volume = baseVolumeRef.current * gameAudio.getBgmDucking()
-      mixFrameId = window.requestAnimationFrame(mixMusicFrame)
-    }
-    mixFrameId = window.requestAnimationFrame(mixMusicFrame)
-
-    window.addEventListener('pointerdown', startAfterUserGesture)
-    window.addEventListener('keydown', startAfterUserGesture)
-    audio.addEventListener('timeupdate', handleTimeUpdate)
-    audio.addEventListener('ended', handleEnded)
-    audio.addEventListener('error', handleError)
-    audio.addEventListener('playing', handlePlaying)
-    document.addEventListener('visibilitychange', handleVisibility)
-    window.addEventListener('offline', suspendPlayback)
-    window.addEventListener('online', handleOnline)
-
-    return () => {
-      disposed = true
-      cancelRetry()
-      cancelFade()
-      window.cancelAnimationFrame(mixFrameId)
-      window.removeEventListener('pointerdown', startAfterUserGesture)
-      window.removeEventListener('keydown', startAfterUserGesture)
-      audio.removeEventListener('timeupdate', handleTimeUpdate)
-      audio.removeEventListener('ended', handleEnded)
-      audio.removeEventListener('error', handleError)
-      audio.removeEventListener('playing', handlePlaying)
-      document.removeEventListener('visibilitychange', handleVisibility)
-      window.removeEventListener('offline', suspendPlayback)
-      window.removeEventListener('online', handleOnline)
-      audio.pause()
-    }
+    const player = new BgmPlayer({
+      audio: audioRef.current, window, document, navigator, versionUrl: versionedResourceUrl,
+      getDucking: () => gameAudio.getBgmDucking(),
+      onStatus: status => callbacks.current.onStatus?.(status),
+      onPreviewEnd: () => callbacks.current.onPreviewEnd?.(),
+    })
+    playerRef.current = player
+    player.update(optionsRef.current)
+    return () => { player.dispose(); playerRef.current = null }
   }, [])
-
+  const enabledKey = safe.enabledBgmUrls.join('|')
+  useEffect(() => { playerRef.current?.update(optionsRef.current) },
+    [safe.masterVolume, safe.bgmVolume, enabledKey, scene, previewUrl])
+  useEffect(() => { if (retrySignal) playerRef.current?.retry() }, [retrySignal])
   return <audio ref={audioRef} preload="none" aria-hidden="true" />
 }
 
@@ -5346,6 +5050,13 @@ function App() {
   const [settingsTab, setSettingsTab] = useState('general')
   const [isBgmSettingsOpen, setIsBgmSettingsOpen] = useState(false)
   const [gameSettings, setGameSettings] = useState(() => loadSettingsFromStorage(progressStorage))
+  const [bgmPreviewUrl, setBgmPreviewUrl] = useState(null)
+  const [bgmStatus, setBgmStatus] = useState({ state: 'paused', trackUrl: null, isPreview: false })
+  const [bgmRetrySignal, setBgmRetrySignal] = useState(0)
+  useEffect(() => {
+    if (!isBgmSettingsOpen || settingsTab !== 'audio' || screenMode !== 'settings' ||
+      bgmPreviewUrl && !gameSettings.enabledBgmUrls.includes(bgmPreviewUrl)) setBgmPreviewUrl(null)
+  }, [isBgmSettingsOpen, settingsTab, screenMode, bgmPreviewUrl, gameSettings.enabledBgmUrls])
   const [trainerProgress, setTrainerProgress] = useState(() => loadTrainerProgress(progressStorage))
   const trainerProgressRef = useRef(trainerProgress)
   const [modeProgress, setModeProgress] = useState(() => loadModeProgress(progressStorage, trainerProgress))
@@ -8437,7 +8148,10 @@ function App() {
         .join(' ')}
       style={mainScreenStyle}
     >
-      <BackgroundMusic settings={gameSettings} />
+      <BackgroundMusic settings={gameSettings}
+        scene={resolveBgmScene({ screenMode, gameState, rewardState, mapSelectionState })}
+        previewUrl={screenMode === 'settings' && isBgmSettingsOpen && settingsTab === 'audio' ? bgmPreviewUrl : null}
+        onStatus={setBgmStatus} onPreviewEnd={() => setBgmPreviewUrl(null)} retrySignal={bgmRetrySignal} />
       <ButtonClickSound />
       {screenMode !== 'adventure' && <MenuBackdrop backgrounds={mapBackgrounds} />}
 
@@ -8617,7 +8331,7 @@ function App() {
                     <div className="settings-list settings-list--audio">
                       {[
                         ['masterVolume', '마스터 오디오'],
-                        ['bgmVolume', '오디오'],
+                        ['bgmVolume', 'BGM 음량'],
                         ['sfxVolume', '효과음'],
                       ].map(([settingKey, label]) => (
                         <div key={settingKey} className="settings-row">
@@ -8644,9 +8358,9 @@ function App() {
 
                       <div className="settings-bgm-entry">
                         <div className="settings-bgm-entry__copy">
-                          <span className="settings-row__label">BGM 설정</span>
+                          <span className="settings-row__label">AI 제작 BGM</span>
                           <span className="settings-bgm-entry__summary">
-                            활성 BGM {gameSettings.enabledBgmUrls.length}/{bgmTracks.length}
+                            활성 {gameSettings.enabledBgmUrls.length}/{bgmTracks.length}곡 · 장면별 자동 재생
                           </span>
                         </div>
                         <button
@@ -8664,12 +8378,12 @@ function App() {
                 </div>
 
                 {isBgmSettingsOpen && settingsTab === 'audio' && (
-                  <div className="settings-bgm-window" role="dialog" aria-modal="true" aria-label="BGM 설정">
+                  <div className="settings-bgm-window" role="dialog" aria-modal="true" aria-label="AI 제작 BGM 설정">
                     <div className="settings-bgm-window__panel">
                       <div className="settings-bgm-window__header">
                         <div className="settings-bgm-window__title-group">
                           <span className="settings-bgm-window__eyebrow">오디오</span>
-                          <h2 className="settings-bgm-window__title">BGM 설정</h2>
+                          <h2 className="settings-bgm-window__title">AI 제작 BGM</h2>
                         </div>
                         <span className="settings-bgm-window__count">
                           {gameSettings.enabledBgmUrls.length}/{bgmTracks.length}
@@ -8684,24 +8398,49 @@ function App() {
                       </div>
 
                       <div className="settings-bgm settings-bgm--window">
+                        <p className="settings-bgm__description">
+                          디지털 세계의 모험을 위해 새로 만든 오리지널 연주곡입니다. 타이틀 · 탐험 · 전투 · 보스 · 휴식 장면에 맞춰 자동으로 재생합니다.
+                        </p>
+                        <div className="settings-bgm__toolbar">
+                          <div className="settings-bgm__bulk">
+                            <button type="button" onClick={() => updateGameSetting('enabledBgmUrls', bgmTracks.map(track => track.url))}>전체 ON</button>
+                            <button type="button" onClick={() => updateGameSetting('enabledBgmUrls', [])}>전체 OFF</button>
+                          </div>
+                          <span className="settings-bgm__status" role="status">
+                            {bgmStatus.state === 'playing' ? `${bgmStatus.isPreview ? '미리듣기' : '재생 중'} · ${bgmTracks.find(track => track.url === bgmStatus.trackUrl)?.title ?? ''}`
+                              : bgmStatus.state === 'loading' ? '음악을 불러오는 중'
+                                : bgmStatus.state === 'muted' ? 'BGM 음량이 0%입니다'
+                                  : bgmStatus.state === 'off' ? '선택한 곡이 없습니다'
+                                    : ['error', 'blocked'].includes(bgmStatus.state) ? '재생을 다시 시도해 주세요'
+                                      : '음악 재생 대기'}
+                          </span>
+                          {['error', 'blocked'].includes(bgmStatus.state) && (
+                            <button type="button" className="settings-bgm__retry" onClick={() => setBgmRetrySignal(value => value + 1)}>재생 재시도</button>
+                          )}
+                        </div>
                         <div className="settings-bgm__list">
                           {bgmTracks.map((track) => {
                             const isEnabled = gameSettings.enabledBgmUrls.includes(track.url)
-
+                            const isPreviewing = bgmPreviewUrl === track.url
+                            const isPlaying = bgmStatus.trackUrl === track.url && bgmStatus.state === 'playing'
                             return (
-                              <div key={track.url} className="settings-bgm__item">
-                                <span className="settings-bgm__title">{track.title}</span>
-                                <button
-                                  type="button"
-                                  className={[
-                                    'settings-bgm__toggle',
-                                    isEnabled ? 'settings-bgm__toggle--enabled' : '',
-                                  ]
-                                    .filter(Boolean)
-                                    .join(' ')}
-                                  onClick={() => toggleBgmTrack(track.url)}
-                                >
-                                  {isEnabled ? '설정' : '해제'}
+                              <div key={track.url} className={`settings-bgm__item${isPlaying ? ' settings-bgm__item--playing' : ''}`}>
+                                <div className="settings-bgm__track">
+                                  <span className="settings-bgm__title">{track.title}</span>
+                                  <span className="settings-bgm__scene">{track.description}</span>
+                                </div>
+                                <button type="button" className="settings-bgm__preview"
+                                  disabled={!isEnabled || gameSettings.masterVolume === 0 || gameSettings.bgmVolume === 0}
+                                  aria-label={`${track.title} ${isPreviewing ? '미리듣기 중지' : '미리듣기'}`}
+                                  aria-pressed={isPreviewing}
+                                  onClick={() => setBgmPreviewUrl(isPreviewing ? null : track.url)}>
+                                  {isPreviewing ? '중지' : '미리듣기'}
+                                </button>
+                                <button type="button"
+                                  className={`settings-bgm__toggle${isEnabled ? ' settings-bgm__toggle--enabled' : ''}`}
+                                  aria-label={`${track.title} 자동 재생 ${isEnabled ? 'ON' : 'OFF'}`}
+                                  aria-pressed={isEnabled} onClick={() => toggleBgmTrack(track.url)}>
+                                  {isEnabled ? 'ON' : 'OFF'}
                                 </button>
                               </div>
                             )
