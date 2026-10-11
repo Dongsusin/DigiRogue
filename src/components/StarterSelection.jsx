@@ -11,7 +11,7 @@ import './StarterSelection.css'
 const defaultStageFilters = ['전체', ...STARTER_STAGES]
 
 export default function StarterSelection({ catalog, analysis = {}, trainerSkills = {}, selectedNames, onSelectionChange, getStartingSkills, getSkillDetails, onStart, onBack, blocked = false, modeControl, startDisabled = false, eyebrow = 'DIGITAL MONSTER INDEX', headerInfo, headerActions, children }) {
-  const [stage, setStage] = useState('성장기')
+  const [stage, setStage] = useState('전체')
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState('number')
   const [previewName, setPreviewName] = useState(selectedNames[0] ?? catalog.byStage.성장기[0]?.name ?? catalog.entries[0]?.name)
