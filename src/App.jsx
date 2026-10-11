@@ -9147,9 +9147,7 @@ function App() {
                             data-targeted={commandTargetIds.includes(ally.id)}
                             data-hp-state={allyHpRatio <= 25 ? 'critical' : allyHpRatio <= 50 ? 'low' : 'healthy'}
                             role="group"
-                            aria-label={`${ally.name} 체력과 경험치`} tabIndex={0}
-                            onPointerEnter={event => showCombatantTooltip(event, ally)}
-                            onFocus={event => { if (event.target === event.currentTarget) showCombatantTooltip(event, ally) }}
+                            aria-label={`${ally.name} 체력과 경험치`}
                           >
                             <p className="digimon-status__name">
                               {isRegionalSupport(ally) && <span className="digimon-status__support-label">동료 · 자동</span>}
@@ -9279,9 +9277,7 @@ function App() {
                             data-targeted={commandTargetIds.includes(enemy.id)}
                             data-active={battleFocus.side === 'enemy' && battleFocus.actorId === enemy.id}
                             data-active-label={focusLabel}
-                            aria-label={`${enemy.name} 체력`} tabIndex={0}
-                            onPointerEnter={event => showCombatantTooltip(event, enemy)}
-                            onFocus={event => { if (event.target === event.currentTarget) showCombatantTooltip(event, enemy) }}
+                            aria-label={`${enemy.name} 체력`}
                           >
                             <p className="digimon-status__name">
                               {enemy.isBoss ? (
@@ -9634,10 +9630,7 @@ function App() {
                             </div>
                           ) : selectedEvolutionMember ? (
                             <div className="evolution-detail">
-                              <section className="evolution-detail__current" tabIndex={0}
-                                aria-label={selectedEvolutionMember.name + ' 정보 보기'}
-                                onPointerEnter={event => showCombatantTooltip(event, selectedEvolutionMember)}
-                                onFocus={event => showCombatantTooltip(event, selectedEvolutionMember)}>
+                              <section className="evolution-detail__current">
                                 <DigimonModelPreview
                                   className="evolution-detail__current-image"
                                   name={selectedEvolutionMember.imageName ?? selectedEvolutionMember.name}

@@ -30,5 +30,5 @@
 .party-admission__member .combatant-traits { margin-top: 4px; }
 .game-design .battle-card-target-list .combatant-summary { width: 100%; }
 .game-design .battle-card-target-list .combatant-summary__portrait { width: 42px; height: 50px; }
-.game-design .digimon-status:focus-visible, .game-design .party-screen__current:focus-visible { outline: 2px solid #8ee1f3; outline-offset: 2px; }
+.game-design .party-screen__current:focus-visible { outline: 2px solid #8ee1f3; outline-offset: 2px; }
 .game-design .game-popover--interactive .game-popover__header { padding-right: 34px; }
