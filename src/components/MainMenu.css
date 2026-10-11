@@ -250,5 +250,4 @@
 
 @media (prefers-reduced-motion: reduce) {
   .menu-item, .menu-item::before, .menu-item__chevron, .main-screen--menu .profile-controls button { transition: none; }
-  .main-screen--menu .digit-drop, .main-screen--menu .digit-drop__value { animation-play-state: paused; }
 }

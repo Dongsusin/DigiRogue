@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-11",
+  "scope": "Main-menu decorative background and binary motion",
+  "checks": {
+    "regressions": {
+      "command": "node --test scripts/verify-menu-backdrop.mjs",
+      "exitCode": 0,
+      "passed": 8,
+      "failed": 0
+    },
+    "clientBuild": {
+      "command": "node artifacts/digirouge-menu-motion-2026-10-11/build.mjs",
+      "exitCode": 0,
+      "publicDir": false
+    },
+    "backgroundFiles": {
+      "expected": 34,
+      "present": 34
+    },
+    "browser": {
+      "url": "http://127.0.0.1:5175/",
+      "standardMotion": {
+        "durationSeconds": 8.4,
+        "playState": "running"
+      },
+      "reducedMotion": {
+        "durationSeconds": 21,
+        "playState": "running",
+        "before": {
+          "translateY": 260.038,
+          "zeroOpacity": 0
+        },
+        "after": {
+          "translateY": -2.0923,
+          "zeroOpacity": 1
+        }
+      },
+      "observedMaps": [
+        "팩토리얼 에리어",
+        "나이트메어 솔저스",
+        "쓰레기의 산",
+        "부트 화산"
+      ],
+      "settingsReturn": "passed",
+      "consoleErrors": 0
+    }
+  },
+  "notVerified": [
+    "Production deployment",
+    "Full battle playthrough"
+  ],
+  "screenshot": "artifacts/digirouge-menu-motion-2026-10-11/menu-fixed.jpg"
+}

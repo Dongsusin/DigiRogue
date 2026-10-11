@@ -1,4 +1,5 @@
 import MainMenu from './components/MainMenu.jsx'
+import MenuBackdrop from './components/MenuBackdrop.jsx'
 import TownScreen from './components/TownScreen.jsx'
 import { versionedResourceUrl } from './data/resourceUrl.js'
 import { applyTownStartingSupport, getTownEggStages } from './progression/townProgress.js'
@@ -2461,8 +2462,6 @@ const mapBackgrounds = [
   '/맵/황천.png',
 ]
 
-const MAP_ROTATION_MS = 9000
-const MAP_FADE_MS = 2600
 const TOTAL_STAGE_COUNT = 200
 const STAGES_PER_MAP = 10
 const STAGE_ROUTE = [
@@ -2487,41 +2486,6 @@ const STAGE_ROUTE = [
   '사규산',
   '황천',
 ]
-
-const baseDigitDrops = [
-  { duration: '8.4s', delay: '-5.2s', opacity: 0.46, scale: 0.95, swap: '2.4s' },
-  { duration: '7.8s', delay: '-1.4s', opacity: 0.56, scale: 1.05, swap: '2.1s' },
-  { duration: '9.1s', delay: '-6.7s', opacity: 0.42, scale: 0.9, swap: '2.6s' },
-  { duration: '7.1s', delay: '-2.8s', opacity: 0.62, scale: 1.12, swap: '1.9s' },
-  { duration: '9.8s', delay: '-8.5s', opacity: 0.4, scale: 0.88, swap: '2.5s' },
-  { duration: '6.9s', delay: '-3.3s', opacity: 0.58, scale: 1, swap: '2s' },
-  { duration: '8.7s', delay: '-0.6s', opacity: 0.5, scale: 1.08, swap: '2.2s' },
-  { duration: '10.2s', delay: '-7.4s', opacity: 0.38, scale: 0.86, swap: '2.8s' },
-  { duration: '7.4s', delay: '-4.9s', opacity: 0.55, scale: 1.04, swap: '2.05s' },
-  { duration: '8.9s', delay: '-1.8s', opacity: 0.47, scale: 0.94, swap: '2.35s' },
-  { duration: '7.7s', delay: '-6.1s', opacity: 0.6, scale: 1.14, swap: '1.85s' },
-  { duration: '9.5s', delay: '-2.2s', opacity: 0.41, scale: 0.9, swap: '2.55s' },
-  { duration: '7.2s', delay: '-5.5s', opacity: 0.57, scale: 1.02, swap: '2s' },
-  { duration: '8.8s', delay: '-7.9s', opacity: 0.45, scale: 0.92, swap: '2.3s' },
-  { duration: '6.8s', delay: '-4.1s', opacity: 0.53, scale: 1.08, swap: '1.75s' },
-]
-
-const getRandomLeft = () => `${(Math.random() * 92 + 4).toFixed(1)}%`
-const getRandomDrift = () => `${(Math.random() * 24 - 12).toFixed(1)}px`
-
-const getRandomMapIndex = (currentIndex = -1) => {
-  if (mapBackgrounds.length <= 1) {
-    return 0
-  }
-
-  let nextIndex = currentIndex
-
-  while (nextIndex === currentIndex) {
-    nextIndex = Math.floor(Math.random() * mapBackgrounds.length)
-  }
-
-  return nextIndex
-}
 
 const mapBackgroundByName = mapBackgrounds.reduce((result, url) => {
   const fileName = url.split('/').pop() ?? ''
@@ -5347,13 +5311,6 @@ const buildEnemyParty = (stage, encounterPool, encounterCount, bossEncounterPool
   buildBaseEnemyParty(stage, encounterPool, encounterCount, bossEncounterPool, options)
     .map(unit => applyEnemyDifficulty(unit, stage, normalizeGameMode(options.gameMode)))
 
-const createDigitDrop = (drop, index) => ({
-  ...drop,
-  id: index,
-  left: getRandomLeft(),
-  drift: getRandomDrift(),
-})
-
 const buildStartingParty = (names, trainerSkills = {}, collection = null) => {
   const catalog = !collection && !Object.keys(trainerSkills).length ? starterCatalog : createStarterCatalog(allDigimonLookup, trainerSkills, collection)
   const { team, canStart } = getStarterTeamSummary(names, catalog)
@@ -5384,9 +5341,6 @@ function App() {
   const recordLocalGame = localProgress.recordGame
   const subscribeLocal = localProgress.subscribe
   const getLocalSnapshot = localProgress.getSnapshot
-  const [digitDrops, setDigitDrops] = useState(() =>
-    baseDigitDrops.map((drop, index) => createDigitDrop(drop, index))
-  )
   const [screenMode, setScreenMode] = useState('menu')
   const [selectedMenuKey, setSelectedMenuKey] = useState('new-game')
   const [settingsTab, setSettingsTab] = useState('general')
@@ -5507,16 +5461,6 @@ function App() {
   const combatantEffectAnchorRefs = useRef(new Map())
   const combatantEffectPointCacheRef = useRef(new Map())
   const previousPlayerProgressRef = useRef(null)
-  const [mapTransition, setMapTransition] = useState(() => {
-    const initialIndex = getRandomMapIndex()
-
-    return {
-      activeIndex: initialIndex,
-      previousIndex: initialIndex,
-      isFading: false,
-    }
-  })
-
   useEffect(() => {
     saveSettingsToStorage(gameSettings, progressStorage)
     gameAudio.setVolume(getEffectiveSfxVolume(gameSettings))
@@ -6934,42 +6878,6 @@ function App() {
   }
 
   useEffect(() => {
-    if (screenMode === 'adventure' || mapTransition.isFading) {
-      return undefined
-    }
-
-    const rotationId = window.setTimeout(() => {
-      setMapTransition((current) => ({
-        previousIndex: current.activeIndex,
-        activeIndex: getRandomMapIndex(current.activeIndex),
-        isFading: true,
-      }))
-    }, MAP_ROTATION_MS)
-
-    return () => {
-      window.clearTimeout(rotationId)
-    }
-  }, [mapTransition.activeIndex, mapTransition.isFading, screenMode])
-
-  useEffect(() => {
-    if (screenMode === 'adventure' || !mapTransition.isFading) {
-      return undefined
-    }
-
-    const fadeId = window.setTimeout(() => {
-      setMapTransition((current) => ({
-        ...current,
-        previousIndex: current.activeIndex,
-        isFading: false,
-      }))
-    }, MAP_FADE_MS)
-
-    return () => {
-      window.clearTimeout(fadeId)
-    }
-  }, [mapTransition.activeIndex, mapTransition.isFading, screenMode])
-
-  useEffect(() => {
     if (screenMode === 'adventure') {
       return undefined
     }
@@ -7111,28 +7019,6 @@ function App() {
     },
     []
   )
-
-  const repositionDigitDrop = (dropId) => {
-    setDigitDrops((currentDrops) =>
-      currentDrops.map((drop) =>
-        drop.id === dropId
-          ? {
-              ...drop,
-              left: getRandomLeft(),
-              drift: getRandomDrift(),
-            }
-          : drop
-      )
-    )
-  }
-
-  const handleDigitLoop = (dropId, event) => {
-    if (event.target !== event.currentTarget || event.animationName !== 'digit-fall') {
-      return
-    }
-
-    repositionDigitDrop(dropId)
-  }
 
   const resetAdventureUiState = () => {
     saveExitInFlightRef.current = false
@@ -8366,16 +8252,6 @@ function App() {
     </button>
   )
 
-  const activeBackgroundUrl =
-    screenMode === 'adventure' && gameState
-      ? getMapBackgroundUrl(gameState.currentMap)
-      : mapBackgrounds[
-          mapTransition.isFading ? mapTransition.previousIndex : mapTransition.activeIndex
-        ]
-  const nextBackgroundUrl =
-    screenMode === 'adventure' && gameState
-      ? activeBackgroundUrl
-      : mapBackgrounds[mapTransition.activeIndex]
   const battleContext = getBattleContext()
   const partyMembers = ownedBattleUnits(battleContext.party)
   const activeSkillReplaceEvent = skillReplaceState?.queue?.[skillReplaceState.index ?? 0] ?? null
@@ -8563,55 +8439,7 @@ function App() {
     >
       <BackgroundMusic settings={gameSettings} />
       <ButtonClickSound />
-      <div
-        className="main-screen__background main-screen__background--base"
-        aria-hidden="true"
-        style={
-          screenMode === 'adventure' ? undefined : { backgroundImage: `url("${activeBackgroundUrl}")` }
-        }
-      />
-      {screenMode !== 'adventure' && (
-        <div
-          className={[
-            'main-screen__background',
-            'main-screen__background--next',
-            mapTransition.isFading ? 'main-screen__background--visible' : '',
-          ]
-            .filter(Boolean)
-            .join(' ')}
-          aria-hidden="true"
-          style={{ backgroundImage: `url("${nextBackgroundUrl}")` }}
-        />
-      )}
-      {screenMode !== 'adventure' && <div className="main-screen__veil" aria-hidden="true" />}
-      {screenMode !== 'adventure' && (
-        <div className="digit-rain" aria-hidden="true">
-          {digitDrops.map((drop) => (
-            <div
-              key={drop.id}
-              className={[
-                'digit-drop',
-                drop.id % 2 === 1 ? 'digit-drop--invert' : '',
-              ]
-                .filter(Boolean)
-                .join(' ')}
-              onAnimationIteration={(event) => handleDigitLoop(drop.id, event)}
-              style={{
-                '--drop-left': drop.left,
-                '--drop-duration': drop.duration,
-                '--drop-delay': drop.delay,
-                '--drop-opacity': drop.opacity,
-                '--drop-scale': drop.scale,
-                '--drop-drift': drop.drift,
-                '--swap-duration': drop.swap,
-              }}
-            >
-              <span className="digit-drop__value digit-drop__value--zero">0</span>
-              <span className="digit-drop__value digit-drop__value--one">1</span>
-            </div>
-          ))}
-        </div>
-      )}
+      {screenMode !== 'adventure' && <MenuBackdrop backgrounds={mapBackgrounds} />}
 
       {screenMode === 'menu' && (
         <header className="title-band" inert={Boolean(saveDialog || isMatchupGuideOpen)}>

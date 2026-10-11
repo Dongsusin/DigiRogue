@@ -1,0 +1,141 @@
+.main-screen__background {
+  position: absolute;
+  inset: var(--frame-inner-inset);
+  background-color: #09111f;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  pointer-events: none;
+}
+
+.main-screen__background--base {
+  z-index: 0;
+}
+
+.main-screen__background--next {
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 2600ms ease-in-out;
+  will-change: opacity;
+}
+
+.main-screen__background--visible {
+  opacity: 1;
+}
+
+.main-screen__veil {
+  position: absolute;
+  inset: var(--frame-inner-inset);
+  z-index: 2;
+  border: 4px solid rgba(16, 23, 34, 0.55);
+  background:
+    linear-gradient(180deg, rgba(37, 49, 74, 0.32), rgba(14, 20, 32, 0.5)),
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 34%);
+  box-shadow:
+    inset 0 0 0 1px rgba(179, 206, 255, 0.08),
+    inset 0 18px 30px rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+}
+
+.digit-rain {
+  position: absolute;
+  inset: var(--frame-inner-inset);
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.digit-drop {
+  position: absolute;
+  top: 0;
+  left: var(--drop-left);
+  width: 1.1em;
+  height: 100%;
+  opacity: var(--drop-opacity);
+  transform: translate3d(0, 0, 0) scale(var(--drop-scale));
+  transform-origin: center;
+  animation: digit-fall var(--drop-duration) linear infinite;
+  animation-delay: var(--drop-delay);
+  will-change: transform;
+}
+
+.digit-drop__value {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1.1em;
+  display: grid;
+  place-items: center;
+  color: #89d4ff;
+  font-family: var(--font-pixel-mono);
+  font-size: clamp(1.3rem, calc(2 * var(--game-vw)), 1.95rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-shadow:
+    0 0 10px rgba(137, 212, 255, 0.48),
+    0 0 24px rgba(62, 153, 255, 0.28);
+}
+
+.digit-drop__value--zero {
+  animation: digit-zero var(--swap-duration) steps(1, end) infinite;
+}
+
+.digit-drop__value--one {
+  color: #d8f0ff;
+  animation: digit-one var(--swap-duration) steps(1, end) infinite;
+}
+
+.digit-drop--invert .digit-drop__value--zero {
+  animation-name: digit-one;
+}
+
+.digit-drop--invert .digit-drop__value--one {
+  animation-name: digit-zero;
+}
+
+@keyframes digit-fall {
+  from { transform: translate3d(0, -14%, 0) scale(var(--drop-scale)); }
+  to { transform: translate3d(var(--drop-drift), 104%, 0) scale(var(--drop-scale)); }
+}
+
+@keyframes digit-zero {
+  0%,
+  24%,
+  50%,
+  74% {
+    opacity: 1;
+  }
+
+  25%,
+  49%,
+  75%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes digit-one {
+  0%,
+  24%,
+  50%,
+  74% {
+    opacity: 0;
+  }
+
+  25%,
+  49%,
+  75%,
+  100% {
+    opacity: 1;
+  }
+}
+
+
+.digit-rain[data-paused='true'] .digit-drop,
+.digit-rain[data-paused='true'] .digit-drop__value { animation-play-state: paused; }
+
+/* Keep the digital backdrop alive with gentler motion on reduced-motion devices. */
+@media (prefers-reduced-motion: reduce) {
+  .digit-drop { animation-duration: calc(var(--drop-duration) * 2.5); }
+  .digit-drop__value { animation-duration: calc(var(--swap-duration) * 3); }
+}
