@@ -1,0 +1,1082 @@
+{
+  "아구몬": {
+    "signature": "베이비 플레임",
+    "tactic": "ferocity"
+  },
+  "그레이몬": {
+    "signature": "메가파이어",
+    "tactic": "ferocity"
+  },
+  "메탈그레이몬": {
+    "signature": "트라이던트 암",
+    "tactic": "barrage"
+  },
+  "워그레이몬": {
+    "signature": "브레이브 토네이도",
+    "tactic": "ferocity"
+  },
+  "파피몬": {
+    "signature": "쁘띠 파이어",
+    "tactic": "specialGuard"
+  },
+  "가루몬": {
+    "signature": "푸른화염포",
+    "tactic": "specialGuard"
+  },
+  "워가루몬": {
+    "signature": "카이저 네일",
+    "tactic": "ferocity"
+  },
+  "메탈가루몬": {
+    "signature": "코큐토스 브레스",
+    "tactic": "specialGuard"
+  },
+  "텐타몬": {
+    "signature": "쁘띠 썬더",
+    "tactic": "physicalGuard"
+  },
+  "캅테리몬": {
+    "signature": "전기충격",
+    "tactic": "physicalGuard"
+  },
+  "아트라캅테리몬": {
+    "signature": "호른 버스터",
+    "tactic": "physicalGuard"
+  },
+  "헤라클레스캅테리몬": {
+    "signature": "기가 블래스터",
+    "tactic": "physicalGuard"
+  },
+  "피요몬": {
+    "signature": "빙빙회오리",
+    "tactic": "purify"
+  },
+  "버드라몬": {
+    "signature": "메테오 윙",
+    "tactic": "purify"
+  },
+  "가루다몬": {
+    "signature": "섀도 윙",
+    "tactic": "purify"
+  },
+  "페닉스몬": {
+    "signature": "스타라이트 익스플로전",
+    "tactic": "purify"
+  },
+  "팔몬": {
+    "signature": "포이즌 아이비",
+    "tactic": "bloom"
+  },
+  "니드몬": {
+    "signature": "바늘 뿜기",
+    "tactic": "bloom"
+  },
+  "릴리몬": {
+    "signature": "꽃잎 포",
+    "tactic": "bloom"
+  },
+  "로제몬": {
+    "signature": "쏜 위프",
+    "tactic": "bloom"
+  },
+  "쉬라몬": {
+    "signature": "물고기 행진",
+    "tactic": "specialGuard"
+  },
+  "원뿔몬": {
+    "signature": "뿔 날리기",
+    "tactic": "specialGuard"
+  },
+  "쥬드몬": {
+    "signature": "해머 스파크",
+    "tactic": "specialGuard"
+  },
+  "바이킹몬": {
+    "signature": "아크틱 블리자드",
+    "tactic": "specialGuard"
+  },
+  "파닥몬": {
+    "signature": "공기 팡",
+    "tactic": "purify"
+  },
+  "엔젤몬": {
+    "signature": "헤븐즈 너클",
+    "tactic": "purify"
+  },
+  "홀리엔젤몬": {
+    "signature": "천국의 문",
+    "tactic": "purify"
+  },
+  "세라피몬": {
+    "signature": "세븐 헤븐즈",
+    "tactic": "purify"
+  },
+  "플롯트몬": {
+    "signature": "플롯트의 외침",
+    "tactic": "purify"
+  },
+  "가트몬": {
+    "signature": "고양이 펀치",
+    "tactic": "purify"
+  },
+  "엔젤우몬": {
+    "signature": "천국의 화살",
+    "tactic": "purify"
+  },
+  "오파니몬": {
+    "signature": "에덴즈 재블린",
+    "tactic": "purify"
+  },
+  "길몬": {
+    "signature": "록 브레이커",
+    "tactic": "ferocity"
+  },
+  "그라우몬": {
+    "signature": "번개검",
+    "tactic": "ferocity"
+  },
+  "메가로그라우몬": {
+    "signature": "양날검",
+    "tactic": "barrage"
+  },
+  "듀크몬": {
+    "signature": "로얄 세이버",
+    "tactic": "purify"
+  },
+  "듀크몬[크림슨]": {
+    "signature": "쿼 ･ 바디스",
+    "tactic": "purify"
+  },
+  "레나몬": {
+    "signature": "호변허",
+    "tactic": "agile"
+  },
+  "구미호몬": {
+    "signature": "도깨비 불",
+    "tactic": "agile"
+  },
+  "도사몬": {
+    "signature": "범필섬",
+    "tactic": "agile"
+  },
+  "샤크라몬": {
+    "signature": "금강계만다라",
+    "tactic": "barrier"
+  },
+  "테리어몬": {
+    "signature": "쁘띠 트위스터",
+    "tactic": "barrage"
+  },
+  "가르고몬": {
+    "signature": "속사총",
+    "tactic": "barrage"
+  },
+  "래피드몬": {
+    "signature": "래비드 파이어",
+    "tactic": "barrage"
+  },
+  "세인트가르고몬": {
+    "signature": "화력발사",
+    "tactic": "barrage"
+  },
+  "지오그레이몬": {
+    "signature": "메가파이어",
+    "tactic": "ferocity"
+  },
+  "라이즈그레이몬": {
+    "signature": "삼연발 레이저포",
+    "tactic": "barrage"
+  },
+  "샤인그레이몬": {
+    "signature": "글로리어스 버스트",
+    "tactic": "ferocity"
+  },
+  "샤인그레이몬[버스트]": {
+    "signature": "코로나 블레이즈 소드",
+    "tactic": "ferocity"
+  },
+  "가오몬": {
+    "signature": "회전 주먹",
+    "tactic": "ferocity"
+  },
+  "가오가몬": {
+    "signature": "대시 더블 클로",
+    "tactic": "ferocity"
+  },
+  "마하가오가몬": {
+    "signature": "가오가 토네이도",
+    "tactic": "agile"
+  },
+  "미라쥬가오가몬": {
+    "signature": "초승달 미라쥬",
+    "tactic": "agile"
+  },
+  "미라쥬가오가몬[버스트]": {
+    "signature": "보름달 유성 충격",
+    "tactic": "agile"
+  },
+  "라라몬": {
+    "signature": "넛츠 슛",
+    "tactic": "bloom"
+  },
+  "해바라기몬": {
+    "signature": "태양 광선",
+    "tactic": "bloom"
+  },
+  "라일라몬": {
+    "signature": "라일라 샤워",
+    "tactic": "bloom"
+  },
+  "로제몬[버스트]": {
+    "signature": "샤리테",
+    "tactic": "bloom"
+  },
+  "데블몬": {
+    "signature": "데스 크로우",
+    "tactic": "dread"
+  },
+  "쿠가몬": {
+    "signature": "시저 암즈",
+    "tactic": "ferocity"
+  },
+  "왕쿠가몬": {
+    "signature": "시저암즈Ω",
+    "tactic": "ferocity"
+  },
+  "그랜쿠가몬": {
+    "signature": "디멘션 시저",
+    "tactic": "ferocity"
+  },
+  "가드로몬": {
+    "signature": "디스트럭션 그레네이드",
+    "tactic": "physicalGuard"
+  },
+  "안드로몬": {
+    "signature": "안드로검",
+    "tactic": "physicalGuard"
+  },
+  "하이안드로몬": {
+    "signature": "아토믹 ･ 레이",
+    "tactic": "physicalGuard"
+  },
+  "시드라몬": {
+    "signature": "얼음 화살",
+    "tactic": "specialGuard"
+  },
+  "메가시드라몬": {
+    "signature": "번개창 날리기",
+    "tactic": "specialGuard"
+  },
+  "메탈시드라몬": {
+    "signature": "얼티메이트 스트림",
+    "tactic": "specialGuard"
+  },
+  "메라몬": {
+    "signature": "불타는 주먹",
+    "tactic": "flame"
+  },
+  "블루메라몬": {
+    "signature": "아이스 팬텀",
+    "tactic": "flame"
+  },
+  "에테몬": {
+    "signature": "다크 스피릿츠",
+    "tactic": "dread"
+  },
+  "메탈에테몬": {
+    "signature": "바나나 슬립",
+    "tactic": "dread"
+  },
+  "묘티스몬": {
+    "signature": "나이트 레이드",
+    "tactic": "absorb"
+  },
+  "베놈묘티스몬": {
+    "signature": "베놈 인퓨즈",
+    "tactic": "poison"
+  },
+  "인펠몬": {
+    "signature": "네트워크수류탄",
+    "tactic": "network"
+  },
+  "디아블로몬": {
+    "signature": "캐논발사",
+    "tactic": "network"
+  },
+  "아마게몬": {
+    "signature": "블랙 레인",
+    "tactic": "network"
+  },
+  "크리사리몬": {
+    "signature": "데이터 파괴",
+    "tactic": "network"
+  },
+  "파워드라몬": {
+    "signature": "∞캐논",
+    "tactic": "barrage"
+  },
+  "카오스드라몬": {
+    "signature": "하이퍼 무한 캐논",
+    "tactic": "barrage"
+  },
+  "피노키몬": {
+    "signature": "피노키해머",
+    "tactic": "dread"
+  },
+  "우드몬": {
+    "signature": "브랜치 드레인",
+    "tactic": "bloom"
+  },
+  "피에몬": {
+    "signature": "트럼프검",
+    "tactic": "dread"
+  },
+  "레이디데블몬": {
+    "signature": "암흑파",
+    "tactic": "poison"
+  },
+  "벨페몬": {
+    "signature": "이터널 나이트메어",
+    "tactic": "dread"
+  },
+  "벨페몬[레이지]": {
+    "signature": "람프란투스",
+    "tactic": "dread"
+  },
+  "크레니엄몬": {
+    "signature": "엔드 ･ 왈츠",
+    "tactic": "barrier"
+  },
+  "크레니엄몬[X항체]": {
+    "signature": "그랜드 그리즈르",
+    "tactic": "barrier"
+  },
+  "청룡몬": {
+    "signature": "창뢰",
+    "tactic": "barrier"
+  },
+  "주작몬": {
+    "signature": "홍염",
+    "tactic": "flame"
+  },
+  "백호몬": {
+    "signature": "금강",
+    "tactic": "barrier"
+  },
+  "현무몬": {
+    "signature": "무환",
+    "tactic": "barrier"
+  },
+  "황룡몬": {
+    "signature": "태극",
+    "tactic": "purify"
+  },
+  "티라노몬": {
+    "signature": "불 뿜기",
+    "tactic": "ferocity"
+  },
+  "메탈티라노몬": {
+    "signature": "기가 디스트로이어 II",
+    "tactic": "physicalGuard"
+  },
+  "러스트티라노몬": {
+    "signature": "테러즈 클러스터",
+    "tactic": "barrage"
+  },
+  "레키스몬": {
+    "signature": "문 나이트 킥",
+    "tactic": "agile"
+  },
+  "크레세몬": {
+    "signature": "루나틱 댄스",
+    "tactic": "agile"
+  },
+  "디아나몬": {
+    "signature": "애로 ･ 오브 ･ 아르테미스",
+    "tactic": "dread"
+  },
+  "로터스몬": {
+    "signature": "서펜트 큐어",
+    "tactic": "bloom"
+  },
+  "케레스몬": {
+    "signature": "아일랜드 프리폴",
+    "tactic": "bloom"
+  },
+  "넵튠몬": {
+    "signature": "볼텍스 페네트레이트",
+    "tactic": "barrier"
+  },
+  "캐논벌몬": {
+    "signature": "니트로 스팅거",
+    "tactic": "agile"
+  },
+  "타이거베스파몬": {
+    "signature": "마하스팅거V",
+    "tactic": "agile"
+  },
+  "실피드몬": {
+    "signature": "파동포",
+    "tactic": "agile"
+  },
+  "발키리몬": {
+    "signature": "펜릴 소드",
+    "tactic": "purify"
+  },
+  "골드워매몬": {
+    "signature": "골드리언 러쉬",
+    "tactic": "poison"
+  },
+  "블랙킹워매몬": {
+    "signature": "다크 퓨필",
+    "tactic": "poison"
+  },
+  "플래티넘워매몬": {
+    "signature": "엑스크리먼트",
+    "tactic": "physicalGuard"
+  },
+  "베이더몬": {
+    "signature": "악마의 키스 날리기",
+    "tactic": "barrage"
+  },
+  "이바몬": {
+    "signature": "브레인 럽처",
+    "tactic": "barrage"
+  },
+  "오로치몬": {
+    "signature": "술 브레스",
+    "tactic": "absorb"
+  },
+  "반쵸레오몬": {
+    "signature": "플래시 반쵸 펀치",
+    "tactic": "ferocity"
+  },
+  "메탈콩알몬": {
+    "signature": "에너지 봄",
+    "tactic": "barrage"
+  },
+  "수신몬": {
+    "signature": "무한 캐논",
+    "tactic": "barrage"
+  },
+  "슬레이프몬": {
+    "signature": "비프로스트",
+    "tactic": "purify"
+  },
+  "슬레이프몬[X항체]": {
+    "signature": "수르트 브랜더",
+    "tactic": "purify"
+  },
+  "도르빅크몬": {
+    "signature": "타이런트 콜브랜드",
+    "tactic": "ferocity"
+  },
+  "플레시오몬": {
+    "signature": "소로 블루",
+    "tactic": "specialGuard"
+  },
+  "에렉몬": {
+    "signature": "날벼락치기",
+    "tactic": "ferocity"
+  },
+  "레오몬": {
+    "signature": "수왕권",
+    "tactic": "ferocity"
+  },
+  "화이트레오몬": {
+    "signature": "빙수권",
+    "tactic": "specialGuard"
+  },
+  "샤벨레오몬": {
+    "signature": "네일 크러셔",
+    "tactic": "ferocity"
+  },
+  "아르마몬": {
+    "signature": "박박긁기",
+    "tactic": "physicalGuard"
+  },
+  "모노크로몬": {
+    "signature": "볼케이노 스트라이크",
+    "tactic": "physicalGuard"
+  },
+  "트리케라몬": {
+    "signature": "트라이호른 어택",
+    "tactic": "physicalGuard"
+  },
+  "반쵸록몬": {
+    "signature": "텐파가에시",
+    "tactic": "ferocity"
+  },
+  "고부리몬": {
+    "signature": "방망이때리기",
+    "tactic": "ferocity"
+  },
+  "우가몬": {
+    "signature": "패왕권",
+    "tactic": "ferocity"
+  },
+  "디지타몬": {
+    "signature": "에니그마",
+    "tactic": "physicalGuard"
+  },
+  "타이타몬": {
+    "signature": "혼백심격",
+    "tactic": "ferocity"
+  },
+  "츄몬": {
+    "signature": "치즈 폭탄",
+    "tactic": "poison"
+  },
+  "스카몬": {
+    "signature": "응가",
+    "tactic": "poison"
+  },
+  "베타몬": {
+    "signature": "전기쇼크",
+    "tactic": "electric"
+  },
+  "올챙몬": {
+    "signature": "룰러바이 버블",
+    "tactic": "poison"
+  },
+  "개굴몬": {
+    "signature": "크래시 심포니",
+    "tactic": "poison"
+  },
+  "왕개굴몬": {
+    "signature": "사무라이 톤",
+    "tactic": "dread"
+  },
+  "루나몬": {
+    "signature": "티어 슛",
+    "tactic": "agile"
+  },
+  "베어몬": {
+    "signature": "아기곰돌격권",
+    "tactic": "ferocity"
+  },
+  "그리즈몬": {
+    "signature": "급소 반격",
+    "tactic": "ferocity"
+  },
+  "아이언레오몬": {
+    "signature": "사자수파참",
+    "tactic": "physicalGuard"
+  },
+  "헤비레오몬": {
+    "signature": "배러지 스위퍼",
+    "tactic": "physicalGuard"
+  },
+  "머슈몬": {
+    "signature": "꼬마 머슈탄",
+    "tactic": "bloom"
+  },
+  "쥬레이몬": {
+    "signature": "체리 봄",
+    "tactic": "bloom"
+  },
+  "추추몬": {
+    "signature": "끈적 그물",
+    "tactic": "poison"
+  },
+  "스팅몬": {
+    "signature": "송곳돌진",
+    "tactic": "ferocity"
+  },
+  "다이노몬": {
+    "signature": "헬 마스커레이드",
+    "tactic": "ferocity"
+  },
+  "반쵸스팅몬": {
+    "signature": "블러디 피니시",
+    "tactic": "ferocity"
+  },
+  "아기벌몬": {
+    "signature": "기어 스팅거",
+    "tactic": "agile"
+  },
+  "말벌몬": {
+    "signature": "터보 스팅거",
+    "tactic": "agile"
+  },
+  "쟈자몬": {
+    "signature": "콕콕픽",
+    "tactic": "physicalGuard"
+  },
+  "쟈자드몬": {
+    "signature": "레이저 아이",
+    "tactic": "physicalGuard"
+  },
+  "쟈자리히몬": {
+    "signature": "메서 스파이럴",
+    "tactic": "physicalGuard"
+  },
+  "메탈릭드라몬": {
+    "signature": "레이저 캐논",
+    "tactic": "physicalGuard"
+  },
+  "즈바몬": {
+    "signature": "트웬티 다이브",
+    "tactic": "barrier"
+  },
+  "즈바이거몬": {
+    "signature": "Road T(w)o Decade",
+    "tactic": "barrier"
+  },
+  "듀라몬": {
+    "signature": "글래스러시",
+    "tactic": "barrier"
+  },
+  "듀란다몬": {
+    "signature": "츠바이 그렌체",
+    "tactic": "barrier"
+  },
+  "톱니몬": {
+    "signature": "톱니바퀴포",
+    "tactic": "physicalGuard"
+  },
+  "케라몬": {
+    "signature": "찰싹 때리기",
+    "tactic": "network"
+  },
+  "모노드라몬": {
+    "signature": "크랙 바이트",
+    "tactic": "ferocity"
+  },
+  "스트라이크드라몬": {
+    "signature": "스트라이크 팡",
+    "tactic": "ferocity"
+  },
+  "사이버드라몬": {
+    "signature": "이레이즈 클로",
+    "tactic": "ferocity"
+  },
+  "저스티몬": {
+    "signature": "저스티스 킥",
+    "tactic": "barrier"
+  },
+  "알카디몬[성장기]": {
+    "signature": "소울 앱소브션",
+    "tactic": "absorb"
+  },
+  "알카디몬[성숙기]": {
+    "signature": "스내치 윕",
+    "tactic": "absorb"
+  },
+  "알카디몬[완전체]": {
+    "signature": "도트 매트릭스",
+    "tactic": "absorb"
+  },
+  "알카디몬": {
+    "signature": "갓 매트릭스",
+    "tactic": "absorb"
+  },
+  "임프몬": {
+    "signature": "서몬",
+    "tactic": "dread"
+  },
+  "위자몬": {
+    "signature": "번쩍 구름",
+    "tactic": "dread"
+  },
+  "팬텀몬": {
+    "signature": "영혼가르기",
+    "tactic": "dread"
+  },
+  "베르제브몬": {
+    "signature": "다크니스 크로우",
+    "tactic": "barrage"
+  },
+  "드라큐몬": {
+    "signature": "아이 오브 나이트메어",
+    "tactic": "dread"
+  },
+  "상굴몬": {
+    "signature": "스티커 블레이드",
+    "tactic": "dread"
+  },
+  "마타돌몬": {
+    "signature": "사우전드 애로",
+    "tactic": "dread"
+  },
+  "그란드라큐몬": {
+    "signature": "아이 오브 고르곤",
+    "tactic": "dread"
+  },
+  "파피몬(흑)": {
+    "signature": "쁘띠 파이어",
+    "tactic": "specialGuard"
+  },
+  "가루몬(흑)": {
+    "signature": "푸른화염포",
+    "tactic": "specialGuard"
+  },
+  "워가루몬(흑)": {
+    "signature": "카이저 네일",
+    "tactic": "ferocity"
+  },
+  "블랙메탈가루몬": {
+    "signature": "코큐토스 브레스",
+    "tactic": "specialGuard"
+  },
+  "보보몬": {
+    "signature": "쁘띠 플레임",
+    "tactic": "ferocity"
+  },
+  "라보보몬": {
+    "signature": "그레이트 플레임",
+    "tactic": "ferocity"
+  },
+  "라보가리타몬": {
+    "signature": "메르다이나",
+    "tactic": "ferocity"
+  },
+  "볼케닉드라몬": {
+    "signature": "볼케닉 ･ 플레어",
+    "tactic": "ferocity"
+  },
+  "류우다몬": {
+    "signature": "투구 회전",
+    "tactic": "barrier"
+  },
+  "긴류우몬": {
+    "signature": "봉진파",
+    "tactic": "barrier"
+  },
+  "히샤류우몬": {
+    "signature": "성룡인",
+    "tactic": "barrier"
+  },
+  "오류우몬": {
+    "signature": "영세용왕인",
+    "tactic": "barrier"
+  },
+  "드라코몬": {
+    "signature": "베이비 브레스",
+    "tactic": "ferocity"
+  },
+  "코어드라몬(녹)": {
+    "signature": "그린 플레어 브레스",
+    "tactic": "ferocity"
+  },
+  "그라운드라몬": {
+    "signature": "스크랩리스 클로",
+    "tactic": "ferocity"
+  },
+  "브레이크드라몬": {
+    "signature": "디스트로이드 러시",
+    "tactic": "ferocity"
+  },
+  "코어드라몬(청)": {
+    "signature": "블루 플레어 브레스",
+    "tactic": "ferocity"
+  },
+  "윙드라몬": {
+    "signature": "블레이즈 소닉 브레스",
+    "tactic": "ferocity"
+  },
+  "슬레이어드라몬": {
+    "signature": "천룡참파",
+    "tactic": "ferocity"
+  },
+  "로프몬": {
+    "signature": "쁘띠 트위스터",
+    "tactic": "purify"
+  },
+  "토리에몬": {
+    "signature": "홍당무권법",
+    "tactic": "purify"
+  },
+  "안티라몬": {
+    "signature": "데이터흡수",
+    "tactic": "purify"
+  },
+  "케루비몬(선)": {
+    "signature": "빛나는 창",
+    "tactic": "purify"
+  },
+  "쿠다몬": {
+    "signature": "탄환선풍",
+    "tactic": "purify"
+  },
+  "레파몬": {
+    "signature": "구구렬공참",
+    "tactic": "purify"
+  },
+  "치린몬": {
+    "signature": "질풍천상검",
+    "tactic": "purify"
+  },
+  "헉몬": {
+    "signature": "피프스 러시",
+    "tactic": "ferocity"
+  },
+  "바오헉몬": {
+    "signature": "피프 크로스",
+    "tactic": "ferocity"
+  },
+  "세이버헉몬": {
+    "signature": "레이지 스트레이드",
+    "tactic": "ferocity"
+  },
+  "제스몬": {
+    "signature": "철검성패",
+    "tactic": "barrier"
+  },
+  "스타몬즈": {
+    "signature": "메테오 샤워",
+    "tactic": "barrier"
+  },
+  "스타몬": {
+    "signature": "유성 폭풍",
+    "tactic": "barrier"
+  },
+  "슈퍼스타몬": {
+    "signature": "헬리 스콜",
+    "tactic": "barrier"
+  },
+  "프린스콩알몬": {
+    "signature": "스마일리 워헤드",
+    "tactic": "barrage"
+  },
+  "팔코몬": {
+    "signature": "스크래치 스매시",
+    "tactic": "agile"
+  },
+  "펙크몬": {
+    "signature": "스파이럴 클로",
+    "tactic": "agile"
+  },
+  "야타가라몬": {
+    "signature": "미카후츠노카미",
+    "tactic": "agile"
+  },
+  "레이브몬": {
+    "signature": "스파이럴 레이븐 클로",
+    "tactic": "agile"
+  },
+  "브이몬": {
+    "signature": "붕붕 펀치",
+    "tactic": "ferocity"
+  },
+  "엑스브이몬": {
+    "signature": "스트롱 크런치",
+    "tactic": "ferocity"
+  },
+  "파일드라몬": {
+    "signature": "에스그리마",
+    "tactic": "barrage"
+  },
+  "황제드라몬[파이터]": {
+    "signature": "포지트론 레이저",
+    "tactic": "ferocity"
+  },
+  "아그니몬": {
+    "signature": "버닝 샐러맨더",
+    "tactic": "ferocity"
+  },
+  "브리트라몬": {
+    "signature": "코로나 블래스터",
+    "tactic": "ferocity"
+  },
+  "카이젤그레이몬": {
+    "signature": "염룡격",
+    "tactic": "ferocity"
+  },
+  "스사노오몬": {
+    "signature": "천우우참",
+    "tactic": "barrier"
+  },
+  "샤우트몬": {
+    "signature": "록 정신",
+    "tactic": "ferocity"
+  },
+  "샤우트몬[X2]": {
+    "signature": "버디 블래스터",
+    "tactic": "barrage"
+  },
+  "샤우트몬[X4]": {
+    "signature": "버닝 스타 크러셔",
+    "tactic": "barrage"
+  },
+  "오메가샤우트몬": {
+    "signature": "헤비 메탈 발칸",
+    "tactic": "ferocity"
+  },
+  "가무드라몬": {
+    "signature": "란검 브레이크",
+    "tactic": "ferocity"
+  },
+  "아레스타드라몬": {
+    "signature": "스핀 칼리버",
+    "tactic": "ferocity"
+  },
+  "후디에몬": {
+    "signature": "인피니티 드림",
+    "tactic": "purify"
+  },
+  "황금아르마몬": {
+    "signature": "들이받기",
+    "tactic": "purify"
+  },
+  "토우몬": {
+    "signature": "니기미타마",
+    "tactic": "physicalGuard"
+  },
+  "피코데블몬": {
+    "signature": "피코 주사기",
+    "tactic": "dread"
+  },
+  "볼트몬": {
+    "signature": "토마호크 공격",
+    "tactic": "barrier"
+  },
+  "마스테몬": {
+    "signature": "홀리 디자이어",
+    "tactic": "barrier"
+  },
+  "브이드라몬": {
+    "signature": "브이 브레스 애로",
+    "tactic": "agile"
+  },
+  "에어로브이드라몬": {
+    "signature": "V윙 블레이드",
+    "tactic": "agile"
+  },
+  "알포스브이드라몬": {
+    "signature": "샤이닝 V 포스",
+    "tactic": "agile"
+  },
+  "아구몬(흑)": {
+    "signature": "베이비 플레임",
+    "tactic": "ferocity"
+  },
+  "그레이몬(청)": {
+    "signature": "메가파이어",
+    "tactic": "ferocity"
+  },
+  "스컬그레이몬": {
+    "signature": "오블리비언 버드",
+    "tactic": "ferocity"
+  },
+  "블랙워그레이몬": {
+    "signature": "다크 가이아 포스",
+    "tactic": "ferocity"
+  },
+  "콩알몬": {
+    "signature": "스마일리 봄",
+    "tactic": "barrage"
+  },
+  "오메가몬[즈왈트-D]": {
+    "signature": "그레이 소드",
+    "tactic": "barrier"
+  },
+  "바리스타몬": {
+    "signature": "호른 브레이커",
+    "tactic": "physicalGuard"
+  },
+  "샤우트몬[X3]": {
+    "signature": "쓰리 빅토라이즈",
+    "tactic": "barrage"
+  },
+  "도루루몬": {
+    "signature": "드릴 버스터",
+    "tactic": "agile"
+  },
+  "그레이몬[크로스워즈]": {
+    "signature": "메가 플레임",
+    "tactic": "ferocity"
+  },
+  "메탈그레이몬[크로스워즈]": {
+    "signature": "트라이던트 암",
+    "tactic": "barrage"
+  },
+  "메일버드라몬": {
+    "signature": "플라즈마 캐논",
+    "tactic": "barrage"
+  },
+  "메탈그레이몬[사이버런처]": {
+    "signature": "사이버 기간틱 런처",
+    "tactic": "barrage"
+  },
+  "사이버드라몬[크로스워즈]": {
+    "signature": "이레이즈 클로",
+    "tactic": "barrage"
+  },
+  "아큐라몬": {
+    "signature": "대뿔 공격",
+    "tactic": "agile"
+  },
+  "오메가몬": {
+    "signature": "가루루 캐논",
+    "tactic": "barrier"
+  },
+  "블리츠그레이몬": {
+    "signature": "플라즈마 스테이크",
+    "tactic": "physicalGuard"
+  },
+  "오메가몬[알터-S]": {
+    "signature": "가루 소드",
+    "tactic": "barrier"
+  },
+  "크레스가루몬": {
+    "signature": "황수언월도",
+    "tactic": "specialGuard"
+  },
+  "오메가몬[즈왈트]": {
+    "signature": "가루루 캐논",
+    "tactic": "barrier"
+  },
+  "매그너가루몬[SV]": {
+    "signature": "머신건 디스트로이",
+    "tactic": "specialGuard"
+  },
+  "키메라몬": {
+    "signature": "히트 ･ 바이퍼",
+    "tactic": "barrier"
+  },
+  "밀레니엄몬": {
+    "signature": "타임 언리미티드",
+    "tactic": "barrier"
+  },
+  "알파몬": {
+    "signature": "성검 그레이 달파",
+    "tactic": "barrier"
+  },
+  "알파몬[왕룡검]": {
+    "signature": "왕룡검",
+    "tactic": "barrier"
+  },
+  "엑자몬": {
+    "signature": "아발론즈 게이트",
+    "tactic": "barrier"
+  },
+  "화염드라몬": {
+    "signature": "파이어 로켓",
+    "tactic": "flame"
+  },
+  "번개드라몬": {
+    "signature": "블루 썬더",
+    "tactic": "electric"
+  },
+  "레이브몬[버스트]": {
+    "signature": "무쌍천상익지진",
+    "tactic": "agile"
+  },
+  "라센몬": {
+    "signature": "자이로 스매시",
+    "tactic": "agile"
+  },
+  "라센몬[격앙]": {
+    "signature": "격앙 스파이럴",
+    "tactic": "ferocity"
+  },
+  "샤인그레이몬[루인]": {
+    "signature": "코로나 블레이즈 소드",
+    "tactic": "ferocity"
+  },
+  "황제드라몬[팔라딘]": {
+    "signature": "오메가 블레이드",
+    "tactic": "ferocity"
+  }
+}

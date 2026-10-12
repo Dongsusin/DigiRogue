@@ -25,7 +25,7 @@
     "test:hosting-budget": "node scripts/verify-hosting-budget.mjs",
     "test:balance": "node --test scripts/verify-adventure-balance.mjs",
     "simulate:balance": "node scripts/simulate-adventure-balance.mjs",
-    "test:bosses": "node --test scripts/verify-boss-variety.mjs scripts/verify-boss-special-patterns.mjs",
+    "test:bosses": "node --test scripts/verify-boss-variety.mjs scripts/verify-boss-special-patterns.mjs scripts/verify-encounter-patterns.mjs",
     "test:party": "node --test scripts/verify-party-admission.mjs",
     "test:trainer-skills": "node --test scripts/verify-trainer-item-skills.mjs scripts/verify-trainer-skill-layout.mjs",
     "test:jogress": "node --test scripts/verify-jogress-inheritance.mjs",

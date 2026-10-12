@@ -1,8 +1,10 @@
+import { getSkillCooldown } from '../balance/combat.js'
 import { mergeRegionStatModifier, REGION_EFFECT_TEXT } from './regionModifiers.js'
 import { BOSS_MAP_THEMES, BOSS_PROFILES, BOSS_PROFILE_BY_ID } from '../data/bossProfiles.js'
 import { resolveFinalBossAfterAction, resolveFinalBossBeforeAction } from './finalBosses.js'
 import { withBossSegments, hydrateBossSegments, finishBossDamageWindow, BOSS_PHASE_VERSION } from './bossPhases.js'
 import { getBossPhaseSignature } from '../data/bossPatternSkills.js'
+import { getEncounterTactics } from '../data/encounterPatterns.js'
 import { DIGIMON_MODELS, missingRequiredClips } from '../data/digimonModels.js'
 import { regionalEncounterPool, pickVariedEncounter } from './encounterVariety.js'
 
@@ -147,6 +149,8 @@ export function createBossEncounter({ stage, mapName, speciesLookup, createBossC
 function conditionMet(condition, unit, enemies, hits) {
   const plan = unit.bossEncounter
   switch (condition.kind) {
+    case 'all': return condition.conditions.every(child => conditionMet(child, unit, enemies, hits))
+    case 'reinforcement-room': return enemies.filter(living).length < 2 && !enemies.some(enemy => enemy.id === unit.id + '-pattern-reinforcement')
     case 'hp': return unit.currentHp <= Math.max(1, Math.floor(unit.maxHp * condition.ratio))
     case 'actions': return plan.actions >= condition.count
     case 'hits': return plan.lastCategory === condition.category && plan.hitStreak >= condition.count
@@ -196,7 +200,10 @@ export function resolveBossReactions(context,
       plan.hitStreak = plan.lastCategory === hit.category ? plan.hitStreak + 1 : 1
       plan.lastCategory = hit.category
     }
-    if (actorSide === 'enemy' && actorId === original.id && didAct) plan.actions++
+    if (actorSide === 'enemy' && actorId === original.id && didAct) {
+      plan.actions++
+      delete plan.encounterDrainBudget
+    }
     let unit = { ...original, bossEncounter: plan }
     const deferPower = deferPatterns && patternActorId !== unit.id
     let phase = plan.phases[plan.phase]
@@ -252,10 +259,17 @@ export function resolveBossReactions(context,
         ...(!form && reachedHp && phase.signature && !phase.pattern ? { signature: phase.signatureSkill ? { skill: { ...phase.signatureSkill } } : getBossPhaseSignature(unit, plan.phase - 1, getSkillData) } : {}) }
       changes.push(change); battleLogs.push(...logs)
     }
-    for (const tactic of plan.rules) {
+    const tactics = [...(plan.rules ?? []), ...getEncounterTactics(unit, getSkillData)]
+    // A save can contain a pending move from a previous form. Keep only current
+    // species moves; historical spent IDs remain serialized to prevent repeats.
+    const validIds = new Set(tactics.map(tactic => tactic.id))
+    plan = { ...plan, pendingRules: (plan.pendingRules ?? []).filter(id => validIds.has(id)) }
+    unit = { ...unit, bossEncounter: plan }
+    for (const tactic of tactics) {
       if (plan.usedRules.includes(tactic.id) ||
         (!plan.pendingRules?.includes(tactic.id) && !conditionMet(tactic.condition, unit, enemies, hits))) continue
-      if (deferPower) {
+      if (deferPower || (tactic.requiresReadySkill && getSkillCooldown(unit, tactic.signatureSkill) > 0) ||
+        (plan.kind !== 'final' && changes.some(change => change.actionActorId === unit.id))) {
         plan = { ...plan, pendingRules: [...new Set([...(plan.pendingRules ?? []), tactic.id])] }
         unit = { ...unit, bossEncounter: plan }
         continue
@@ -263,14 +277,17 @@ export function resolveBossReactions(context,
       const previous = unit
       unit = applyPower(unit, tactic.effect, refreshCombatantStats)
       plan = { ...plan, usedRules: [...plan.usedRules, tactic.id], lastEvent: tactic.label,
+        ...(tactic.drain ? { encounterDrainBudget: Math.floor(unit.maxHp * .08) } : {}),
         ...(plan.pendingRules ? { pendingRules: plan.pendingRules.filter(id => id !== tactic.id) } : {}),
-        regenerationStopped: plan.regenerationStopped || tactic.effect.stopRegeneration === true }
+        regenerationStopped: plan.regenerationStopped || tactic.effect?.stopRegeneration === true }
       unit = { ...unit, bossEncounter: plan }
       const healed = Math.max(0, unit.currentHp - previous.currentHp)
       const logs = [tactic.speech, `${unit.name}의 ${tactic.label} 발동!${healed ? ` HP ${healed} 회복.` : ''}`,
         ...(previous.statusEffect && !unit.statusEffect ? [`${unit.name}의 ${previous.statusEffect.type}이(가) 해제됐다!`] : [])].filter(Boolean)
       changes.push({ targetId: unit.id, targetSide: 'enemy', kind: 'power', label: tactic.label,
         actionActorId: unit.id, consumesAction: true,
+        ...(tactic.signatureSkill ? { signature: { skill: { ...tactic.signatureSkill } } } : {}),
+        ...(tactic.pattern ? { pattern: { ...tactic.pattern } } : {}),
         nextCombatant: unit, logs }); battleLogs.push(...logs)
     }
     nextEnemies[index] = normalizeEncounterPresentation(unit)

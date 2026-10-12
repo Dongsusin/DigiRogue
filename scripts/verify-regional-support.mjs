@@ -230,8 +230,18 @@ for(const id of extraBossIds)test(id+' is reachable on a fitting map and its sav
  const deps={speciesLookup:lookup,evolveBoss:(u,data)=>({...u,name:data.이름}),refreshCombatantStats:(u,options={})=>({...u,...options}),getSkillData:()=>null}
  const deferred=resolveBossReactions({enemies:[boss],actorId:'owned',actorSide:'ally',hitEffects:hits,deferPatterns:true},deps)
  boss=JSON.parse(JSON.stringify(deferred.nextEnemies[0]));assert(boss.bossEncounter.pendingRules?.includes(rule.id));assert(!boss.bossEncounter.usedRules.includes(rule.id))
- const active=resolveBossReactions({enemies:[boss],actorId:boss.id,actorSide:'enemy',didAct:false,patternActorId:boss.id,deferPatterns:true},deps)
+ let active=resolveBossReactions({enemies:[boss],actorId:boss.id,actorSide:'enemy',didAct:false,patternActorId:boss.id,deferPatterns:true},deps)
+ assert(active.changes.filter(change=>change.consumesAction).length<=1)
+ for(let pending=0;!active.changes.some(change=>change.label===rule.label)&&pending<plan.phases.length;pending++) {
+   // Every already-crossed HP section/evolution has priority. The rule must remain
+   // unspent and fire on the next own action, rather than stacking both powers.
+   assert(active.changes.some(change=>change.actionActorId===boss.id))
+   assert(active.nextEnemies[0].bossEncounter.pendingRules.includes(rule.id))
+   assert(!active.nextEnemies[0].bossEncounter.usedRules.includes(rule.id))
+   active=resolveBossReactions({enemies:active.nextEnemies,actorId:boss.id,actorSide:'enemy',didAct:false,patternActorId:boss.id,deferPatterns:true},deps)
+ }
  const changes=active.changes.filter(change=>change.label===rule.label);assert.equal(changes.length,1);assert(changes[0].consumesAction)
+ assert.equal(active.changes.filter(change=>change.consumesAction).length,1)
  const after=active.nextEnemies[0];assert(after.bossEncounter.usedRules.includes(rule.id))
  for(const [key,multiplier] of Object.entries(rule.effect.stats??{})){const applied=after.statModifiers[key].multiplier;assert(multiplier>=1?applied>=multiplier:applied<=multiplier,'Stronger phase effects must survive a weaker pattern')}
  for(const [key,turns] of Object.entries(rule.effect.guards??{}))assert(after.battleGuards[key]>=turns)

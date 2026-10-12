@@ -1,3 +1,4 @@
+import { applyEncounterDrain, resolveEncounterPatterns } from './battle/encounterPatterns.js'
 import CommunityHub from './components/CommunityHub.jsx'
 import MainMenu from './components/MainMenu.jsx'
 import HallOfFame from './components/HallOfFame.jsx'
@@ -4266,8 +4267,10 @@ const resolveAttackAction = ({
     nextDefender = { ...nextDefender, rivalEncounter: { ...nextDefender.rivalEncounter,
       observed: { ...observed, [category]: (observed[category] ?? 0) + 1 } } }
   }
-  const nextAttacker = recordPassiveAttack(attacker, defender, nextDefender, appliedDamage)
+  const drain = applyEncounterDrain(recordPassiveAttack(attacker, defender, nextDefender, appliedDamage), skillOverride, appliedDamage)
+  const nextAttacker = drain.nextAttacker
   const nextLogs = [...battleLogs, ...equipment.battleLogs, ...passiveModifiers.battleLogs, `${defender.name}에게 ${appliedDamage} 데미지!`]
+  nextLogs.push(...drain.battleLogs)
   if (instantDefeat) nextLogs.push(`${defender.name}의 데이터가 도트 매트릭스에 지워졌다!`)
   if (isCritical) nextLogs.push(criticalMultiplier > 1 ? `치명타! 피해가 ${criticalMultiplier}배로 증가했다!` : '치명타의 추가 피해가 막혔다!')
   nextLogs.push(...hpResult.battleLogs)
@@ -4382,8 +4385,11 @@ const prepareBossTurn = ({ enemies, actorId, party = [], activeAllyIds = [] }) =
     speciesLookup: allDigimonLookup, returnEvolution: createReturnedEvolutionCombatant,
     createCombatant, refreshStats: refreshCombatantStats, isPlayable: isPlayableDigimon,
   })
+  const encounter = resolveEncounterPatterns({ enemies: special.nextEnemies, party: special.nextParty, changes: special.changes }, {
+    speciesLookup: allDigimonLookup, createCombatant, refreshStats: refreshCombatantStats,
+  })
   const patterns = response.changes.filter(change => change.actionActorId === actorId && change.consumesAction)
-  return { ...special, battleLogs: [...response.battleLogs, ...special.battleLogs], consumesAction: patterns.length > 0,
+  return { ...encounter, battleLogs: [...response.battleLogs, ...special.battleLogs, ...encounter.battleLogs], consumesAction: patterns.length > 0,
     skill: patterns.find(change => change.signature)?.signature.skill ?? null }
 }
 
