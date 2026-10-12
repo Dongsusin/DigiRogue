@@ -1,3 +1,6 @@
+import { getDigimonStageRank } from '../data/digimonStages.js'
+import { DIGIMON_MODELS, missingRequiredClips } from '../data/digimonModels.js'
+import { REGION_STAT_KEYS, mergeRegionStatModifier } from './regionModifiers.js'
 import { FINAL_BOSS_PROFILES } from '../data/finalBossProfiles.js'
 
 const profiles = new Map(FINAL_BOSS_PROFILES.map(profile => [profile.id, profile]))
@@ -69,4 +72,92 @@ export function resolveFinalBossAfterAction(enemies, context) {
   if (!context.isPatternAction && previousMove.tell && (context.phaseBefore == null || context.phaseBefore === plan.phase))
     emit(unit, 'power', previousMove.skill.기술명, [previousMove.tell])
   return { nextEnemies: nextEnemies.map(enemy => enemy.id === unit.id ? unit : enemy), changes, battleLogs }
+}
+
+// Phase effects operate on the authoritative battle roster; presentation receives the same snapshots.
+export const ROYAL_KNIGHT_NAMES = Object.freeze(['오메가몬', '듀크몬', '알파몬', '매그너몬', '듀나스몬',
+  '로드나이트몬', '크레니엄몬', '슬레이프몬', '알포스브이드라몬', '엑자몬', '간쿠몬', '제스몬', '두프트몬'])
+export function resolveFinalBossPatterns({ enemies, party = [], activeAllyIds = [], changes = [] },
+  { speciesLookup, returnEvolution, createCombatant, refreshStats, isPlayable }) {
+  let nextEnemies = [...enemies], nextParty = [...party]
+  const nextChanges = [], battleLogs = [], phaseChanges = changes.map(change => ({ ...change }))
+  const emit = (unit, side, kind, label, logs, extra = {}) => {
+    nextChanges.push({targetId:unit.id,targetSide:side,kind,label,nextCombatant:unit,logs,...extra})
+    battleLogs.push(...logs)
+  }
+  for (const change of phaseChanges) {
+    if (!change.pattern || !change.consumesAction) continue
+    let boss = nextEnemies.find(u => u.id === change.actionActorId)
+    if (!living(boss) || !profiles.has(boss.bossEncounter?.id)) continue
+    const kind = change.pattern.kind
+    const active = nextParty.filter(u => activeAllyIds.includes(u.id) && living(u) && !u.regionalSupport)
+    if (kind === 'devolve') for (const ally of active) {
+      const history = ally.evolutionHistory ?? []
+      const current = speciesLookup.get(ally.name)
+      // Prefer the actual route. Directly selected evolved starters use a legal incoming link.
+      const previous = history.at(-1) ?? [...speciesLookup.values()].filter(data =>
+        data.진화가능?.includes(ally.name) && isPlayable(data) && getDigimonStageRank(data.stage) < getDigimonStageRank(current?.stage))
+        .sort((a,b) => getDigimonStageRank(b.stage) - getDigimonStageRank(a.stage))[0]?.이름
+      const returned = previous ? returnEvolution({...ally,evolutionHistory:history.length?history:[previous]}) : ally
+      if (returned.name === ally.name) { battleLogs.push(ally.name + '은(는) 더 퇴화하지 않았다!'); continue }
+      const next = refreshStats({...returned,battleMap:ally.battleMap,battleAnomaly:ally.battleAnomaly,
+        battleGuards:{...ally.battleGuards},skillCooldowns:{...ally.skillCooldowns}})
+      nextParty = nextParty.map(u => u.id === ally.id ? next : u)
+      emit(next,'ally','devolve','데스 에볼루션',[ally.name + ' → ' + next.name + ' · 강제 퇴화!'])
+    }
+    if (kind === 'royal-knight' && nextEnemies.length < 2) {
+      const candidates = ROYAL_KNIGHT_NAMES.filter(name => speciesLookup.has(name) && DIGIMON_MODELS[name] &&
+        !missingRequiredClips(DIGIMON_MODELS[name].clips).length)
+      const id = boss.id + '-royal-knight'
+      if (candidates.length && !nextEnemies.some(u => u.id === id)) {
+        const name = candidates[Math.floor(Math.random()*candidates.length)]
+        let knight = createCombatant({id,name,data:speciesLookup.get(name),level:boss.level})
+        knight = refreshStats({...knight,isBoss:false,enemyStage:boss.enemyStage ?? boss.bossStage,
+          enemyGameMode:boss.enemyGameMode,battleMap:boss.battleMap,battleAnomaly:boss.battleAnomaly,
+          bossEncounter:{...boss.bossEncounter,leader:false,royalKnight:true,initialName:name,
+            phases:[],rules:[],phase:0,actions:0,usedRules:[],companionIds:[boss.id],segmentCount:1},
+          bossHpMarkers:[],bossHpBreakpoints:[],bossHpSegmentCount:1})
+        knight = {...knight,currentHp:knight.maxHp}
+        nextEnemies = [...nextEnemies.filter(u=>u.id!==id),knight]
+        boss = {...boss,bossEncounter:{...boss.bossEncounter,companionIds:[...(boss.bossEncounter.companionIds??[]),id]}}
+        emit(knight,'enemy','reinforce','로열나이츠 소환',[boss.name + '의 명령으로 ' + name + '이(가) 나타났다!'],{insertCombatant:true})
+      }
+    }
+    if (kind === 'absorb-brood') {
+      const child = nextEnemies.find(u=>boss.bossEncounter.companionIds?.includes(u.id)&&living(u))
+      boss = {...boss,bossEncounter:{...boss.bossEncounter,broodUsed:true}}
+      if (child) {
+        nextEnemies = nextEnemies.filter(u=>u.id!==child.id)
+        boss = {...boss,currentHp:Math.min(boss.maxHp,boss.currentHp+Math.max(1,Math.floor(boss.maxHp*.1))),
+          bossEncounter:{...boss.bossEncounter,companionIds:[]}}
+        emit(boss,'enemy','power','증식체 융합',['쿠라몬의 데이터를 흡수해 아마게몬이 HP를 회복했다!'],{consumedIds:[child.id]})
+      }
+    }
+    if (kind === 'steal-boosts' || kind === 'purge-boosts') {
+      const stolen = {}, purge = kind === 'purge-boosts'
+      for (const ally of active) {
+        const modifiers = {...ally.statModifiers}
+        let changed = false
+        for (const key of REGION_STAT_KEYS) if (modifiers[key]?.multiplier > 1) {
+          stolen[key] = Math.max(stolen[key]??1,Math.min(1.25,modifiers[key].multiplier));modifiers[key]=null;changed=true
+        }
+        const guards = {...ally.battleGuards}
+        if (purge) for (const key of ['physical','special','status','stats','endure']) if (guards[key]>0) {guards[key]=0;changed=true}
+        if (changed) {
+          const next = refreshStats({...ally,battleGuards:guards},{statModifiers:modifiers,preserveMaxHpDelta:true})
+          nextParty=nextParty.map(u=>u.id===ally.id?next:u)
+          emit(next,'ally','power',change.label,[ally.name + (purge?'의 강화와 방벽 데이터가 분해됐다!':'의 강화 데이터를 빼앗겼다!')])
+        }
+      }
+      if (!purge && Object.keys(stolen).length) {
+        const modifiers={...boss.statModifiers}
+        for (const [key,value] of Object.entries(stolen)) modifiers[key]=mergeRegionStatModifier(modifiers[key],value)
+        boss=refreshStats(boss,{statModifiers:modifiers,preserveMaxHpDelta:true})
+      }
+    }
+    nextEnemies=nextEnemies.map(u=>u.id===boss.id?boss:u)
+    // The phase event must not later overwrite the post-effect boss snapshot.
+    change.nextCombatant=boss
+  }
+  return {nextEnemies,nextParty,changes:[...phaseChanges,...nextChanges],battleLogs}
 }

@@ -39,7 +39,8 @@ export function createBattlePresentation({ effects = [], logs = [], presentation
       bosses.push({ atMs: cursor, event: { ...change, durationMs } })
       show(change.logs ?? [], cursor, 'boss')
       states.push({ atMs: cursor + (change.kind === 'fusion' ? BOSS_FUSION_SWAP_MS : change.kind === 'evolve' ? BOSS_EVOLUTION_SWAP_MS : 0),
-        units: [{ targetId: change.targetId, targetSide: 'enemy', targetCombatant: change.nextCombatant },
+        units: [{ targetId: change.targetId, targetSide: change.targetSide ?? 'enemy', targetCombatant: change.nextCombatant,
+          ...(change.insertCombatant ? { insertCombatant: true } : {}) },
           ...(change.consumedIds ?? []).map(targetId => ({ targetId, targetSide: 'enemy', removeCombatant: true }))] })
       cursor += durationMs
     }

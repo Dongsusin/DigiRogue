@@ -59,7 +59,7 @@ export function createBossPlan(profile, stage, { companionIds = [], support = fa
     ? profile.companion ? `야생 ${profile.line[startIndex]}와(과) ${profile.companion}이(가) 협공을 준비한다!`
       : `야생 ${name}이(가) 길을 막아섰다!`
     : profile.speech
-  return withBossSegments({ version: BOSS_PLAN_VERSION, id: profile.id, kind: profile.kind, title: profile.title,
+  return withBossSegments({ version: BOSS_PLAN_VERSION, specialPatternVersion: 1, id: profile.id, kind: profile.kind, title: profile.title,
     name: profile.kind === 'lineage' ? name : profile.name, emblem: profile.emblem, stage, source: profile.source ?? null,
     intro, initialName: name, leader: !support, companionIds,
     phases, rules, phase: 0, usedRules: [], actions: 0, hitStreak: 0, lastCategory: null,
@@ -72,6 +72,14 @@ export function createBossPlan(profile, stage, { companionIds = [], support = fa
 export function normalizeEncounterPresentation(unit) {
   if (!unit || typeof unit !== 'object') return unit
   const plan = unit.bossEncounter
+  // Refresh only the remaining definitions; spent phases/counters and HP gates stay spent.
+  if (plan?.kind === 'final' && plan.leader !== false && plan.specialPatternVersion !== 1) {
+    const profile = BOSS_PROFILE_BY_ID.get(plan.id)
+    if (profile) {
+      const fresh = createBossPlan(profile, plan.stage, { companionIds: plan.companionIds ?? [] })
+      return { ...unit, bossEncounter: { ...plan, phases: fresh.phases, specialPatternVersion: 1 } }
+    }
+  }
   if (unit.rivalEncounter) {
     const intro = unit.rivalEncounter.meeting > 1
       ? `전에 만났던 ${unit.name}이(가) 다시 나타났다!` : `야생 ${unit.name}이(가) 나타났다!`
@@ -240,7 +248,8 @@ export function resolveBossReactions(context,
         actionActorId: unit.id, consumesAction: !form,
         ...(materials.length ? { consumedIds: partners.map(partner => partner.id) } : {}),
         label: phase.label, previousName, nextName: unit.name, nextCombatant: unit, logs,
-        ...(!form && reachedHp && phase.signature ? { signature: getBossPhaseSignature(unit, plan.phase - 1, getSkillData) } : {}) }
+        ...(phase.pattern ? { pattern: phase.pattern } : {}),
+        ...(!form && reachedHp && phase.signature && !phase.pattern ? { signature: phase.signatureSkill ? { skill: { ...phase.signatureSkill } } : getBossPhaseSignature(unit, plan.phase - 1, getSkillData) } : {}) }
       changes.push(change); battleLogs.push(...logs)
     }
     for (const tactic of plan.rules) {

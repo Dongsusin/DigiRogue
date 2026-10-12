@@ -89,7 +89,7 @@ import { buildEventBattle } from './adventure/eventBattles.js'
 import { createBossEncounter, resolveBossReactions, getBossIntroLogs, isBossSkillAllowed, spendBossRecovery, normalizeEncounterPresentation } from './battle/bossEncounters.js'
 import { withBossSegments, hydrateBossSegments, getBossSegmentCount, bossSegmentMarkers, resolveSegmentedBossDamage } from './battle/bossPhases.js'
 import { playBattleCueSequence } from './three/battleCuePlayback.js'
-import { getFinalBossMove, getFinalBossSkillData, getFinalBossTarget } from './battle/finalBosses.js'
+import { getFinalBossMove, getFinalBossSkillData, getFinalBossTarget, resolveFinalBossPatterns } from './battle/finalBosses.js'
 import { BATTLE_CONSUMABLES, CARD_EFFECT_MS, resolveBattleConsumable } from './battle/battleItems.js'
 import { applyMapEnvironment, getEnvironmentMultiplier } from './battle/mapEnvironment.js'
 import { getAnomalyDamage, getAnomalyHealing, getAnomalyAccuracy, getAnomalyStatusChance } from './battle/worldAnomalies.js'
@@ -4181,11 +4181,14 @@ const resolveAttackAction = ({
   skillOverride = null,
 }) => {
   const skillData = skillOverride ?? getSkillData(skillName, attacker)
+  // Only the final boss's explicitly authored phase strike can erase one target.
+  const instantDefeat = attackerSide === 'enemy' && attacker.isBoss &&
+    attacker.bossEncounter?.id === 'arcadiamon-final' && skillOverride?.bossInstantDefeat === true
   const skillStatusData = getSkillStatusData(skillData)
   const battleLogs = announce ? [createSkillUseLog(attacker.name, skillData.기술명)] : []
   const accuracyValue = getModifiedAccuracyValue(skillData, attacker, defender, attackerSide)
 
-  if (Math.random() * 100 >= accuracyValue) {
+  if (!instantDefeat && Math.random() * 100 >= accuracyValue) {
     return {
       nextDefender: defender,
       battleLogs: [...battleLogs, `${attacker.name}의 공격이 빗나갔다!`],
@@ -4220,7 +4223,7 @@ const resolveAttackAction = ({
   })
   const finalMultiplier = matchupResult.multiplier
 
-  if (finalMultiplier === 0) {
+  if (!instantDefeat && finalMultiplier === 0) {
     return {
       nextDefender: defender,
       battleLogs: [...battleLogs, '상성이 너무 불리해서 공격이 통하지 않았다!'],
@@ -4238,7 +4241,7 @@ const resolveAttackAction = ({
     Math.max(1, defenseStat)
   const baseDamage = Math.floor(scaledPower / 50) + 2
   const randomFactor = 0.85 + Math.random() * 0.15
-  const isCritical = Math.random() < getPassiveCriticalChance(attacker, CRITICAL_HIT_CHANCE)
+  const isCritical = !instantDefeat && Math.random() < getPassiveCriticalChance(attacker, CRITICAL_HIT_CHANCE)
   const equipment = getAdventureAttackModifiers({ attacker, defender, skillData,
     matchup: finalMultiplier, isCritical, baseCritical: CRITICAL_HIT_MULTIPLIER })
   const passiveModifiers = getPassiveAttackModifiers({ attacker, defender, skillData,
@@ -4248,7 +4251,7 @@ const resolveAttackAction = ({
     defender.battleGuards?.[skillData.분류 === '특수형' ? 'special' : 'physical'] > 0 ? 0.5 : 1)
   const damage = Math.max(1, Math.floor(baseDamage * finalMultiplier * randomFactor * guardMultiplier * criticalMultiplier * equipment.multiplier * passiveModifiers.multiplier * getEnvironmentMultiplier(attacker, skillData) *
     getTrainerBossMultiplier(attacker, defender, skillData, attackerSide) * getAnomalyDamage(attacker, skillData)))
-  const rawNextHp = Math.max(0, defender.currentHp - damage)
+  const rawNextHp = instantDefeat ? 0 : Math.max(0, defender.currentHp - damage)
   const hpResult = resolveCombatantDamageHp({
     combatant: defender,
     rawNextHp,
@@ -4265,6 +4268,7 @@ const resolveAttackAction = ({
   }
   const nextAttacker = recordPassiveAttack(attacker, defender, nextDefender, appliedDamage)
   const nextLogs = [...battleLogs, ...equipment.battleLogs, ...passiveModifiers.battleLogs, `${defender.name}에게 ${appliedDamage} 데미지!`]
+  if (instantDefeat) nextLogs.push(`${defender.name}의 데이터가 도트 매트릭스에 지워졌다!`)
   if (isCritical) nextLogs.push(criticalMultiplier > 1 ? `치명타! 피해가 ${criticalMultiplier}배로 증가했다!` : '치명타의 추가 피해가 막혔다!')
   nextLogs.push(...hpResult.battleLogs)
 
@@ -4371,11 +4375,15 @@ const resolveRecoveryProgramOnDefeat = (combatant) => {
   }
 }
 
-const prepareBossTurn = ({ enemies, actorId }) => {
+const prepareBossTurn = ({ enemies, actorId, party = [], activeAllyIds = [] }) => {
   const response = resolveBossBattleReactions({ enemies, actorId, actorSide: 'enemy', didAct: false,
     deferPatterns: true, patternActorId: actorId })
+  const special = resolveFinalBossPatterns({ ...response, enemies: response.nextEnemies, party, activeAllyIds }, {
+    speciesLookup: allDigimonLookup, returnEvolution: createReturnedEvolutionCombatant,
+    createCombatant, refreshStats: refreshCombatantStats, isPlayable: isPlayableDigimon,
+  })
   const patterns = response.changes.filter(change => change.actionActorId === actorId && change.consumesAction)
-  return { ...response, consumesAction: patterns.length > 0,
+  return { ...special, battleLogs: [...response.battleLogs, ...special.battleLogs], consumesAction: patterns.length > 0,
     skill: patterns.find(change => change.signature)?.signature.skill ?? null }
 }
 
@@ -4393,8 +4401,9 @@ const resolveEnemyPartyActions = ({ enemies, party, activeAllyIds, inventory = {
     }
 
     if (!nextParty.some(unit => activeAllyIds.includes(unit.id) && isCombatantAbleToBattle(unit))) return
-    const bossTurn = prepareBossTurn({ enemies: nextEnemies, actorId: currentEnemy.id })
+    const bossTurn = prepareBossTurn({ enemies: nextEnemies, actorId: currentEnemy.id, party: nextParty, activeAllyIds })
     nextEnemies = bossTurn.nextEnemies
+    nextParty = bossTurn.nextParty
     if (bossTurn.changes.length) presentation.push({ effects: [], bossChanges: bossTurn.changes })
     battleLogs.push(...bossTurn.battleLogs)
     currentEnemy = getCombatantById(nextEnemies, enemy.id)
@@ -4425,7 +4434,8 @@ const resolveEnemyPartyActions = ({ enemies, party, activeAllyIds, inventory = {
     targetAlly = getCombatantById(nextParty, targetAlly.id) ?? targetAlly
 
     const actionStart = battleLogs.length
-    const canUseSkill = enemySkill && startStatusResult.canAct && isCombatantAbleToBattle(nextEnemy) &&
+    const phaseErasure = bossTurn.skill?.bossInstantDefeat === true
+    const canUseSkill = enemySkill && (startStatusResult.canAct || phaseErasure) && isCombatantAbleToBattle(nextEnemy) &&
       (!bossTurn.consumesAction || Boolean(bossTurn.skill))
     if (canUseSkill) {
       if (isSupportSkill(enemySkillData)) {
@@ -4662,8 +4672,9 @@ const resolveBattleTurnActions = ({
     let bossTurn = { consumesAction: false, skill: null }
     if (action.side === 'enemy') {
       if (!nextParty.some(unit => activeAllyIds.includes(unit.id) && isCombatantAbleToBattle(unit))) return
-      bossTurn = prepareBossTurn({ enemies: nextEnemies, actorId: actor.id })
+      bossTurn = prepareBossTurn({ enemies: nextEnemies, actorId: actor.id, party: nextParty, activeAllyIds })
       nextEnemies = bossTurn.nextEnemies
+      nextParty = bossTurn.nextParty
       if (bossTurn.changes.length) presentation.push({ effects: [], bossChanges: bossTurn.changes })
       battleLogs.push(...bossTurn.battleLogs)
       actor = getBattleTurnActor({ action, party: nextParty, enemies: nextEnemies })
@@ -4690,9 +4701,16 @@ const resolveBattleTurnActions = ({
     const defeatedEnemies = []
     let supportStates = []
     let afterStatus = []
+    const phaseErasure = bossTurn.skill?.bossInstantDefeat === true
+    const invalidatedFormSkill = action.side === 'ally' &&
+      getCombatantById(party, actor.id)?.name !== actor.name &&
+      !['기본 타격', '기본 파동'].includes(action.skillName) &&
+      !getCommandSkillNames(actor, name => getSkillData(name, actor)).includes(action.skillName)
     const startStatusResult = resolveTurnStartStatus(actor)
-    const flinched = flinchedActorIds.delete(action.actorId)
-    const coolingDown = (!bossTurn.consumesAction || Boolean(bossTurn.skill)) && getSkillCooldown(actor, skillData) > 0
+    // Like the other HP phase effects, data erasure is not a second ordinary skill action.
+    const flinched = flinchedActorIds.delete(action.actorId) && !phaseErasure
+    const coolingDown = !phaseErasure && (!bossTurn.consumesAction || Boolean(bossTurn.skill)) && getSkillCooldown(actor, skillData) > 0
+    if (invalidatedFormSkill) battleLogs.push(`${actor.name}의 현재 모습에서는 ${action.skillName}을(를) 사용할 수 없다!`)
     if (flinched) battleLogs.push(`${actor.name}은(는) 풀죽어서 움직일 수 없었다!`)
     if (coolingDown) battleLogs.push(`${skillData.기술명}은(는) 아직 재사용 대기 중이다!`)
     actor = startStatusResult.nextCombatant
@@ -4708,7 +4726,7 @@ const resolveBattleTurnActions = ({
     nextEnemies = replacedAfterStart.enemies
 
     let actionStart = battleLogs.length
-    const canUseSkill = startStatusResult.canAct && !flinched && !coolingDown && isCombatantAbleToBattle(actor) &&
+    const canUseSkill = (startStatusResult.canAct || phaseErasure) && !invalidatedFormSkill && !flinched && !coolingDown && isCombatantAbleToBattle(actor) &&
       (!bossTurn.consumesAction || Boolean(bossTurn.skill))
     if (canUseSkill) {
       if (action.side === 'ally' && action.priority > 0) {
@@ -5522,9 +5540,12 @@ function App() {
         }
       }
 
+      const enemies = current.enemies ?? []
+      const insertsEnemy = effect.insertCombatant && hasCombatantChange &&
+        effect.targetCombatant.id === effect.targetId && !enemies.some(unit => unit.id === effect.targetId)
       return {
         ...current,
-        enemies: (current.enemies ?? []).map(applyHitResult),
+        enemies: insertsEnemy ? [...enemies, effect.targetCombatant] : enemies.map(applyHitResult),
       }
     })
   }

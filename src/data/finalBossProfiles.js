@@ -13,6 +13,7 @@ const charge = (name, stat, tell) => support(name, { kind: 'stat-modifier', targ
 const guard = (name, kind, tell) => support(name, { kind: 'guard', guard: kind, turns: 2, targetSide: 'ally', scope: 'self' }, tell)
 const debuff = (name, stat) => support(name, { kind: 'stat-modifier', targetSide: 'enemy', scope: 'all', statKey: stat, multiplier: .85, turns: 2 })
 const phase = (atHp, label, effect, form = null) => ({ atHp, label, effect, form, speech: `${label}!` })
+const specialPhase = (hp, label, pattern, effect = {}) => ({ ...phase(hp, label, effect), pattern: { kind: pattern } })
 const final = (id, name, title, line, source, phases, cycles, extra = {}) => ({
   id, kind: 'final', name, title, emblem: '최종 보스', minStage: 200, maxStage: 200,
   themes: [], line, source, speech: `${name}이(가) 디지털 월드의 마지막 길을 가로막는다.`,
@@ -21,7 +22,8 @@ const final = (id, name, title, line, source, phases, cycles, extra = {}) => ({
 
 export const FINAL_BOSS_PROFILES = Object.freeze([
   final('apocalymon-final', '아포카리몬', '종말의 어둠', ['아포카리몬'], reference('apoclymon'), [
-    phase(.65, '네거티브 에너지 집약', stats({ specialAttack: 1.15 })),
+    specialPhase(.75, '데스 에볼루션', 'devolve'),
+    phase(.5, '네거티브 에너지 집약', stats({ specialAttack: 1.15 })),
     phase(.3, '끝없는 다크니스 존', { ...stats({ specialAttack: 1.25, defense: .85 }), stopRegeneration: true }),
   ], [[
     attack('암흑의 균열', 90, '어둠', 'orb'),
@@ -31,7 +33,8 @@ export const FINAL_BOSS_PROFILES = Object.freeze([
   ]]),
   final('yggdrasil-final', '위그드라실 7D6', '디지털 월드의 심판', ['위그드라실 7D6'],
     'https://models.spriters-resource.com/mobile/digimonlinks/asset/304092/', [
-      phase(.6, '관리 프로그램 재구축', { clearStatus: true, healRatio: .08 }),
+      specialPhase(.75, '로열나이츠 소환', 'royal-knight'),
+      specialPhase(.5, '관리 프로그램 재구축', 'power', { clearStatus: true, healRatio: .08 }),
       phase(.3, '최종 삭제 명령', stats({ specialAttack: 1.25, specialDefense: .85 })),
     ], [[
       attack('크리스털 레이', 105, '빛', 'beam'), guard('수정 방벽', 'physical'),
@@ -42,7 +45,8 @@ export const FINAL_BOSS_PROFILES = Object.freeze([
       { id: 'special-adapt', label: '특수 데이터 분석', condition: { kind: 'hits', category: '특수형', count: 2 }, effect: { guards: { special: 2 } } },
     ] }),
   final('armageddemon-final', '아마게몬', '초고속 증식의 종착점', ['아마게몬'], reference('armagemon'), [
-    phase(.6, '증식체 융합', stats({ attack: 1.1, specialAttack: 1.1 })),
+    phase(.75, '증식체 활성화', stats({ attack: 1.1, specialAttack: 1.1 })),
+    specialPhase(.5, '증식체 융합', 'absorb-brood'),
     phase(.25, '멸망 포격', stats({ specialAttack: 1.25, defense: .85 })),
   ], [[
     attack('블랙 레인', 95, '어둠', 'missile', { area: true }),
@@ -51,7 +55,8 @@ export const FINAL_BOSS_PROFILES = Object.freeze([
     attack('얼티메이트 플레어', 125, '화염', 'beam'),
   ]], { companion: '쿠라몬', brood: true }),
   final('lucemon-final', '루체몬', '마지막 봉인 · 타락한 빛', ['루체몬[폴다운]', '루체몬[사탄]'], reference('lucemonsatanmode'), [
-    phase(.6, '사탄 모드 출현', { clearStatus: true }, '루체몬[사탄]'),
+    phase(.75, '사탄 모드 출현', { clearStatus: true }, '루체몬[사탄]'),
+    specialPhase(.5, '게헤나 전개', 'power', { guards: { physical: 3, special: 3 } }),
     phase(.25, '게헤나 개방', stats({ specialAttack: 1.2, defense: .85 })),
   ], [[
     attack('파라다이스 로스트', 110, '빛', 'rush', { physical: true }),
@@ -63,7 +68,9 @@ export const FINAL_BOSS_PROFILES = Object.freeze([
     attack('디바인 어톤먼트', 110, '어둠', 'orb'),
   ]]),
   final('arcadiamon-final', '알카디몬', '흡수와 파괴의 진화', ['알카디몬', '알카디몬[초궁극체]'], reference('arkadimon'), [
-    phase(.55, '초궁극체 각성', { clearStatus: true }, '알카디몬[초궁극체]'),
+    phase(.75, '초궁극체 각성', { clearStatus: true }, '알카디몬[초궁극체]'),
+    { ...phase(.5, '도트 매트릭스 · 데이터 소거', { clearStatus: true }), signatureSkill: {
+      ...attack('도트 매트릭스', 120, '어둠', 'beam').skill, bossInstantDefeat: true } },
     phase(.25, '파괴 데이터 해방', stats({ specialAttack: 1.2, defense: .85 })),
   ], [[
     attack('소울 앱소브션', 100, '어둠', 'orb'),
@@ -74,7 +81,8 @@ export const FINAL_BOSS_PROFILES = Object.freeze([
     attack('갓 매트릭스', 115, '어둠', 'beam', { area: true }),
   ]], { drainSkill: '소울 앱소브션' }),
   final('zwart-d-final', '오메가몬 즈왈트 D', '부서진 성기사의 폭주', ['오메가몬[즈왈트-D]'], reference('omegamonzwart_d'), [
-    phase(.5, '검은 의지 폭주', stats({ attack: 1.2, speed: 1.2, specialDefense: .85 })),
+    phase(.75, '검은 의지 폭주', stats({ attack: 1.2, speed: 1.2, specialDefense: .85 })),
+    specialPhase(.5, '백신 프로그램의 저항', 'power', { ...stats({ attack: .8, speed: .8 }), stopRegeneration: true }),
     phase(.2, '파괴자 최후의 돌격', stats({ attack: 1.3, defense: .8 })),
   ], [[
     attack('그레이 소드', 110, '어둠', 'slash', { physical: true, target: 'weakest' }),
@@ -83,7 +91,8 @@ export const FINAL_BOSS_PROFILES = Object.freeze([
     attack('그레이 소드', 110, '어둠', 'slash', { physical: true, target: 'weakest' }),
   ]]),
   final('bagramon-final', '바그라몬', '죽음의 현자', ['바그라몬'], reference('bagramon'), [
-    phase(.6, '의안의 전지', { clearStatus: true, ...stats({ specialDefense: 1.15 }) }),
+    phase(.75, '의안의 전지', { clearStatus: true, ...stats({ specialDefense: 1.15 }) }),
+    specialPhase(.5, '아스트랄 스내처 · 힘의 강탈', 'steal-boosts'),
     phase(.25, '영혼의 지배자', stats({ specialAttack: 1.25, defense: .85 })),
   ], [[
     debuff('인비저블 스네이크 아이즈', 'attack'),
@@ -92,7 +101,8 @@ export const FINAL_BOSS_PROFILES = Object.freeze([
     guard('폭군의 방벽', 'physical'),
   ]]),
   final('dexmon-final', '데크스몬', '데이터 삭제 프로그램', ['데크스몬'], reference('death-x-mon'), [
-    phase(.55, '프로세스 재시동', { clearStatus: true, ...stats({ defense: 1.15 }) }),
+    phase(.75, '프로세스 재시동', { clearStatus: true, ...stats({ defense: 1.15 }) }),
+    specialPhase(.5, '프로세스 0 · 전투 데이터 분해', 'purge-boosts'),
     phase(.25, '프로세스 F 최종 실행', { ...stats({ specialAttack: 1.25, defense: .8 }), stopRegeneration: true }),
   ], [[
     debuff('프로세스 0', 'specialDefense'),

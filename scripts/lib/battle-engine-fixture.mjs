@@ -15,7 +15,7 @@ export async function loadBattleEngine({ difficultySource, sourceOverrides = {} 
     'resolveAttackAction','getEnemyLevelForStage','resolveBattleTurnActions','createBattleTurnAction','createEnemyBattleTurnActions','getBattleAllyLimit',
     'getCommandSkillNames','getCombatantEquippedItems','scoreSkill','getMatchupResult','recoverAfterVictory','applyPartyExperienceGain',
     'levelUpCombatant','parseSavedGameState','applySupportEffectToTarget','resolveTurnEndCombatantEffects',
-    'evolveBossCombatant','createReturnedEvolutionCombatant','createJogressCombatant','resolveJogressEvolution','resolveManualEvolution','resolveJogressSkillChoice','getPendingJogressSkillEvents',
+    'getFaintReplacement','prepareBossTurn','resolveEnemyPartyActions','evolveBossCombatant','createReturnedEvolutionCombatant','createJogressCombatant','resolveJogressEvolution','resolveManualEvolution','resolveJogressSkillChoice','getPendingJogressSkillEvents',
     'getNewSkillLearnNamesForLevel','getSkillLearnEventsForLevelRange','applyExperienceAmount',
     'createRewardSelection','applyInstantRewardEffect','applyPartyHealRewardEffect','applyDigicloneRewardEffect',
     'applyLevelUpRewardEffect','getEvolutionRoute','isBossStage','getStageClearGoldReward','isRewardItemUsableByCombatant',

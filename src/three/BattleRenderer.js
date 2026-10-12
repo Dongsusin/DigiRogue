@@ -234,7 +234,7 @@ export class BattleRenderer {
       if (!next.has(key) && actor.removedAt == null) {
         // A slow frame may batch the charge cue and the state swap together.
         // The serialized cue still identifies an absorbed source as a fusion.
-        if (actor.fusion || (actor.side === 'enemy' && state.hitEffects?.some(event => event.kind === 'boss' && event.bossKind === 'fusion' &&
+        if (actor.fusion || (actor.side === 'enemy' && state.hitEffects?.some(event => event.kind === 'boss' &&
           event.consumedIds?.includes(actor.unit.id)))) { this.removeActor(key); continue }
         // A captured enemy leaves as data; it must never fall into the KO path.
         if (actor.capture?.event.success || state.captureEffects?.some(event => event.success && actorKey(event.targetSide || 'enemy', event.targetId) === key)) {
