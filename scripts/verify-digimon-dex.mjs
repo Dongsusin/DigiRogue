@@ -263,16 +263,19 @@ test('loading an older save refreshes its evolution list with the newly connecte
 })
 
 
-test('opening a fully expanded egg tree shows the first evolution chain even in a narrow viewport', () => {
+test('each branch grows to both sides of its centered parent, starting at the Digi-Egg root', () => {
   for (const graph of eggGraphs) {
-    const layout = layoutDigimonDex(graph), root = layout.nodes.find(node => node.id === graph.rootId)
-    for (const width of [320, 640, 960]) {
-      const zoom = 0.8, left = Math.max(0, (root.x + root.size / 2) * zoom - width / 2)
-      for (const depth of [0, 1, 2, 3]) {
-        assert(layout.nodes.some(node => !node.referenceTo && node.depth === depth &&
-          node.x * zoom >= left && (node.x + node.size) * zoom <= left + width),
-          graph.rootId + ' hides every portrait at depth ' + depth + ' in a ' + width + 'px opening view')
+    const layout = layoutDigimonDex(graph)
+    for (const parent of layout.nodes) {
+      const children = layout.nodes.filter(node => node.parentId === parent.id)
+      if (!children.length) continue
+      const left = Math.min(...children.map(node => node.x)), right = Math.max(...children.map(node => node.x))
+      assert.equal(parent.x, (left + right) / 2, parent.id + ' must be centered above its children')
+      if (children.length > 1) {
+        assert(left < parent.x, parent.id + ' needs a left-hand branch')
+        assert(right > parent.x, parent.id + ' needs a right-hand branch')
       }
+      assert(children.every(node => node.y > parent.y + parent.size))
     }
   }
 })

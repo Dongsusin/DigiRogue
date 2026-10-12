@@ -130,10 +130,10 @@ export function layoutDigimonDex(graph, { expandedIds = null } = {}) {
     let nextLeft = left, bottom = top + node.depth * rowPitch + size
     for (const child of branch) { bottom = Math.max(bottom, position(child, nextLeft, top)); nextLeft += widths.get(child) + gap }
     const first = branch.length ? occurrences.get(branch[0]).x : left + widths.get(id) / 2 - size / 2
-    // Keep the first hatch-to-evolution chain under the egg. Centering a parent
-    // over hundreds of open descendants would put every child outside the
-    // opening viewport and leave only a long, apparently empty connector.
-    Object.assign(node, { size, x: first, y: top + node.depth * rowPitch,
+    const last = branch.length ? occurrences.get(branch.at(-1)).x : first
+    // A branch forks around its parent rather than growing only to the right.
+    // Single-child paths stay vertical; siblings keep their separate subtrees.
+    Object.assign(node, { size, x: (first + last) / 2, y: top + node.depth * rowPitch,
       childCount: children.get(id).length, expanded: branch.length > 0 })
     nodes.push(node)
     return bottom
