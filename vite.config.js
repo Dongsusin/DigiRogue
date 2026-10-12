@@ -31,7 +31,7 @@ const gameDownloads = {
 
 export default defineConfig({
   plugins: [react(), gameDownloads],
-  // Models, music and pictures are served by this deployment; Firebase is Auth only.
+  // Models, music and pictures are served by this deployment; Firebase handles Auth and the small realtime community channel.
   publicDir: 'public',
   build: {
     manifest: true,

@@ -36,7 +36,9 @@
     "test:effects": "node --test scripts/verify-canon-skill-effects.mjs scripts/verify-attack-attachment.mjs",
     "test:evolution-inspection": "node --test scripts/verify-evolution-inspection.mjs",
     "test:matchups": "node --test scripts/verify-matchup-balance.mjs",
-    "test:download": "node --test scripts/verify-game-download.mjs"
+    "test:download": "node --test scripts/verify-game-download.mjs",
+    "test:community": "node --test scripts/verify-community.mjs",
+    "test:community:rules": "node --test scripts/verify-community-rules.mjs"
   },
   "dependencies": {
     "firebase": "^13.0.0",

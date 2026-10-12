@@ -1,0 +1,58 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "community": {
+      "head": {
+        ".read": "auth != null",
+        ".write": "auth != null && newData.exists()",
+        ".validate": "newData.hasChildren(['seq','uid','createdAt']) && newData.child('seq').isNumber() && newData.child('seq').val() === (root.child('community/head/seq').exists() ? root.child('community/head/seq').val() + 1 : 1) && newData.child('uid').val() === auth.uid && newData.child('createdAt').val() === now && newData.parent().child('messages/' + (newData.child('seq').val() % 40)).child('seq').val() === newData.child('seq').val() && newData.parent().child('messages/' + (newData.child('seq').val() % 40)).child('uid').val() === auth.uid && newData.parent().child('rates/' + auth.uid).child('seq').val() === newData.child('seq').val() && newData.parent().child('rates/' + auth.uid).child('createdAt').val() === now",
+        "seq": {},
+        "uid": {},
+        "createdAt": {},
+        "$other": {
+          ".validate": false
+        }
+      },
+      "messages": {
+        ".read": "auth != null",
+        "$slot": {
+          ".write": "auth != null && newData.exists()",
+          ".validate": "newData.hasChildren(['seq','uid','createdAt']) && newData.child('seq').isNumber() && newData.child('seq').val() === (root.child('community/head/seq').exists() ? root.child('community/head/seq').val() + 1 : 1) && newData.child('uid').val() === auth.uid && newData.child('createdAt').val() === now && $slot === '' + (newData.child('seq').val() % 40) && newData.hasChildren(['name','text']) && newData.parent().parent().child('head/seq').val() === newData.child('seq').val() && newData.parent().parent().child('head/uid').val() === auth.uid && newData.parent().parent().child('head/createdAt').val() === now && newData.parent().parent().child('rates/' + auth.uid).child('seq').val() === newData.child('seq').val() && newData.parent().parent().child('rates/' + auth.uid).child('createdAt').val() === now",
+          "seq": {},
+          "uid": {},
+          "createdAt": {},
+          "name": {
+            ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 16 && newData.val().matches(/.*[^ ].*/)"
+          },
+          "text": {
+            ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 200 && newData.val().matches(/.*[^ ].*/)"
+          },
+          "$other": {
+            ".validate": false
+          }
+        }
+      },
+      "rates": {
+        "$uid": {
+          ".write": "auth != null && auth.uid === $uid && newData.exists()",
+          ".validate": "newData.hasChildren(['seq','createdAt']) && (!data.exists() || data.child('createdAt').val() <= now - 4000) && newData.child('createdAt').val() === now && newData.child('seq').val() === (root.child('community/head/seq').exists() ? root.child('community/head/seq').val() + 1 : 1) && newData.parent().parent().child('head/seq').val() === newData.child('seq').val() && newData.parent().parent().child('head/uid').val() === auth.uid && newData.parent().parent().child('head/createdAt').val() === now",
+          "seq": {},
+          "createdAt": {},
+          "$other": {
+            ".validate": false
+          }
+        }
+      }
+    },
+    "presence": {
+      ".read": "auth != null",
+      "$uid": {
+        "$connection": {
+          ".write": "auth != null && auth.uid === $uid && $connection.matches(/^[a-zA-Z0-9_-]{20,64}$/)",
+          ".validate": "newData.val() === true"
+        }
+      }
+    }
+  }
+}

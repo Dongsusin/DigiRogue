@@ -4,5 +4,6 @@
   "projectId": "digirogue-510313",
   "storageBucket": "digirogue-510313.firebasestorage.app",
   "messagingSenderId": "249743643558",
-  "appId": "1:249743643558:web:29175f1c619ce661e73567"
+  "appId": "1:249743643558:web:29175f1c619ce661e73567",
+  "databaseURL": "https://digirogue-510313-default-rtdb.asia-southeast1.firebasedatabase.app"
 }

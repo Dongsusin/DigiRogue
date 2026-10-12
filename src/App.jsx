@@ -1,3 +1,4 @@
+import CommunityHub from './components/CommunityHub.jsx'
 import MainMenu from './components/MainMenu.jsx'
 import MenuBackdrop from './components/MenuBackdrop.jsx'
 import TownScreen from './components/TownScreen.jsx'
@@ -9542,6 +9543,7 @@ function App() {
           )}
         </div>
       </section>
+      <CommunityHub screenMode={screenMode} identity={authSession?.identity} blocked={Boolean(saveDialog || isMatchupGuideOpen || (screenMode === 'adventure' && (isAdventureBlocked || evolutionState || isPartyPanelOpen || mapSelectionState)))} />
       {equipmentTooltip && equipmentTooltipMember && !evolutionScene && !saveDialog && <EquipmentTooltip
         anchor={equipmentTooltip.anchor} combatant={equipmentTooltipMember} levelCap={gameState?.levelCap}
         items={getCombatantEquippedItems(equipmentTooltipMember)} onClose={() => setEquipmentTooltip(null)} />}
