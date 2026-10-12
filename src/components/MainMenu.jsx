@@ -32,7 +32,7 @@ export default function MainMenu({ hasSaveData, currentKey, skillPoints, onSelec
         return <button
           key={item.key}
           type="button"
-          className={['menu-item', item.subtitle ? 'menu-item--wide' : '', item.key === 'new-game' ? 'menu-item--primary' : '', current ? 'menu-item--current' : '', disabled ? 'menu-item--disabled' : ''].filter(Boolean).join(' ')}
+          className={['menu-item', item.key === 'new-game' ? 'menu-item--wide' : '', item.key === 'new-game' ? 'menu-item--primary' : '', current ? 'menu-item--current' : '', disabled ? 'menu-item--disabled' : ''].filter(Boolean).join(' ')}
           data-menu-key={item.key}
           aria-label={item.label}
           aria-describedby={item.key === 'skills' ? 'main-menu-skill-points' : undefined}
