@@ -4,7 +4,13 @@ import { buildEggEvolutionGraph, getDexNodeDisplay,
 import './DigimonDex.css'
 
 const DEFAULT_ZOOM = 0.8
-const chartOffset = (layout, zoom, viewport) => Math.max(0, (viewport.clientWidth - layout.width * zoom) / 2)
+// Reserve leading space so a root near the left edge can still be centered
+// without asking the browser for a negative scrollLeft.
+const chartRootCenter = (layout, zoom) => {
+  const root = layout.nodes.find(node => node.kind === 'egg') ?? layout.nodes[0]
+  return root ? (root.x + root.size / 2) * zoom : 0
+}
+const chartOffset = (layout, zoom, viewport) => Math.max(0, viewport.clientWidth / 2 - chartRootCenter(layout, zoom))
 const clampZoom = value => Math.max(0.5, Math.min(1.5, Math.round(value * 10) / 10))
 
 export default function DigimonDex({ eggs, lookup, collection, onBack }) {
@@ -180,7 +186,8 @@ export default function DigimonDex({ eggs, lookup, collection, onBack }) {
               viewportRef.current.scrollLeft = drag.left - (event.clientX - drag.x)
               viewportRef.current.scrollTop = drag.top - (event.clientY - drag.y)
             }} onPointerUp={endDrag} onPointerCancel={endDrag}>
-            <div className="dex-canvas-space" style={{ width: layout.width * zoom, height: layout.height * zoom }}>
+            <div className="dex-canvas-space" style={{ width: layout.width * zoom, height: layout.height * zoom,
+              marginLeft: 'max(0px, calc(50% - ' + chartRootCenter(layout, zoom) + 'px))' }}>
               <div className="dex-canvas" style={{ width: layout.width, height: layout.height, transform: 'scale(' + zoom + ')' }}>
                 <svg className="dex-connections" width={layout.width} height={layout.height} aria-hidden="true">
                   {layout.edges.map(edge => (
