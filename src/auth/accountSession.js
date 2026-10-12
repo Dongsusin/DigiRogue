@@ -4,6 +4,7 @@ export const SESSION_MESSAGES = Object.freeze({
   'session/sign-in-required': '로그인 상태를 확인하려면 Google로 다시 로그인해 주세요.',
   'session/unavailable': '로그인 연결을 확인하지 못했습니다. 인터넷 연결을 확인한 뒤 다시 로그인해 주세요.',
   'session/recent-login-required': '로그인 요청이 겹쳤습니다. 잠시 후 Google로 다시 로그인해 주세요.',
+  'session/browser-unsupported': '이 브라우저에서는 안전한 로그인 복원을 지원하지 않습니다. 최신 Chrome, Edge, Firefox 또는 Safari를 이용해 주세요.',
   'session/storage-unavailable': '로그인 정보를 저장하지 못했습니다. 브라우저 저장 공간을 확인해 주세요.',
 })
 // Token iat is server-signed. Only elapsed local time affects the remaining
@@ -11,9 +12,9 @@ export const SESSION_MESSAGES = Object.freeze({
 export const sessionServerDeadline = (issuedAt, clientDeadline, now = Date.now()) => issuedAt * 1000 + Math.max(0, clientDeadline - now)
 const failure = code => Object.assign(new Error(SESSION_MESSAGES[code]), { code })
 // Only explicit Google sign-in may take ownership. Reloads must present the
-// previous tab token, and rotate it atomically so duplicated tabs cannot share it.
-export function createAccountSession({ store, storage, createId = () => crypto.randomUUID(), onChange = () => {}, timeoutMs = 12000 }) {
-  let state = { phase: 'idle' }, epoch = 0, unsubscribe, verification, pendingClaim, claimAbort
+// previous remembered token, and rotate it atomically so duplicated tabs cannot share it.
+export function createAccountSession({ store, storage, createId = () => crypto.randomUUID(), onChange = () => {}, timeoutMs = 12000, runExclusive = task => task() }) {
+  let state = { phase: 'idle' }, epoch = 0, unsubscribe, verification, pendingClaim, claimAbort, recovery
   const emit = next => { state = next; onChange(state) }
   const detach = () => { unsubscribe?.(); unsubscribe = undefined }
   const forget = id => { try { if (JSON.parse(storage.getItem(SESSION_KEY) ?? 'null')?.sessionId === id) storage.removeItem(SESSION_KEY) } catch {} }
@@ -24,10 +25,17 @@ export function createAccountSession({ store, storage, createId = () => crypto.r
   const cancelClaim = () => { claimAbort?.abort(); claimAbort = undefined }
   const end = (reason = 'session/unavailable') => {
     const id = state.sessionId
-    ++epoch; detach(); cancelClaim(); verification = undefined; forget(id)
+    ++epoch; detach(); cancelClaim(); verification = undefined
+    // A transient network failure closes the game but must not erase login.
+    if (reason !== 'session/unavailable') forget(id)
     emit({ ...state, phase: 'ended', reason })
   }
   const verify = async () => {
+    if (state.phase === 'ended' && state.reason === 'session/unavailable') {
+      if (recovery) return recovery
+      recovery = (async () => { try { await controller.start(state.uid) } catch {} finally { recovery = undefined } })()
+      return recovery
+    }
     if (!['active', 'checking'].includes(state.phase)) return
     if (verification) return verification
     const generation = epoch, { uid, sessionId } = state
@@ -43,41 +51,57 @@ export function createAccountSession({ store, storage, createId = () => crypto.r
     })()
     return verification
   }
-  return {
-    get state() { return state },
-    async start(uid, { takeover = false } = {}) {
-      const generation = ++epoch
-      detach(); verification = undefined
-      // React remounts or rapid auth changes must wait for an in-flight claim.
-      if (pendingClaim) { try { await pendingClaim } catch {} }
+  const start = async (uid, { takeover = false } = {}, generation) => {
+    detach(); verification = undefined
+    // React remounts or rapid auth changes must wait for an in-flight claim.
+    if (pendingClaim) { try { await pendingClaim } catch {} }
+    if (generation !== epoch) return state
+    let previous, saved
+    try { saved = JSON.parse(storage.getItem(SESSION_KEY) ?? 'null'); previous = saved?.uid === uid ? saved.sessionId : null } catch {}
+    if (!takeover && !previous) throw failure('session/sign-in-required')
+    // A dropped response may leave either side of a rotation on the server.
+    // Recover only a token this browser actually owned; never take over.
+    if (!takeover && saved?.pending) {
+      const current = await bounded(store.read(uid))
       if (generation !== epoch) return state
-      let previous
-      try { const saved = JSON.parse(storage.getItem(SESSION_KEY) ?? 'null'); previous = saved?.uid === uid ? saved.sessionId : null } catch {}
-      if (!takeover && !previous) throw failure('session/sign-in-required')
-      const sessionId = createId()
-      const record = JSON.stringify({ uid, sessionId })
-      try { storage.setItem(SESSION_KEY, record); if (storage.getItem(SESSION_KEY) !== record) throw new Error('storage') }
-      catch { throw failure('session/storage-unavailable') }
-      emit({ phase: 'claiming', uid, sessionId })
-      try {
-        claimAbort = new AbortController()
-        const signal = claimAbort.signal, deadline = Date.now() + timeoutMs
-        pendingClaim = bounded(store.claim(uid, previous, sessionId, takeover, { signal, deadline }), cancelClaim)
-        await pendingClaim
-        if (generation !== epoch) return state
-        emit({ phase: 'active', uid, sessionId })
-        const stop = store.watch(uid, snapshot => {
-          if (generation !== epoch) return
-          if (!snapshot.confirmed) { void verify(); return }
-          if (snapshot.sessionId !== sessionId) end('session/replaced')
-        }, () => { if (generation === epoch) end() })
-        if (generation === epoch) unsubscribe = stop
-        else stop()
-        return state
-      } catch (error) {
-        if (generation === epoch) end(SESSION_MESSAGES[error?.code] ? error.code : 'session/unavailable')
-        throw error?.code?.startsWith('session/') ? error : failure('session/unavailable')
-      } finally { if (generation === epoch) pendingClaim = undefined }
+      if (current === saved.sessionId) previous = current
+      else if (saved.previousSessionId && current === saved.previousSessionId) previous = current
+      else {
+        state = { uid, sessionId: saved.sessionId }
+        end('session/replaced'); throw failure('session/replaced')
+      }
+    }
+    const sessionId = createId()
+    const record = JSON.stringify({ uid, sessionId, previousSessionId: previous ?? '', pending: true })
+    try { storage.setItem(SESSION_KEY, record); if (storage.getItem(SESSION_KEY) !== record) throw new Error('storage') }
+    catch { throw failure('session/storage-unavailable') }
+    emit({ phase: 'claiming', uid, sessionId })
+    try {
+      claimAbort = new AbortController()
+      const signal = claimAbort.signal, deadline = Date.now() + timeoutMs
+      pendingClaim = bounded(store.claim(uid, previous, sessionId, takeover, { signal, deadline }), cancelClaim)
+      await pendingClaim
+      if (generation !== epoch) return state
+      storage.setItem(SESSION_KEY, JSON.stringify({ uid, sessionId }))
+      emit({ phase: 'active', uid, sessionId })
+      const stop = store.watch(uid, snapshot => {
+        if (generation !== epoch) return
+        if (!snapshot.confirmed) { void verify(); return }
+        if (snapshot.sessionId !== sessionId) end('session/replaced')
+      }, () => { if (generation === epoch) end() })
+      if (generation === epoch) unsubscribe = stop
+      else stop()
+      return state
+    } catch (error) {
+      if (generation === epoch) end(SESSION_MESSAGES[error?.code] ? error.code : 'session/unavailable')
+      throw error?.code?.startsWith('session/') ? error : failure('session/unavailable')
+    } finally { if (generation === epoch) pendingClaim = undefined }
+  }
+  const controller = {
+    get state() { return state },
+    start(uid, options) {
+      const generation = ++epoch
+      return runExclusive(() => generation === epoch ? start(uid, options, generation) : state)
     },
     verify,
     async logout() {
@@ -88,4 +112,5 @@ export function createAccountSession({ store, storage, createId = () => crypto.r
     },
     dispose() { ++epoch; detach(); cancelClaim(); verification = undefined },
   }
+  return controller
 }

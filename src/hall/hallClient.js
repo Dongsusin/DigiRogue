@@ -2,7 +2,7 @@ import { parseHallRecord, rankHallRecords, HALL_MODES, HALL_LIMIT } from '../pro
 
 // One bounded query per open/refresh; uploads happen only on a personal-best clear.
 // REST requests time out instead of queuing a late SDK write after an account switch.
-export function createHallClient({ baseUrl, getToken, fetchImpl = globalThis.fetch, timeoutMs = 10000 }) {
+export function createHallClient({ baseUrl, uid: accountUid, getToken, fetchImpl = globalThis.fetch, timeoutMs = 10000 }) {
   async function request(path, { method = 'GET', body, etag, query = '', readEtag = false } = {}) {
     const token = await getToken()
     const response = await fetchImpl(baseUrl.replace(/\/$/, '') + '/' + path + '.json?auth=' + encodeURIComponent(token) + query, {
@@ -24,6 +24,7 @@ export function createHallClient({ baseUrl, getToken, fetchImpl = globalThis.fet
       return rankHallRecords(Object.entries(value ?? {}).map(([playerKey, row]) => ({ ...row, team: JSON.stringify(Object.values(row.team ?? {}).map(unit => unit.isEgg ? unit : ({ ...unit, skills: Object.values(unit.skills ?? {}), items: Object.values(unit.items ?? {}) }))), playerKey })), mode)
     },
     async submit(uid, record) {
+      if (accountUid && uid !== accountUid) throw new Error('기록을 등록할 계정이 일치하지 않습니다.')
       if (!/^[a-zA-Z0-9_-]{1,128}$/.test(uid) || !parseHallRecord(record)) throw new Error('클리어 기록을 확인하지 못했습니다.')
       const path = pathFor(record.mode) + '/' + uid
       for (let attempt = 0; attempt < 3; attempt++) {

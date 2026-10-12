@@ -5,6 +5,7 @@ import { firebaseAuth, authPersistenceReady } from './firebaseClient.js'
 import { AuthContext } from './AuthContext.js'
 import { importGuestProgress, authErrorMessage } from './profileStorage.js'
 import { createAccountSession, SESSION_MESSAGES } from './accountSession.js'
+import { createSessionStorage } from './sessionStorage.js'
 import { browserStorage, initializeLauncherStorage } from '../progression/localStorage.js'
 import { ensureLocalGuest } from '../progression/launcherStorage.js'
 const LOCAL_SESSION = 'digirogue-offline-session-v1'
@@ -32,25 +33,30 @@ export default function AuthProvider({ children, googleSignIn = signInWithPopup 
   const interactiveRef = useRef(false)
   const sessionRef = useRef(null)
   const notifyRef = useRef(null)
+  const sessionStorageRef = useRef(null)
   useEffect(() => {
     let active = true, unsubscribe
     try { initializeLauncherStorage() } catch (failure) { setError(failure.message); setReady(true); return }
     // Installed builds retain their offline entry and native save files.
     if (window.auroraGame) { setIdentity(localGuest()); setReady(true); return }
+    sessionStorageRef.current ??= createSessionStorage({ persistent: browserStorage(), tab: window.sessionStorage })
     notifyRef.current = state => {
       if (!active) return
       setSessionChecking(state.phase === 'checking' || state.phase === 'claiming')
+      if (state.phase === 'active' && !interactiveRef.current && firebaseAuth.currentUser?.uid === state.uid) {
+        setIdentity(describe(firebaseAuth.currentUser)); setReady(true); setError('')
+      }
       if (state.phase === 'ended') {
         setIdentity(null); setReady(true); setError(SESSION_MESSAGES[state.reason])
         browserStorage()?.removeItem(LOCAL_SESSION)
-        if (firebaseAuth.currentUser?.uid === state.uid) {
-          anonymousRetirementRef.current = signOut(firebaseAuth)
-          void anonymousRetirementRef.current.catch(() => {})
-        }
+        // Firebase credentials are shared across tabs. Only explicit logout
+        // may sign them out; a rejected tab closes its own game access.
       }
     }
     sessionRef.current ??= createAccountSession({ store: remoteStore,
-      storage: { getItem: key => window.sessionStorage.getItem(key), setItem: (key, value) => window.sessionStorage.setItem(key, value), removeItem: key => window.sessionStorage.removeItem(key) },
+      storage: sessionStorageRef.current,
+      // Web Locks serialize rotations across every tab of this browser origin.
+      runExclusive: task => window.navigator?.locks ? window.navigator.locks.request('digirogue-account-ownership', task) : Promise.reject(Object.assign(new Error(SESSION_MESSAGES['session/browser-unsupported']), { code: 'session/browser-unsupported' })),
       onChange: state => notifyRef.current?.(state),
     })
     const verify = () => { if (document.visibilityState !== 'hidden') void sessionRef.current?.verify() }
@@ -78,10 +84,13 @@ export default function AuthProvider({ children, googleSignIn = signInWithPopup 
           } catch (failure) {
             if (!active) return
             setIdentity(null); setError(message(failure))
-            anonymousRetirementRef.current = signOut(firebaseAuth)
-            void anonymousRetirementRef.current.catch(() => {})
+            // Keep persisted credentials; the failed ownership check still
+            // blocks this tab. Signing out here could end a winning tab's login.
           }
-        } else setIdentity(localSession() ? localGuest() : null)
+        } else {
+          await sessionRef.current.logout()
+          setIdentity(localSession() ? localGuest() : null)
+        }
         if (active) setReady(true)
       }, failure => { if (active) { setError(authErrorMessage(failure)); setReady(true) } })
     }).catch(failure => { if (active) { setError(authErrorMessage(failure)); setIdentity(localSession() ? localGuest() : null); setReady(true) } })
@@ -122,8 +131,10 @@ export default function AuthProvider({ children, googleSignIn = signInWithPopup 
     } catch (failure) {
       setError(message(failure))
       if (authenticatedUser) {
-        await sessionRef.current?.logout(); await signOut(firebaseAuth).catch(() => {})
-        setIdentity(guestBefore ? identity : null)
+        // Authentication may be shared with a winning tab. A failed claim
+        // must not sign that tab out or discard a retryable remembered login.
+        setIdentity(sessionRef.current?.state.phase === 'active' ? describe(authenticatedUser) : null)
+        setReady(true)
       }
     } finally { interactiveRef.current = false; setBusy(false) }
   }

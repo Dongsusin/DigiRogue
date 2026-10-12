@@ -10,7 +10,7 @@ export function useHallOfFame({ state, storage, identity, itemsFor }) {
   owner.current = { storage, identity }
   const flush = useCallback(() => {
     if (active.current) return active.current.promise
-    if (!identity || !readHallPending(storage).length) return
+    if (!identity || identity.isAnonymous || !readHallPending(storage).length) return
     const work = { storage, identity }
     active.current = work
     work.promise = (async () => {
@@ -34,7 +34,7 @@ export function useHallOfFame({ state, storage, identity, itemsFor }) {
     if (!state) return
     const record = createClearRecord(state, { itemsFor })
     if (!record) return
-    try { if (queueHallRecord(storage, record)) setNotice('클리어 기록을 명예의 전당에 등록 중입니다…') }
+    try { if (queueHallRecord(storage, record)) setNotice(identity?.isAnonymous ? '클리어 기록을 보관했습니다. Google 로그인 후 명예의 전당에 등록합니다.' : '클리어 기록을 명예의 전당에 등록 중입니다…') }
     catch { setNotice('클리어 기록을 보관하지 못했습니다. 저장 공간을 확인해 주세요.'); return }
     void flush()
   }, [state, storage, itemsFor, flush])

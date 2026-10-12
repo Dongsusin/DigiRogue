@@ -115,3 +115,10 @@ test('an older acknowledgement cannot discard an improved replay of the same run
  assert.equal(readHallPending(store)[0].totalTurns,350)
  markHallSynced(store,better);assert.deepEqual(readHallPending(store),[])
 })
+
+test('public run IDs cannot suppress records belonging to different accounts',()=>{
+ const record=createClearRecord(win(),{now:5000})
+ assert(record)
+ const ranked=rankHallRecords([{...record,playerKey:'guest'},{...record,playerKey:'google'}],'classic')
+ assert.equal(ranked.length,2)
+})

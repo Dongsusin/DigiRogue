@@ -2,6 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs/promises'
 import vm from 'node:vm'
+import { createSessionStorage } from '../src/auth/sessionStorage.js'
 import { createAccountSession, SESSION_KEY, SESSION_MESSAGES, sessionServerDeadline } from '../src/auth/accountSession.js'
 const storage = () => { const map = new Map(); return { getItem: k => map.get(k) ?? null, setItem: (k,v) => map.set(k,v), removeItem: k => map.delete(k) } }
 function backend() {
@@ -92,4 +93,93 @@ test('delayed token response leaves the remaining login and logout budget usable
  await context.store.release('qa','new')
  assert.equal(writes[1].claimExpiresAt,serverStart+12000)
  assert.ok(writes[1].claimExpiresAt>clock)
+})
+
+const locks = new WeakMap()
+const rememberedClient = (db, persistent, tab=storage()) => {
+ const adapter=createSessionStorage({persistent,tab})
+ const runExclusive=task=>{const next=(locks.get(persistent)??Promise.resolve()).catch(()=>{}).then(task);locks.set(persistent,next);return next}
+ return {...client(db,adapter,{runExclusive}),tab,adapter}
+}
+test('closing all tabs preserves ownership and a fresh browser tab resumes the same account',async()=>{
+ const db=backend(),disk=storage(),a=rememberedClient(db,disk)
+ await a.session.start('google',{takeover:true});const old=db.records.get('google');a.session.dispose()
+ const rebooted=rememberedClient(db,disk);await rebooted.session.start('google')
+ assert.equal(rebooted.session.state.phase,'active');assert.notEqual(db.records.get('google'),old)
+ assert.equal(JSON.parse(disk.getItem(SESSION_KEY)).uid,'google')
+})
+test('a new tab may resume once but a replaced tab cannot borrow the remembered replacement token',async()=>{
+ const db=backend(),disk=storage(),a=rememberedClient(db,disk),b=rememberedClient(db,disk)
+ await a.session.start('google',{takeover:true});await b.session.start('google')
+ assert.equal(a.session.state.reason,'session/replaced');assert.equal(b.session.state.phase,'active')
+ assert.equal((JSON.parse(disk.getItem(SESSION_KEY)??'null')?.uid === 'google'),true)
+ const oldReload=rememberedClient(db,disk,a.tab)
+ await assert.rejects(oldReload.session.start('google'),{code:'session/sign-in-required'})
+ assert.equal(b.session.state.phase,'active')
+ await a.session.logout();assert.equal((JSON.parse(disk.getItem(SESSION_KEY)??'null')?.uid === 'google'),true)
+})
+test('logout erases the remembered login and a new tab cannot auto-login',async()=>{
+ const db=backend(),disk=storage(),a=rememberedClient(db,disk)
+ disk.setItem('progress','keep');await a.session.start('google',{takeover:true});await a.session.logout()
+ assert.equal(disk.getItem(SESSION_KEY),null);assert.equal(disk.getItem('progress'),'keep')
+ await assert.rejects(rememberedClient(db,disk).session.start('google'),{code:'session/sign-in-required'})
+})
+test('a different device login invalidates remembered ownership even after restart',async()=>{
+ const db=backend(),disk=storage(),a=rememberedClient(db,disk),other=rememberedClient(db,storage())
+ await a.session.start('google',{takeover:true});await other.session.start('google',{takeover:true})
+ assert.equal(disk.getItem(SESSION_KEY),null)
+ await assert.rejects(rememberedClient(db,disk).session.start('google'),{code:'session/sign-in-required'})
+})
+test('transient verification errors block play while retaining login for a later restart',async()=>{
+ const db=backend(),disk=storage(),a=rememberedClient(db,disk)
+ await a.session.start('google',{takeover:true});const read=db.read;db.read=async()=>{throw Error('offline')}
+ await a.session.verify();assert.equal(a.session.state.phase,'ended');assert.equal((JSON.parse(disk.getItem(SESSION_KEY)??'null')?.uid === 'google'),true)
+ db.read=read;await a.session.verify();assert.equal(a.session.state.phase,'active')
+})
+test('lost rotation responses recover both uncommitted and committed claims without a new login',async()=>{
+ for(const committed of [false,true]) {
+  const db=backend(),disk=storage(),a=rememberedClient(db,disk)
+  await a.session.start('google',{takeover:true});a.session.dispose();const claim=db.claim
+  db.claim=async(...args)=>{if(committed)await claim(...args);throw Error('response lost')}
+  await assert.rejects(rememberedClient(db,disk).session.start('google'),{code:'session/unavailable'})
+  db.claim=claim;const retry=rememberedClient(db,disk);await retry.session.start('google')
+  assert.equal(retry.session.state.phase,'active')
+ }
+})
+test('failed durable-storage writes never claim ownership and preserve the older login',async()=>{
+ const db=backend(),disk=storage(),tab=storage(),a=rememberedClient(db,disk,tab)
+ await a.session.start('google',{takeover:true});const before=disk.getItem(SESSION_KEY);a.session.dispose()
+ const badTab=storage();badTab.setItem=()=>{throw Error('quota')}
+ await assert.rejects(rememberedClient(db,disk,badTab).session.start('google'),{code:'session/storage-unavailable'})
+ assert.equal(disk.getItem(SESSION_KEY),before);assert.equal(db.records.get('google'),JSON.parse(before).sessionId)
+})
+test('logout while reconciling a pending rotation cannot reactivate the login',async()=>{
+ const db=backend(),disk=storage();disk.setItem(SESSION_KEY,JSON.stringify({uid:'google',sessionId:'pending',previousSessionId:'old',pending:true}))
+ let finish;db.read=()=>new Promise(r=>finish=r);const a=rememberedClient(db,disk)
+ const pending=a.session.start('google');for(let i=0;i<10;i++)await Promise.resolve();await a.session.logout();finish('old');await pending
+ assert.equal(a.session.state.phase,'idle');assert.equal(db.records.size,0)
+})
+
+test('browser ownership rotations serialize all competing tabs before touching durable storage',async()=>{
+ const db=backend(),disk=storage(),a=rememberedClient(db,disk)
+ await a.session.start('google',{takeover:true});a.session.dispose()
+ const b=rememberedClient(db,disk),c=rememberedClient(db,disk),d=rememberedClient(db,disk),claim=db.claim
+ let finish,claims=0
+ db.claim=async(...args)=>{claims++;await claim(...args);if(claims===1)await new Promise(r=>finish=r)}
+ const tasks=[b.session.start('google'),c.session.start('google'),d.session.start('google')]
+ for(let i=0;i<20;i++)await Promise.resolve()
+ assert.equal(claims,1);finish();await Promise.all(tasks)
+ assert.equal(claims,3);assert.equal([b,c,d].filter(x=>x.session.state.phase==='active').length,1)
+ assert.equal(d.session.state.phase,'active');assert.equal(JSON.parse(disk.getItem(SESSION_KEY)).sessionId,d.session.state.sessionId)
+ db.claim=claim;d.session.dispose();await rememberedClient(db,disk).session.start('google')
+})
+test('logging out a tab waiting for the browser lock cancels its queued restoration',async()=>{
+ const db=backend(),disk=storage(),a=rememberedClient(db,disk)
+ await a.session.start('google',{takeover:true});a.session.dispose()
+ const b=rememberedClient(db,disk),c=rememberedClient(db,disk),claim=db.claim
+ let finish;db.claim=async(...args)=>{await claim(...args);await new Promise(r=>finish=r)}
+ const winner=b.session.start('google');for(let i=0;i<10;i++)await Promise.resolve()
+ const waiting=c.session.start('google');await c.session.logout();finish();await winner;await waiting
+ assert.equal(b.session.state.phase,'active');assert.equal(c.session.state.phase,'idle')
+ assert.equal(JSON.parse(disk.getItem(SESSION_KEY)).sessionId,b.session.state.sessionId)
 })

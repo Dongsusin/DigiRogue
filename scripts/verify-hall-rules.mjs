@@ -10,8 +10,10 @@ async function request(path,token,method='GET',body,query=''){
     body:body===undefined?undefined:JSON.stringify(body),signal:AbortSignal.timeout(path === ".settings/rules" ? 60000 : 5000)})
   return {status:response.status,value:await response.json()}
 }
-async function user(){
-  const response=await fetch('http://127.0.0.1:9099/identitytoolkit.googleapis.com/v1/accounts:signUp?key=demo-key',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({returnSecureToken:true})})
+async function user(google=true){
+  const jwt=Buffer.from(JSON.stringify({alg:'none',typ:'JWT'})).toString('base64url')+'.'+Buffer.from(JSON.stringify({sub:crypto.randomUUID(),email:crypto.randomUUID()+'@example.invalid',email_verified:true,iat:Math.floor(Date.now()/1000),exp:Math.floor(Date.now()/1000)+3600})).toString('base64url')+'.'
+  const method=google?'signInWithIdp':'signUp'
+  const response=await fetch('http://127.0.0.1:9099/identitytoolkit.googleapis.com/v1/accounts:'+method+'?key=demo-key',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(google?{postBody:'id_token='+jwt+'&providerId=google.com',requestUri:'http://localhost',returnSecureToken:true}:{returnSecureToken:true})})
   const value=await response.json();assert.equal(response.status,200);return {uid:value.localId,token:value.idToken}
 }
 const payload=(turns,mode='classic')=>{const record=createClearRecord({gameMode:mode,currentStage:200,currentMap:'무한 마운틴',trainerRunId:'test-run-'+turns,
@@ -21,6 +23,8 @@ test('public hall rules enforce ownership, best-only writes, final stage, bounds
   assert.equal((await request('.settings/rules','owner','PUT',rules)).status,200)
   assert.equal((await request('hallOfFame','owner','PUT',null)).status,200)
   const [a,b]=await Promise.all([user(),user()])
+  const guest=await user(false)
+  assert.equal((await request('hallOfFame/classic/entries/'+guest.uid,guest.token,'PUT',payload(300))).status,401)
   const path='hallOfFame/classic/entries/'+a.uid
   assert.equal((await request(path,a.token,'PUT',payload(400))).status,200)
   assert.equal((await request(path,b.token,'PUT',payload(300))).status,401)

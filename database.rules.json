@@ -191,7 +191,7 @@
           ],
           "$uid": {
             ".read": "auth != null && auth.uid === $uid",
-            ".write": "auth != null && auth.uid === $uid && newData.exists()",
+            ".write": "auth != null && auth.uid === $uid && auth.token.firebase.sign_in_provider === 'google.com' && newData.exists()",
             ".validate": "($mode === 'classic' || $mode === 'hard') && newData.hasChildren(['version','mode','runId','stage','totalTurns','startedAtMs','clearedAt','mapName','team']) && (!data.exists() || newData.child('totalTurns').val() < data.child('totalTurns').val()) && newData.child('clearedAt').val() === now && newData.child('startedAtMs').val() <= now",
             "version": {
               ".validate": "newData.val() === 1"

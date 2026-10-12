@@ -48,3 +48,16 @@ test('network/auth failures never report a successful upload',async()=>{
   const denied=createHallClient({baseUrl:'https://db.invalid',getToken:async()=>'x',fetchImpl:async()=>new Response('{}',{status:403})})
   await assert.rejects(denied.list('hard'),/연결하지 못했습니다/)
 })
+
+// Account records cannot be forked through a changing run ID or a second profile.
+test('hall transport is permanently bound to its authenticated account',async()=>{
+ const writes=[]
+ const client=createHallClient({baseUrl:'https://db.invalid',uid:'google-owner',getToken:async()=>'token',fetchImpl:async(url,options)=>{
+  writes.push({url,method:options.method})
+  return new Response(options.method==='GET'?'null':'{}',{status:200,headers:{etag:'"1"'}})
+ }})
+ await assert.rejects(client.submit('other-account',record(300)),/계정/)
+ assert.equal(writes.length,0)
+ await client.submit('google-owner',record(300))
+ assert(writes.every(x=>x.url.includes('/entries/google-owner.json')))
+})

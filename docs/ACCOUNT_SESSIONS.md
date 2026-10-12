@@ -4,11 +4,11 @@
 
 ## 인증과 소유권
 
-- Firebase Auth는 browserSessionPersistence를 사용한다. 같은 탭의 새로고침은 유지하고 탭을 닫으면 다시 로그인한다. 이전 버전의 브라우저 전체 로그인은 업데이트 후 한 번 다시 인증해야 한다.
+- Firebase Auth는 browserLocalPersistence를 사용한다. Google 로그인과 마지막 소유권 UUID를 브라우저 로컬 저장소에 보관하여 탭을 닫거나 PC를 재부팅해도 같은 계정으로 복원한다. 명시적 로그아웃은 인증 정보와 해당 기기의 소유권을 제거한다. 사이트 데이터 삭제·시크릿 창·인증 취소 및 다른 기기의 로그인은 예외다.
 - Google 인증을 마친 뒤 Firestore activeSessions/{uid} 문서의 무작위 UUID를 트랜잭션으로 교체한다. 서버가 서명한 auth_time이 이전 로그인보다 새로워야 하므로 오래된 인증 토큰으로 세션을 재탈취할 수 없다. 동일한 초에 겹친 인증은 재로그인 안내로 처리한다. 서버 승인이 나기 전에는 게임을 마운트하지 않는다.
-- 새로고침은 sessionStorage의 이전 UUID가 서버와 일치해야만 새 UUID로 교체할 수 있다. 무효화된 탭은 새로고침으로 다시 세션을 빼앗지 못한다. 복제된 탭도 UUID를 공유해 동시에 남을 수 없다.
+- 새로고침·재시작은 저장한 이전 UUID가 서버와 일치해야만 새 UUID로 교체할 수 있다. 탭별 sessionStorage가 로컬 저장소보다 우선하며, 무효화된 탭에는 차단 표식을 남긴다. 새 탭은 기기의 마지막 UUID로 복원할 수 있지만 이전 탭은 최신 UUID를 빌려 세션을 되찾을 수 없다. 브라우저 Web Locks로 탭 사이의 UUID 교체를 순서대로 실행하여 동시에 여러 복원 요청이 저장된 로그인을 덮어쓰지 못하게 한다. 명시적 로그아웃·게스트 전환을 제외하면 실패한 탭은 공유 Firebase 인증을 지우지 않는다. Web Locks를 지원하지 않는 오래된 브라우저에서는 Google 로그인 대신 최신 브라우저 이용 안내를 표시하며 게스트는 이용할 수 있다.
 - 문서 변경은 onSnapshot으로 감지한다. 캐시를 권위 있는 세션으로 인정하지 않는다. 포커스 복귀·페이지 복구·네트워크 변경에도 서버를 다시 확인한다.
-- 확인 중에는 기존 게임을 보존한 채 오버레이와 inert로 입력을 막는다. 12초 내 서버 확인이 되지 않으면 로그인 화면으로 돌아간다. 재연결만으로 세션을 다시 가져오지 않는다.
+- 확인 중에는 기존 게임을 보존한 채 오버레이와 inert로 입력을 막는다. 12초 내 서버 확인이 되지 않으면 로그인 화면으로 돌아간다. 네트워크 장애만으로 기억한 로그인을 지우지 않는다. 다시 열 때 서버 소유권을 확인하며, 응답을 잃은 교체 요청은 본인이 보관했던 이전·신규 UUID만으로 복구한다.
 - 로그인 승인 중에는 포커스 검사를 시작하지 않는다. 취소·시간 초과 시 실행 중인 요청에 취소 신호를 보내고, 모든 트랜잭션 재시도와 서버 규칙에서 요청 기한을 확인한다. 기한은 새로 발급한 서버 서명 토큰의 iat를 기준으로 계산하며 PC 시각이 2분 빠르거나 느린 실제 브라우저에서도 확인했다. 지연된 이전 로그인이 새 로그인을 덮어쓸 수 없다.
 - 로그아웃은 현재 UUID 일치 여부를 트랜잭션으로 확인한 뒤 UUID를 비운다. 인증 시각의 최댓값은 남겨 구 토큰의 문서 재생성을 차단한다. 클라이언트 삭제는 허용하지 않으며 이전 기기의 정리가 새 기기의 세션을 비울 수 없다.
 
@@ -32,6 +32,6 @@ Firestore 코드는 Google 플레이 시에만 동적으로 불러온다. 게스
 
 ## 규칙 운영
 
-Firebase 프로젝트는 digirogue-510313이고 기존 서울 리전 Firestore를 사용한다. firebase.json에는 Firestore 규칙만 지정하며 Hosting 설정은 포함하지 않는다. 규칙 변경 시 프로젝트를 명시하고 firestore:rules만 대상으로 지정한다. 서비스 계정 키·CLI 토큰은 소스나 배포물에 넣지 않는다.
+Firebase 프로젝트는 digirogue-510313이고 기존 서울 리전 Firestore를 사용한다. firebase.json에는 Firestore·Realtime Database 규칙을 지정하며 Hosting 설정은 포함하지 않는다. 규칙 변경 시 프로젝트를 명시하고 firestore:rules만 대상으로 지정한다. 서비스 계정 키·CLI 토큰은 소스나 배포물에 넣지 않는다.
 
 공식 참고: [Firebase 인증 유지 방식](https://firebase.google.com/docs/auth/web/auth-state-persistence), [Firestore 트랜잭션](https://firebase.google.com/docs/firestore/manage-data/transactions), [실시간 변경 수신](https://firebase.google.com/docs/firestore/query-data/listen), [Firestore 보안 규칙](https://firebase.google.com/docs/firestore/security/get-started).
