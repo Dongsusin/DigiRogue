@@ -7,7 +7,7 @@ const base='http://127.0.0.1:9000',ns='demo-digirouge-default-rtdb'
 async function request(path,token,method='GET',body,query=''){
   const response=await fetch(base+'/'+path+'.json?ns='+ns+(token&&token!=='owner'?'&auth='+encodeURIComponent(token):'')+query,{
     method,headers:{'Content-Type':'application/json',...(token==='owner'?{Authorization:'Bearer owner'}:{})},
-    body:body===undefined?undefined:JSON.stringify(body),signal:AbortSignal.timeout(5000)})
+    body:body===undefined?undefined:JSON.stringify(body),signal:AbortSignal.timeout(path === ".settings/rules" ? 60000 : 5000)})
   return {status:response.status,value:await response.json()}
 }
 async function user(){
@@ -16,7 +16,7 @@ async function user(){
 }
 const payload=(turns,mode='classic')=>{const record=createClearRecord({gameMode:mode,currentStage:200,currentMap:'무한 마운틴',trainerRunId:'test-run-'+turns,
   runStats:{...createRunStats(1000),totalTurns:turns,finalClear:true},party:[{name:'아구몬',level:200,currentHp:10,maxHp:10,skills:[]}],enemies:[{currentHp:0}]},{now:5000});return {...record,team:JSON.parse(record.team),clearedAt:{'.sv':'timestamp'}}}
-test('public hall rules enforce ownership, best-only writes, final stage, bounds and query limits',{skip:!enabled,timeout:45000},async()=>{
+test('public hall rules enforce ownership, best-only writes, final stage, bounds and query limits',{skip:!enabled,timeout:90000},async()=>{
   const rules=JSON.parse(await readFile(new URL('../database.rules.json',import.meta.url),'utf8'))
   assert.equal((await request('.settings/rules','owner','PUT',rules)).status,200)
   assert.equal((await request('hallOfFame','owner','PUT',null)).status,200)

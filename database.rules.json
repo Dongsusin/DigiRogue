@@ -23,10 +23,10 @@
           "uid": {},
           "createdAt": {},
           "name": {
-            ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 16 && newData.val().matches(/.*[^ ].*/)"
+            ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 16 && newData.val().matches(/.*[^ ].*/) && !newData.val().matches(/.*[\u0000-\u001fᄀ-ᇿ！-～].*/) && !newData.val().contains(\"\\u200b\") && !newData.val().contains(\"\\u200c\") && !newData.val().contains(\"\\u200d\") && !newData.val().contains(\"\\u200e\") && !newData.val().contains(\"\\u200f\") && !newData.val().contains(\"\\u202a\") && !newData.val().contains(\"\\u202b\") && !newData.val().contains(\"\\u202c\") && !newData.val().contains(\"\\u202d\") && !newData.val().contains(\"\\u202e\") && !newData.val().contains(\"\\u2060\") && !newData.val().contains(\"\\u2061\") && !newData.val().contains(\"\\u2062\") && !newData.val().contains(\"\\u2063\") && !newData.val().contains(\"\\u2064\") && !newData.val().contains(\"\\u2065\") && !newData.val().contains(\"\\u2066\") && !newData.val().contains(\"\\u2067\") && !newData.val().contains(\"\\u2068\") && !newData.val().contains(\"\\u2069\") && !newData.val().contains(\"\\u206a\") && !newData.val().contains(\"\\u206b\") && !newData.val().contains(\"\\u206c\") && !newData.val().contains(\"\\u206d\") && !newData.val().contains(\"\\u206e\") && !newData.val().contains(\"\\u206f\") && !newData.val().contains(\"\\u2000\") && !newData.val().contains(\"\\u2001\") && !newData.val().contains(\"\\u2002\") && !newData.val().contains(\"\\u2003\") && !newData.val().contains(\"\\u2004\") && !newData.val().contains(\"\\u2005\") && !newData.val().contains(\"\\u2006\") && !newData.val().contains(\"\\u2007\") && !newData.val().contains(\"\\u2008\") && !newData.val().contains(\"\\u2009\") && !newData.val().contains(\"\\u200a\") && !newData.val().contains(\"\\u00a0\") && !newData.val().contains(\"\\u1680\") && !newData.val().contains(\"\\u2028\") && !newData.val().contains(\"\\u2029\") && !newData.val().contains(\"\\u202f\") && !newData.val().contains(\"\\u205f\") && !newData.val().contains(\"\\u3000\") && !newData.val().contains(\"\\ufeff\") && !(\" \" + newData.val().replace(\"\\uc2dc\\ubc1c\\uc810\", \"\") + \" \").matches(/.*([^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]시[발빨]|[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]시[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*[발빨][^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]|[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]시[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*[발빨](놈|년|련|새끼|넘|같)|[씨씹쒸][발빨]|[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9][씨씹쒸쉬][^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*[발빨]|[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]시[1이ㅣ][^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*발|[씨씹][^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*팔|ㅅ[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*ㅂ|ㅂ[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*ㅅ|개[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*새[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*끼|[병븅][^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*신|지[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*랄|좆|f[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*u[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*c[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*k|b[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*i[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*t[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*c[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*h|a[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*s[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*s[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*h[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*o[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*l[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*e).*/i) && !newData.val().matches(/.*(aaaaaaaaaaaa|bbbbbbbbbbbb|cccccccccccc|dddddddddddd|eeeeeeeeeeee|ffffffffffff|gggggggggggg|hhhhhhhhhhhh|iiiiiiiiiiii|jjjjjjjjjjjj|kkkkkkkkkkkk|llllllllllll|mmmmmmmmmmmm|nnnnnnnnnnnn|oooooooooooo|pppppppppppp|qqqqqqqqqqqq|rrrrrrrrrrrr|ssssssssssss|tttttttttttt|uuuuuuuuuuuu|vvvvvvvvvvvv|wwwwwwwwwwww|xxxxxxxxxxxx|yyyyyyyyyyyy|zzzzzzzzzzzz|000000000000|111111111111|222222222222|333333333333|444444444444|555555555555|666666666666|777777777777|888888888888|999999999999|ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ|ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ|ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ|ㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹ|ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ|ㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂ|ㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅ|ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ|ㅈㅈㅈㅈㅈㅈㅈㅈㅈㅈㅈㅈ|ㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊ|ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ|ㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌ|ㅍㅍㅍㅍㅍㅍㅍㅍㅍㅍㅍㅍ|ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ|ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ|ㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑ|ㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓ|ㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕ|ㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗ|ㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛ|ㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜ|ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ|ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ|ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ|가가가가가가가가가가가가|나나나나나나나나나나나나|다다다다다다다다다다다다|라라라라라라라라라라라라|마마마마마마마마마마마마|바바바바바바바바바바바바|사사사사사사사사사사사사|아아아아아아아아아아아아|자자자자자자자자자자자자|차차차차차차차차차차차차|카카카카카카카카카카카카|타타타타타타타타타타타타|파파파파파파파파파파파파|하하하하하하하하하하하하|진진진진진진진진진진진진|화화화화화화화화화화화화|공공공공공공공공공공공공|격격격격격격격격격격격격|방방방방방방방방방방방방|어어어어어어어어어어어어|승승승승승승승승승승승승|리리리리리리리리리리리리|패패패패패패패패패패패패|배배배배배배배배배배배배|기기기기기기기기기기기기|강강강강강강강강강강강강|한한한한한한한한한한한한|약약약약약약약약약약약약|몬몬몬몬몬몬몬몬몬몬몬몬|디디디디디디디디디디디디|지지지지지지지지지지지지|안안안안안안안안안안안안|녕녕녕녕녕녕녕녕녕녕녕녕|메메메메메메메메메메메메|시시시시시시시시시시시시|대대대대대대대대대대대대|전전전전전전전전전전전전|[!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~]|도배도배도배도배도배도배|승리승리승리승리승리승리|진화진화진화진화진화진화|공격공격공격공격공격공격|안녕안녕안녕안녕안녕안녕|ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ|ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ).*/i)"
           },
           "text": {
-            ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 200 && newData.val().matches(/.*[^ ].*/)"
+            ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 200 && newData.val().matches(/.*[^ ].*/) && !newData.val().matches(/.*[\u0000-\u001fᄀ-ᇿ！-～].*/) && !newData.val().contains(\"\\u200b\") && !newData.val().contains(\"\\u200c\") && !newData.val().contains(\"\\u200d\") && !newData.val().contains(\"\\u200e\") && !newData.val().contains(\"\\u200f\") && !newData.val().contains(\"\\u202a\") && !newData.val().contains(\"\\u202b\") && !newData.val().contains(\"\\u202c\") && !newData.val().contains(\"\\u202d\") && !newData.val().contains(\"\\u202e\") && !newData.val().contains(\"\\u2060\") && !newData.val().contains(\"\\u2061\") && !newData.val().contains(\"\\u2062\") && !newData.val().contains(\"\\u2063\") && !newData.val().contains(\"\\u2064\") && !newData.val().contains(\"\\u2065\") && !newData.val().contains(\"\\u2066\") && !newData.val().contains(\"\\u2067\") && !newData.val().contains(\"\\u2068\") && !newData.val().contains(\"\\u2069\") && !newData.val().contains(\"\\u206a\") && !newData.val().contains(\"\\u206b\") && !newData.val().contains(\"\\u206c\") && !newData.val().contains(\"\\u206d\") && !newData.val().contains(\"\\u206e\") && !newData.val().contains(\"\\u206f\") && !newData.val().contains(\"\\u2000\") && !newData.val().contains(\"\\u2001\") && !newData.val().contains(\"\\u2002\") && !newData.val().contains(\"\\u2003\") && !newData.val().contains(\"\\u2004\") && !newData.val().contains(\"\\u2005\") && !newData.val().contains(\"\\u2006\") && !newData.val().contains(\"\\u2007\") && !newData.val().contains(\"\\u2008\") && !newData.val().contains(\"\\u2009\") && !newData.val().contains(\"\\u200a\") && !newData.val().contains(\"\\u00a0\") && !newData.val().contains(\"\\u1680\") && !newData.val().contains(\"\\u2028\") && !newData.val().contains(\"\\u2029\") && !newData.val().contains(\"\\u202f\") && !newData.val().contains(\"\\u205f\") && !newData.val().contains(\"\\u3000\") && !newData.val().contains(\"\\ufeff\") && !(\" \" + newData.val().replace(\"\\uc2dc\\ubc1c\\uc810\", \"\") + \" \").matches(/.*([^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]시[발빨]|[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]시[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*[발빨][^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]|[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]시[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*[발빨](놈|년|련|새끼|넘|같)|[씨씹쒸][발빨]|[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9][씨씹쒸쉬][^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*[발빨]|[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]시[1이ㅣ][^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*발|[씨씹][^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*팔|ㅅ[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*ㅂ|ㅂ[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*ㅅ|개[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*새[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*끼|[병븅][^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*신|지[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*랄|좆|f[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*u[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*c[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*k|b[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*i[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*t[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*c[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*h|a[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*s[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*s[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*h[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*o[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*l[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]*e).*/i) && !newData.val().matches(/.*(aaaaaaaaaaaa|bbbbbbbbbbbb|cccccccccccc|dddddddddddd|eeeeeeeeeeee|ffffffffffff|gggggggggggg|hhhhhhhhhhhh|iiiiiiiiiiii|jjjjjjjjjjjj|kkkkkkkkkkkk|llllllllllll|mmmmmmmmmmmm|nnnnnnnnnnnn|oooooooooooo|pppppppppppp|qqqqqqqqqqqq|rrrrrrrrrrrr|ssssssssssss|tttttttttttt|uuuuuuuuuuuu|vvvvvvvvvvvv|wwwwwwwwwwww|xxxxxxxxxxxx|yyyyyyyyyyyy|zzzzzzzzzzzz|000000000000|111111111111|222222222222|333333333333|444444444444|555555555555|666666666666|777777777777|888888888888|999999999999|ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ|ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ|ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ|ㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹ|ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ|ㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂ|ㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅ|ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ|ㅈㅈㅈㅈㅈㅈㅈㅈㅈㅈㅈㅈ|ㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊ|ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ|ㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌ|ㅍㅍㅍㅍㅍㅍㅍㅍㅍㅍㅍㅍ|ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ|ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ|ㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑ|ㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓ|ㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕ|ㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗ|ㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛ|ㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜ|ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ|ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ|ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ|가가가가가가가가가가가가|나나나나나나나나나나나나|다다다다다다다다다다다다|라라라라라라라라라라라라|마마마마마마마마마마마마|바바바바바바바바바바바바|사사사사사사사사사사사사|아아아아아아아아아아아아|자자자자자자자자자자자자|차차차차차차차차차차차차|카카카카카카카카카카카카|타타타타타타타타타타타타|파파파파파파파파파파파파|하하하하하하하하하하하하|진진진진진진진진진진진진|화화화화화화화화화화화화|공공공공공공공공공공공공|격격격격격격격격격격격격|방방방방방방방방방방방방|어어어어어어어어어어어어|승승승승승승승승승승승승|리리리리리리리리리리리리|패패패패패패패패패패패패|배배배배배배배배배배배배|기기기기기기기기기기기기|강강강강강강강강강강강강|한한한한한한한한한한한한|약약약약약약약약약약약약|몬몬몬몬몬몬몬몬몬몬몬몬|디디디디디디디디디디디디|지지지지지지지지지지지지|안안안안안안안안안안안안|녕녕녕녕녕녕녕녕녕녕녕녕|메메메메메메메메메메메메|시시시시시시시시시시시시|대대대대대대대대대대대대|전전전전전전전전전전전전|[!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~][!?.,~]|도배도배도배도배도배도배|승리승리승리승리승리승리|진화진화진화진화진화진화|공격공격공격공격공격공격|안녕안녕안녕안녕안녕안녕|ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ|ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ).*/i)"
           },
           "$other": {
             ".validate": false
@@ -35,10 +35,137 @@
       },
       "rates": {
         "$uid": {
+          ".read": "auth != null && auth.uid === $uid",
           ".write": "auth != null && auth.uid === $uid && newData.exists()",
-          ".validate": "newData.hasChildren(['seq','createdAt']) && (!data.exists() || data.child('createdAt').val() <= now - 4000) && newData.child('createdAt').val() === now && newData.child('seq').val() === (root.child('community/head/seq').exists() ? root.child('community/head/seq').val() + 1 : 1) && newData.parent().parent().child('head/seq').val() === newData.child('seq').val() && newData.parent().parent().child('head/uid').val() === auth.uid && newData.parent().parent().child('head/createdAt').val() === now",
+          ".validate": "newData.hasChildren(['seq','createdAt','recent']) && (!data.exists() || data.child('createdAt').val() <= now - 4000) && newData.child('createdAt').val() === now && newData.child('seq').val() === (root.child('community/head/seq').exists() ? root.child('community/head/seq').val() + 1 : 1) && newData.parent().parent().child('head/seq').val() === newData.child('seq').val() && newData.parent().parent().child('head/uid').val() === auth.uid && newData.parent().parent().child('head/createdAt').val() === now && (!data.child('recent/4/createdAt').exists() || data.child('recent/4/createdAt').val() <= now - 30000) && (!data.child('recent/0/createdAt').exists() || data.child('recent/0/createdAt').val() <= now - 60000 || data.child('recent/0/text').val() !== newData.child('recent/0').child('text').val()) && (!data.child('recent/1/createdAt').exists() || data.child('recent/1/createdAt').val() <= now - 60000 || data.child('recent/1/text').val() !== newData.child('recent/0').child('text').val()) && (!data.child('recent/2/createdAt').exists() || data.child('recent/2/createdAt').val() <= now - 60000 || data.child('recent/2/text').val() !== newData.child('recent/0').child('text').val()) && (!data.child('recent/3/createdAt').exists() || data.child('recent/3/createdAt').val() <= now - 60000 || data.child('recent/3/text').val() !== newData.child('recent/0').child('text').val()) && (!data.child('recent/4/createdAt').exists() || data.child('recent/4/createdAt').val() <= now - 60000 || data.child('recent/4/text').val() !== newData.child('recent/0').child('text').val()) && (!data.child('recent/5/createdAt').exists() || data.child('recent/5/createdAt').val() <= now - 60000 || data.child('recent/5/text').val() !== newData.child('recent/0').child('text').val()) && (!data.child('recent/6/createdAt').exists() || data.child('recent/6/createdAt').val() <= now - 60000 || data.child('recent/6/text').val() !== newData.child('recent/0').child('text').val()) && (!data.child('recent/7/createdAt').exists() || data.child('recent/7/createdAt').val() <= now - 60000 || data.child('recent/7/text').val() !== newData.child('recent/0').child('text').val()) && (!data.child('recent/8/createdAt').exists() || data.child('recent/8/createdAt').val() <= now - 60000 || data.child('recent/8/text').val() !== newData.child('recent/0').child('text').val()) && (!data.child('recent/9/createdAt').exists() || data.child('recent/9/createdAt').val() <= now - 60000 || data.child('recent/9/text').val() !== newData.child('recent/0').child('text').val())",
           "seq": {},
           "createdAt": {},
+          "recent": {
+            "0": {
+              ".validate": "newData.hasChildren(['text','createdAt'])",
+              "text": {
+                ".validate": "newData.isString() && newData.val() === newData.parent().parent().parent().parent().parent().child('messages/' + (newData.parent().parent().parent().child('seq').val() % 40)).child('text').val().toLowerCase().replace(\"\\t\", \"\").replace(\"\\n\", \"\").replace(\"\\r\", \"\").replace(\"\\u000b\", \"\").replace(\"\\f\", \"\").replace(\"\\u00a0\", \"\").replace(\"\\u1680\", \"\").replace(\"\\u2028\", \"\").replace(\"\\u2029\", \"\").replace(\"\\u202f\", \"\").replace(\"\\u205f\", \"\").replace(\"\\u3000\", \"\").replace(\"\\ufeff\", \"\").replace(\"\\u2000\", \"\").replace(\"\\u2001\", \"\").replace(\"\\u2002\", \"\").replace(\"\\u2003\", \"\").replace(\"\\u2004\", \"\").replace(\"\\u2005\", \"\").replace(\"\\u2006\", \"\").replace(\"\\u2007\", \"\").replace(\"\\u2008\", \"\").replace(\"\\u2009\", \"\").replace(\"\\u200a\", \"\").replace(\" \", \"\").replace(\".\", \"\").replace(\",\", \"\").replace(\"!\", \"\").replace(\"?\", \"\").replace(\":\", \"\").replace(\";\", \"\").replace(\"~\", \"\").replace(\"_\", \"\").replace(\"-\", \"\").replace(\"+\", \"\").replace(\"*\", \"\").replace(\"/\", \"\").replace(\"\\\\\", \"\").replace(\"|\", \"\").replace(\"(\", \"\").replace(\")\", \"\").replace(\"[\", \"\").replace(\"]\", \"\").replace(\"{\", \"\").replace(\"}\", \"\").replace(\"'\", \"\").replace(\"\\\"\", \"\").replace(\"`\", \"\")"
+              },
+              "createdAt": {
+                ".validate": "newData.isNumber() && newData.val() === now"
+              },
+              "$other": {
+                ".validate": false
+              }
+            },
+            "1": {
+              ".validate": "newData.hasChildren(['text','createdAt'])",
+              "text": {
+                ".validate": "newData.isString() && newData.val() === (data.parent().parent().parent().child('recent/0').child('text').exists() ? data.parent().parent().parent().child('recent/0').child('text').val() : '')"
+              },
+              "createdAt": {
+                ".validate": "newData.isNumber() && newData.val() === (data.parent().parent().parent().child('recent/0').child('createdAt').exists() ? data.parent().parent().parent().child('recent/0').child('createdAt').val() : 0)"
+              },
+              "$other": {
+                ".validate": false
+              }
+            },
+            "2": {
+              ".validate": "newData.hasChildren(['text','createdAt'])",
+              "text": {
+                ".validate": "newData.isString() && newData.val() === (data.parent().parent().parent().child('recent/1').child('text').exists() ? data.parent().parent().parent().child('recent/1').child('text').val() : '')"
+              },
+              "createdAt": {
+                ".validate": "newData.isNumber() && newData.val() === (data.parent().parent().parent().child('recent/1').child('createdAt').exists() ? data.parent().parent().parent().child('recent/1').child('createdAt').val() : 0)"
+              },
+              "$other": {
+                ".validate": false
+              }
+            },
+            "3": {
+              ".validate": "newData.hasChildren(['text','createdAt'])",
+              "text": {
+                ".validate": "newData.isString() && newData.val() === (data.parent().parent().parent().child('recent/2').child('text').exists() ? data.parent().parent().parent().child('recent/2').child('text').val() : '')"
+              },
+              "createdAt": {
+                ".validate": "newData.isNumber() && newData.val() === (data.parent().parent().parent().child('recent/2').child('createdAt').exists() ? data.parent().parent().parent().child('recent/2').child('createdAt').val() : 0)"
+              },
+              "$other": {
+                ".validate": false
+              }
+            },
+            "4": {
+              ".validate": "newData.hasChildren(['text','createdAt'])",
+              "text": {
+                ".validate": "newData.isString() && newData.val() === (data.parent().parent().parent().child('recent/3').child('text').exists() ? data.parent().parent().parent().child('recent/3').child('text').val() : '')"
+              },
+              "createdAt": {
+                ".validate": "newData.isNumber() && newData.val() === (data.parent().parent().parent().child('recent/3').child('createdAt').exists() ? data.parent().parent().parent().child('recent/3').child('createdAt').val() : 0)"
+              },
+              "$other": {
+                ".validate": false
+              }
+            },
+            "5": {
+              ".validate": "newData.hasChildren(['text','createdAt'])",
+              "text": {
+                ".validate": "newData.isString() && newData.val() === (data.parent().parent().parent().child('recent/4').child('text').exists() ? data.parent().parent().parent().child('recent/4').child('text').val() : '')"
+              },
+              "createdAt": {
+                ".validate": "newData.isNumber() && newData.val() === (data.parent().parent().parent().child('recent/4').child('createdAt').exists() ? data.parent().parent().parent().child('recent/4').child('createdAt').val() : 0)"
+              },
+              "$other": {
+                ".validate": false
+              }
+            },
+            "6": {
+              ".validate": "newData.hasChildren(['text','createdAt'])",
+              "text": {
+                ".validate": "newData.isString() && newData.val() === (data.parent().parent().parent().child('recent/5').child('text').exists() ? data.parent().parent().parent().child('recent/5').child('text').val() : '')"
+              },
+              "createdAt": {
+                ".validate": "newData.isNumber() && newData.val() === (data.parent().parent().parent().child('recent/5').child('createdAt').exists() ? data.parent().parent().parent().child('recent/5').child('createdAt').val() : 0)"
+              },
+              "$other": {
+                ".validate": false
+              }
+            },
+            "7": {
+              ".validate": "newData.hasChildren(['text','createdAt'])",
+              "text": {
+                ".validate": "newData.isString() && newData.val() === (data.parent().parent().parent().child('recent/6').child('text').exists() ? data.parent().parent().parent().child('recent/6').child('text').val() : '')"
+              },
+              "createdAt": {
+                ".validate": "newData.isNumber() && newData.val() === (data.parent().parent().parent().child('recent/6').child('createdAt').exists() ? data.parent().parent().parent().child('recent/6').child('createdAt').val() : 0)"
+              },
+              "$other": {
+                ".validate": false
+              }
+            },
+            "8": {
+              ".validate": "newData.hasChildren(['text','createdAt'])",
+              "text": {
+                ".validate": "newData.isString() && newData.val() === (data.parent().parent().parent().child('recent/7').child('text').exists() ? data.parent().parent().parent().child('recent/7').child('text').val() : '')"
+              },
+              "createdAt": {
+                ".validate": "newData.isNumber() && newData.val() === (data.parent().parent().parent().child('recent/7').child('createdAt').exists() ? data.parent().parent().parent().child('recent/7').child('createdAt').val() : 0)"
+              },
+              "$other": {
+                ".validate": false
+              }
+            },
+            "9": {
+              ".validate": "newData.hasChildren(['text','createdAt'])",
+              "text": {
+                ".validate": "newData.isString() && newData.val() === (data.parent().parent().parent().child('recent/8').child('text').exists() ? data.parent().parent().parent().child('recent/8').child('text').val() : '')"
+              },
+              "createdAt": {
+                ".validate": "newData.isNumber() && newData.val() === (data.parent().parent().parent().child('recent/8').child('createdAt').exists() ? data.parent().parent().parent().child('recent/8').child('createdAt').val() : 0)"
+              },
+              "$other": {
+                ".validate": false
+              }
+            },
+            ".validate": "newData.hasChildren([\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\"])",
+            "$other": {
+              ".validate": false
+            }
+          },
           "$other": {
             ".validate": false
           }

@@ -89,7 +89,7 @@ export default function CommunityHub({ screenMode, identity, blocked = false }) 
         <input ref={input} aria-label="채팅 메시지" placeholder={online ? '메시지 입력…' : '연결 후 대화할 수 있어요'} value={draft} maxLength={CHAT_LENGTH} onChange={event => setDraft(event.target.value)} disabled={!online} onKeyDown={event => { if (event.key === 'Enter' && (event.nativeEvent.isComposing || event.keyCode === 229)) event.preventDefault() }}/>
         <button type="submit" disabled={!online || state.pending || cooldown > 0 || !draft.trim()}>{state.pending ? '전송 중' : cooldown > 0 ? cooldown + '초' : '전송'}</button>
       </form>
-      <div className="community__feedback"><span role="status">{error || state.error || 'Enter로 전송'}</span><span>{draft.length}/{CHAT_LENGTH}</span>{state.phase === 'unavailable' && <button type="button" onClick={() => setRetry(value => value + 1)}>재연결</button>}</div>
+      <div className="community__feedback"><span role="status">{error || state.error || 'Enter로 전송 · 비속어·도배 금지'}</span><span>{draft.length}/{CHAT_LENGTH}</span>{state.phase === 'unavailable' && <button type="button" onClick={() => setRetry(value => value + 1)}>재연결</button>}</div>
     </section>}
   </aside>
 }

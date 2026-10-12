@@ -77,6 +77,7 @@ export async function createFirebaseCommunity(identity) {
     watchCount: (callback, onError) => watchChildren('presence', onlinePlayers, callback, onError),
     watchMessages: (callback, onError) => watchChildren('community/messages', rows => orderedMessages(Object.values(rows)), callback, onError),
     readHead: async () => (await request('GET', 'community/head/seq')) ?? 0,
+    readRate: async () => (await request('GET', 'community/rates/' + uid)) ?? null,
     write: update => request('PATCH', 'community', update),
   }
 }

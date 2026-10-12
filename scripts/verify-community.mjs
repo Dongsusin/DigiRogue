@@ -12,7 +12,7 @@ function harness() {
   uid:'u1', connect(fn) { calls.connects++; connected=fn; return ()=>calls.disconnects++ },
   watchCount(fn) { calls.count++;count=fn;return ()=>calls.countStops++ },
   watchMessages(fn) { calls.messages++;messages=fn;return ()=>calls.messageStops++ },
-  async readHead(){return head}, async write(update){calls.writes.push(update);head=update.head.seq},
+  async readHead(){return head}, async readRate(){return null}, async write(update){calls.writes.push(update);head=update.head.seq},
  }
  const controller=createCommunityController({transport,now:()=>clock})
  return {controller,calls,transport,connect:value=>connected(value),count:value=>count(value),messages:value=>messages(value),advance:ms=>clock+=ms}
@@ -28,7 +28,7 @@ test('public aliases never expose a Google display name or an email',()=>{
  assert.match(chatAlias({uid:'abcdef1234',isAnonymous:true}),/^게스트-/)
 })
 test('recent chat is ordered, limited and malformed rows cannot render',()=>{
- const rows=Array.from({length:45},(_,i)=>({seq:i+1,uid:'u',name:'이름',text:'메시지'+i,createdAt:i+1}))
+ const rows=Array.from({length:45},(_,i)=>({seq:i+1,uid:'u',name:'이름',text:'메시지'+i,createdAt:(i+1)*31000}))
  const got=orderedMessages([...rows.reverse(),{seq:99,text:'bad'}])
  assert.equal(got.length,40);assert.equal(got[0].seq,6);assert.equal(got.at(-1).seq,45)
 })
@@ -96,6 +96,6 @@ test('already queued callbacks from a hidden tab cannot restore stale counts or 
 test('double submission while a write is pending cannot send twice',async()=>{
  const h=harness();let finish;h.transport.write=()=>new Promise(resolve=>{finish=resolve})
  h.controller.setView({visible:true,menu:true,open:true});h.connect(true)
- const first=h.controller.send('첫 메시지','이름');await Promise.resolve();await assert.rejects(h.controller.send('중복','이름'),/보내고/)
+ const first=h.controller.send('첫 메시지','이름');while(!finish) await Promise.resolve();await assert.rejects(h.controller.send('중복','이름'),/보내고/)
  finish();await first;h.controller.dispose()
 })
