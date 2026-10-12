@@ -9,10 +9,13 @@ export const CASUAL_MODE_BALANCE = Object.freeze({
   wildHp: 1.02, wildHpGrowth: .46, wildStats: 1.01, wildStatsGrowth: .35,
   bossHp: 1.08, bossHpGrowth: .57, bossStats: 1.02, bossStatsGrowth: .23,
 })
+// Calibrated with max trainer ranks and a fully expanded town; see docs/hard-difficulty.md.
+// Keep the established above-cap level curve; sustained wild/boss growth
+// supplies the pressure. No player-progress or result-dependent scaling.
 export const HARD_MODE_BALANCE = Object.freeze({
   levelScaleStart: 1.08, levelScaleEnd: 1.18, levelBonusStart: 2, levelBonusEnd: 6,
-  wildHp: 1.1, wildHpGrowth: .3, wildStats: 1.0325, wildStatsGrowth: .1475,
-  bossHp: 1.18, bossHpGrowth: .225, bossStats: 1.045, bossStatsGrowth: .085,
+  wildHp: 1.1, wildHpGrowth: .55, wildStats: 1.0325, wildStatsGrowth: .3975,
+  bossHp: 1.18, bossHpGrowth: .62, bossStats: 1.045, bossStatsGrowth: .285,
 })
 const stageOf = stage => Math.min(200, Math.max(1, Math.floor(Number(stage) || 1)))
 export const getStageLevelCap = (stage, mode = 'classic') => mode === 'endless' ? Infinity : STAGE_LEVEL_CAPS[Math.floor((stageOf(stage) - 1) / 10)]
@@ -64,12 +67,10 @@ export function getEnemyDifficultyModifiers(combatant) {
   if (!profile || (!combatant.enemyStage && !combatant.isBoss)) return base
   const progress = (stageOf(combatant.enemyStage ?? combatant.bossStage) - 1) / 199
   const boss = combatant.isBoss || combatant.rivalEncounter || combatant.specialQuest
-  // Scripted minions formerly used the old wild profile, not the leader's
-  // profile. Preserve that baseline as well as the bosses themselves.
-  if (!boss && combatant.bossEncounter) {
-    const hard = combatant.enemyGameMode === 'hard'
-    return { hp: base.hp * (hard ? 1.1 + .16 * progress : 1.02 + .33 * progress),
-      stats: base.stats * (hard ? 1.0325 + .0675 * progress : 1.01 + .21 * progress) }
+  // Casual scripted companions retain their old profile; hard companions use
+  // the same hard wild curve as other non-leaders.
+  if (!boss && combatant.bossEncounter && combatant.enemyGameMode !== 'hard') {
+    return { hp: base.hp * (1.02 + .33 * progress), stats: base.stats * (1.01 + .21 * progress) }
   }
   return { hp: base.hp * (boss ? profile.bossHp + profile.bossHpGrowth * progress : profile.wildHp + profile.wildHpGrowth * progress),
     stats: base.stats * (boss ? profile.bossStats + profile.bossStatsGrowth * progress : profile.wildStats + profile.wildStatsGrowth * progress) }

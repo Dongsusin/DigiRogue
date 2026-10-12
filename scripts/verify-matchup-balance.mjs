@@ -84,8 +84,8 @@ test('map-legal stronger wildlife is no longer almost excluded by squared weight
   assert.deepEqual(pickWildEncounterNames(['missing'], lookup, 2, 1, random), [])
 })
 
-test('boss companion wildlife retains its original modifiers instead of receiving the ordinary buff', () => {
-  for (const [mode, hp, stats] of [['classic', 1.701, 1.342], ['hard', 1.5876, 1.21]]) {
+test('casual boss companion wildlife retains its original modifiers instead of receiving the ordinary buff', () => {
+  for (const [mode, hp, stats] of [['classic', 1.701, 1.342], ['daily', 1.701, 1.342], ['endless', 1.701, 1.342]]) {
     const companion = getEnemyDifficultyModifiers({ bossEncounter: { leader: false }, enemyStage: 200, enemyGameMode: mode })
     assert(Math.abs(companion.hp - hp) < 1e-10)
     assert(Math.abs(companion.stats - stats) < 1e-10)

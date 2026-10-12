@@ -152,3 +152,66 @@ test('hard retains scanning, eggs, max trainer ranks and the existing single tow
   assert.equal(supported.gold, 450); assert.equal(supported.townSupport.level, 3)
   assert.equal(supported.townSupport.buildingId, 'market')
 })
+
+
+test('hard pressure stays above casual for every stage and enemy role at the same level', () => {
+  for (const flags of [{}, { isBoss: true }, { rivalEncounter: {} }, { specialQuest: true }, { bossEncounter: { leader: false } }]) {
+    let previous
+    for (let stage = 1; stage <= 200; stage++) {
+      const enemy = { ...flags, enemyStage: stage }
+      const hard = getEnemyDifficultyModifiers({ ...enemy, enemyGameMode: 'hard' })
+      const casual = getEnemyDifficultyModifiers({ ...enemy, enemyGameMode: 'classic' })
+      assert(hard.hp > casual.hp && hard.stats > casual.stats, JSON.stringify({ stage, flags, hard, casual }))
+      if (previous) assert(hard.hp >= previous.hp && hard.stats >= previous.stats)
+      previous = hard
+      assert.deepEqual(getEnemyDifficultyModifiers({ ...enemy, enemyGameMode: 'hard',
+        trainerSkills: ranks, townSupport: { buildingId: 'market', level: 3 }, wins: 999, losses: 999 }), hard)
+    }
+  }
+})
+
+test('hard boss companions share ordinary hard pressure instead of an obsolete weaker curve', () => {
+  for (const stage of [1, 50, 100, 150, 200]) {
+    const enemy = { enemyStage: stage, enemyGameMode: 'hard' }
+    assert.deepEqual(getEnemyDifficultyModifiers({ ...enemy, bossEncounter: { leader: false } }), getEnemyDifficultyModifiers(enemy))
+  }
+})
+
+test('hard balance updates rehydrate an existing save once and preserve HP ratios and player progress', () => {
+  const ally = unit('아구몬', 100), enemies = battle(100).map(enemy => ({ ...enemy,
+    maxHp: Math.max(10, Math.floor(enemy.maxHp * .7)), currentHp: Math.max(1, Math.floor(enemy.maxHp * .28)), attack: 1, specialAttack: 1 }))
+  const state = { gameMode: 'hard', currentStage: 100, currentMap: e.getMapNameForStage(100),
+    player: ally, party: [ally], enemies, activeAllyIds: [ally.id], inventory: { 'heal-20': 2 }, gold: 1250 }
+  const before = JSON.stringify(state)
+  const restored = e.parseSavedGameState(JSON.stringify({ version: 1, gameState: state }))
+  assert(restored)
+  for (let i = 0; i < enemies.length; i++) {
+    const enemy = restored.enemies[i], old = enemies[i]
+    assert.equal(enemy.maxHp, e.refreshCombatantStats(enemy).maxHp)
+    assert(enemy.attack > old.attack)
+    assert(Math.abs(enemy.currentHp / enemy.maxHp - old.currentHp / old.maxHp) < .02)
+  }
+  assert.equal(restored.party[0].attack, ally.attack)
+  assert.equal(restored.party[0].level, ally.level)
+  assert.deepEqual(restored.inventory, state.inventory)
+  assert.equal(restored.gold, state.gold)
+  const again = e.parseSavedGameState(JSON.stringify({ version: 1, gameState: restored }))
+  assert.deepEqual(again.enemies.map(u => [u.maxHp, u.attack, u.currentHp]), restored.enemies.map(u => [u.maxHp, u.attack, u.currentHp]))
+  assert.equal(JSON.stringify(state), before)
+})
+
+
+test('a pre-tuning hard boss snapshot retains its rolled level while migrating stats and damage ratio', () => {
+  // WarGreymon boss at stage 100 from profile in 0f35cbe (Lv.117, HP969, attack439).
+  const ally = unit('아구몬', 100)
+  const oldBoss = { ...unit('워그레이몬', 117), isBoss: true, enemyStage: 100, bossStage: 100, enemyGameMode: 'hard',
+    maxHp: 969, currentHp: 387, attack: 439, defense: 331, specialAttack: 410, specialDefense: 315, speed: 260 }
+  const state = { gameMode: 'hard', currentStage: 100, currentMap: e.getMapNameForStage(100),
+    player: ally, party: [ally], enemies: [oldBoss], activeAllyIds: [ally.id], inventory: {} }
+  const restored = e.parseSavedGameState(JSON.stringify({ version: 1, gameState: state }))
+  assert(restored)
+  const boss = restored.enemies[0]
+  assert.equal(boss.level, 117)
+  assert(boss.maxHp > oldBoss.maxHp && boss.attack > oldBoss.attack)
+  assert(Math.abs(boss.currentHp / boss.maxHp - 387 / 969) < .002)
+})

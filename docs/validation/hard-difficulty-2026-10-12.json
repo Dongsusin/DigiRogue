@@ -1,0 +1,2733 @@
+{
+  "calibrationProfiles": {
+    "b": {
+      "profile": {
+        "levelScaleStart": 1.08,
+        "levelScaleEnd": 1.18,
+        "levelBonusStart": 2,
+        "levelBonusEnd": 6,
+        "wildHp": 1.1,
+        "wildHpGrowth": 0.4,
+        "wildStats": 1.0325,
+        "wildStatsGrowth": 0.3475,
+        "bossHp": 1.18,
+        "bossHpGrowth": 0.49,
+        "bossStats": 1.045,
+        "bossStatsGrowth": 0.225
+      },
+      "sha256": "e8dbf85d02424f6643d85f0e9587dced8d52c94d29ebca741f926d5cba43d350"
+    },
+    "e": {
+      "profile": {
+        "levelScaleStart": 1.08,
+        "levelScaleEnd": 1.18,
+        "levelBonusStart": 2,
+        "levelBonusEnd": 6,
+        "wildHp": 1.1,
+        "wildHpGrowth": 0.55,
+        "wildStats": 1.0325,
+        "wildStatsGrowth": 0.4475,
+        "bossHp": 1.18,
+        "bossHpGrowth": 0.62,
+        "bossStats": 1.045,
+        "bossStatsGrowth": 0.335
+      },
+      "sha256": "a4aaf8e4a8faba69e3022d16ff2cdc554206f07a67f1982354fa1e4eb7ed74ed"
+    },
+    "f": {
+      "profile": {
+        "levelScaleStart": 1.08,
+        "levelScaleEnd": 1.18,
+        "levelBonusStart": 2,
+        "levelBonusEnd": 6,
+        "wildHp": 1.1,
+        "wildHpGrowth": 0.6,
+        "wildStats": 1.0325,
+        "wildStatsGrowth": 0.4875,
+        "bossHp": 1.18,
+        "bossHpGrowth": 0.67,
+        "bossStats": 1.045,
+        "bossStatsGrowth": 0.375
+      },
+      "sha256": "8ffcb8219f48fc4a09548504eb32196ff43ce8b10b40a8c27fab2bfe87f34af3"
+    },
+    "h": {
+      "profile": {
+        "levelScaleStart": 1.08,
+        "levelScaleEnd": 1.18,
+        "levelBonusStart": 2,
+        "levelBonusEnd": 6,
+        "wildHp": 1.1,
+        "wildHpGrowth": 0.55,
+        "wildStats": 1.0325,
+        "wildStatsGrowth": 0.4275,
+        "bossHp": 1.18,
+        "bossHpGrowth": 0.62,
+        "bossStats": 1.045,
+        "bossStatsGrowth": 0.315
+      },
+      "sha256": "c43a260f5cb0bd967c557c17666c1723972b945f7bff35096a235ba4234a2f3d"
+    },
+    "i": {
+      "profile": {
+        "levelScaleStart": 1.08,
+        "levelScaleEnd": 1.18,
+        "levelBonusStart": 2,
+        "levelBonusEnd": 6,
+        "wildHp": 1.1,
+        "wildHpGrowth": 0.55,
+        "wildStats": 1.0325,
+        "wildStatsGrowth": 0.3975,
+        "bossHp": 1.18,
+        "bossHpGrowth": 0.62,
+        "bossStats": 1.045,
+        "bossStatsGrowth": 0.285
+      },
+      "sha256": "bafafdb335ed15bd93e4dade5f09a38e82a477367c85617de0296add080df3ed"
+    }
+  },
+  "date": "2026-10-12",
+  "baselineCommit": "0f35cbe",
+  "target": {
+    "mode": "hard",
+    "stages": 200,
+    "clearPercent": 10,
+    "condition": "All 262 trainer nodes maxed, six town buildings level 3; one legal market departure support."
+  },
+  "finalProfile": {
+    "levelScaleStart": 1.08,
+    "levelScaleEnd": 1.18,
+    "levelBonusStart": 2,
+    "levelBonusEnd": 6,
+    "wildHp": 1.1,
+    "wildHpGrowth": 0.55,
+    "wildStats": 1.0325,
+    "wildStatsGrowth": 0.3975,
+    "bossHp": 1.18,
+    "bossHpGrowth": 0.62,
+    "bossStats": 1.045,
+    "bossStatsGrowth": 0.285
+  },
+  "policy": "progress-aware-v4",
+  "finalValidation": {
+    "runs": 256,
+    "clears": 29,
+    "defeats": 227,
+    "unresolved": 0,
+    "clearPercent": 11.328125,
+    "wilson95Percent": [
+      8.004072229748768,
+      15.795616665689666
+    ],
+    "seedIndices": [
+      7000,
+      7255
+    ],
+    "seedFormula": "index * 7919 + 17",
+    "roundLimit": 1000,
+    "blocks": [
+      {
+        "runs": 64,
+        "clears": 10,
+        "defeats": 54,
+        "unresolved": 0,
+        "clearPercent": 15.625,
+        "seedStart": 7000,
+        "roundLimit": 1000,
+        "policy": "progress-aware-v4",
+        "hardProfile": {
+          "levelScaleStart": 1.08,
+          "levelScaleEnd": 1.18,
+          "levelBonusStart": 2,
+          "levelBonusEnd": 6,
+          "wildHp": 1.1,
+          "wildHpGrowth": 0.55,
+          "wildStats": 1.0325,
+          "wildStatsGrowth": 0.3975,
+          "bossHp": 1.18,
+          "bossHpGrowth": 0.62,
+          "bossStats": 1.045,
+          "bossStatsGrowth": 0.285
+        }
+      },
+      {
+        "runs": 64,
+        "clears": 8,
+        "defeats": 56,
+        "unresolved": 0,
+        "clearPercent": 12.5,
+        "seedStart": 7064,
+        "roundLimit": 1000,
+        "policy": "progress-aware-v4",
+        "hardProfile": {
+          "levelScaleStart": 1.08,
+          "levelScaleEnd": 1.18,
+          "levelBonusStart": 2,
+          "levelBonusEnd": 6,
+          "wildHp": 1.1,
+          "wildHpGrowth": 0.55,
+          "wildStats": 1.0325,
+          "wildStatsGrowth": 0.3975,
+          "bossHp": 1.18,
+          "bossHpGrowth": 0.62,
+          "bossStats": 1.045,
+          "bossStatsGrowth": 0.285
+        }
+      },
+      {
+        "runs": 64,
+        "clears": 6,
+        "defeats": 58,
+        "unresolved": 0,
+        "clearPercent": 9.375,
+        "seedStart": 7128,
+        "roundLimit": 1000,
+        "policy": "progress-aware-v4",
+        "hardProfile": {
+          "levelScaleStart": 1.08,
+          "levelScaleEnd": 1.18,
+          "levelBonusStart": 2,
+          "levelBonusEnd": 6,
+          "wildHp": 1.1,
+          "wildHpGrowth": 0.55,
+          "wildStats": 1.0325,
+          "wildStatsGrowth": 0.3975,
+          "bossHp": 1.18,
+          "bossHpGrowth": 0.62,
+          "bossStats": 1.045,
+          "bossStatsGrowth": 0.285
+        }
+      },
+      {
+        "runs": 64,
+        "clears": 5,
+        "defeats": 59,
+        "unresolved": 0,
+        "clearPercent": 7.8125,
+        "seedStart": 7192,
+        "roundLimit": 1000,
+        "policy": "progress-aware-v4",
+        "hardProfile": {
+          "levelScaleStart": 1.08,
+          "levelScaleEnd": 1.18,
+          "levelBonusStart": 2,
+          "levelBonusEnd": 6,
+          "wildHp": 1.1,
+          "wildHpGrowth": 0.55,
+          "wildStats": 1.0325,
+          "wildStatsGrowth": 0.3975,
+          "bossHp": 1.18,
+          "bossHpGrowth": 0.62,
+          "bossStats": 1.045,
+          "bossStatsGrowth": 0.285
+        }
+      }
+    ],
+    "strata": [
+      {
+        "index": 0,
+        "startingTeam": [
+          "아구몬",
+          "파피몬",
+          "팔몬",
+          "파닥몬",
+          "텐타몬",
+          "쉬라몬",
+          "피요몬",
+          "플롯트몬"
+        ],
+        "cost": 8,
+        "runs": 32,
+        "clears": 9,
+        "defeats": 23,
+        "unresolved": 0
+      },
+      {
+        "index": 1,
+        "startingTeam": [
+          "워그레이몬",
+          "파피몬",
+          "팔몬",
+          "파닥몬",
+          "텐타몬",
+          "쉬라몬",
+          "피요몬",
+          "플롯트몬"
+        ],
+        "cost": 25,
+        "runs": 32,
+        "clears": 10,
+        "defeats": 22,
+        "unresolved": 0
+      },
+      {
+        "index": 2,
+        "startingTeam": [
+          "메탈가루몬",
+          "아구몬",
+          "팔몬",
+          "파닥몬",
+          "텐타몬",
+          "쉬라몬",
+          "피요몬",
+          "플롯트몬"
+        ],
+        "cost": 24,
+        "runs": 32,
+        "clears": 7,
+        "defeats": 25,
+        "unresolved": 0
+      },
+      {
+        "index": 3,
+        "startingTeam": [
+          "릴리몬",
+          "그레이몬",
+          "파닥몬",
+          "쉬라몬",
+          "텐타몬",
+          "피요몬"
+        ],
+        "cost": 25,
+        "runs": 32,
+        "clears": 0,
+        "defeats": 32,
+        "unresolved": 0
+      },
+      {
+        "index": 4,
+        "startingTeam": [
+          "엔젤몬",
+          "가루몬",
+          "아구몬",
+          "팔몬",
+          "텐타몬",
+          "쉬라몬",
+          "피요몬"
+        ],
+        "cost": 25,
+        "runs": 32,
+        "clears": 0,
+        "defeats": 32,
+        "unresolved": 0
+      },
+      {
+        "index": 5,
+        "startingTeam": [
+          "로제몬",
+          "아구몬",
+          "파피몬",
+          "파닥몬",
+          "텐타몬",
+          "쉬라몬",
+          "피요몬",
+          "플롯트몬"
+        ],
+        "cost": 23,
+        "runs": 32,
+        "clears": 0,
+        "defeats": 32,
+        "unresolved": 0
+      },
+      {
+        "index": 6,
+        "startingTeam": [
+          "마린엔젤몬",
+          "엔젤몬",
+          "아구몬"
+        ],
+        "cost": 25,
+        "runs": 32,
+        "clears": 0,
+        "defeats": 32,
+        "unresolved": 0
+      },
+      {
+        "index": 7,
+        "startingTeam": [
+          "오메가몬",
+          "파닥몬"
+        ],
+        "cost": 25,
+        "runs": 32,
+        "clears": 3,
+        "defeats": 29,
+        "unresolved": 0
+      }
+    ]
+  },
+  "beforeTuning": {
+    "runs": 64,
+    "clears": 39,
+    "defeats": 25,
+    "unresolved": 0,
+    "clearPercent": 60.9375,
+    "seedStart": 0,
+    "roundLimit": 1000,
+    "policy": "progress-aware-v4"
+  },
+  "calibration": [
+    {
+      "name": "calibration-v4-b",
+      "runs": 128,
+      "clears": 38,
+      "defeats": 90,
+      "unresolved": 0,
+      "clearPercent": 29.6875,
+      "seedStart": 0,
+      "roundLimit": 1000,
+      "policy": "progress-aware-v4",
+      "hardProfile": {
+        "levelScaleStart": 1.08,
+        "levelScaleEnd": 1.18,
+        "levelBonusStart": 2,
+        "levelBonusEnd": 6,
+        "wildHp": 1.1,
+        "wildHpGrowth": 0.4,
+        "wildStats": 1.0325,
+        "wildStatsGrowth": 0.3475,
+        "bossHp": 1.18,
+        "bossHpGrowth": 0.49,
+        "bossStats": 1.045,
+        "bossStatsGrowth": 0.225
+      }
+    },
+    {
+      "name": "calibration-v4-e",
+      "runs": 128,
+      "clears": 8,
+      "defeats": 120,
+      "unresolved": 0,
+      "clearPercent": 6.25,
+      "seedStart": 0,
+      "roundLimit": 1000,
+      "policy": "progress-aware-v4"
+    },
+    {
+      "name": "calibration-v4-f",
+      "runs": 128,
+      "clears": 3,
+      "defeats": 125,
+      "unresolved": 0,
+      "clearPercent": 2.34375,
+      "seedStart": 0,
+      "roundLimit": 1000,
+      "policy": "progress-aware-v4"
+    }
+  ],
+  "priorHeldoutUsedForRetuning": [
+    {
+      "runs": 64,
+      "clears": 3,
+      "defeats": 61,
+      "unresolved": 0,
+      "clearPercent": 4.6875,
+      "seedStart": 5000,
+      "roundLimit": 1000,
+      "policy": "progress-aware-v4",
+      "hardProfile": {
+        "levelScaleStart": 1.08,
+        "levelScaleEnd": 1.18,
+        "levelBonusStart": 2,
+        "levelBonusEnd": 6,
+        "wildHp": 1.1,
+        "wildHpGrowth": 0.55,
+        "wildStats": 1.0325,
+        "wildStatsGrowth": 0.4475,
+        "bossHp": 1.18,
+        "bossHpGrowth": 0.62,
+        "bossStats": 1.045,
+        "bossStatsGrowth": 0.335
+      }
+    },
+    {
+      "runs": 64,
+      "clears": 6,
+      "defeats": 58,
+      "unresolved": 0,
+      "clearPercent": 9.375,
+      "seedStart": 5064,
+      "roundLimit": 1000,
+      "policy": "progress-aware-v4",
+      "hardProfile": {
+        "levelScaleStart": 1.08,
+        "levelScaleEnd": 1.18,
+        "levelBonusStart": 2,
+        "levelBonusEnd": 6,
+        "wildHp": 1.1,
+        "wildHpGrowth": 0.55,
+        "wildStats": 1.0325,
+        "wildStatsGrowth": 0.4475,
+        "bossHp": 1.18,
+        "bossHpGrowth": 0.62,
+        "bossStats": 1.045,
+        "bossStatsGrowth": 0.335
+      }
+    },
+    {
+      "runs": 64,
+      "clears": 5,
+      "defeats": 59,
+      "unresolved": 0,
+      "clearPercent": 7.8125,
+      "seedStart": 5128,
+      "roundLimit": 1000,
+      "policy": "progress-aware-v4",
+      "hardProfile": {
+        "levelScaleStart": 1.08,
+        "levelScaleEnd": 1.18,
+        "levelBonusStart": 2,
+        "levelBonusEnd": 6,
+        "wildHp": 1.1,
+        "wildHpGrowth": 0.55,
+        "wildStats": 1.0325,
+        "wildStatsGrowth": 0.4475,
+        "bossHp": 1.18,
+        "bossHpGrowth": 0.62,
+        "bossStats": 1.045,
+        "bossStatsGrowth": 0.335
+      }
+    },
+    {
+      "runs": 64,
+      "clears": 5,
+      "defeats": 59,
+      "unresolved": 0,
+      "clearPercent": 7.8125,
+      "seedStart": 5192,
+      "roundLimit": 1000,
+      "policy": "progress-aware-v4",
+      "hardProfile": {
+        "levelScaleStart": 1.08,
+        "levelScaleEnd": 1.18,
+        "levelBonusStart": 2,
+        "levelBonusEnd": 6,
+        "wildHp": 1.1,
+        "wildHpGrowth": 0.55,
+        "wildStats": 1.0325,
+        "wildStatsGrowth": 0.4475,
+        "bossHp": 1.18,
+        "bossHpGrowth": 0.62,
+        "bossStats": 1.045,
+        "bossStatsGrowth": 0.335
+      }
+    },
+    {
+      "runs": 64,
+      "clears": 5,
+      "defeats": 59,
+      "unresolved": 0,
+      "clearPercent": 7.8125,
+      "seedStart": 6000,
+      "roundLimit": 1000,
+      "policy": "progress-aware-v4",
+      "hardProfile": {
+        "levelScaleStart": 1.08,
+        "levelScaleEnd": 1.18,
+        "levelBonusStart": 2,
+        "levelBonusEnd": 6,
+        "wildHp": 1.1,
+        "wildHpGrowth": 0.55,
+        "wildStats": 1.0325,
+        "wildStatsGrowth": 0.4275,
+        "bossHp": 1.18,
+        "bossHpGrowth": 0.62,
+        "bossStats": 1.045,
+        "bossStatsGrowth": 0.315
+      }
+    },
+    {
+      "runs": 64,
+      "clears": 2,
+      "defeats": 62,
+      "unresolved": 0,
+      "clearPercent": 3.125,
+      "seedStart": 6064,
+      "roundLimit": 1000,
+      "policy": "progress-aware-v4",
+      "hardProfile": {
+        "levelScaleStart": 1.08,
+        "levelScaleEnd": 1.18,
+        "levelBonusStart": 2,
+        "levelBonusEnd": 6,
+        "wildHp": 1.1,
+        "wildHpGrowth": 0.55,
+        "wildStats": 1.0325,
+        "wildStatsGrowth": 0.4275,
+        "bossHp": 1.18,
+        "bossHpGrowth": 0.62,
+        "bossStats": 1.045,
+        "bossStatsGrowth": 0.315
+      }
+    },
+    {
+      "runs": 64,
+      "clears": 3,
+      "defeats": 61,
+      "unresolved": 0,
+      "clearPercent": 4.6875,
+      "seedStart": 6128,
+      "roundLimit": 1000,
+      "policy": "progress-aware-v4",
+      "hardProfile": {
+        "levelScaleStart": 1.08,
+        "levelScaleEnd": 1.18,
+        "levelBonusStart": 2,
+        "levelBonusEnd": 6,
+        "wildHp": 1.1,
+        "wildHpGrowth": 0.55,
+        "wildStats": 1.0325,
+        "wildStatsGrowth": 0.4275,
+        "bossHp": 1.18,
+        "bossHpGrowth": 0.62,
+        "bossStats": 1.045,
+        "bossStatsGrowth": 0.315
+      }
+    },
+    {
+      "runs": 64,
+      "clears": 8,
+      "defeats": 56,
+      "unresolved": 0,
+      "clearPercent": 12.5,
+      "seedStart": 6192,
+      "roundLimit": 1000,
+      "policy": "progress-aware-v4",
+      "hardProfile": {
+        "levelScaleStart": 1.08,
+        "levelScaleEnd": 1.18,
+        "levelBonusStart": 2,
+        "levelBonusEnd": 6,
+        "wildHp": 1.1,
+        "wildHpGrowth": 0.55,
+        "wildStats": 1.0325,
+        "wildStatsGrowth": 0.4275,
+        "bossHp": 1.18,
+        "bossHpGrowth": 0.62,
+        "bossStats": 1.045,
+        "bossStatsGrowth": 0.315
+      }
+    }
+  ],
+  "decisions": "v1-v3 trials superseded: defensive loops, non-healing support priority and illegal manual ally support targeting corrected before v4. Incomplete encounters are never defeats.",
+  "checks": {
+    "final-i-all-tests": {
+      "exitCode": 0,
+      "startedAt": "2026-10-12T05:14:08.938Z",
+      "finishedAt": "2026-10-12T05:14:48.355Z"
+    },
+    "final-i-build": {
+      "exitCode": 0,
+      "startedAt": "2026-10-12T05:14:08.956Z",
+      "finishedAt": "2026-10-12T05:14:58.215Z"
+    },
+    "final-i-dist": {
+      "exitCode": 0,
+      "startedAt": "2026-10-12T05:15:45.410Z",
+      "finishedAt": "2026-10-12T05:15:50.151Z"
+    },
+    "final-i-non-hard": {
+      "exitCode": 0,
+      "startedAt": "2026-10-12T05:14:08.998Z",
+      "finishedAt": "2026-10-12T05:14:26.187Z"
+    },
+    "final-i-stats": {
+      "exitCode": 0,
+      "startedAt": "2026-10-12T05:15:17.165Z",
+      "finishedAt": "2026-10-12T05:15:20.054Z"
+    },
+    "tests": {
+      "count": 511,
+      "pass": 511,
+      "fail": 0,
+      "skip": 0,
+      "files": [
+        "scripts/verify-account-session.mjs",
+        "scripts/verify-adventure-balance.mjs",
+        "scripts/verify-adventure-items.mjs",
+        "scripts/verify-attack-attachment.mjs",
+        "scripts/verify-auth.mjs",
+        "scripts/verify-battle-items.mjs",
+        "scripts/verify-bgm-player.mjs",
+        "scripts/verify-bgm.mjs",
+        "scripts/verify-boss-variety.mjs",
+        "scripts/verify-canon-skill-effects.mjs",
+        "scripts/verify-community.mjs",
+        "scripts/verify-digimon-dex.mjs",
+        "scripts/verify-escape.mjs",
+        "scripts/verify-evolution-inspection.mjs",
+        "scripts/verify-game-download.mjs",
+        "scripts/verify-hall-client.mjs",
+        "scripts/verify-hall-of-fame.mjs",
+        "scripts/verify-hard-mode.mjs",
+        "scripts/verify-jogress-inheritance.mjs",
+        "scripts/verify-matchup-balance.mjs",
+        "scripts/verify-menu-backdrop.mjs",
+        "scripts/verify-party-admission.mjs",
+        "scripts/verify-quest-risk.mjs",
+        "scripts/verify-regional-support.mjs",
+        "scripts/verify-retired-synergy.mjs",
+        "scripts/verify-save-slots.mjs",
+        "scripts/verify-scan-rates.mjs",
+        "scripts/verify-skill-learning.mjs",
+        "scripts/verify-town.mjs",
+        "scripts/verify-trainer-item-skills.mjs",
+        "scripts/verify-trainer-skill-layout.mjs",
+        "scripts/verify-simulation-policy.mjs"
+      ]
+    },
+    "otherModes": {
+      "unchangedEncounterCases": 918,
+      "maps": 34,
+      "modes": [
+        "classic",
+        "daily",
+        "endless"
+      ]
+    },
+    "runtimeAssets": {
+      "models": 512,
+      "clips": 4273,
+      "maps": 34
+    }
+  },
+  "sourceSha256": {
+    "src/progression/gameDifficulty.js": "bafafdb335ed15bd93e4dade5f09a38e82a477367c85617de0296add080df3ed",
+    "scripts/lib/adventure-simulation-policy.mjs": "ecf6098e0f737c270fec06eb66456f4002213fa385289a0849df65d0721f8db0",
+    "scripts/lib/battle-engine-fixture.mjs": "8797048b2bfe5df3d9836374172e9256ed7f941f2e46f67afc4ed27053ca3422",
+    "scripts/simulate-adventure-balance.mjs": "450b24c3d1f74746583f91940be6094718f02f5005f0132f72106440c2c71792",
+    "scripts/verify-hard-mode.mjs": "93ce9f3a03f3906852d7f2f87b817a9da77f3fc832b59d23f385bb35aa19bb35",
+    "scripts/verify-simulation-policy.mjs": "b6f95498b7d46083aa542614521780e6d88bf8f1b477592ac994098e290a16d7",
+    "scripts/verify-matchup-balance.mjs": "c04eb0b0e971de103f6d9baab4d954e32d65e1713021bb12977a2599600eacb4",
+    "package.json": "d4488d087dba1ffe0606e5661d2059cbae9517e6097d5b027e252d01a8cf179b"
+  },
+  "baselineDifficultySha256": "8125035bc403769ae6a1fc98435145c83eba4d76a5aa30bd422f83c71adaca60",
+  "limits": [
+    "Automated policy benchmark, not human win rate.",
+    "Battle items, scanning/egg recruitment, optional exploration/quests, regional trust helpers, other departure support and evolution memory not modeled.",
+    "Eight fixed legal team archetypes; success differs by team.",
+    "No complete manual 200-stage playthrough; unchanged backend emulator rules not rerun.",
+    "Existing chunk size and plugin timing warnings remain."
+  ],
+  "results": [
+    {
+      "seed": 55433017,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 116,
+      "turns": 610,
+      "lostAt": 117
+    },
+    {
+      "seed": 55440936,
+      "teamIndex": 1,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1345
+    },
+    {
+      "seed": 55448855,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 102,
+      "turns": 450,
+      "lostAt": 103
+    },
+    {
+      "seed": 55456774,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 118,
+      "turns": 596,
+      "lostAt": 119
+    },
+    {
+      "seed": 55464693,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 90,
+      "turns": 419,
+      "lostAt": 91
+    },
+    {
+      "seed": 55472612,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 156,
+      "turns": 954,
+      "lostAt": 157
+    },
+    {
+      "seed": 55480531,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 19,
+      "turns": 76,
+      "lostAt": 20
+    },
+    {
+      "seed": 55488450,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 131,
+      "turns": 469,
+      "lostAt": 132
+    },
+    {
+      "seed": 55496369,
+      "teamIndex": 0,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1450
+    },
+    {
+      "seed": 55504288,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 158,
+      "turns": 736,
+      "lostAt": 159
+    },
+    {
+      "seed": 55512207,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 188,
+      "turns": 1250,
+      "lostAt": 189
+    },
+    {
+      "seed": 55520126,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 131,
+      "turns": 704,
+      "lostAt": 132
+    },
+    {
+      "seed": 55528045,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 80,
+      "turns": 335,
+      "lostAt": 81
+    },
+    {
+      "seed": 55535964,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 92,
+      "turns": 291,
+      "lostAt": 93
+    },
+    {
+      "seed": 55543883,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 34,
+      "turns": 113,
+      "lostAt": 35
+    },
+    {
+      "seed": 55551802,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 181,
+      "turns": 804,
+      "lostAt": 182
+    },
+    {
+      "seed": 55559721,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 191,
+      "turns": 1382,
+      "lostAt": 192
+    },
+    {
+      "seed": 55567640,
+      "teamIndex": 1,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1485
+    },
+    {
+      "seed": 55575559,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 120,
+      "turns": 476,
+      "lostAt": 121
+    },
+    {
+      "seed": 55583478,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 139,
+      "turns": 866,
+      "lostAt": 140
+    },
+    {
+      "seed": 55591397,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 98,
+      "turns": 506,
+      "lostAt": 99
+    },
+    {
+      "seed": 55599316,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 115,
+      "turns": 568,
+      "lostAt": 116
+    },
+    {
+      "seed": 55607235,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 7,
+      "turns": 29,
+      "lostAt": 8
+    },
+    {
+      "seed": 55615154,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 151,
+      "turns": 527,
+      "lostAt": 152
+    },
+    {
+      "seed": 55623073,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 180,
+      "turns": 1271,
+      "lostAt": 181
+    },
+    {
+      "seed": 55630992,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 139,
+      "turns": 564,
+      "lostAt": 140
+    },
+    {
+      "seed": 55638911,
+      "teamIndex": 2,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1410
+    },
+    {
+      "seed": 55646830,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 133,
+      "turns": 924,
+      "lostAt": 134
+    },
+    {
+      "seed": 55654749,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 19,
+      "turns": 64,
+      "lostAt": 20
+    },
+    {
+      "seed": 55662668,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 150,
+      "turns": 848,
+      "lostAt": 151
+    },
+    {
+      "seed": 55670587,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 19,
+      "turns": 61,
+      "lostAt": 20
+    },
+    {
+      "seed": 55678506,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 161,
+      "turns": 640,
+      "lostAt": 162
+    },
+    {
+      "seed": 55686425,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 119,
+      "turns": 422,
+      "lostAt": 120
+    },
+    {
+      "seed": 55694344,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 141,
+      "turns": 602,
+      "lostAt": 142
+    },
+    {
+      "seed": 55702263,
+      "teamIndex": 2,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1452
+    },
+    {
+      "seed": 55710182,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 170,
+      "turns": 1036,
+      "lostAt": 171
+    },
+    {
+      "seed": 55718101,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 90,
+      "turns": 404,
+      "lostAt": 91
+    },
+    {
+      "seed": 55726020,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 199,
+      "turns": 1462,
+      "lostAt": 200
+    },
+    {
+      "seed": 55733939,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 49,
+      "turns": 219,
+      "lostAt": 50
+    },
+    {
+      "seed": 55741858,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 169,
+      "turns": 614,
+      "lostAt": 170
+    },
+    {
+      "seed": 55749777,
+      "teamIndex": 0,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1259
+    },
+    {
+      "seed": 55757696,
+      "teamIndex": 1,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1235
+    },
+    {
+      "seed": 55765615,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 176,
+      "turns": 970,
+      "lostAt": 177
+    },
+    {
+      "seed": 55773534,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 129,
+      "turns": 594,
+      "lostAt": 130
+    },
+    {
+      "seed": 55781453,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 115,
+      "turns": 727,
+      "lostAt": 116
+    },
+    {
+      "seed": 55789372,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 170,
+      "turns": 1220,
+      "lostAt": 171
+    },
+    {
+      "seed": 55797291,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 11,
+      "turns": 36,
+      "lostAt": 12
+    },
+    {
+      "seed": 55805210,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 197,
+      "turns": 777,
+      "lostAt": 198
+    },
+    {
+      "seed": 55813129,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 39,
+      "turns": 148,
+      "lostAt": 40
+    },
+    {
+      "seed": 55821048,
+      "teamIndex": 1,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1204
+    },
+    {
+      "seed": 55828967,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 191,
+      "turns": 1196,
+      "lostAt": 192
+    },
+    {
+      "seed": 55836886,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 166,
+      "turns": 1009,
+      "lostAt": 167
+    },
+    {
+      "seed": 55844805,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 96,
+      "turns": 482,
+      "lostAt": 97
+    },
+    {
+      "seed": 55852724,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 156,
+      "turns": 1043,
+      "lostAt": 157
+    },
+    {
+      "seed": 55860643,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 49,
+      "turns": 205,
+      "lostAt": 50
+    },
+    {
+      "seed": 55868562,
+      "teamIndex": 7,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 848
+    },
+    {
+      "seed": 55876481,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 166,
+      "turns": 1005,
+      "lostAt": 167
+    },
+    {
+      "seed": 55884400,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 189,
+      "turns": 1247,
+      "lostAt": 190
+    },
+    {
+      "seed": 55892319,
+      "teamIndex": 2,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1198
+    },
+    {
+      "seed": 55900238,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 197,
+      "turns": 1496,
+      "lostAt": 198
+    },
+    {
+      "seed": 55908157,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 100,
+      "turns": 524,
+      "lostAt": 101
+    },
+    {
+      "seed": 55916076,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 153,
+      "turns": 903,
+      "lostAt": 154
+    },
+    {
+      "seed": 55923995,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 19,
+      "turns": 74,
+      "lostAt": 20
+    },
+    {
+      "seed": 55931914,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 110,
+      "turns": 371,
+      "lostAt": 111
+    },
+    {
+      "seed": 55939833,
+      "teamIndex": 0,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1301
+    },
+    {
+      "seed": 55947752,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 161,
+      "turns": 858,
+      "lostAt": 162
+    },
+    {
+      "seed": 55955671,
+      "teamIndex": 2,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1277
+    },
+    {
+      "seed": 55963590,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 195,
+      "turns": 1601,
+      "lostAt": 196
+    },
+    {
+      "seed": 55971509,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 91,
+      "turns": 403,
+      "lostAt": 92
+    },
+    {
+      "seed": 55979428,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 190,
+      "turns": 1177,
+      "lostAt": 191
+    },
+    {
+      "seed": 55987347,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 19,
+      "turns": 60,
+      "lostAt": 20
+    },
+    {
+      "seed": 55995266,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 121,
+      "turns": 392,
+      "lostAt": 122
+    },
+    {
+      "seed": 56003185,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 161,
+      "turns": 1186,
+      "lostAt": 162
+    },
+    {
+      "seed": 56011104,
+      "teamIndex": 1,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1311
+    },
+    {
+      "seed": 56019023,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 113,
+      "turns": 491,
+      "lostAt": 114
+    },
+    {
+      "seed": 56026942,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 199,
+      "turns": 1444,
+      "lostAt": 200
+    },
+    {
+      "seed": 56034861,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 19,
+      "turns": 68,
+      "lostAt": 20
+    },
+    {
+      "seed": 56042780,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 176,
+      "turns": 1152,
+      "lostAt": 177
+    },
+    {
+      "seed": 56050699,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 61,
+      "turns": 318,
+      "lostAt": 62
+    },
+    {
+      "seed": 56058618,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 168,
+      "turns": 685,
+      "lostAt": 169
+    },
+    {
+      "seed": 56066537,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 131,
+      "turns": 641,
+      "lostAt": 132
+    },
+    {
+      "seed": 56074456,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 170,
+      "turns": 1042,
+      "lostAt": 171
+    },
+    {
+      "seed": 56082375,
+      "teamIndex": 2,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1351
+    },
+    {
+      "seed": 56090294,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 137,
+      "turns": 1181,
+      "lostAt": 138
+    },
+    {
+      "seed": 56098213,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 100,
+      "turns": 433,
+      "lostAt": 101
+    },
+    {
+      "seed": 56106132,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 172,
+      "turns": 1063,
+      "lostAt": 173
+    },
+    {
+      "seed": 56114051,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 19,
+      "turns": 63,
+      "lostAt": 20
+    },
+    {
+      "seed": 56121970,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 98,
+      "turns": 332,
+      "lostAt": 99
+    },
+    {
+      "seed": 56129889,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 188,
+      "turns": 1205,
+      "lostAt": 189
+    },
+    {
+      "seed": 56137808,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 189,
+      "turns": 1262,
+      "lostAt": 190
+    },
+    {
+      "seed": 56145727,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 159,
+      "turns": 901,
+      "lostAt": 160
+    },
+    {
+      "seed": 56153646,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 158,
+      "turns": 837,
+      "lostAt": 159
+    },
+    {
+      "seed": 56161565,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 101,
+      "turns": 572,
+      "lostAt": 102
+    },
+    {
+      "seed": 56169484,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 177,
+      "turns": 1135,
+      "lostAt": 178
+    },
+    {
+      "seed": 56177403,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 7,
+      "turns": 28,
+      "lostAt": 8
+    },
+    {
+      "seed": 56185322,
+      "teamIndex": 7,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 973
+    },
+    {
+      "seed": 56193241,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 130,
+      "turns": 726,
+      "lostAt": 131
+    },
+    {
+      "seed": 56201160,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 171,
+      "turns": 955,
+      "lostAt": 172
+    },
+    {
+      "seed": 56209079,
+      "teamIndex": 2,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1278
+    },
+    {
+      "seed": 56216998,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 141,
+      "turns": 779,
+      "lostAt": 142
+    },
+    {
+      "seed": 56224917,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 84,
+      "turns": 419,
+      "lostAt": 85
+    },
+    {
+      "seed": 56232836,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 125,
+      "turns": 658,
+      "lostAt": 126
+    },
+    {
+      "seed": 56240755,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 19,
+      "turns": 77,
+      "lostAt": 20
+    },
+    {
+      "seed": 56248674,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 90,
+      "turns": 265,
+      "lostAt": 91
+    },
+    {
+      "seed": 56256593,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 136,
+      "turns": 700,
+      "lostAt": 137
+    },
+    {
+      "seed": 56264512,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 172,
+      "turns": 987,
+      "lostAt": 173
+    },
+    {
+      "seed": 56272431,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 120,
+      "turns": 593,
+      "lostAt": 121
+    },
+    {
+      "seed": 56280350,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 159,
+      "turns": 1306,
+      "lostAt": 160
+    },
+    {
+      "seed": 56288269,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 19,
+      "turns": 65,
+      "lostAt": 20
+    },
+    {
+      "seed": 56296188,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 168,
+      "turns": 1328,
+      "lostAt": 169
+    },
+    {
+      "seed": 56304107,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 7,
+      "turns": 24,
+      "lostAt": 8
+    },
+    {
+      "seed": 56312026,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 139,
+      "turns": 506,
+      "lostAt": 140
+    },
+    {
+      "seed": 56319945,
+      "teamIndex": 0,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1377
+    },
+    {
+      "seed": 56327864,
+      "teamIndex": 1,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1325
+    },
+    {
+      "seed": 56335783,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 177,
+      "turns": 1213,
+      "lostAt": 178
+    },
+    {
+      "seed": 56343702,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 135,
+      "turns": 553,
+      "lostAt": 136
+    },
+    {
+      "seed": 56351621,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 90,
+      "turns": 426,
+      "lostAt": 91
+    },
+    {
+      "seed": 56359540,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 160,
+      "turns": 939,
+      "lostAt": 161
+    },
+    {
+      "seed": 56367459,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 50,
+      "turns": 226,
+      "lostAt": 51
+    },
+    {
+      "seed": 56375378,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 29,
+      "turns": 61,
+      "lostAt": 30
+    },
+    {
+      "seed": 56383297,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 99,
+      "turns": 387,
+      "lostAt": 100
+    },
+    {
+      "seed": 56391216,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 191,
+      "turns": 1306,
+      "lostAt": 192
+    },
+    {
+      "seed": 56399135,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 145,
+      "turns": 587,
+      "lostAt": 146
+    },
+    {
+      "seed": 56407054,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 188,
+      "turns": 1325,
+      "lostAt": 189
+    },
+    {
+      "seed": 56414973,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 91,
+      "turns": 511,
+      "lostAt": 92
+    },
+    {
+      "seed": 56422892,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 198,
+      "turns": 1358,
+      "lostAt": 199
+    },
+    {
+      "seed": 56430811,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 7,
+      "turns": 32,
+      "lostAt": 8
+    },
+    {
+      "seed": 56438730,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 142,
+      "turns": 472,
+      "lostAt": 143
+    },
+    {
+      "seed": 56446649,
+      "teamIndex": 0,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1449
+    },
+    {
+      "seed": 56454568,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 150,
+      "turns": 808,
+      "lostAt": 151
+    },
+    {
+      "seed": 56462487,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 195,
+      "turns": 1509,
+      "lostAt": 196
+    },
+    {
+      "seed": 56470406,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 175,
+      "turns": 1084,
+      "lostAt": 176
+    },
+    {
+      "seed": 56478325,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 95,
+      "turns": 440,
+      "lostAt": 96
+    },
+    {
+      "seed": 56486244,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 176,
+      "turns": 1325,
+      "lostAt": 177
+    },
+    {
+      "seed": 56494163,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 19,
+      "turns": 62,
+      "lostAt": 20
+    },
+    {
+      "seed": 56502082,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 27,
+      "turns": 50,
+      "lostAt": 28
+    },
+    {
+      "seed": 56510001,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 199,
+      "turns": 1510,
+      "lostAt": 200
+    },
+    {
+      "seed": 56517920,
+      "teamIndex": 1,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1439
+    },
+    {
+      "seed": 56525839,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 199,
+      "turns": 1359,
+      "lostAt": 200
+    },
+    {
+      "seed": 56533758,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 139,
+      "turns": 757,
+      "lostAt": 140
+    },
+    {
+      "seed": 56541677,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 100,
+      "turns": 610,
+      "lostAt": 101
+    },
+    {
+      "seed": 56549596,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 188,
+      "turns": 1212,
+      "lostAt": 189
+    },
+    {
+      "seed": 56557515,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 29,
+      "turns": 121,
+      "lostAt": 30
+    },
+    {
+      "seed": 56565434,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 119,
+      "turns": 429,
+      "lostAt": 120
+    },
+    {
+      "seed": 56573353,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 40,
+      "turns": 172,
+      "lostAt": 41
+    },
+    {
+      "seed": 56581272,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 188,
+      "turns": 1083,
+      "lostAt": 189
+    },
+    {
+      "seed": 56589191,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 199,
+      "turns": 1269,
+      "lostAt": 200
+    },
+    {
+      "seed": 56597110,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 99,
+      "turns": 406,
+      "lostAt": 100
+    },
+    {
+      "seed": 56605029,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 90,
+      "turns": 358,
+      "lostAt": 91
+    },
+    {
+      "seed": 56612948,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 150,
+      "turns": 812,
+      "lostAt": 151
+    },
+    {
+      "seed": 56620867,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 54,
+      "turns": 210,
+      "lostAt": 55
+    },
+    {
+      "seed": 56628786,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 39,
+      "turns": 113,
+      "lostAt": 40
+    },
+    {
+      "seed": 56636705,
+      "teamIndex": 0,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1313
+    },
+    {
+      "seed": 56644624,
+      "teamIndex": 1,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1286
+    },
+    {
+      "seed": 56652543,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 161,
+      "turns": 847,
+      "lostAt": 162
+    },
+    {
+      "seed": 56660462,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 159,
+      "turns": 910,
+      "lostAt": 160
+    },
+    {
+      "seed": 56668381,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 99,
+      "turns": 602,
+      "lostAt": 100
+    },
+    {
+      "seed": 56676300,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 188,
+      "turns": 1375,
+      "lostAt": 189
+    },
+    {
+      "seed": 56684219,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 10,
+      "turns": 41,
+      "lostAt": 11
+    },
+    {
+      "seed": 56692138,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 176,
+      "turns": 649,
+      "lostAt": 177
+    },
+    {
+      "seed": 56700057,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 179,
+      "turns": 993,
+      "lostAt": 180
+    },
+    {
+      "seed": 56707976,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 168,
+      "turns": 868,
+      "lostAt": 169
+    },
+    {
+      "seed": 56715895,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 199,
+      "turns": 1625,
+      "lostAt": 200
+    },
+    {
+      "seed": 56723814,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 39,
+      "turns": 135,
+      "lostAt": 40
+    },
+    {
+      "seed": 56731733,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 124,
+      "turns": 1082,
+      "lostAt": 125
+    },
+    {
+      "seed": 56739652,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 151,
+      "turns": 835,
+      "lostAt": 152
+    },
+    {
+      "seed": 56747571,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 59,
+      "turns": 242,
+      "lostAt": 60
+    },
+    {
+      "seed": 56755490,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 90,
+      "turns": 294,
+      "lostAt": 91
+    },
+    {
+      "seed": 56763409,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 160,
+      "turns": 900,
+      "lostAt": 161
+    },
+    {
+      "seed": 56771328,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 157,
+      "turns": 870,
+      "lostAt": 158
+    },
+    {
+      "seed": 56779247,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 136,
+      "turns": 595,
+      "lostAt": 137
+    },
+    {
+      "seed": 56787166,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 158,
+      "turns": 1055,
+      "lostAt": 159
+    },
+    {
+      "seed": 56795085,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 92,
+      "turns": 434,
+      "lostAt": 93
+    },
+    {
+      "seed": 56803004,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 96,
+      "turns": 363,
+      "lostAt": 97
+    },
+    {
+      "seed": 56810923,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 19,
+      "turns": 76,
+      "lostAt": 20
+    },
+    {
+      "seed": 56818842,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 131,
+      "turns": 451,
+      "lostAt": 132
+    },
+    {
+      "seed": 56826761,
+      "teamIndex": 0,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1213
+    },
+    {
+      "seed": 56834680,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 141,
+      "turns": 836,
+      "lostAt": 142
+    },
+    {
+      "seed": 56842599,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 199,
+      "turns": 1633,
+      "lostAt": 200
+    },
+    {
+      "seed": 56850518,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 121,
+      "turns": 670,
+      "lostAt": 122
+    },
+    {
+      "seed": 56858437,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 107,
+      "turns": 613,
+      "lostAt": 108
+    },
+    {
+      "seed": 56866356,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 131,
+      "turns": 692,
+      "lostAt": 132
+    },
+    {
+      "seed": 56874275,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 49,
+      "turns": 176,
+      "lostAt": 50
+    },
+    {
+      "seed": 56882194,
+      "teamIndex": 7,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 784
+    },
+    {
+      "seed": 56890113,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 199,
+      "turns": 1304,
+      "lostAt": 200
+    },
+    {
+      "seed": 56898032,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 181,
+      "turns": 1039,
+      "lostAt": 182
+    },
+    {
+      "seed": 56905951,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 178,
+      "turns": 991,
+      "lostAt": 179
+    },
+    {
+      "seed": 56913870,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 139,
+      "turns": 799,
+      "lostAt": 140
+    },
+    {
+      "seed": 56921789,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 96,
+      "turns": 463,
+      "lostAt": 97
+    },
+    {
+      "seed": 56929708,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 156,
+      "turns": 823,
+      "lostAt": 157
+    },
+    {
+      "seed": 56937627,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 39,
+      "turns": 135,
+      "lostAt": 40
+    },
+    {
+      "seed": 56945546,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 141,
+      "turns": 507,
+      "lostAt": 142
+    },
+    {
+      "seed": 56953465,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 161,
+      "turns": 865,
+      "lostAt": 162
+    },
+    {
+      "seed": 56961384,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 185,
+      "turns": 1145,
+      "lostAt": 186
+    },
+    {
+      "seed": 56969303,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 110,
+      "turns": 445,
+      "lostAt": 111
+    },
+    {
+      "seed": 56977222,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 157,
+      "turns": 927,
+      "lostAt": 158
+    },
+    {
+      "seed": 56985141,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 69,
+      "turns": 282,
+      "lostAt": 70
+    },
+    {
+      "seed": 56993060,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 186,
+      "turns": 1379,
+      "lostAt": 187
+    },
+    {
+      "seed": 57000979,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 19,
+      "turns": 68,
+      "lostAt": 20
+    },
+    {
+      "seed": 57008898,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 111,
+      "turns": 346,
+      "lostAt": 112
+    },
+    {
+      "seed": 57016817,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 111,
+      "turns": 612,
+      "lostAt": 112
+    },
+    {
+      "seed": 57024736,
+      "teamIndex": 1,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1399
+    },
+    {
+      "seed": 57032655,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 191,
+      "turns": 1432,
+      "lostAt": 192
+    },
+    {
+      "seed": 57040574,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 135,
+      "turns": 712,
+      "lostAt": 136
+    },
+    {
+      "seed": 57048493,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 98,
+      "turns": 520,
+      "lostAt": 99
+    },
+    {
+      "seed": 57056412,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 183,
+      "turns": 1078,
+      "lostAt": 184
+    },
+    {
+      "seed": 57064331,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 7,
+      "turns": 29,
+      "lostAt": 8
+    },
+    {
+      "seed": 57072250,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 168,
+      "turns": 693,
+      "lostAt": 169
+    },
+    {
+      "seed": 57080169,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 178,
+      "turns": 1099,
+      "lostAt": 179
+    },
+    {
+      "seed": 57088088,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 180,
+      "turns": 1136,
+      "lostAt": 181
+    },
+    {
+      "seed": 57096007,
+      "teamIndex": 2,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1356
+    },
+    {
+      "seed": 57103926,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 179,
+      "turns": 1099,
+      "lostAt": 180
+    },
+    {
+      "seed": 57111845,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 108,
+      "turns": 921,
+      "lostAt": 109
+    },
+    {
+      "seed": 57119764,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 160,
+      "turns": 1044,
+      "lostAt": 161
+    },
+    {
+      "seed": 57127683,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 50,
+      "turns": 195,
+      "lostAt": 51
+    },
+    {
+      "seed": 57135602,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 100,
+      "turns": 301,
+      "lostAt": 101
+    },
+    {
+      "seed": 57143521,
+      "teamIndex": 0,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1291
+    },
+    {
+      "seed": 57151440,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 182,
+      "turns": 1150,
+      "lostAt": 183
+    },
+    {
+      "seed": 57159359,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 174,
+      "turns": 975,
+      "lostAt": 175
+    },
+    {
+      "seed": 57167278,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 106,
+      "turns": 414,
+      "lostAt": 107
+    },
+    {
+      "seed": 57175197,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 91,
+      "turns": 419,
+      "lostAt": 92
+    },
+    {
+      "seed": 57183116,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 179,
+      "turns": 1122,
+      "lostAt": 180
+    },
+    {
+      "seed": 57191035,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 9,
+      "turns": 33,
+      "lostAt": 10
+    },
+    {
+      "seed": 57198954,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 197,
+      "turns": 851,
+      "lostAt": 198
+    },
+    {
+      "seed": 57206873,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 170,
+      "turns": 804,
+      "lostAt": 171
+    },
+    {
+      "seed": 57214792,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 192,
+      "turns": 1239,
+      "lostAt": 193
+    },
+    {
+      "seed": 57222711,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 119,
+      "turns": 477,
+      "lostAt": 120
+    },
+    {
+      "seed": 57230630,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 199,
+      "turns": 1671,
+      "lostAt": 200
+    },
+    {
+      "seed": 57238549,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 104,
+      "turns": 556,
+      "lostAt": 105
+    },
+    {
+      "seed": 57246468,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 137,
+      "turns": 716,
+      "lostAt": 138
+    },
+    {
+      "seed": 57254387,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 39,
+      "turns": 136,
+      "lostAt": 40
+    },
+    {
+      "seed": 57262306,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 108,
+      "turns": 336,
+      "lostAt": 109
+    },
+    {
+      "seed": 57270225,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 196,
+      "turns": 1177,
+      "lostAt": 197
+    },
+    {
+      "seed": 57278144,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 184,
+      "turns": 1175,
+      "lostAt": 185
+    },
+    {
+      "seed": 57286063,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 192,
+      "turns": 1239,
+      "lostAt": 193
+    },
+    {
+      "seed": 57293982,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 168,
+      "turns": 923,
+      "lostAt": 169
+    },
+    {
+      "seed": 57301901,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 81,
+      "turns": 440,
+      "lostAt": 82
+    },
+    {
+      "seed": 57309820,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 140,
+      "turns": 589,
+      "lostAt": 141
+    },
+    {
+      "seed": 57317739,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 19,
+      "turns": 61,
+      "lostAt": 20
+    },
+    {
+      "seed": 57325658,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 143,
+      "turns": 501,
+      "lostAt": 144
+    },
+    {
+      "seed": 57333577,
+      "teamIndex": 0,
+      "outcome": "defeat",
+      "cleared": 136,
+      "turns": 862,
+      "lostAt": 137
+    },
+    {
+      "seed": 57341496,
+      "teamIndex": 1,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1412
+    },
+    {
+      "seed": 57349415,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 177,
+      "turns": 1168,
+      "lostAt": 178
+    },
+    {
+      "seed": 57357334,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 111,
+      "turns": 462,
+      "lostAt": 112
+    },
+    {
+      "seed": 57365253,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 89,
+      "turns": 388,
+      "lostAt": 90
+    },
+    {
+      "seed": 57373172,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 183,
+      "turns": 1153,
+      "lostAt": 184
+    },
+    {
+      "seed": 57381091,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 10,
+      "turns": 55,
+      "lostAt": 11
+    },
+    {
+      "seed": 57389010,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 149,
+      "turns": 550,
+      "lostAt": 150
+    },
+    {
+      "seed": 57396929,
+      "teamIndex": 0,
+      "outcome": "clear",
+      "cleared": 200,
+      "turns": 1376
+    },
+    {
+      "seed": 57404848,
+      "teamIndex": 1,
+      "outcome": "defeat",
+      "cleared": 188,
+      "turns": 1113,
+      "lostAt": 189
+    },
+    {
+      "seed": 57412767,
+      "teamIndex": 2,
+      "outcome": "defeat",
+      "cleared": 133,
+      "turns": 652,
+      "lostAt": 134
+    },
+    {
+      "seed": 57420686,
+      "teamIndex": 3,
+      "outcome": "defeat",
+      "cleared": 151,
+      "turns": 1059,
+      "lostAt": 152
+    },
+    {
+      "seed": 57428605,
+      "teamIndex": 4,
+      "outcome": "defeat",
+      "cleared": 104,
+      "turns": 618,
+      "lostAt": 105
+    },
+    {
+      "seed": 57436524,
+      "teamIndex": 5,
+      "outcome": "defeat",
+      "cleared": 191,
+      "turns": 1441,
+      "lostAt": 192
+    },
+    {
+      "seed": 57444443,
+      "teamIndex": 6,
+      "outcome": "defeat",
+      "cleared": 14,
+      "turns": 49,
+      "lostAt": 15
+    },
+    {
+      "seed": 57452362,
+      "teamIndex": 7,
+      "outcome": "defeat",
+      "cleared": 116,
+      "turns": 387,
+      "lostAt": 117
+    }
+  ]
+}

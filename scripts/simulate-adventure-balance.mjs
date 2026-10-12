@@ -1,3 +1,4 @@
+import { SIMULATION_POLICY, simulationMoves, simulationSwitch, applySimulationSwitch } from './lib/adventure-simulation-policy.mjs';
 import { loadBattleEngine } from './lib/battle-engine-fixture.mjs';
 import { TRAINER_SKILLS, normalizeTrainerRanks, getTrainerCostLimit, getTrainerStarterCost } from '../src/progression/trainerSkills.js';
 import { TOWN_BUILDINGS, TOWN_RESIDENTS, normalizeTown, applyTownStartingSupport } from '../src/progression/townProgress.js';
@@ -20,7 +21,7 @@ const collection=maxProgression?{species:Object.fromEntries([...e.allDigimonLook
 const town=maxProgression?normalizeTown({version:1,buildings:Object.fromEntries(TOWN_BUILDINGS.map(building=>[building.id,3])),residents:TOWN_RESIDENTS.map(resident=>resident.name),selectedSupport:'market'}):null;
 const living=u=>u&&!u.isEgg&&u.currentHp>0;
 const seedRandom=seed=>()=>{seed=(Math.imul(1664525,seed)+1013904223)>>>0;return seed/4294967296};
-const bestMove=(u,party,enemies)=>e.getCommandSkillNames(u,n=>e.getSkillData(n,u)).map(n=>({name:n,score:e.scoreSkill(u,e.getSkillData(n,u),party,enemies,(a,s,d)=>e.getMatchupResult({attackerType:a.type,skillAttribute:s.속성,defenderType:d.type,defenderAttribute:d.attribute}).multiplier)})).sort((a,b)=>b.score-a.score)[0];
+const bestMove=(u,party,enemies,stalledTurns=0,ownedParty=party)=>simulationMoves(e,u,party,enemies,stalledTurns,ownedParty)[0];
 const formPreferences={아구몬:['그레이몬','메탈그레이몬','워그레이몬'],파피몬:['가루몬','워가루몬','메탈가루몬'],팔몬:['니드몬','릴리몬','로제몬'],파닥몬:['엔젤몬','홀리엔젤몬','세라피몬'],텐타몬:['캅테리몬','아틀라캅테리몬','헤라클레스캅테리몬'],쉬라몬:['원뿔몬','쥬드몬','바이킹몬'],피요몬:['버드라몬','가루다몬','페닉스몬'],플롯트몬:['가트몬','엔젤우몬','오파니몬']};
 function evolve(party,inventory){return party.map(u=>{if(!living(u))return u;for(let step=0;step<4;step++){let opts=e.getEvolutionOptions(u,inventory,party).filter(o=>o.canEvolve&&o.evolutionType==='stat'&&o.targetData.전투총합>u.baseStatTotal);const preferred=formPreferences[[...(u.evolutionHistory??[]),u.name].find(n=>formPreferences[n])]??[];if(e.getEvolutionOptions(u,inventory,party).some(o=>preferred.includes(o.targetData.이름)))opts=opts.filter(o=>preferred.includes(o.targetData.이름));opts.sort((a,b)=>Number(preferred.includes(b.targetData.이름))-Number(preferred.includes(a.targetData.이름))||b.targetData.전투총합-a.targetData.전투총합);if(!opts.length)break;u=e.createEvolvedCombatant(u,opts[0].targetData)}return u})}
 function run(seed,names){Math.random=seedRandom(seed);let party=e.buildStartingParty(names,trainerSkills,collection),inventory={},gold=0,turns=0,faints=0,bossTurns=[],checkpoints=[],totalDrops=0,map=e.getMapNameForStage(1),routes=[map],rivalState={},history=[];
@@ -36,12 +37,19 @@ for(let stage=1;stage<=200;stage++){
  rivalState=recordRivalMeeting({currentStage:stage,enemies,rivalState}).rivalState??rivalState;
  let env=e.applyMapEnvironment({party,enemies,currentMap:map,currentStage:stage,gameMode:mode});party=env.party;enemies=env.enemies;
  const encounterNames=enemies.map(u=>u.name), encounterId=enemies.find(u=>u.bossEncounter?.leader)?.bossEncounter.id;
- const limit=e.getBattleAllyLimit({enemies,encounterCount:enemies.length});let active=[],round=0;
+ const limit=e.getBattleAllyLimit({enemies,encounterCount:enemies.length});let active=[],round=0,stalledTurns=0,bestEnemyHp=Infinity,progressKey='';const usedIncomingIds=new Set();
  while(party.some(living)&&enemies.some(living)&&round++<roundLimit){
   active=active.filter(id=>party.some(u=>u.id===id&&living(u))).slice(0,limit);
   const eligible=party.filter(u=>living(u)&&!active.includes(u.id)).sort((a,b)=>(bestMove(b,party,enemies)?.score??0)*(b.currentHp/b.maxHp+.5)-(bestMove(a,party,enemies)?.score??0)*(a.currentHp/a.maxHp+.5));
   while(active.length<limit&&eligible.length)active.push(eligible.shift().id);
-  const actions=active.map((id,index)=>{const u=party.find(u=>u.id===id);const move=bestMove(u,party.filter(v=>active.includes(v.id)),enemies.filter(living)); const foes=enemies.filter(living);const skill=e.getSkillData(move.name,u); const target=foes.sort((a,b)=>e.scoreSkill(u,skill,[u],[b],(a,s,d)=>e.getMatchupResult({attackerType:a.type,skillAttribute:s.속성,defenderType:d.type,defenderAttribute:d.attribute}).multiplier)-e.scoreSkill(u,skill,[u],[a],(a,s,d)=>e.getMatchupResult({attackerType:a.type,skillAttribute:s.속성,defenderType:d.type,defenderAttribute:d.attribute}).multiplier))[0];return e.createBattleTurnAction({side:'ally',actor:u,skillName:move.name,targetId:target?.id,order:index})});
+  for(const id of active)usedIncomingIds.add(id);
+  const key=enemies.filter(living).map(u=>u.id+':'+u.name+':'+(u.bossEncounter?.phase??'')).join('|');
+  const enemyHp=enemies.filter(living).reduce((sum,u)=>sum+u.currentHp/u.maxHp,0);
+  if(key!==progressKey||enemyHp<bestEnemyHp-.01){progressKey=key;bestEnemyHp=enemyHp;stalledTurns=0}else stalledTurns++;
+  const swap=simulationSwitch(e,{party,activeIds:active,enemies,stalledTurns,usedIncomingIds});
+  const switched=applySimulationSwitch(e,party,active,swap);party=switched.party;active=switched.activeIds;
+  if(swap)usedIncomingIds.add(swap.incomingId);
+  const actions=active.filter(id=>id!==switched.actedId).map((id,index)=>{const u=party.find(u=>u.id===id);const move=bestMove(u,party.filter(v=>active.includes(v.id)),enemies.filter(living),stalledTurns,party);return e.createBattleTurnAction({side:'ally',actor:u,skillName:move.name,targetId:move.targetId,order:index})});
   actions.push(...e.createEnemyBattleTurnActions({enemies,party,activeAllyIds:active,startOrder:actions.length}));
   const before=party.filter(living).length;
   const result=e.resolveBattleTurnActions({party,enemies,activeAllyIds:active,actions,levelCap:cap,inventory});party=result.nextParty;enemies=result.nextEnemies;faints+=Math.max(0,before-party.filter(living).length);turns++;
@@ -70,6 +78,6 @@ const teams=solo?(maxProgression?[['아구몬'],['파피몬'],['팔몬'],['워�
 const teamCosts=teams.map(names=>names.reduce((sum,name)=>sum+getTrainerStarterCost(e.allDigimonLookup.get(name),trainerSkills),0));
 if(teamCosts.some(cost=>cost>getTrainerCostLimit(trainerSkills)))throw new Error('Starting cost exceeds the real budget');
 const results=[];
-for(let i=0;i<count;i++){results.push(run((i+seedStart)*7919+17,teams[(i+seedStart)%teams.length]));if((i+1)%12===0)console.log('Completed '+(i+1)+'/'+count+' runs')}
-const summary={mode,maxProgression,solo,seedStart,roundLimit,baselineDir:baselineDir?resolve(baselineDir):undefined,difficultyFile:difficultyFile?resolve(difficultyFile):undefined,teamCosts,casualProfile:mode==='classic'&&!difficultyFile&&!baselineDir?CASUAL_MODE_BALANCE:undefined,hardProfile:mode==='hard'&&!difficultyFile&&!baselineDir?HARD_MODE_BALANCE:undefined,trainerNodes:Object.keys(trainerSkills).length,townSupport:town?{buildings:town.buildings,selectedSupport:town.selectedSupport}:null,runs:count,clears:results.filter(r=>r.cleared===200).length,defeats:results.filter(r=>r.outcome==='defeat').length,unresolved:results.filter(r=>r.outcome==='unresolved').length,medianStage:results.map(r=>r.cleared).sort((a,b)=>a-b)[Math.floor(count/2)],earliestLoss:Math.min(...results.map(r=>r.cleared)),results};
+for(let i=0;i<count;i++){results.push(run((i+seedStart)*7919+17,teams[(i+seedStart)%teams.length]));if((i+1)%12===0)console.log('Completed '+(i+1)+'/'+count+' runs: '+JSON.stringify({clears:results.filter(r=>r.outcome==='clear').length,defeats:results.filter(r=>r.outcome==='defeat').length,unresolved:results.filter(r=>r.outcome==='unresolved').length}))}
+const summary={policy:SIMULATION_POLICY,mode,maxProgression,solo,seedStart,roundLimit,baselineDir:baselineDir?resolve(baselineDir):undefined,difficultyFile:difficultyFile?resolve(difficultyFile):undefined,teamCosts,casualProfile:mode==='classic'&&!difficultyFile&&!baselineDir?CASUAL_MODE_BALANCE:undefined,hardProfile:mode==='hard'&&!difficultyFile&&!baselineDir?HARD_MODE_BALANCE:undefined,trainerNodes:Object.keys(trainerSkills).length,townSupport:town?{buildings:town.buildings,selectedSupport:town.selectedSupport}:null,runs:count,clears:results.filter(r=>r.cleared===200).length,defeats:results.filter(r=>r.outcome==='defeat').length,unresolved:results.filter(r=>r.outcome==='unresolved').length,medianStage:results.map(r=>r.cleared).sort((a,b)=>a-b)[Math.floor(count/2)],earliestLoss:Math.min(...results.map(r=>r.cleared)),results};
 await writeFile(out,JSON.stringify(summary,null,2));console.log(JSON.stringify({...summary,results:undefined,report:out},null,2));
