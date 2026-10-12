@@ -1,3 +1,4 @@
+import { HALL_STORAGE_KEY, requeueImportedHallLedger } from '../src/progression/hallOfFame.js'
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { createLocalStorage } from '../src/progression/localStorage.js'
@@ -15,7 +16,7 @@ test('every progression key is isolated across guest and two Google accounts', (
 test('linking a new Google account copies complete guest progress without deleting originals', () => {
   const raw = backend(); for (const key of PROFILE_PROGRESS_KEYS) raw.setItem(key, JSON.stringify({ key, value: 42 }))
   const result = importGuestProgress(raw, 'new-google'); assert.equal(result.copied, true); assert.equal(result.keys.length, PROFILE_PROGRESS_KEYS.length)
-  for (const key of PROFILE_PROGRESS_KEYS) assert.equal(raw.getItem(accountStorageKey('new-google', key)), raw.getItem(key))
+  for (const key of PROFILE_PROGRESS_KEYS) assert.equal(raw.getItem(accountStorageKey('new-google', key)), key === HALL_STORAGE_KEY ? requeueImportedHallLedger(raw.getItem(key)) : raw.getItem(key))
 })
 test('linking an existing account never mixes guest data into it', () => {
   const raw = backend(); raw.setItem('digirogue-save-v1', 'guest-save'); raw.setItem(accountStorageKey('old-google', 'digirogue-trainer-skills-v1'), 'owned-skills')

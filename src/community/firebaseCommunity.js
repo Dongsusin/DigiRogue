@@ -7,7 +7,7 @@ import { onlinePlayers, orderedMessages, collectSnapshotChildren } from './commu
 const emulator = import.meta.env.DEV && import.meta.env.VITE_COMMUNITY_EMULATOR === 'true'
 let guestReady
 const emulatedDatabases = new WeakSet()
-async function communityAuth(identity) {
+export async function getCommunityAuth(identity) {
   if (!identity.isAnonymous && !emulator) {
     await authPersistenceReady
     await firebaseAuth.authStateReady()
@@ -28,7 +28,7 @@ async function communityAuth(identity) {
   return guestReady
 }
 export async function createFirebaseCommunity(identity) {
-  const auth = await communityAuth(identity)
+  const auth = await getCommunityAuth(identity)
   const db = getDatabase(auth.app, emulator ? 'https://demo-digirouge-default-rtdb.firebaseio.com' : firebaseApp.options.databaseURL)
   if (emulator && !emulatedDatabases.has(db)) { connectDatabaseEmulator(db, '127.0.0.1', 9000); emulatedDatabases.add(db) }
   const uid = auth.currentUser.uid

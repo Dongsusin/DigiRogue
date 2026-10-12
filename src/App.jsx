@@ -1,5 +1,8 @@
 import CommunityHub from './components/CommunityHub.jsx'
 import MainMenu from './components/MainMenu.jsx'
+import HallOfFame from './components/HallOfFame.jsx'
+import { useHallOfFame } from './hall/useHallOfFame.js'
+import { createRunStats, resumeRunStats, advanceRunTurn } from './progression/hallOfFame.js'
 import MenuBackdrop from './components/MenuBackdrop.jsx'
 import TownScreen from './components/TownScreen.jsx'
 import { versionedResourceUrl } from './data/resourceUrl.js'
@@ -317,6 +320,7 @@ const parseSavedGameState = (rawSaveData) => {
       trainerSkills,
       evolutionMemory: mergeEvolutionMemory(savedGameState.evolutionMemory, inferEvolutionMemory(party)),
       levelCap,
+      runStats: resumeRunStats(savedGameState.runStats),
       trainerRunId: savedGameState.trainerRunId ?? `legacy-${Number(parsedSaveData.savedAt) || 0}-${Math.floor(Number(savedGameState.currentStage))}`,
       player,
       party,
@@ -5048,6 +5052,7 @@ function App() {
   const getLocalSnapshot = localProgress.getSnapshot
   const [screenMode, setScreenMode] = useState('menu')
   const [selectedMenuKey, setSelectedMenuKey] = useState('new-game')
+  const [isHallOpen, setIsHallOpen] = useState(false)
   const [settingsTab, setSettingsTab] = useState('general')
   const [isBgmSettingsOpen, setIsBgmSettingsOpen] = useState(false)
   const [gameSettings, setGameSettings] = useState(() => loadSettingsFromStorage(progressStorage))
@@ -5085,6 +5090,8 @@ function App() {
   const [selectedStarterNames, setSelectedStarterNames] = useState(['아구몬'])
   const [isMatchupGuideOpen, setIsMatchupGuideOpen] = useState(false)
   const [gameState, setGameState] = useState(null)
+  const hall = useHallOfFame({ state: gameState, storage: progressStorage, identity: authSession?.identity, itemsFor: getCombatantEquippedItems })
+  const hallItemById = useMemo(() => new Map([...fixedRewardItems, ...randomRewardItemPool].map(item => [item.id, item])), [])
   const persistEvolutionMemory = useCallback(memory => {
     const progress = recordTrainerEvolutionMemory(trainerProgressRef.current, memory)
     if (JSON.stringify(progress.evolutionMemory ?? []) === JSON.stringify(trainerProgressRef.current.evolutionMemory ?? [])) return true
@@ -5892,8 +5899,9 @@ function App() {
 
     let victoryReward = null
     const commitBattleState = ({ nextPlayer, battlePanel, nextActedAllyIds = actedAllyIds, stageCleared = false, questOutcome = null }) => {
+      const countedState = stageCleared || !nextActedAllyIds.length ? advanceRunTurn(gameState) : gameState
       const nextState = commitRegionalBattleState({
-        ...(questOutcome?.state ?? gameState),
+        ...(questOutcome?.state ?? countedState),
         player: nextPlayer,
         party: resolvedParty,
         enemies: resolvedEnemies,
@@ -5915,6 +5923,7 @@ function App() {
       // Persist only completed rounds. Saving a half-collected command would let
       // an ally act twice after sanitizeGameStateForSave clears its command queue.
       if (stageCleared) {
+        if (nextState.currentStage === 200 && nextState.runStats) nextState.runStats = { ...nextState.runStats, finalClear: true }
         nextState.rewardCheckpoint = createRewardCheckpoint(victoryReward, nextState.currentStage)
         grantTrainerVictory(nextState, resolvedLogs)
         saveStageGameState(nextState)
@@ -5933,7 +5942,7 @@ function App() {
     }
 
     const commitVictory = () => {
-      if (gameState.explorationEvent?.phase === 'battle' && finishExplorationBattle({ ...gameState,
+      if (gameState.explorationEvent?.phase === 'battle' && finishExplorationBattle({ ...advanceRunTurn(gameState),
         party: resolvedParty, player: getFirstLivingPartyMember(resolvedParty, activeAllyIds), enemies: resolvedEnemies,
         activeAllyIds, inventory: nextInventory, digimonAnalysis: nextAnalysis, gold: nextGold })) return
       gameAudio.situation('victory', { speed: gameSettings.gameSpeed })
@@ -6094,6 +6103,7 @@ function App() {
       return
     }
 
+    const turnState = advanceRunTurn(gameState)
     let resolvedParty = [...nextParty]
     let resolvedEnemies = [...nextEnemies]
     let resolvedLogs = [...logs]
@@ -6103,7 +6113,7 @@ function App() {
     let victoryReward = null
     const commitBattleState = ({ nextPlayer, battlePanel, stageCleared = false, questOutcome = null }) => {
       const nextState = commitRegionalBattleState({
-        ...(questOutcome?.state ?? gameState),
+        ...(questOutcome?.state ?? turnState),
         player: nextPlayer,
         party: resolvedParty,
         enemies: resolvedEnemies,
@@ -6124,6 +6134,7 @@ function App() {
         resolvedLogs.push(getReplacementPrompt(nextState))
       }
       if (stageCleared) {
+        if (nextState.currentStage === 200 && nextState.runStats) nextState.runStats = { ...nextState.runStats, finalClear: true }
         nextState.rewardCheckpoint = createRewardCheckpoint(victoryReward, nextState.currentStage)
         grantTrainerVictory(nextState, resolvedLogs)
         saveStageGameState(nextState)
@@ -6138,7 +6149,7 @@ function App() {
     }
 
     const commitVictory = () => {
-      if (gameState.explorationEvent?.phase === 'battle' && finishExplorationBattle({ ...gameState,
+      if (gameState.explorationEvent?.phase === 'battle' && finishExplorationBattle({ ...turnState,
         party: resolvedParty, player: getFirstLivingPartyMember(resolvedParty, activeAllyIds), enemies: resolvedEnemies,
         activeAllyIds, inventory: nextInventory, digimonAnalysis: nextAnalysis, gold: nextGold }, { skillLearnEvents })) return
       gameAudio.situation('victory', { speed: gameSettings.gameSpeed })
@@ -6178,7 +6189,7 @@ function App() {
 
     const commitDefeat = () => {
       gameAudio.situation('loss', { speed: gameSettings.gameSpeed })
-      const failedQuest = completeStoryBattle({ ...gameState, party: resolvedParty, enemies: resolvedEnemies, activeAllyIds }, refreshCombatantStats, { defeated: true })
+      const failedQuest = completeStoryBattle({ ...turnState, party: resolvedParty, enemies: resolvedEnemies, activeAllyIds }, refreshCombatantStats, { defeated: true })
       if (failedQuest.ok) {
         recordLocalGame(failedQuest.state)
         resolvedLogs.push(failedQuest.state.explorationEvent.result.ending, ...failedQuest.logs.slice(1))
@@ -6882,6 +6893,7 @@ function App() {
 
   const handleMenuAction = (actionKey) => {
     setSelectedMenuKey(actionKey)
+    if (actionKey === 'hall-of-fame') { setIsHallOpen(true); return }
     if (actionKey === 'skills' || actionKey === 'town' || actionKey === 'dex') {
       setScreenMode(actionKey)
       return
@@ -6956,7 +6968,7 @@ function App() {
         getFirstLivingPartyMember(currentParty, activeAllyIds) ??
         actingAlly
       const escapedGameState = {
-        ...gameState,
+        ...advanceRunTurn(gameState),
         player: nextPlayer,
         party: currentParty,
         activeAllyIds,
@@ -7894,6 +7906,7 @@ function App() {
 
     const initialGameState = applyTownStartingSupport(recordEncounterAnalysis(hydrateRegionalTrust({
       ...trainerRun,
+      runStats: createRunStats(),
       gameMode: selectedGameMode,
       ...(isDailyMode(selectedGameMode) ? { dailyDate: dailyChallenge.date, dailyCandidates: dailyChallenge.candidates, dailyStarterNames: [...selectedDailyNames] } : {}),
       currentStage: startingStage,
@@ -8157,7 +8170,7 @@ function App() {
       {screenMode !== 'adventure' && <MenuBackdrop backgrounds={mapBackgrounds} />}
 
       {screenMode === 'menu' && (
-        <header className="title-band" inert={Boolean(saveDialog || isMatchupGuideOpen)}>
+        <header className="title-band" inert={Boolean(saveDialog || isMatchupGuideOpen || isHallOpen)}>
           <div className="title-band__inner">
             <img className="title-band__logo" src="/Title.png" alt="DigiRogue" />
             <div className="profile-controls">
@@ -8173,7 +8186,7 @@ function App() {
       )}
 
       <section
-        inert={Boolean(saveDialog || isMatchupGuideOpen)}
+        inert={Boolean(saveDialog || isMatchupGuideOpen || isHallOpen)}
         className={[
           'playfield',
           screenMode === 'new-game' ? 'playfield--selection' : '',
@@ -9543,10 +9556,14 @@ function App() {
           )}
         </div>
       </section>
-      <CommunityHub screenMode={screenMode} identity={authSession?.identity} blocked={Boolean(saveDialog || isMatchupGuideOpen || (screenMode === 'adventure' && (isAdventureBlocked || evolutionState || isPartyPanelOpen || mapSelectionState)))} />
+      <CommunityHub screenMode={screenMode} identity={authSession?.identity} blocked={Boolean(saveDialog || isMatchupGuideOpen || isHallOpen || (screenMode === 'adventure' && (isAdventureBlocked || evolutionState || isPartyPanelOpen || mapSelectionState)))} />
       {equipmentTooltip && equipmentTooltipMember && !evolutionScene && !saveDialog && <EquipmentTooltip
         anchor={equipmentTooltip.anchor} combatant={equipmentTooltipMember} levelCap={gameState?.levelCap}
         items={getCombatantEquippedItems(equipmentTooltipMember)} onClose={() => setEquipmentTooltip(null)} />}
+      {isHallOpen && <HallOfFame identity={authSession?.identity} itemById={hallItemById} skillInfo={getSkillData}
+        retryPending={hall.retry} onClose={() => setIsHallOpen(false)} />}
+      {hall.notice && screenMode === 'adventure' && gameState?.currentStage === 200 && gameState.enemies?.every(unit => unit.currentHp <= 0) &&
+        <div className="hall-clear-notice" role="status">{hall.notice}</div>}
       {isMatchupGuideOpen && <MatchupGuideModal onClose={() => setIsMatchupGuideOpen(false)} />}
       {screenMode === 'adventure' && partyAdmission && !saveDialog && !evolutionScene && !rewardState?.isResolving && <PartyAdmissionDialog
         key={partyAdmission.member.id} state={gameState} request={partyAdmission} error={partyAdmissionError}

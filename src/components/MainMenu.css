@@ -251,3 +251,10 @@
 @media (prefers-reduced-motion: reduce) {
   .menu-item, .menu-item::before, .menu-item__chevron, .main-screen--menu .profile-controls button { transition: none; }
 }
+
+/* Extra entries share the existing styled scroll area without covering the title. */
+.menu-panel { display:flex; flex-direction:column; min-height:0; }
+.menu-panel__title { flex-shrink:0; }
+.menu-panel__list { flex:1; min-height:0; }
+.menu-item[data-menu-key="hall-of-fame"] { gap:8px; padding-inline:10px; }
+.menu-item[data-menu-key="hall-of-fame"] .menu-item__label { font-size:17px; }

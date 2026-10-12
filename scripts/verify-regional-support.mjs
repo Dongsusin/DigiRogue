@@ -1,3 +1,4 @@
+import { advanceRunTurn, createRunStats } from '../src/progression/hallOfFame.js'
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
@@ -11,7 +12,7 @@ import { buildTurnPreview } from '../src/battle/commandPreview.js'
 const manifest = JSON.parse(fs.readFileSync(new URL('../src/data/digimonModelManifest.json', import.meta.url)))
 const maps = JSON.parse(fs.readFileSync(new URL('../data/map.json', import.meta.url)))
 const unit = (id, extra = {}) => ({ id, name: '아구몬', imageName: '아구몬', level: 25, maxHp: 100, currentHp: 75, speed: 20, attack: 30, specialAttack: 25, skills: ['가짜 공격'], skillCooldowns: {}, activeBuffs: {}, battleItems: {}, ...extra })
-const state = (extra = {}) => { const a = unit('a'), b = unit('b'); return { currentMap: '시작의마을', currentStage: 10, levelCap: 25, party: [a,b], player: a, activeAllyIds: ['a','b'], actingAllyId: 'a', actedAllyIds: [], pendingAllyActions: [], enemies: [unit('boss',{isBoss:true})], inventory: {}, gold:10000, eventMemory:{regions:{시작의마을:{trust:2}}}, ...extra } }
+const state = (extra = {}) => { const a = unit('a'), b = unit('b'); return { runStats: createRunStats(1000), currentMap: '시작의마을', currentStage: 10, levelCap: 25, party: [a,b], player: a, activeAllyIds: ['a','b'], actingAllyId: 'a', actedAllyIds: [], pendingAllyActions: [], enemies: [unit('boss',{isBoss:true})], inventory: {}, gold:10000, eventMemory:{regions:{시작의마을:{trust:2}}}, ...extra } }
 const factory = ({id,name,level}) => unit(id,{name,imageName:name,level})
 const deps = { speciesLookup: new Map(Object.keys(manifest).map(name=>[name,{이름:name}])), createCombatant:factory, refreshStats:u=>u }
 const attach = s => attachRegionalSupport(s,deps)
@@ -89,6 +90,7 @@ function appFunction(name, nextName, context, indent = '') {
   const marker = indent + 'const ' + name + ' ='
   const start = appSource.indexOf(marker), end = appSource.indexOf(indent + 'const ' + nextName + ' =', start)
   assert(start >= 0 && end > start, name + ' handler must exist')
+  context.advanceRunTurn ??= advanceRunTurn
   return vm.runInNewContext('(' + appSource.slice(start + marker.length, end).trim() + ')', context)
 }
 const lookup = (party,id) => party.find(u=>u.id===id) ?? null
@@ -246,6 +248,6 @@ test('actual App completed round removes KO helper from formation, keeps reserve
   setSelectedBattleCommand:()=>{},setSelectedSkillIndex:()=>{},queueSkillReplacementEvents:()=>{}}
  const finish=appFunction('finishResolvedTurn','startNextStage',ctx,'  ')
  finish({nextParty:c.party.map(u=>isRegionalSupport(u)?{...u,currentHp:0}:u),nextEnemies:s.enemies,logs:[],preferredActiveAllyIds:c.activeAllyIds})
- assert.equal(states.length,1);assert.deepEqual(Array.from(states[0].activeAllyIds),['a']);assert.equal(states[0].awaitingReplacement,false);assert.equal(states[0].regionalSupport.unit.currentHp,0);assert(states[0].regionalSupport.defeated);assert.equal(saved.length,1)
- const resumed=JSON.parse(JSON.stringify(saved[0]));assert.equal(battleHarness(resumed).getContext().activeAllies.length,1);assert.equal(battleHarness(resumed).getContext().activeAllies[0].id,'a')
+ assert.equal(states.length,1);assert.equal(states[0].runStats.totalTurns,1);assert.equal(s.runStats.totalTurns,0);assert.deepEqual(Array.from(states[0].activeAllyIds),['a']);assert.equal(states[0].awaitingReplacement,false);assert.equal(states[0].regionalSupport.unit.currentHp,0);assert(states[0].regionalSupport.defeated);assert.equal(saved.length,1)
+ const resumed=JSON.parse(JSON.stringify(saved[0]));assert.equal(resumed.runStats.totalTurns,1);assert.equal(battleHarness(resumed).getContext().activeAllies.length,1);assert.equal(battleHarness(resumed).getContext().activeAllies[0].id,'a')
 })

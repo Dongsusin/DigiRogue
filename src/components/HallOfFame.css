@@ -1,0 +1,58 @@
+.game-design .hall-of-fame { width:1160px; max-width:calc(100% - 48px); height:648px; max-height:calc(100% - 36px); border:1px solid #688b9f; border-top:3px solid #e7bf76; border-radius:10px; background:linear-gradient(135deg,#173044f9,#091724fc); color:#e4f2f8; box-shadow:0 20px 60px #0009,inset 0 0 0 4px #9fd6e506; font-family:var(--font-pixel); }
+.hall-of-fame .game-dialog__header { padding:18px 24px 16px; border-bottom:1px solid #35566a; }
+.hall-of-fame .game-dialog__eyebrow { color:#eac47d; letter-spacing:3px; font:10px var(--font-pixel-mono); }
+.hall-of-fame .game-dialog__header h2 { font-size:26px; color:#fff1d2; }
+.hall-of-fame .game-dialog__body { display:flex; flex-direction:column; gap:14px; min-height:0; padding:16px 20px 20px; overflow:hidden; }
+.hall-of-fame button { cursor:pointer; font:inherit; }
+.hall-of-fame button:focus-visible,.hall-of-fame__records:focus-visible { outline:2px solid #9beaff; outline-offset:3px; }
+.hall-of-fame__toolbar { display:flex; align-items:center; gap:18px; flex:none; }
+.hall-of-fame__tabs { display:flex; gap:7px; }
+.hall-of-fame__tabs button { display:flex; align-items:center; gap:20px; min-width:168px; min-height:46px; padding:10px 16px; border:1px solid #4a7086; border-radius:5px; color:#adc6d5; background:#132b3d; font-size:16px; }
+.hall-of-fame__tabs button small { font:9px var(--font-pixel-mono); color:#8caebb; }
+.hall-of-fame__tabs button[aria-selected="true"] { border-color:#e9bd70; color:#ffedc3; background:linear-gradient(110deg,#634425,#2e2a26); box-shadow:inset 0 -3px #e9bd70; }
+.hall-of-fame__tabs button[aria-selected="true"] small { color:#f2c978; }
+.hall-of-fame__sort { margin-left:auto; color:#a8c1ce; font-size:11px; }
+.hall-of-fame__refresh,.hall-of-fame__empty button { padding:10px 14px; border:1px solid #4d748a; border-radius:5px; background:#1b394b; color:#daf0fa; font-size:11px; }
+.hall-of-fame__refresh:disabled { opacity:.5; cursor:default; }
+.hall-of-fame__records { flex:1; min-height:0; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:#caad78 #0c2132; scrollbar-gutter:stable; padding:4px 8px 4px 3px; }
+.hall-of-fame__records::-webkit-scrollbar { width:7px; }
+.hall-of-fame__records::-webkit-scrollbar-track { background:#0c2132; border-radius:5px; }
+.hall-of-fame__records::-webkit-scrollbar-thumb { background:#caad78; border:1px solid #0c2132; border-radius:5px; }
+.hall-of-fame__list { display:flex; flex-direction:column; gap:10px; list-style:none; padding:0; margin:0; }
+.hall-record { display:grid; grid-template-columns:60px minmax(0,1fr) 164px; align-items:center; gap:12px; min-height:104px; padding:12px; border:1px solid #33546b; border-radius:7px; background:linear-gradient(110deg,#142d3f,#102335); }
+.hall-record--podium { border-color:#8a7654; background:linear-gradient(110deg,#3c352b99,#142c3e 24%,#102335); }
+.hall-record:first-child { border-color:#d4ad65; box-shadow:inset 3px 0 #d4ad65; }
+.hall-record__rank { display:flex; flex-direction:column; align-items:center; gap:2px; color:#8bb3c6; font:25px var(--font-pixel-mono); }
+.hall-record--podium .hall-record__rank { color:#f6d99a; }
+.hall-record__rank svg { width:25px; height:25px; }
+.hall-record__team { display:grid; grid-template-columns:repeat(8,minmax(0,1fr)); align-items:start; gap:4px; }
+.hall-record__member { display:flex; flex-direction:column; align-items:center; gap:5px; min-width:0; min-height:86px; padding:4px 2px 5px; border:1px solid transparent; border-radius:5px; background:transparent; color:#c5deea; }
+.hall-record__member:hover,.hall-record__member:focus-visible { background:#2b5267; border-color:#8fd6e6; color:#fff; }
+.hall-record__member img { display:block; width:100%; max-width:68px; height:62px; object-fit:contain; image-rendering:auto; filter:drop-shadow(0 4px 5px #0005); }
+.hall-record__member span { width:100%; font-size:9px; line-height:1.45; overflow-wrap:anywhere; text-align:center; }
+.hall-record__result { display:flex; flex-direction:column; align-items:flex-end; gap:7px; padding-right:6px; font-size:11px; color:#c3d6df; }
+.hall-record__result strong { color:#ffdb88; font:26px var(--font-pixel-mono); }
+.hall-record__result strong small { margin-left:6px; font:11px var(--font-pixel); }
+.hall-record__result time,.hall-record__result>small { color:#8daebb; font-size:10px; }
+.hall-of-fame__empty { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; min-height:360px; text-align:center; color:#aac4d4; font-size:13px; }
+.hall-of-fame__empty>svg { width:72px; height:72px; color:#e0bc79; opacity:.8; }
+.hall-of-fame__empty h3,.hall-of-fame__empty p { margin:0; line-height:1.7; }
+.hall-of-fame__empty h3 { color:#f6dfac; font-size:19px; }
+.game-design .hall-member-tooltip { padding:12px; gap:10px; font-family:var(--font-pixel); }
+.hall-member-tooltip .game-popover__header { padding:0 0 8px; border-bottom:1px solid #385b70; }
+.hall-member-tooltip__stats { display:grid; grid-template-columns:repeat(5,1fr); gap:5px; margin:0 0 10px; }
+.hall-member-tooltip__stats div { display:grid; gap:5px; padding:6px 3px; text-align:center; background:#163347; border-radius:3px; }
+.hall-member-tooltip__stats dt { color:#9dbdcd; font-size:9px; }
+.hall-member-tooltip__stats dd { margin:0; color:#ffe3a7; font:11px var(--font-pixel-mono); }
+.hall-member-tooltip h3 { margin:10px 0 7px; font-size:11px; color:#98daeb; }
+.hall-member-tooltip__skills { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:5px; padding:0; margin:0; list-style:none; }
+.hall-member-tooltip__skills li { display:flex; flex-direction:column; gap:5px; padding:7px; background:#18364a; border:1px solid #34576a; border-radius:4px; min-width:0; }
+.hall-member-tooltip__skills strong { font-size:10px; font-weight:normal; overflow-wrap:anywhere; }
+.hall-member-tooltip__skills small { color:#a6bccb; font-size:8px; line-height:1.4; }
+.hall-member-tooltip__items { display:grid; grid-template-columns:repeat(10,minmax(0,1fr)); gap:4px; padding:0; margin:0; list-style:none; }
+.hall-member-tooltip__items li { position:relative; display:grid; place-items:center; aspect-ratio:1; background:#17374b; border:1px solid #3f6a7e; border-radius:3px; }
+.hall-member-tooltip__items img { width:25px; height:25px; object-fit:contain; }
+.hall-member-tooltip__items b { position:absolute; right:0; bottom:0; padding:0 2px; border-radius:2px; color:#ffe3a7; background:#071827e8; font:8px var(--font-pixel-mono); }
+.hall-member-tooltip__items span { font-size:7px; overflow-wrap:anywhere; }
+.hall-member-tooltip__none { color:#91adbd; margin:0; font-size:10px; }
+.hall-clear-notice { position:absolute; bottom:12px; left:18px; max-width:460px; z-index:7; padding:9px 13px; border:1px solid #bfa36b; border-radius:5px; background:#132c3eef; color:#e5d2a8; font-size:11px; pointer-events:none; }

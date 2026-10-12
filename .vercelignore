@@ -23,3 +23,6 @@ playwright-report
 playwright-report/**
 test-results
 test-results/**
+
+.tmp-convert
+.tmp-convert/**

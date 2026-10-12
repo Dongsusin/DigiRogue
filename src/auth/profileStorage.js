@@ -1,7 +1,10 @@
+import { HALL_STORAGE_KEY, requeueImportedHallLedger } from '../progression/hallOfFame.js'
+
 export const PROFILE_PROGRESS_KEYS = Object.freeze([
   'digirogue-collection-v1', 'digirogue-scan-progress-v1', 'digirogue-trainer-skills-v1',
   'digirogue-town-v1', 'digirogue-regional-trust-v1', 'digirogue-modes-v1',
   'digirogue-save-v1', ...[1, 2, 3].map(n => 'digirogue-save-slot-' + n + '-v1'),
+  'digirogue-hall-of-fame-v1',
   'digirogue-settings-v1', 'digirogue-local-migration-v1',
 ])
 export const accountStorageKey = (uid, key) => 'digirogue-account:' + encodeURIComponent(uid) + ':' + key
@@ -12,8 +15,9 @@ export function importGuestProgress(storage, uid) {
   const copied = []
   try {
     for (const key of PROFILE_PROGRESS_KEYS) {
-      const value = storage.getItem(key)
-      if (value === null) continue
+      const original = storage.getItem(key)
+      if (original === null) continue
+      const value = key === HALL_STORAGE_KEY ? requeueImportedHallLedger(original) : original
       const destination = accountStorageKey(uid, key)
       storage.setItem(destination, value)
       copied.push(destination)

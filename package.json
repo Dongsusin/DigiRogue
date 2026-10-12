@@ -38,7 +38,9 @@
     "test:matchups": "node --test scripts/verify-matchup-balance.mjs",
     "test:download": "node --test scripts/verify-game-download.mjs",
     "test:community": "node --test scripts/verify-community.mjs",
-    "test:community:rules": "node --test scripts/verify-community-rules.mjs"
+    "test:community:rules": "node --test scripts/verify-community-rules.mjs",
+    "test:hall": "node --test scripts/verify-hall-of-fame.mjs scripts/verify-hall-client.mjs",
+    "test:hall:rules": "node --test scripts/verify-hall-rules.mjs"
   },
   "dependencies": {
     "firebase": "^13.0.0",

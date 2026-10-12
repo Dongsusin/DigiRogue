@@ -53,6 +53,130 @@
           ".validate": "newData.val() === true"
         }
       }
+    },
+    "hallOfFame": {
+      "$mode": {
+        ".validate": "$mode === 'classic' || $mode === 'hard'",
+        "entries": {
+          ".read": "auth != null && query.orderByChild === 'totalTurns' && query.limitToFirst > 0 && query.limitToFirst <= 10",
+          ".indexOn": [
+            "totalTurns"
+          ],
+          "$uid": {
+            ".read": "auth != null && auth.uid === $uid",
+            ".write": "auth != null && auth.uid === $uid && newData.exists()",
+            ".validate": "($mode === 'classic' || $mode === 'hard') && newData.hasChildren(['version','mode','runId','stage','totalTurns','startedAtMs','clearedAt','mapName','team']) && (!data.exists() || newData.child('totalTurns').val() < data.child('totalTurns').val()) && newData.child('clearedAt').val() === now && newData.child('startedAtMs').val() <= now",
+            "version": {
+              ".validate": "newData.val() === 1"
+            },
+            "mode": {
+              ".validate": "newData.val() === $mode"
+            },
+            "runId": {
+              ".validate": "newData.isString() && newData.val().matches(/^[a-zA-Z0-9_-]{1,120}$/)"
+            },
+            "stage": {
+              ".validate": "newData.val() === 200"
+            },
+            "totalTurns": {
+              ".validate": "newData.isNumber() && newData.val() % 1 === 0 && newData.val() >= 1 && newData.val() <= 2000000"
+            },
+            "startedAtMs": {
+              ".validate": "newData.isNumber() && newData.val() % 1 === 0 && newData.val() > 0"
+            },
+            "clearedAt": {
+              ".validate": "newData.isNumber()"
+            },
+            "mapName": {
+              ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 80"
+            },
+            "team": {
+              ".validate": "newData.hasChildren(['0'])",
+              "$index": {
+                ".validate": "$index.matches(/^[0-7]$/) && (newData.hasChildren(['name','isEgg']) && (newData.child('isEgg').val() === true ? newData.hasChildren(['eggName','eggStagesRemaining']) : newData.hasChildren(['imageName','level','speciesStage','type','attribute','maxHp','currentHp','attack','defense','specialAttack','specialDefense','speed'])))",
+                "name": {
+                  ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 80"
+                },
+                "isEgg": {
+                  ".validate": "newData.isBoolean()"
+                },
+                "eggName": {
+                  ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 80"
+                },
+                "eggStagesRemaining": {
+                  ".validate": "newData.isNumber() && newData.val() % 1 === 0 && newData.val() >= 0 && newData.val() <= 1000"
+                },
+                "imageName": {
+                  ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 80"
+                },
+                "level": {
+                  ".validate": "newData.isNumber() && newData.val() % 1 === 0 && newData.val() >= 1 && newData.val() <= 1000"
+                },
+                "speciesStage": {
+                  ".validate": "newData.isString() && newData.val().length >= 0 && newData.val().length <= 40"
+                },
+                "type": {
+                  ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 40"
+                },
+                "attribute": {
+                  ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 40"
+                },
+                "maxHp": {
+                  ".validate": "newData.isNumber() && newData.val() % 1 === 0 && newData.val() >= 0 && newData.val() <= 9007199254740991"
+                },
+                "currentHp": {
+                  ".validate": "newData.isNumber() && newData.val() % 1 === 0 && newData.val() >= 0 && newData.val() <= 9007199254740991"
+                },
+                "attack": {
+                  ".validate": "newData.isNumber() && newData.val() % 1 === 0 && newData.val() >= 0 && newData.val() <= 9007199254740991"
+                },
+                "defense": {
+                  ".validate": "newData.isNumber() && newData.val() % 1 === 0 && newData.val() >= 0 && newData.val() <= 9007199254740991"
+                },
+                "specialAttack": {
+                  ".validate": "newData.isNumber() && newData.val() % 1 === 0 && newData.val() >= 0 && newData.val() <= 9007199254740991"
+                },
+                "specialDefense": {
+                  ".validate": "newData.isNumber() && newData.val() % 1 === 0 && newData.val() >= 0 && newData.val() <= 9007199254740991"
+                },
+                "speed": {
+                  ".validate": "newData.isNumber() && newData.val() % 1 === 0 && newData.val() >= 0 && newData.val() <= 9007199254740991"
+                },
+                "skills": {
+                  "$index": {
+                    ".validate": "$index.matches(/^[0-7]$/) && newData.isString() && newData.val().length > 0 && newData.val().length <= 80"
+                  },
+                  ".validate": "newData.hasChildren()"
+                },
+                "items": {
+                  "$index": {
+                    ".validate": "$index.matches(/^([0-9]|[1-7][0-9])$/) && newData.hasChildren(['id','name','count'])",
+                    "id": {
+                      ".validate": "newData.isString() && newData.val().matches(/^[a-zA-Z0-9_-]{1,120}$/)"
+                    },
+                    "name": {
+                      ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 80"
+                    },
+                    "count": {
+                      ".validate": "newData.isNumber() && newData.val() % 1 === 0 && newData.val() >= 1 && newData.val() <= 999"
+                    },
+                    "$other": {
+                      ".validate": false
+                    }
+                  },
+                  ".validate": "newData.hasChildren()"
+                },
+                "$other": {
+                  ".validate": false
+                }
+              }
+            },
+            "$other": {
+              ".validate": false
+            }
+          }
+        }
+      }
     }
   }
 }

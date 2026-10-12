@@ -1,3 +1,4 @@
+import { advanceRunTurn, createRunStats } from '../src/progression/hallOfFame.js'
 import { prepareCombatantForStage } from '../src/battle/regionModifiers.js'
 import { pickWildEncounterNames } from '../src/progression/gameDifficulty.js'
 import { isHardMode } from '../src/progression/gameModes.js'
@@ -11,7 +12,7 @@ import { createSwitchEvents, switchOpacity, SWITCH_OUT_MS, SWITCH_IN_DELAY_MS, S
 
 const unit = (id, changes = {}) => ({ id, name: id, currentHp: 100, maxHp: 100, level: 10,
   attack: 40, defense: 40, specialAttack: 40, specialDefense: 40, speed: 40, ...changes })
-const state = (changes = {}) => { const a = unit('a'); return { currentStage: 1, party: [a], player: a,
+const state = (changes = {}) => { const a = unit('a'); return { runStats: createRunStats(1000), currentStage: 1, party: [a], player: a,
   activeAllyIds: ['a'], enemies: [unit('e')], escapeAttempts: 0, actedAllyIds: [], pendingAllyActions: [], ...changes } }
 const living = units => (units ?? []).filter(u => u && !u.isEgg && u.currentHp > 0)
 const lookup = (units, id) => units.find(u => u.id === id)
@@ -20,6 +21,7 @@ function appHandler(name, nextName, context) {
   const marker = '  const ' + name + ' ='
   const start = app.indexOf(marker), end = app.indexOf('  const ' + nextName + ' =', start)
   assert(start >= 0 && end > start, 'App handler missing: ' + name)
+  context.advanceRunTurn ??= advanceRunTurn
   return vm.runInNewContext('(' + app.slice(start + marker.length, end).trim() + ')', context)
 }
 
@@ -131,7 +133,7 @@ test('App success advances once, preserves living enemy HP and grants no battle 
   assert.equal(calls.advances.length, 0); assert(calls.logs.includes('무사히 도망쳤다!'))
   assert.equal(context.hitEffectTimeoutsRef.current.length, 1)
   calls.timers[0].fn()
-  assert.equal(calls.advances.length, 1); assert.equal(calls.advances[0][0].enemies[0].currentHp, 100)
+  assert.equal(calls.advances.length, 1); assert.equal(calls.advances[0][0].runStats.totalTurns, 1); assert.equal(calls.advances[0][0].enemies[0].currentHp, 100)
   assert.equal(calls.advances[0][0].gold, 400); assert.equal(context.runAttemptInFlightRef.current, false)
   assert.equal(context.hitEffectTimeoutsRef.current.length, 0); assert.equal(JSON.stringify(s), before)
 })
