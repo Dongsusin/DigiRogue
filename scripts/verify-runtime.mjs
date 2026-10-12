@@ -4,6 +4,7 @@ import { BATTLE_CARDS, BATTLE_CONSUMABLES } from '../src/battle/battleItems.js'
 import { ADVENTURE_BATTLE_ITEMS, ADVENTURE_UTILITY_ITEMS, ADVENTURE_CONSUMABLES } from '../src/data/adventureItems.js'
 import adventureArt from '../src/data/adventureItemArt.json' with { type: 'json' }
 import cardArt from '../src/data/battleCardArt.json' with { type: 'json' }
+import evolutionArt from '../src/data/evolutionItemArt.json' with { type: 'json' }
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -78,6 +79,14 @@ assert.deepEqual(Object.keys(adventureArt).sort(), [...adventureIds].sort(), 'Un
 assert.deepEqual(fs.readdirSync(path.join(assets, 'items/adventure')).sort(),
   adventureItems.filter(item => item.imageUrl.startsWith('/items/adventure/')).map(item => path.basename(item.imageUrl)).sort(),
   'Unused/missing adventure item images')
+for (const [id, art] of Object.entries(evolutionArt)) {
+  const image = fs.readFileSync(path.join(assets, art.url))
+  if (image.readUInt32BE(0) === 0x89504e47) {
+    assert.equal(image.readUInt32BE(16), art.width, 'Evolution art width: ' + id)
+    assert.equal(image.readUInt32BE(20), art.height, 'Evolution art height: ' + id)
+  } else assert.equal(image.readUInt16BE(0), 0xffd8, 'Evolution art is not PNG/JPEG: ' + id)
+  assert.equal(crypto.createHash('sha256').update(image).digest('hex'), art.sha256, 'Evolution art changed: ' + id)
+}
 assert.deepEqual(BATTLE_CONSUMABLES.filter(item => !item.cardCode).map(item => item.id).sort(),
   ADVENTURE_CONSUMABLES.map(item => item.id).sort(), 'Missing ordinary battle supplies')
 if (process.argv.includes('--dist')) {
@@ -85,4 +94,4 @@ if (process.argv.includes('--dist')) {
   for (const match of html.matchAll(/(?:src|href)="(\/assets\/[^"]+)"/g)) assert(fs.existsSync(path.join(assets, match[1])), 'Missing entry resource ' + match[1])
   assert(!fs.existsSync(path.join(assets, 'dev')), 'Development pages shipped')
 }
-console.log(JSON.stringify({ok:true,assets,models:roster.size,clips,modelBytes:bytes,portraits:slugs.length*2,bgm:musicUrls.length,maps:Object.keys(maps).length,battleCards:cardIds.size,battleSupplies:ADVENTURE_CONSUMABLES.length,adventureItems:adventureIds.size}))
+console.log(JSON.stringify({ok:true,assets,models:roster.size,clips,modelBytes:bytes,portraits:slugs.length*2,bgm:musicUrls.length,maps:Object.keys(maps).length,battleCards:cardIds.size,battleSupplies:ADVENTURE_CONSUMABLES.length,adventureItems:adventureIds.size,evolutionItemArt:Object.keys(evolutionArt).length}))

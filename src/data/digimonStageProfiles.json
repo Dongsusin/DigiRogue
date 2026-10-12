@@ -1477,8 +1477,8 @@
     "치비카메몬": {
       "stage": "성장기",
       "trainingStage": "성장기",
-      "directory": "kamemon",
-      "note": "Xros Wars design variant of Kamemon; uses the base species generation, not an independent official encyclopedia entry."
+      "note": "Form-specific reference-book entry was not verified. Fusion Fighters model provenance establishes identity, not official stage or attribute; preserve existing game classification.",
+      "source": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304505/"
     },
     "큐트몬": {
       "stage": "성장기",
@@ -1598,7 +1598,7 @@
     "메탈그레이몬": {
       "stage": "완전체",
       "trainingStage": "완전체",
-      "directory": "metalgreymon"
+      "directory": "metalgreymon-v"
     },
     "메탈티라노몬": {
       "stage": "완전체",

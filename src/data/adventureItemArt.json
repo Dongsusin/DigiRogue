@@ -134,14 +134,14 @@
   "beast-spirit-fire": {
     "name": "불의 비스트 스피릿",
     "sourcePage": "https://digimon.net/profile/report014/",
-    "sourceImage": "https://digimon.net/profile/images/profile/kodai/img_kodai_02.png",
+    "sourceImage": "https://digimon.net/profile/images/profile/kodai/img_kodai_01.png",
     "sourceKind": "official-art",
     "url": "/items/adventure/beast-spirit-fire.png",
     "width": 420,
     "height": 320,
-    "sha256": "62b7b45b2f5ca6bb2f0be779d1e1a7c598e310a79bc689838f8745822f88d379",
+    "sha256": "de0604c884b6a9539c09b6bf5035d6b866fafcf0017b262753986c2669adca62",
     "modification": "none",
-    "retrievedAt": "2026-09-30"
+    "retrievedAt": "2026-10-12"
   },
   "beast-spirit-light": {
     "name": "빛의 비스트 스피릿",

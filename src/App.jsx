@@ -279,6 +279,7 @@ const parseSavedGameState = (rawSaveData) => {
       if (!speciesData || (ally && !isPlayableDigimon(speciesData))) return null
       const current = hydrateDigimonPassive({ ...unit, name: speciesData.이름, imageName: speciesData.이름,
         speciesStage: speciesData.stage, speciesData, imageUrl: speciesData.imageUrl,
+        type: speciesData.타입 ?? '무', attribute: speciesData.속성 ?? '무',
         evolutionHistory: (unit.evolutionHistory ?? []).filter(name => allDigimonLookup.has(name) && isPlayableDigimon(name)),
         ...(ally || isRegionalSupport(unit) ? { enemyGameMode: undefined } : { enemyStage: Number(savedGameState.currentStage), enemyGameMode: gameMode }), trainerSkills: ally ? trainerSkills : {} })
       const refreshed = refreshCombatantStats(unit.balanceRevision === BALANCE_REVISION && unit.speciesStage === speciesData.stage ? current
