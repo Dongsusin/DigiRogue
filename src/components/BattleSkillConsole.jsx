@@ -2,6 +2,7 @@ import { CombatantTraits } from './CombatantSummary.jsx'
 import { useCallback, useLayoutEffect, useRef, useState } from 'react'
 import { MatchupBadge } from './BattleInfo.jsx'
 import SkillInfoTooltip from './SkillInfoTooltip.jsx'
+import useSkillReorderDrag from './useSkillReorderDrag.js'
 import './BattleSkillConsole.css'
 
 export function BattleCommandIcon({ command = 'attack' }) {
@@ -25,6 +26,10 @@ export default function BattleSkillConsole({ actor, skills, targets, selectedSki
   const reorder = (name, index) => {
     if (onReorderSkill?.(name, index)) setOrderNotice(`${name} · ${index + 1}번으로 이동했습니다.`)
   }
+  const learnedNames = actor.skills ?? []
+  const skillDrag = useSkillReorderDrag({ rootRef, names: learnedNames,
+    enabled: !choosingTarget && Boolean(onReorderSkill), onReorder: reorder,
+    onStart: () => { setDetail(null); setOrderNotice(''); onClearSkill?.() } })
 
   // Focus the console, not a skill: opening with a mouse must not show a keyboard tooltip.
   useLayoutEffect(() => { rootRef.current?.focus({ preventScroll: true }) }, [])
@@ -34,6 +39,7 @@ export default function BattleSkillConsole({ actor, skills, targets, selectedSki
     setDetail(null)
   }, [detail, onClearSkill])
   const preview = (skill, event, mode) => {
+    if (skillDrag.isDragging()) return
     if (detail?.mode === 'pinned') return
     if (mode === 'pointer' && event.pointerType === 'touch') return
     if (mode === 'focus' && !event.currentTarget.matches(':focus-visible')) return
@@ -43,11 +49,13 @@ export default function BattleSkillConsole({ actor, skills, targets, selectedSki
     setDetail(current => current?.mode === 'pinned' ? current : { skill, anchor, point, mode })
   }
   const clearPreview = (event) => {
+    if (skillDrag.isDragging()) return
     const anchor = event.currentTarget
     if (detail?.anchor === anchor && detail.mode !== 'pinned') onClearSkill?.()
     setDetail(current => current?.anchor === anchor && current.mode !== 'pinned' ? null : current)
   }
   const pin = (skill, event) => {
+    if (skillDrag.suppressClick(event)) { event.preventDefault(); return }
     const closing = detail?.mode === 'pinned' && detail.skill.name === skill.name
     setOrderNotice('')
     if (closing) onClearSkill?.()
@@ -64,6 +72,7 @@ export default function BattleSkillConsole({ actor, skills, targets, selectedSki
   const navigate = (event) => {
     if (event.key === 'Escape') {
       event.preventDefault()
+      if (skillDrag.cancel()) return
       if (choosingTarget) onBack()
       else closeConsole()
       return
@@ -79,13 +88,14 @@ export default function BattleSkillConsole({ actor, skills, targets, selectedSki
     buttons[index].focus()
   }
   const infoButton = (skill) => <button type="button" className="digi-skill__info" aria-label={`${skill.name} 기술 정보`}
+    {...skillDrag.handlers(skill.name)}
     aria-haspopup="dialog" aria-expanded={detail?.mode === 'pinned' && tooltipSkill === skill.index}
     onPointerEnter={event => preview(skill, event, 'pointer')} onPointerLeave={clearPreview}
     onFocus={event => preview(skill, event, 'focus')} onBlur={clearPreview} onClick={event => pin(skill, event)}>
     <span aria-hidden="true">i</span>
   </button>
 
-  return <section className="digi-skill-console" aria-label="기술 명령" ref={rootRef} tabIndex={-1} onKeyDown={navigate}>
+  return <section className={`digi-skill-console${skillDrag.drag ? ' digi-skill-console--dragging' : ''}`} aria-label="기술 명령" ref={rootRef} tabIndex={-1} onKeyDown={navigate}>
     <header className="digi-skill-console__header">
       <div className="digi-skill-console__portrait" tabIndex={0} aria-label={actor.name + ' 정보 보기'}
         onPointerEnter={event => { dismissDetail(); onInspect?.(event, actor) }} onFocus={event => { dismissDetail(); onInspect?.(event, actor) }}><img src={actor.imageUrl} alt="" /></div>
@@ -114,7 +124,8 @@ export default function BattleSkillConsole({ actor, skills, targets, selectedSki
         </button>)}
       </div>
     </> : <div className="digi-skill-console__list" aria-label="기술 목록">
-      {skills.map(skill => <div key={skill.name} className={`digi-skill${tooltipSkill === skill.index ? ' digi-skill--active' : ''}`}>
+      {skills.map(skill => <div key={skill.name} data-reorder-name={learnedNames.includes(skill.name) ? skill.name : undefined}
+        className={`digi-skill${tooltipSkill === skill.index ? ' digi-skill--active' : ''}${skillDrag.drag?.name === skill.name ? ' digi-skill--dragged' : ''}${skillDrag.drag?.slot === skill.index ? ' digi-skill--insert-before' : ''}${skillDrag.drag?.slot === learnedNames.length && skill.index === learnedNames.length - 1 ? ' digi-skill--insert-after' : ''}`}>
         <button type="button" className="digi-skill__execute" data-skill-command aria-label={`${skill.name} 선택`}
           disabled={skill.remainingCooldown > 0}
           onPointerEnter={event => preview(skill, event, 'pointer')} onPointerLeave={clearPreview}
@@ -129,11 +140,12 @@ export default function BattleSkillConsole({ actor, skills, targets, selectedSki
       </div>)}
     </div>}
     <footer className="digi-skill-console__footer">
-      {choosingTarget ? <button type="button" onClick={onBack}>← 기술 다시 선택</button> : <span>ⓘ 기술 정보 · 순서 변경</span>}
+      {choosingTarget ? <button type="button" onClick={onBack}>← 기술 다시 선택</button> : <span role="status" aria-live="polite">{orderNotice || 'ⓘ 클릭: 정보 · 드래그: 순서 변경'}</span>}
       <span className="digi-skill-console__keyboard">↑↓ 이동 · Enter 선택 · Esc 닫기</span>
       <span className="digi-skill-console__touch">{choosingTarget ? '대상을 누르면 명령 전송' : '기술을 눌러 명령 전송'}</span>
     </footer>
-    {detailSkill && <SkillInfoTooltip detail={{ ...detail, skill: detailSkill }} onDismiss={dismissDetail}
-      skillNames={actor.skills ?? []} onReorderSkill={onReorderSkill ? reorder : null} orderNotice={orderNotice} />}
+    {skillDrag.drag && <div className="digi-skill-drag-preview" aria-hidden="true"
+      style={{ left: skillDrag.drag.x, top: skillDrag.drag.y }}>{skillDrag.drag.name}</div>}
+    {detailSkill && <SkillInfoTooltip detail={{ ...detail, skill: detailSkill }} onDismiss={dismissDetail} />}
   </section>
 }

@@ -1,5 +1,16 @@
 import { isRegionalSupport } from './regionalSupport.js'
 
+// Slots describe gaps in the displayed list, before removing the dragged row.
+export function getSkillDropTarget(rows, bounds, point, sourceIndex) {
+  if (!rows.length || sourceIndex < 0 || sourceIndex >= rows.length ||
+    !Number.isFinite(point.x) || !Number.isFinite(point.y) ||
+    point.x < bounds.left || point.x > bounds.right || point.y < bounds.top || point.y > bounds.bottom) return null
+  const before = rows.findIndex(row => point.y < (row.top + row.bottom) / 2)
+  const slot = before < 0 ? rows.length : before
+  const index = slot > sourceIndex ? slot - 1 : slot
+  return index === sourceIndex ? null : { slot, index }
+}
+
 // Reuse the learned-skill array used by commands, level-ups and save snapshots.
 // Only the two copies of this party member change; a move is never a battle action.
 export function reorderBattleSkill(state, combatantId, skillName, targetIndex) {

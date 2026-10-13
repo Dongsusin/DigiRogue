@@ -5,7 +5,7 @@ import { localSkillPointer, placeSkillTooltip } from '../layout/skillTooltipLayo
 import { TargetMatchups } from './BattleInfo.jsx'
 import { CRITICAL_HIT_CHANCE, CRITICAL_HIT_MULTIPLIER } from '../balance/combat.js'
 
-export default function SkillInfoTooltip({ detail, onDismiss, skillNames = [], onReorderSkill, orderNotice }) {
+export default function SkillInfoTooltip({ detail, onDismiss }) {
   const { skill, anchor, mode, point } = detail
   const container = anchor?.closest('.adventure-stage')
   const panelRef = useRef(null)
@@ -90,20 +90,6 @@ export default function SkillInfoTooltip({ detail, onDismiss, skillNames = [], o
         <h3>{skill.name}</h3>
         <p>{skill.attribute} · {skill.category} · {skill.range}</p>
       </header>
-      {pinned && onReorderSkill && skillNames.includes(skill.name) && skillNames.length > 1 && (
-        <fieldset className="skill-order" aria-label="기술 순서 변경">
-          <legend>기술 순서 <span>{String(skill.index + 1).padStart(2, '0')} / {String(skillNames.length).padStart(2, '0')}</span></legend>
-          <div className="skill-order__positions">
-            {skillNames.map((name, index) => <button type="button" key={index}
-              aria-label={`${index + 1}번 위치로 이동`} title={name}
-              aria-pressed={name === skill.name} aria-disabled={name === skill.name}
-              onClick={() => { if (name !== skill.name) onReorderSkill(skill.name, index) }}>
-              {String(index + 1).padStart(2, '0')}
-            </button>)}
-          </div>
-          <p className="skill-order__notice" role="status" aria-live="polite">{orderNotice}</p>
-        </fieldset>
-      )}
       <dl className="skill-info-tooltip__stats">
         <div><dt>위력</dt><dd>{skill.power ?? '—'}</dd></div>
         <div><dt>명중률</dt><dd>{skill.accuracy ?? '—'}</dd></div>
@@ -117,6 +103,6 @@ export default function SkillInfoTooltip({ detail, onDismiss, skillNames = [], o
         : `${skill.range.replace('1마리', '한 마리')}에게 ${skill.attribute} 속성의 ${skill.category.replace('형', '')} 공격을 가합니다.`)}</p>
       <TargetMatchups skillName={skill.name} support={skill.support} targets={skill.targets} />
       {!skill.support && <p className="skill-info-tooltip__cooldown">명중 시 치명타 확률 {CRITICAL_HIT_CHANCE * 100}% · 피해 {CRITICAL_HIT_MULTIPLIER}배. 상성과 별도로 적용됩니다.</p>}
-      {!pinned && <p className="skill-info-tooltip__hint">ⓘ 버튼으로 기술 정보와 순서 변경을 열 수 있습니다.</p>}
+      {!pinned && <p className="skill-info-tooltip__hint">ⓘ 클릭: 기술 정보 · 누른 채 드래그: 순서 변경</p>}
     </aside>, container)
 }

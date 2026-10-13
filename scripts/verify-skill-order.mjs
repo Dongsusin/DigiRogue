@@ -1,6 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { reorderBattleSkill } from '../src/battle/skillOrder.js'
+import * as skillOrder from '../src/battle/skillOrder.js'
 import { loadBattleEngine } from './lib/battle-engine-fixture.mjs'
 
 const engine = await loadBattleEngine()
@@ -86,4 +87,32 @@ test('manual resume, new stages and normal level-ups retain the learned skill or
     const staged = engine.prepareCombatantForStage(restored.player, { mapChanged }, engine.refreshCombatantStats)
     assert.deepEqual(staged.skills, next.player.skills)
   }
+})
+
+const dropRows = [
+  { top: 100, bottom: 156 }, { top: 164, bottom: 220 },
+  { top: 228, bottom: 284 }, { top: 292, bottom: 348 },
+]
+const dropBounds = { left: 20, right: 550, top: 90, bottom: 360 }
+
+test('dropping between skills inserts there rather than swapping with a row or overshooting downward', () => {
+  assert.deepEqual(skillOrder.getSkillDropTarget(dropRows, dropBounds, { x: 500, y: 224 }, 0), { slot: 2, index: 1 })
+  assert.deepEqual(skillOrder.getSkillDropTarget(dropRows, dropBounds, { x: 500, y: 160 }, 3), { slot: 1, index: 1 })
+  assert.deepEqual(skillOrder.getSkillDropTarget(dropRows, dropBounds, { x: 500, y: 94 }, 3), { slot: 0, index: 0 })
+  assert.deepEqual(skillOrder.getSkillDropTarget(dropRows, dropBounds, { x: 500, y: 354 }, 0), { slot: 4, index: 3 })
+})
+
+test('dropping outside the skill list or beside the original position cannot reorder', () => {
+  for (const point of [{x:19,y:160},{x:551,y:160},{x:500,y:89},{x:500,y:361},{x:NaN,y:160}])
+    assert.equal(skillOrder.getSkillDropTarget(dropRows, dropBounds, point, 0), null)
+  assert.equal(skillOrder.getSkillDropTarget(dropRows, dropBounds, {x:500,y:160}, 0), null)
+  assert.equal(skillOrder.getSkillDropTarget(dropRows, dropBounds, {x:500,y:224}, 2), null)
+  assert.equal(skillOrder.getSkillDropTarget([], dropBounds, {x:500,y:160}, 0), null)
+})
+
+test('insertion uses displayed row bounds after viewport scaling and list scrolling', () => {
+  const rows = [{top:20,bottom:62},{top:68,bottom:110},{top:116,bottom:158},{top:164,bottom:206}]
+  const bounds = {left:10,right:400,top:60,bottom:180}
+  assert.deepEqual(skillOrder.getSkillDropTarget(rows,bounds,{x:370,y:113},3),{slot:2,index:2})
+  assert.equal(skillOrder.getSkillDropTarget(rows,bounds,{x:370,y:59},3),null)
 })
