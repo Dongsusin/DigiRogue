@@ -84,6 +84,7 @@ import { appendBattleHistory } from './battle/battleInfo.js'
 import { getEnemyTargetIds, buildTurnPreview, getPlannedAllyIds, getBattleFocus } from './battle/commandPreview.js'
 import { recordEncounterAnalysis as recordAnalysisEncounter, getAnalysisProgress, addAnalysis, canScanSpecies, withoutUnlockedAnalysis, describeAnalysisGains, hatchAnalyzedDigimon,
   createRewardCheckpoint, restoreRewardCheckpoint, ANALYSIS_SCAN_GAIN, ANALYSIS_SCAN_MS } from './battle/digimonAnalysis.js'
+import { getRemodelCandidates, getPendingPortalDestination } from './adventure/anomalyEvents.js'
 import { createExplorationEvent, resolveExplorationChoice, upgradeExplorationEvent } from './adventure/explorationEvents.js'
 import { completeStoryBattle, upgradeRegionalTrustMemory } from './adventure/storyEvents.js'
 import { attachRegionalSupport, isRegionalSupport, ownedBattleUnits, hasLivingOwnedAlly, regionalBattleContext, commitRegionalBattleState, getRegionalSupportSkill } from './battle/regionalSupport.js'
@@ -3021,6 +3022,7 @@ const createEvolvedCombatant = (combatant, targetData) => {
         ? 0
         : Math.max(1, Math.min(evolvedCombatant.maxHp, Math.floor(evolvedCombatant.maxHp * hpRatio))),
     evolutionHistory: [...(combatant.evolutionHistory ?? []), combatant.name],
+    ...(combatant.unpaidEvolutionSteps?.length ? { unpaidEvolutionSteps: [...combatant.unpaidEvolutionSteps] } : {}),
   }
 }
 
@@ -3146,6 +3148,7 @@ const createJogressCombatant = (primaryCombatant, partnerCombatants, targetData)
     pendingJogressSkills: allSkills.filter(name => !jogressCombatant.skills.includes(name)),
     currentHp: Math.max(1, Math.min(jogressCombatant.maxHp, Math.floor(jogressCombatant.maxHp * hpRatio))),
     evolutionHistory: [...(primaryCombatant.evolutionHistory ?? []), primaryCombatant.name],
+    ...(primaryCombatant.unpaidEvolutionSteps?.length ? { unpaidEvolutionSteps: [...primaryCombatant.unpaidEvolutionSteps] } : {}),
   }
 }
 
@@ -3200,6 +3203,7 @@ const createReturnedEvolutionCombatant = (combatant) => {
         ? 0
         : Math.max(1, Math.min(returnedCombatant.maxHp, Math.floor(returnedCombatant.maxHp * hpRatio))),
     evolutionHistory: nextHistory,
+    ...(combatant.unpaidEvolutionSteps?.length ? { unpaidEvolutionSteps: combatant.unpaidEvolutionSteps.filter(index => index < nextHistory.length) } : {}),
   }
 }
 
@@ -3385,6 +3389,9 @@ const progressDigiEggPartyByStage = (party, inventory = {}) => {
     hatchLogs,
   }
 }
+
+const explorationContext = { speciesLookup: allDigimonLookup, mapNames: Object.keys(mapData),
+  eggs: digiEggData, evolve: createEvolvedCombatant, createEgg: createDigiEggCombatant }
 
 const getEnemyLevelRangeForStage = (stage, gameMode = 'classic') => getStageEnemyLevelRange(stage, gameMode)
 
@@ -6313,7 +6320,7 @@ function App() {
     const eggProgressResult = isDailyMode(currentGameState) ? { nextParty: syncPartyMember(currentGameState.party, currentPlayer), hatchLogs: [] } : progressDigiEggPartyByStage(
       syncPartyMember(currentGameState.party, currentPlayer), currentGameState.inventory
     )
-    const didMoveMap = isMapMoveStage(nextStageNum)
+    const didMoveMap = isMapMoveStage(nextStageNum) || mapName !== currentGameState.currentMap
     const nextParty = eggProgressResult.nextParty.map(unit => enforceCombatantLevelCap(
       prepareCombatantForStage(unit, { mapChanged: didMoveMap || mapName !== currentGameState.currentMap }, refreshCombatantStats),
       levelCap, refreshCombatantStats))
@@ -6343,6 +6350,7 @@ function App() {
       regionalSupport: null,
       currentStage: nextStageNum,
       explorationEvent: null,
+      pendingPortalMap: null,
       rewardCheckpoint: null,
       currentMap: mapName,
       encounterGroup,
@@ -6408,7 +6416,7 @@ function App() {
       return
     }
 
-    const explorationEvent = createExplorationEvent(currentGameState, { cleared, totalStages: getModeStageLimit(currentGameState) })
+    const explorationEvent = createExplorationEvent(currentGameState, { cleared, totalStages: getModeStageLimit(currentGameState), ...explorationContext })
     if (explorationEvent) {
       const nextState = { ...currentGameState, explorationEvent }
       explorationActionRef.current = { choice: false, continue: false }
@@ -6419,6 +6427,12 @@ function App() {
       setItemTooltip(null)
       setBattlePanelMode('logs')
       showImmediateBattleLogs('길목에서 잠시 여정을 준비할 기회를 찾았다.')
+      return
+    }
+
+    const portalDestination = getPendingPortalDestination(currentGameState, explorationContext.mapNames)
+    if (portalDestination) {
+      startNextStage({ currentGameState, currentPlayer, nextStageNum, mapName: portalDestination })
       return
     }
 
@@ -6468,7 +6482,7 @@ function App() {
     if (explorationActionRef.current.choice || !gameState?.explorationEvent) return
     if (typeof choiceId === 'object' && explorationActionRef.current.revision === choiceId.revision) return
     const currentState = { ...gameState, party: syncPartyMember(gameState.party, gameState.player) }
-    const outcome = resolveExplorationChoice(currentState, choiceId, refreshCombatantStats)
+    const outcome = resolveExplorationChoice(currentState, choiceId, refreshCombatantStats, explorationContext)
     if (!outcome.ok) return
     let nextState = outcome.state
     if (outcome.requestBattle) {
@@ -6487,8 +6501,10 @@ function App() {
     }
     explorationActionRef.current.choice = Boolean(nextState.explorationEvent.result || outcome.requestBattle)
     if (typeof choiceId === 'object') explorationActionRef.current.revision = choiceId.revision
+    latestGameStateRef.current = nextState
     setGameState(nextState)
     saveStageGameState(nextState)
+    if (outcome.evolution) playEvolutionScene([outcome.evolution.from], outcome.evolution.to, () => {})
     if (outcome.logs.length) showImmediateBattleLogs(...outcome.logs)
     if (outcome.sound) gameAudio.situation(outcome.sound, { speed: gameSettings.gameSpeed })
   }
@@ -9631,7 +9647,7 @@ function App() {
               {isHistoryOpen && <BattleHistory history={battleHistory} onClose={() => setIsHistoryOpen(false)} />}
               {isTurnOrderOpen && <BattleTurnDetails rows={turnPreview} onClose={() => setIsTurnOrderOpen(false)} />}
               {effectDetailsCombatant && !isHistoryOpen && <CombatantEffectsDialog combatant={effectDetailsCombatant} statusDuration={STATUS_DURATION_TURNS} onClose={() => setEffectDetailsId(null)} />}
-              {showExplorationEvent && !isInfoDialogOpen && <ExplorationEvent key={gameState.explorationEvent.id} state={gameState} onChoose={handleExplorationChoice} onContinue={handleContinueExploration} />}
+              {showExplorationEvent && !isInfoDialogOpen && <ExplorationEvent key={gameState.explorationEvent.id} state={gameState} remodelOptions={gameState.explorationEvent.kind === 'data-remodel' ? getRemodelCandidates(gameState, allDigimonLookup) : []} onChoose={handleExplorationChoice} onContinue={handleContinueExploration} />}
               {evolutionScene ? (
                 <EvolutionCutscene key={evolutionScene.id} scene={evolutionScene} speed={gameSettings.evolutionSpeed} onComplete={finishEvolutionScene} />
               ) : null}

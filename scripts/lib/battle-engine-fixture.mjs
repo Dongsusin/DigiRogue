@@ -10,6 +10,7 @@ export async function loadBattleEngine({ difficultySource, sourceOverrides = {} 
   const root = resolve(fileURLToPath(new URL('../../', import.meta.url))).replaceAll('\\', '/')
   const directory = await mkdtemp(join(tmpdir(), 'digilog-balance-'))
   const names = ['mapData','allDigimonLookup','allSkillLookup','getSkillData','createCombatant','refreshCombatantStats',
+    'explorationContext','createDigiEggCombatant','hatchDigiEggCombatant','progressDigiEggPartyByStage',
     'buildStartingParty','buildEnemyParty','getEncounterGroupForStage','getMapEncounterGroups','getBossEncounterNamesForStage',
     'getEncounterCountForStage','getRandomConnectedMapName','getConnectedMapNames','getMapNameForStage','getLevelCapForStage','getEvolutionOptions','createEvolvedCombatant',
     'resolveAttackAction','getEnemyLevelForStage','resolveBattleTurnActions','createBattleTurnAction','createEnemyBattleTurnActions','getBattleAllyLimit',

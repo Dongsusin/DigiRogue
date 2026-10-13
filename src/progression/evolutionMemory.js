@@ -21,6 +21,8 @@ export function inferEvolutionMemory(party) {
     if (!unit || unit.isEgg) continue
     const chain = [...(Array.isArray(unit.evolutionHistory) ? unit.evolutionHistory : []), unit.name]
     for (let index = 1; index < chain.length; index++) {
+      // Machine transformations did not actually use the required catalyst.
+      if (unit.unpaidEvolutionSteps?.includes(index - 1)) continue
       const source = chain[index - 1], target = chain[index]
       if (ITEM_EVOLUTION_REQUIREMENTS[target]?.from.includes(source)) memory = rememberItemEvolution(memory, [source], target)
       const recipe = JOGRESS_RECIPES.find(entry => entry.targetName === target && entry.materials.includes(source))

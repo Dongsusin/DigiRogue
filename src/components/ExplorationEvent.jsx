@@ -1,8 +1,11 @@
+import AnomalyEncounter from './AnomalyEncounter.jsx'
+import { isAnomalyEvent } from '../adventure/anomalyEvents.js'
 import { getExplorationChoices, getExplorationIntro } from '../adventure/explorationEvents.js'
 import GameDialog from './GameDialog.jsx'
 import StoryEncounter from './StoryEncounter.jsx'
 
-export default function ExplorationEvent({ state, onChoose, onContinue }) {
+export default function ExplorationEvent({ state, remodelOptions, onChoose, onContinue }) {
+  if (isAnomalyEvent(state.explorationEvent)) return <AnomalyEncounter state={state} remodelOptions={remodelOptions} onChoose={onChoose} onContinue={onContinue} />
   return state.explorationEvent.version >= 4
     ? <StoryEncounter state={state} onChoose={onChoose} onContinue={onContinue} />
     : <LegacyExplorationEvent state={state} onChoose={onChoose} onContinue={onContinue} />

@@ -1,0 +1,49 @@
+.game-dialog.anomaly-dialog { width: min(1080px, 100%); --anomaly-accent: #9beaff; }
+.anomaly-dialog--remodel { --anomaly-accent: #ffd28b; }
+.anomaly-layout { display: grid; grid-template-columns: minmax(240px, .85fr) minmax(0, 1.3fr); gap: 24px; align-items: center; }
+.anomaly-scene { position: relative; height: 360px; overflow: hidden; border: 1px solid #528299; border-radius: 12px; isolation: isolate; background: linear-gradient(#081d3555, #081b31ed), var(--anomaly-map) center / cover; }
+.anomaly-scene__location { position: absolute; top: 16px; left: 18px; color: #b5d7e6; font-size: 12px; }
+.anomaly-scene__caption { position: absolute; bottom: 20px; inset-inline: 12px; text-align: center; color: var(--anomaly-accent); font-size: 17px; text-shadow: 0 2px 6px #071621; }
+.dimension-gate { position: absolute; inset: 60px 12% 65px; display: grid; place-items: center; }
+.dimension-gate > div { position: absolute; inset: 0; border: 3px solid #67d6f2; border-radius: 50%; box-shadow: 0 0 16px #38abe77a, inset 0 0 36px #4c85f290; background: radial-gradient(ellipse, #081629 15%, #303e8a 55%, #67c3f077 70%, transparent 72%); }
+.dimension-gate > div:nth-child(2) { inset: -10px; border: 2px dashed #94bbf6aa; background: none; animation: dimensionOrbit 24s linear infinite; box-shadow: none; }
+.dimension-gate > div:nth-child(3) { inset: 16px; border: 1px dashed #b9a7ff; background: none; animation: dimensionOrbit 18s linear infinite reverse; box-shadow: none; }
+.dimension-gate > span { z-index: 1; color: #c3d9ff; font-size: 56px; text-shadow: 0 0 20px #779aff; }
+@keyframes dimensionOrbit { to { transform: rotate(360deg); } }
+.remodel-chamber { position: absolute; inset: 50px 12% 65px; border: 1px solid #9dbdcc80; border-inline: 5px solid #55788d; border-radius: 34% 34% 10% 10%; background: linear-gradient(90deg, #3a81944d, #8ac4b00a 40%, #24617a4d); }
+.remodel-chamber__circuit { position: absolute; inset: 12px; border-block: 2px solid #cfdca566; background: repeating-linear-gradient(0deg, transparent 0 28px, #b9daa51c 29px 30px); }
+.remodel-chamber__base { position: absolute; bottom: -10px; inset-inline: -12px; height: 26px; border-radius: 50%; border: 2px solid #ffe0a0; box-shadow: 0 0 20px #e3b26466; background: #233c4b; }
+.anomaly-model { position: absolute; inset: 56px 9% 66px; }
+.anomaly-model .digimon-model-preview { width: 100%; height: 100%; }
+.anomaly-model img { width: 100%; height: 100%; object-fit: contain; }
+.anomaly-model .anomaly-egg { padding: 54px; box-sizing: border-box; }
+.anomaly-scene__symbol { position: absolute; inset: 0; display: grid; place-items: center; font-size: 68px; color: #e4c98a66; }
+.anomaly-content { min-width: 0; }
+.anomaly-content h3 { margin: 12px 0; font-size: 23px; line-height: 1.5; }
+.anomaly-content p { line-height: 1.7; overflow-wrap: anywhere; }
+.anomaly-kicker { color: var(--anomaly-accent); letter-spacing: 3px; font-size: 11px; }
+.anomaly-destination { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin: 24px 0; padding: 18px; border: 1px solid #547d96; border-radius: 8px; background: #163449; }
+.anomaly-destination strong { color: #b8efff; }
+.anomaly-destination b { color: #7eabbf; }
+.anomaly-note { color: #b7cad5; font-size: 12px; }
+.anomaly-risk { display: block; color: #ffc0a7; font-size: 12px; line-height: 1.7; }
+.anomaly-odds { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; padding: 12px 14px; background: #30392f; border: 1px solid #8d8757; border-radius: 8px; }
+.anomaly-odds strong { color: #ffe1a2; font-size: 17px; }
+.anomaly-odds span { color: #c1d3ce; font-size: 11px; }
+.remodel-party { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 18px; }
+.remodel-member { position: relative; display: flex; gap: 9px; align-items: center; min-width: 0; padding: 9px; min-height: 72px; background: #183347; border: 1px solid #50718c; border-radius: 8px; color: #e3edf5; font: inherit; text-align: left; cursor: pointer; }
+.remodel-member img { width: 48px; height: 48px; flex: 0 0 48px; object-fit: contain; }
+.remodel-member > span { display: grid; gap: 5px; min-width: 0; }
+.remodel-member strong { font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+.remodel-member small { font-size: 10px; color: #b1c5d1; line-height: 1.5; }
+.remodel-member > b { margin-left: auto; color: #ffd88e; }
+.remodel-member[aria-pressed='true'] { background: #3e3c30; border-color: #ffd082; box-shadow: inset 0 0 0 1px #ffd082; }
+.remodel-member:hover:not(:disabled) { border-color: #e7c87e; background: #304350; }
+.remodel-member:disabled { opacity: .56; cursor: default; }
+.remodel-member:focus-visible { outline: 2px solid #ffe2a5; outline-offset: 2px; }
+.anomaly-result[data-success='false'] h3 { color: #ffb99c; }
+.anomaly-result[data-success='true'] h3 { color: #bce9bc; }
+.anomaly-dialog .game-dialog__footer > button { min-width: 144px; }
+@media (max-width: 720px) { .anomaly-layout { grid-template-columns: 1fr; gap: 16px; } .anomaly-scene { height: 240px; } .anomaly-model { inset-block: 28px 42px; } .dimension-gate { inset-block: 35px 45px; } .remodel-chamber { inset-block: 26px 40px; } }
+@media (max-width: 400px) { .remodel-party { grid-template-columns: 1fr; } .anomaly-dialog .game-dialog__footer > button { min-width: 0; flex: 1; } }
+@media (prefers-reduced-motion: reduce) { .dimension-gate > div { animation: none; } }

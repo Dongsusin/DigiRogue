@@ -44,7 +44,8 @@
     "test:canon": "node --test scripts/verify-canon-catalog.mjs",
     "test:skill-order": "node --test scripts/verify-skill-order.mjs",
     "test:master-rewards": "node --test scripts/verify-master-rewards.mjs",
-    "test:evolution-investment": "node --test scripts/verify-evolution-investment.mjs"
+    "test:evolution-investment": "node --test scripts/verify-evolution-investment.mjs",
+    "test:anomalies": "node --test scripts/verify-anomaly-events.mjs"
   },
   "dependencies": {
     "firebase": "^13.0.0",

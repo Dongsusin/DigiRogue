@@ -1,3 +1,4 @@
+import { createAnomalyProgress, isAnomalyEvent, resolveAnomalyChoice } from './anomalyEvents.js'
 import { getQuestRoll } from './questRisk.js'
 import { MAP_EVENT_THEMES, getRegionalProfile, getRegionalChoices, resolveRegionalChoice } from './regionalEvents.js'
 import { STORY_EVENT_VERSION, createStoryProgress, getEventStory, getStoryChoices, resolveStoryAction } from './storyEvents.js'
@@ -7,20 +8,20 @@ const eventData = state => ({ version: 3, mapName: state.currentMap,
   theme: MAP_EVENT_THEMES[state.currentMap] ?? 'town',
   species: [...new Set((state.enemies ?? []).map(unit => unit.name ?? unit.imageName).filter(Boolean))] })
 
-export function createExplorationEvent(state, { cleared = false, totalStages = 200 } = {}) {
+export function createExplorationEvent(state, { cleared = false, totalStages = 200, random = Math.random, ...context } = {}) {
   const stage = state?.currentStage
   if (!cleared || !Number.isInteger(stage) || stage < 5 || stage >= totalStages || stage % 10 !== 5 ||
     state.explorationEvent || (state.lastExplorationEventStage ?? 0) >= stage ||
     state.enemies?.some(enemy => enemy.currentHp > 0) || !living(state).length) return null
   const data = eventData(state)
-  return { id: `exploration-${stage}`, stage, ...data, ...createStoryProgress(state, data.theme), result: null }
+  return { id: `exploration-${stage}`, stage, ...data, ...(createAnomalyProgress(state, { ...context, random }) ?? createStoryProgress(state, data.theme, random)), result: null }
 }
 
 // Pending old events enter the new story without charging anything. Claimed
 // results remain untouched so reloading cannot award their contents twice.
 export function upgradeExplorationEvent(state) {
   const event = state?.explorationEvent
-  if (!event || (event.version === STORY_EVENT_VERSION && getEventStory(event))) return state
+  if (!event || isAnomalyEvent(event) || (event.version === STORY_EVENT_VERSION && getEventStory(event))) return state
   if (event.result) return event.version ? state : { ...state, explorationEvent: { ...event, ...eventData(state) } }
   const data = eventData(state)
   const story = getEventStory(event)
@@ -46,11 +47,12 @@ export function getExplorationIntro(event) {
   return { title, story }
 }
 
-export function resolveExplorationChoice(state, choiceId, refreshStats) {
+export function resolveExplorationChoice(state, choiceId, refreshStats, context = {}) {
   const event = state?.explorationEvent
   if (!event || event.stage !== state.currentStage || event.result || (state.lastExplorationEventStage ?? 0) >= event.stage) {
     return { ok: false, state, error: '이미 처리했거나 만료된 이벤트입니다.' }
   }
+  if (isAnomalyEvent(event)) return resolveAnomalyChoice(state, choiceId, context)
   return event.version >= 4 ? resolveStoryAction(state, choiceId, refreshStats)
     : resolveRegionalChoice(legacyState(state), choiceId, refreshStats)
 }
