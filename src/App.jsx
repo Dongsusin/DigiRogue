@@ -664,7 +664,7 @@ const JOGRESS_CHIP_REWARD_ITEM = {
   id: JOGRESS_CHIP_ITEM_ID,
   name: '조그레스 칩',
   description: describeJogressRecipes(JOGRESS_RECIPES),
-  rarity: 'rare',
+  rarity: 'good',
   jogressRecipes: JOGRESS_RECIPES,
   imageUrl: '/아이템/진화/조그레스 칩.png',
 }
