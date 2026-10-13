@@ -230,7 +230,7 @@ test('all species are obtainable even when every Jogress material is required, w
 
 test('new Jogress routes require every matching leveled partner and fuse through the existing item flow', () => {
   for (const recipe of connections.jogress) {
-    const members = recipe.materials.map(name => engine.createCombatant({ id: name, name, data: lookup.get(name), level: recipe.level }))
+    const members = recipe.materials.map(name => engine.createCombatant({ id: name, name, data: lookup.get(name), level: recipe.level, digiclones: { hp: 4, attack: 4, defense: 4, specialAttack: 4, specialDefense: 4, speed: 4 } }))
     const state = { currentStage: 191, currentMap: '기어 포레스트', gameMode: 'classic', player: members[0], party: members,
       activeAllyIds: [members[0].id], inventory: {}, trainerSkills: {} }
     const before = structuredClone(state)

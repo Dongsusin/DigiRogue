@@ -1,0 +1,1677 @@
+{
+  "boosted": 91,
+  "rows": [
+    {
+      "name": "시스터몬 블랑[각성]",
+      "before": 680,
+      "after": 707,
+      "cost": 18,
+      "level": 35,
+      "skills": [
+        {
+          "name": "디바인 피어스(각성)",
+          "power": 110,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "샤우트몬[X2]",
+      "before": 600,
+      "after": 648,
+      "cost": 16,
+      "level": 15,
+      "skills": [
+        {
+          "name": "버디 블래스터",
+          "power": 105,
+          "cooldown": 1
+        },
+        {
+          "name": "퓨전 피스트",
+          "power": 105,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "샤우트몬[X3]",
+      "before": 670,
+      "after": 724,
+      "cost": 19,
+      "level": 25,
+      "skills": [
+        {
+          "name": "쓰리 빅토라이즈",
+          "power": 115,
+          "cooldown": 1
+        },
+        {
+          "name": "쓰리 임팩트",
+          "power": 115,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "샤우트몬[X4]",
+      "before": 735,
+      "after": 794,
+      "cost": 22,
+      "level": 30,
+      "skills": [
+        {
+          "name": "버닝 스타 크러셔",
+          "power": 125,
+          "cooldown": 1
+        },
+        {
+          "name": "버닝 스타 슬래셔",
+          "power": 125,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "시스터몬 느와르[각성]",
+      "before": 700,
+      "after": 728,
+      "cost": 19,
+      "level": 40,
+      "skills": [
+        {
+          "name": "미키 불릿",
+          "power": 110,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "매그너몬",
+      "before": 850,
+      "after": 884,
+      "cost": 25,
+      "level": 45,
+      "skills": [
+        {
+          "name": "플라즈마 슛",
+          "power": 135,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "래피드몬[아머]",
+      "before": 825,
+      "after": 858,
+      "cost": 24,
+      "level": 45,
+      "skills": [
+        {
+          "name": "래비드 파이어",
+          "power": 130,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "멧돼지몬",
+      "before": 515,
+      "after": 536,
+      "cost": 11,
+      "level": 10,
+      "skills": [
+        {
+          "name": "노즈 블래스터",
+          "power": 90,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "황소몬",
+      "before": 515,
+      "after": 536,
+      "cost": 11,
+      "level": 10,
+      "skills": [
+        {
+          "name": "마타도르 대시",
+          "power": 90,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "골드브이드라몬",
+      "before": 605,
+      "after": 629,
+      "cost": 15,
+      "level": 25,
+      "skills": [
+        {
+          "name": "브이 브레스 애로",
+          "power": 90,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "링스몬",
+      "before": 520,
+      "after": 541,
+      "cost": 12,
+      "level": 15,
+      "skills": [
+        {
+          "name": "서멀 메인",
+          "power": 90,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "토토몬",
+      "before": 445,
+      "after": 463,
+      "cost": 6,
+      "level": 15,
+      "skills": [
+        {
+          "name": "머드 벌룬 봄",
+          "power": 80,
+          "cooldown": 0
+        }
+      ]
+    },
+    {
+      "name": "프라리몬",
+      "before": 465,
+      "after": 484,
+      "cost": 7,
+      "level": 10,
+      "skills": [
+        {
+          "name": "소닉 이어",
+          "power": 85,
+          "cooldown": 0
+        }
+      ]
+    },
+    {
+      "name": "백사몬",
+      "before": 545,
+      "after": 567,
+      "cost": 13,
+      "level": 10,
+      "skills": [
+        {
+          "name": "프리즈 웨이브",
+          "power": 90,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "비트몬",
+      "before": 455,
+      "after": 473,
+      "cost": 7,
+      "level": 15,
+      "skills": [
+        {
+          "name": "이어 랜서",
+          "power": 80,
+          "cooldown": 0
+        }
+      ]
+    },
+    {
+      "name": "번개드라몬",
+      "before": 560,
+      "after": 582,
+      "cost": 13,
+      "level": 10,
+      "skills": [
+        {
+          "name": "블루 썬더",
+          "power": 95,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "사수몬",
+      "before": 585,
+      "after": 608,
+      "cost": 14,
+      "level": 25,
+      "skills": [
+        {
+          "name": "저지먼트 애로",
+          "power": 95,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "시프몬",
+      "before": 520,
+      "after": 541,
+      "cost": 12,
+      "level": 10,
+      "skills": [
+        {
+          "name": "울 그레네이드",
+          "power": 90,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "백조몬",
+      "before": 525,
+      "after": 546,
+      "cost": 12,
+      "level": 10,
+      "skills": [
+        {
+          "name": "다운 토네이도",
+          "power": 90,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "화염드라몬",
+      "before": 555,
+      "after": 577,
+      "cost": 13,
+      "level": 10,
+      "skills": [
+        {
+          "name": "파이어 로켓",
+          "power": 90,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "아그니몬",
+      "before": 615,
+      "after": 640,
+      "cost": 15,
+      "level": 15,
+      "skills": [
+        {
+          "name": "버닝 샐러맨더",
+          "power": 100,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "볼프몬",
+      "before": 615,
+      "after": 640,
+      "cost": 15,
+      "level": 15,
+      "skills": [
+        {
+          "name": "리히트 ･ 지거",
+          "power": 100,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "실피드몬",
+      "before": 680,
+      "after": 734,
+      "cost": 19,
+      "level": 25,
+      "skills": [
+        {
+          "name": "파동포",
+          "power": 125,
+          "cooldown": 1
+        },
+        {
+          "name": "더블초음파공격",
+          "power": 110,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "파일드라몬",
+      "before": 715,
+      "after": 772,
+      "cost": 21,
+      "level": 25,
+      "skills": [
+        {
+          "name": "에스그리마",
+          "power": 120,
+          "cooldown": 1
+        },
+        {
+          "name": "무법천지",
+          "power": 130,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "메탈그레이몬[크로스워즈]",
+      "before": 780,
+      "after": 842,
+      "cost": 24,
+      "level": 30,
+      "skills": [
+        {
+          "name": "트라이던트 암",
+          "power": 135,
+          "cooldown": 2
+        },
+        {
+          "name": "기가 디스트로이어",
+          "power": 120,
+          "cooldown": 1
+        }
+      ]
+    },
+    {
+      "name": "메탈그레이몬[사이버런처]",
+      "before": 870,
+      "after": 940,
+      "cost": 27,
+      "level": 40,
+      "skills": [
+        {
+          "name": "사이버 기간틱 런처",
+          "power": 145,
+          "cooldown": 2
+        },
+        {
+          "name": "코로날 매스 이젝션",
+          "power": 145,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "마스테몬",
+      "before": 865,
+      "after": 934,
+      "cost": 27,
+      "level": 50,
+      "skills": [
+        {
+          "name": "홀리 디자이어",
+          "power": 140,
+          "cooldown": 2
+        },
+        {
+          "name": "다크 디스페어",
+          "power": 145,
+          "cooldown": 2
+        },
+        {
+          "name": "카오스 디그레이드",
+          "power": 145,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "황룡몬",
+      "before": 1000,
+      "after": 1120,
+      "cost": 35,
+      "level": 65,
+      "skills": [
+        {
+          "name": "태극",
+          "power": 160,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "두프트몬[레오파드]",
+      "before": 870,
+      "after": 905,
+      "cost": 26,
+      "level": 60,
+      "skills": [
+        {
+          "name": "볼켄 크래처",
+          "power": 150,
+          "cooldown": 2
+        },
+        {
+          "name": "레오파드 모드",
+          "power": 150,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "라센몬[격앙]",
+      "before": 850,
+      "after": 884,
+      "cost": 25,
+      "level": 60,
+      "skills": [
+        {
+          "name": "격앙 스파이럴",
+          "power": 145,
+          "cooldown": 2
+        },
+        {
+          "name": "자이로 레이지",
+          "power": 145,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "레이브몬[버스트]",
+      "before": 855,
+      "after": 889,
+      "cost": 25,
+      "level": 60,
+      "skills": [
+        {
+          "name": "무쌍천상익지진",
+          "power": 125,
+          "cooldown": 2
+        },
+        {
+          "name": "노도암공상지무",
+          "power": 145,
+          "cooldown": 2
+        },
+        {
+          "name": "뇌광 일섬 찌르기",
+          "power": 145,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "로제몬[버스트]",
+      "before": 860,
+      "after": 894,
+      "cost": 26,
+      "level": 60,
+      "skills": [
+        {
+          "name": "샤리테",
+          "power": 145,
+          "cooldown": 2
+        },
+        {
+          "name": "생명의키스",
+          "power": 145,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "미라쥬가오가몬[버스트]",
+      "before": 875,
+      "after": 910,
+      "cost": 26,
+      "level": 60,
+      "skills": [
+        {
+          "name": "보름달 유성 충격",
+          "power": 145,
+          "cooldown": 2
+        },
+        {
+          "name": "최후의신기루",
+          "power": 150,
+          "cooldown": 2
+        },
+        {
+          "name": "루나 하켄 슬래셔",
+          "power": 150,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "벨페몬[레이지]",
+      "before": 950,
+      "after": 988,
+      "cost": 29,
+      "level": 60,
+      "skills": [
+        {
+          "name": "람프란투스",
+          "power": 155,
+          "cooldown": 2
+        },
+        {
+          "name": "기프트 오브 다크네스",
+          "power": 155,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "샤인그레이몬[루인]",
+      "before": 895,
+      "after": 931,
+      "cost": 27,
+      "level": 60,
+      "skills": [
+        {
+          "name": "코로나 블레이즈 소드",
+          "power": 150,
+          "cooldown": 2
+        },
+        {
+          "name": "최후의일격",
+          "power": 150,
+          "cooldown": 2
+        },
+        {
+          "name": "토리드 바이스",
+          "power": 150,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "샤인그레이몬[버스트]",
+      "before": 900,
+      "after": 936,
+      "cost": 27,
+      "level": 60,
+      "skills": [
+        {
+          "name": "코로나 블레이즈 소드",
+          "power": 150,
+          "cooldown": 2
+        },
+        {
+          "name": "최후의일격",
+          "power": 150,
+          "cooldown": 2
+        },
+        {
+          "name": "토리드 바이스",
+          "power": 150,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "오파니몬[폴다운]",
+      "before": 875,
+      "after": 910,
+      "cost": 26,
+      "level": 60,
+      "skills": [
+        {
+          "name": "플레임 헬 사이즈",
+          "power": 150,
+          "cooldown": 2
+        },
+        {
+          "name": "데몬즈 크리스탈",
+          "power": 150,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "황제드라몬[파이터]",
+      "before": 905,
+      "after": 941,
+      "cost": 28,
+      "level": 60,
+      "skills": [
+        {
+          "name": "포지트론 레이저",
+          "power": 130,
+          "cooldown": 2
+        },
+        {
+          "name": "기가 데스",
+          "power": 130,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "베르제브몬[X항체]",
+      "before": 945,
+      "after": 1058,
+      "cost": 32,
+      "level": 65,
+      "skills": [
+        {
+          "name": "세븐스 ･ 풀 ･ 클러스터",
+          "power": 160,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "크레니엄몬[X항체]",
+      "before": 935,
+      "after": 1047,
+      "cost": 32,
+      "level": 65,
+      "skills": [
+        {
+          "name": "그랜드 그리즈르",
+          "power": 160,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "듀나스몬[X항체]",
+      "before": 965,
+      "after": 1081,
+      "cost": 33,
+      "level": 65,
+      "skills": [
+        {
+          "name": "드래곤즈 거스트",
+          "power": 160,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "듀크몬[X항체]",
+      "before": 955,
+      "after": 1070,
+      "cost": 33,
+      "level": 65,
+      "skills": [
+        {
+          "name": "지크 세이버",
+          "power": 160,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "제스몬[X항체]",
+      "before": 975,
+      "after": 1092,
+      "cost": 34,
+      "level": 65,
+      "skills": [
+        {
+          "name": "슈베르트 플뤼겔",
+          "power": 170,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "메탈가루몬[X항체]",
+      "before": 890,
+      "after": 997,
+      "cost": 30,
+      "level": 65,
+      "skills": [
+        {
+          "name": "메탈 스톰",
+          "power": 155,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "알포스브이드라몬[X항체]",
+      "before": 965,
+      "after": 1081,
+      "cost": 33,
+      "level": 65,
+      "skills": [
+        {
+          "name": "샤이닝 V 포스",
+          "power": 155,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "워그레이몬[X항체]",
+      "before": 895,
+      "after": 1002,
+      "cost": 30,
+      "level": 65,
+      "skills": [
+        {
+          "name": "가이아 포스 ZERO",
+          "power": 155,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "블랙워그레이몬[X항체]",
+      "before": 900,
+      "after": 1008,
+      "cost": 30,
+      "level": 65,
+      "skills": [
+        {
+          "name": "다크 가이아 포스",
+          "power": 160,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "매그너몬[X항체]",
+      "before": 1000,
+      "after": 1120,
+      "cost": 35,
+      "level": 65,
+      "skills": [
+        {
+          "name": "플라즈마 슛",
+          "power": 160,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "가이오몬[엄도의형]",
+      "before": 925,
+      "after": 1036,
+      "cost": 31,
+      "level": 65,
+      "skills": [
+        {
+          "name": "국린일섬 ･ 호뢰참",
+          "power": 160,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "아구몬[용기의유대]",
+      "before": 975,
+      "after": 1092,
+      "cost": 34,
+      "level": 65,
+      "skills": [
+        {
+          "name": "가이아 브레이브",
+          "power": 170,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "파피몬[우정의유대]",
+      "before": 975,
+      "after": 1092,
+      "cost": 34,
+      "level": 65,
+      "skills": [
+        {
+          "name": "풀 메탈 머신건",
+          "power": 170,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "두프트몬[X항체]",
+      "before": 945,
+      "after": 1058,
+      "cost": 32,
+      "level": 60,
+      "skills": [
+        {
+          "name": "아우스 스타벤",
+          "power": 170,
+          "cooldown": 3
+        },
+        {
+          "name": "아이네 빌리언",
+          "power": 160,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "슬레이프몬[X항체]",
+      "before": 960,
+      "after": 1075,
+      "cost": 33,
+      "level": 60,
+      "skills": [
+        {
+          "name": "수르트 브랜더",
+          "power": 160,
+          "cooldown": 2
+        },
+        {
+          "name": "니플헤임 어레스트",
+          "power": 160,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "베르제브몬[블래스트]",
+      "before": 1020,
+      "after": 1061,
+      "cost": 32,
+      "level": 60,
+      "skills": [
+        {
+          "name": "데스 슬링거",
+          "power": 165,
+          "cooldown": 3
+        },
+        {
+          "name": "카오스 플레어",
+          "power": 140,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "쿠즈하몬[무녀 모드]",
+      "before": 745,
+      "after": 775,
+      "cost": 21,
+      "level": 55,
+      "skills": [
+        {
+          "name": "역반강술법",
+          "power": 120,
+          "cooldown": 1
+        },
+        {
+          "name": "태장계만다라",
+          "power": 130,
+          "cooldown": 2
+        },
+        {
+          "name": "무녀의 결계",
+          "power": 0,
+          "cooldown": 4
+        }
+      ]
+    },
+    {
+      "name": "에오스몬[궁극체]",
+      "before": 960,
+      "after": 1037,
+      "cost": 31,
+      "level": 55,
+      "skills": [
+        {
+          "name": "오로라 스트림",
+          "power": 150,
+          "cooldown": 2
+        },
+        {
+          "name": "커팅 에지",
+          "power": 150,
+          "cooldown": 2
+        },
+        {
+          "name": "크루얼티 레인",
+          "power": 150,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "라플레시몬",
+      "before": 975,
+      "after": 1053,
+      "cost": 32,
+      "level": 60,
+      "skills": [
+        {
+          "name": "발레 건",
+          "power": 155,
+          "cooldown": 2
+        },
+        {
+          "name": "위스렌",
+          "power": 155,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "발바몬[X항체]",
+      "before": 1120,
+      "after": 1254,
+      "cost": 40,
+      "level": 60,
+      "skills": [
+        {
+          "name": "데스 루어",
+          "power": 180,
+          "cooldown": 3
+        },
+        {
+          "name": "팬더모디엄 로스트",
+          "power": 175,
+          "cooldown": 3
+        },
+        {
+          "name": "세븐스 ･ 쥬얼라이즈",
+          "power": 180,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "케루비몬(선)[X항체]",
+      "before": 1100,
+      "after": 1232,
+      "cost": 39,
+      "level": 60,
+      "skills": [
+        {
+          "name": "찌리릿 허그 유",
+          "power": 180,
+          "cooldown": 3
+        },
+        {
+          "name": "빛나는 창",
+          "power": 175,
+          "cooldown": 3
+        },
+        {
+          "name": "헤븐즈저지먼트",
+          "power": 185,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "이랑몬",
+      "before": 1020,
+      "after": 1102,
+      "cost": 34,
+      "level": 60,
+      "skills": [
+        {
+          "name": "응첨원무",
+          "power": 155,
+          "cooldown": 2
+        },
+        {
+          "name": "여래・효천견",
+          "power": 155,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "간쿠몬[X항체]",
+      "before": 1140,
+      "after": 1277,
+      "cost": 41,
+      "level": 60,
+      "skills": [
+        {
+          "name": "궁극전기 천앙권",
+          "power": 180,
+          "cooldown": 3
+        },
+        {
+          "name": "쇠나막신 하리테",
+          "power": 180,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "갓드라몬[X항체]",
+      "before": 1100,
+      "after": 1232,
+      "cost": 39,
+      "level": 60,
+      "skills": [
+        {
+          "name": "갓 플레임",
+          "power": 175,
+          "cooldown": 3
+        },
+        {
+          "name": "갓 피스트",
+          "power": 180,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "제트메르바몬",
+      "before": 1015,
+      "after": 1096,
+      "cost": 34,
+      "level": 60,
+      "skills": [
+        {
+          "name": "하트 브레이크 샷",
+          "power": 155,
+          "cooldown": 2
+        },
+        {
+          "name": "섹시 다이너마이츠",
+          "power": 155,
+          "cooldown": 2
+        },
+        {
+          "name": "우로보로스 게이트",
+          "power": 155,
+          "cooldown": 2
+        },
+        {
+          "name": "스파이시 하드 러브",
+          "power": 155,
+          "cooldown": 2
+        },
+        {
+          "name": "나이트 스토커",
+          "power": 155,
+          "cooldown": 2
+        },
+        {
+          "name": "러브 포이즌",
+          "power": 155,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "유노몬[히스테릭 모드]",
+      "before": 1000,
+      "after": 1040,
+      "cost": 31,
+      "level": 55,
+      "skills": [
+        {
+          "name": "월컴 로스트",
+          "power": 150,
+          "cooldown": 2
+        },
+        {
+          "name": "링러지",
+          "power": 150,
+          "cooldown": 2
+        },
+        {
+          "name": "라이어 배니시먼트",
+          "power": 150,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "리리스몬[X항체]",
+      "before": 1130,
+      "after": 1266,
+      "cost": 41,
+      "level": 60,
+      "skills": [
+        {
+          "name": "나자르 네일",
+          "power": 180,
+          "cooldown": 3
+        },
+        {
+          "name": "팬텀 페인",
+          "power": 185,
+          "cooldown": 3
+        },
+        {
+          "name": "세븐스 ･ 패시네이트",
+          "power": 180,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "메기드라몬[X항체]",
+      "before": 1160,
+      "after": 1299,
+      "cost": 42,
+      "level": 60,
+      "skills": [
+        {
+          "name": "헬 ･ 하울링",
+          "power": 185,
+          "cooldown": 3
+        },
+        {
+          "name": "메기도 플레임",
+          "power": 180,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "오파니몬[X항체]",
+      "before": 1100,
+      "after": 1232,
+      "cost": 39,
+      "level": 60,
+      "skills": [
+        {
+          "name": "홀리 마테리얼",
+          "power": 180,
+          "cooldown": 3
+        },
+        {
+          "name": "에덴스 랜스",
+          "power": 180,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "페닉스몬[X항체]",
+      "before": 1080,
+      "after": 1210,
+      "cost": 38,
+      "level": 60,
+      "skills": [
+        {
+          "name": "스타라이트 익스플로전",
+          "power": 155,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "로제몬[X항체]",
+      "before": 1060,
+      "after": 1187,
+      "cost": 37,
+      "level": 60,
+      "skills": [
+        {
+          "name": "쏜 위프",
+          "power": 170,
+          "cooldown": 3
+        },
+        {
+          "name": "로젠 레이피어",
+          "power": 175,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "샤크라몬[X항체]",
+      "before": 1090,
+      "after": 1221,
+      "cost": 39,
+      "level": 60,
+      "skills": [
+        {
+          "name": "금강계만다라",
+          "power": 185,
+          "cooldown": 3
+        },
+        {
+          "name": "코노하나 센키반쇼우",
+          "power": 175,
+          "cooldown": 3
+        },
+        {
+          "name": "우카노미타마",
+          "power": 175,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "아포카리몬",
+      "before": 940,
+      "after": 978,
+      "cost": 29,
+      "level": 65,
+      "skills": [
+        {
+          "name": "다크니스 존",
+          "power": 145,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "루체몬[사탄]",
+      "before": 1080,
+      "after": 1123,
+      "cost": 35,
+      "level": 65,
+      "skills": [
+        {
+          "name": "퍼가토리얼 플레임",
+          "power": 180,
+          "cooldown": 3
+        },
+        {
+          "name": "디바인 어톤먼트",
+          "power": 185,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "아마게몬",
+      "before": 960,
+      "after": 1037,
+      "cost": 31,
+      "level": 65,
+      "skills": [
+        {
+          "name": "블랙 레인",
+          "power": 140,
+          "cooldown": 2
+        },
+        {
+          "name": "얼티메이트 플레어",
+          "power": 135,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "알파몬[왕룡검]",
+      "before": 1010,
+      "after": 1212,
+      "cost": 38,
+      "level": 95,
+      "skills": [
+        {
+          "name": "왕룡검",
+          "power": 210,
+          "cooldown": 3
+        },
+        {
+          "name": "성검 그레이달파",
+          "power": 195,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "엑자몬",
+      "before": 965,
+      "after": 1042,
+      "cost": 32,
+      "level": 65,
+      "skills": [
+        {
+          "name": "아발론즈 게이트",
+          "power": 165,
+          "cooldown": 3
+        },
+        {
+          "name": "팬드래곤즈 글로리",
+          "power": 140,
+          "cooldown": 2
+        },
+        {
+          "name": "드래고닉 임팩트",
+          "power": 165,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "오메가몬",
+      "before": 945,
+      "after": 1021,
+      "cost": 31,
+      "level": 65,
+      "skills": [
+        {
+          "name": "가루루 캐논",
+          "power": 160,
+          "cooldown": 2
+        },
+        {
+          "name": "그레이 소드",
+          "power": 160,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "오메가몬[알터-S]",
+      "before": 950,
+      "after": 1026,
+      "cost": 31,
+      "level": 65,
+      "skills": [
+        {
+          "name": "가루 소드",
+          "power": 160,
+          "cooldown": 2
+        },
+        {
+          "name": "그레이 캐논",
+          "power": 160,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "오메가몬[즈왈트]",
+      "before": 945,
+      "after": 1021,
+      "cost": 31,
+      "level": 65,
+      "skills": [
+        {
+          "name": "가루루 캐논",
+          "power": 160,
+          "cooldown": 2
+        },
+        {
+          "name": "그레이 소드",
+          "power": 160,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "황제드라몬[팔라딘]",
+      "before": 1090,
+      "after": 1352,
+      "cost": 44,
+      "level": 105,
+      "skills": [
+        {
+          "name": "오메가 블레이드",
+          "power": 225,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "밀레니엄몬",
+      "before": 1020,
+      "after": 1102,
+      "cost": 34,
+      "level": 65,
+      "skills": [
+        {
+          "name": "타임 언리미티드",
+          "power": 165,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "오메가몬[알터-B]",
+      "before": 985,
+      "after": 1182,
+      "cost": 37,
+      "level": 95,
+      "skills": [
+        {
+          "name": "그레이 캐논",
+          "power": 205,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "오메가몬[머시풀]",
+      "before": 1080,
+      "after": 1372,
+      "cost": 45,
+      "level": 110,
+      "skills": [
+        {
+          "name": "우령도",
+          "power": 230,
+          "cooldown": 4
+        }
+      ]
+    },
+    {
+      "name": "오메가몬[X항체]",
+      "before": 1100,
+      "after": 1386,
+      "cost": 45,
+      "level": 110,
+      "skills": [
+        {
+          "name": "올 딜리트",
+          "power": 235,
+          "cooldown": 4
+        }
+      ]
+    },
+    {
+      "name": "오메가몬[즈왈트-D]",
+      "before": 995,
+      "after": 1194,
+      "cost": 38,
+      "level": 95,
+      "skills": [
+        {
+          "name": "그레이 소드",
+          "power": 210,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "스사노오몬",
+      "before": 1100,
+      "after": 1188,
+      "cost": 37,
+      "level": 65,
+      "skills": [
+        {
+          "name": "천우우참",
+          "power": 175,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "듀크몬[크림슨]",
+      "before": 1010,
+      "after": 1131,
+      "cost": 35,
+      "level": 65,
+      "skills": [
+        {
+          "name": "쿼 ･ 바디스",
+          "power": 170,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "카오스몬",
+      "before": 940,
+      "after": 1015,
+      "cost": 30,
+      "level": 65,
+      "skills": [
+        {
+          "name": "패왕양단검",
+          "power": 155,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "카오스몬[발두르암]",
+      "before": 970,
+      "after": 1048,
+      "cost": 32,
+      "level": 65,
+      "skills": [
+        {
+          "name": "패왕양단검",
+          "power": 160,
+          "cooldown": 2
+        }
+      ]
+    },
+    {
+      "name": "오그도몬",
+      "before": 1250,
+      "after": 1563,
+      "cost": 52,
+      "level": 120,
+      "skills": [
+        {
+          "name": "오라티오 ･ 그란디오로크아",
+          "power": 225,
+          "cooldown": 3
+        },
+        {
+          "name": "카테드랄",
+          "power": 195,
+          "cooldown": 3
+        },
+        {
+          "name": "그라두스",
+          "power": 210,
+          "cooldown": 3
+        }
+      ]
+    },
+    {
+      "name": "얼티메이트카오스몬",
+      "before": 1230,
+      "after": 1538,
+      "cost": 51,
+      "level": 120,
+      "skills": [
+        {
+          "name": "브로큰 디스트로이",
+          "power": 220,
+          "cooldown": 3
+        },
+        {
+          "name": "얼티마 버스트",
+          "power": 235,
+          "cooldown": 4
+        }
+      ]
+    },
+    {
+      "name": "지드밀레니엄몬",
+      "before": 1250,
+      "after": 1600,
+      "cost": 54,
+      "level": 120,
+      "skills": [
+        {
+          "name": "타임 디스트로이어",
+          "power": 245,
+          "cooldown": 4
+        }
+      ]
+    }
+  ],
+  "masterItems": [
+    {
+      "id": "item-evolution-자비의 빛",
+      "name": "그레이도",
+      "description": "오메가몬 Lv.110 이상일 때 오메가몬[머시풀](으)로 모드 체인지합니다. 진화창에서 사용하며 1개를 소모합니다.",
+      "evolutionItemFor": "오메가몬[머시풀]",
+      "rarity": "master",
+      "requiredCount": 1,
+      "imageUrl": "/items/evolution/canonical/gurei-tou.png"
+    },
+    {
+      "id": "item-evolution-블랙 디지트론",
+      "name": "블랙 디지트론 · 샘플 B",
+      "description": "오메가몬[알터-S] Lv.95 이상일 때 오메가몬[알터-B](으)로 모드 체인지합니다. 진화창에서 사용하며 1개를 소모합니다.",
+      "evolutionItemFor": "오메가몬[알터-B]",
+      "rarity": "master",
+      "requiredCount": 1,
+      "imageUrl": "/items/evolution/canonical/black-digitron.png"
+    },
+    {
+      "id": "item-evolution-파괴의 인장",
+      "name": "D 안티바이러스 B",
+      "description": "오메가몬[즈왈트] Lv.95 이상일 때 오메가몬[즈왈트-D](으)로 모드 체인지합니다. 진화창에서 사용하며 1개를 소모합니다.",
+      "evolutionItemFor": "오메가몬[즈왈트-D]",
+      "rarity": "master",
+      "requiredCount": 1,
+      "imageUrl": "/items/evolution/canonical/d-antivirus.png"
+    },
+    {
+      "id": "item-evolution-오메가몬의 X항체",
+      "name": "X항체 인자 · 오메가몬",
+      "description": "오메가몬 Lv.110 이상일 때 오메가몬[X항체](으)로 X진화합니다. 진화창에서 사용하며 1개를 소모합니다.",
+      "evolutionItemFor": "오메가몬[X항체]",
+      "rarity": "master",
+      "requiredCount": 1,
+      "imageUrl": "/items/evolution/canonical/x-antibody.png"
+    },
+    {
+      "id": "item-evolution-오메가 블레이드",
+      "name": "오메가 블레이드",
+      "description": "황제드라몬[파이터] Lv.105 이상일 때 황제드라몬[팔라딘](으)로 모드 체인지합니다. 진화창에서 사용하며 1개를 소모합니다.",
+      "evolutionItemFor": "황제드라몬[팔라딘]",
+      "rarity": "master",
+      "requiredCount": 1,
+      "imageUrl": "/아이템/진화/오메가 블레이드.png"
+    },
+    {
+      "id": "item-evolution-investment-알파몬[왕룡검]",
+      "name": "에보류터 · 알파몬[왕룡검]",
+      "description": "알파몬 + 오류우몬 Lv.95 이상일 때 알파몬[왕룡검](으)로 조그레스합니다. 진화창에서 사용하며 1개를 소모합니다.",
+      "evolutionItemFor": "알파몬[왕룡검]",
+      "rarity": "master",
+      "requiredCount": 1,
+      "imageUrl": "/items/evolution/canonical/evoluter.png"
+    },
+    {
+      "id": "item-evolution-investment-얼티메이트카오스몬",
+      "name": "에보류터 · 얼티메이트카오스몬",
+      "description": "카오스몬 + 발두르몬 + 슬레이프몬 Lv.120 이상일 때 얼티메이트카오스몬(으)로 조그레스합니다. 진화창에서 사용하며 1개를 소모합니다.",
+      "evolutionItemFor": "얼티메이트카오스몬",
+      "rarity": "master",
+      "requiredCount": 1,
+      "imageUrl": "/items/evolution/canonical/evoluter.png"
+    },
+    {
+      "id": "item-evolution-investment-오그도몬",
+      "name": "에보류터 · 오그도몬",
+      "description": "리리스몬 또는 마왕몬 또는 발바몬 Lv.120 이상일 때 오그도몬(으)로 특수 진화합니다. 진화창에서 사용하며 1개를 소모합니다.",
+      "evolutionItemFor": "오그도몬",
+      "rarity": "master",
+      "requiredCount": 1,
+      "imageUrl": "/items/evolution/canonical/evoluter.png"
+    },
+    {
+      "id": "item-evolution-investment-지드밀레니엄몬",
+      "name": "에보류터 · 지드밀레니엄몬",
+      "description": "밀레니엄몬 Lv.120 이상일 때 지드밀레니엄몬(으)로 워프 진화합니다. 진화창에서 사용하며 1개를 소모합니다.",
+      "evolutionItemFor": "지드밀레니엄몬",
+      "rarity": "master",
+      "requiredCount": 1,
+      "imageUrl": "/items/evolution/canonical/evoluter.png"
+    }
+  ]
+}

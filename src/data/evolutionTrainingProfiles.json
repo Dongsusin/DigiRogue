@@ -2618,7 +2618,8 @@
   "알파몬[왕룡검]": {
     "stats": [
       "attack",
-      "specialAttack"
+      "specialAttack",
+      "specialDefense"
     ]
   },
   "엑자몬": {
@@ -2660,7 +2661,8 @@
   "황제드라몬[팔라딘]": {
     "stats": [
       "attack",
-      "speed"
+      "speed",
+      "specialDefense"
     ]
   },
   "베르제브몬[X항체]": {
@@ -2708,25 +2710,29 @@
   "오메가몬[알터-B]": {
     "stats": [
       "specialAttack",
-      "hp"
+      "hp",
+      "defense"
     ]
   },
   "오메가몬[머시풀]": {
     "stats": [
       "attack",
-      "specialAttack"
+      "specialAttack",
+      "specialDefense"
     ]
   },
   "오메가몬[X항체]": {
     "stats": [
       "attack",
-      "specialAttack"
+      "specialAttack",
+      "speed"
     ]
   },
   "오메가몬[즈왈트-D]": {
     "stats": [
       "attack",
-      "specialAttack"
+      "speed",
+      "hp"
     ]
   },
   "스사노오몬": {
@@ -2977,8 +2983,9 @@
   },
   "오그도몬": {
     "stats": [
-      "attack",
-      "defense"
+      "hp",
+      "specialAttack",
+      "specialDefense"
     ]
   },
   "오파니몬[X항체]": {
@@ -3026,7 +3033,8 @@
   "얼티메이트카오스몬": {
     "stats": [
       "attack",
-      "defense"
+      "specialAttack",
+      "hp"
     ]
   },
   "불카누스몬": {
@@ -3043,8 +3051,9 @@
   },
   "지드밀레니엄몬": {
     "stats": [
-      "attack",
-      "defense"
+      "hp",
+      "specialAttack",
+      "specialDefense"
     ]
   }
 }

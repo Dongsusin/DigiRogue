@@ -120,7 +120,7 @@ import { createPassiveState, hydrateDigimonPassive, mergePassiveStates, getPassi
   recordPassiveAttack, resolvePassiveEndure, resolvePassiveActionEnd, passiveLog } from './battle/passives.js'
 import { getPartyEvolutionProgress, getNewLevelEvolutionTargets } from './data/evolutionReadiness.js'
 import evolutionTrainingProfiles from './data/evolutionTrainingProfiles.json'
-import { EVOLUTION_LEVELS, JOGRESS_RECIPES, ITEM_EVOLUTION_REQUIREMENTS, getEvolutionRoute } from './data/evolutionRules.js'
+import { EVOLUTION_LEVELS, JOGRESS_RECIPES, ITEM_EVOLUTION_REQUIREMENTS, getEvolutionRoute, getEvolutionInvestment } from './data/evolutionRules.js'
 import { resolveEvolutionCinematic } from './data/evolutionCinematics.js'
 import { ADVENTURE_BATTLE_ITEMS, ADVENTURE_UTILITY_ITEMS, hasAdventureItem, getItemScanGain,
   getItemHatchLevel, getItemRerollDiscount, getItemExperienceMultiplier, getItemStatusChance,
@@ -1302,17 +1302,17 @@ const addInventoryItem = (inventory, itemId) => ({
   ...(inventory ?? {}),
   [itemId]: (inventory?.[itemId] ?? 0) + 1,
 })
-const removeInventoryItem = (inventory, itemId) => {
+const removeInventoryItem = (inventory, itemId, amount = 1) => {
   const currentCount = inventory?.[itemId] ?? 0
 
-  if (currentCount <= 1) {
+  if (currentCount <= amount) {
     const { [itemId]: _removedItem, ...restInventory } = inventory ?? {}
     return restInventory
   }
 
   return {
     ...(inventory ?? {}),
-    [itemId]: currentCount - 1,
+    [itemId]: currentCount - amount,
   }
 }
 const syncPartyMember = (party, activePlayer) => {
@@ -1704,9 +1704,16 @@ const getRewardTargetCandidates = (party, fallbackPlayer = null) => {
   })
 }
 
+const isJogressMemberReady = (member, recipe) => {
+  if (!member?.name || isCombatantEgg(member) || (member.level ?? 0) < recipe.level) return false
+  const target = allDigimonLookup.get(recipe.targetName)
+  return Boolean(target) && getEvolutionRequirements(target, member, { kind: 'jogress', level: recipe.level })
+    .every(requirement => requirement.current(member) >= requirement.required)
+}
+
 const hasJogressRecipeMaterials = (party, recipe) => {
   const materialCounts = (party ?? []).reduce((result, member) => {
-    if (!member?.name || isCombatantEgg(member) || (member.level ?? 0) < (recipe?.level ?? 1)) {
+    if (!isJogressMemberReady(member, recipe)) {
       return result
     }
 
@@ -1741,7 +1748,7 @@ const canJogressRecipeAcceptMembers = (recipe, members) => {
   }, {})
 
   return selectedMembers.every((member) => {
-    if (!member?.name || isCombatantEgg(member) || (member.level ?? 0) < (recipe?.level ?? 1) || (materialCounts[member.name] ?? 0) <= 0) {
+    if (!isJogressMemberReady(member, recipe) || (materialCounts[member.name] ?? 0) <= 0) {
       return false
     }
 
@@ -1777,7 +1784,7 @@ const getJogressEvolutionMembers = (combatant, party, recipe, partnerIds = null)
   remaining.splice(primaryIndex, 1)
   const members = [combatant]
   for (const name of remaining) {
-    const partner = party.find(member => member.name === name && !isCombatantEgg(member) && member.level >= recipe.level &&
+    const partner = party.find(member => member.name === name && isJogressMemberReady(member, recipe) &&
       !members.some(selected => selected.id === member.id))
     if (!partner) return []
     members.push(partner)
@@ -2521,8 +2528,9 @@ const createStatusEffect = (type) => ({
 
 const getSkillData = (skillName, combatant) => {
   const species = combatant?.speciesData ?? allDigimonLookup.get(combatant?.name ?? combatant?.이름)
+  const encounter = !isRegionalSupport(combatant) && (combatant?.isBoss || combatant?.enemyStage || combatant?.rivalEncounter || combatant?.specialQuest)
   return (
-    getFinalBossSkillData(skillName, combatant) ?? species?.기술설정?.[skillName] ??
+    getFinalBossSkillData(skillName, combatant) ?? (encounter ? species?.야생전투설정?.기술설정?.[skillName] : null) ?? species?.기술설정?.[skillName] ??
     allSkillLookup.get(skillName) ?? {
       기술명: skillName,
       데미지: 40,
@@ -2878,16 +2886,17 @@ const getEvolutionRequirements = (targetData, combatant = null, route = null) =>
   if (targetData?.stage === '유아기') return []
   const level = route?.level ?? Number(targetData?.진화조건?.레벨 ?? EVOLUTION_LEVELS[targetData?.stage] ?? 65)
   const requirements = [{ key: 'level', label: '레벨', current: unit => unit?.level ?? 0, required: level }]
-  if (!combatant || route?.kind !== 'level' || getDigimonStageRank(targetData?.stage) < 2) return requirements
+  if (!combatant || getDigimonStageRank(targetData?.stage) < 2) return requirements
+  const investment = getEvolutionInvestment(targetData.이름)
   const labels = { hp: '육성 체력', attack: '육성 공격', defense: '육성 방어', specialAttack: '육성 특공', specialDefense: '육성 특방', speed: '육성 스피드' }
   const baseStats = combatant.baseStats ?? createBaseStats(combatant.speciesData)
   // Fixed source-form thresholds. Extra levels or permanent DigiClones can meet every branch.
-  for (const key of evolutionTrainingProfiles[targetData.이름]?.stats ?? []) {
+  for (const key of investment.stats ?? evolutionTrainingProfiles[targetData.이름]?.stats ?? []) {
     const baseline = key === 'hp'
       ? calculateHpStat({ base: baseStats[key], level })
       : calculateOtherStat({ base: baseStats[key], level })
     requirements.push({ key, label: labels[key], current: unit => getEvolutionTrainingStats(unit)[key === 'hp' ? 'maxHp' : key],
-      required: getTrainerEvolutionRequirement(combatant.trainerSkills, baseline + Math.max(1, Math.ceil(level / 15))) })
+      required: getTrainerEvolutionRequirement(combatant.trainerSkills, Math.ceil(baseline * investment.trainingMultiplier) + Math.max(1, Math.ceil(level / 15))) })
   }
   return requirements
 }
@@ -2920,12 +2929,21 @@ const getEvolutionOptions = (combatant, inventory = {}, party = [], evolutionMem
         }
       })
       if (itemRequirement) requirements.push({ key: 'item', label: itemRequirement.name,
-        current: inventory[itemRequirement.id] ?? 0, required: 1, isMet: itemWaived || (inventory[itemRequirement.id] ?? 0) > 0, waived: itemWaived })
+        current: inventory[itemRequirement.id] ?? 0, required: itemRequirement.requiredCount,
+        isMet: itemWaived || (inventory[itemRequirement.id] ?? 0) >= itemRequirement.requiredCount, waived: itemWaived })
       if (route.recipe) {
         const partners = route.recipe.materials.filter(name => name !== combatant.name)
         for (const name of partners) {
-          const level = Math.max(0, ...party.filter(member => member.id !== combatant.id && member.name === name && !isCombatantEgg(member)).map(member => member.level ?? 0))
+          const candidates = party.filter(member => member.id !== combatant.id && member.name === name && !isCombatantEgg(member))
+          const partner = candidates.find(member => isJogressMemberReady(member, route.recipe)) ?? candidates.sort((a, b) => b.level - a.level)[0]
+          const level = partner?.level ?? 0
           requirements.push({ key: `partner-${name}`, label: name, current: level, required: route.level, isMet: level >= route.level })
+          const source = partner ?? createCombatant({ id: 'preview-' + name, name, data: allDigimonLookup.get(name), level: 1 })
+          for (const requirement of getEvolutionRequirements(targetData, source, route).filter(entry => entry.key !== 'level')) {
+            const current = partner ? requirement.current(partner) : 0
+            requirements.push({ key: 'material-' + name + '-' + requirement.key, label: name + ' · ' + requirement.label,
+              current, required: requirement.required, isMet: Boolean(partner) && current >= requirement.required })
+          }
         }
       }
       return {
@@ -2939,7 +2957,7 @@ const getEvolutionOptions = (combatant, inventory = {}, party = [], evolutionMem
         itemCount: itemRequirement ? inventory[itemRequirement.id] ?? 0 : 0,
         requirements,
         // Remembered Jogress still consumes every correctly leveled material Digimon.
-        canEvolve: (route.kind !== 'jogress' || (itemWaived && jogressMembers.length === route.recipe.materials.length)) && requirements.every((requirement) => requirement.isMet),
+        canEvolve: (route.kind !== 'jogress' || ((itemWaived || Boolean(itemRequirement)) && jogressMembers.length === route.recipe.materials.length)) && requirements.every((requirement) => requirement.isMet),
         conditionsMet: requirements.every((requirement) => requirement.isMet),
       }
     })
@@ -3022,7 +3040,7 @@ const resolveManualEvolution = (gameState, memberId, targetName, rewardState = n
   const evolvedMember = createEvolvedCombatant(selectedMember, selectedOption.targetData)
   const nextParty = replacePartyMember(currentParty, evolvedMember)
   const nextInventory = selectedOption.itemRequirement && !selectedOption.itemWaived
-    ? removeInventoryItem(gameState.inventory, selectedOption.itemRequirement.id) : gameState.inventory
+    ? removeInventoryItem(gameState.inventory, selectedOption.itemRequirement.id, selectedOption.itemRequirement.requiredCount) : gameState.inventory
   const nextPlayer = getCombatantById(nextParty, gameState.player?.id)
     ?? getFirstLivingPartyMember(nextParty, gameState.activeAllyIds) ?? evolvedMember
   return { selectedMember, evolvedMember, nextGameState: {
@@ -3048,16 +3066,20 @@ const resolveJogressEvolution = (gameState, members, recipe, usedChip = false, r
   const targetData = allDigimonLookup.get(recipe.targetName)
   if (!targetData || !isPlayableDigimon(targetData)) return null
   const [selectedMember, ...partners] = members
-  if (!usedChip && (!hasTrainerEvolutionMemory(selectedMember.trainerSkills) || !hasEvolutionMemory(gameState.evolutionMemory, recipe.materials, recipe.targetName))) return null
+  const option = getEvolutionOptions(selectedMember, gameState.inventory, currentParty, gameState.evolutionMemory)
+    .find(entry => entry.targetData.이름 === recipe.targetName)
+  if (!option?.conditionsMet || (!usedChip && !option.canEvolve)) return null
+  const nextInventory = option.itemRequirement && !option.itemWaived
+    ? removeInventoryItem(gameState.inventory, option.itemRequirement.id, option.itemRequirement.requiredCount) : gameState.inventory
   const evolvedMember = createJogressCombatant(selectedMember, partners, targetData)
   const partnerIds = new Set(partners.map(member => member.id))
   const materialIds = new Set(members.map(member => member.id))
   const nextParty = currentParty.filter(member => !partnerIds.has(member.id)).map(member => member.id === selectedMember.id ? evolvedMember : member)
   const nextPlayer = materialIds.has(gameState.player?.id) ? evolvedMember
     : getCombatantById(nextParty, gameState.player?.id) ?? getFirstLivingPartyMember(nextParty, gameState.activeAllyIds) ?? evolvedMember
-  return { selectedMember, evolvedMember, fromMembers: members, nextGameState: { ...gameState, party: nextParty, player: nextPlayer,
+  return { selectedMember, evolvedMember, fromMembers: members, nextGameState: { ...gameState, inventory: nextInventory, party: nextParty, player: nextPlayer,
     activeAllyIds: getActiveAllyIdsForParty(nextParty, (gameState.activeAllyIds ?? []).filter(id => !partnerIds.has(id)), getBattleAllyLimit(gameState)),
-    evolutionMemory: usedChip ? rememberItemEvolution(gameState.evolutionMemory, recipe.materials, recipe.targetName) : normalizeEvolutionMemory(gameState.evolutionMemory),
+    evolutionMemory: usedChip || (option.itemRequirement && !option.itemWaived) ? rememberItemEvolution(gameState.evolutionMemory, recipe.materials, recipe.targetName) : normalizeEvolutionMemory(gameState.evolutionMemory),
     rewardCheckpoint: rewardState ? createRewardCheckpoint(rewardState, gameState.currentStage) : gameState.rewardCheckpoint,
   } }
 }
@@ -3469,8 +3491,10 @@ const refreshCombatantStats = (
     preserveMaxHpDelta = false,
   } = {}
 ) => {
+  const encounter = !isRegionalSupport(combatant) && (combatant.isBoss || combatant.enemyStage || combatant.rivalEncounter || combatant.specialQuest)
+  const baseStats = encounter && combatant.speciesData?.야생전투설정 ? createBaseStats(combatant.speciesData.야생전투설정) : combatant.baseStats
   const battleStats = applyTrainerStats(calculateBattleStats({
-    baseStats: combatant.baseStats,
+    baseStats,
     level,
     activeBuffs,
     statModifiers,
@@ -3490,6 +3514,7 @@ const refreshCombatantStats = (
 
   return {
     ...cleanCombatantFields(combatant),
+    baseStats, baseStatTotal: getBaseStatTotal(baseStats),
     activeBuffs: normalizeBuffState(activeBuffs),
     statModifiers: normalizeBattleStatModifiers(statModifiers),
     digiclones: normalizeDigiclones(digiclones),
@@ -9259,7 +9284,7 @@ function App() {
                                   {pendingEvolutionOption.recipe ? pendingEvolutionMaterials.map(member => member.name).join(' + ') : selectedEvolutionMember.name}을(를) {getCollectionStatus(localProgress.collection, pendingEvolutionOption.targetData.이름) === 'unknown' ? '???' : pendingEvolutionOption.targetData.이름}(으)로
                                   진화하겠습니다.
                                   {pendingEvolutionOption.itemWaived ? <><br />진화 기억으로 아이템을 사용하지 않습니다.</>
-                                    : pendingEvolutionOption.itemRequirement && <><br />{pendingEvolutionOption.itemRequirement.name} 1개를 사용합니다.</>}
+                                    : pendingEvolutionOption.itemRequirement && <><br />{pendingEvolutionOption.itemRequirement.name} {pendingEvolutionOption.itemRequirement.requiredCount}개를 사용합니다.</>}
                                   {pendingEvolutionOption.recipe && <><br />선택한 파트너들은 합체 후 한 마리가 됩니다.</>}
                                 </p>
                                 {pendingEvolutionOption.recipe && <div className="evolution-confirm__partners">

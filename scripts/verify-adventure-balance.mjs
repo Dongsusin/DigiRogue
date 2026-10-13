@@ -1,3 +1,4 @@
+import { BALANCE_REVISION } from '../src/balance/catalog.js'
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { loadBattleEngine } from './lib/battle-engine-fixture.mjs'
@@ -24,7 +25,7 @@ test('every one of the 512 species has a coherent individual profile and legal s
     for (const name of data.기술) {
       const skill = data.기술설정[name]
       assert(skill, data.이름 + ':' + name)
-      assert(skill.효과 || (skill.데미지 >= 30 && skill.데미지 <= 180 && skill.cooldown >= 0))
+      assert(skill.효과 || (skill.데미지 >= 30 && skill.데미지 <= 250 && skill.cooldown >= 0))
     }
     assert(data.어티치먼트.every(entry => engine.allSkillLookup.has(entry.기술)), data.이름)
   }
@@ -276,7 +277,7 @@ test('resuming a revision-3 save refreshes species stats and preserves HP ratio,
   const resumed = engine.parseSavedGameState(JSON.stringify({ version: 1, gameState: state }))
   assert(resumed)
   assert.notEqual(resumed.party[0].baseStats.attack, 999)
-  assert.equal(resumed.party[0].balanceRevision, 4)
+  assert.equal(resumed.party[0].balanceRevision, BALANCE_REVISION)
   assert.equal(resumed.party[0].statModifiers.attack.duration, 'region')
   assert.equal(resumed.party[0].activeBuffs.defense, 1)
   assert(Math.abs(resumed.party[0].currentHp / resumed.party[0].maxHp - old.currentHp / old.maxHp) < .02)

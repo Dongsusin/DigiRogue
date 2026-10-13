@@ -1,9 +1,9 @@
-import { ITEM_EVOLUTION_REQUIREMENTS } from './evolutionRules.js'
+import { ITEM_EVOLUTION_REQUIREMENTS, JOGRESS_RECIPES } from './evolutionRules.js'
 // Shared IDs and artwork keep story rewards and the evolution UI identical.
 export const ITEM_EVOLUTION_REWARD_ITEMS = Object.entries(ITEM_EVOLUTION_REQUIREMENTS).map(([targetName, requirement]) => ({
   id: requirement.itemId ?? 'item-evolution-' + requirement.itemName, name: requirement.itemName,
-  description: requirement.from.join(' 또는 ') + ' Lv.' + requirement.level + ' 이상일 때 ' + targetName + '(으)로 ' + requirement.method + '합니다. 진화창에서 사용하며 1개를 소모합니다.',
-  evolutionItemFor: targetName, rarity: requirement.rarity,
+  description: requirement.from.join(JOGRESS_RECIPES.some(recipe => recipe.targetName === targetName) ? ' + ' : ' 또는 ') + ' Lv.' + requirement.level + ' 이상일 때 ' + targetName + '(으)로 ' + requirement.method + '합니다. 진화창에서 사용하며 ' + (requirement.itemCount ?? 1) + '개를 소모합니다.',
+  evolutionItemFor: targetName, rarity: requirement.rarity, requiredCount: requirement.itemCount ?? 1,
   imageUrl: requirement.imageUrl ?? '/아이템/진화/' + requirement.itemName + '.png',
 }))
 export const EVOLUTION_ITEM_LOOKUP = new Map(ITEM_EVOLUTION_REWARD_ITEMS.map(item => [item.id, item]))

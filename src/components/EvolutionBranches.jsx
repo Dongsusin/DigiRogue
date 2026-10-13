@@ -23,7 +23,7 @@ export default function EvolutionBranches({ options, collection, onSelect }) {
             : requirement.waived ? '진화 기억 · 면제' : `${requirement.current} / ${requirement.required}${requirement.key === 'item' ? '개' : ''}`}</strong>
         </li>)}
       </ul>
-      {option.recipe && <p className="evolution-branch__note">{option.itemWaived ? '진화 기억으로 칩 없이 합체할 수 있습니다. 필요한 파트너는 합체 후 한 마리가 됩니다.' : '파트너들이 조건을 갖춘 뒤 보상에서 조그레스 칩을 선택하세요. 합체 후 한 마리가 됩니다.'}</p>}
+      {option.recipe && <p className="evolution-branch__note">{option.itemWaived ? '진화 기억으로 아이템 없이 합체할 수 있습니다. 필요한 파트너는 합체 후 한 마리가 됩니다.' : option.itemRequirement ? '필요한 진화 아이템과 모든 파트너의 육성 조건을 갖추면 합체할 수 있습니다.' : '파트너들이 조건을 갖춘 뒤 보상에서 조그레스 칩을 선택하세요. 합체 후 한 마리가 됩니다.'}</p>}
       <button type="button" disabled={!option.canEvolve} onClick={() => onSelect(option.targetData.이름)}>
         {option.recipe ? (option.canEvolve ? '조그레스하기' : option.conditionsMet ? '조합 준비 완료 · 조그레스 칩 필요' : '조그레스 조합 준비 중')
           : option.canEvolve ? `${option.method}하기` : '조건 미달'}

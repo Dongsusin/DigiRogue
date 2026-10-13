@@ -1,11 +1,11 @@
 import { REGION_EFFECT_TEXT } from '../battle/regionModifiers.js'
-import { getEvolutionLevel, getEvolutionTargets } from '../data/evolutionRules.js'
+import { getEvolutionLevel, getEvolutionTargets, getEvolutionInvestment } from '../data/evolutionRules.js'
 import { getDigimonPassiveId } from '../data/digimonPassives.js'
-import { getLoreProfile, createLoreStats } from './loreProfiles.js'
+import { getLoreProfile, createLoreStats, costForPower } from './loreProfiles.js'
 import { getDigimonTrainingStage } from '../data/digimonStages.js'
 
 // Raw species/animation names stay intact; this is the single gameplay tuning layer.
-export const BALANCE_REVISION = 4
+export const BALANCE_REVISION = 5
 export const STAGE_TUNING = {
   유아기: { level: 1 }, 유년기: { level: 3 },
   성장기: { level: 5 }, 성숙기: { level: 15 },
@@ -136,10 +136,19 @@ export function balanceSignatureSkill(skill, profile) {
 
 export function balanceSpecies(raw, stage, skills) {
   const tuning = STAGE_TUNING[getDigimonTrainingStage(raw, stage)] ?? STAGE_TUNING[stage]
-  const profile = getLoreProfile(raw.이름)
+  const originalProfile = getLoreProfile(raw.이름)
+  const investment = getEvolutionInvestment(raw.이름)
+  const budget = Math.round(originalProfile.budget * (1 + investment.statBonus))
+  const profile = { ...originalProfile, budget, cost: costForPower(budget) }
   const role = profile.role
   const stats = createLoreStats(profile)
-  const signatureSkills = Object.fromEntries((raw.기술 ?? []).map(name => [name, balanceSignatureSkill(skills.get(name), profile)]))
+  const encounterStats = createLoreStats(originalProfile)
+  const encounterSkills = Object.fromEntries((raw.기술 ?? []).map(name => [name, balanceSignatureSkill(skills.get(name), originalProfile)]))
+  const signatureSkills = Object.fromEntries(Object.entries(encounterSkills).map(([name, skill]) => {
+    if (!skill || skill.효과 || skill.분류 === '보조형' || !investment.statBonus) return [name, skill]
+    const power = investment.skillPower?.[name] ?? Math.max(skill.데미지, Math.min(200, Math.round(skill.데미지 * investment.skillMultiplier / 5) * 5))
+    return [name, { ...skill, 데미지: power, cooldown: power >= 230 ? 4 : power >= 165 ? 3 : skill.cooldown }]
+  }))
   const level = getEvolutionLevel(raw.이름, stage)
   // Support follows the species' combat identity rather than a name hash.
   const supportByBuild = {
@@ -165,7 +174,7 @@ export function balanceSpecies(raw, stage, skills) {
   if (attachments.length > 4) attachments[4] = second
   else attachments.push(second)
   return { ...raw, ...stats, passiveId: getDigimonPassiveId(raw.이름), 전투역할: role,
-    전투성향: profile.label, 설정설명: profile.note, 설정출처: profile.source,
+    전투성향: profile.label, 야생전투설정: { ...encounterStats, 전투총합: originalProfile.budget, 기술설정: encounterSkills }, 설정설명: profile.note, 설정출처: profile.source,
     시작코스트: profile.cost, 전투총합: profile.budget, 기술설정: signatureSkills,
     진화가능: getEvolutionTargets(raw), 진화조건: { 레벨: level }, 어티치먼트: attachments }
 }

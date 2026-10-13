@@ -122,7 +122,7 @@ test('real acquisition, equipment tooltip and save serialization preserve each m
 })
 
 test('real random rewards include exactly three eligible masters and exclude them when every party member has them', () => {
-  assert.equal(engine.randomRewardItemPool.filter(item => item.rarity === 'master').length, 3)
+  assert.equal(engine.randomRewardItemPool.filter(item => item.rarity === 'master' && item.battleItemKey).length, 3)
   assert.equal(engine.fixedRewardItems.some(item => item.rarity === 'master'), false)
   const originalRandom = Math.random
   try {

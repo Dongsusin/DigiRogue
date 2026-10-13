@@ -9,6 +9,7 @@ import expansion6 from './rosterExpansion6.json' with { type: 'json' }
 import treeConnections from './evolutionTreeConnections.json' with { type: 'json' }
 import { isPlayableDigimon } from './speciesAvailability.js'
 import { getDigimonTrainingStage } from './digimonStages.js'
+import { ENDGAME_EVOLUTION_TUNING, resolveEvolutionInvestment } from './evolutionInvestment.js'
 export const EVOLUTION_LEVELS = { 유아기: 1, 유년기: 2, 성장기: 4, 성숙기: 10, 완전체: 25, 궁극체: 45, 초궁극체: 65, 아머체: 10, 하이브리드체: 10 }
 
 const levelOverrides = {
@@ -22,6 +23,7 @@ const levelOverrides = {
   알파몬: 50, 오류우몬: 50, 제스몬: 50, 알포스브이드라몬: 50,
   세라피몬: 48, 오파니몬: 48, 리리스몬: 50, 마왕몬: 50, 벨페몬: 50,
   '알카디몬[초궁극체]': 65,
+  ...Object.fromEntries(Object.entries(ENDGAME_EVOLUTION_TUNING).map(([name, rule]) => [name, rule.level])),
 }
 
 export const JOGRESS_RECIPES = [
@@ -39,10 +41,10 @@ export const JOGRESS_RECIPES = [
   { targetName: '엑자몬', materials: ['슬레이어드라몬', '브레이크드라몬'], level: 65 },
   // Time Stranger's special evolution provides a documented alternative to mass Kuramon fusion.
   { targetName: '아마게몬', materials: ['디아블로몬', '인펠몬'], level: 65 },
-]
+].map(recipe => ({ ...recipe, level: ENDGAME_EVOLUTION_TUNING[recipe.targetName]?.level ?? recipe.level }))
 
 // Keep existing item names/IDs so inventories from older saves remain usable.
-export const ITEM_EVOLUTION_REQUIREMENTS = {
+const baseItemRequirements = {
   ...expansion.items,
   ...expansion4.items,
   ...expansion5.items,
@@ -56,6 +58,22 @@ export const ITEM_EVOLUTION_REQUIREMENTS = {
   '오파니몬[폴다운]': { from: ['오파니몬'], itemName: '악의 근원', rarity: 'rare', level: 60, method: '모드 체인지' },
   '황제드라몬[파이터]': { from: ['파일드라몬'], itemName: '포지트론 레이저', rarity: 'rare', level: 60, method: '워프 진화' },
   '황제드라몬[팔라딘]': { from: ['황제드라몬[파이터]'], itemName: '오메가 블레이드', rarity: 'rogue', level: 70, method: '모드 체인지' },
+}
+
+// Retain existing inventory IDs when promoting catalysts. New seals reuse the
+// franchise Evoluter artwork, with form-specific inventory keys.
+export const ITEM_EVOLUTION_REQUIREMENTS = {
+  ...Object.fromEntries(Object.entries(baseItemRequirements).map(([name, rule]) => [name,
+    { ...rule, ...(ENDGAME_EVOLUTION_TUNING[name] ? { level: ENDGAME_EVOLUTION_TUNING[name].level,
+      rarity: 'master', itemCount: ENDGAME_EVOLUTION_TUNING[name].itemCount } : {}) }])),
+  ...Object.fromEntries(['알파몬[왕룡검]', '얼티메이트카오스몬', '오그도몬', '지드밀레니엄몬'].map(name => [name, {
+    from: JOGRESS_RECIPES.find(recipe => recipe.targetName === name)?.materials ??
+      (name === '오그도몬' ? ['리리스몬', '마왕몬', '발바몬'] : ['밀레니엄몬']),
+    itemName: '에보류터 · ' + name, itemId: 'item-evolution-investment-' + name,
+    imageUrl: '/items/evolution/canonical/evoluter.png', rarity: 'master',
+    level: ENDGAME_EVOLUTION_TUNING[name].level, itemCount: ENDGAME_EVOLUTION_TUNING[name].itemCount,
+    method: name === '지드밀레니엄몬' ? '워프 진화' : name === '오그도몬' ? '특수 진화' : '조그레스',
+  }])),
 }
 
 const modeChanges = {
@@ -98,7 +116,13 @@ export const EVOLUTION_BRANCH_OVERRIDES = {
   프린스콩알몬: [],
 }
 
+export function getEvolutionInvestment(name) {
+  return resolveEvolutionInvestment(name, { item: ITEM_EVOLUTION_REQUIREMENTS[name],
+    recipe: JOGRESS_RECIPES.find(recipe => recipe.targetName === name), mode: modeChanges[name] })
+}
+
 export function getEvolutionLevel(name, stage) {
+  if (ENDGAME_EVOLUTION_TUNING[name]) return ENDGAME_EVOLUTION_TUNING[name].level
   return ITEM_EVOLUTION_REQUIREMENTS[name]?.level ?? modeChanges[name]?.level
     ?? JOGRESS_RECIPES.find(recipe => recipe.targetName === name)?.level
     ?? levelOverrides[name] ?? EVOLUTION_LEVELS[getDigimonTrainingStage(name, stage)] ?? 65

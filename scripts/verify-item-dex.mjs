@@ -28,13 +28,14 @@ test('catalog contains every real reward, shop, card, evolution item and egg exa
   }
 })
 
-test('all five grades partition the full catalog with the same lowered Jogress tier and three masters', () => {
+test('all five grades partition the full catalog with the same lowered Jogress tier and master equipment/catalysts', () => {
   const groups = ITEM_RARITIES.map(tier => filterItemDex(catalog, tier.key))
   assert(groups.every(group => group.length > 0))
   assert.equal(groups.flat().length, catalog.length)
   assert.deepEqual(groups.flat().map(item => item.id), catalog.map(item => item.id))
   assert.equal(catalog.find(item => item.id === 'jogress-chip').rarity, 'good')
-  assert.deepEqual(filterItemDex(catalog, 'master').map(item => item.id), ['d-ark-ultimate', 'digivice-v', 'xros-loader'])
+  assert.deepEqual(filterItemDex(catalog, 'master').filter(item => item.kind === '장착').map(item => item.id), ['d-ark-ultimate', 'digivice-v', 'xros-loader'])
+  assert.equal(filterItemDex(catalog, 'master').filter(item => item.kind === '진화').length, 9)
 })
 
 test('repeated evolution items keep every target description without altering gameplay definitions', () => {
@@ -73,7 +74,7 @@ test('undiscovered items expose only a question mark and are not revealed by nam
   const before = JSON.stringify(collection)
   assert.deepEqual(getItemDexDisplay(item, collection), { id: item.id, rarity: 'master', known: false, name: '?', imageUrl: '', description: '', kind: '', limit: '' })
   assert.deepEqual(filterItemDex(catalog, 'master', '크로스로더', collection), [])
-  assert.equal(filterItemDex(catalog, 'master', '', collection).length, 3)
+  assert.equal(filterItemDex(catalog, 'master', '', collection).length, 12)
   assert.equal(JSON.stringify(collection), before, 'opening the archive must not discover anything')
   const seen = recordItemDiscoveries(collection, [item.id])
   assert.equal(getItemDexDisplay(item, seen).imageUrl, item.imageUrl)

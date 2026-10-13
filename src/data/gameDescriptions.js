@@ -20,8 +20,8 @@ export function createDigiEggRewardItems(eggs, hatchStages) {
 
 export function describeJogressRecipes(recipes) {
   return [
-    '아래 조합에 맞는 디지몬 2마리를 하나로 합쳐 진화합니다.',
-    '합체에 사용한 두 디지몬은 결과 디지몬 한 마리로 바뀝니다.',
-    ...recipes.map(({ materials, targetName, level }) => `${materials.join(' + ')} → ${targetName}${level ? ` (두 마리 모두 Lv.${level} 이상)` : ''}`),
+    '아래 조합의 모든 재료 디지몬을 하나로 합쳐 진화합니다.',
+    '합체 재료의 레벨·육성 조건과 전용 진화 아이템을 확인합니다.',
+    ...recipes.map(({ materials, targetName, level }) => `${materials.join(' + ')} → ${targetName}${level ? ` (재료 모두 Lv.${level} 이상)` : ''}`),
   ].join('\n')
 }
