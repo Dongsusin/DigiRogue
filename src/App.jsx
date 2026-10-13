@@ -8939,7 +8939,7 @@ function App() {
                             event.currentTarget.parentElement.querySelector(`#${next}-reward-tab`)?.focus()
                           } }}>{tab === 'items' ? '아이템 보상 · 3개 중 선택' : `스캔 데이터 · 부화 가능 ${scanEntries.filter(entry => entry.progress >= 100).length}`}</button>)}
                       </div>
-                      <ItemLuck ranks={gameState?.trainerSkills} />
+                      <ItemLuck ranks={gameState?.trainerSkills} showOdds />
                       </div>
                       {allowsScanning(gameState) && rewardTab === 'scan' ? <ScanIncubator entries={scanEntries} busy={rewardState.isResolving || rewardState.isRevealing}
                         onHatch={handleHatchScan} message={hatchMessage} /> :

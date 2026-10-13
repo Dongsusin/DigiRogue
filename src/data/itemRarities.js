@@ -4,7 +4,7 @@ export const ITEM_RARITIES = Object.freeze([
   { key: 'good', label: '일반', weight: 18 },
   { key: 'rare', label: '희귀', weight: 4 },
   { key: 'rogue', label: '로그', weight: 2.9 },
-  { key: 'master', label: '마스터', weight: .1 },
+  { key: 'master', label: '마스터', weight: .02 },
 ].map(Object.freeze))
 
 export const getItemRarityLabel = key => ITEM_RARITIES.find(rarity => rarity.key === key)?.label ?? '기본'

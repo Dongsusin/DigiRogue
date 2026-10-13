@@ -479,5 +479,44 @@
     "sha256": "1948958f81a1eacac3577e4a3eca6cfe8f9b2b8b75fe63ae02ca2c731754f929",
     "modification": "none",
     "retrievedAt": "2026-10-05"
+  },
+  "d-ark-ultimate": {
+    "id": "d-ark-ultimate",
+    "name": "D-아크 얼티메이트",
+    "sourcePage": "https://wikimon.net/D-Ark",
+    "sourceImage": "https://wikimon.net/images/2/21/Darc_ultimate.png",
+    "url": "/items/adventure/d-ark-ultimate.png",
+    "width": 526,
+    "height": 633,
+    "sha256": "2da0f03731ba8901fcd537ec5f0c6d2e92732f962e78cf98c2bf2df35e984fb8",
+    "sourceKind": "franchise-art",
+    "modification": "none",
+    "retrievedAt": "2026-10-13"
+  },
+  "digivice-v": {
+    "id": "digivice-v",
+    "name": "디지바이스 V",
+    "sourcePage": "https://wikimon.net/Digivice-V-",
+    "sourceImage": "https://wikimon.net/images/a/a1/Digivicev.png",
+    "url": "/items/adventure/digivice-v.png",
+    "width": 1930,
+    "height": 2321,
+    "sha256": "a6379be49bf406078eb1208324e1af37ef24afa8f06697c9ed0922ae6f250023",
+    "sourceKind": "franchise-art",
+    "modification": "none",
+    "retrievedAt": "2026-10-13"
+  },
+  "xros-loader": {
+    "id": "xros-loader",
+    "name": "크로스로더",
+    "sourcePage": "https://wikimon.net/Digimon_Xros_Loader",
+    "sourceImage": "https://wikimon.net/images/9/94/Digimon_xros_loader.png",
+    "url": "/items/adventure/xros-loader.png",
+    "width": 267,
+    "height": 273,
+    "sha256": "f2fcc097d075e469e1c64a21b50da7a1d8617aeca120ad353938f1b67c565ec2",
+    "sourceKind": "franchise-art",
+    "modification": "none",
+    "retrievedAt": "2026-10-13"
   }
 }

@@ -42,7 +42,8 @@
     "test:hall": "node --test scripts/verify-hall-of-fame.mjs scripts/verify-hall-client.mjs",
     "test:hall:rules": "node --test scripts/verify-hall-rules.mjs",
     "test:canon": "node --test scripts/verify-canon-catalog.mjs",
-    "test:skill-order": "node --test scripts/verify-skill-order.mjs"
+    "test:skill-order": "node --test scripts/verify-skill-order.mjs",
+    "test:master-rewards": "node --test scripts/verify-master-rewards.mjs"
   },
   "dependencies": {
     "firebase": "^13.0.0",

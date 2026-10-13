@@ -6,6 +6,9 @@ const equipped = (id, description, rarity = 'good') => ({ id, name: art[id].name
   imageUrl: art[id].url, battleItemKey: id, maxOwnedPerCombatant: 1, rarity })
 
 export const ADVENTURE_BATTLE_ITEMS = [
+  equipped('d-ark-ultimate', '주는 물리·특수 공격 피해가 50% 증가합니다.', 'master'),
+  equipped('digivice-v', '받는 물리·특수 공격 피해를 35% 줄입니다.', 'master'),
+  equipped('xros-loader', '승리 후 생존한 장착 디지몬의 최대 HP 25% 추가 회복 · 기술로 받는 회복량 50% 증가. 예비 파티에도 적용됩니다.', 'master'),
   equipped('steel-claw', '물리 기술로 공격할 때 상대의 방어 상승분을 절반만 적용합니다. 방어 하락과 특수방어에는 영향을 주지 않습니다.'),
   { ...equipped('d-3', '아머체일 때 주는 공격 피해가 15% 증가합니다.'), requiredStage: '아머체' },
   equipped('d-ark', '전투 승리 후 생존한 장착 디지몬의 최대 HP 5%를 추가로 회복합니다. 예비 파티에도 적용됩니다.'),
@@ -54,7 +57,10 @@ export const ADVENTURE_CONSUMABLES = [
   supply('energy-pill-a', '아군 한 마리의 능력치 하락 해제 · 기술과 공용 재사용 대기시간 1행동 단축. 상태이상은 치료하지 않습니다.', { clearDebuffs: true, cooldownReduction: 1 }),
 ]
 
-export const getItemVictoryRecoveryBonus = unit => hasAdventureItem(unit, 'd-ark') ? .05 : 0
+export const getItemVictoryRecoverySources = unit => [
+  { id: 'd-ark', ratio: .05 }, { id: 'xros-loader', ratio: .25 },
+].filter(item => hasAdventureItem(unit, item.id)).map(item => ({ ...item, name: art[item.id].name }))
+export const getItemVictoryRecoveryBonus = unit => getItemVictoryRecoverySources(unit).reduce((total, item) => total + item.ratio, 0)
 
 const equippedIds = new Set(ADVENTURE_BATTLE_ITEMS.map(item => item.id))
 export const hasAdventureItem = (unit, id) => equippedIds.has(id) && Number(unit?.battleItems?.[id]) > 0
@@ -69,6 +75,7 @@ export const getItemStatusDamageMultiplier = unit => hasAdventureItem(unit, 'cre
 
 export function getItemHealingMultiplier(actor, target, scope) {
   let multiplier = hasAdventureItem(target, 'beast-spirit-wood') ? 1.25 : 1
+  if (hasAdventureItem(target, 'xros-loader')) multiplier *= 1.5
   if (scope === 'all' && hasAdventureItem(actor, 'crest-love')) multiplier *= 1.25
   if (scope !== 'all' && actor?.id !== target?.id && hasAdventureItem(actor, 'crest-friendship')) multiplier *= 1.3
   return multiplier
@@ -86,6 +93,8 @@ export function getAdventureAttackModifiers({ attacker, defender, skillData, mat
   }
   const physical = skillData.분류 !== '특수형'
   const defenseBoost = defender.statModifiers?.defense
+  modify(attacker, 'd-ark-ultimate', 1.5)
+  modify(defender, 'digivice-v', .65, true)
   modify(attacker, 'steel-claw', physical && isStatModifierActive(defenseBoost) && defenseBoost.multiplier > 1
     ? defenseBoost.multiplier / (1 + (defenseBoost.multiplier - 1) / 2) : 1)
   modify(attacker, 'd-3', attacker.speciesStage === '아머체' ? 1.15 : 1)

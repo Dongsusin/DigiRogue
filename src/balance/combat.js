@@ -1,5 +1,5 @@
 import { isStatModifierActive } from '../battle/regionModifiers.js'
-import { getItemVictoryRecoveryBonus, getItemStatusDamageMultiplier, getItemStatusChance } from '../data/adventureItems.js'
+import { getItemVictoryRecoverySources, getItemStatusDamageMultiplier, getItemStatusChance } from '../data/adventureItems.js'
 import { getDigimonPassive } from '../data/digimonPassives.js'
 import { getPassiveAttackModifiers, getPassiveHealing, getPassiveAccuracy, getPassiveStatusChance, getPassiveStatusDamageMultiplier } from '../battle/passives.js'
 
@@ -143,8 +143,12 @@ export function recoverAfterVictory(party, boss = false, activeAllyIds, { equipm
     if (!unit || unit.isEgg || unit.currentHp <= 0) return unit
     const amount = equipmentOnly ? 0 : Math.min(unit.maxHp - unit.currentHp, Math.max(1, Math.floor(unit.maxHp * ratio)))
     if (amount > 0 && (!visibleIds || visibleIds.has(unit.id))) logs.push(`${unit.name}은(는) 전투 후 휴식으로 HP ${amount} 회복!`)
-    const bonus = Math.max(0, Math.min(unit.maxHp - unit.currentHp - amount, Math.floor(unit.maxHp * getItemVictoryRecoveryBonus(unit))))
-    if (bonus > 0 && (!visibleIds || visibleIds.has(unit.id))) logs.push(`${unit.name}의 D-아크! 전투 후 HP ${bonus} 추가 회복!`)
+    let bonus = 0
+    for (const source of getItemVictoryRecoverySources(unit)) {
+      const recovered = Math.max(0, Math.min(unit.maxHp - unit.currentHp - amount - bonus, Math.floor(unit.maxHp * source.ratio)))
+      bonus += recovered
+      if (recovered > 0 && (!visibleIds || visibleIds.has(unit.id))) logs.push(`${unit.name}의 ${source.name}! 전투 후 HP ${recovered} 추가 회복!`)
+    }
     return { ...unit, currentHp: unit.currentHp + amount + bonus }
   })
   return { nextParty, battleLogs: logs }
