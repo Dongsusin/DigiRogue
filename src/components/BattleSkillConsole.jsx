@@ -14,12 +14,17 @@ export function BattleCommandIcon({ command = 'attack' }) {
 }
 
 export default function BattleSkillConsole({ actor, skills, targets, selectedSkillIndex, choosingTarget,
-  hoveredTargetId, onSelectSkill, onSelectTarget, onPreviewTarget, onClearTarget, onPreviewSkill, onClearSkill, onBack, onClose, onInspect }) {
+  hoveredTargetId, onSelectSkill, onSelectTarget, onReorderSkill, onPreviewTarget, onClearTarget, onPreviewSkill, onClearSkill, onBack, onClose, onInspect }) {
   const rootRef = useRef(null)
   const [detail, setDetail] = useState(null)
   const selectedSkill = skills.find(skill => skill.index === selectedSkillIndex)
   const forcedTarget = !selectedSkill?.support && targets.find(target => target.battleGuards?.taunt > 0)
-  const tooltipSkill = detail?.skill.index
+  const detailSkill = detail && skills.find(skill => skill.name === detail.skill.name)
+  const tooltipSkill = detailSkill?.index
+  const [orderNotice, setOrderNotice] = useState('')
+  const reorder = (name, index) => {
+    if (onReorderSkill?.(name, index)) setOrderNotice(`${name} · ${index + 1}번으로 이동했습니다.`)
+  }
 
   // Focus the console, not a skill: opening with a mouse must not show a keyboard tooltip.
   useLayoutEffect(() => { rootRef.current?.focus({ preventScroll: true }) }, [])
@@ -43,7 +48,8 @@ export default function BattleSkillConsole({ actor, skills, targets, selectedSki
     setDetail(current => current?.anchor === anchor && current.mode !== 'pinned' ? null : current)
   }
   const pin = (skill, event) => {
-    const closing = detail?.mode === 'pinned' && detail.skill.index === skill.index
+    const closing = detail?.mode === 'pinned' && detail.skill.name === skill.name
+    setOrderNotice('')
     if (closing) onClearSkill?.()
     else onPreviewSkill?.(skill.index)
     const anchor = event.currentTarget
@@ -108,7 +114,7 @@ export default function BattleSkillConsole({ actor, skills, targets, selectedSki
         </button>)}
       </div>
     </> : <div className="digi-skill-console__list" aria-label="기술 목록">
-      {skills.map(skill => <div key={skill.index} className={`digi-skill${tooltipSkill === skill.index ? ' digi-skill--active' : ''}`}>
+      {skills.map(skill => <div key={skill.name} className={`digi-skill${tooltipSkill === skill.index ? ' digi-skill--active' : ''}`}>
         <button type="button" className="digi-skill__execute" data-skill-command aria-label={`${skill.name} 선택`}
           disabled={skill.remainingCooldown > 0}
           onPointerEnter={event => preview(skill, event, 'pointer')} onPointerLeave={clearPreview}
@@ -123,10 +129,11 @@ export default function BattleSkillConsole({ actor, skills, targets, selectedSki
       </div>)}
     </div>}
     <footer className="digi-skill-console__footer">
-      {choosingTarget ? <button type="button" onClick={onBack}>← 기술 다시 선택</button> : <span>ⓘ 기술 정보 · 자신의 행동마다 대기시간 감소</span>}
+      {choosingTarget ? <button type="button" onClick={onBack}>← 기술 다시 선택</button> : <span>ⓘ 기술 정보 · 순서 변경</span>}
       <span className="digi-skill-console__keyboard">↑↓ 이동 · Enter 선택 · Esc 닫기</span>
       <span className="digi-skill-console__touch">{choosingTarget ? '대상을 누르면 명령 전송' : '기술을 눌러 명령 전송'}</span>
     </footer>
-    {detail && <SkillInfoTooltip detail={detail} onDismiss={dismissDetail} />}
+    {detailSkill && <SkillInfoTooltip detail={{ ...detail, skill: detailSkill }} onDismiss={dismissDetail}
+      skillNames={actor.skills ?? []} onReorderSkill={onReorderSkill ? reorder : null} orderNotice={orderNotice} />}
   </section>
 }

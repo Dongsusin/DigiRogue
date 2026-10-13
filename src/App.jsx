@@ -100,6 +100,7 @@ import { BATTLE_LOG_FINAL_DELAY_MS, createBattleLog,
   captureBattleLogAction, createBattlePresentation } from './three/battleLogTimeline.js'
 import { SWITCH_OUT_MS, SWITCH_IN_DELAY_MS, SWITCH_TOTAL_MS, createSwitchEvents } from './three/switchPresentation.js'
 import { isEscapeBlocked, rollRunAttempt } from './battle/escape.js'
+import { reorderBattleSkill } from './battle/skillOrder.js'
 import { gameAudio } from './audio/GameAudio.js'
 import { bgmTracks } from './audio/bgmCatalog.js'
 import { createDefaultBgmSettings, sanitizeBgmSettings, getEnabledBgmTracks } from './audio/bgmSettings.js'
@@ -6464,6 +6465,25 @@ function App() {
     handleNextStage(gameState, gameState.player)
   }
 
+  const handleReorderSkill = (combatantId, skillName, targetIndex) => {
+    const current = latestGameStateRef.current ?? gameState
+    if (!current || rewardState || mapSelectionState || evolutionState ||
+      !['attack', 'attack-targets'].includes(battlePanelMode)) return false
+    const actor = getBattleContext(current).actingAlly
+    if (actor?.id !== combatantId) return false
+    const commands = getCommandSkillNames(actor, name => getSkillData(name, actor))
+    const selectedName = commands[selectedSkillIndex]
+    const next = reorderBattleSkill(current, combatantId, skillName, targetIndex)
+    if (next === current) return false
+    const nextActor = next.party.find(unit => unit.id === combatantId)
+    const nextCommands = getCommandSkillNames(nextActor, name => getSkillData(name, nextActor))
+    latestGameStateRef.current = next
+    setGameState(next)
+    setSelectedSkillIndex(Math.max(0, nextCommands.indexOf(selectedName)))
+    setPreviewedSkill({ actorId: combatantId, index: nextCommands.indexOf(skillName) })
+    return true
+  }
+
   const handleSkillSelect = (skillIndex) => {
     setPreviewedSkill(null)
     if (rewardState || !gameState || battlePanelMode !== 'attack') {
@@ -9473,6 +9493,7 @@ function App() {
                     choosingTarget={isAttackTargetPanelOpen}
                     hoveredTargetId={hoveredEnemyTargetId}
                     onSelectSkill={handleSkillSelect}
+                    onReorderSkill={(name, index) => handleReorderSkill(actingAlly?.id, name, index)}
                     onSelectTarget={handleAttackTargetSelect}
                     onInspect={showCombatantTooltip}
                     onPreviewTarget={handleTargetPreview}
