@@ -42,6 +42,7 @@ import TrainerSkillTree from './components/TrainerSkillTree.jsx'
 import DigimonDex from './components/DigimonDex.jsx'
 import ItemLuck from './components/ItemLuck.jsx'
 import { ITEM_RARITIES, getItemRarityLabel } from './data/itemRarities.js'
+import { buildItemDex } from './data/itemDex.js'
 import { pickLuckRewardRarity } from './progression/itemLuck.js'
 import { TRAINER_SKILLS_STORAGE_KEY, loadTrainerProgress, saveTrainerProgress, normalizeTrainerRanks,
   learnTrainerSkill, redistributeTrainerSkills, getTrainerPoints, createTrainerRun, awardTrainerVictory, applyTrainerStats,
@@ -2067,6 +2068,8 @@ const getRewardItemRarity = (item) => {
 
   return 'common'
 }
+
+const itemDexCatalog = buildItemDex([...fixedRewardItems, ...randomRewardItemPool], getRewardItemRarity)
 
 const selectWeightedRewardRarity = (items, trainerSkills = {}) => {
   const availableWeights = ITEM_RARITIES.filter(({ key }) =>
@@ -5074,6 +5077,7 @@ function App() {
   const localProgress = useLocalProgress()
   const progressStorage = localProgress.storage
   const recordLocalGame = localProgress.recordGame
+  const recordLocalItems = localProgress.recordItems
   const subscribeLocal = localProgress.subscribe
   const getLocalSnapshot = localProgress.getSnapshot
   const [screenMode, setScreenMode] = useState('menu')
@@ -5633,6 +5637,11 @@ function App() {
       window.clearTimeout(revealTimeoutId)
     }
   }, [rewardState?.isRevealing, rewardState?.revealKey])
+
+  useEffect(() => {
+    if (screenMode !== 'adventure' || !rewardState) return
+    recordLocalItems([...fixedRewardItems, ...(rewardTab === 'items' && !rewardState.isRevealing ? rewardState.randomItems : [])])
+  }, [screenMode, rewardState, rewardTab, recordLocalItems])
 
   const clearLevelUpStatAnimationQueue = () => {
     levelUpStatTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
@@ -8269,7 +8278,7 @@ function App() {
           ) : screenMode === 'town' ? (
             <TownScreen town={localProgress.town} trust={localProgress.regionalTrust} onAction={localProgress.actTown} onBack={() => setScreenMode('menu')} />
           ) : screenMode === 'dex' ? (
-            <DigimonDex eggs={digiEggData} lookup={allDigimonLookup} collection={localProgress.collection} onBack={() => setScreenMode('menu')} />
+            <DigimonDex eggs={digiEggData} lookup={allDigimonLookup} collection={localProgress.collection} items={itemDexCatalog} onBack={() => setScreenMode('menu')} />
           ) : screenMode === 'settings' ? (
             <section className="settings-screen" aria-label="설정">
               <div className="settings-panel">

@@ -1,6 +1,7 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { buildEggEvolutionGraph, getDexNodeDisplay,
   getDexRelatedEdges, layoutDigimonDex } from '../layout/digimonDexLayout.js'
+import ItemDex from './ItemDex.jsx'
 import './DigimonDex.css'
 
 const DEFAULT_ZOOM = 0.8
@@ -13,7 +14,16 @@ const chartRootCenter = (layout, zoom) => {
 const chartOffset = (layout, zoom, viewport) => Math.max(0, viewport.clientWidth / 2 - chartRootCenter(layout, zoom))
 const clampZoom = value => Math.max(0.5, Math.min(1.5, Math.round(value * 10) / 10))
 
-export default function DigimonDex({ eggs, lookup, collection, onBack }) {
+export default function DigimonDex({ eggs, lookup, collection, items = [], onBack }) {
+  const [tab, setTab] = useState('digimon')
+  const archiveId = useId()
+  const tabRefs = useRef({})
+  const selectTab = next => { setTab(next); tabRefs.current[next]?.focus() }
+  const navigateTabs = event => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
+    event.preventDefault()
+    selectTab(event.key === 'Home' ? 'digimon' : event.key === 'End' ? 'items' : tab === 'digimon' ? 'items' : 'digimon')
+  }
   const [familyId, setFamilyId] = useState(eggs[0]?.이름 ?? '')
   const [zoom, setZoom] = useState(DEFAULT_ZOOM)
   const [hoveredId, setHoveredId] = useState(null)
@@ -153,12 +163,19 @@ export default function DigimonDex({ eggs, lookup, collection, onBack }) {
   }
 
   return (
-    <section className="dex-screen" aria-label="디지몬 도감">
+    <section className="dex-screen" aria-label="도감">
       <header className="dex-header">
         <button ref={backRef} type="button" className="dex-back" onClick={onBack}>◀ 뒤로</button>
-        <div className="dex-header__title"><span>DIGIMON ARCHIVE</span><h1>디지몬 도감</h1></div>
+        <div className="dex-header__title"><span>DIGITAL ARCHIVE</span><h1>도감</h1></div>
+        <div className="dex-tabs" role="tablist" aria-label="도감 종류" onKeyDown={navigateTabs}>
+          {[['digimon', '디지몬'], ['items', '아이템']].map(([key, label]) => (
+            <button key={key} type="button" role="tab" id={archiveId + '-tab-' + key}
+              aria-controls={archiveId + '-panel-' + key} aria-selected={tab === key} tabIndex={tab === key ? 0 : -1}
+              ref={element => { tabRefs.current[key] = element }} onClick={() => setTab(key)}>{label}</button>
+          ))}
+        </div>
       </header>
-      <div className="dex-body">
+      <div className="dex-body" role="tabpanel" id={archiveId + '-panel-digimon'} aria-labelledby={archiveId + '-tab-digimon'} hidden={tab !== 'digimon'}>
         <nav className="dex-families" aria-label="디지에그 계통 선택">
           {eggs.map(item => (
             <button type="button" key={item.이름} className={'dex-family' + (familyId === item.이름 ? ' dex-family--active' : '')}
@@ -226,6 +243,9 @@ export default function DigimonDex({ eggs, lookup, collection, onBack }) {
             </div>
           </div>
         </div>
+      </div>
+      <div className="dex-item-panel" role="tabpanel" id={archiveId + '-panel-items'} aria-labelledby={archiveId + '-tab-items'} hidden={tab !== 'items'}>
+        <ItemDex catalog={items} collection={collection} />
       </div>
     </section>
   )

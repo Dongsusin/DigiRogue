@@ -66,3 +66,10 @@
 .dex-node[aria-expanded="false"] .dex-node__branch { border-color: #e6bc77; color: #ffe1a9; }
 .dex-node--reference .dex-node__branch { border-radius: 5px; border-color: #7196ae; color: #bedcf5; }
 .dex-node:hover .dex-node__branch, .dex-node:focus-visible .dex-node__branch { border-color: #ffdc98; background: #38536a; color: #fff0c7; }
+
+.dex-tabs { margin-left: auto; display: flex; gap: 6px; padding: 4px; border: 1px solid #42667e; border-radius: 5px; background: #091b28; }
+.dex-tabs button { min-width: 108px; padding: 11px 22px; border: 1px solid transparent; border-radius: 3px; background: transparent; color: #9ab7c9; font: inherit; font-size: 14px; cursor: pointer; }
+.dex-tabs button:hover { color: #fff; background: #28465a; }
+.dex-tabs button[aria-selected="true"] { border-color: #eac17c; color: #fff1d5; background: linear-gradient(110deg, #85532d, #423826); box-shadow: inset 0 -2px #ffc773; }
+.dex-item-panel { display: flex; flex: 1; min-height: 0; }
+.dex-screen [role="tabpanel"][hidden] { display: none; }

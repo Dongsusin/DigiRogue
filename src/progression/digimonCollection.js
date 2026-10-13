@@ -1,3 +1,4 @@
+import { normalizeItemDiscoveries, recordItemDiscoveries, getGameItemDiscoveries } from './itemCollection.js'
 import manifest from '../data/digimonModelManifest.json' with { type: 'json' }
 import { isPlayableDigimon } from '../data/speciesAvailability.js'
 import { canonicalDigimonName, DIGIMON_NAME_REVISION } from '../data/digimonNames.js'
@@ -35,7 +36,7 @@ export function normalizeCollection(raw) {
         scan: { value, revision: revision(record.scan?.revision) } }))
     }
   }
-  return { version: 1, species: Object.fromEntries(entries) }
+  return { version: 1, species: Object.fromEntries(entries), items: normalizeItemDiscoveries(raw?.items) }
 }
 
 export function getCollectionStatus(collection, name) {
@@ -62,7 +63,7 @@ export function mergeCollections(first, second) {
     // A spent 100% sample must not return when an older local save arrives.
     species[name] = mergeRecords(left, right)
   }
-  return { version: 1, species }
+  return { version: 1, species, items: { ...a.items, ...b.items } }
 }
 
 export function recordGameCollection(collection, state, now = Date.now()) {
@@ -95,5 +96,5 @@ export function recordGameCollection(collection, state, now = Date.now()) {
       changed = true
     }
   }
-  return changed ? { version: 1, species } : collection
+  return recordItemDiscoveries(changed ? { ...collection, version: 1, species } : collection, getGameItemDiscoveries(state))
 }

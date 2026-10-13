@@ -1,3 +1,4 @@
+import { recordItemDiscoveries } from './itemCollection.js'
 import { TOWN_STORAGE_KEY, loadTown, saveTown, recordTownProgress, applyTownAction } from './townProgress.js'
 import { loadRegionalTrust, recordRegionalTrust, saveRegionalTrust } from './regionalTrustProgress.js'
 import { COLLECTION_STORAGE_KEY, normalizeCollection, mergeCollections, collectionAnalysis, collectionUnlockedSpecies, recordGameCollection } from './digimonCollection.js'
@@ -68,6 +69,7 @@ export function createCollectionStore({ storage = createLocalStorage(), now = Da
       publishTown()
       if (migration.ok) publish(mergeCollections(snapshot.collection, read()))
     },
+    recordItems(items) { return running ? publish(recordItemDiscoveries(snapshot.collection, items)) : false },
     recordGame(state) { return running && publishTrust(state) && publishTown(state) ? publish(recordGameCollection(snapshot.collection, state, now())) : false },
     reloadLocal() { if (running) { publishTrust(); publishTown(); publish(mergeCollections(snapshot.collection, read())) } },
     stop() { running = false },

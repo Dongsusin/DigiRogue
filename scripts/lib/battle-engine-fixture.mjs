@@ -19,7 +19,7 @@ export async function loadBattleEngine({ difficultySource, sourceOverrides = {} 
     'getNewSkillLearnNamesForLevel','getSkillLearnEventsForLevelRange','applyExperienceAmount',
     'createRewardSelection','applyInstantRewardEffect','applyPartyHealRewardEffect','applyDigicloneRewardEffect',
     'applyLevelUpRewardEffect','getEvolutionRoute','isBossStage','getStageClearGoldReward','isRewardItemUsableByCombatant',
-    'addRewardInventoryItem','applyMapEnvironment','prepareCombatantForStage','resolveNonAttackActionEnd','chooseSupportTarget','fixedRewardItems','randomRewardItemPool']
+    'addRewardInventoryItem','applyMapEnvironment','prepareCombatantForStage','resolveNonAttackActionEnd','chooseSupportTarget','fixedRewardItems','randomRewardItemPool','getRewardItemRarity']
   const entry = join(directory, 'entry.mjs')
   await writeFile(entry, 'export {' + names.join(',') + '} from ' + JSON.stringify(root + '/src/App.jsx'))
   await build({ configFile: false, root, publicDir: false, logLevel: 'silent',

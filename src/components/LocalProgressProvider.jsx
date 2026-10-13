@@ -10,7 +10,7 @@ import GameLoadingScreen from './GameLoadingScreen.jsx'
 export default function LocalProgressProvider({ children, storage, namespace = null }) {
   const [store] = useState(() => createCollectionStore({ storage: storage ?? createLocalStorage(undefined, { namespace }) }))
   const progress = useSyncExternalStore(store.subscribe, store.getSnapshot, store.getSnapshot)
-  const value = useMemo(() => ({ ...progress, storage: store.storage, recordGame: store.recordGame,
+  const value = useMemo(() => ({ ...progress, storage: store.storage, recordGame: store.recordGame, recordItems: store.recordItems,
     actTown: store.actTown, subscribe: store.subscribe, getSnapshot: store.getSnapshot }), [progress, store])
   useEffect(() => {
     store.start()

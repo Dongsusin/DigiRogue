@@ -32,7 +32,7 @@
     "test:skills": "node --test scripts/verify-skill-learning.mjs",
     "test:hard": "node --test scripts/verify-hard-mode.mjs scripts/verify-simulation-policy.mjs",
     "simulate:hard": "node scripts/simulate-adventure-balance.mjs --hard",
-    "test:dex": "node --test scripts/verify-digimon-dex.mjs",
+    "test:dex": "node --test scripts/verify-digimon-dex.mjs scripts/verify-item-dex.mjs",
     "test:effects": "node --test scripts/verify-canon-skill-effects.mjs scripts/verify-attack-attachment.mjs",
     "test:evolution-inspection": "node --test scripts/verify-evolution-inspection.mjs",
     "test:matchups": "node --test scripts/verify-matchup-balance.mjs",

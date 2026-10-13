@@ -46,7 +46,7 @@ export function recoverSavedCollection(storage, collection, now = Date.now()) {
     const run = data.gameState ?? data
     const units = list => (Array.isArray(list) ? list : []).filter(object).map(unit => ({ ...unit,
       evolutionHistory: Array.isArray(unit.evolutionHistory) ? unit.evolutionHistory : [] }))
-    const history = migrateSavedDigimonNames({ digimonNameRevision: run.digimonNameRevision,
+    const history = migrateSavedDigimonNames({ inventory: run.inventory, digimonNameRevision: run.digimonNameRevision,
       gameMode: run.gameMode, dailyStarterNames: Array.isArray(run.dailyStarterNames) ? run.dailyStarterNames : [],
       party: units(run.party), player: object(run.player) ? units([run.player])[0] : null,
       enemies: units(run.enemies), unlockedSpecies: Array.isArray(run.unlockedSpecies) ? run.unlockedSpecies : [] })
@@ -65,7 +65,7 @@ export function recoverSavedCollection(storage, collection, now = Date.now()) {
     }
     // The permanent bank is authoritative even when it contains zero. Only
     // acquired species are removed; stale run snapshots never replenish it.
-    recovered = normalizeCollection({ version: 1, species })
+    recovered = normalizeCollection({ ...recovered, version: 1, species })
   }
   return recovered
 }
