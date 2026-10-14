@@ -105,6 +105,10 @@ export const ITEM_EVOLUTION_REQUIREMENTS = Object.fromEntries(Object.entries(pro
     return [target, { ...rule, ...(artwork ? { imageUrl: artwork.url, itemName: artwork.name ?? rule.itemName } : {}) }]
   }))
 
+// Dedicated catalysts keep their own evolution route; the ordinary chip cannot
+// substitute for them or offer those recipes in its reward selection.
+export const JOGRESS_CHIP_RECIPES = JOGRESS_RECIPES.filter(recipe => !ITEM_EVOLUTION_REQUIREMENTS[recipe.targetName])
+
 const modeChanges = {
   '샤인그레이몬[루인]': { from: ['샤인그레이몬'], level: 60, method: '모드 체인지' },
   '라센몬[격앙]': { from: ['라센몬'], level: 60, method: '모드 체인지' },

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { loadBattleEngine } from './lib/battle-engine-fixture.mjs'
-import { JOGRESS_RECIPES } from '../src/data/evolutionRules.js'
+import { ITEM_EVOLUTION_REQUIREMENTS, JOGRESS_RECIPES } from '../src/data/evolutionRules.js'
 import { writeSaveSlot, readSaveSlot } from '../src/progression/saveSlots.js'
 const e = await loadBattleEngine()
 const target = e.allDigimonLookup.get('오메가몬')
@@ -98,4 +98,51 @@ test('later evolution and return keep all unresolved Jogress choices', () => {
     for(const name of fused.pendingJogressSkills) assert(transformed.skills.includes(name)||transformed.pendingJogressSkills?.includes(name), name)
     assert(e.getPendingJogressSkillEvents([transformed]).length>0)
   }
+})
+
+import { ITEM_EVOLUTION_REWARD_ITEMS } from '../src/data/evolutionItems.js'
+import { rememberItemEvolution } from '../src/progression/evolutionMemory.js'
+
+const catalystTargets = ['그레이스노바몬', '얼티메이트카오스몬', '볼토바우타몬']
+const catalystFixture = name => {
+ const recipe=JOGRESS_RECIPES.find(r=>r.targetName===name),item=ITEM_EVOLUTION_REWARD_ITEMS.find(i=>i.evolutionItemFor===name)
+ assert(recipe&&item&&ITEM_EVOLUTION_REQUIREMENTS[name])
+ const party=recipe.materials.map(n=>unit(n,140,{digiclones:{hp:10,attack:10,defense:10,specialAttack:10,specialDefense:10,speed:10}}))
+ const state={currentStage:191,currentMap:'기어 포레스트',gameMode:'classic',player:party[0],party,enemies:[],activeAllyIds:[party[0].id],inventory:{'jogress-chip':2,[item.id]:1},trainerSkills:{}}
+ return{recipe,item,party,state,chip:e.randomRewardItemPool.find(i=>i.id==='jogress-chip')}
+}
+for(const name of catalystTargets){
+ test(name+': dedicated catalyst Jogress never activates a chip, including stale saved recipe lists',()=>{
+  const{recipe,party,state,chip}=catalystFixture(name);assert(chip)
+  for(const offered of [chip,{...chip,jogressRecipes:structuredClone(JOGRESS_RECIPES)}]){
+   assert.equal(e.canRandomRewardItemAppear(offered,state.inventory,party),false,'chip reward offered for a catalyst-only party')
+   assert(!e.getAvailableJogressRecipesForParty(party,offered.jogressRecipes).some(r=>r.targetName===name))
+   for(const member of party)assert.equal(e.isJogressMemberSelectable(member,party,[],offered.jogressRecipes),false)
+  }
+  assert(!chip.jogressRecipes.some(r=>r.targetName===recipe.targetName))
+ })
+ test(name+': dedicated catalyst cannot be spent through the chip route or forged pending selection',()=>{
+  const{recipe,party,state}=catalystFixture(name);const before=structuredClone(state)
+  assert.equal(e.getEvolutionOptions(party[0],state.inventory,party).find(o=>o.targetData.이름===name).canEvolve,true)
+  for(const members of [party,[...party].reverse()])assert(e.resolveJogressEvolution(state,members,recipe,true)===null,'chip must reject dedicated catalyst route')
+  assert.deepEqual(state,before,'rejecting chip fusion must not consume partners, items or progress')
+ })
+ test(name+': dedicated catalyst still evolves manually and consumes exactly one catalyst, not the chip',()=>{
+  const{item,party,state}=catalystFixture(name);const before=structuredClone(state)
+  const missing={...state,inventory:{'jogress-chip':2}};assert.equal(e.resolveManualEvolution(missing,party[0].id,name),null)
+  const result=e.resolveManualEvolution(state,party[0].id,name);assert(result);assert.equal(result.evolvedMember.name,name)
+  assert.equal(result.nextGameState.inventory[item.id]??0,0);assert.equal(result.nextGameState.inventory['jogress-chip'],2)
+  assert.equal(result.nextGameState.party.length,1);assert.deepEqual(state,before)
+ })
+ test(name+': remembered dedicated Jogress remains manual and cannot be invoked through a chip',()=>{
+  const{recipe,party,state}=catalystFixture(name);const trained=party.map(u=>({...u,trainerSkills:{'stats-evolution-memory':1}}))
+  const remembered={...state,player:trained[0],party:trained,inventory:{'jogress-chip':2},evolutionMemory:rememberItemEvolution([],recipe.materials,name)}
+  assert(e.resolveManualEvolution(remembered,trained[0].id,name));assert(e.resolveJogressEvolution(remembered,trained,recipe,true)===null,'memory does not turn dedicated catalyst fusion into chip fusion')
+ })
+}
+test('ordinary Jogress still activates and evolves through the chip',()=>{
+ const recipe=JOGRESS_RECIPES.find(r=>r.targetName==='오메가몬'),party=parents(),chip=e.randomRewardItemPool.find(i=>i.id==='jogress-chip')
+ assert(chip.jogressRecipes.some(r=>r.targetName==='오메가몬'));assert(e.canRandomRewardItemAppear(chip,{},party))
+ const state={currentStage:191,currentMap:'기어 포레스트',gameMode:'classic',player:party[0],party,enemies:[],activeAllyIds:[party[0].id],inventory:{},trainerSkills:{}}
+ const result=e.resolveJogressEvolution(state,party,recipe,true);assert(result);assert.equal(result.evolvedMember.name,'오메가몬')
 })

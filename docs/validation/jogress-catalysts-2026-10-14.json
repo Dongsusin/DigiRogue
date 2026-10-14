@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-14",
+  "affected": [
+    "그레이스노바몬",
+    "얼티메이트카오스몬",
+    "볼토바우타몬"
+  ],
+  "behavior": {
+    "chipCandidateExcluded": true,
+    "oldSavedRecipesBlocked": true,
+    "chipExecutionBlockedEvenWithCatalyst": true,
+    "manualCatalystEvolutionRetained": true,
+    "learnedMemoryManualEvolutionRetained": true,
+    "ordinaryChipEvolutionRetained": true
+  },
+  "red": {
+    "tests": 13,
+    "pass": 4,
+    "fail": 9,
+    "exitCode": 1
+  },
+  "focused": {
+    "tests": 56,
+    "pass": 56,
+    "fail": 0,
+    "exitCode": 0
+  },
+  "full": {
+    "command": "node --test --test-concurrency=2 (52 package test files)",
+    "tests": 1048,
+    "pass": 1045,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 3,
+    "todo": 0,
+    "exitCode": 0
+  },
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0
+  },
+  "files": [
+    "C:/Users/pdwea/Develop/digirouge/src/App.jsx",
+    "C:/Users/pdwea/Develop/digirouge/src/data/evolutionRules.js",
+    "C:/Users/pdwea/Develop/digirouge/scripts/lib/battle-engine-fixture.mjs",
+    "C:/Users/pdwea/Develop/digirouge/scripts/verify-jogress-inheritance.mjs"
+  ],
+  "release": {
+    "deployed": false
+  },
+  "unverified": [
+    "3 Firebase emulator-only checks skipped",
+    "200-stage long-session playthrough"
+  ],
+  "review": {
+    "exitCode": 0,
+    "tests": 22,
+    "fail": 0,
+    "findings": 0,
+    "ordinaryChipRecipes": 26
+  },
+  "runtime": {
+    "command": "node scripts/verify-runtime.mjs --dist",
+    "exitCode": 0
+  }
+}

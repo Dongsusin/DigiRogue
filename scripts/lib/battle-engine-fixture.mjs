@@ -14,6 +14,7 @@ export async function loadBattleEngine({ difficultySource, sourceOverrides = {} 
     'buildStartingParty','buildEnemyParty','getEncounterGroupForStage','getMapEncounterGroups','getBossEncounterNamesForStage',
     'getEncounterCountForStage','getRandomConnectedMapName','getConnectedMapNames','getMapNameForStage','getLevelCapForStage','getEvolutionOptions','createEvolvedCombatant',
     'resolveAttackAction','getAttackForecast','getTacticalOptions','getEnemyCommand','getEnemyLevelForStage','resolveBattleTurnActions','createBattleTurnAction','createEnemyBattleTurnActions','getBattleAllyLimit',
+    'canRandomRewardItemAppear','getAvailableJogressRecipesForParty','isJogressMemberSelectable',
     'getCommandSkillNames','getCombatantEquippedItems','scoreSkill','getMatchupResult','recoverAfterVictory','applyPartyExperienceGain',
     'levelUpCombatant','parseSavedGameState','applySupportEffectToTarget','resolveTurnEndCombatantEffects',
     'getFaintReplacement','prepareBossTurn','resolveEnemyPartyActions','evolveBossCombatant','createReturnedEvolutionCombatant','createJogressCombatant','resolveJogressEvolution','resolveManualEvolution','resolveJogressSkillChoice','getPendingJogressSkillEvents',

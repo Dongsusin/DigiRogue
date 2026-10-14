@@ -124,7 +124,7 @@ import { createPassiveState, hydrateDigimonPassive, mergePassiveStates, getPassi
   recordPassiveAttack, resolvePassiveEndure, resolvePassiveActionEnd, passiveLog } from './battle/passives.js'
 import { getPartyEvolutionProgress, getNewLevelEvolutionTargets } from './data/evolutionReadiness.js'
 import evolutionTrainingProfiles from './data/evolutionTrainingProfiles.json'
-import { EVOLUTION_LEVELS, JOGRESS_RECIPES, ITEM_EVOLUTION_REQUIREMENTS, getEvolutionRoute, getEvolutionInvestment } from './data/evolutionRules.js'
+import { EVOLUTION_LEVELS, JOGRESS_RECIPES, JOGRESS_CHIP_RECIPES, ITEM_EVOLUTION_REQUIREMENTS, getEvolutionRoute, getEvolutionInvestment } from './data/evolutionRules.js'
 import { resolveEvolutionCinematic } from './data/evolutionCinematics.js'
 import { ADVENTURE_BATTLE_ITEMS, ADVENTURE_UTILITY_ITEMS, hasAdventureItem, getItemScanGain,
   getItemHatchLevel, getItemRerollDiscount, getItemExperienceMultiplier, getItemStatusChance,
@@ -665,12 +665,14 @@ const ROGUE_REWARD_ITEM_IDS = new Set([
   DEATH_BONE_ITEM_ID,
 ])
 const MASTER_REWARD_ITEM_IDS = new Set()
+const JOGRESS_CHIP_TARGETS = new Set(JOGRESS_CHIP_RECIPES.map(recipe => recipe.targetName))
+const isJogressChipRecipe = recipe => JOGRESS_CHIP_TARGETS.has(recipe?.targetName)
 const JOGRESS_CHIP_REWARD_ITEM = {
   id: JOGRESS_CHIP_ITEM_ID,
   name: '조그레스 칩',
-  description: describeJogressRecipes(JOGRESS_RECIPES),
+  description: describeJogressRecipes(JOGRESS_CHIP_RECIPES),
   rarity: 'good',
-  jogressRecipes: JOGRESS_RECIPES,
+  jogressRecipes: JOGRESS_CHIP_RECIPES,
   imageUrl: '/아이템/진화/조그레스 칩.png',
 }
 const itemEvolutionRewardItemByTarget = new Map(
@@ -1737,8 +1739,8 @@ const hasJogressRecipeMaterials = (party, recipe) => {
   })
 }
 
-const getAvailableJogressRecipesForParty = (party, recipes = JOGRESS_RECIPES) =>
-  (recipes ?? []).filter((recipe) => hasJogressRecipeMaterials(party, recipe))
+const getAvailableJogressRecipesForParty = (party, recipes = JOGRESS_CHIP_RECIPES) =>
+  (recipes ?? []).filter((recipe) => isJogressChipRecipe(recipe) && hasJogressRecipeMaterials(party, recipe))
 
 const canJogressRecipeAcceptMembers = (recipe, members) => {
   const selectedMembers = (members ?? []).filter(Boolean)
@@ -3067,6 +3069,7 @@ const resolveJogressEvolution = (gameState, members, recipe, usedChip = false, r
   const currentRecipe = getJogressRecipeForMembers(currentMembers)
   if (currentRecipe?.targetName !== recipe.targetName) return null
   recipe = currentRecipe
+  if (usedChip && !isJogressChipRecipe(recipe)) return null
   members = currentMembers
   const targetData = allDigimonLookup.get(recipe.targetName)
   if (!targetData || !isPlayableDigimon(targetData)) return null
