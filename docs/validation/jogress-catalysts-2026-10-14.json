@@ -46,7 +46,32 @@
     "C:/Users/pdwea/Develop/digirouge/scripts/verify-jogress-inheritance.mjs"
   ],
   "release": {
-    "deployed": false
+    "deployed": true,
+    "exitCode": 0,
+    "sourceCommit": "02b1b46",
+    "url": "https://digirouge.co.kr",
+    "version": "6f41786d301607d1",
+    "deploymentUrl": "https://digilog-web-preview-5c4vfjpwk-dongsusins-projects.vercel.app",
+    "productionVerification": {
+      "exitCode": 0,
+      "url": "https://digirouge.co.kr",
+      "version": "6f41786d301607d1",
+      "assets": 2287,
+      "files": [
+        {
+          "path": "/assets/index-DVOazsxy.js",
+          "status": 200,
+          "bytes": 328399,
+          "revision": "668a37a14fa19929"
+        },
+        {
+          "path": "/assets/App-CYB_zfWs.js?v=a6bedb4e5fd9a9bc",
+          "status": 200,
+          "bytes": 717075,
+          "revision": "a6bedb4e5fd9a9bc"
+        }
+      ]
+    }
   },
   "unverified": [
     "3 Firebase emulator-only checks skipped",
