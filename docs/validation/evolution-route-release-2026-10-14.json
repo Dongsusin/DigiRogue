@@ -1,0 +1,159 @@
+{
+  "revision": 6,
+  "nodeTests": {
+    "total": 1010,
+    "pass": 1007,
+    "fail": 0,
+    "skipped": 3,
+    "exitCode": 0
+  },
+  "build": {
+    "exitCode": 0,
+    "signal": null,
+    "completedAt": "2026-10-14T02:32:05.333Z"
+  },
+  "browser": {
+    "cases": [
+      {
+        "scenario": "ready",
+        "evolved": "오메가몬[머시풀]",
+        "budget": 1382,
+        "revision": 6,
+        "catalystConsumed": 1,
+        "passed": true
+      },
+      {
+        "scenario": "blocked",
+        "missingCatalystBlocked": true,
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "httpErrors": [],
+    "passed": true
+  },
+  "coverage": {
+    "passed": true,
+    "revision": 6,
+    "total": 662,
+    "playable": 661,
+    "byRoute": {
+      "level": 547,
+      "jogress": 23,
+      "item": 91
+    },
+    "changed": 99,
+    "increased": 90,
+    "reduced": 9,
+    "enemiesUnchanged": 662
+  },
+  "downloadManifest": "350ccd5521e28697",
+  "production": {
+    "url": "https://digirouge.co.kr",
+    "expectedVersion": "6920365d7701d0c4",
+    "checks": [
+      {
+        "path": "/models/digimon/psychemon.glb.br",
+        "status": 200,
+        "bytes": 602628,
+        "revision": "d19259f23843c58a",
+        "encoding": "br"
+      },
+      {
+        "path": "/models/digimon/gizamon.glb.br",
+        "status": 200,
+        "bytes": 578836,
+        "revision": "2e7d57503a96718f",
+        "encoding": "br"
+      },
+      {
+        "path": "/models/digimon/gracenovamon.glb.br",
+        "status": 200,
+        "bytes": 2330308,
+        "revision": "078e0f709d8b3857",
+        "encoding": "br"
+      },
+      {
+        "path": "/models/digimon/jupitermon-wm.glb.br",
+        "status": 200,
+        "bytes": 1325740,
+        "revision": "b2b052a6ead02770",
+        "encoding": "br"
+      },
+      {
+        "path": "/models/digimon/previews/gizamon.webp",
+        "status": 200,
+        "bytes": 19186,
+        "revision": "ae422b7e24ecae4b",
+        "encoding": null
+      },
+      {
+        "path": "/items/evolution/unique/victory.png",
+        "status": 200,
+        "bytes": 6002,
+        "revision": "ab069d0477137a37",
+        "encoding": null
+      }
+    ],
+    "errors": [],
+    "manifest": {
+      "version": "6920365d7701d0c4",
+      "files": 2260,
+      "models": 662,
+      "portraits": 1324,
+      "cacheControl": "no-cache"
+    },
+    "index": {
+      "status": 200,
+      "cacheControl": "no-cache"
+    },
+    "code": [
+      {
+        "module": "App",
+        "path": "/assets/App-DJZRyxg9.js",
+        "identicalCodeAfterChunkUrlNormalization": true
+      },
+      {
+        "module": "scanProgress",
+        "path": "/assets/scanProgress-DM1GE3Ad.js",
+        "identicalCodeAfterChunkUrlNormalization": true
+      },
+      {
+        "module": "combat",
+        "path": "/assets/combat-BLIKrhva.js",
+        "identicalCodeAfterChunkUrlNormalization": true
+      },
+      {
+        "module": "digimonNames",
+        "path": "/assets/digimonNames-fHPgHgnt.js",
+        "identicalCodeAfterChunkUrlNormalization": true
+      }
+    ],
+    "passed": true
+  },
+  "git": {
+    "commit": "ee115419223dc98df075bce91052b238aa422ef5",
+    "branch": "main",
+    "pushExitCode": 0
+  },
+  "deployment": {
+    "url": "https://digilog-web-preview-1hhiqxnrc-dongsusins-projects.vercel.app",
+    "production": "https://digirouge.co.kr",
+    "exitCode": 0,
+    "ready": true
+  },
+  "simulationLimits": "Small deterministic regression samples; normal-evolution-biased policy, not a win-rate calibration or full manual campaign.",
+  "productionBrowser": {
+    "url": "https://digirouge.co.kr",
+    "errors": [],
+    "httpErrors": [],
+    "title": "digirogue",
+    "visibleButtons": [
+      "Google로 시작",
+      "게스트로 시작 →"
+    ],
+    "body": "DIGITAL WORLD\n새로운 모험을 시작하세요\nGoogle로 시작\n게스트로 시작\n→\n\n기록은 이 브라우저에 저장됩니다.",
+    "passed": true,
+    "scope": "Anonymous production login entry; no account changes or full cold-cache game download"
+  }
+}
