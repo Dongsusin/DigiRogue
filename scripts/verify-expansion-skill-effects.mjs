@@ -2,7 +2,9 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import * as THREE from 'three'
-import expansion from '../src/data/rosterExpansion7.json' with { type: 'json' }
+import expansion7 from '../src/data/rosterExpansion7.json' with { type: 'json' }
+import expansion8 from '../src/data/rosterExpansion8.json' with { type: 'json' }
+const expansion={names:[...expansion7.names,...expansion8.names]}
 import recipes from '../src/data/expansionSkillEffects.json' with { type: 'json' }
 import manifest from '../src/data/digimonModelManifest.json' with { type: 'json' }
 import { ATTACK_PROFILES, resolveAttackPresentation, sampleAttackClip } from '../src/three/attackPresentation.js'
@@ -24,7 +26,7 @@ function pool() {
 
 test('every newly added species and every original signature has explicit art direction',()=>{
   assert.deepEqual(new Set(Object.keys(recipes)),new Set(expansion.names))
-  assert.equal(Object.values(recipes).reduce((n,r)=>n+Object.keys(r).length,0),288)
+  assert.equal(Object.values(recipes).reduce((n,r)=>n+Object.keys(r).length,0),304)
   for(const name of expansion.names)assert.deepEqual(Object.keys(recipes[name]),Object.keys(ATTACK_PROFILES[name].signature))
 })
 

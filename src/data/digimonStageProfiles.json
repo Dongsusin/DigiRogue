@@ -3654,6 +3654,69 @@
       "trainingStage": "성숙기",
       "directory": "blackgrowmon",
       "source": "https://digimon.net/reference_ko/detail.php?directory_name=blackgrowmon"
+    },
+    "스노우아구몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "yukiagumon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=yukiagumon"
+    },
+    "에렉몬(보라)": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "elecmon-violet",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=elecmon-violet"
+    },
+    "폭탄모야몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "bombernanimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=bombernanimon"
+    },
+    "요우코몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "youkomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=youkomon"
+    },
+    "도우몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "doumon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=doumon"
+    },
+    "블랙버드라몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "saberdramon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=saberdramon"
+    },
+    "샤우트몬[스타소드]": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "source": "https://digimoncard.com/rule/revised/",
+      "classification": {
+        "source": "https://digimoncard.com/rule/revised/",
+        "note": "Original Fusion Fighters form; official BT11-009 identifies Shoutmon and Starmons. No separate reference-book entry verified."
+      }
+    },
+    "크레니엄몬[기승]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=craniummon",
+      "classification": {
+        "source": "https://digimon.net/reference_ko/detail.php?directory_name=craniummon",
+        "note": "Mounted form from original Time Stranger chr921; inherits Craniamon classification and skills, not a separate official generation."
+      }
+    },
+    "타이타몬[기승]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=titamon",
+      "classification": {
+        "source": "https://digimon.net/reference_ko/detail.php?directory_name=titamon",
+        "note": "Mounted form from original Time Stranger chr915; inherits Titamon classification and skills, not a separate official generation."
+      }
     }
   }
 }

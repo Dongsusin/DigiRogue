@@ -1,6 +1,8 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import expansion from '../src/data/rosterExpansion7.json' with {type:'json'}
+import expansion7 from '../src/data/rosterExpansion7.json' with {type:'json'}
+import expansion8 from '../src/data/rosterExpansion8.json' with {type:'json'}
+const expansion={names:[...expansion7.names,...expansion8.names]}
 import maps from '../data/map.json' with {type:'json'}
 import {BOSS_PROFILES} from '../src/data/bossProfiles.js'
 import {RIVAL_PROFILES} from '../src/data/rivalProfiles.js'
@@ -48,7 +50,7 @@ test('every added species has explicit legal habitat bands or a reachable region
    assert.deepEqual(actual,h.maps.flatMap(map=>h.bands.map(b=>map+':'+b)).sort(),name)
   }
  }
- assert.equal(bossOnly.length,10)
+ assert.equal(bossOnly.length,12)
 })
 test('all maps receive added native wildlife and repeated habitat application is idempotent',()=>{
  for(const [map,data]of Object.entries(maps))assert(Object.values(data.등장디지몬).flat().some(n=>expansion.names.includes(n)),map)
@@ -70,5 +72,5 @@ test('all expansion routes and legend plans use complete native models and local
   }
  }
  for(const map of Object.keys(maps))assert(getBossCandidates(200,map,e.allDigimonLookup).every(p=>!p.id.startsWith('expansion-')),map)
- assert.equal(EXPANSION_BOSS_ROUTES.length,37)
+ assert.equal(EXPANSION_BOSS_ROUTES.length,41)
 })

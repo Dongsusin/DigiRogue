@@ -1,0 +1,750 @@
+{
+  "passed": true,
+  "count": 9,
+  "reducedMotion": 9,
+  "errors": [],
+  "requests": [],
+  "results": [
+    {
+      "name": "스노우아구몬",
+      "from": [
+        "코로몬"
+      ],
+      "realRoute": true,
+      "template": "adventure",
+      "motif": {
+        "kind": "frost",
+        "variant": "snowfall"
+      },
+      "frames": [
+        {
+          "label": "intro",
+          "t": 0,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 1.046573209033734
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "charge",
+          "t": 3800,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 1.046573209033734
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "transform",
+          "t": 4500,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 1.046573209033734
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "reveal",
+          "t": 6350,
+          "finite": true,
+          "actors": [
+            {
+              "role": "result",
+              "height": 1.7521990544022592
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "complete",
+          "t": 9000,
+          "finite": true,
+          "actors": [
+            {
+              "role": "result",
+              "height": 1.7521990544022592
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        }
+      ]
+    },
+    {
+      "name": "에렉몬(보라)",
+      "from": [
+        "뿔몬"
+      ],
+      "realRoute": true,
+      "template": "adventure",
+      "motif": {
+        "kind": "thunder",
+        "variant": "tail"
+      },
+      "frames": [
+        {
+          "label": "intro",
+          "t": 0,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 1.0711484542524004
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "charge",
+          "t": 3800,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 1.0711484542524004
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "transform",
+          "t": 4500,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 1.0711484542524004
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "reveal",
+          "t": 6350,
+          "finite": true,
+          "actors": [
+            {
+              "role": "result",
+              "height": 1.7521990544022592
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "complete",
+          "t": 9000,
+          "finite": true,
+          "actors": [
+            {
+              "role": "result",
+              "height": 1.7521990544022592
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        }
+      ]
+    },
+    {
+      "name": "폭탄모야몬",
+      "from": [
+        "고부리몬"
+      ],
+      "realRoute": true,
+      "template": "adventure",
+      "motif": {
+        "kind": "target",
+        "variant": "bomb"
+      },
+      "frames": [
+        {
+          "label": "intro",
+          "t": 0,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 1.9216856905711412
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "charge",
+          "t": 3800,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 1.9216856905711412
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "transform",
+          "t": 4500,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 1.9216856905711412
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "reveal",
+          "t": 6350,
+          "finite": true,
+          "actors": [
+            {
+              "role": "result",
+              "height": 2.666127377484901
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "complete",
+          "t": 9000,
+          "finite": true,
+          "actors": [
+            {
+              "role": "result",
+              "height": 2.666127377484901
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        }
+      ]
+    },
+    {
+      "name": "요우코몬",
+      "from": [
+        "레나몬"
+      ],
+      "realRoute": true,
+      "template": "dark",
+      "motif": {
+        "kind": "soul",
+        "variant": "fox"
+      },
+      "frames": [
+        {
+          "label": "intro",
+          "t": 0,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 2.2889736758445336
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "charge",
+          "t": 4400,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 2.2889736758445336
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "transform",
+          "t": 5100,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 2.2889736758445336
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "reveal",
+          "t": 6950,
+          "finite": true,
+          "actors": [
+            {
+              "role": "result",
+              "height": 2.666127377484901
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "complete",
+          "t": 9600,
+          "finite": true,
+          "actors": [
+            {
+              "role": "result",
+              "height": 2.666127377484901
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        }
+      ]
+    },
+    {
+      "name": "도우몬",
+      "from": [
+        "요우코몬"
+      ],
+      "realRoute": true,
+      "template": "dark",
+      "motif": {
+        "kind": "relic",
+        "variant": "talisman"
+      },
+      "frames": [
+        {
+          "label": "intro",
+          "t": 0,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 2.666127377484901
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "charge",
+          "t": 4400,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 2.666127377484901
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "transform",
+          "t": 5100,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 2.666127377484901
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "reveal",
+          "t": 6950,
+          "finite": true,
+          "actors": [
+            {
+              "role": "result",
+              "height": 2.8702324948285782
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "complete",
+          "t": 9600,
+          "finite": true,
+          "actors": [
+            {
+              "role": "result",
+              "height": 2.8702324948285782
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        }
+      ]
+    },
+    {
+      "name": "블랙버드라몬",
+      "from": [
+        "츠카이몬"
+      ],
+      "realRoute": true,
+      "template": "dark",
+      "motif": {
+        "kind": "jet",
+        "variant": "wings"
+      },
+      "frames": [
+        {
+          "label": "intro",
+          "t": 0,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 1.241872642452587
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "charge",
+          "t": 4400,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 1.241872642452587
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "transform",
+          "t": 5100,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 1.241872642452587
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "reveal",
+          "t": 6950,
+          "finite": true,
+          "actors": [
+            {
+              "role": "result",
+              "height": 2.666127377484901
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "complete",
+          "t": 9600,
+          "finite": true,
+          "actors": [
+            {
+              "role": "result",
+              "height": 2.666127377484901
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        }
+      ]
+    },
+    {
+      "name": "샤우트몬[스타소드]",
+      "from": [
+        "샤우트몬",
+        "스타몬즈"
+      ],
+      "realRoute": true,
+      "template": "xros",
+      "motif": {
+        "kind": "blade",
+        "variant": "star"
+      },
+      "frames": [
+        {
+          "label": "intro",
+          "t": 0,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 1.6280038648604231
+            },
+            {
+              "role": "source",
+              "height": 1.6622133987099055
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "charge",
+          "t": 4100,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 1.6280038648604231
+            },
+            {
+              "role": "source",
+              "height": 1.6622133987099055
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "transform",
+          "t": 4800,
+          "finite": true,
+          "actors": [],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "reveal",
+          "t": 6750,
+          "finite": true,
+          "actors": [
+            {
+              "role": "result",
+              "height": 1.7521990544022592
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "complete",
+          "t": 9600,
+          "finite": true,
+          "actors": [
+            {
+              "role": "result",
+              "height": 1.7521990544022592
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        }
+      ]
+    },
+    {
+      "name": "크레니엄몬[기승]",
+      "from": [
+        "크레니엄몬",
+        "안바르몬"
+      ],
+      "realRoute": true,
+      "template": "jogress",
+      "motif": {
+        "kind": "shield",
+        "variant": "mounted"
+      },
+      "frames": [
+        {
+          "label": "intro",
+          "t": 0,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 2.2475560133999504
+            },
+            {
+              "role": "source",
+              "height": 2.2411159222338406
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "charge",
+          "t": 5100,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 2.2475560133999504
+            },
+            {
+              "role": "source",
+              "height": 2.2411159222338406
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "transform",
+          "t": 5800,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 2.2475560133999504
+            },
+            {
+              "role": "source",
+              "height": 2.2411159222338406
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "reveal",
+          "t": 7650,
+          "finite": true,
+          "actors": [
+            {
+              "role": "result",
+              "height": 2.9127235020369775
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "complete",
+          "t": 10400,
+          "finite": true,
+          "actors": [
+            {
+              "role": "result",
+              "height": 2.9127235020369775
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        }
+      ]
+    },
+    {
+      "name": "타이타몬[기승]",
+      "from": [
+        "타이타몬",
+        "스컬벌키몬"
+      ],
+      "realRoute": true,
+      "template": "jogress",
+      "motif": {
+        "kind": "soul",
+        "variant": "mounted"
+      },
+      "frames": [
+        {
+          "label": "intro",
+          "t": 0,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 2.2842023305123056
+            },
+            {
+              "role": "source",
+              "height": 2.2411159222338406
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "charge",
+          "t": 5100,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 2.2842023305123056
+            },
+            {
+              "role": "source",
+              "height": 2.2411159222338406
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "transform",
+          "t": 5800,
+          "finite": true,
+          "actors": [
+            {
+              "role": "source",
+              "height": 2.2842023305123056
+            },
+            {
+              "role": "source",
+              "height": 2.2411159222338406
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "reveal",
+          "t": 7650,
+          "finite": true,
+          "actors": [
+            {
+              "role": "result",
+              "height": 2.9127235020369775
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        },
+        {
+          "label": "complete",
+          "t": 10400,
+          "finite": true,
+          "actors": [
+            {
+              "role": "result",
+              "height": 2.9127235020369775
+            }
+          ],
+          "drawCalls": 1,
+          "triangles": 1
+        }
+      ]
+    }
+  ]
+}

@@ -13228,6 +13228,14 @@
      "down"
     ],
     "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   },
+   "faceRepair": {
+    "revision": 1,
+    "removedLods": [
+     "body_0_lod1",
+     "body_0_lod2"
+    ],
+    "cutoutEyes": []
    }
   },
   "authoredMotion": {
@@ -13257,6 +13265,21 @@
      "down"
     ],
     "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   },
+   "faceRepair": {
+    "revision": 1,
+    "removedLods": [
+     "body_0_lod1",
+     "body_0_lod2",
+     "body_1_lod1",
+     "body_1_lod2"
+    ],
+    "cutoutEyes": [
+     {
+      "material": "material_2_0",
+      "texture": "juhuashou_eye.png"
+     }
+    ]
    }
   },
   "authoredMotion": {
@@ -13344,6 +13367,16 @@
      "down"
     ],
     "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   },
+   "faceRepair": {
+    "revision": 1,
+    "removedLods": [
+     "body_0_lod1",
+     "body_0_lod2",
+     "body_1_lod1",
+     "body_1_lod2"
+    ],
+    "cutoutEyes": []
    }
   },
   "authoredMotion": {
@@ -13373,6 +13406,16 @@
      "down"
     ],
     "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   },
+   "faceRepair": {
+    "revision": 1,
+    "removedLods": [],
+    "cutoutEyes": [
+     {
+      "material": "material_2_0",
+      "texture": "lazhushou_eye.png"
+     }
+    ]
    }
   },
   "authoredMotion": {
@@ -13402,6 +13445,14 @@
      "down"
     ],
     "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   },
+   "faceRepair": {
+    "revision": 1,
+    "removedLods": [
+     "body_0_lod1",
+     "body_0_lod2"
+    ],
+    "cutoutEyes": []
    }
   },
   "authoredMotion": {
@@ -13459,6 +13510,21 @@
      "down"
     ],
     "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   },
+   "faceRepair": {
+    "revision": 1,
+    "removedLods": [
+     "body_0_lod1",
+     "body_0_lod2",
+     "body_1_lod1",
+     "body_1_lod2"
+    ],
+    "cutoutEyes": [
+     {
+      "material": "material_2_0",
+      "texture": "jileishou_eye.png"
+     }
+    ]
    }
   },
   "authoredMotion": {
@@ -13602,6 +13668,14 @@
      "down"
     ],
     "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   },
+   "faceRepair": {
+    "revision": 1,
+    "removedLods": [
+     "body_0_lod1",
+     "body_0_lod2"
+    ],
+    "cutoutEyes": []
    }
   },
   "authoredMotion": {
@@ -13631,6 +13705,14 @@
      "down"
     ],
     "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   },
+   "faceRepair": {
+    "revision": 1,
+    "removedLods": [
+     "body_0_lod1",
+     "body_0_lod2"
+    ],
+    "cutoutEyes": []
    }
   },
   "authoredMotion": {
@@ -13659,6 +13741,14 @@
      "down"
     ],
     "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   },
+   "faceRepair": {
+    "revision": 1,
+    "removedLods": [
+     "body_0_lod1",
+     "body_0_lod2"
+    ],
+    "cutoutEyes": []
    }
   },
   "authoredMotion": {
@@ -13688,6 +13778,14 @@
      "down"
     ],
     "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   },
+   "faceRepair": {
+    "revision": 1,
+    "removedLods": [
+     "body_0_lod1",
+     "body_0_lod2"
+    ],
+    "cutoutEyes": []
    }
   },
   "authoredMotion": {
@@ -13889,6 +13987,14 @@
      "down"
     ],
     "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   },
+   "faceRepair": {
+    "revision": 1,
+    "removedLods": [
+     "body_0_lod1",
+     "body_0_lod2"
+    ],
+    "cutoutEyes": []
    }
   },
   "authoredMotion": {
@@ -13918,6 +14024,16 @@
      "down"
     ],
     "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   },
+   "faceRepair": {
+    "revision": 1,
+    "removedLods": [
+     "body_0_lod1",
+     "body_0_lod2",
+     "body_1_lod1",
+     "body_1_lod2"
+    ],
+    "cutoutEyes": []
    }
   },
   "authoredMotion": {
@@ -14004,6 +14120,14 @@
      "down"
     ],
     "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   },
+   "faceRepair": {
+    "revision": 1,
+    "removedLods": [
+     "body_0_lod1",
+     "body_0_lod2"
+    ],
+    "cutoutEyes": []
    }
   },
   "authoredMotion": {
@@ -14062,6 +14186,14 @@
      "down"
     ],
     "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   },
+   "faceRepair": {
+    "revision": 1,
+    "removedLods": [
+     "body_0_lod1",
+     "body_0_lod2"
+    ],
+    "cutoutEyes": []
    }
   },
   "authoredMotion": {
@@ -14119,6 +14251,14 @@
      "down"
     ],
     "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   },
+   "faceRepair": {
+    "revision": 1,
+    "removedLods": [
+     "body_0_lod1",
+     "body_0_lod2"
+    ],
+    "cutoutEyes": []
    }
   },
   "authoredMotion": {
@@ -14204,6 +14344,14 @@
      "down"
     ],
     "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   },
+   "faceRepair": {
+    "revision": 1,
+    "removedLods": [
+     "body_0_lod1",
+     "body_0_lod2"
+    ],
+    "cutoutEyes": []
    }
   },
   "authoredMotion": {
@@ -14324,6 +14472,14 @@
      "down"
     ],
     "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   },
+   "faceRepair": {
+    "revision": 1,
+    "removedLods": [
+     "body_0_lod1",
+     "body_0_lod2"
+    ],
+    "cutoutEyes": []
    }
   },
   "authoredMotion": {
@@ -14389,5 +14545,502 @@
    ],
    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
   }
+ },
+ "스노우아구몬": {
+  "url": "/models/digimon/snowagumon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "attack02",
+   "special01",
+   "damage",
+   "down",
+   "victory",
+   "guard",
+   "move"
+  ],
+  "source": {
+   "game": "Digimon ReArise",
+   "asset": "Agumon (Goggles Ver.) SnowAgumon BlackAgumon",
+   "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44625/",
+   "originalClips": [
+    {
+     "sourceName": "chr050event_bn01_rd",
+     "name": "idle"
+    },
+    {
+     "sourceName": "chr050event_ba01_rd",
+     "name": "attack01"
+    },
+    {
+     "sourceName": "chr050event_ba02_rd",
+     "name": "attack02"
+    },
+    {
+     "sourceName": "chr050event_bs01_rd",
+     "name": "special01"
+    },
+    {
+     "sourceName": "chr050event_bd01_rd",
+     "name": "damage"
+    },
+    {
+     "sourceName": "chr050event_bd03_rd",
+     "name": "down"
+    },
+    {
+     "sourceName": "chr050event_bv01_rd",
+     "name": "victory"
+    },
+    {
+     "sourceName": "chr050event_bg01_rd",
+     "name": "guard"
+    },
+    {
+     "sourceName": "chr050event_br01_rd",
+     "name": "move"
+    }
+   ],
+   "variant": {
+    "textureSwap": {
+     "chr050a01.png": "c031a01.png",
+     "chr050b01.png": "c031b01.png"
+    },
+    "dropMaterials": [
+     "chr050event01",
+     "chr050event01_alpha"
+    ]
+   }
+  },
+  "revision": 8
+ },
+ "에렉몬(보라)": {
+  "url": "/models/digimon/elecmon-violet.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "victory",
+   "guard",
+   "move"
+  ],
+  "source": {
+   "game": "Digimon ReArise",
+   "asset": "Elecmon Elecmon (Violet)",
+   "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44627/",
+   "originalClips": [
+    {
+     "sourceName": "chr564_bn01_rd",
+     "name": "idle"
+    },
+    {
+     "sourceName": "chr564_ba01_rd",
+     "name": "attack01"
+    },
+    {
+     "sourceName": "chr564_ba02_rd",
+     "name": "attack02"
+    },
+    {
+     "sourceName": "chr564_bd01_rd",
+     "name": "damage"
+    },
+    {
+     "sourceName": "chr564_bd03_rd",
+     "name": "down"
+    },
+    {
+     "sourceName": "chr564_bv01_rd",
+     "name": "victory"
+    },
+    {
+     "sourceName": "chr564_bg01_rd",
+     "name": "guard"
+    },
+    {
+     "sourceName": "chr564_br01_rd",
+     "name": "move"
+    }
+   ],
+   "variant": {
+    "textureSwap": {
+     "chr564a01.png": "chr564_va01.png",
+     "chr564b01.png": "chr564_vb01.png"
+    },
+    "dropClips": [
+     "special01"
+    ]
+   }
+  },
+  "revision": 8
+ },
+ "폭탄모야몬": {
+  "url": "/models/digimon/bombernanimon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "attack02",
+   "special01",
+   "damage",
+   "down",
+   "victory",
+   "guard",
+   "move"
+  ],
+  "source": {
+   "game": "Digimon ReArise",
+   "asset": "BomberNanimon",
+   "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44635/",
+   "originalClips": [
+    {
+     "sourceName": "d038_bn01",
+     "name": "idle"
+    },
+    {
+     "sourceName": "d038_ba01",
+     "name": "attack01"
+    },
+    {
+     "sourceName": "d038_ba02",
+     "name": "attack02"
+    },
+    {
+     "sourceName": "d038_bs01",
+     "name": "special01"
+    },
+    {
+     "sourceName": "d038_bd01",
+     "name": "damage"
+    },
+    {
+     "sourceName": "d038_bd03",
+     "name": "down"
+    },
+    {
+     "sourceName": "d038_bv01",
+     "name": "victory"
+    },
+    {
+     "sourceName": "d038_bg01",
+     "name": "guard"
+    },
+    {
+     "sourceName": "d038_br01",
+     "name": "move"
+    }
+   ],
+   "variant": {}
+  },
+  "revision": 8
+ },
+ "요우코몬": {
+  "url": "/models/digimon/youkomon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "attack02",
+   "special01",
+   "damage",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon World: Next Order",
+   "asset": "Youkomon Kyubimon (Silver)",
+   "url": "https://web.archive.org/web/20230806120033id_/https://www.models-resource.com/download/59358/",
+   "originalClips": [
+    {
+     "sourceName": "a0_base_fa0_ul",
+     "name": "idle"
+    },
+    {
+     "sourceName": "a0_atck_fa0_un",
+     "name": "attack01"
+    },
+    {
+     "sourceName": "a0_atck_fb0_un",
+     "name": "attack02"
+    },
+    {
+     "sourceName": "a0_shot_fa0_un",
+     "name": "special01"
+    },
+    {
+     "sourceName": "a0_dmgs_fa0_un",
+     "name": "damage"
+    },
+    {
+     "sourceName": "a0_dmgx_fa0_un",
+     "name": "down"
+    }
+   ],
+   "variant": {}
+  },
+  "revision": 8
+ },
+ "도우몬": {
+  "url": "/models/digimon/doumon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "attack02",
+   "special01",
+   "damage",
+   "down",
+   "victory",
+   "guard",
+   "move"
+  ],
+  "source": {
+   "game": "Digimon ReArise",
+   "asset": "Taomon Doumon",
+   "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44939/",
+   "originalClips": [
+    {
+     "sourceName": "e052_bn01_rd",
+     "name": "idle"
+    },
+    {
+     "sourceName": "e052_ba01_rd",
+     "name": "attack01"
+    },
+    {
+     "sourceName": "e052_ba02_rd",
+     "name": "attack02"
+    },
+    {
+     "sourceName": "e052_bs01_rd",
+     "name": "special01"
+    },
+    {
+     "sourceName": "e052_bd01_rd",
+     "name": "damage"
+    },
+    {
+     "sourceName": "e052_bd03_rd",
+     "name": "down"
+    },
+    {
+     "sourceName": "e052_bv01_rd",
+     "name": "victory"
+    },
+    {
+     "sourceName": "e052_bg01_rd",
+     "name": "guard"
+    },
+    {
+     "sourceName": "e052_br01_rd",
+     "name": "move"
+    }
+   ],
+   "variant": {}
+  },
+  "revision": 8
+ },
+ "블랙버드라몬": {
+  "url": "/models/digimon/saberdramon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "attack02",
+   "special01",
+   "damage",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon World: Next Order",
+   "asset": "Saberdramon",
+   "url": "https://web.archive.org/web/20230806121455id_/https://www.models-resource.com/download/59357/",
+   "originalClips": [
+    {
+     "sourceName": "a0_base_fa0_ul",
+     "name": "idle"
+    },
+    {
+     "sourceName": "a0_atck_fa0_un",
+     "name": "attack01"
+    },
+    {
+     "sourceName": "a0_atck_fb0_un",
+     "name": "attack02"
+    },
+    {
+     "sourceName": "a0_shot_fa0_un",
+     "name": "special01"
+    },
+    {
+     "sourceName": "a0_dmgs_fa0_un",
+     "name": "damage"
+    },
+    {
+     "sourceName": "a0_dmgx_fa0_un",
+     "name": "down"
+    }
+   ],
+   "variant": {}
+  },
+  "revision": 8
+ },
+ "샤우트몬[스타소드]": {
+  "url": "/models/digimon/shoutmon-starsword.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon Fusion Fighters",
+   "asset": "Shoutmon + Starsword",
+   "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/21740/",
+   "originalClips": [
+    {
+     "sourceName": "idle",
+     "name": "idle"
+    },
+    {
+     "sourceName": "attack",
+     "name": "attack01"
+    },
+    {
+     "sourceName": "attack",
+     "name": "special01"
+    },
+    {
+     "sourceName": "damage",
+     "name": "damage"
+    },
+    {
+     "sourceName": "down",
+     "name": "down"
+    }
+   ],
+   "variant": {
+    "dropMaterials": [
+     "Material"
+    ],
+    "dropMeshes": [
+     "ssblade_eff"
+    ]
+   }
+  },
+  "revision": 8
+ },
+ "크레니엄몬[기승]": {
+  "url": "/models/digimon/craniamon-enbarrmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Craniamon + Enbarrmon",
+   "url": "https://nuffle.me/dsts-viewer?m=craniamon-enbarrmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision",
+   "originalClips": [
+    {
+     "sourceName": "chr921_ba01",
+     "name": "attack01"
+    },
+    {
+     "sourceName": "chr921_ba02",
+     "name": "attack02"
+    },
+    {
+     "sourceName": "chr921_bd01",
+     "name": "damage"
+    },
+    {
+     "sourceName": "chr921_bd03",
+     "name": "down"
+    },
+    {
+     "sourceName": "chr921_bg01",
+     "name": "guard"
+    },
+    {
+     "sourceName": "chr921_bg02",
+     "name": "dodge"
+    },
+    {
+     "sourceName": "chr921_bn01",
+     "name": "idle"
+    },
+    {
+     "sourceName": "chr921_br01",
+     "name": "move"
+    }
+   ]
+  },
+  "revision": 8
+ },
+ "타이타몬[기승]": {
+  "url": "/models/digimon/titamon-skullbaluchimon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Titamon + SkullBaluchimon",
+   "url": "https://nuffle.me/dsts-viewer?m=titamon-skullbaluchimon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision",
+   "originalClips": [
+    {
+     "sourceName": "chr915_ba01",
+     "name": "attack01"
+    },
+    {
+     "sourceName": "chr915_ba02",
+     "name": "attack02"
+    },
+    {
+     "sourceName": "chr915_bd01",
+     "name": "damage"
+    },
+    {
+     "sourceName": "chr915_bd03",
+     "name": "down"
+    },
+    {
+     "sourceName": "chr915_bg01",
+     "name": "guard"
+    },
+    {
+     "sourceName": "chr915_bg02",
+     "name": "dodge"
+    },
+    {
+     "sourceName": "chr915_bn01",
+     "name": "idle"
+    },
+    {
+     "sourceName": "chr915_br01",
+     "name": "move"
+    },
+    {
+     "sourceName": "chr915_bv01",
+     "name": "victory"
+    }
+   ]
+  },
+  "revision": 8
  }
 }

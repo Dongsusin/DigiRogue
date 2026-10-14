@@ -1,0 +1,259 @@
+{
+  "addedAt": "2026-10-14",
+  "names": [
+    "스노우아구몬",
+    "에렉몬(보라)",
+    "폭탄모야몬",
+    "요우코몬",
+    "도우몬",
+    "블랙버드라몬",
+    "샤우트몬[스타소드]",
+    "크레니엄몬[기승]",
+    "타이타몬[기승]"
+  ],
+  "exclusiveParents": {
+    "도우몬": [
+      "요우코몬"
+    ]
+  },
+  "branches": {
+    "코로몬": [
+      "스노우아구몬"
+    ],
+    "스노우아구몬": [
+      "프리지몬",
+      "아이스몬"
+    ],
+    "와냐몬": [
+      "에렉몬(보라)"
+    ],
+    "뿔몬": [
+      "에렉몬(보라)"
+    ],
+    "에렉몬(보라)": [
+      "데블몬",
+      "모야몬",
+      "폭탄모야몬"
+    ],
+    "고부리몬": [
+      "폭탄모야몬"
+    ],
+    "폭탄모야몬": [
+      "가비지몬",
+      "디지타몬"
+    ],
+    "레나몬": [
+      "요우코몬"
+    ],
+    "요우코몬": [
+      "도우몬"
+    ],
+    "도우몬": [
+      "쿠즈하몬"
+    ],
+    "피요몬": [
+      "블랙버드라몬"
+    ],
+    "츠카이몬": [
+      "블랙버드라몬"
+    ],
+    "블랙버드라몬": [
+      "가루다몬",
+      "야타가라몬"
+    ],
+    "샤우트몬": [
+      "샤우트몬[스타소드]"
+    ],
+    "스타몬즈": [
+      "샤우트몬[스타소드]"
+    ],
+    "샤우트몬[스타소드]": [
+      "오메가샤우트몬"
+    ],
+    "크레니엄몬": [
+      "크레니엄몬[기승]"
+    ],
+    "안바르몬": [
+      "크레니엄몬[기승]"
+    ],
+    "크레니엄몬[기승]": [],
+    "타이타몬": [
+      "타이타몬[기승]"
+    ],
+    "스컬벌키몬": [
+      "타이타몬[기승]"
+    ],
+    "타이타몬[기승]": []
+  },
+  "directions": {
+    "스노우아구몬": [
+      {
+        "style": "iceBreath",
+        "anchor": "mouth"
+      }
+    ],
+    "에렉몬(보라)": [
+      {
+        "style": "lightning",
+        "anchor": "tail"
+      },
+      {
+        "style": "tail",
+        "anchor": "tail"
+      }
+    ],
+    "폭탄모야몬": [
+      {
+        "style": "bomb",
+        "anchor": "hands"
+      },
+      {
+        "style": "punch",
+        "anchor": "hands"
+      }
+    ],
+    "요우코몬": [
+      {
+        "style": "fireball",
+        "anchor": "tail"
+      },
+      {
+        "style": "breath",
+        "anchor": "tail"
+      }
+    ],
+    "도우몬": [
+      {
+        "style": "needle",
+        "anchor": "hands"
+      },
+      {
+        "style": "portal",
+        "anchor": "weapon"
+      }
+    ],
+    "블랙버드라몬": [
+      {
+        "style": "rush",
+        "anchor": "feet"
+      }
+    ],
+    "샤우트몬[스타소드]": [
+      {
+        "style": "blade",
+        "anchor": "weapon"
+      }
+    ],
+    "크레니엄몬[기승]": [
+      {
+        "style": "spin",
+        "anchor": "weapon"
+      },
+      {
+        "style": "ring",
+        "anchor": "hands"
+      }
+    ],
+    "타이타몬[기승]": [
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      },
+      {
+        "style": "blade",
+        "anchor": "weapon"
+      },
+      {
+        "style": "summon",
+        "anchor": "body"
+      }
+    ]
+  },
+  "items": {},
+  "modes": {},
+  "levels": {
+    "스노우아구몬": 5,
+    "에렉몬(보라)": 5,
+    "폭탄모야몬": 12,
+    "요우코몬": 12,
+    "도우몬": 28,
+    "블랙버드라몬": 12,
+    "샤우트몬[스타소드]": 15,
+    "크레니엄몬[기승]": 75,
+    "타이타몬[기승]": 75
+  },
+  "jogress": [
+    {
+      "targetName": "샤우트몬[스타소드]",
+      "materials": [
+        "샤우트몬",
+        "스타몬즈"
+      ],
+      "level": 15,
+      "method": "디지크로스"
+    },
+    {
+      "targetName": "크레니엄몬[기승]",
+      "materials": [
+        "크레니엄몬",
+        "안바르몬"
+      ],
+      "level": 75
+    },
+    {
+      "targetName": "타이타몬[기승]",
+      "materials": [
+        "타이타몬",
+        "스컬벌키몬"
+      ],
+      "level": 75
+    }
+  ],
+  "combat": {
+    "스노우아구몬": {
+      "budget": 390,
+      "build": "caster",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=yukiagumon"
+    },
+    "에렉몬(보라)": {
+      "budget": 395,
+      "build": "skirmisher",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=elecmon-violet"
+    },
+    "폭탄모야몬": {
+      "budget": 480,
+      "build": "hybrid",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=bombernanimon"
+    },
+    "요우코몬": {
+      "budget": 535,
+      "build": "caster",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=youkomon"
+    },
+    "도우몬": {
+      "budget": 670,
+      "build": "caster",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=doumon"
+    },
+    "블랙버드라몬": {
+      "budget": 515,
+      "build": "assassin",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=saberdramon"
+    },
+    "샤우트몬[스타소드]": {
+      "budget": 470,
+      "build": "duelist",
+      "source": "https://digimoncard.com/rule/revised/"
+    },
+    "크레니엄몬[기승]": {
+      "budget": 885,
+      "build": "paladin",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=craniummon"
+    },
+    "타이타몬[기승]": {
+      "budget": 865,
+      "build": "bruiser",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=titamon"
+    }
+  }
+}

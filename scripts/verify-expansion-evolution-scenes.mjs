@@ -1,7 +1,9 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import eggs from '../data/디지몬/디지에그.json' with { type: 'json' }
-import expansion from '../src/data/rosterExpansion7.json' with { type: 'json' }
+import expansion7 from '../src/data/rosterExpansion7.json' with { type: 'json' }
+import expansion8 from '../src/data/rosterExpansion8.json' with { type: 'json' }
+const expansion={names:[...expansion7.names,...expansion8.names]}
 import { resolveEvolutionCinematic } from '../src/data/evolutionCinematics.js'
 import { listAllEvolutionRoutes, getDigimonProfile } from '../src/data/evolutionPossibility.js'
 import { sampleCinematic } from '../src/three/cinematicTimeline.js'
@@ -23,8 +25,8 @@ const themes = [
 for(const [name,kind,variant]of themes) test(name+': themed model-space transformation',()=>{
  const c=scene(name); assert.equal(c.motif.kind,kind);assert.equal(c.motif.variant,variant);assert.equal(c.signature,true)
 })
-test('all 150 added forms resolve authored motifs in both supported scene styles without white flashes',()=>{
- assert.equal(expansion.names.length,150)
+test('all 159 added forms resolve authored motifs in both supported scene styles without white flashes',()=>{
+ assert.equal(expansion.names.length,159)
  for(const name of expansion.names)for(const style of ['classic','rumble']){
   const c=resolveEvolutionCinematic({from:[{name:'아구몬'}],to:{name}}, {style});
   assert(c.signature&&!c.auto,name);assert(EVOLUTION_MOTIF_KINDS.includes(c.motif?.kind),name)
@@ -77,7 +79,7 @@ test('every added non-infant has a playable incoming route that uses its scene',
  const routes=listAllEvolutionRoutes()
  for(const name of expansion.names.filter(n=>getDigimonProfile(n).stage!=='유아기')){
   const incoming=routes.filter(r=>r.to===name);assert(incoming.length,name)
-  for(const r of incoming){const c=scene(name,r.from);assert(c.signature&&!c.auto,name);if(r.from.length>1)assert.equal(c.template,'jogress',name)}
+  for(const r of incoming){const c=scene(name,r.from);assert(c.signature&&!c.auto,name);if(r.from.length>1)assert.equal(c.template,name==='샤우트몬[스타소드]'?'xros':'jogress',name)}
  }
 })
 

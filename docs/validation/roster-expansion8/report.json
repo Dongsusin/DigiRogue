@@ -1,0 +1,211 @@
+{
+  "generatedAt": "2026-10-14",
+  "modelsChecked": 9,
+  "clipsSampled": 69,
+  "samplesPerClip": 9,
+  "modelIssues": [],
+  "browserBattle": {
+    "errors": [],
+    "step": "attack-played",
+    "buttons": [
+      {
+        "text": "자세히 ↗",
+        "cls": "",
+        "aria": "예상 행동 순서 자세히 보기"
+      },
+      {
+        "text": "상성표",
+        "cls": "matchup-guide-button",
+        "aria": null
+      },
+      {
+        "text": "빙결의 숨결 특성\nⓘ",
+        "cls": "combatant-effects",
+        "aria": "스노우아구몬 지속 효과 1개 보기"
+      },
+      {
+        "text": "전투 데이터 축적 특성\nⓘ",
+        "cls": "combatant-effects",
+        "aria": "츠메몬 지속 효과 1개 보기"
+      },
+      {
+        "text": "×",
+        "cls": "digi-skill-console__close",
+        "aria": "기술창 닫기"
+      },
+      {
+        "text": "01\n얼음\n리틀 블리자드\n특수형 / 상대 1마리\n상시 사용",
+        "cls": "digi-skill__execute",
+        "aria": "리틀 블리자드 선택"
+      },
+      {
+        "text": "i",
+        "cls": "digi-skill__info",
+        "aria": "리틀 블리자드 기술 정보"
+      },
+      {
+        "text": "지난 기록",
+        "cls": "battle-history-button",
+        "aria": null
+      },
+      {
+        "text": "공격",
+        "cls": "battle-command battle-command--active",
+        "aria": null
+      },
+      {
+        "text": "아이템",
+        "cls": "battle-command",
+        "aria": null
+      },
+      {
+        "text": "교체",
+        "cls": "battle-command",
+        "aria": null
+      },
+      {
+        "text": "도망",
+        "cls": "battle-command",
+        "aria": null
+      },
+      {
+        "text": "전체 채팅\n연결 끊김\n+",
+        "cls": "community__toggle",
+        "aria": null
+      }
+    ],
+    "loadedModels": "2",
+    "body": "기술 행동 예상\n속도순 · 선택한 명령\n자세히 ↗\n1\n스노우아구몬\n아군 · 명령 대기\n2\n츠메몬\n적 · 행동 미공개\n상성표\n\n캐주얼시작의마을 - 1 / 200\n\n레벨 상한 Lv.14\n0\n\n◇\n생명의 둥지\n⚡\n생명 데이터 순환\n◇\n신뢰 0/3\n\n스노우아구몬\nLv.5\n\n백신\n얼음\n\n20 / 23\n\n빙결의 숨결 특성\nⓘ\n\n츠메몬\nLv.4\n\n무\n무\n\n2 / 18\n\n전투 데이터 축적 특성\nⓘ\n전투 기록\n스노우아구몬의 차례\n지난 기록\n\n스노우아구몬은 어떤 행동을 할까?\n\n공격\n아이템\n교체\n도망\n전체 채팅\n연결 끊김\n+"
+  },
+  "release": {
+    "deployed": false,
+    "pushed": false,
+    "testUrl": "http://127.0.0.1:5174/.tmp-convert/all-digimon-test.html"
+  },
+  "runtime": {
+    "models": 671,
+    "playable": 670,
+    "portraits": 1342,
+    "maps": 34,
+    "itemsDiscovered": 198
+  },
+  "build": {
+    "exitCode": 0,
+    "downloadFiles": 2287
+  },
+  "independentReview": {
+    "scope": "9 new species, support skills, fusion routes, 16 effects",
+    "findings": [
+      {
+        "issue": "Unsupported freeze status on Little Blizzard",
+        "resolution": "Reused supported 행동불능 status at 15% and added a full turn regression test"
+      }
+    ],
+    "unresolved": []
+  },
+  "unverified": [
+    "Manual long-session 200-stage playthrough",
+    "Every hardware/browser combination",
+    "Firebase emulator rule checks without emulator"
+  ],
+  "checks": {
+    "unit": {
+      "command": "node --test --test-concurrency=2 scripts/verify-battle-items.mjs scripts/verify-adventure-items.mjs scripts/verify-bgm.mjs scripts/verify-bgm-player.mjs scripts/verify-escape.mjs scripts/verify-regional-support.mjs scripts/verify-quest-risk.mjs scripts/verify-town.mjs scripts/verify-scan-rates.mjs scripts/verify-save-slots.mjs scripts/verify-auth.mjs scripts/verify-account-session.mjs scripts/verify-adventure-balance.mjs scripts/verify-boss-variety.mjs scripts/verify-boss-special-patterns.mjs scripts/verify-encounter-patterns.mjs scripts/verify-party-admission.mjs scripts/verify-trainer-item-skills.mjs scripts/verify-trainer-skill-layout.mjs scripts/verify-jogress-inheritance.mjs scripts/verify-skill-learning.mjs scripts/verify-hard-mode.mjs scripts/verify-simulation-policy.mjs scripts/verify-digimon-dex.mjs scripts/verify-item-dex.mjs scripts/verify-canon-skill-effects.mjs scripts/verify-attack-attachment.mjs scripts/verify-expansion-skill-effects.mjs scripts/verify-evolution-inspection.mjs scripts/verify-matchup-balance.mjs scripts/verify-game-download.mjs scripts/verify-community.mjs scripts/verify-chat-moderation.mjs scripts/verify-community-rules.mjs scripts/verify-hall-of-fame.mjs scripts/verify-hall-client.mjs scripts/verify-hall-rules.mjs scripts/verify-canon-catalog.mjs scripts/verify-skill-order.mjs scripts/verify-master-rewards.mjs scripts/verify-evolution-investment.mjs scripts/verify-evolution-item-tiers.mjs scripts/verify-evolution-route-balance.mjs scripts/verify-anomaly-events.mjs scripts/verify-roster-expansion7.mjs scripts/verify-roster-expansion8.mjs scripts/verify-native-model-clips.mjs scripts/verify-item-artwork.mjs scripts/verify-face-textures.mjs scripts/verify-expansion-evolution-scenes.mjs scripts/verify-tactical-ai.mjs scripts/verify-expansion-encounters.mjs",
+      "exitCode": 0,
+      "tests": 1031,
+      "pass": 1028,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 3,
+      "todo": 0
+    },
+    "build": {
+      "command": "npm run build",
+      "exitCode": 0
+    },
+    "runtime": {
+      "command": "node scripts/verify-runtime.mjs --dist",
+      "exitCode": 0
+    },
+    "whitespace": {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  },
+  "changedFiles": [
+    "C:/Users/pdwea/Develop/digirouge/data/map.json",
+    "C:/Users/pdwea/Develop/digirouge/data/기술/성숙기.json",
+    "C:/Users/pdwea/Develop/digirouge/data/기술/성장기.json",
+    "C:/Users/pdwea/Develop/digirouge/data/기술/완전체.json",
+    "C:/Users/pdwea/Develop/digirouge/data/디지몬/궁극체.json",
+    "C:/Users/pdwea/Develop/digirouge/data/디지몬/성숙기.json",
+    "C:/Users/pdwea/Develop/digirouge/data/디지몬/성장기.json",
+    "C:/Users/pdwea/Develop/digirouge/data/디지몬/완전체.json",
+    "C:/Users/pdwea/Develop/digirouge/data/디지몬/유년기.json",
+    "C:/Users/pdwea/Develop/digirouge/docs/asset-sources/digimon-reference-types.json",
+    "C:/Users/pdwea/Develop/digirouge/docs/validation/boss-variety-2026-10-09/coverage.json",
+    "C:/Users/pdwea/Develop/digirouge/package.json",
+    "C:/Users/pdwea/Develop/digirouge/scripts/assets/import-dsts-models.mjs",
+    "C:/Users/pdwea/Develop/digirouge/scripts/assets/import-expansion-fbx.mjs",
+    "C:/Users/pdwea/Develop/digirouge/scripts/verify-expansion-encounters.mjs",
+    "C:/Users/pdwea/Develop/digirouge/scripts/verify-expansion-evolution-scenes.mjs",
+    "C:/Users/pdwea/Develop/digirouge/scripts/verify-expansion-skill-effects.mjs",
+    "C:/Users/pdwea/Develop/digirouge/src/balance/loreProfiles.js",
+    "C:/Users/pdwea/Develop/digirouge/src/data/attackProfiles.json",
+    "C:/Users/pdwea/Develop/digirouge/src/data/attackSkillInfo.json",
+    "C:/Users/pdwea/Develop/digirouge/src/data/digimonModelManifest.json",
+    "C:/Users/pdwea/Develop/digirouge/src/data/digimonPassiveAssignments.json",
+    "C:/Users/pdwea/Develop/digirouge/src/data/digimonStageProfiles.json",
+    "C:/Users/pdwea/Develop/digirouge/src/data/encounterPatternRoster.json",
+    "C:/Users/pdwea/Develop/digirouge/src/data/evolutionCinematics.js",
+    "C:/Users/pdwea/Develop/digirouge/src/data/evolutionRules.js",
+    "C:/Users/pdwea/Develop/digirouge/src/data/evolutionTrainingProfiles.json",
+    "C:/Users/pdwea/Develop/digirouge/src/data/expansionEncounterPatterns.js",
+    "C:/Users/pdwea/Develop/digirouge/src/data/expansionEncounters.js",
+    "C:/Users/pdwea/Develop/digirouge/src/data/expansionHabitats.json",
+    "C:/Users/pdwea/Develop/digirouge/src/data/expansionSkillEffects.json",
+    "C:/Users/pdwea/Develop/digirouge/src/data/resourceVersions.json",
+    "C:/Users/pdwea/Develop/digirouge/docs/adventure-accuracy-audit-2026-10-14.md",
+    "C:/Users/pdwea/Develop/digirouge/docs/asset-sources/roster-expansion8-coverage.json",
+    "C:/Users/pdwea/Develop/digirouge/docs/asset-sources/roster-expansion8-evidence.json",
+    "C:/Users/pdwea/Develop/digirouge/docs/roster-expansion8.md",
+    "C:/Users/pdwea/Develop/digirouge/docs/validation/adventure-accuracy-2026-10-14.json",
+    "C:/Users/pdwea/Develop/digirouge/docs/validation/roster-expansion8/",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/bombernanimon.glb",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/craniamon-enbarrmon.glb",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/doumon.glb",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/elecmon-violet.glb",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/previews/bombernanimon.webp",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/previews/craniamon-enbarrmon.webp",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/previews/doumon.webp",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/previews/elecmon-violet.webp",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/previews/saberdramon.webp",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/previews/shoutmon-starsword.webp",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/previews/snowagumon.webp",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/previews/titamon-skullbaluchimon.webp",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/previews/youkomon.webp",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/saberdramon.glb",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/shoutmon-starsword.glb",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/snowagumon.glb",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/thumbs/bombernanimon.webp",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/thumbs/craniamon-enbarrmon.webp",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/thumbs/doumon.webp",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/thumbs/elecmon-violet.webp",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/thumbs/saberdramon.webp",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/thumbs/shoutmon-starsword.webp",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/thumbs/snowagumon.webp",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/thumbs/titamon-skullbaluchimon.webp",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/thumbs/youkomon.webp",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/titamon-skullbaluchimon.glb",
+    "C:/Users/pdwea/Develop/digirouge/public/models/digimon/youkomon.glb",
+    "C:/Users/pdwea/Develop/digirouge/scripts/assets/register-expansion8-tactics.mjs",
+    "C:/Users/pdwea/Develop/digirouge/scripts/assets/register-expansion8.mjs",
+    "C:/Users/pdwea/Develop/digirouge/scripts/inspect-adventure-accuracy.mjs",
+    "C:/Users/pdwea/Develop/digirouge/scripts/lib/native-model-clips.mjs",
+    "C:/Users/pdwea/Develop/digirouge/scripts/verify-native-model-clips.mjs",
+    "C:/Users/pdwea/Develop/digirouge/scripts/verify-roster-expansion8.mjs",
+    "C:/Users/pdwea/Develop/digirouge/src/data/rosterExpansion8.json",
+    "C:/Users/pdwea/Develop/digirouge/src/data/rosterExpansion8Cinematics.js"
+  ],
+  "baselineResearchFilesPreserved": 8
+}

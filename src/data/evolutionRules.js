@@ -8,6 +8,7 @@ import expansion4 from './rosterExpansion4.json' with { type: 'json' }
 import expansion5 from './rosterExpansion5.json' with { type: 'json' }
 import expansion6 from './rosterExpansion6.json' with { type: 'json' }
 import expansion7 from './rosterExpansion7.json' with { type: 'json' }
+import expansion8 from './rosterExpansion8.json' with { type: 'json' }
 import { normalizeEvolutionItemRequirement } from './itemIdentity.js'
 import spiritEvolution from './spiritEvolution.json' with { type: 'json' }
 import adventureItemArt from './adventureItemArt.json' with { type: 'json' }
@@ -25,6 +26,7 @@ const levelOverrides = {
   ...expansion5.levels,
   ...expansion6.levels,
   ...expansion7.levels,
+  ...expansion8.levels,
   ...treeConnections.levels,
   엔젤몬: 12, 데블몬: 12, 가트몬: 12, 블랙가트몬: 12,
   도루가몬: 12, 긴류우몬: 12, 바오헉몬: 12,
@@ -41,6 +43,7 @@ export const JOGRESS_RECIPES = [
   ...expansion3.jogress,
   ...expansion6.jogress,
   ...expansion7.jogress,
+  ...expansion8.jogress,
   ...treeConnections.jogress,
   { targetName: '파일드라몬', materials: ['엑스브이몬', '스팅몬'], level: 25 },
   { targetName: '실피드몬', materials: ['아큐라몬', '가트몬'], level: 25 },
@@ -70,6 +73,7 @@ const baseItemRequirements = {
   '황제드라몬[파이터]': { from: ['파일드라몬'], itemName: '포지트론 레이저', rarity: 'rare', level: 60, method: '워프 진화' },
   '황제드라몬[팔라딘]': { from: ['황제드라몬[파이터]'], itemName: '오메가 블레이드', rarity: 'rogue', level: 70, method: '모드 체인지' },
   ...expansion7.items,
+  ...expansion8.items,
   ...Object.fromEntries([['human',spiritEvolution.humans],['beast',spiritEvolution.beasts]].flatMap(([kind,forms])=>Object.entries(forms).map(([target,r])=>{const itemId=kind+'-spirit-'+r.element;return[target,{from:r.from,level:r.level,itemId,itemName:adventureItemArt[itemId].name,imageUrl:adventureItemArt[itemId].url,rarity:'good',itemCount:1,method:'스피릿 진화'}]}))),
 }
 
@@ -109,6 +113,7 @@ const modeChanges = {
   ...expansion5.modes,
   ...expansion6.modes,
   ...expansion7.modes,
+  ...expansion8.modes,
   ...treeConnections.modes,
 }
 
@@ -158,7 +163,7 @@ export function getEvolutionRoute(sourceName, targetName, targetStage) {
   if (!isPlayableDigimon(sourceName) || !isPlayableDigimon(targetName)) return null
   if (spiritEvolution.blockedBranches[sourceName]?.includes(targetName)) return null
   if (expansion7.retiredBranches?.[sourceName]?.includes(targetName)) return null
-  const permittedParents = expansion7.exclusiveParents[targetName]
+  const permittedParents = expansion8.exclusiveParents[targetName] ?? expansion7.exclusiveParents[targetName]
   if (permittedParents && !permittedParents.includes(sourceName)) return null
   if (freeModeTargets[sourceName]?.includes(targetName)) return { method: '모드 전환', kind: 'mode', level: 0, freeModeChange: true }
   const recipe = JOGRESS_RECIPES.find(entry => entry.targetName === targetName)
@@ -180,7 +185,7 @@ export function getEvolutionTargets(raw) {
     ...JOGRESS_RECIPES.filter(recipe => recipe.materials.includes(name)).map(recipe => recipe.targetName),
     ...Object.entries({ ...ITEM_EVOLUTION_REQUIREMENTS, ...NORMAL_EVOLUTION_REQUIREMENTS, ...modeChanges }).filter(([, rule]) => rule.from.includes(name)).map(([target]) => target),
   ]
-  return [...new Set([...(EVOLUTION_BRANCH_OVERRIDES[name] ?? raw.진화가능 ?? []), ...(expansion.branches[name] ?? []), ...(expansion2.branches[name] ?? []), ...(expansion3.branches[name] ?? []), ...(expansion4.branches[name] ?? []), ...(expansion5.branches[name] ?? []), ...(expansion6.branches[name] ?? []), ...(expansion7.branches[name] ?? []), ...(treeConnections.branches[name] ?? []), ...(freeModeTargets[name] ?? []), ...additional])]
+  return [...new Set([...(EVOLUTION_BRANCH_OVERRIDES[name] ?? raw.진화가능 ?? []), ...(expansion.branches[name] ?? []), ...(expansion2.branches[name] ?? []), ...(expansion3.branches[name] ?? []), ...(expansion4.branches[name] ?? []), ...(expansion5.branches[name] ?? []), ...(expansion6.branches[name] ?? []), ...(expansion7.branches[name] ?? []), ...(expansion8.branches[name] ?? []), ...(treeConnections.branches[name] ?? []), ...(freeModeTargets[name] ?? []), ...additional])]
     .filter(target => target !== name && getEvolutionRoute(name, target))
 }
 

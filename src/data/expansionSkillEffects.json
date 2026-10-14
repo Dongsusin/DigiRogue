@@ -3439,5 +3439,227 @@
       "beamWidth": 1,
       "size": 0.8
     }
+  },
+  "스노우아구몬": {
+    "리틀 블리자드": {
+      "style": "iceBreath",
+      "palette": "frost",
+      "motif": "snowBreath",
+      "anchor": "mouth",
+      "bone": "J_head",
+      "clip": "special01",
+      "marker": 0.75,
+      "shots": 1,
+      "impact": "frost",
+      "size": 0.7
+    }
+  },
+  "에렉몬(보라)": {
+    "재밍 썬더": {
+      "style": "lightning",
+      "palette": "violet",
+      "motif": "staticTail",
+      "anchor": "tail",
+      "bone": "J_shippo",
+      "clip": "attack01",
+      "marker": 0.56,
+      "shots": 3,
+      "impact": "lightning",
+      "size": 0.5,
+      "formation": "fan"
+    },
+    "테일 더스크": {
+      "style": "tail",
+      "palette": "shadow",
+      "motif": "nineTailStrike",
+      "anchor": "tail",
+      "bone": "J_shippo",
+      "clip": "attack02",
+      "marker": 0.48,
+      "shots": 3,
+      "impact": "strike",
+      "size": 0.8,
+      "formation": "line"
+    }
+  },
+  "폭탄모야몬": {
+    "프리 쓰로우 봄": {
+      "style": "bomb",
+      "palette": "ember",
+      "motif": "fuseBomb",
+      "anchor": "hands",
+      "bone": "J_te_R",
+      "clip": "special01",
+      "marker": 0.47,
+      "shots": 3,
+      "impact": "explosion",
+      "size": 0.55,
+      "formation": "fan",
+      "trajectory": "arc"
+    },
+    "폭발 ･ 아저씨 펀치": {
+      "style": "punch",
+      "palette": "ember",
+      "motif": "flameFist",
+      "anchor": "hands",
+      "bone": "J_te_R",
+      "clip": "attack01",
+      "marker": 0.52,
+      "shots": 1,
+      "impact": "explosion",
+      "size": 0.8,
+      "secondBone": "J_te_L"
+    }
+  },
+  "요우코몬": {
+    "염옥": {
+      "style": "fireball",
+      "palette": "hellfire",
+      "motif": "foxFire",
+      "anchor": "tail",
+      "bone": "J_tail_root",
+      "clip": "special01",
+      "marker": 0.48,
+      "shots": 5,
+      "impact": "flame",
+      "size": 0.48,
+      "formation": "fan"
+    },
+    "사염룡": {
+      "style": "breath",
+      "palette": "hellfire",
+      "motif": "tailFlameDragon",
+      "anchor": "tail",
+      "bone": "J_tail_root",
+      "clip": "attack02",
+      "marker": 0.55,
+      "shots": 1,
+      "impact": "flame",
+      "size": 1.05
+    }
+  },
+  "도우몬": {
+    "주금찰": {
+      "style": "needle",
+      "palette": "shadow",
+      "motif": "talismanCards",
+      "anchor": "hands",
+      "bone": "J_handR",
+      "clip": "special01",
+      "marker": 0.5,
+      "shots": 5,
+      "impact": "explosion",
+      "size": 0.55,
+      "secondBone": "J_handL",
+      "formation": "fan"
+    },
+    "귀문둔갑": {
+      "style": "portal",
+      "palette": "ink",
+      "motif": "curseMaze",
+      "anchor": "weapon",
+      "bone": "J_weapon",
+      "clip": "attack02",
+      "marker": 0.5,
+      "shots": 1,
+      "impact": "glyph",
+      "size": 1.1
+    }
+  },
+  "블랙버드라몬": {
+    "블랙 세이버": {
+      "style": "rush",
+      "palette": "hellfire",
+      "motif": "shadowTalonDive",
+      "anchor": "feet",
+      "bone": "J_foot_L",
+      "clip": "attack01",
+      "marker": 0.52,
+      "shots": 1,
+      "impact": "slice",
+      "size": 0.85,
+      "secondBone": "J_foot_R"
+    }
+  },
+  "샤우트몬[스타소드]": {
+    "스타 블레이드": {
+      "style": "blade",
+      "palette": "solar",
+      "motif": "starSword",
+      "anchor": "weapon",
+      "bone": "R_hand",
+      "clip": "attack01",
+      "marker": 0.57,
+      "shots": 1,
+      "impact": "slice",
+      "size": 1.05
+    }
+  },
+  "크레니엄몬[기승]": {
+    "엔드 ･ 왈츠": {
+      "style": "spin",
+      "palette": "steel",
+      "motif": "royalSpear",
+      "anchor": "weapon",
+      "bone": "C_weapon",
+      "clip": "attack01",
+      "marker": 0.5,
+      "shots": 3,
+      "impact": "slice",
+      "size": 1.05,
+      "formation": "line"
+    },
+    "갓 브레스": {
+      "style": "ring",
+      "palette": "holy",
+      "motif": "aegisCircle",
+      "anchor": "hands",
+      "bone": "C_hand_l",
+      "clip": "attack02",
+      "marker": 0.48,
+      "shots": 1,
+      "impact": "holy",
+      "size": 1.2
+    }
+  },
+  "타이타몬[기승]": {
+    "혼백심격": {
+      "style": "slash",
+      "palette": "shadow",
+      "motif": "soulSword",
+      "anchor": "weapon",
+      "bone": "J_weapon",
+      "clip": "attack01",
+      "marker": 0.5,
+      "shots": 1,
+      "impact": "slice",
+      "size": 1.15
+    },
+    "환인무흔": {
+      "style": "blade",
+      "palette": "shadow",
+      "motif": "spectralBlade",
+      "anchor": "weapon",
+      "bone": "J_weapon",
+      "clip": "attack02",
+      "marker": 0.5,
+      "shots": 3,
+      "impact": "slice",
+      "size": 0.8,
+      "formation": "fan"
+    },
+    "호응명군": {
+      "style": "summon",
+      "palette": "bone",
+      "motif": "ghostArmy",
+      "anchor": "body",
+      "bone": "T_center",
+      "clip": "attack02",
+      "marker": 0.6,
+      "shots": 4,
+      "impact": "soul",
+      "size": 1.05,
+      "formation": "rain"
+    }
   }
 }

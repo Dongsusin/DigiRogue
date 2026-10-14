@@ -3955,5 +3955,59 @@
       "specialAttack",
       "hp"
     ]
+  },
+  "스노우아구몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "에렉몬(보라)": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "폭탄모야몬": {
+    "stats": [
+      "specialAttack",
+      "attack"
+    ]
+  },
+  "요우코몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "도우몬": {
+    "stats": [
+      "specialAttack",
+      "specialDefense"
+    ]
+  },
+  "블랙버드라몬": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "샤우트몬[스타소드]": {
+    "stats": [
+      "attack",
+      "speed"
+    ]
+  },
+  "크레니엄몬[기승]": {
+    "stats": [
+      "defense",
+      "specialDefense"
+    ]
+  },
+  "타이타몬[기승]": {
+    "stats": [
+      "hp",
+      "attack"
+    ]
   }
 }

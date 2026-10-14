@@ -6,6 +6,15 @@ const ward=(label,kind)=>({label,condition:{kind:'hits',category:kind==='physica
 const charge=(label,stat)=>({label,condition:turn(2),effect:{stats:{[stat]:1.15}}})
 const summon=(label,species)=>({label,condition:{kind:'all',conditions:[turn(2),{kind:'reinforcement-room'}]},effect:{},pattern:{kind:'encounter-summon',species}})
 export const EXPANSION_TACTIC_OVERRIDES=Object.freeze({
+ '스노우아구몬':{label:'설원의 위장',condition:hp(.5),effect:{guards:{physical:2}}},
+ '에렉몬(보라)':{label:'재밍 전파',condition:turn(1),effect:{},support:skill('재밍 전파','stat-modifier',{statKey:'speed',multiplier:.85},'번개')},
+ '폭탄모야몬':charge('도화선 점화','specialAttack'),
+ '요우코몬':charge('붉은 술법의 불꽃','specialAttack'),
+ '도우몬':snare('귀문 결계','어둠'),
+ '블랙버드라몬':{label:'어둠의 불꽃 반격',condition:hp(.5),effect:{stats:{attack:1.15,speed:1.1}}},
+ '샤우트몬[스타소드]':charge('스타소드의 결속','attack'),
+ '크레니엄몬[기승]':ward('성기사와 성수의 방벽','physical'),
+ '타이타몬[기승]':{label:'명계 기병의 돌격',condition:hp(.5),effect:{stats:{attack:1.15},guards:{physical:2}}},
  '코로나몬':{label:'쁘띠 프로미넌스',condition:hp(.45),effect:{guards:{physical:2},stats:{specialAttack:1.1}}},
  '파이라몬':charge('불꽃 갈기 전개','specialAttack'),
  '플레어몬':{label:'정화의 불꽃',condition:{kind:'status'},effect:{clearStatus:true,stats:{specialAttack:1.15}}},

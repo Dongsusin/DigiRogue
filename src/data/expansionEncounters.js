@@ -17,6 +17,10 @@ const route=(id,title,line,maps,trait,minStage=10,entryStages=null)=>({
  rule:{id:'expansion-instinct',label:title, ...effects[trait]},
 })
 export const EXPANSION_BOSS_ROUTES=Object.freeze([
+ route('curse-fox','붉은 주술의 여우 계보',['레나몬','요우코몬','도우몬','쿠즈하몬'],'이블 포레스트|사규산|다크 필드','dark'),
+ route('snow-breath','설원의 냉기 계보',['스노우아구몬','프리지몬','맘몬','바이킹몬'],'아이스 생츄어리|코퀴토스','armor'),
+ route('black-wings','검은 날개의 반격',['츠카이몬','블랙버드라몬','야타가라몬','주작몬'],'윈드 가디언즈|미하라시 산|이블 포레스트','swift'),
+ route('fuse-bomb','폐데이터 폭파 계보',['에렉몬(보라)','폭탄모야몬','가비지몬','메탈에테몬'],'쓰레기의 산|팩토리얼 에리어|부트 화산','aim'),
  route('solar','태양의 불꽃 계보',['코로나몬','파이라몬','플레어몬','아폴로몬'],'부트 화산|기어사바나|용정궁','fire'),
  route('aegio','변화하는 신인의 시련',['아이기오몬','아이기오투스몬','아이기오투스몬[홀리]','유피테르몬'],'선공계|코즈믹 에리어|가디언 팰리스','holy'),
  route('chrono-chick','시간을 지키는 검술 계보',['효코몬','부라이몬','부텐몬','크로노몬[홀리 모드]'],'겐시 대륙|사규산|코즈믹 에리어','swift'),

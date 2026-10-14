@@ -1,0 +1,232 @@
+{
+  "scannedModels": 83,
+  "sourceFamily": 74,
+  "newModels": 9,
+  "repairs": [
+    {
+      "name": "알로몬",
+      "url": "/models/digimon/allomon.glb",
+      "bytesBefore": 1316480,
+      "bytesAfter": 938064,
+      "removedLods": [
+        "body_0_lod1",
+        "body_0_lod2"
+      ],
+      "cutoutEyes": [],
+      "animationsPreserved": true
+    },
+    {
+      "name": "브롯사몬",
+      "url": "/models/digimon/blossomon.glb",
+      "bytesBefore": 1291736,
+      "bytesAfter": 868792,
+      "removedLods": [
+        "body_0_lod1",
+        "body_0_lod2",
+        "body_1_lod1",
+        "body_1_lod2"
+      ],
+      "cutoutEyes": [
+        {
+          "material": "material_2_0",
+          "texture": "juhuashou_eye.png"
+        }
+      ],
+      "animationsPreserved": true
+    },
+    {
+      "name": "할매몬",
+      "url": "/models/digimon/babamon.glb",
+      "bytesBefore": 1619856,
+      "bytesAfter": 1226400,
+      "removedLods": [
+        "body_0_lod1",
+        "body_0_lod2",
+        "body_1_lod1",
+        "body_1_lod2"
+      ],
+      "cutoutEyes": [],
+      "animationsPreserved": true
+    },
+    {
+      "name": "캔들몬",
+      "url": "/models/digimon/candlemon.glb",
+      "bytesBefore": 424564,
+      "bytesAfter": 424600,
+      "removedLods": [],
+      "cutoutEyes": [
+        {
+          "material": "material_2_0",
+          "texture": "lazhushou_eye.png"
+        }
+      ],
+      "animationsPreserved": true
+    },
+    {
+      "name": "가재드라몬",
+      "url": "/models/digimon/ebidramon.glb",
+      "bytesBefore": 1347492,
+      "bytesAfter": 1006928,
+      "removedLods": [
+        "body_0_lod1",
+        "body_0_lod2"
+      ],
+      "cutoutEyes": [],
+      "animationsPreserved": true
+    },
+    {
+      "name": "째리몬",
+      "url": "/models/digimon/giromon.glb",
+      "bytesBefore": 940056,
+      "bytesAfter": 635496,
+      "removedLods": [
+        "body_0_lod1",
+        "body_0_lod2",
+        "body_1_lod1",
+        "body_1_lod2"
+      ],
+      "cutoutEyes": [
+        {
+          "material": "material_2_0",
+          "texture": "jileishou_eye.png"
+        }
+      ],
+      "animationsPreserved": true
+    },
+    {
+      "name": "페어리몬",
+      "url": "/models/digimon/kazemon.glb",
+      "bytesBefore": 1443248,
+      "bytesAfter": 1044552,
+      "removedLods": [
+        "body_0_lod1",
+        "body_0_lod2"
+      ],
+      "cutoutEyes": [],
+      "animationsPreserved": true
+    },
+    {
+      "name": "코스파이더몬",
+      "url": "/models/digimon/kodokugumon.glb",
+      "bytesBefore": 949048,
+      "bytesAfter": 725232,
+      "removedLods": [
+        "body_0_lod1",
+        "body_0_lod2"
+      ],
+      "cutoutEyes": [],
+      "animationsPreserved": true
+    },
+    {
+      "name": "블리자몬",
+      "url": "/models/digimon/korikakumon.glb",
+      "bytesBefore": 1456552,
+      "bytesAfter": 941076,
+      "removedLods": [
+        "body_0_lod1",
+        "body_0_lod2"
+      ],
+      "cutoutEyes": [],
+      "animationsPreserved": true
+    },
+    {
+      "name": "챠크몬",
+      "url": "/models/digimon/kumamon.glb",
+      "bytesBefore": 794560,
+      "bytesAfter": 570824,
+      "removedLods": [
+        "body_0_lod1",
+        "body_0_lod2"
+      ],
+      "cutoutEyes": [],
+      "animationsPreserved": true
+    },
+    {
+      "name": "레드베지몬",
+      "url": "/models/digimon/redvegimon.glb",
+      "bytesBefore": 1121448,
+      "bytesAfter": 607304,
+      "removedLods": [
+        "body_0_lod1",
+        "body_0_lod2"
+      ],
+      "cutoutEyes": [],
+      "animationsPreserved": true
+    },
+    {
+      "name": "바알몬",
+      "url": "/models/digimon/reapmon.glb",
+      "bytesBefore": 1928856,
+      "bytesAfter": 1200880,
+      "removedLods": [
+        "body_0_lod1",
+        "body_0_lod2",
+        "body_1_lod1",
+        "body_1_lod2"
+      ],
+      "cutoutEyes": [],
+      "animationsPreserved": true
+    },
+    {
+      "name": "이블몬",
+      "url": "/models/digimon/vilemon.glb",
+      "bytesBefore": 1117504,
+      "bytesAfter": 818240,
+      "removedLods": [
+        "body_0_lod1",
+        "body_0_lod2"
+      ],
+      "cutoutEyes": [],
+      "animationsPreserved": true
+    },
+    {
+      "name": "슈츠몬",
+      "url": "/models/digimon/zephyrmon.glb",
+      "bytesBefore": 1787720,
+      "bytesAfter": 1239940,
+      "removedLods": [
+        "body_0_lod1",
+        "body_0_lod2"
+      ],
+      "cutoutEyes": [],
+      "animationsPreserved": true
+    },
+    {
+      "name": "아수라몬",
+      "url": "/models/digimon/asuramon.glb",
+      "bytesBefore": 3003272,
+      "bytesAfter": 2129512,
+      "removedLods": [
+        "body_0_lod1",
+        "body_0_lod2"
+      ],
+      "cutoutEyes": [],
+      "animationsPreserved": true
+    },
+    {
+      "name": "연체몬",
+      "url": "/models/digimon/gesomon.glb",
+      "bytesBefore": 622228,
+      "bytesAfter": 526392,
+      "removedLods": [
+        "body_0_lod1",
+        "body_0_lod2"
+      ],
+      "cutoutEyes": [],
+      "animationsPreserved": true
+    },
+    {
+      "name": "팅커몬",
+      "url": "/models/digimon/tinkermon.glb",
+      "bytesBefore": 1497192,
+      "bytesAfter": 1027548,
+      "removedLods": [
+        "body_0_lod1",
+        "body_0_lod2"
+      ],
+      "cutoutEyes": [],
+      "animationsPreserved": true
+    }
+  ],
+  "portraitUpdates": 34
+}

@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-13",
+  "verifiedAt": "2026-10-14",
   "source": "Digimon Encyclopedia (digimon.net), exact form identity checked against model provenance",
   "policy": "Official Attribute maps to game 타입. Variable uses the existing neutral 프리 gameplay bucket; Unknown and NO DATA map to 불명. Blank baby attributes retain existing 무/프리. Game element 속성 is a separate battle system.",
   "references": [
@@ -3964,6 +3964,42 @@
       "directory": "blackgrowmon",
       "officialName": "BlackGrowlmon",
       "attribute": "Virus"
+    },
+    {
+      "name": "스노우아구몬",
+      "directory": "yukiagumon",
+      "officialName": "SnowAgumon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "에렉몬(보라)",
+      "directory": "elecmon-violet",
+      "officialName": "Elecmon (Violet)",
+      "attribute": "Virus"
+    },
+    {
+      "name": "폭탄모야몬",
+      "directory": "bombernanimon",
+      "officialName": "BomberNanimon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "요우코몬",
+      "directory": "youkomon",
+      "officialName": "Youkomon",
+      "attribute": "Data"
+    },
+    {
+      "name": "도우몬",
+      "directory": "doumon",
+      "officialName": "Doumon",
+      "attribute": "Data"
+    },
+    {
+      "name": "블랙버드라몬",
+      "directory": "saberdramon",
+      "officialName": "Saberdramon",
+      "attribute": "Vaccine"
     }
   ],
   "gameReferences": [
@@ -4008,6 +4044,24 @@
       "type": "데이터",
       "source": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304505/",
       "reason": "Fusion Fighters model identity only. No form-specific official reference-book attribute was verified. Preserve existing game type; do not substitute Kamemon."
+    },
+    {
+      "name": "샤우트몬[스타소드]",
+      "type": "데이터",
+      "source": "https://digimoncard.com/rule/revised/",
+      "reason": "Original Fusion Fighters form; official BT11-009 identifies Shoutmon and Starmons. No separate reference-book entry verified."
+    },
+    {
+      "name": "크레니엄몬[기승]",
+      "type": "백신",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=craniummon",
+      "reason": "Mounted form from original Time Stranger chr921; inherits Craniamon classification and skills, not a separate official generation."
+    },
+    {
+      "name": "타이타몬[기승]",
+      "type": "바이러스",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=titamon",
+      "reason": "Mounted form from original Time Stranger chr915; inherits Titamon classification and skills, not a separate official generation."
     }
   ]
 }

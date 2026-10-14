@@ -44052,5 +44052,441 @@
         }
       }
     }
+  },
+  "스노우아구몬": {
+    "anchors": {
+      "body": "J_center",
+      "head": "J_head",
+      "weapon": "J_head",
+      "hands": "J_head"
+    },
+    "signature": {
+      "리틀 블리자드": {
+        "style": "iceBreath",
+        "anchor": "mouth",
+        "bone": "J_head",
+        "clip": "special01",
+        "marker": 0.75,
+        "duration": 2.6666667461395264,
+        "timingSource": "native-jaw-open"
+      }
+    },
+    "clips": {
+      "attack01": {
+        "duration": 1.8333333730697632,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      },
+      "attack02": {
+        "duration": 2.3333334922790527,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      },
+      "special01": {
+        "duration": 2.6666667461395264,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      }
+    }
+  },
+  "에렉몬(보라)": {
+    "anchors": {
+      "body": "J_center",
+      "head": "J_shippo",
+      "weapon": "J_shippo",
+      "hands": "J_shippo"
+    },
+    "signature": {
+      "재밍 썬더": {
+        "style": "lightning",
+        "anchor": "tail",
+        "bone": "J_shippo",
+        "clip": "attack01",
+        "marker": 0.56,
+        "duration": 2.0333333015441895,
+        "timingSource": "native-animation-release"
+      },
+      "테일 더스크": {
+        "style": "tail",
+        "anchor": "tail",
+        "bone": "J_shippo",
+        "clip": "attack02",
+        "marker": 0.48,
+        "duration": 1.9333332777023315,
+        "timingSource": "native-animation-release"
+      }
+    },
+    "clips": {
+      "attack01": {
+        "duration": 2.0333333015441895,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      },
+      "attack02": {
+        "duration": 1.9333332777023315,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      }
+    }
+  },
+  "폭탄모야몬": {
+    "anchors": {
+      "body": "J_center",
+      "head": "J_head",
+      "weapon": "J_te_R",
+      "hands": "J_te_R"
+    },
+    "signature": {
+      "프리 쓰로우 봄": {
+        "style": "bomb",
+        "anchor": "hands",
+        "bone": "J_te_R",
+        "clip": "special01",
+        "marker": 0.47,
+        "duration": 3.2333333492279053,
+        "timingSource": "native-animation-release"
+      },
+      "폭발 ･ 아저씨 펀치": {
+        "style": "punch",
+        "anchor": "hands",
+        "bone": "J_te_R",
+        "clip": "attack01",
+        "marker": 0.52,
+        "duration": 1.5333333015441895,
+        "timingSource": "native-animation-release"
+      }
+    },
+    "clips": {
+      "attack01": {
+        "duration": 1.5333333015441895,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      },
+      "attack02": {
+        "duration": 5.800000190734863,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      },
+      "special01": {
+        "duration": 3.2333333492279053,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      }
+    }
+  },
+  "요우코몬": {
+    "anchors": {
+      "body": "J_center",
+      "head": "J_head",
+      "weapon": "J_tail_root",
+      "hands": "J_tail_root"
+    },
+    "signature": {
+      "염옥": {
+        "style": "fireball",
+        "anchor": "tail",
+        "bone": "J_tail_root",
+        "clip": "special01",
+        "marker": 0.48,
+        "duration": 1.0333333015441895,
+        "timingSource": "native-animation-release"
+      },
+      "사염룡": {
+        "style": "breath",
+        "anchor": "tail",
+        "bone": "J_tail_root",
+        "clip": "attack02",
+        "marker": 0.55,
+        "duration": 3.299999952316284,
+        "timingSource": "native-animation-release"
+      }
+    },
+    "clips": {
+      "attack01": {
+        "duration": 1.5333333015441895,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      },
+      "attack02": {
+        "duration": 3.299999952316284,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      },
+      "special01": {
+        "duration": 1.0333333015441895,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      }
+    }
+  },
+  "도우몬": {
+    "anchors": {
+      "body": "J_center",
+      "head": "J_head",
+      "weapon": "J_handR",
+      "hands": "J_handR"
+    },
+    "signature": {
+      "주금찰": {
+        "style": "needle",
+        "anchor": "hands",
+        "bone": "J_handR",
+        "clip": "special01",
+        "marker": 0.5,
+        "duration": 3.6666717529296875,
+        "timingSource": "native-animation-release"
+      },
+      "귀문둔갑": {
+        "style": "portal",
+        "anchor": "weapon",
+        "bone": "J_weapon",
+        "clip": "attack02",
+        "marker": 0.5,
+        "duration": 5.766674041748047,
+        "timingSource": "native-animation-release"
+      }
+    },
+    "clips": {
+      "attack01": {
+        "duration": 1.5000038146972656,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      },
+      "attack02": {
+        "duration": 5.766674041748047,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      },
+      "special01": {
+        "duration": 3.6666717529296875,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      }
+    }
+  },
+  "블랙버드라몬": {
+    "anchors": {
+      "body": "J_center",
+      "head": "J_head",
+      "weapon": "J_foot_L",
+      "hands": "J_foot_L"
+    },
+    "signature": {
+      "블랙 세이버": {
+        "style": "rush",
+        "anchor": "feet",
+        "bone": "J_foot_L",
+        "clip": "attack01",
+        "marker": 0.52,
+        "duration": 1.5333333015441895,
+        "timingSource": "native-animation-release"
+      }
+    },
+    "clips": {
+      "attack01": {
+        "duration": 1.5333333015441895,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      },
+      "attack02": {
+        "duration": 3.299999952316284,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      },
+      "special01": {
+        "duration": 1.0333333015441895,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      }
+    }
+  },
+  "샤우트몬[스타소드]": {
+    "anchors": {
+      "body": "R_hand",
+      "head": "R_hand",
+      "weapon": "R_hand",
+      "hands": "R_hand"
+    },
+    "signature": {
+      "스타 블레이드": {
+        "style": "blade",
+        "anchor": "weapon",
+        "bone": "R_hand",
+        "clip": "attack01",
+        "marker": 0.57,
+        "duration": 0.9000000357627869,
+        "timingSource": "native-animation-release"
+      }
+    },
+    "clips": {
+      "attack01": {
+        "duration": 0.9000000357627869,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      },
+      "special01": {
+        "duration": 0.9000000357627869,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      }
+    }
+  },
+  "크레니엄몬[기승]": {
+    "anchors": {
+      "body": "J_root",
+      "head": "C_weapon",
+      "weapon": "C_weapon",
+      "hands": "C_weapon"
+    },
+    "signature": {
+      "엔드 ･ 왈츠": {
+        "style": "spin",
+        "anchor": "weapon",
+        "bone": "C_weapon",
+        "clip": "attack01",
+        "marker": 0.5,
+        "duration": 2.3333334922790527,
+        "timingSource": "native-animation-release"
+      },
+      "갓 브레스": {
+        "style": "ring",
+        "anchor": "hands",
+        "bone": "C_hand_l",
+        "clip": "attack02",
+        "marker": 0.48,
+        "duration": 2.3333334922790527,
+        "timingSource": "native-animation-release"
+      }
+    },
+    "clips": {
+      "attack01": {
+        "duration": 2.3333334922790527,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      },
+      "attack02": {
+        "duration": 2.3333334922790527,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      }
+    }
+  },
+  "타이타몬[기승]": {
+    "anchors": {
+      "body": "J_root",
+      "head": "J_head",
+      "weapon": "J_weapon",
+      "hands": "J_weapon"
+    },
+    "signature": {
+      "혼백심격": {
+        "style": "slash",
+        "anchor": "weapon",
+        "bone": "J_weapon",
+        "clip": "attack01",
+        "marker": 0.5,
+        "duration": 1.8333333730697632,
+        "timingSource": "native-animation-release"
+      },
+      "환인무흔": {
+        "style": "blade",
+        "anchor": "weapon",
+        "bone": "J_weapon",
+        "clip": "attack02",
+        "marker": 0.5,
+        "duration": 2.3333334922790527,
+        "timingSource": "native-animation-release"
+      },
+      "호응명군": {
+        "style": "summon",
+        "anchor": "body",
+        "bone": "T_center",
+        "clip": "attack02",
+        "marker": 0.6,
+        "duration": 2.3333334922790527,
+        "timingSource": "native-animation-release"
+      }
+    },
+    "clips": {
+      "attack01": {
+        "duration": 1.8333333730697632,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      },
+      "attack02": {
+        "duration": 2.3333334922790527,
+        "markers": {
+          "hand": 0.5,
+          "weapon": 0.5,
+          "mouth": 0.5
+        }
+      }
+    }
   }
 }

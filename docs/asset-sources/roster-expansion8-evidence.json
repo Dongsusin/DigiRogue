@@ -1,0 +1,699 @@
+[
+  {
+    "name": "스노우아구몬",
+    "english": "SnowAgumon",
+    "modelSource": {
+      "game": "Digimon ReArise",
+      "asset": "Agumon (Goggles Ver.) SnowAgumon BlackAgumon",
+      "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44625/"
+    },
+    "originalClips": [
+      {
+        "sourceName": "chr050event_bn01_rd",
+        "name": "idle"
+      },
+      {
+        "sourceName": "chr050event_ba01_rd",
+        "name": "attack01"
+      },
+      {
+        "sourceName": "chr050event_ba02_rd",
+        "name": "attack02"
+      },
+      {
+        "sourceName": "chr050event_bs01_rd",
+        "name": "special01"
+      },
+      {
+        "sourceName": "chr050event_bd01_rd",
+        "name": "damage"
+      },
+      {
+        "sourceName": "chr050event_bd03_rd",
+        "name": "down"
+      },
+      {
+        "sourceName": "chr050event_bv01_rd",
+        "name": "victory"
+      },
+      {
+        "sourceName": "chr050event_bg01_rd",
+        "name": "guard"
+      },
+      {
+        "sourceName": "chr050event_br01_rd",
+        "name": "move"
+      }
+    ],
+    "variant": {
+      "textureSwap": {
+        "chr050a01.png": "c031a01.png",
+        "chr050b01.png": "c031b01.png"
+      },
+      "dropMaterials": [
+        "chr050event01",
+        "chr050event01_alpha"
+      ]
+    },
+    "motionValidation": {
+      "nativeRequiredRoles": true,
+      "authoredAttack": false
+    },
+    "classification": {
+      "stage": "성장기",
+      "attribute": "백신",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=yukiagumon"
+    },
+    "budget": 390,
+    "build": "caster",
+    "parents": [
+      "코로몬"
+    ],
+    "next": [
+      "프리지몬",
+      "아이스몬"
+    ],
+    "habitat": {
+      "maps": [
+        "아이스 생츄어리",
+        "코퀴토스"
+      ],
+      "bands": [
+        1,
+        2
+      ],
+      "bossOnly": false
+    }
+  },
+  {
+    "name": "에렉몬(보라)",
+    "english": "Elecmon (Violet)",
+    "modelSource": {
+      "game": "Digimon ReArise",
+      "asset": "Elecmon Elecmon (Violet)",
+      "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44627/"
+    },
+    "originalClips": [
+      {
+        "sourceName": "chr564_bn01_rd",
+        "name": "idle"
+      },
+      {
+        "sourceName": "chr564_ba01_rd",
+        "name": "attack01"
+      },
+      {
+        "sourceName": "chr564_ba02_rd",
+        "name": "attack02"
+      },
+      {
+        "sourceName": "chr564_bd01_rd",
+        "name": "damage"
+      },
+      {
+        "sourceName": "chr564_bd03_rd",
+        "name": "down"
+      },
+      {
+        "sourceName": "chr564_bv01_rd",
+        "name": "victory"
+      },
+      {
+        "sourceName": "chr564_bg01_rd",
+        "name": "guard"
+      },
+      {
+        "sourceName": "chr564_br01_rd",
+        "name": "move"
+      }
+    ],
+    "variant": {
+      "textureSwap": {
+        "chr564a01.png": "chr564_va01.png",
+        "chr564b01.png": "chr564_vb01.png"
+      },
+      "dropClips": [
+        "special01"
+      ]
+    },
+    "motionValidation": {
+      "nativeRequiredRoles": true,
+      "authoredAttack": false
+    },
+    "classification": {
+      "stage": "성장기",
+      "attribute": "바이러스",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=elecmon-violet"
+    },
+    "budget": 395,
+    "build": "skirmisher",
+    "parents": [
+      "와냐몬",
+      "뿔몬"
+    ],
+    "next": [
+      "데블몬",
+      "모야몬",
+      "폭탄모야몬"
+    ],
+    "habitat": {
+      "maps": [
+        "나이트메어 솔저스",
+        "다크 필드",
+        "메탈 엠파이어"
+      ],
+      "bands": [
+        1,
+        2
+      ],
+      "bossOnly": false
+    }
+  },
+  {
+    "name": "폭탄모야몬",
+    "english": "BomberNanimon",
+    "modelSource": {
+      "game": "Digimon ReArise",
+      "asset": "BomberNanimon",
+      "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44635/"
+    },
+    "originalClips": [
+      {
+        "sourceName": "d038_bn01",
+        "name": "idle"
+      },
+      {
+        "sourceName": "d038_ba01",
+        "name": "attack01"
+      },
+      {
+        "sourceName": "d038_ba02",
+        "name": "attack02"
+      },
+      {
+        "sourceName": "d038_bs01",
+        "name": "special01"
+      },
+      {
+        "sourceName": "d038_bd01",
+        "name": "damage"
+      },
+      {
+        "sourceName": "d038_bd03",
+        "name": "down"
+      },
+      {
+        "sourceName": "d038_bv01",
+        "name": "victory"
+      },
+      {
+        "sourceName": "d038_bg01",
+        "name": "guard"
+      },
+      {
+        "sourceName": "d038_br01",
+        "name": "move"
+      }
+    ],
+    "variant": {},
+    "motionValidation": {
+      "nativeRequiredRoles": true,
+      "authoredAttack": false
+    },
+    "classification": {
+      "stage": "성숙기",
+      "attribute": "바이러스",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=bombernanimon"
+    },
+    "budget": 480,
+    "build": "hybrid",
+    "parents": [
+      "에렉몬(보라)",
+      "고부리몬"
+    ],
+    "next": [
+      "가비지몬",
+      "디지타몬"
+    ],
+    "habitat": {
+      "maps": [
+        "쓰레기의 산",
+        "팩토리얼 에리어",
+        "부트 화산"
+      ],
+      "bands": [
+        2,
+        3
+      ],
+      "bossOnly": false
+    }
+  },
+  {
+    "name": "요우코몬",
+    "english": "Youkomon",
+    "modelSource": {
+      "game": "Digimon World: Next Order",
+      "asset": "Youkomon Kyubimon (Silver)",
+      "url": "https://web.archive.org/web/20230806120033id_/https://www.models-resource.com/download/59358/"
+    },
+    "originalClips": [
+      {
+        "sourceName": "a0_base_fa0_ul",
+        "name": "idle"
+      },
+      {
+        "sourceName": "a0_atck_fa0_un",
+        "name": "attack01"
+      },
+      {
+        "sourceName": "a0_atck_fb0_un",
+        "name": "attack02"
+      },
+      {
+        "sourceName": "a0_shot_fa0_un",
+        "name": "special01"
+      },
+      {
+        "sourceName": "a0_dmgs_fa0_un",
+        "name": "damage"
+      },
+      {
+        "sourceName": "a0_dmgx_fa0_un",
+        "name": "down"
+      }
+    ],
+    "variant": {},
+    "motionValidation": {
+      "nativeRequiredRoles": true,
+      "authoredAttack": false
+    },
+    "classification": {
+      "stage": "성숙기",
+      "attribute": "데이터",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=youkomon"
+    },
+    "budget": 535,
+    "build": "caster",
+    "parents": [
+      "레나몬"
+    ],
+    "next": [
+      "도우몬"
+    ],
+    "habitat": {
+      "maps": [
+        "이블 포레스트",
+        "사규산",
+        "다크 필드"
+      ],
+      "bands": [
+        2,
+        3
+      ],
+      "bossOnly": false
+    }
+  },
+  {
+    "name": "도우몬",
+    "english": "Doumon",
+    "modelSource": {
+      "game": "Digimon ReArise",
+      "asset": "Taomon Doumon",
+      "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44939/"
+    },
+    "originalClips": [
+      {
+        "sourceName": "e052_bn01_rd",
+        "name": "idle"
+      },
+      {
+        "sourceName": "e052_ba01_rd",
+        "name": "attack01"
+      },
+      {
+        "sourceName": "e052_ba02_rd",
+        "name": "attack02"
+      },
+      {
+        "sourceName": "e052_bs01_rd",
+        "name": "special01"
+      },
+      {
+        "sourceName": "e052_bd01_rd",
+        "name": "damage"
+      },
+      {
+        "sourceName": "e052_bd03_rd",
+        "name": "down"
+      },
+      {
+        "sourceName": "e052_bv01_rd",
+        "name": "victory"
+      },
+      {
+        "sourceName": "e052_bg01_rd",
+        "name": "guard"
+      },
+      {
+        "sourceName": "e052_br01_rd",
+        "name": "move"
+      }
+    ],
+    "variant": {},
+    "motionValidation": {
+      "nativeRequiredRoles": true,
+      "authoredAttack": false
+    },
+    "classification": {
+      "stage": "완전체",
+      "attribute": "데이터",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=doumon"
+    },
+    "budget": 670,
+    "build": "caster",
+    "parents": [
+      "요우코몬"
+    ],
+    "next": [
+      "쿠즈하몬"
+    ],
+    "habitat": {
+      "maps": [
+        "사규산",
+        "이블 포레스트",
+        "오버델 묘지"
+      ],
+      "bands": [
+        3,
+        4,
+        5
+      ],
+      "bossOnly": false
+    }
+  },
+  {
+    "name": "블랙버드라몬",
+    "english": "Saberdramon",
+    "modelSource": {
+      "game": "Digimon World: Next Order",
+      "asset": "Saberdramon",
+      "url": "https://web.archive.org/web/20230806121455id_/https://www.models-resource.com/download/59357/"
+    },
+    "originalClips": [
+      {
+        "sourceName": "a0_base_fa0_ul",
+        "name": "idle"
+      },
+      {
+        "sourceName": "a0_atck_fa0_un",
+        "name": "attack01"
+      },
+      {
+        "sourceName": "a0_atck_fb0_un",
+        "name": "attack02"
+      },
+      {
+        "sourceName": "a0_shot_fa0_un",
+        "name": "special01"
+      },
+      {
+        "sourceName": "a0_dmgs_fa0_un",
+        "name": "damage"
+      },
+      {
+        "sourceName": "a0_dmgx_fa0_un",
+        "name": "down"
+      }
+    ],
+    "variant": {},
+    "motionValidation": {
+      "nativeRequiredRoles": true,
+      "authoredAttack": false
+    },
+    "classification": {
+      "stage": "성숙기",
+      "attribute": "백신",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=saberdramon"
+    },
+    "budget": 515,
+    "build": "assassin",
+    "parents": [
+      "피요몬",
+      "츠카이몬"
+    ],
+    "next": [
+      "가루다몬",
+      "야타가라몬"
+    ],
+    "habitat": {
+      "maps": [
+        "윈드 가디언즈",
+        "이블 포레스트",
+        "미하라시 산"
+      ],
+      "bands": [
+        2,
+        3
+      ],
+      "bossOnly": false
+    }
+  },
+  {
+    "name": "샤우트몬[스타소드]",
+    "english": "Shoutmon + Starsword",
+    "modelSource": {
+      "game": "Digimon Fusion Fighters",
+      "asset": "Shoutmon + Starsword",
+      "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/21740/"
+    },
+    "originalClips": [
+      {
+        "sourceName": "idle",
+        "name": "idle"
+      },
+      {
+        "sourceName": "attack",
+        "name": "attack01"
+      },
+      {
+        "sourceName": "attack",
+        "name": "special01"
+      },
+      {
+        "sourceName": "damage",
+        "name": "damage"
+      },
+      {
+        "sourceName": "down",
+        "name": "down"
+      }
+    ],
+    "variant": {
+      "dropMaterials": [
+        "Material"
+      ],
+      "dropMeshes": [
+        "ssblade_eff"
+      ]
+    },
+    "motionValidation": {
+      "nativeRequiredRoles": true,
+      "authoredAttack": false
+    },
+    "classification": {
+      "stage": "성장기",
+      "attribute": "데이터",
+      "source": "https://digimoncard.com/rule/revised/",
+      "note": "Original Fusion Fighters form; official BT11-009 identifies Shoutmon and Starmons. No separate reference-book entry verified."
+    },
+    "budget": 470,
+    "build": "duelist",
+    "parents": [
+      "샤우트몬",
+      "스타몬즈"
+    ],
+    "next": [
+      "오메가샤우트몬"
+    ],
+    "jogress": {
+      "materials": [
+        "샤우트몬",
+        "스타몬즈"
+      ],
+      "level": 15,
+      "method": "디지크로스"
+    },
+    "habitat": {
+      "maps": [
+        "겐시 대륙",
+        "기어사바나",
+        "센트럴 타운"
+      ],
+      "bands": [
+        2,
+        3
+      ],
+      "bossOnly": false
+    }
+  },
+  {
+    "name": "크레니엄몬[기승]",
+    "english": "Craniamon + Enbarrmon",
+    "modelSource": {
+      "game": "Digimon Story: Time Stranger",
+      "asset": "Craniamon + Enbarrmon",
+      "url": "https://nuffle.me/dsts-viewer?m=craniamon-enbarrmon",
+      "creator": "Nuffle",
+      "modelOrigin": "Bandai Namco / Media.Vision"
+    },
+    "originalClips": [
+      {
+        "sourceName": "chr921_ba01",
+        "name": "attack01"
+      },
+      {
+        "sourceName": "chr921_ba02",
+        "name": "attack02"
+      },
+      {
+        "sourceName": "chr921_bd01",
+        "name": "damage"
+      },
+      {
+        "sourceName": "chr921_bd03",
+        "name": "down"
+      },
+      {
+        "sourceName": "chr921_bg01",
+        "name": "guard"
+      },
+      {
+        "sourceName": "chr921_bg02",
+        "name": "dodge"
+      },
+      {
+        "sourceName": "chr921_bn01",
+        "name": "idle"
+      },
+      {
+        "sourceName": "chr921_br01",
+        "name": "move"
+      }
+    ],
+    "motionValidation": {
+      "nativeRequiredRoles": true,
+      "authoredAttack": false
+    },
+    "classification": {
+      "stage": "궁극체",
+      "attribute": "백신",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=craniummon",
+      "note": "Mounted form from original Time Stranger chr921; inherits Craniamon classification and skills, not a separate official generation."
+    },
+    "budget": 885,
+    "build": "paladin",
+    "parents": [
+      "크레니엄몬",
+      "안바르몬"
+    ],
+    "next": [],
+    "jogress": {
+      "materials": [
+        "크레니엄몬",
+        "안바르몬"
+      ],
+      "level": 75
+    },
+    "habitat": {
+      "maps": [
+        "가디언 팰리스",
+        "선공계",
+        "용정궁"
+      ],
+      "bands": [],
+      "bossOnly": true
+    }
+  },
+  {
+    "name": "타이타몬[기승]",
+    "english": "Titamon + SkullBaluchimon",
+    "modelSource": {
+      "game": "Digimon Story: Time Stranger",
+      "asset": "Titamon + SkullBaluchimon",
+      "url": "https://nuffle.me/dsts-viewer?m=titamon-skullbaluchimon",
+      "creator": "Nuffle",
+      "modelOrigin": "Bandai Namco / Media.Vision"
+    },
+    "originalClips": [
+      {
+        "sourceName": "chr915_ba01",
+        "name": "attack01"
+      },
+      {
+        "sourceName": "chr915_ba02",
+        "name": "attack02"
+      },
+      {
+        "sourceName": "chr915_bd01",
+        "name": "damage"
+      },
+      {
+        "sourceName": "chr915_bd03",
+        "name": "down"
+      },
+      {
+        "sourceName": "chr915_bg01",
+        "name": "guard"
+      },
+      {
+        "sourceName": "chr915_bg02",
+        "name": "dodge"
+      },
+      {
+        "sourceName": "chr915_bn01",
+        "name": "idle"
+      },
+      {
+        "sourceName": "chr915_br01",
+        "name": "move"
+      },
+      {
+        "sourceName": "chr915_bv01",
+        "name": "victory"
+      }
+    ],
+    "motionValidation": {
+      "nativeRequiredRoles": true,
+      "authoredAttack": false
+    },
+    "classification": {
+      "stage": "궁극체",
+      "attribute": "바이러스",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=titamon",
+      "note": "Mounted form from original Time Stranger chr915; inherits Titamon classification and skills, not a separate official generation."
+    },
+    "budget": 865,
+    "build": "bruiser",
+    "parents": [
+      "타이타몬",
+      "스컬벌키몬"
+    ],
+    "next": [],
+    "jogress": {
+      "materials": [
+        "타이타몬",
+        "스컬벌키몬"
+      ],
+      "level": 75
+    },
+    "habitat": {
+      "maps": [
+        "황천",
+        "나이트메어 솔저스",
+        "다크 에리어"
+      ],
+      "bands": [],
+      "bossOnly": true
+    }
+  }
+]

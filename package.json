@@ -46,7 +46,7 @@
     "test:master-rewards": "node --test scripts/verify-master-rewards.mjs",
     "test:evolution-investment": "node --test scripts/verify-evolution-investment.mjs scripts/verify-evolution-item-tiers.mjs scripts/verify-evolution-route-balance.mjs",
     "test:anomalies": "node --test scripts/verify-anomaly-events.mjs",
-    "test:roster": "node --test scripts/verify-roster-expansion7.mjs",
+    "test:roster": "node --test scripts/verify-roster-expansion7.mjs scripts/verify-roster-expansion8.mjs scripts/verify-native-model-clips.mjs",
     "test:model-motion": "node scripts/verify-expansion-motion.mjs",
     "test:item-artwork": "node --test scripts/verify-item-artwork.mjs",
     "test:faces": "node --test scripts/verify-face-textures.mjs",

@@ -13,17 +13,20 @@ const runtimeRequire=createRequire('C:/Users/pdwea/.cache/codex-runtimes/codex-p
 const sharp=runtimeRequire('sharp');
 await MeshoptDecoder.ready;await MeshoptEncoder.ready;
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder,'meshopt.encoder':MeshoptEncoder});
-const cache=root+'/.cache/digimon-expansion-2026-10-13';
-const report=root+'/.tmp-convert/roster-expansion-2026-10-13';
+const option=(name,fallback)=>{const index=process.argv.indexOf(name);return index<0?fallback:process.argv[index+1]};
+const workDate=option('--work-date','2026-10-13');
+const cache=root+'/.cache/digimon-expansion-'+workDate;
+const report=root+'/.tmp-convert/roster-expansion-'+workDate;
+const nativeDeath=process.argv.includes('--native-death');
 await fs.mkdir(cache+'/converted',{recursive:true});await fs.mkdir(cache+'/dsts',{recursive:true});await fs.mkdir(report,{recursive:true});
-const research=JSON.parse(await fs.readFile(root+'/docs/research/digimon-additions-2026-10-13.json','utf8'));
+const research=JSON.parse(await fs.readFile(option('--research',root+'/docs/research/digimon-additions-2026-10-13.json'),'utf8'));
 const only=process.argv.indexOf('--only');
 const candidates=research.candidates.filter(c=>c.originalMotion&&c.sources.some(s=>s.kind==='public-viewer')&&(only<0||process.argv[only+1].split(',').includes(c.english)));
 let results=[];try{results=JSON.parse(await fs.readFile(report+'/dsts-converted.json','utf8'))}catch{}
-const canonical={bn01:'idle',ba01:'attack01',ba02:'attack02',bs01:'special01',bs02:'special02',bs03:'special03',bs04:'special04',bs05:'special05',bd01:'damage',bd02:'down',bg01:'guard',bg02:'dodge',br01:'move',bv01:'victory'};
+const canonical={bn01:'idle',ba01:'attack01',ba02:'attack02',bs01:'special01',bs02:'special02',bs03:'special03',bs04:'special04',bs05:'special05',bd01:'damage',...(nativeDeath?{bd03:'down'}:{bd02:'down'}),bg01:'guard',bg02:'dodge',br01:'move',bv01:'victory'};
 async function convert(c) {
  const source=c.sources.find(s=>s.kind==='public-viewer'),slug=source.slug,input=cache+'/dsts/'+slug+'.glb',output=cache+'/converted/'+slug+'.glb';
- const previous=results.find(r=>r.english===c.english&&r.ok),revision=7;
+ const previous=results.find(r=>r.english===c.english&&r.ok),revision=nativeDeath?8:7;
  if(previous&&previous.revision===revision){try{await fs.access(output);return previous}catch{}}
  try{
   let data;try{data=await fs.readFile(input)}catch{

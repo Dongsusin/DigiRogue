@@ -6,12 +6,12 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js'
 import { BattleRenderer, prepareModel } from '../src/three/BattleRenderer.js'
 import { SkillEffects } from '../src/three/SkillEffects.js'
-import { resolveAttackPresentation, sampleAttackLift } from '../src/three/attackPresentation.js'
+import { resolveAttackPresentation, sampleAttackLift, sampleAttackClip } from '../src/three/attackPresentation.js'
 
 // Pose checks use the shipped skeleton, meshes and native clip. Texture decoding
 // is omitted only because Node has no browser image decoder; no bone data changes.
-async function nativeModel() {
-  const binary = await fs.readFile(new URL('../public/models/digimon/wargreymon.glb', import.meta.url))
+async function nativeModel(slug = 'wargreymon') {
+  const binary = await fs.readFile(new URL('../public/models/digimon/' + slug + '.glb', import.meta.url))
   const jsonBytes = binary.readUInt32LE(12)
   const gltf = JSON.parse(binary.subarray(20, 20 + jsonBytes).toString())
   function omitTextures(value) {
@@ -111,3 +111,12 @@ test('missing/degenerate direction safely falls back and never produces a non-fi
     assert([...fx.effects[0].group.quaternion].every(Number.isFinite))
   }
 })
+
+// The release landmark must be a visibly open native jaw, not the generic 48% point.
+test('Little Blizzard releases from SnowAgumon only after its native jaw opens',async()=>{
+ const snow=await nativeModel('snowagumon');const plan=resolveAttackPresentation({attackerSpecies:'스노우아구몬',skillName:'리틀 블리자드'});
+ const fitted=prepareModel(snow,{name:'스노우아구몬'}),jaw=fitted.model.getObjectByName('J_joe');assert(jaw,'source jaw bone missing');
+ const idle=jaw.quaternion.clone();fitted.mixer.stopAllAction();const action=fitted.mixer.clipAction(fitted.clips.find(c=>c.name===plan.clip));action.play();action.timeScale=0;
+ for(const speed of [1,2,3]){const elapsed=plan.releaseMs/speed;action.time=sampleAttackClip(plan,elapsed*speed);fitted.mixer.update(0);assert(jaw.quaternion.angleTo(idle)>.7,'cold breath fired while jaw is closed at source '+action.time);}
+ fitted.mixer.stopAllAction();fitted.mixer.uncacheRoot(fitted.model);
+});

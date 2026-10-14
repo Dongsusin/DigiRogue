@@ -1,0 +1,2877 @@
+{
+  "verifiedAt": "2026-10-14",
+  "scope": "89 researched candidates; preserve required native idle/attack/damage/defeat and previous requested removals",
+  "counts": {
+    "candidates": 89,
+    "added": 9,
+    "deferred": 80,
+    "archivesInspected": 93,
+    "archivesAvailable": 88
+  },
+  "records": [
+    {
+      "id": "craniamon-enbarrmon",
+      "researchName": "크레니엄몬+안바르몬",
+      "english": "Craniamon + Enbarrmon",
+      "page": "https://nuffle.me/dsts-viewer?m=craniamon-enbarrmon",
+      "status": "added",
+      "gameName": "크레니엄몬[기승]",
+      "reason": "원본 필수 모션과 외형 검사 통과",
+      "sources": [],
+      "nativeModel": {
+        "game": "Digimon Story: Time Stranger",
+        "asset": "Craniamon + Enbarrmon",
+        "url": "https://nuffle.me/dsts-viewer?m=craniamon-enbarrmon",
+        "creator": "Nuffle",
+        "modelOrigin": "Bandai Namco / Media.Vision"
+      },
+      "originalClips": [
+        {
+          "sourceName": "chr921_ba01",
+          "name": "attack01"
+        },
+        {
+          "sourceName": "chr921_ba02",
+          "name": "attack02"
+        },
+        {
+          "sourceName": "chr921_bd01",
+          "name": "damage"
+        },
+        {
+          "sourceName": "chr921_bd03",
+          "name": "down"
+        },
+        {
+          "sourceName": "chr921_bg01",
+          "name": "guard"
+        },
+        {
+          "sourceName": "chr921_bg02",
+          "name": "dodge"
+        },
+        {
+          "sourceName": "chr921_bn01",
+          "name": "idle"
+        },
+        {
+          "sourceName": "chr921_br01",
+          "name": "move"
+        }
+      ]
+    },
+    {
+      "id": "titamon-skullbaluchimon",
+      "researchName": "타이타몬+스컬벌키몬",
+      "english": "Titamon + SkullBaluchimon",
+      "page": "https://nuffle.me/dsts-viewer?m=titamon-skullbaluchimon",
+      "status": "added",
+      "gameName": "타이타몬[기승]",
+      "reason": "원본 필수 모션과 외형 검사 통과",
+      "sources": [],
+      "nativeModel": {
+        "game": "Digimon Story: Time Stranger",
+        "asset": "Titamon + SkullBaluchimon",
+        "url": "https://nuffle.me/dsts-viewer?m=titamon-skullbaluchimon",
+        "creator": "Nuffle",
+        "modelOrigin": "Bandai Namco / Media.Vision"
+      },
+      "originalClips": [
+        {
+          "sourceName": "chr915_ba01",
+          "name": "attack01"
+        },
+        {
+          "sourceName": "chr915_ba02",
+          "name": "attack02"
+        },
+        {
+          "sourceName": "chr915_bd01",
+          "name": "damage"
+        },
+        {
+          "sourceName": "chr915_bd03",
+          "name": "down"
+        },
+        {
+          "sourceName": "chr915_bg01",
+          "name": "guard"
+        },
+        {
+          "sourceName": "chr915_bg02",
+          "name": "dodge"
+        },
+        {
+          "sourceName": "chr915_bn01",
+          "name": "idle"
+        },
+        {
+          "sourceName": "chr915_br01",
+          "name": "move"
+        },
+        {
+          "sourceName": "chr915_bv01",
+          "name": "victory"
+        }
+      ]
+    },
+    {
+      "id": "ancientmermaimon",
+      "researchName": "에이션트머메이몬",
+      "english": "AncientMermaimon",
+      "page": "https://sketchfab.com/3d-models/ancient-mermaimon-aa7602beaf8048429feb7f5a1c1df846",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L48788",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/48788/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "AncientMermaidmon/u176_m.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.2000000476837158,
+                  "tracks": 324
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.5333333611488342,
+                  "tracks": 324
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.8333333730697632,
+                  "tracks": 324
+                },
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gorillamon",
+      "researchName": "고릴라몬",
+      "english": "Gorillamon",
+      "page": "https://sketchfab.com/3d-models/gorillamon-b707ee298ef24bb18f9cdf0ec9ddb576",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L52599",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/52599/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Gorillamon/m203_d.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 2,
+                  "tracks": 195
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.7333333492279053,
+                  "tracks": 150
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.8333333730697632,
+                  "tracks": 195
+                },
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jagerloweemon",
+      "researchName": "카이저레오몬",
+      "english": "JagerLoweemon",
+      "page": "https://sketchfab.com/3d-models/jagerloweemon-kaiser-leomon-b3c98a42032541aab6ee8d10c64b49b0",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L54025",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/54025/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "JagerLoweemon/c210_d.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.3333333730697632,
+                  "tracks": 195
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.5333333611488342,
+                  "tracks": 195
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.7333333492279053,
+                  "tracks": 195
+                },
+                "defeat": null
+              }
+            }
+          ]
+        },
+        {
+          "id": "L10948",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/10948/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "raihimon",
+      "researchName": "라이히몬",
+      "english": "Raihimon",
+      "page": "https://sketchfab.com/3d-models/raihimon-digimon-new-century-b2a590c098db484697e6539e5d9f605c",
+      "status": "deferred",
+      "reason": "원본 아카이브 확보 불가",
+      "sources": [
+        {
+          "id": "L54026",
+          "url": "https://web.archive.org/web/20230806121731id_/https://www.models-resource.com/download/54026/",
+          "available": false,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "ancientsphinxmon",
+      "researchName": "에이션트스핑크스몬",
+      "english": "AncientSphinxmon",
+      "page": "https://sketchfab.com/3d-models/ancient-sphinxmon-digimon-new-century-78c858e54cf94fa8b9872457f0cf753c",
+      "status": "deferred",
+      "reason": "원본 아카이브 확보 불가",
+      "sources": [
+        {
+          "id": "L62986",
+          "url": "https://web.archive.org/web/20250201id_/https://www.models-resource.com/download/62986/",
+          "available": false,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "sakuyamonmikomode",
+      "researchName": "샤크라몬[무녀 모드]",
+      "english": "Sakuyamon Miko Mode",
+      "page": "https://sketchfab.com/3d-models/sakuyamon-maid-mode-digimon-rearise-2ad3e6347ae6458a8764a30825a5233c",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: idle, damage",
+      "sources": [
+        {
+          "id": "L44679",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44679/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Sakuyamon Maid Mode/chr565.fbx",
+              "missing": [
+                "idle",
+                "damage"
+              ],
+              "nativeRoles": {
+                "idle": null,
+                "attack": {
+                  "name": "chr565_bs01_rd",
+                  "duration": 2.6666667461395264,
+                  "tracks": 219
+                },
+                "damage": null,
+                "defeat": {
+                  "name": "chr565_bd03_rd",
+                  "duration": 2.266666889190674,
+                  "tracks": 219
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gizumonat",
+      "researchName": "Gizumon AT",
+      "english": "Gizumon AT",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/283786/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L984",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/984/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "gizumonxt",
+      "researchName": "Gizumon XT",
+      "english": "Gizumon XT",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/283787/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L985",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/985/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "sealsdramon",
+      "researchName": "실즈드라몬",
+      "english": "Sealsdramon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/287879/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L5087",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/5087/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "thundermon",
+      "researchName": "Thundermon",
+      "english": "Thundermon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/341205/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L58423",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/58423/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Thundermon/m217_d.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.3333333730697632,
+                  "tracks": 195
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.6666666865348816,
+                  "tracks": 195
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.7333333492279053,
+                  "tracks": 195
+                },
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tinmon",
+      "researchName": "Tinmon",
+      "english": "Tinmon",
+      "page": "https://models.spriters-resource.com/playstation/digimonworld2/asset/618946/",
+      "status": "deferred",
+      "reason": "확보 가능한 원본 아카이브 없음",
+      "sources": []
+    },
+    {
+      "id": "troopmon",
+      "researchName": "트루프몬",
+      "english": "Troopmon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/290049/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L7262",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/7262/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "xiquemon",
+      "researchName": "시취에몬",
+      "english": "Xiquemon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/332679/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L49897",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/49897/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Magpiemon/m211_m.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.3333333730697632,
+                  "tracks": 273
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.8000000715255737,
+                  "tracks": 273
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 1.1666667461395264,
+                  "tracks": 273
+                },
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "darkleomon",
+      "researchName": "다크레오몬",
+      "english": "DarkLeomon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/327518/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L44736",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44736/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "DarkLeomon Leomon/m156_m.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 2.0333333015441895,
+                  "tracks": 210
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.6333333253860474,
+                  "tracks": 249
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 1.1333333253860474,
+                  "tracks": 291
+                },
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "darklizardmon",
+      "researchName": "DarkLizardmon",
+      "english": "DarkLizardmon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/336996/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L54214",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/54214/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "DarkLizardmon/m200_d.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 2,
+                  "tracks": 201
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.6666666865348816,
+                  "tracks": 201
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 1,
+                  "tracks": 201
+                },
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "devidramon",
+      "researchName": "데블드라몬",
+      "english": "Devidramon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/327519/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L44737",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44737/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Devidramon/m114_m.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 2.0333333015441895,
+                  "tracks": 198
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.699999988079071,
+                  "tracks": 183
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.7666666507720947,
+                  "tracks": 198
+                },
+                "defeat": null
+              }
+            }
+          ]
+        },
+        {
+          "id": "L6540",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/6540/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "mikemon",
+      "researchName": "미케몬",
+      "english": "Mikemon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/289931/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L7144",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/7144/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "neodevimon",
+      "researchName": "네오데블몬",
+      "english": "NeoDevimon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/287785/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L4993",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/4993/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "roachmon",
+      "researchName": "Roachmon",
+      "english": "Roachmon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/289510/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L6723",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/6723/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "saberdramon",
+      "researchName": "블랙버드라몬",
+      "english": "Saberdramon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/289514/",
+      "status": "added",
+      "gameName": "블랙버드라몬",
+      "reason": "원본 필수 모션과 외형 검사 통과",
+      "sources": [
+        {
+          "id": "L6727",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/6727/",
+          "available": true,
+          "entries": []
+        },
+        {
+          "id": "L59357",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/59357/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Saberdramon/d044.fbx",
+              "missing": [],
+              "nativeRoles": {
+                "idle": {
+                  "name": "a0_base_fa0_ul",
+                  "duration": 1.3666666746139526,
+                  "tracks": 108
+                },
+                "attack": {
+                  "name": "a0_atck_fa0_un",
+                  "duration": 1.5333333015441895,
+                  "tracks": 108
+                },
+                "damage": {
+                  "name": "a0_dmgs_fa0_un",
+                  "duration": 0.9666666388511658,
+                  "tracks": 108
+                },
+                "defeat": {
+                  "name": "a0_dmgx_fa0_un",
+                  "duration": 0.23333333432674408,
+                  "tracks": 108
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "nativeModel": {
+        "game": "Digimon World: Next Order",
+        "asset": "Saberdramon",
+        "url": "https://web.archive.org/web/20230806121455id_/https://www.models-resource.com/download/59357/"
+      },
+      "originalClips": [
+        {
+          "sourceName": "a0_base_fa0_ul",
+          "name": "idle"
+        },
+        {
+          "sourceName": "a0_atck_fa0_un",
+          "name": "attack01"
+        },
+        {
+          "sourceName": "a0_atck_fb0_un",
+          "name": "attack02"
+        },
+        {
+          "sourceName": "a0_shot_fa0_un",
+          "name": "special01"
+        },
+        {
+          "sourceName": "a0_dmgs_fa0_un",
+          "name": "damage"
+        },
+        {
+          "sourceName": "a0_dmgx_fa0_un",
+          "name": "down"
+        }
+      ],
+      "variant": {}
+    },
+    {
+      "id": "snowagumon",
+      "researchName": "스노우아구몬",
+      "english": "SnowAgumon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/334388/",
+      "status": "added",
+      "gameName": "스노우아구몬",
+      "reason": "원본 필수 모션과 외형 검사 통과",
+      "sources": [
+        {
+          "id": "L44625",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44625/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Agumon (Goggles Ver.) SnowAgumon BlackAgumon/chr050event.fbx",
+              "missing": [],
+              "nativeRoles": {
+                "idle": {
+                  "name": "chr050event_bn01_rd",
+                  "duration": 1.133333444595337,
+                  "tracks": 84
+                },
+                "attack": {
+                  "name": "chr050event_ba01_rd",
+                  "duration": 1.8333333730697632,
+                  "tracks": 84
+                },
+                "damage": {
+                  "name": "chr050event_bd01_rd",
+                  "duration": 1,
+                  "tracks": 84
+                },
+                "defeat": {
+                  "name": "chr050event_bd03_rd",
+                  "duration": 1.3666667938232422,
+                  "tracks": 84
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "L51606",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/51606/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Agumon/g101_m.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.3333333730697632,
+                  "tracks": 318
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.699999988079071,
+                  "tracks": 102
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 1,
+                  "tracks": 102
+                },
+                "defeat": null
+              }
+            },
+            {
+              "entry": "Agumon/g125_m.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.3666666746139526,
+                  "tracks": 102
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.699999988079071,
+                  "tracks": 102
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.8666666746139526,
+                  "tracks": 318
+                },
+                "defeat": null
+              }
+            },
+            {
+              "entry": "Agumon/g126_m.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.3333333730697632,
+                  "tracks": 318
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.6666666865348816,
+                  "tracks": 252
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.8333333730697632,
+                  "tracks": 318
+                },
+                "defeat": null
+              }
+            },
+            {
+              "entry": "Agumon/Old/g101_fbx.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.3666666746139526,
+                  "tracks": 102
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.699999988079071,
+                  "tracks": 102
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 1.0333333015441895,
+                  "tracks": 252
+                },
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ],
+      "nativeModel": {
+        "game": "Digimon ReArise",
+        "asset": "Agumon (Goggles Ver.) SnowAgumon BlackAgumon",
+        "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44625/"
+      },
+      "originalClips": [
+        {
+          "sourceName": "chr050event_bn01_rd",
+          "name": "idle"
+        },
+        {
+          "sourceName": "chr050event_ba01_rd",
+          "name": "attack01"
+        },
+        {
+          "sourceName": "chr050event_ba02_rd",
+          "name": "attack02"
+        },
+        {
+          "sourceName": "chr050event_bs01_rd",
+          "name": "special01"
+        },
+        {
+          "sourceName": "chr050event_bd01_rd",
+          "name": "damage"
+        },
+        {
+          "sourceName": "chr050event_bd03_rd",
+          "name": "down"
+        },
+        {
+          "sourceName": "chr050event_bv01_rd",
+          "name": "victory"
+        },
+        {
+          "sourceName": "chr050event_bg01_rd",
+          "name": "guard"
+        },
+        {
+          "sourceName": "chr050event_br01_rd",
+          "name": "move"
+        }
+      ],
+      "variant": {
+        "textureSwap": {
+          "chr050a01.png": "c031a01.png",
+          "chr050b01.png": "c031b01.png"
+        },
+        "dropMaterials": [
+          "chr050event01",
+          "chr050event01_alpha"
+        ]
+      }
+    },
+    {
+      "id": "soulmon",
+      "researchName": "소울몬",
+      "english": "Soulmon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/287812/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L5020",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/5020/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "ancienttroiamon",
+      "researchName": "에이션트트로이몬",
+      "english": "AncientTroiamon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/287822/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L5030",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/5030/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "kokatorimon",
+      "researchName": "Kokatorimon",
+      "english": "Kokatorimon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/327529/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L44747",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44747/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Kokatorimon/m124_m.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 2.0333333015441895,
+                  "tracks": 204
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.699999988079071,
+                  "tracks": 195
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 1.0333333015441895,
+                  "tracks": 168
+                },
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "youkomon",
+      "researchName": "요우코몬",
+      "english": "Youkomon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/332684/",
+      "status": "added",
+      "gameName": "요우코몬",
+      "reason": "원본 필수 모션과 외형 검사 통과",
+      "sources": [
+        {
+          "id": "L49902",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/49902/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Kyubimon Youkomon/m141_m.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 2,
+                  "tracks": 246
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.699999988079071,
+                  "tracks": 204
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.6666666865348816,
+                  "tracks": 246
+                },
+                "defeat": null
+              }
+            },
+            {
+              "entry": "Kyubimon Youkomon/m191_m.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 2,
+                  "tracks": 291
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.699999988079071,
+                  "tracks": 214
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.699999988079071,
+                  "tracks": 291
+                },
+                "defeat": null
+              }
+            }
+          ]
+        },
+        {
+          "id": "L59358",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/59358/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Youkomon Kyubimon (Silver)/d042.fbx",
+              "missing": [],
+              "nativeRoles": {
+                "idle": {
+                  "name": "a0_base_fa0_ul",
+                  "duration": 1.3666666746139526,
+                  "tracks": 153
+                },
+                "attack": {
+                  "name": "a0_atck_fa0_un",
+                  "duration": 1.5333333015441895,
+                  "tracks": 153
+                },
+                "damage": {
+                  "name": "a0_dmgs_fa0_un",
+                  "duration": 0.9666666388511658,
+                  "tracks": 153
+                },
+                "defeat": {
+                  "name": "a0_dmgx_fa0_un",
+                  "duration": 0.23333333432674408,
+                  "tracks": 153
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "nativeModel": {
+        "game": "Digimon World: Next Order",
+        "asset": "Youkomon Kyubimon (Silver)",
+        "url": "https://web.archive.org/web/20230806120033id_/https://www.models-resource.com/download/59358/"
+      },
+      "originalClips": [
+        {
+          "sourceName": "a0_base_fa0_ul",
+          "name": "idle"
+        },
+        {
+          "sourceName": "a0_atck_fa0_un",
+          "name": "attack01"
+        },
+        {
+          "sourceName": "a0_atck_fb0_un",
+          "name": "attack02"
+        },
+        {
+          "sourceName": "a0_shot_fa0_un",
+          "name": "special01"
+        },
+        {
+          "sourceName": "a0_dmgs_fa0_un",
+          "name": "damage"
+        },
+        {
+          "sourceName": "a0_dmgx_fa0_un",
+          "name": "down"
+        }
+      ],
+      "variant": {}
+    },
+    {
+      "id": "bokomon",
+      "researchName": "보코몬",
+      "english": "Bokomon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/291379/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L8592",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/8592/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "commandramon",
+      "researchName": "코만드라몬",
+      "english": "Commandramon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/287877/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L5085",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/5085/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "dokunemon",
+      "researchName": "도쿠네몬",
+      "english": "Dokunemon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/288795/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L6008",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/6008/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "flamemon",
+      "researchName": "Flamemon",
+      "english": "Flamemon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/340100/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L57318",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/57318/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Flamemon/g152_d.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.3333333730697632,
+                  "tracks": 261
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.6666666865348816,
+                  "tracks": 261
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.7000000476837158,
+                  "tracks": 261
+                },
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kunemon",
+      "researchName": "쿠네몬",
+      "english": "Kunemon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/288809/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L6022",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/6022/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "labramon",
+      "researchName": "래브라몬",
+      "english": "Labramon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/287889/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L5097",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/5097/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "neemon",
+      "researchName": "네몬",
+      "english": "Neemon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/327674/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: attack, damage, defeat",
+      "sources": [
+        {
+          "id": "L44892",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44892/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Neemon/n4041_fbx.fbx",
+              "missing": [
+                "attack",
+                "damage",
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 2.0333333015441895,
+                  "tracks": 157
+                },
+                "attack": null,
+                "damage": null,
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phascomon",
+      "researchName": "파스코몬",
+      "english": "Phascomon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342260/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L59478",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/59478/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Phascomon/g165_d.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.6000001430511475,
+                  "tracks": 171
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.6666666865348816,
+                  "tracks": 158
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.8000000715255737,
+                  "tracks": 171
+                },
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swimmon",
+      "researchName": "스윔몬",
+      "english": "Swimmon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/289942/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L7155",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/7155/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "flybeemon",
+      "researchName": "플라몬",
+      "english": "Flybeemon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/290556/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L53384",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/53384/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Flybeemon/m204_d.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.6000001430511475,
+                  "tracks": 159
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.6666666865348816,
+                  "tracks": 159
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.5333333611488342,
+                  "tracks": 162
+                },
+                "defeat": null
+              }
+            }
+          ]
+        },
+        {
+          "id": "L7769",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/7769/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "gargoylemon",
+      "researchName": "Gargoylemon",
+      "english": "Gargoylemon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/290553/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L7766",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/7766/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "goatmon",
+      "researchName": "고트몬",
+      "english": "Goatmon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/290558/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L7771",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/7771/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "harpymon",
+      "researchName": "하피몬",
+      "english": "Harpymon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/336167/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L53385",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/53385/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Harpymon/m208_d.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 2.0333333015441895,
+                  "tracks": 207
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.8333333134651184,
+                  "tracks": 173
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.8666666746139526,
+                  "tracks": 219
+                },
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ponchomon",
+      "researchName": "판초몬",
+      "english": "Ponchomon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/327534/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L44752",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44752/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Ponchomon/m173_m.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 2.0333333015441895,
+                  "tracks": 147
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.7666666507720947,
+                  "tracks": 147
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.7666666507720947,
+                  "tracks": 231
+                },
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "toucanmon",
+      "researchName": "Toucanmon",
+      "english": "Toucanmon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/290529/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L7742",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/7742/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "tylomon",
+      "researchName": "티로몬",
+      "english": "Tylomon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/289944/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L7157",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/7157/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "yasyamon",
+      "researchName": "Yasyamon",
+      "english": "Yasyamon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/290555/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L7768",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/7768/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "budmon",
+      "researchName": "버드몬",
+      "english": "Budmon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/327508/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: attack, damage, defeat",
+      "sources": [
+        {
+          "id": "L44726",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44726/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Budmon/b_s_108_fbx.fbx",
+              "missing": [
+                "attack",
+                "damage",
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.100000023841858,
+                  "tracks": 39
+                },
+                "attack": null,
+                "damage": null,
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "demimeramon",
+      "researchName": "푸치메라몬",
+      "english": "DemiMeramon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/327509/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: attack, damage, defeat",
+      "sources": [
+        {
+          "id": "L44727",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44727/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "DemiMeramon/b_s_111_fbx.fbx",
+              "missing": [
+                "attack",
+                "damage",
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.100000023841858,
+                  "tracks": 118
+                },
+                "attack": null,
+                "damage": null,
+                "defeat": null
+              }
+            }
+          ]
+        },
+        {
+          "id": "L6005",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/6005/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "mokumon",
+      "researchName": "모크몬",
+      "english": "Mokumon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/327506/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: attack, damage, defeat",
+      "sources": [
+        {
+          "id": "L44724",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44724/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Mokumon/b_f_106_fbx.fbx",
+              "missing": [
+                "attack",
+                "damage",
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.0333333015441895,
+                  "tracks": 154
+                },
+                "attack": null,
+                "damage": null,
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "upamon",
+      "researchName": "우파몬",
+      "english": "Upamon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/287804/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L5012",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/5012/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "yaamon",
+      "researchName": "야몬",
+      "english": "Yaamon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/327564/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: attack, damage, defeat",
+      "sources": [
+        {
+          "id": "L44782",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44782/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Yaamon/b_s_112_m.fbx",
+              "missing": [
+                "attack",
+                "damage",
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 2,
+                  "tracks": 132
+                },
+                "attack": null,
+                "damage": null,
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "apemon",
+      "researchName": "에이프몬",
+      "english": "Apemon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/288779/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L5992",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/5992/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "blackmegagargomon",
+      "researchName": "블랙세인트가르고몬",
+      "english": "BlackMegaGargomon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/289547/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L6760",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/6760/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "bombernanimon",
+      "researchName": "폭탄모야몬",
+      "english": "BomberNanimon",
+      "page": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327417/",
+      "status": "added",
+      "gameName": "폭탄모야몬",
+      "reason": "원본 필수 모션과 외형 검사 통과",
+      "sources": [
+        {
+          "id": "L44635",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44635/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "BomberNanimon/d038.fbx",
+              "missing": [],
+              "nativeRoles": {
+                "idle": {
+                  "name": "d038_bn01",
+                  "duration": 1.3666666746139526,
+                  "tracks": 93
+                },
+                "attack": {
+                  "name": "d038_ba01",
+                  "duration": 1.5333333015441895,
+                  "tracks": 93
+                },
+                "damage": {
+                  "name": "d038_bd01",
+                  "duration": 0.9666666388511658,
+                  "tracks": 93
+                },
+                "defeat": {
+                  "name": "d038_bd03",
+                  "duration": 1.7000000476837158,
+                  "tracks": 93
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "nativeModel": {
+        "game": "Digimon ReArise",
+        "asset": "BomberNanimon",
+        "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44635/"
+      },
+      "originalClips": [
+        {
+          "sourceName": "d038_bn01",
+          "name": "idle"
+        },
+        {
+          "sourceName": "d038_ba01",
+          "name": "attack01"
+        },
+        {
+          "sourceName": "d038_ba02",
+          "name": "attack02"
+        },
+        {
+          "sourceName": "d038_bs01",
+          "name": "special01"
+        },
+        {
+          "sourceName": "d038_bd01",
+          "name": "damage"
+        },
+        {
+          "sourceName": "d038_bd03",
+          "name": "down"
+        },
+        {
+          "sourceName": "d038_bv01",
+          "name": "victory"
+        },
+        {
+          "sourceName": "d038_bg01",
+          "name": "guard"
+        },
+        {
+          "sourceName": "d038_br01",
+          "name": "move"
+        }
+      ],
+      "variant": {}
+    },
+    {
+      "id": "calumon",
+      "researchName": "동글몬",
+      "english": "Calumon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/288031/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L5239",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/5239/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "chohakkaimon",
+      "researchName": "초핫카이몬",
+      "english": "ChoHakkaimon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/335385/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L52603",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/52603/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Cho Hakkaimon/c205_d.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.3333333730697632,
+                  "tracks": 240
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.6666666865348816,
+                  "tracks": 240
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.7333333492279053,
+                  "tracks": 240
+                },
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clearagumon",
+      "researchName": "투명아구몬",
+      "english": "ClearAgumon",
+      "page": "https://models.spriters-resource.com/playstation/digimonworld2/asset/588483/",
+      "status": "deferred",
+      "reason": "확보 가능한 원본 아카이브 없음",
+      "sources": []
+    },
+    {
+      "id": "doumon",
+      "researchName": "도우몬",
+      "english": "Doumon",
+      "page": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327721/",
+      "status": "added",
+      "gameName": "도우몬",
+      "reason": "원본 필수 모션과 외형 검사 통과",
+      "sources": [
+        {
+          "id": "L44939",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44939/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Taomon Doumon/chr405.fbx",
+              "missing": [],
+              "nativeRoles": {
+                "idle": {
+                  "name": "chr405_bn01_rd",
+                  "duration": 1.3333333730697632,
+                  "tracks": 150
+                },
+                "attack": {
+                  "name": "chr405_ba01_rd",
+                  "duration": 2,
+                  "tracks": 147
+                },
+                "damage": {
+                  "name": "chr405_bd01_rd",
+                  "duration": 0.9666666388511658,
+                  "tracks": 150
+                },
+                "defeat": {
+                  "name": "chr405_bd03_rd",
+                  "duration": 2.633333683013916,
+                  "tracks": 150
+                }
+              }
+            },
+            {
+              "entry": "Taomon Doumon/e052.fbx",
+              "missing": [],
+              "nativeRoles": {
+                "idle": {
+                  "name": "e052_bn01_rd",
+                  "duration": 2,
+                  "tracks": 153
+                },
+                "attack": {
+                  "name": "e052_ba01_rd",
+                  "duration": 1.5000038146972656,
+                  "tracks": 153
+                },
+                "damage": {
+                  "name": "e052_bd01_rd",
+                  "duration": 0.9333343505859375,
+                  "tracks": 153
+                },
+                "defeat": {
+                  "name": "e052_bd03_rd",
+                  "duration": 1.6666717529296875,
+                  "tracks": 153
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "nativeModel": {
+        "game": "Digimon ReArise",
+        "asset": "Taomon Doumon",
+        "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44939/"
+      },
+      "originalClips": [
+        {
+          "sourceName": "e052_bn01_rd",
+          "name": "idle"
+        },
+        {
+          "sourceName": "e052_ba01_rd",
+          "name": "attack01"
+        },
+        {
+          "sourceName": "e052_ba02_rd",
+          "name": "attack02"
+        },
+        {
+          "sourceName": "e052_bs01_rd",
+          "name": "special01"
+        },
+        {
+          "sourceName": "e052_bd01_rd",
+          "name": "damage"
+        },
+        {
+          "sourceName": "e052_bd03_rd",
+          "name": "down"
+        },
+        {
+          "sourceName": "e052_bv01_rd",
+          "name": "victory"
+        },
+        {
+          "sourceName": "e052_bg01_rd",
+          "name": "guard"
+        },
+        {
+          "sourceName": "e052_br01_rd",
+          "name": "move"
+        }
+      ],
+      "variant": {}
+    },
+    {
+      "id": "elecmonviolet",
+      "researchName": "에렉몬(보라)",
+      "english": "Elecmon (Violet)",
+      "page": "https://models.spriters-resource.com/mobile/digimonrearise/asset/327409/",
+      "status": "added",
+      "gameName": "에렉몬(보라)",
+      "reason": "원본 필수 모션과 외형 검사 통과",
+      "sources": [
+        {
+          "id": "L44627",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44627/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Elecmon Elecmon (Violet)/chr564.fbx",
+              "missing": [],
+              "nativeRoles": {
+                "idle": {
+                  "name": "chr564_bn01_rd",
+                  "duration": 2,
+                  "tracks": 72
+                },
+                "attack": {
+                  "name": "chr564_ba01_rd",
+                  "duration": 2.0333333015441895,
+                  "tracks": 72
+                },
+                "damage": {
+                  "name": "chr564_bd01_rd",
+                  "duration": 1,
+                  "tracks": 72
+                },
+                "defeat": {
+                  "name": "chr564_bd03_rd",
+                  "duration": 1.2333333492279053,
+                  "tracks": 72
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "nativeModel": {
+        "game": "Digimon ReArise",
+        "asset": "Elecmon Elecmon (Violet)",
+        "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44627/"
+      },
+      "originalClips": [
+        {
+          "sourceName": "chr564_bn01_rd",
+          "name": "idle"
+        },
+        {
+          "sourceName": "chr564_ba01_rd",
+          "name": "attack01"
+        },
+        {
+          "sourceName": "chr564_ba02_rd",
+          "name": "attack02"
+        },
+        {
+          "sourceName": "chr564_bd01_rd",
+          "name": "damage"
+        },
+        {
+          "sourceName": "chr564_bd03_rd",
+          "name": "down"
+        },
+        {
+          "sourceName": "chr564_bv01_rd",
+          "name": "victory"
+        },
+        {
+          "sourceName": "chr564_bg01_rd",
+          "name": "guard"
+        },
+        {
+          "sourceName": "chr564_br01_rd",
+          "name": "move"
+        }
+      ],
+      "variant": {
+        "textureSwap": {
+          "chr564a01.png": "chr564_va01.png",
+          "chr564b01.png": "chr564_vb01.png"
+        },
+        "dropClips": [
+          "special01"
+        ]
+      }
+    },
+    {
+      "id": "gladimon",
+      "researchName": "그라디몬",
+      "english": "Gladimon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/327527/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L44745",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44745/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Gladimon/m166_m.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 2.0333333015441895,
+                  "tracks": 270
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.699999988079071,
+                  "tracks": 270
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.9666666388511658,
+                  "tracks": 270
+                },
+                "defeat": null
+              }
+            }
+          ]
+        },
+        {
+          "id": "L6561",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/6561/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "jokermon",
+      "researchName": "조커몬",
+      "english": "Jokermon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/327556/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: idle, attack, damage, defeat",
+      "sources": [
+        {
+          "id": "L44774",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/44774/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Jokermon/Beta/u159_fbx.fbx",
+              "missing": [
+                "idle",
+                "attack",
+                "damage",
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": null,
+                "attack": null,
+                "damage": null,
+                "defeat": null
+              }
+            },
+            {
+              "entry": "Jokermon/u159_m.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.4333332777023315,
+                  "tracks": 369
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.699999988079071,
+                  "tracks": 369
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 1.0333333015441895,
+                  "tracks": 369
+                },
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "madleomonfinalmode",
+      "researchName": "매드레오몬[파이널]",
+      "english": "MadLeomon (Final Mode)",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/290045/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L7258",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/7258/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "ornismon",
+      "researchName": "오니스몬",
+      "english": "Ornismon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/288348/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L5556",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/5556/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "pickmon",
+      "researchName": "픽크몬",
+      "english": "Pickmon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/289941/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L7154",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/7154/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "volcdramon",
+      "researchName": "Volcdramon",
+      "english": "Volcdramon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/349380/",
+      "status": "deferred",
+      "reason": "원본 아카이브 확보 불가",
+      "sources": [
+        {
+          "id": "L66598",
+          "url": "https://web.archive.org/web/20250201id_/https://www.models-resource.com/download/66598/",
+          "available": false,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "arbormon",
+      "researchName": "알볼몬",
+      "english": "Arbormon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/291709/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L8922",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/8922/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "beetlemon",
+      "researchName": "블리츠몬",
+      "english": "Beetlemon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/292663/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L9876",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/9876/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "gigasmon",
+      "researchName": "기가스몬",
+      "english": "Gigasmon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/292085/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L9298",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/9298/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "grumblemon",
+      "researchName": "그로트몬",
+      "english": "Grumblemon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/292003/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L9216",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/9216/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "mercuremon",
+      "researchName": "머큐레몬",
+      "english": "Mercuremon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/293759/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L10972",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/10972/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "metalkabuterimon",
+      "researchName": "보르그몬",
+      "english": "MetalKabuterimon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/292700/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L9913",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/9913/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "petaldramon",
+      "researchName": "페탈드라몬",
+      "english": "Petaldramon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/291898/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L9111",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/9111/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "sakkakumon",
+      "researchName": "Sakkakumon",
+      "english": "Sakkakumon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/293899/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L11112",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/11112/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "chaospiedmon",
+      "researchName": "카오스피에몬",
+      "english": "ChaosPiedmon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/288332/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L5540",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/5540/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "chaosseadramon",
+      "researchName": "카오스시드라몬",
+      "english": "ChaosSeadramon",
+      "page": "https://models.spriters-resource.com/playstation/digimonworld2/asset/618960/",
+      "status": "deferred",
+      "reason": "확보 가능한 원본 아카이브 없음",
+      "sources": []
+    },
+    {
+      "id": "lianpumon",
+      "researchName": "리엔푸몬",
+      "english": "Lianpumon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/336811/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L54029",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/54029/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Lianpumon/m212_d.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.3333333730697632,
+                  "tracks": 276
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.6666666865348816,
+                  "tracks": 318
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.7333333492279053,
+                  "tracks": 318
+                },
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lucemonlarva",
+      "researchName": "루체몬[라르바]",
+      "english": "Lucemon Larva",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/290105/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L7318",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/7318/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "murmukusmon",
+      "researchName": "무르무크스몬",
+      "english": "Murmukusmon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/343801/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L61019",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/61019/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Murmukusmon/u251_p.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 2.0333333015441895,
+                  "tracks": 236
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.9333333969116211,
+                  "tracks": 354
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.8000000715255737,
+                  "tracks": 354
+                },
+                "defeat": null
+              }
+            }
+          ]
+        },
+        {
+          "id": "L7403",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/7403/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "neomyotismon",
+      "researchName": "NeoMyotismon",
+      "english": "NeoMyotismon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/346507/",
+      "status": "deferred",
+      "reason": "원본 아카이브 확보 불가",
+      "sources": [
+        {
+          "id": "L63725",
+          "url": "https://web.archive.org/web/20250201id_/https://www.models-resource.com/download/63725/",
+          "available": false,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "parasimon",
+      "researchName": "패러사이몬",
+      "english": "Parasimon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/331568/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: damage, defeat",
+      "sources": [
+        {
+          "id": "L48786",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/48786/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Parasimon/u184_p old.fbx",
+              "missing": [
+                "damage",
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.6000001430511475,
+                  "tracks": 222
+                },
+                "attack": {
+                  "name": "skill2_display",
+                  "duration": 8.133334159851074,
+                  "tracks": 222
+                },
+                "damage": null,
+                "defeat": null
+              }
+            },
+            {
+              "entry": "Parasimon/u184_p.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.600000023841858,
+                  "tracks": 222
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 0.800000011920929,
+                  "tracks": 222
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 1.4329999685287476,
+                  "tracks": 222
+                },
+                "defeat": null
+              }
+            }
+          ]
+        },
+        {
+          "id": "L6025",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/6025/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "shadowseraphimon",
+      "researchName": "ShadowSeraphimon",
+      "english": "ShadowSeraphimon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/287840/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L5048",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/5048/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "shakamon",
+      "researchName": "샤카몬",
+      "english": "Shakamon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/335387/",
+      "status": "deferred",
+      "reason": "필수 원본 전투 모션 부족: defeat",
+      "sources": [
+        {
+          "id": "L52605",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/52605/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Shakamon/u224_p.fbx",
+              "missing": [
+                "defeat"
+              ],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 4,
+                  "tracks": 336
+                },
+                "attack": {
+                  "name": "attack_move",
+                  "duration": 1.6000001430511475,
+                  "tracks": 336
+                },
+                "damage": {
+                  "name": "hurt",
+                  "duration": 0.7333333492279053,
+                  "tracks": 336
+                },
+                "defeat": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "xingtianmon",
+      "researchName": "싱티안몬",
+      "english": "Xingtianmon",
+      "page": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/341948/",
+      "status": "deferred",
+      "reason": "원본 아카이브 확보 불가",
+      "sources": [
+        {
+          "id": "L59166",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/59166/",
+          "available": false,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "dexdorugamon",
+      "researchName": "데크스도루가몬",
+      "english": "DexDorugamon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/289343/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L6556",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/6556/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "dexdorugoramon",
+      "researchName": "DexDorugoramon",
+      "english": "DexDorugoramon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/289344/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L6557",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/6557/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "dexdorugreymon",
+      "researchName": "DexDorugreymon",
+      "english": "DexDorugreymon",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/289345/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L6558",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/6558/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "shoutmonstarsword",
+      "researchName": "샤우트몬[스타소드]",
+      "english": "Shoutmon + Starsword",
+      "page": "https://models.spriters-resource.com/mobile/digimonfusionfighters/asset/304527/",
+      "status": "added",
+      "gameName": "샤우트몬[스타소드]",
+      "reason": "원본 필수 모션과 외형 검사 통과",
+      "sources": [
+        {
+          "id": "L21740",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/21740/",
+          "available": true,
+          "entries": [
+            {
+              "entry": "Shoutmon + Starsword/002_SHOUTMON_STARSWORD.fbx",
+              "missing": [],
+              "nativeRoles": {
+                "idle": {
+                  "name": "idle",
+                  "duration": 1.9833333492279053,
+                  "tracks": 60
+                },
+                "attack": {
+                  "name": "attack",
+                  "duration": 0.9000000357627869,
+                  "tracks": 52
+                },
+                "damage": {
+                  "name": "damage",
+                  "duration": 1.2333334684371948,
+                  "tracks": 25
+                },
+                "defeat": {
+                  "name": "down",
+                  "duration": 1.9833333492279053,
+                  "tracks": 21
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "nativeModel": {
+        "game": "Digimon Fusion Fighters",
+        "asset": "Shoutmon + Starsword",
+        "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/21740/"
+      },
+      "originalClips": [
+        {
+          "sourceName": "idle",
+          "name": "idle"
+        },
+        {
+          "sourceName": "attack",
+          "name": "attack01"
+        },
+        {
+          "sourceName": "attack",
+          "name": "special01"
+        },
+        {
+          "sourceName": "damage",
+          "name": "damage"
+        },
+        {
+          "sourceName": "down",
+          "name": "down"
+        }
+      ],
+      "variant": {
+        "dropMaterials": [
+          "Material"
+        ],
+        "dropMeshes": [
+          "ssblade_eff"
+        ]
+      }
+    },
+    {
+      "id": "sistermonciel",
+      "researchName": "시스터몬 시엘",
+      "english": "Sistermon Ciel",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324399/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L41617",
+          "url": "https://web.archive.org/web/20250201id_/https://www.models-resource.com/download/41617/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "sistermoncielawakened",
+      "researchName": "시스터몬 시엘[각성]",
+      "english": "Sistermon Ciel (Awakened)",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324400/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L41618",
+          "url": "https://web.archive.org/web/20250201id_/https://www.models-resource.com/download/41618/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "ulforceveedramonfuturemode",
+      "researchName": "알포스브이드라몬[퓨처 모드]",
+      "english": "UlforceVeedramon Future Mode",
+      "page": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/333230/",
+      "status": "deferred",
+      "reason": "정적 모델; 원본 전투 모션 없음",
+      "sources": [
+        {
+          "id": "L50448",
+          "url": "https://web.archive.org/web/20230806id_/https://www.models-resource.com/download/50448/",
+          "available": true,
+          "entries": []
+        }
+      ]
+    },
+    {
+      "id": "mastertyrannomon",
+      "researchName": "MasterTyrannomon",
+      "english": "MasterTyrannomon",
+      "page": "https://github.com/Operation-Decoded/DW1ModelConverter",
+      "status": "deferred",
+      "reason": "추출 도구만 확인됨; 원본 게임 모델 파일 없음",
+      "sources": []
+    }
+  ]
+}

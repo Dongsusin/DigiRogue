@@ -7674,5 +7674,71 @@
     "anchor": "hands",
     "attribute": "빛",
     "area": false
+  },
+  "리틀 블리자드": {
+    "style": "iceBreath",
+    "anchor": "mouth",
+    "attribute": "얼음",
+    "area": false
+  },
+  "재밍 썬더": {
+    "style": "lightning",
+    "anchor": "tail",
+    "attribute": "번개",
+    "area": false
+  },
+  "테일 더스크": {
+    "style": "tail",
+    "anchor": "tail",
+    "attribute": "무",
+    "area": false
+  },
+  "프리 쓰로우 봄": {
+    "style": "bomb",
+    "anchor": "hands",
+    "attribute": "화염",
+    "area": false
+  },
+  "폭발 ･ 아저씨 펀치": {
+    "style": "punch",
+    "anchor": "hands",
+    "attribute": "화염",
+    "area": false
+  },
+  "염옥": {
+    "style": "fireball",
+    "anchor": "tail",
+    "attribute": "화염",
+    "area": false
+  },
+  "사염룡": {
+    "style": "breath",
+    "anchor": "tail",
+    "attribute": "화염",
+    "area": false
+  },
+  "주금찰": {
+    "style": "needle",
+    "anchor": "hands",
+    "attribute": "어둠",
+    "area": false
+  },
+  "귀문둔갑": {
+    "style": "portal",
+    "anchor": "weapon",
+    "attribute": "어둠",
+    "area": false
+  },
+  "블랙 세이버": {
+    "style": "rush",
+    "anchor": "feet",
+    "attribute": "어둠",
+    "area": false
+  },
+  "스타 블레이드": {
+    "style": "blade",
+    "anchor": "weapon",
+    "attribute": "화염",
+    "area": false
   }
 }

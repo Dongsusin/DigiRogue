@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-14",
+  "scope": [
+    "new species evolution scenes and egg-root trees",
+    "mounted Jogress",
+    "imported face layers",
+    "SnowAgumon effect timing"
+  ],
+  "tests": {
+    "command": "node --test --test-concurrency=2 (52 package test files)",
+    "tests": 1035,
+    "pass": 1032,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 3,
+    "todo": 0,
+    "exitCode": 0
+  },
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "models": 671,
+    "downloadVersion": "3955ccce189318ee",
+    "downloadFiles": 2287,
+    "downloadBytes": 618660360
+  },
+  "runtime": {
+    "command": "node scripts/verify-runtime.mjs --dist",
+    "exitCode": 0,
+    "models": 671,
+    "portraits": 1342,
+    "clips": 5726
+  },
+  "render": {
+    "faces": 83,
+    "newEvolutionScenes": 9,
+    "reducedMotionScenes": 9,
+    "battleSpeeds": [
+      1,
+      2,
+      3
+    ],
+    "battleFrames": 12,
+    "errors": 0
+  },
+  "release": {
+    "deployed": false,
+    "url": "https://digirouge.co.kr/"
+  },
+  "unverified": [
+    "200-stage long-session playthrough",
+    "all physical GPUs and mobile browsers",
+    "3 Firebase emulator-only rules checks skipped"
+  ],
+  "review": {
+    "findings": 0,
+    "focusedTests": 248,
+    "exitCode": 0,
+    "comparedFaceRepairClips": 114,
+    "geometryAndSkinUnchanged": true,
+    "eyeTextureBytesUnchanged": true
+  }
+}

@@ -1546,5 +1546,49 @@
   "황제드라몬[팔라딘]": {
     "signature": "오메가 블레이드",
     "tactic": "ferocity"
+  },
+  "요우코몬": {
+    "signature": "염옥",
+    "tactic": "flame"
+  },
+  "도우몬": {
+    "signature": "주금찰",
+    "tactic": "dread"
+  },
+  "쿠즈하몬": {
+    "signature": "역반강술법",
+    "tactic": "barrier"
+  },
+  "스노우아구몬": {
+    "signature": "리틀 블리자드",
+    "tactic": "specialGuard"
+  },
+  "프리지몬": {
+    "signature": "절대 영도 펀치",
+    "tactic": "physicalGuard"
+  },
+  "츠카이몬": {
+    "signature": "치즈 폭탄",
+    "tactic": "poison"
+  },
+  "블랙버드라몬": {
+    "signature": "블랙 세이버",
+    "tactic": "agile"
+  },
+  "에렉몬(보라)": {
+    "signature": "재밍 썬더",
+    "tactic": "electric"
+  },
+  "폭탄모야몬": {
+    "signature": "프리 쓰로우 봄",
+    "tactic": "barrage"
+  },
+  "크레니엄몬[기승]": {
+    "signature": "엔드 ･ 왈츠",
+    "tactic": "barrier"
+  },
+  "타이타몬[기승]": {
+    "signature": "혼백심격",
+    "tactic": "ferocity"
   }
 }

@@ -1,0 +1,120 @@
+{
+  "exitCode": 0,
+  "errors": [],
+  "rows": [
+    {
+      "speed": 1,
+      "plan": {
+        "releaseMs": 1040,
+        "impactMs": 1280,
+        "sourceSeconds": 2.0000000596046448
+      },
+      "results": [
+        {
+          "label": "before",
+          "at": 1025,
+          "source": 1.9711539048988087,
+          "jaw": 0.22556213990018578,
+          "beams": 0
+        },
+        {
+          "label": "release",
+          "at": 1055,
+          "source": 2.0192308294085355,
+          "jaw": 0.873608151913665,
+          "beams": 1
+        },
+        {
+          "label": "travel",
+          "at": 1200,
+          "source": 2.2051282708461466,
+          "jaw": 0.873608151913665,
+          "beams": 1
+        },
+        {
+          "label": "hit",
+          "at": 1270,
+          "source": 2.294871863264304,
+          "jaw": 0.873608151913665,
+          "beams": 1
+        }
+      ]
+    },
+    {
+      "speed": 2,
+      "plan": {
+        "releaseMs": 1040,
+        "impactMs": 1280,
+        "sourceSeconds": 2.0000000596046448
+      },
+      "results": [
+        {
+          "label": "before",
+          "at": 1025,
+          "source": 1.9711539048988087,
+          "jaw": 0.22556213990018578,
+          "beams": 0
+        },
+        {
+          "label": "release",
+          "at": 1055,
+          "source": 2.0192308294085355,
+          "jaw": 0.873608151913665,
+          "beams": 1
+        },
+        {
+          "label": "travel",
+          "at": 1200,
+          "source": 2.2051282708461466,
+          "jaw": 0.873608151913665,
+          "beams": 1
+        },
+        {
+          "label": "hit",
+          "at": 1270,
+          "source": 2.294871863264304,
+          "jaw": 0.873608151913665,
+          "beams": 1
+        }
+      ]
+    },
+    {
+      "speed": 3,
+      "plan": {
+        "releaseMs": 1040,
+        "impactMs": 1280,
+        "sourceSeconds": 2.0000000596046448
+      },
+      "results": [
+        {
+          "label": "before",
+          "at": 1025,
+          "source": 1.9711539048988078,
+          "jaw": 0.2255621399001621,
+          "beams": 0
+        },
+        {
+          "label": "release",
+          "at": 1055,
+          "source": 2.019230829408535,
+          "jaw": 0.873608151913665,
+          "beams": 1
+        },
+        {
+          "label": "travel",
+          "at": 1200,
+          "source": 2.2051282708461466,
+          "jaw": 0.873608151913665,
+          "beams": 1
+        },
+        {
+          "label": "hit",
+          "at": 1270,
+          "source": 2.2948718632643046,
+          "jaw": 0.873608151913665,
+          "beams": 1
+        }
+      ]
+    }
+  ]
+}
