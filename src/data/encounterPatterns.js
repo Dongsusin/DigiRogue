@@ -1,3 +1,4 @@
+import { EXPANSION_TACTIC_OVERRIDES } from './expansionEncounterPatterns.js'
 // Authored encounter tactics. Percentages and timings are fan-game rules;
 // native signatures keep the species' existing damage, status and 3D effects.
 import roster from './encounterPatternRoster.json' with { type: 'json' }
@@ -27,6 +28,7 @@ const tactics = {
   network: { label: '네트워크 가속', condition: actions(1), effect: { stats: { speed: 1.15 } } },
 }
 const overrides = {
+  ...EXPANSION_TACTIC_OVERRIDES,
   '에테몬': { label: '러브 세레나데', support: support('러브 세레나데',
     { kind: 'stat-modifier', targetSide: 'enemy', scope: 'all', statKey: 'attack', multiplier: .85 }) },
   '메탈에테몬': { label: '바나나 슬립', support: support('바나나 슬립',
@@ -73,7 +75,7 @@ export function getEncounterTactics(unit, getSkillData) {
   if (!native || native.기술명 !== spec.signature || !(native.데미지 > 0) || native.효과) return []
   const id = 'species:' + unit.name + ':'
   const trait = { ...tactics[spec.tactic], ...overrides[unit.name] }
-  if (spec.tactic === 'barrage') trait.effect = { stats: { [native.분류 === '물리형' ? 'attack' : 'specialAttack']: 1.12 } }
+  if (spec.tactic === 'barrage' && !overrides[unit.name]?.effect) trait.effect = { stats: { [native.분류 === '물리형' ? 'attack' : 'specialAttack']: 1.12 } }
   const signatureSkill = trait.support ?? (trait.drain ? { ...native, encounterDrain: true, encounterSpecies: unit.name } : null)
   return [
     { ...trait, id: id + 'trait', ...(signatureSkill ? { signatureSkill, requiresReadySkill: Boolean(trait.drain) } : {}) },

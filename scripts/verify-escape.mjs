@@ -25,9 +25,9 @@ function appHandler(name, nextName, context) {
   return vm.runInNewContext('(' + app.slice(start + marker.length, end).trim() + ')', context)
 }
 
-test('equal forces start at 70% and stronger enemies lower escape chance across every stat', () => {
+test('equal forces start at 7% and stronger enemies lower escape chance across every stat', () => {
   const s = state(), base = getEscapeChance(s)
-  assert.equal(base, .7)
+  assert.equal(base, .07)
   for (const stat of ['level', 'maxHp', 'attack', 'defense', 'specialAttack', 'specialDefense', 'speed']) {
     assert(getEscapeChance({ ...s, enemies: [unit('e', { [stat]: s.enemies[0][stat] * 2 })] }) < base, stat)
   }
@@ -36,16 +36,16 @@ test('equal forces start at 70% and stronger enemies lower escape chance across 
 })
 test('very fast or powerful runners can still fail and hopeless fights retain a bounded chance', () => {
   const fast = state({ party: [unit('a', { speed: 10000, level: 100 })] })
-  assert.equal(getEscapeChance(fast), .9)
+  assert.equal(getEscapeChance(fast), .1)
   assert.equal(rollRunAttempt(fast, () => .999), false)
-  assert.equal(getEscapeChance(state({ enemies: [unit('e', { level: 10000, speed: 10000, maxHp: 100000 })] })), .1)
+  assert.equal(getEscapeChance(state({ enemies: [unit('e', { level: 10000, speed: 10000, maxHp: 100000 })] })), .01)
 })
 test('retry bonuses are bounded, preserve enemy-strength ordering, and never guarantee success', () => {
   const s = state(), strong = { ...s, enemies: [unit('e', { level: 50, attack: 200 })] }
   let previous = 0
   for (const attemptCount of [1, 2, 3, 4, 20, 100]) {
     const chance = getEscapeChance({ ...s, attemptCount })
-    assert(chance >= previous && chance <= .9)
+    assert(chance >= previous && chance <= .1)
     assert(getEscapeChance({ ...strong, attemptCount }) < chance)
     assert.equal(rollRunAttempt({ ...s, attemptCount }, () => .999), false)
     previous = chance
@@ -84,7 +84,25 @@ test('seeded rolls match the chance threshold without automatic speed success', 
   assert.equal(rollRunAttempt(s, () => chance), false)
   let successes = 0
   for (let i = 0; i < 1000; i++) if (rollRunAttempt(s, () => i / 1000)) successes++
-  assert.equal(successes, 700)
+  assert.equal(successes, 70)
+})
+test('escape never exceeds 10%, even with overwhelming stats or old-save retry counts', () => {
+  for (const allyMultiplier of [.01, .1, 1, 10, 100, 10000]) {
+    for (const enemyMultiplier of [.01, .1, 1, 10, 100, 10000]) {
+      for (const attemptCount of [0, 1, 2, 4, 100, Number.MAX_SAFE_INTEGER]) {
+        const stats = multiplier => Object.fromEntries(['level', 'maxHp', 'attack', 'defense', 'specialAttack', 'specialDefense', 'speed'].map(stat => [stat, 40 * multiplier]))
+        const s = state({ party: [unit('a', stats(allyMultiplier))], enemies: [unit('e', stats(enemyMultiplier))], attemptCount })
+        const chance = getEscapeChance(s)
+        assert(chance >= .01 && chance <= .1)
+        assert.equal(rollRunAttempt(s, () => .1), false)
+      }
+    }
+  }
+  const s = state({ party: [unit('a', { level: 10000, speed: 10000 })], attemptCount: 100 })
+  assert.equal(getEscapeChance(s), .1)
+  let successes = 0
+  for (let i = 0; i < 1000; i++) if (rollRunAttempt(s, () => i / 1000)) successes++
+  assert.equal(successes, 100)
 })
 test('switch cues cover every outgoing/incoming enemy when the formation changes', () => {
   let id = 0
@@ -146,6 +164,14 @@ test('App failure consumes exactly one enemy turn, stays on the stage and record
   assert.equal(calls.resolved.length, 1); assert.equal(calls.resolved[0].nextEscapeAttempts, 1)
   assert.equal(calls.resolved[0].nextParty[0].currentHp, 80)
   assert.equal(context.runAttemptInFlightRef.current, false)
+})
+test('App treats a roll at 10% as failure and grants exactly one enemy response', () => {
+  const { calls, handle } = runContext(state(), .1)
+  handle()
+  assert.equal(calls.rolls, 1)
+  assert.equal(calls.enemyTurns, 1)
+  assert.equal(calls.advances.length, 0)
+  assert(calls.effects[0].options.logs.includes('도망칠 수 없었다!'))
 })
 test('App story escape follows the existing story result and does not skip an extra stage', () => {
   const { calls, handle, context } = runContext(state({ explorationEvent: { phase: 'battle' } }), 0)

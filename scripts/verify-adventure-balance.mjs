@@ -1,3 +1,4 @@
+import manifest from '../src/data/digimonModelManifest.json' with { type: 'json' }
 import { BALANCE_REVISION } from '../src/balance/catalog.js'
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
@@ -14,8 +15,8 @@ const engine = await loadBattleEngine()
 const unit = (name, level = 50) => engine.createCombatant({ id: name, name, data: engine.allDigimonLookup.get(name), level })
 const apply = (actor, target, skillName) => engine.applySupportEffectToTarget({ actor, target, skillData: engine.getSkillData(skillName, actor) }).nextTarget
 
-test('every one of the 512 species has a coherent individual profile and legal signature/support skills', () => {
-  assert.equal(engine.allDigimonLookup.size, 512)
+test('every model-backed species has a coherent individual profile and legal signature/support skills', () => {
+  assert.equal(engine.allDigimonLookup.size, Object.keys(manifest).length)
   const fields = ['체력','공격','방어','특공','특방','스피드']
   for (const data of engine.allDigimonLookup.values()) {
     assert(LORE_PROFILES[data.이름], data.이름)

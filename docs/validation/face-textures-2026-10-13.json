@@ -1,0 +1,5877 @@
+{
+  "date": "2026-10-13",
+  "task": "Repair missing and broken Digimon eye textures",
+  "deployed": false,
+  "committed": false,
+  "coverage": {
+    "models": 662,
+    "playable": 661,
+    "initialFrontAndQuarterViews": 1324,
+    "sourceFaceUVPrimitives": 181,
+    "allMaterialBindings": {
+      "exitCode": 0,
+      "models": 662,
+      "primitives": 1870,
+      "texturedPrimitives": 1858,
+      "materials": 1870,
+      "repaired": 13,
+      "animationChannelsUnchanged": 9834,
+      "repairedTriangleCount": 357596,
+      "failures": []
+    },
+    "repairedFaces": 13,
+    "repairedPortraits": 26,
+    "poses": 384,
+    "poseViews": 768
+  },
+  "repairs": [
+    {
+      "name": "파이라몬",
+      "slug": "firamon",
+      "faceBake": [
+        {
+          "modelId": "chr137",
+          "atlas": true,
+          "targetTexCoord": 2,
+          "triangles": 83,
+          "rasterized": 83,
+          "skipped": 0,
+          "width": 1024,
+          "height": 1024,
+          "sourceUV": {
+            "triangles": 83,
+            "degenerate": 4,
+            "subpixel": 50
+          }
+        },
+        {
+          "modelId": "chr137",
+          "atlas": false,
+          "targetTexCoord": 2,
+          "triangles": 33,
+          "rasterized": 33,
+          "skipped": 0,
+          "width": 1024,
+          "height": 1024,
+          "sourceUV": {
+            "triangles": 33,
+            "degenerate": 0,
+            "subpixel": 0
+          }
+        }
+      ],
+      "clips": [
+        "attack01",
+        "attack02",
+        "damage",
+        "down",
+        "guard",
+        "dodge",
+        "idle",
+        "move",
+        "special01",
+        "victory"
+      ],
+      "preservedAnimationChannels": 927,
+      "bytes": 1615340,
+      "reason": "Collapsed or subpixel expression UV triangles; bake isolated padded UV islands"
+    },
+    {
+      "name": "기자몬",
+      "slug": "gizamon",
+      "faceBake": [
+        {
+          "modelId": "chr594",
+          "atlas": false,
+          "targetTexCoord": 2,
+          "triangles": 91,
+          "rasterized": 91,
+          "skipped": 0,
+          "width": 1024,
+          "height": 1024,
+          "sourceUV": {
+            "triangles": 91,
+            "degenerate": 0,
+            "subpixel": 0
+          }
+        },
+        {
+          "modelId": "chr594",
+          "atlas": true,
+          "targetTexCoord": 2,
+          "triangles": 138,
+          "rasterized": 138,
+          "skipped": 0,
+          "width": 1024,
+          "height": 1024,
+          "sourceUV": {
+            "triangles": 138,
+            "degenerate": 26,
+            "subpixel": 47
+          }
+        }
+      ],
+      "clips": [
+        "attack01",
+        "attack02",
+        "damage",
+        "down",
+        "guard",
+        "dodge",
+        "idle",
+        "move",
+        "special01",
+        "victory"
+      ],
+      "preservedAnimationChannels": 238,
+      "bytes": 578836,
+      "reason": "Collapsed or subpixel expression UV triangles; bake isolated padded UV islands"
+    },
+    {
+      "name": "그레이스노바몬",
+      "slug": "gracenovamon",
+      "faceBake": [
+        {
+          "modelId": "chr604",
+          "atlas": true,
+          "targetTexCoord": 2,
+          "triangles": 65,
+          "rasterized": 65,
+          "skipped": 0,
+          "width": 1024,
+          "height": 1024,
+          "sourceUV": {
+            "triangles": 65,
+            "degenerate": 44,
+            "subpixel": 44
+          }
+        },
+        {
+          "modelId": "chr604",
+          "atlas": false,
+          "targetTexCoord": 2,
+          "triangles": 21,
+          "rasterized": 21,
+          "skipped": 0,
+          "width": 1024,
+          "height": 1024,
+          "sourceUV": {
+            "triangles": 21,
+            "degenerate": 0,
+            "subpixel": 0
+          }
+        }
+      ],
+      "clips": [
+        "attack01",
+        "attack02",
+        "damage",
+        "down",
+        "guard",
+        "dodge",
+        "idle",
+        "move",
+        "special01",
+        "victory"
+      ],
+      "preservedAnimationChannels": 1050,
+      "bytes": 2330308,
+      "reason": "Collapsed or subpixel expression UV triangles; bake isolated padded UV islands"
+    },
+    {
+      "name": "코쿠와몬",
+      "slug": "kokuwamon",
+      "faceBake": [
+        {
+          "modelId": "chr609",
+          "atlas": true,
+          "targetTexCoord": 2,
+          "triangles": 224,
+          "rasterized": 224,
+          "skipped": 0,
+          "width": 1024,
+          "height": 1024,
+          "sourceUV": {
+            "triangles": 224,
+            "degenerate": 49,
+            "subpixel": 80
+          }
+        },
+        {
+          "modelId": "chr609",
+          "atlas": true,
+          "targetTexCoord": 2,
+          "triangles": 224,
+          "rasterized": 224,
+          "skipped": 0,
+          "width": 1024,
+          "height": 1024,
+          "sourceUV": {
+            "triangles": 224,
+            "degenerate": 49,
+            "subpixel": 80
+          }
+        }
+      ],
+      "clips": [
+        "attack01",
+        "attack02",
+        "damage",
+        "down",
+        "guard",
+        "dodge",
+        "idle",
+        "move",
+        "special01"
+      ],
+      "preservedAnimationChannels": 261,
+      "bytes": 622844,
+      "reason": "Collapsed or subpixel expression UV triangles; bake isolated padded UV islands"
+    },
+    {
+      "name": "패럴렐몬",
+      "slug": "parallelmon",
+      "faceBake": [
+        {
+          "modelId": "chr449",
+          "atlas": true,
+          "targetTexCoord": 2,
+          "triangles": 520,
+          "rasterized": 520,
+          "skipped": 0,
+          "width": 1024,
+          "height": 1024,
+          "sourceUV": {
+            "triangles": 520,
+            "degenerate": 0,
+            "subpixel": 140
+          }
+        }
+      ],
+      "clips": [
+        "attack01",
+        "attack02",
+        "damage",
+        "down",
+        "guard",
+        "dodge",
+        "idle",
+        "move",
+        "special01",
+        "special02",
+        "victory"
+      ],
+      "preservedAnimationChannels": 804,
+      "bytes": 1745280,
+      "reason": "Collapsed or subpixel expression UV triangles; bake isolated padded UV islands"
+    },
+    {
+      "name": "수리몬",
+      "slug": "shurimon",
+      "faceBake": [
+        {
+          "modelId": "chr142",
+          "atlas": true,
+          "targetTexCoord": 2,
+          "triangles": 212,
+          "rasterized": 212,
+          "skipped": 0,
+          "width": 1024,
+          "height": 1024,
+          "sourceUV": {
+            "triangles": 212,
+            "degenerate": 196,
+            "subpixel": 200
+          }
+        },
+        {
+          "modelId": "chr142",
+          "atlas": false,
+          "targetTexCoord": 2,
+          "triangles": 12,
+          "rasterized": 12,
+          "skipped": 0,
+          "width": 1024,
+          "height": 1024,
+          "sourceUV": {
+            "triangles": 12,
+            "degenerate": 0,
+            "subpixel": 0
+          }
+        }
+      ],
+      "clips": [
+        "attack01",
+        "attack02",
+        "damage",
+        "down",
+        "guard",
+        "dodge",
+        "idle",
+        "move",
+        "victory"
+      ],
+      "preservedAnimationChannels": 393,
+      "bytes": 708828,
+      "reason": "Collapsed or subpixel expression UV triangles; bake isolated padded UV islands"
+    },
+    {
+      "name": "사이케몬",
+      "slug": "psychemon",
+      "faceBake": [
+        {
+          "atlas": false,
+          "targetTexCoord": 0,
+          "triangles": 5188,
+          "rasterized": 5188,
+          "skipped": 0,
+          "width": 1024,
+          "height": 1024
+        }
+      ],
+      "clips": [
+        "idle",
+        "attack01",
+        "attack02",
+        "special01",
+        "damage",
+        "down"
+      ],
+      "preservedAnimationChannels": 508,
+      "bytes": 602628,
+      "reason": "Missing UV1 eye layer; restore native purple eye neutral frame from 2x2 expression sheet"
+    },
+    {
+      "name": "아이기오몬",
+      "slug": "aegiomon",
+      "faceBake": [],
+      "clips": [
+        "attack01",
+        "attack02",
+        "damage",
+        "down",
+        "guard",
+        "dodge",
+        "idle",
+        "move",
+        "special01",
+        "special02",
+        "special03",
+        "victory"
+      ],
+      "preservedAnimationChannels": 1177,
+      "bytes": 2176300,
+      "reason": "Opaque white upper-eye shade; restore original DiffuseAlpha tint and blend mode"
+    },
+    {
+      "name": "아이기오투스몬",
+      "slug": "aegiochusmon",
+      "faceBake": [],
+      "clips": [
+        "attack01",
+        "attack02",
+        "damage",
+        "down",
+        "guard",
+        "dodge",
+        "idle",
+        "move",
+        "special01",
+        "special02",
+        "victory"
+      ],
+      "preservedAnimationChannels": 925,
+      "bytes": 2081080,
+      "reason": "Opaque white upper-eye shade; restore original DiffuseAlpha tint and blend mode"
+    },
+    {
+      "name": "아이기오투스몬[블루]",
+      "slug": "aegiochusmon-blue",
+      "faceBake": [],
+      "clips": [
+        "attack01",
+        "attack02",
+        "damage",
+        "down",
+        "guard",
+        "dodge",
+        "idle",
+        "move",
+        "special01",
+        "special02"
+      ],
+      "preservedAnimationChannels": 755,
+      "bytes": 2030152,
+      "reason": "Opaque white upper-eye shade; restore original DiffuseAlpha tint and blend mode"
+    },
+    {
+      "name": "아이기오투스몬[그린]",
+      "slug": "aegiochusmon-green",
+      "faceBake": [],
+      "clips": [
+        "attack01",
+        "attack02",
+        "damage",
+        "down",
+        "guard",
+        "dodge",
+        "idle",
+        "move",
+        "special02"
+      ],
+      "preservedAnimationChannels": 540,
+      "bytes": 2094112,
+      "reason": "Opaque white upper-eye shade; restore original DiffuseAlpha tint and blend mode"
+    },
+    {
+      "name": "아이기오투스몬[다크]",
+      "slug": "aegiochusmon-dark",
+      "faceBake": [],
+      "clips": [
+        "attack01",
+        "attack02",
+        "damage",
+        "down",
+        "guard",
+        "dodge",
+        "idle",
+        "move",
+        "special01",
+        "special02",
+        "victory"
+      ],
+      "preservedAnimationChannels": 1315,
+      "bytes": 2223304,
+      "reason": "Opaque white upper-eye shade; restore original DiffuseAlpha tint and blend mode"
+    },
+    {
+      "name": "아이기오투스몬[홀리]",
+      "slug": "aegiochusmon-holy",
+      "faceBake": [],
+      "clips": [
+        "attack01",
+        "attack02",
+        "damage",
+        "down",
+        "guard",
+        "dodge",
+        "idle",
+        "move",
+        "special01",
+        "special02"
+      ],
+      "preservedAnimationChannels": 941,
+      "bytes": 2338756,
+      "reason": "Opaque white upper-eye shade; restore original DiffuseAlpha tint and blend mode"
+    }
+  ],
+  "additionalRepair": {
+    "name": "토우몬",
+    "slug": "shakkoumon",
+    "part": "chr723_3",
+    "vertices": 42,
+    "reason": "Unmapped torso effect mesh was bound to a texture. Explicit constant UVs retain the previous default sample without changing eye/body UVs."
+  },
+  "checks": [
+    {
+      "command": "node --test scripts/verify-face-textures.mjs",
+      "exitCode": 0,
+      "output": "✔ bilinear alpha sampling cannot bleed transparent RGB into an iris (3.375ms)\n✔ folded expression UV requests an isolated atlas (5.7834ms)\n✔ atlas restores collapsed faces, retains skin weights and pads black gutters (45.2129ms)\n✔ diffuse atlas preserves body pixels outside eye triangles (16.6211ms)\n✔ Next Order must composite the missing UV1 eye layer onto diffuse (1298.0619ms)\n✔ opaque source body ignores mask data stored in diffuse alpha (5.3759ms)\n✔ Next Order eye UV samples one neutral frame, never all four expressions (1106.8116ms)\n✔ humanoid eye shade retains its source tint and translucency instead of hiding the iris (1.024ms)\n✔ ordinary opaque eyes are not turned into transparent shades (0.5777ms)\n✔ isolated atlas retains indexed skin attributes and prevents overlapping eye islands (24.0019ms)\nℹ tests 10\nℹ suites 0\nℹ pass 10\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2850.9753\n"
+    },
+    {
+      "command": "node C:/Users/pdwea/Develop/digirouge/.tmp-convert/face-audit-2026-10-13/validate-assets.mjs",
+      "exitCode": 0,
+      "output": "{\"exitCode\":0,\"models\":662,\"primitives\":1870,\"texturedPrimitives\":1858,\"materials\":1870,\"repaired\":13,\"animationChannelsUnchanged\":9834,\"repairedTriangleCount\":357596,\"failures\":[]}\n"
+    },
+    {
+      "command": "node --test scripts/verify-roster-expansion7.mjs",
+      "exitCode": 0,
+      "output": " catalyst consumed; missing catalyst and low level rejected (0.3629ms)\n✔ 페어리몬: correct materials and one catalyst consumed; missing catalyst and low level rejected (0.647ms)\n✔ 챠크몬: correct materials and one catalyst consumed; missing catalyst and low level rejected (0.5744ms)\n✔ 레베몬: correct materials and one catalyst consumed; missing catalyst and low level rejected (0.6255ms)\n✔ 라나몬: correct materials and one catalyst consumed; missing catalyst and low level rejected (0.7563ms)\n✔ 아그니몬: correct materials and one catalyst consumed; missing catalyst and low level rejected (0.9686ms)\n✔ 볼프몬: correct materials and one catalyst consumed; missing catalyst and low level rejected (0.9315ms)\n✔ 브리트라몬: correct materials and one catalyst consumed; missing catalyst and low level rejected (0.4417ms)\n✔ 가름몬: correct materials and one catalyst consumed; missing catalyst and low level rejected (0.4023ms)\n✔ 황제드라몬[드래곤]: correct materials and one catalyst consumed; missing catalyst and low level rejected (0.4908ms)\n✔ restored Chaosmon and JetMervamon require their original partners, rejecting the old replacements (4.1954ms)\n✔ new juvenile and champion intermediates continue through the gameplay evolution choices (1.0312ms)\n✔ DORU and Ryudamon branches no longer cross through the misplaced ultimate forms (6.4921ms)\n✔ old Positron Laser inventory still evolves Paildramon with the same item ID (0.4799ms)\n✔ reintroduced Deramon remains distinct from the old mislabeled PrinceMamemon in current collections (5.0626ms)\n✔ requested removals cannot appear in the roster, evolution paths, rewards or downloadable models (45.0041ms)\n✔ old collection unlocks and saves cannot bring retired forms back (2.194ms)\nℹ tests 44\nℹ suites 0\nℹ pass 44\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2040.126\n"
+    },
+    {
+      "command": "node scripts/generate-resource-versions.mjs",
+      "exitCode": 0,
+      "output": "{\"passed\":true,\"versionedResources\":672}\n"
+    },
+    {
+      "command": "node node_modules/vite/bin/vite.js build",
+      "exitCode": 0,
+      "output": "ZPwiv3.js               0.90 kB │ gzip:   0.51 kB\ndist/assets/cinematicTimeline-DjOnCmDm.js               1.82 kB │ gzip:   1.00 kB\ndist/assets/firebaseHall-Cep9yQ-I.js                    2.58 kB │ gzip:   1.43 kB\ndist/assets/communityModel-CfK2LwrW.js                  4.67 kB │ gzip:   2.36 kB\ndist/assets/LocalProgressProvider-C0tZLoqP.js           6.64 kB │ gzip:   2.78 kB\ndist/assets/hallOfFame-fD1caA8s.js                      6.94 kB │ gzip:   2.89 kB\ndist/assets/evolutionMotifs-B_BrZgKO.js                 9.89 kB │ gzip:   3.76 kB\ndist/assets/EvolutionRenderer-DB8GcmQo.js              11.31 kB │ gzip:   4.48 kB\ndist/assets/localStorage-DfIXOLvd.js                   11.84 kB │ gzip:   4.70 kB\ndist/assets/cinematicSurface-B7jOfM8F.js               11.94 kB │ gzip:   5.07 kB\ndist/assets/CinematicEvolutionRenderer-BqmIg3Xl.js     46.63 kB │ gzip:  15.86 kB\ndist/assets/BattleRenderer-_8oNHvzm.js                103.74 kB │ gzip:  34.31 kB\ndist/assets/firebaseCommunity-DJ8qmdPY.js             130.53 kB │ gzip:  39.27 kB\ndist/assets/combat-CrKz45GW.js                        154.94 kB │ gzip:  34.89 kB\ndist/assets/digimonSizes-BG4w8f8h.js                  200.46 kB │ gzip:  31.52 kB\ndist/assets/digimonNames-fHPgHgnt.js                  243.81 kB │ gzip:  28.83 kB\ndist/assets/index-DXzl1V7d.js                         327.26 kB │ gzip: 102.44 kB\ndist/assets/firebaseSessionStore-DumK_8no.js          452.28 kB │ gzip: 135.56 kB\ndist/assets/App-DTxCEfUe.js                           695.55 kB │ gzip: 177.36 kB\ndist/assets/three-engine-BXXZ7bX7.js                  716.87 kB │ gzip: 182.74 kB\ndist/assets/scanProgress-gzyC0YEi.js                  769.24 kB │ gzip: 156.38 kB\ndist/assets/expansionEvolutionCinematics-D6sBXIw1.js  809.09 kB │ gzip: 128.57 kB\n\n\u001b[32m✓ built in 4.99s\u001b[39m\n"
+    },
+    {
+      "command": "node scripts/prepare-game-download.mjs",
+      "exitCode": 0,
+      "output": "{\"passed\":true,\"losslessModels\":662,\"originalBytes\":668880012,\"compressedBytes\":439490378,\"reducedPercent\":34.29}\n{\"passed\":true,\"downloadManifest\":\"afd004ca2fc1c97c\",\"files\":2262,\"totalBytes\":846951957,\"downloadBytes\":617562323}\n"
+    },
+    {
+      "command": "node scripts/verify-runtime.mjs",
+      "exitCode": 0,
+      "output": "{\"ok\":true,\"assets\":\"C:\\\\Users\\\\pdwea\\\\Develop\\\\digirouge\\\\public\",\"models\":662,\"clips\":5657,\"modelBytes\":668880012,\"portraits\":1324,\"bgm\":10,\"maps\":34,\"battleCards\":20,\"battleSupplies\":7,\"adventureItems\":44,\"evolutionItemArt\":21}\n"
+    }
+  ],
+  "gameFlow": {
+    "errors": [],
+    "flow": [
+      "Added-only selection → select Psychemon → preview with restored eyes → battle → original attack → enemy HP decreases"
+    ],
+    "selectedSkill": "컬러풀 스파크 선택",
+    "beforeHp": 16,
+    "afterHp": 8,
+    "exitCode": 0
+  },
+  "changedFiles": [
+    "scripts/assets/texture-bake.mjs",
+    "scripts/assets/bake-dsts-faces.mjs",
+    "scripts/assets/bake-next-order-eyes.mjs",
+    "scripts/assets/import-dsts-models.mjs",
+    "scripts/assets/import-expansion-fbx.mjs",
+    "scripts/verify-face-textures.mjs",
+    "package.json",
+    "src/data/resourceVersions.json",
+    "public/models/digimon/firamon.glb",
+    "public/models/digimon/thumbs/firamon.webp",
+    "public/models/digimon/previews/firamon.webp",
+    "public/models/digimon/gizamon.glb",
+    "public/models/digimon/thumbs/gizamon.webp",
+    "public/models/digimon/previews/gizamon.webp",
+    "public/models/digimon/gracenovamon.glb",
+    "public/models/digimon/thumbs/gracenovamon.webp",
+    "public/models/digimon/previews/gracenovamon.webp",
+    "public/models/digimon/kokuwamon.glb",
+    "public/models/digimon/thumbs/kokuwamon.webp",
+    "public/models/digimon/previews/kokuwamon.webp",
+    "public/models/digimon/parallelmon.glb",
+    "public/models/digimon/thumbs/parallelmon.webp",
+    "public/models/digimon/previews/parallelmon.webp",
+    "public/models/digimon/shurimon.glb",
+    "public/models/digimon/thumbs/shurimon.webp",
+    "public/models/digimon/previews/shurimon.webp",
+    "public/models/digimon/psychemon.glb",
+    "public/models/digimon/thumbs/psychemon.webp",
+    "public/models/digimon/previews/psychemon.webp",
+    "public/models/digimon/aegiomon.glb",
+    "public/models/digimon/thumbs/aegiomon.webp",
+    "public/models/digimon/previews/aegiomon.webp",
+    "public/models/digimon/aegiochusmon.glb",
+    "public/models/digimon/thumbs/aegiochusmon.webp",
+    "public/models/digimon/previews/aegiochusmon.webp",
+    "public/models/digimon/aegiochusmon-blue.glb",
+    "public/models/digimon/thumbs/aegiochusmon-blue.webp",
+    "public/models/digimon/previews/aegiochusmon-blue.webp",
+    "public/models/digimon/aegiochusmon-green.glb",
+    "public/models/digimon/thumbs/aegiochusmon-green.webp",
+    "public/models/digimon/previews/aegiochusmon-green.webp",
+    "public/models/digimon/aegiochusmon-dark.glb",
+    "public/models/digimon/thumbs/aegiochusmon-dark.webp",
+    "public/models/digimon/previews/aegiochusmon-dark.webp",
+    "public/models/digimon/aegiochusmon-holy.glb",
+    "public/models/digimon/thumbs/aegiochusmon-holy.webp",
+    "public/models/digimon/previews/aegiochusmon-holy.webp",
+    "public/models/digimon/shakkoumon.glb",
+    "docs/face-texture-repairs.md",
+    "docs/validation/face-textures-2026-10-13.json"
+  ],
+  "scope": {
+    "automated": "All 662 GLBs load, referenced images/UVs exist; 128 clips of 13 corrected species sampled at 10%, 50%, 90%; original animation channel values compared exactly.",
+    "visual": "Full-roster portrait and face contact sheets; targeted before/after and Psychemon native motion samples; real starter selection and attack in Chrome SwiftShader.",
+    "notVerified": "Every frame of every clip on all 662 species and every device/GPU."
+  },
+  "coverageBySpecies": [
+    {
+      "name": "가드로몬",
+      "slug": "guardromon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "가드로몬(골드)",
+      "slug": "guardromon-gold",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "가루다몬",
+      "slug": "garudamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "가루몬",
+      "slug": "garurumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "가루몬(흑)",
+      "slug": "blackgarurumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "가르고몬",
+      "slug": "gargomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "가름몬",
+      "slug": "kendogarurumon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "가오가몬",
+      "slug": "gaogamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "가오몬",
+      "slug": "gaomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "가이오몬",
+      "slug": "samudramon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "가이오몬[엄도의형]",
+      "slug": "samudramon-fierce-blade-mode",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "가지몬",
+      "slug": "gazimon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "가트몬",
+      "slug": "gatomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "간쿠몬",
+      "slug": "gankoomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "갓드라몬",
+      "slug": "goldramon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "개굴몬",
+      "slug": "gekomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "가르프몬",
+      "slug": "gulfmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "고래몬",
+      "slug": "whamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "고부리몬",
+      "slug": "goblimon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "고스몬",
+      "slug": "bakemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "골드브이드라몬",
+      "slug": "goldveedramon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "골드워매몬",
+      "slug": "goldnumemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "록몬",
+      "slug": "golemon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "구미호몬",
+      "slug": "kyubimon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "굼비라몬",
+      "slug": "kumbhiramon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "그라우몬",
+      "slug": "growlmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "그라운드라몬",
+      "slug": "groundramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아이언레오몬",
+      "slug": "grapleomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "그란드라큐몬",
+      "slug": "grandracmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "그랜드로코몬",
+      "slug": "granlocomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "그랜쿠가몬",
+      "slug": "grankuwagamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "그레이드몬",
+      "slug": "grademon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "그레이몬",
+      "slug": "greymon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "그레이몬(청)",
+      "slug": "blackgreymon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "그레이몬[크로스워즈]",
+      "slug": "greymon-2010",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "그리즈몬",
+      "slug": "grizzlymon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "그리포몬",
+      "slug": "gryphonmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "기가드라몬",
+      "slug": "gigadramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "긴류우몬",
+      "slug": "ginryumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "길몬",
+      "slug": "guilmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "깜몬",
+      "slug": "botamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "가무드라몬",
+      "slug": "gumdramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "달팽이워매몬",
+      "slug": "shellnumemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "레드꼬끼몬",
+      "slug": "akatorimon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "치코몬",
+      "slug": "chibomon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "모야몬",
+      "slug": "nanimon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "나이트몬",
+      "slug": "knightmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "넵튠몬",
+      "slug": "neptunemon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "노블펌프몬",
+      "slug": "noblepumpkinmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "니드몬",
+      "slug": "togemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "다이노휴몬",
+      "slug": "dinohyumon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "다크티라노몬",
+      "slug": "darktyrannomon",
+      "game": "Digital Beast (unofficial game)",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "데드메라몬",
+      "slug": "skullmeramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "데블몬",
+      "slug": "devimon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "데블시드라몬",
+      "slug": "waruseadramon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "데이터몬",
+      "slug": "datamon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "데크스몬",
+      "slug": "dexmon",
+      "game": "Digital Beast (unofficial game)",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "도도몬",
+      "slug": "dodomon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "도루가몬",
+      "slug": "dorugamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "도루고라몬",
+      "slug": "dorugoramon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "도루그레몬",
+      "slug": "dorugreymon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "도루루몬",
+      "slug": "dorulumon",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "도루몬",
+      "slug": "dorumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "도리몬",
+      "slug": "dorimon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "도사몬",
+      "slug": "taomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "두프트몬",
+      "slug": "duftmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "두프트몬[레오파드]",
+      "slug": "leopard-mode",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "둥실몬",
+      "slug": "bukamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "듀나스몬",
+      "slug": "dynasmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "듀나스몬[X항체]",
+      "slug": "dynasmon-x",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "듀라몬",
+      "slug": "duramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "듀란다몬",
+      "slug": "durandamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "듀크몬",
+      "slug": "gallantmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "듀크몬[크림슨]",
+      "slug": "gallantmon-crimson-mode",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "듀크몬[X항체]",
+      "slug": "gallantmon-x",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "드라고몬",
+      "slug": "dragomon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "드라코몬",
+      "slug": "dracomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "드라큐몬",
+      "slug": "dracmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "다이노몬",
+      "slug": "dinobeemon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "디아나몬",
+      "slug": "dianamon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "디아블로몬",
+      "slug": "diaboromon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "디지타몬",
+      "slug": "digitamamon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "라구엘몬",
+      "slug": "raguelmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "라라몬",
+      "slug": "lalamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "라보가리타몬",
+      "slug": "lavogaritamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "라보보몬",
+      "slug": "lavorvomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "라센몬",
+      "slug": "rasenmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "라센몬[격앙]",
+      "slug": "rasenmon-fury-mode",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "번개드라몬",
+      "slug": "raidramon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "라이즈그레이몬",
+      "slug": "rizegreymon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "라일라몬",
+      "slug": "lilamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "라지엘몬",
+      "slug": "rasielmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "비트몬",
+      "slug": "rabbitmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "래피드몬",
+      "slug": "rapidmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "래피드몬[아머]",
+      "slug": "rapidmon-armor",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "라프타드라몬",
+      "slug": "raptordramon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "러블리엔젤몬",
+      "slug": "lovelyangemon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "러스트티라노몬",
+      "slug": "rusttyrannomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "레나몬",
+      "slug": "renamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "레어몬",
+      "slug": "raremon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "레오몬",
+      "slug": "leomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "레이디데블몬",
+      "slug": "ladydevimon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "레이브몬",
+      "slug": "ravemon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "레이브몬[버스트]",
+      "slug": "ravemon-burst-mode",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "레키스몬",
+      "slug": "lekismon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "레파몬",
+      "slug": "reppamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "로더레오몬",
+      "slug": "loaderliomon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "로드나이트몬",
+      "slug": "crusadermon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "로제몬",
+      "slug": "rosemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "로제몬[버스트]",
+      "slug": "rosemon-burst-mode",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "로터스몬",
+      "slug": "lotosmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "로프몬",
+      "slug": "lopmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "루나몬",
+      "slug": "lunamon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "루체몬",
+      "slug": "lucemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "루체몬[사탄]",
+      "slug": "lucemon-shadowlord-mode",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "루체몬[폴다운]",
+      "slug": "lucemon-falldown-mode",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "류우다몬",
+      "slug": "ryudamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "리리스몬",
+      "slug": "lilithmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "리바이어몬",
+      "slug": "leviamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "릴리몬",
+      "slug": "lillymon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "링스몬",
+      "slug": "lynxmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "마린엔젤몬",
+      "slug": "marineangemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "마스테몬",
+      "slug": "mastemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "마왕몬",
+      "slug": "daemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "마지라몬",
+      "slug": "majiramon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "마쿠라몬",
+      "slug": "makuramon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "마타돌몬",
+      "slug": "matadormon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "마하가오가몬",
+      "slug": "machgaogamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "말벌몬",
+      "slug": "waspmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "맘몬",
+      "slug": "mammothmon",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "매그너가루몬[SV]",
+      "slug": "magnagarurumon-sv",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "매그너몬",
+      "slug": "magnamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "매그너몬[X항체]",
+      "slug": "magnamon-x",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "매드레오몬[암드]",
+      "slug": "madleomon-armed-mode",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "머드프리지몬",
+      "slug": "mudfrigimon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "머슈몬",
+      "slug": "mushroomon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메가드라몬",
+      "slug": "megadramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메가로그라우몬",
+      "slug": "wargrowlmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메가시드라몬",
+      "slug": "megaseadramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메기드라몬",
+      "slug": "megidramon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메라몬",
+      "slug": "meramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메르크리몬",
+      "slug": "merukimon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메이쿠몬",
+      "slug": "meicoomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메이크랙몬",
+      "slug": "meicrackmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메이크랙몬[비셔스]",
+      "slug": "meicrackmon-vicious-mode",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메일버드라몬",
+      "slug": "mailbirdramon",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메탈가루몬",
+      "slug": "metalgarurumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메탈가루몬[X항체]",
+      "slug": "metalgarurumon-x",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메탈그레이몬",
+      "slug": "metalgreymon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메탈그레이몬[사이버런처]",
+      "slug": "metalgreymon-cyber-launcher",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메탈그레이몬[크로스워즈]",
+      "slug": "metalgreymon-2010",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메탈릭드라몬",
+      "slug": "metallicdramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메탈시드라몬",
+      "slug": "metalseadramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메탈에테몬",
+      "slug": "metaletemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메탈콩알몬",
+      "slug": "metalmamemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메탈티라노몬",
+      "slug": "metaltyrannomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메피스몬",
+      "slug": "mephistomon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "모노드라몬",
+      "slug": "monodramon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "모노크로몬",
+      "slug": "monochromon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "모니터몬",
+      "slug": "monitamon",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "옐로우워매몬",
+      "slug": "geremon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "모티몬",
+      "slug": "motimon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "묘티스몬",
+      "slug": "myotismon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "레드펭귄몬",
+      "slug": "muchomon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "미네르바몬",
+      "slug": "minervamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "미라쥬가오가몬",
+      "slug": "miragegaogamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "미라쥬가오가몬[버스트]",
+      "slug": "miragegaogamon-burst-mode",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "미타마몬",
+      "slug": "mitamamon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "미히라몬",
+      "slug": "mihiramon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "밀레니엄몬",
+      "slug": "millenniummon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "바그라몬",
+      "slug": "bagramon",
+      "game": "Digital Beast (unofficial game)",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "발바몬",
+      "slug": "barbamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "바리스타몬",
+      "slug": "ballistamon",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "바스테몬",
+      "slug": "bastemon",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "바오헉몬",
+      "slug": "baohuckmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "바이킹몬",
+      "slug": "vikemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "바지라몬",
+      "slug": "vajramon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "테이파몬",
+      "slug": "tapirmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "반쵸록몬",
+      "slug": "banchogolemon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "반쵸레오몬",
+      "slug": "bancholeomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "반쵸릴리몬",
+      "slug": "bancholillymon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "반쵸스팅몬",
+      "slug": "banchostingmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "발두르몬",
+      "slug": "valdurmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "발키리몬",
+      "slug": "valkyrimon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "백호몬",
+      "slug": "baihumon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "버드라몬",
+      "slug": "birdramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "베놈묘티스몬",
+      "slug": "venommyotismon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "베르제브몬",
+      "slug": "beelzemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "베르제브몬[X항체]",
+      "slug": "beelzemon-x",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "베리얼묘티스몬",
+      "slug": "malomyotismon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "베어몬",
+      "slug": "bearmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "베이더몬",
+      "slug": "vademon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "베지몬",
+      "slug": "vegiemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "베타몬",
+      "slug": "betamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "벨페몬",
+      "slug": "belphemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "벨페몬[레이지]",
+      "slug": "belphemon-rage-mode",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "보보몬",
+      "slug": "vorvomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "멧돼지몬",
+      "slug": "boarmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "볼케닉드라몬",
+      "slug": "volcanicdramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "볼케몬",
+      "slug": "volcamon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "볼트몬",
+      "slug": "boltmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "볼프몬",
+      "slug": "lobomon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "황소몬",
+      "slug": "bullmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "브레이크드라몬",
+      "slug": "breakdramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "브리트라몬",
+      "slug": "burninggreymon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "브이드라몬",
+      "slug": "veedramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "브이몬",
+      "slug": "veemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "블래스트몬",
+      "slug": "blastmon",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "블랙가트몬",
+      "slug": "blackgatomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "블랙메가로그라우몬",
+      "slug": "blackwargrowlmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "블랙메탈가루몬",
+      "slug": "blackmetalgarurumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "블랙워그레이몬",
+      "slug": "blackwargreymon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "블랙워그레이몬[X항체]",
+      "slug": "blackwargreymon-x",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "블랙킹워매몬",
+      "slug": "blackkingnumemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "블루메라몬",
+      "slug": "bluemeramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "블리츠그레이몬",
+      "slug": "blitzgreymon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "비가라몬",
+      "slug": "vikaralamon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "뽀글몬",
+      "slug": "pabumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "프린스콩알몬",
+      "slug": "princemamemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "뿔몬",
+      "slug": "tsunomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "사이버드라몬",
+      "slug": "cyberdramon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "사이버드라몬[크로스워즈]",
+      "slug": "cyberdramon-2010",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "사이크로몬",
+      "slug": "cyclonemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "사수몬",
+      "slug": "sagittarimon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "산티라몬",
+      "slug": "sandiramon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "상굴몬",
+      "slug": "sangloupmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "샤벨레오몬",
+      "slug": "saberleomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "샤우트몬",
+      "slug": "shoutmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "샤우트몬[X2]",
+      "slug": "shoutmon-x2",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "샤우트몬[X3]",
+      "slug": "shoutmon-x3",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "샤우트몬[X4]",
+      "slug": "shoutmon-x4",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "샤인그레이몬",
+      "slug": "shinegreymon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "샤인그레이몬[루인]",
+      "slug": "shinegreymon-ruin-mode",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "샤인그레이몬[버스트]",
+      "slug": "shinegreymon-burst-mode",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "샤코몬",
+      "slug": "syakomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "샤크라몬",
+      "slug": "sakuyamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "세라피몬",
+      "slug": "seraphimon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "세이버헉몬",
+      "slug": "saviorhuckmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "세인트가르고몬",
+      "slug": "megagargomon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "소서리몬",
+      "slug": "sorcermon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "황금톱니몬",
+      "slug": "solarmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "쉬라몬",
+      "slug": "gomamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "슈퍼스타몬",
+      "slug": "superstarmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "스사노오몬",
+      "slug": "susanoomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "백조몬",
+      "slug": "swanmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "스카몬",
+      "slug": "sukamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "스컬그레이몬",
+      "slug": "skullgreymon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "스컬사탄몬",
+      "slug": "skullsatamon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "스타몬",
+      "slug": "starmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "스타몬즈",
+      "slug": "starmons",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "스트라이크드라몬",
+      "slug": "strikedramon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "스티필몬",
+      "slug": "stefilmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "스팅몬",
+      "slug": "stingmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "스패로우몬",
+      "slug": "sparrowmon",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "슬레이어드라몬",
+      "slug": "slayerdramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "슬레이프몬",
+      "slug": "kentaurosmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "시드라몬",
+      "slug": "seadramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "시드몬",
+      "slug": "tanemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "시스터몬 느와르",
+      "slug": "sistermon-noir",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "시스터몬 느와르[각성]",
+      "slug": "sistermon-noir-awakened",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "시스터몬 블랑",
+      "slug": "sistermon-blanc",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "시스터몬 블랑[각성]",
+      "slug": "sistermon-blanc-awakened",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "시프몬",
+      "slug": "sheepmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "신드라몬",
+      "slug": "sinduramon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "실리컨몬",
+      "slug": "coelamon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "실피드몬",
+      "slug": "silphymon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아구몬",
+      "slug": "agumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아구몬(흑)",
+      "slug": "blackagumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아구몬[용기의유대]",
+      "slug": "agumon-bond-of-bravery",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아그니몬",
+      "slug": "agunimon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아기벌몬",
+      "slug": "fanbeemon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아레스타드라몬",
+      "slug": "arresterdramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아르고몬",
+      "slug": "argomon-mega",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아르고몬[완전체]",
+      "slug": "argomon-ultimate",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아르마몬",
+      "slug": "armadillomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "알카디몬",
+      "slug": "arcadiamon-mega",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "알카디몬[성숙기]",
+      "slug": "arcadiamon-champion",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "알카디몬[성장기]",
+      "slug": "arcadiamon-rookie",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "알카디몬[완전체]",
+      "slug": "arcadiamon-ultimate",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "알카디몬[유년기]",
+      "slug": "arcadiamon-in-training",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "알카디몬[초궁극체]",
+      "slug": "arcadiamon-ultra",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아마게몬",
+      "slug": "armageddemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아이스데블몬",
+      "slug": "icedevimon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아이스몬",
+      "slug": "icemon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아큐라몬",
+      "slug": "aquilamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아트라캅테리몬",
+      "slug": "megakabuterimon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아트라캅테리몬(청)",
+      "slug": "megakabuterimon-blue",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아포카리몬",
+      "slug": "apocalymon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "안드로몬",
+      "slug": "andromon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "안티라몬",
+      "slug": "antylamon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "알파몬",
+      "slug": "alphamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "알파몬[왕룡검]",
+      "slug": "alphamon-ouryuken",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "알포스브이드라몬",
+      "slug": "ulforceveedramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "알포스브이드라몬[X항체]",
+      "slug": "ulforceveedramon-x",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "야옹몬",
+      "slug": "nyaromon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "야타가라몬",
+      "slug": "crowmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "어니몬",
+      "slug": "yokomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "에렉몬",
+      "slug": "elecmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "에리스몬",
+      "slug": "herissmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "에어드라몬",
+      "slug": "airdramon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "에어로브이드라몬",
+      "slug": "aeroveedramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "에이션트가루몬",
+      "slug": "ancientgarurumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "에이션트그레이몬",
+      "slug": "ancientgreymon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "에이션트볼케몬",
+      "slug": "ancientvolcanomon",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "에테몬",
+      "slug": "etemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "엑스브이몬",
+      "slug": "exveemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "엑자몬",
+      "slug": "examon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "엔젤몬",
+      "slug": "angemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "엔젤우몬",
+      "slug": "angewomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "오로치몬",
+      "slug": "orochimon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "오류우몬",
+      "slug": "ouryumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "오메가몬",
+      "slug": "omnimon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "오메가몬[머시풀]",
+      "slug": "omnimon-merciful-mode",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "오메가몬[알터-B]",
+      "slug": "omnimon-alter-b",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "오메가몬[알터-S]",
+      "slug": "omnimon-alter-s",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "오메가몬[즈왈트-D]",
+      "slug": "omnimon-zwart-d",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "오메가몬[즈왈트]",
+      "slug": "omnimon-zwart",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "오메가몬[X항체]",
+      "slug": "omnimon-x",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "오메가샤우트몬",
+      "slug": "omnishoutmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "오메카몬",
+      "slug": "omekamon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "오파니몬",
+      "slug": "ophanimon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "오파니몬[폴다운]",
+      "slug": "ophanimon-falldown-mode",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "토토몬",
+      "slug": "opossummon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "올챙몬",
+      "slug": "otamamon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "와냐몬",
+      "slug": "wanyamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "왕개굴몬",
+      "slug": "shogungekomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "왕쿠가몬",
+      "slug": "okuwamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "왕펭귄몬",
+      "slug": "daipenmon",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "우가몬",
+      "slug": "ogremon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "우드몬",
+      "slug": "woodmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "워가루몬",
+      "slug": "weregarurumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "워가루몬(흑)",
+      "slug": "weregarurumon-black",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "워그레이몬",
+      "slug": "wargreymon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "워그레이몬[X항체]",
+      "slug": "wargreymon-x",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "워매몬",
+      "slug": "numemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "원뿔몬",
+      "slug": "ikkakumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "위자몬",
+      "slug": "wizardmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "윙드라몬",
+      "slug": "wingdramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "유니몬",
+      "slug": "unimon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "유피테르몬",
+      "slug": "jupitermon",
+      "game": "Digital Beast (unofficial game)",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "위그드라실 7D6",
+      "slug": "yggdrasil-7d6",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "이바몬",
+      "slug": "ebemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "인다라몬",
+      "slug": "indramon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "인펠몬",
+      "slug": "infermon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "임프몬",
+      "slug": "impmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "쟈자드몬",
+      "slug": "jazardmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "쟈자리히몬",
+      "slug": "jazarichmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "쟈자몬",
+      "slug": "jazamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "저스티몬",
+      "slug": "justimon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "제스몬",
+      "slug": "jesmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "제스몬[X항체]",
+      "slug": "jesmon-x",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "주작몬",
+      "slug": "zhuqiaomon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "쥬드몬",
+      "slug": "zudomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "쥬레이몬",
+      "slug": "cherrymon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "즈바몬",
+      "slug": "zubamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "즈바이거몬",
+      "slug": "zubaeagermon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "지오그레이몬",
+      "slug": "geogreymon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "할배몬",
+      "slug": "jijimon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "챠츠라몬",
+      "slug": "caturamon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "청룡몬",
+      "slug": "azulongmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "추추몬",
+      "slug": "wormmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "츄몬",
+      "slug": "chuumon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "츠카이몬",
+      "slug": "tsukaimon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "츠메몬",
+      "slug": "tsumemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "치린몬",
+      "slug": "chirinmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "꼬마몬",
+      "slug": "demiveemon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "치비카메몬",
+      "slug": "chibikamemon",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "카메몬",
+      "slug": "kamemon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "카오스듀크몬",
+      "slug": "chaosgallantmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "카오스드라몬",
+      "slug": "chaosdromon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "카오스몬",
+      "slug": "chaosmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "카오스몬[발두르암]",
+      "slug": "chaosmon-valdur-arm",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "카이젤그레이몬",
+      "slug": "emperorgreymon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "캅테리몬",
+      "slug": "kabuterimon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "캐논벌몬",
+      "slug": "cannonbeemon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "캐치콩알몬",
+      "slug": "catchmamemon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "케라몬",
+      "slug": "keramon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "케루비몬(선)",
+      "slug": "cherubimon-good",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "케루비몬(악)",
+      "slug": "cherubimon-evil",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "백사몬",
+      "slug": "quetzalmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "코로몬",
+      "slug": "koromon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "코어드라몬(녹)",
+      "slug": "coredramon-green",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "코어드라몬(청)",
+      "slug": "coredramon-blue",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "코에몬",
+      "slug": "monmon",
+      "game": "Digital Beast (unofficial game)",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "콩알몬",
+      "slug": "mamemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "쿠가몬",
+      "slug": "kuwagamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "쿠다몬",
+      "slug": "kudamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "쿠라몬",
+      "slug": "kuramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "쿠즈하몬",
+      "slug": "kuzuhamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "큐트몬",
+      "slug": "cutemon",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "크레니엄몬",
+      "slug": "craniamon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "크레니엄몬[X항체]",
+      "slug": "craniamon-x",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "크레세몬",
+      "slug": "crescemon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "크레스가루몬",
+      "slug": "cresgarurumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "크리사리몬",
+      "slug": "chrysalimon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "타임몬",
+      "slug": "clockmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "키메라몬",
+      "slug": "kimeramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "킹에테몬",
+      "slug": "kingetemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "타겟몬",
+      "slug": "targetmon",
+      "game": "Digital Beast (unofficial game)",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "타이거베스파몬",
+      "slug": "tigervespamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "타이런트캅테리몬",
+      "slug": "tyrantkabuterimon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "타이타몬",
+      "slug": "titamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "택티몬",
+      "slug": "tactimon",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "탱크몬",
+      "slug": "tankmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "태스크몬",
+      "slug": "tuskmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "테리어몬",
+      "slug": "terriermon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "텐타몬",
+      "slug": "tentomon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "토리에몬",
+      "slug": "turuiemon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "토우몬",
+      "slug": "shakkoumon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "constant-effect-uv-repaired"
+    },
+    {
+      "name": "토이아구몬",
+      "slug": "toyagumon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "토이아구몬(흑)",
+      "slug": "shadowtoyagumon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "토코몬",
+      "slug": "tokomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "톱니몬",
+      "slug": "hagurumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "트리케라몬",
+      "slug": "triceramon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "티라노몬",
+      "slug": "tyrannomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "파닥몬",
+      "slug": "patamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "파라오몬",
+      "slug": "pharaohmon",
+      "game": "Digimon Fusion Fighters",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "파워드라몬",
+      "slug": "machinedramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "파일드라몬",
+      "slug": "paildramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "파일볼케몬",
+      "slug": "pilevolcamon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "파지라몬",
+      "slug": "pajiramon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "파피몬",
+      "slug": "gabumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "파피몬(흑)",
+      "slug": "blackgabumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "파피몬[우정의유대]",
+      "slug": "gabumon-bond-of-friendship",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "팔몬",
+      "slug": "palmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "팔코몬",
+      "slug": "falcomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "펙크몬",
+      "slug": "peckmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "팬더몬",
+      "slug": "pandamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "팬텀몬",
+      "slug": "phantomon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "퍼그몬",
+      "slug": "pagumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "퍼펫몬",
+      "slug": "monzaemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "펌프몬",
+      "slug": "pumpkinmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "포요몬",
+      "slug": "poyomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "푸니몬",
+      "slug": "punimon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "프라리몬",
+      "slug": "prairiemon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "프리지몬",
+      "slug": "frigimon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "프스리몬",
+      "slug": "pusurimon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "프스몬",
+      "slug": "pusumon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "플래티넘워매몬",
+      "slug": "platinumnumemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "플레시오몬",
+      "slug": "plesiomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "플롯트몬",
+      "slug": "salamon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "피노키몬",
+      "slug": "puppetmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "페닉스몬",
+      "slug": "phoenixmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "피에몬",
+      "slug": "piedmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "피요몬",
+      "slug": "biyomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "피코데블몬",
+      "slug": "demidevimon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "피콜몬",
+      "slug": "piximon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "필몬",
+      "slug": "filmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "하얀몬",
+      "slug": "yukimibotamon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "하이안드로몬",
+      "slug": "hiandromon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "해바라기몬",
+      "slug": "sunflowmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "헉몬",
+      "slug": "hackmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "헤라클레스캅테리몬",
+      "slug": "herculeskabuterimon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "헤비레오몬",
+      "slug": "heavyleomon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "현무몬",
+      "slug": "ebonwumon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "호크몬",
+      "slug": "hawkmon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "홀리드라몬",
+      "slug": "magnadramon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "홀리엔젤몬",
+      "slug": "magnaangemon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "화염드라몬",
+      "slug": "flamedramon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "화이트레오몬",
+      "slug": "iceleomon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "황금아르마몬",
+      "slug": "ankylomon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "황룡몬",
+      "slug": "huanglongmon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "황제드라몬[파이터]",
+      "slug": "imperialdramon-fighter-mode",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "황제드라몬[팔라딘]",
+      "slug": "imperialdramon-paladin-mode",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "후디에몬",
+      "slug": "hudiemon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "히샤류우몬",
+      "slug": "hisyaryumon",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "히포그리포몬",
+      "slug": "hippogryphonmon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "울퉁몬",
+      "slug": "gotsumon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "두프트몬[X항체]",
+      "slug": "leopardmon-x",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "슬레이프몬[X항체]",
+      "slug": "kentaurosmon-x",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "베르제브몬[블래스트]",
+      "slug": "beelzemon-blast-mode",
+      "game": "Digimon Links",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "와이즈몬",
+      "slug": "wisemon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "운석몬",
+      "slug": "meteormon",
+      "game": "Digimon Story Cyber Sleuth: Complete Edition",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "쿠즈하몬[무녀 모드]",
+      "slug": "kuzuhamon-miko-mode",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "케레스몬",
+      "slug": "ceresmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "에오스몬[궁극체]",
+      "slug": "eosmon-lv6",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "킹체스몬",
+      "slug": "kingchessmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "마르스몬",
+      "slug": "marsmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "플루토몬",
+      "slug": "plutomon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "퀸체스몬",
+      "slug": "queenchessmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "라플레시몬",
+      "slug": "rafflesimon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "라이덴몬",
+      "slug": "raidenmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "베누스몬",
+      "slug": "venusmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "지드가루몬",
+      "slug": "zdgarurumon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "발바몬[X항체]",
+      "slug": "barbamon-x",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "비숍체스몬",
+      "slug": "bishopchessmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "케루비몬(선)[X항체]",
+      "slug": "cherubimon-x",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "다이노타이거몬",
+      "slug": "dinotigermon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "도르빅크몬",
+      "slug": "dorbickmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "이랑몬",
+      "slug": "erlangmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "풍신몬",
+      "slug": "fujinmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "간쿠몬[X항체]",
+      "slug": "gankoomon-x",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "기가시드라몬",
+      "slug": "gigaseadramon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "갓드라몬[X항체]",
+      "slug": "goddramon-x",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "환쿤몬",
+      "slug": "huankunmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "제트메르바몬",
+      "slug": "jetmervamon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "유노몬",
+      "slug": "junomon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "유노몬[히스테릭 모드]",
+      "slug": "junomon-hysteric",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "리리스몬[X항체]",
+      "slug": "lilithmon-x",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메기드라몬[X항체]",
+      "slug": "megidramon-x",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "오그도몬",
+      "slug": "ogudomon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "오파니몬[X항체]",
+      "slug": "ofanimon-x",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "페닉스몬[X항체]",
+      "slug": "hououmon-x",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "룩체스몬",
+      "slug": "rookchessmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "로제몬[X항체]",
+      "slug": "rosemon-x",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "샤크라몬[X항체]",
+      "slug": "sakuyamon-x",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "수신몬",
+      "slug": "suijinmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "탁탑몬",
+      "slug": "takutoumon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "얼티메이트카오스몬",
+      "slug": "ultimatechaosmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "불카누스몬",
+      "slug": "vulcanusmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "샹펑몬",
+      "slug": "xiangpengmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "지드밀레니엄몬",
+      "slug": "zeedmillenniumon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "코로나몬",
+      "slug": "coronamon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아이기오몬",
+      "slug": "aegiomon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "eye-or-face-repaired"
+    },
+    {
+      "name": "아이기오투스몬",
+      "slug": "aegiochusmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "eye-or-face-repaired"
+    },
+    {
+      "name": "아이기오투스몬[블루]",
+      "slug": "aegiochusmon-blue",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "eye-or-face-repaired"
+    },
+    {
+      "name": "아이기오투스몬[그린]",
+      "slug": "aegiochusmon-green",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "eye-or-face-repaired"
+    },
+    {
+      "name": "아이기오투스몬[다크]",
+      "slug": "aegiochusmon-dark",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "eye-or-face-repaired"
+    },
+    {
+      "name": "아이기오투스몬[홀리]",
+      "slug": "aegiochusmon-holy",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "eye-or-face-repaired"
+    },
+    {
+      "name": "아루다몬",
+      "slug": "aldamon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "에이션트와이즈몬",
+      "slug": "ancientwisemon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아폴로몬",
+      "slug": "apollomon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아라크네몬",
+      "slug": "arukenimon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아스타몬",
+      "slug": "astamon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "어벤지키드몬",
+      "slug": "avengekidmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "바커스몬",
+      "slug": "bacchusmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "반쵸콩알몬",
+      "slug": "banchomamemon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "베오울프몬",
+      "slug": "beowolfmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "베르스타몬",
+      "slug": "beelstarmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "빅콩알몬",
+      "slug": "bigmamemon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "브링프몬",
+      "slug": "blimpmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "브라키몬",
+      "slug": "brachiomon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "부라이몬",
+      "slug": "buraimon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "부텐몬",
+      "slug": "butenmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "칼리스몬",
+      "slug": "callismon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "카르마라몬",
+      "slug": "calmaramon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "켄터스몬",
+      "slug": "centarumon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "케르베로스몬",
+      "slug": "cerberusmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "케르베로스몬[인랑]",
+      "slug": "cerberusmon-wm",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "케레스몬[미디엄]",
+      "slug": "ceresmon-medium",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "크로노몬[홀리 모드]",
+      "slug": "chronomon-hm",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "크로노몬[디스트로이 모드]",
+      "slug": "chronomon-dm",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "클라비스엔젤몬",
+      "slug": "clavisangemon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "크랩몬",
+      "slug": "crabmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "다크드라몬",
+      "slug": "darkdramon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "다크슈퍼스타몬",
+      "slug": "darksuperstarmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "델타몬",
+      "slug": "deltamon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "카우보이몬",
+      "slug": "deputymon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "뿌띠몬",
+      "slug": "deramon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "디그몬",
+      "slug": "digmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "다이버몬",
+      "slug": "divermon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "도베르몬",
+      "slug": "dobermon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "스파이더몬",
+      "slug": "dokugumon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "두리몬",
+      "slug": "drimogemon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "크로스몬",
+      "slug": "eaglemon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "안바르몬",
+      "slug": "enbarrmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "엑스티라노몬",
+      "slug": "extyrannomon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "파이라몬",
+      "slug": "firamon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "eye-or-face-repaired"
+    },
+    {
+      "name": "플레어몬",
+      "slug": "flaremon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "플로라몬",
+      "slug": "floramon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "플라이몬",
+      "slug": "flymon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "푸가몬",
+      "slug": "fugamon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "가비지몬",
+      "slug": "garbagemon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "기자몬",
+      "slug": "gizamon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "eye-or-face-repaired"
+    },
+    {
+      "name": "그레이스노바몬",
+      "slug": "gracenovamon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "eye-or-face-repaired"
+    },
+    {
+      "name": "그레이트그리즈몬",
+      "slug": "greatgrizzlymon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "건드라몬",
+      "slug": "gundramon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "가와파몬",
+      "slug": "gawappamon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "호루스몬",
+      "slug": "halsemon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "블루우가몬",
+      "slug": "hyogamon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "효코몬",
+      "slug": "hyokomon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "황제드라몬[드래곤]",
+      "slug": "imperialdramon-dm",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "주엘비몬",
+      "slug": "jewelbeemon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "점보가메몬",
+      "slug": "jumbogamemon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "유피테르몬[래스 모드]",
+      "slug": "jupitermon-wm",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "카프리몬",
+      "slug": "kapurimon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "키위몬",
+      "slug": "kiwimon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "코쿠와몬",
+      "slug": "kokuwamon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "eye-or-face-repaired"
+    },
+    {
+      "name": "코테몬",
+      "slug": "kotemon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "로코몬",
+      "slug": "locomon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "매그너키드몬",
+      "slug": "magnakidmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "마스터브링프몬",
+      "slug": "masterblimpmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메카노몬",
+      "slug": "mekanorimon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메디벌듀크몬",
+      "slug": "medievalgallantmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "뽈뽈몬",
+      "slug": "choromon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "메르바몬",
+      "slug": "mervamon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "미노타몬",
+      "slug": "minotarumon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "미스티몬",
+      "slug": "mistymon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "모털몬",
+      "slug": "mojyamon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "미이라몬",
+      "slug": "mummymon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "무사몬",
+      "slug": "musyamon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "네페르티몬",
+      "slug": "nefertimon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "옥토몬",
+      "slug": "octomon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "패럴렐몬",
+      "slug": "parallelmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "eye-or-face-repaired"
+    },
+    {
+      "name": "패롯몬",
+      "slug": "parrotmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "페가수스몬",
+      "slug": "pegasusmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "펭귄몬",
+      "slug": "penmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "푸쿠몬",
+      "slug": "pukumon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "라나몬",
+      "slug": "lanamon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "스콜피오몬",
+      "slug": "scorpiomon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "샤크몬",
+      "slug": "sharkmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "원시고부리몬",
+      "slug": "shamamon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "사우자몬",
+      "slug": "shaujinmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "쉘몬",
+      "slug": "shellmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "수리몬",
+      "slug": "shurimon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "eye-or-face-repaired"
+    },
+    {
+      "name": "세이렌몬",
+      "slug": "sirenmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "스컬벌키몬",
+      "slug": "skullbaluchimon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "스컬맘몬",
+      "slug": "skullmammothmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "스컬시드라몬",
+      "slug": "skullseadramon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "슬래쉬엔젤몬",
+      "slug": "slashangemon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "스나이몬",
+      "slug": "snimon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "스노우고부리몬",
+      "slug": "snowgoblimon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "잠수몬",
+      "slug": "submarimon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "탱크드라몬",
+      "slug": "tankdramon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "웬디몬",
+      "slug": "wendigomon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "위치몬",
+      "slug": "witchmon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "황금무사몬",
+      "slug": "zanbamon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "좀비플루토몬",
+      "slug": "zombieplutomon",
+      "game": "Digimon Story: Time Stranger",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "알로몬",
+      "slug": "allomon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "브롯사몬",
+      "slug": "blossomon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "볼토바우타몬",
+      "slug": "boltboutamon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "브리웨루드라몬",
+      "slug": "bryweludramon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "할매몬",
+      "slug": "babamon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "캔들몬",
+      "slug": "candlemon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "가재드라몬",
+      "slug": "ebidramon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "도그몬",
+      "slug": "doggymon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "째리몬",
+      "slug": "giromon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "손오공몬",
+      "slug": "gokuwmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "그랑디스쿠가몬",
+      "slug": "grandiskuwagamon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "쟈가몬",
+      "slug": "jagamon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "제트실피드몬",
+      "slug": "jetsilphymon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "페어리몬",
+      "slug": "kazemon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "코스파이더몬",
+      "slug": "kodokugumon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "블리자몬",
+      "slug": "korikakumon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "챠크몬",
+      "slug": "kumamon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "레베몬",
+      "slug": "loweemon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "마린데블몬",
+      "slug": "marinedevimon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "폰체스몬(흑)",
+      "slug": "pawnchessmon-black-white-g153_d",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "폰체스몬(백)",
+      "slug": "pawnchessmon-black-white-g146_d",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "포큐파몬",
+      "slug": "porcupamon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "라이지루도몬",
+      "slug": "raijiludomon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "레드베지몬",
+      "slug": "redvegimon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "바알몬",
+      "slug": "reapmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "삼장몬",
+      "slug": "sanzomon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "티아루도몬",
+      "slug": "tialudomon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "이블몬",
+      "slug": "vilemon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "배드퍼펫몬",
+      "slug": "warumonzaemon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "슈츠몬",
+      "slug": "zephyrmon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아누비스몬",
+      "slug": "anubismon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "아수라몬",
+      "slug": "asuramon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "기기몬",
+      "slug": "gigimon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "쟈리몬",
+      "slug": "jyarimon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "구미몬",
+      "slug": "gummymon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "연체몬",
+      "slug": "gesomon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "초코몬",
+      "slug": "kokomon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "피치몬",
+      "slug": "pichimon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "사이케몬",
+      "slug": "psychemon",
+      "game": "Digimon World: Next Order",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "eye-or-face-repaired"
+    },
+    {
+      "name": "유라몬",
+      "slug": "yuramon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "제리몬",
+      "slug": "zerimon",
+      "game": "Digimon ReArise",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "팅커몬",
+      "slug": "tinkermon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "빅토리그레이몬",
+      "slug": "victorygreymon",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    },
+    {
+      "name": "블랙그라우몬",
+      "slug": "growlmon-blackgrowlmon-m216_d",
+      "game": "Digimon New Century",
+      "render": "loaded-front-and-quarter",
+      "materialBindings": "passed",
+      "action": "no-confirmed-eye-defect-in-audit"
+    }
+  ]
+}

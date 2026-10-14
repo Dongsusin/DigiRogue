@@ -1,3 +1,4 @@
+import { ROSTER_7_EVOLUTION_SIGNATURES } from './rosterExpansion7Cinematics.js'
 // Cinematic direction for evolution scenes. Everything here is an original, procedural
 // re-staging of well-known anime evolution choreography; no footage or artwork is bundled.
 import { getEvolutionRoute, ITEM_EVOLUTION_REQUIREMENTS } from './evolutionRules.js'
@@ -381,7 +382,7 @@ export function resolveEvolutionCinematic(scene, { style = 'classic', signature 
   const targetName = scene.to?.name
   // Hand-made anime scenes first, then evolution-method scenes, then the automatic scene
   // generated for every remaining route.
-  let found = signature ? (armorSignature(targetName) ?? ROSTER_6_EVOLUTION_SIGNATURES[targetName] ?? ROSTER_5_EVOLUTION_SIGNATURES[targetName] ?? ROSTER_4_EVOLUTION_SIGNATURES[targetName] ?? EXPANSION_EVOLUTION_SIGNATURES[targetName] ?? SIGNATURES[targetName] ?? methodSignature(targetName, sourceNames) ?? autoSignature(targetName)) : null
+  let found = signature ? (ROSTER_7_EVOLUTION_SIGNATURES[targetName] ?? armorSignature(targetName) ?? ROSTER_6_EVOLUTION_SIGNATURES[targetName] ?? ROSTER_5_EVOLUTION_SIGNATURES[targetName] ?? ROSTER_4_EVOLUTION_SIGNATURES[targetName] ?? EXPANSION_EVOLUTION_SIGNATURES[targetName] ?? SIGNATURES[targetName] ?? methodSignature(targetName, sourceNames) ?? autoSignature(targetName)) : null
   // The Super Rumble style remakes every route that has no hand-made anime scene.
   if (style === 'rumble' && (!found || found.auto)) found = null
   if (!found && style !== 'rumble') return { template: 'classic' }

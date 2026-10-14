@@ -1,3 +1,4 @@
+import { chooseBattleCommand } from '../src/battle/tacticalAI.js'
 import { advanceRunTurn, createRunStats } from '../src/progression/hallOfFame.js'
 import test from 'node:test'
 import assert from 'node:assert/strict'
@@ -91,6 +92,10 @@ function appFunction(name, nextName, context, indent = '') {
   const start = appSource.indexOf(marker), end = appSource.indexOf(indent + 'const ' + nextName + ' =', start)
   assert(start >= 0 && end > start, name + ' handler must exist')
   context.advanceRunTurn ??= advanceRunTurn
+  context.chooseBattleCommand ??= chooseBattleCommand
+  context.isSupportSkill ??= skill => skill?.분류 === '보조형' || Boolean(skill?.효과)
+  context.getTacticalOptions = (allies, opponents) => ({ allies, opponents, getSkill: context.getSkillData,
+    estimateAttack: () => ({ damage: 40, minDamage: 34, accuracy: 1 }), random: () => 0 })
   return vm.runInNewContext('(' + appSource.slice(start + marker.length, end).trim() + ')', context)
 }
 const lookup = (party,id) => party.find(u=>u.id===id) ?? null

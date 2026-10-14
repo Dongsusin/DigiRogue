@@ -2,9 +2,10 @@
 // enter a player's roster. Retired species also reject data from older saves.
 import { canonicalDigimonName } from './digimonNames.js'
 import retiredAuthoredAttackSpecies from './retiredAuthoredAttackSpecies.json' with { type: 'json' }
+import retiredByRequestSpecies from './retiredByRequestSpecies.json' with { type: 'json' }
 export const BOSS_ONLY_SPECIES = Object.freeze(['위그드라실 7D6'])
 export const AUTHORED_ATTACK_RETIRED_SPECIES = Object.freeze([...retiredAuthoredAttackSpecies])
-export const RETIRED_SPECIES = Object.freeze(['플래티넘스카몬', '매그너가루몬', ...AUTHORED_ATTACK_RETIRED_SPECIES])
+export const RETIRED_SPECIES = Object.freeze(['플래티넘스카몬', '매그너가루몬', ...retiredByRequestSpecies, ...AUTHORED_ATTACK_RETIRED_SPECIES])
 const unavailable = new Set([...BOSS_ONLY_SPECIES, ...RETIRED_SPECIES])
 
 export function isPlayableDigimon(species) {

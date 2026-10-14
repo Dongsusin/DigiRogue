@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "checks": {
+    "uniqueCandidates": 255,
+    "duplicateCandidates": 0,
+    "missingSourceUrls": 0,
+    "newCandidates": 224,
+    "previouslyRemovedCandidates": 31,
+    "originalMotionMetadata": "108/108",
+    "originalSkinMetadata": "108/108",
+    "priorityCandidatesWithOriginalMotion": "40/40",
+    "officialKoreanProfiles": 167,
+    "csvEntries": 255,
+    "englishNameCollisionCorrected": "Scorpiomon -> Anomalocarimon"
+  },
+  "notVerified": [
+    "full clip visual playback for every candidate",
+    "Digirouge conversion and in-game animation",
+    "all TMR archive downloads",
+    "asset redistribution permission"
+  ]
+}

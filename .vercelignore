@@ -26,3 +26,5 @@ test-results/**
 
 .tmp-convert
 .tmp-convert/**
+
+**/__pycache__/**

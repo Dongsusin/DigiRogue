@@ -4,6 +4,7 @@ import fs from 'node:fs'
 import { loadBattleEngine } from './lib/battle-engine-fixture.mjs'
 import { BOSS_PROFILES, BOSS_PROFILE_BY_ID, BOSS_MAP_THEMES } from '../src/data/bossProfiles.js'
 import { RIVAL_PROFILES, RIVAL_PROFILE_BY_ID } from '../src/data/rivalProfiles.js'
+import { EXPANSION_BOSS_ROUTES } from '../src/data/expansionEncounters.js'
 import { REGIONAL_BOSS_ROUTES, REGIONAL_BOSS_PROFILES, MAP_BOSS_ROUTES } from '../src/data/regionalBossProfiles.js'
 import { DIGIMON_MODELS, missingRequiredClips, hasAuthoredAttackMotion } from '../src/data/digimonModels.js'
 import { getBossCandidates, getBossProfile, createBossPlan, resolveBossReactions } from '../src/battle/bossEncounters.js'
@@ -24,7 +25,7 @@ const namesFor = (pool, stage, mapName, rival = false) => new Set(pool.map(p => 
   ? rivalName(p, stage, mapName) : createBossPlan(p, stage).initialName))
 test('all 29 new routes have complete natural models and unique stable IDs', () => {
   assert.equal(REGIONAL_BOSS_ROUTES.length, 29)
-  assert.equal(REGIONAL_BOSS_PROFILES.length, 58)
+  assert.equal(REGIONAL_BOSS_PROFILES.length, (REGIONAL_BOSS_ROUTES.length + EXPANSION_BOSS_ROUTES.length) * 2)
   assert.equal(new Set(BOSS_PROFILES.map(p => p.id)).size, BOSS_PROFILES.length)
   assert.equal(new Set(RIVAL_PROFILES.map(p => p.id)).size, RIVAL_PROFILES.length)
   assert.deepEqual(Object.keys(MAP_BOSS_ROUTES).sort(), [...maps].sort())

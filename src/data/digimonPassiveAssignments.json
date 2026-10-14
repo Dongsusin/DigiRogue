@@ -1768,5 +1768,455 @@
   },
   "지드밀레니엄몬": {
     "id": "darkness"
+  },
+  "코로나몬": {
+    "id": "flame"
+  },
+  "아이기오몬": {
+    "id": "swift"
+  },
+  "아이기오투스몬": {
+    "id": "signature"
+  },
+  "아이기오투스몬[블루]": {
+    "id": "precision"
+  },
+  "아이기오투스몬[그린]": {
+    "id": "regeneration"
+  },
+  "아이기오투스몬[다크]": {
+    "id": "elusive"
+  },
+  "아이기오투스몬[홀리]": {
+    "id": "radiance"
+  },
+  "아루다몬": {
+    "id": "flame"
+  },
+  "에이션트와이즈몬": {
+    "id": "sorcerer"
+  },
+  "아폴로몬": {
+    "id": "flame"
+  },
+  "아라크네몬": {
+    "id": "sorcerer"
+  },
+  "아스타몬": {
+    "id": "precision"
+  },
+  "어벤지키드몬": {
+    "id": "precision"
+  },
+  "바커스몬": {
+    "id": "healer"
+  },
+  "반쵸콩알몬": {
+    "id": "resolve"
+  },
+  "베오울프몬": {
+    "id": "brawler"
+  },
+  "베르스타몬": {
+    "id": "precision"
+  },
+  "빅콩알몬": {
+    "id": "armor"
+  },
+  "브링프몬": {
+    "id": "precision"
+  },
+  "브라키몬": {
+    "id": "armor"
+  },
+  "부라이몬": {
+    "id": "brawler"
+  },
+  "부텐몬": {
+    "id": "brawler"
+  },
+  "칼리스몬": {
+    "id": "resolve"
+  },
+  "카르마라몬": {
+    "id": "sorcerer"
+  },
+  "켄터스몬": {
+    "id": "precision"
+  },
+  "케르베로스몬": {
+    "id": "ferocity"
+  },
+  "케르베로스몬[인랑]": {
+    "id": "elusive"
+  },
+  "케레스몬[미디엄]": {
+    "id": "healer"
+  },
+  "크로노몬[홀리 모드]": {
+    "id": "radiance"
+  },
+  "크로노몬[디스트로이 모드]": {
+    "id": "darkness"
+  },
+  "클라비스엔젤몬": {
+    "id": "radiance"
+  },
+  "크랩몬": {
+    "id": "armor"
+  },
+  "다크드라몬": {
+    "id": "precision"
+  },
+  "다크슈퍼스타몬": {
+    "id": "sorcerer"
+  },
+  "델타몬": {
+    "id": "resolve"
+  },
+  "카우보이몬": {
+    "id": "precision"
+  },
+  "뿌띠몬": {
+    "id": "regeneration"
+  },
+  "디그몬": {
+    "id": "steel"
+  },
+  "다이버몬": {
+    "id": "brawler"
+  },
+  "도베르몬": {
+    "id": "elusive"
+  },
+  "스파이더몬": {
+    "id": "sorcerer"
+  },
+  "두리몬": {
+    "id": "resolve"
+  },
+  "크로스몬": {
+    "id": "storm"
+  },
+  "안바르몬": {
+    "id": "ferocity"
+  },
+  "엑스티라노몬": {
+    "id": "sturdy"
+  },
+  "파이라몬": {
+    "id": "ferocity"
+  },
+  "플레어몬": {
+    "id": "flame"
+  },
+  "플로라몬": {
+    "id": "regeneration"
+  },
+  "플라이몬": {
+    "id": "elusive"
+  },
+  "푸가몬": {
+    "id": "resolve"
+  },
+  "가비지몬": {
+    "id": "sturdy"
+  },
+  "기자몬": {
+    "id": "elusive"
+  },
+  "그레이스노바몬": {
+    "id": "signature"
+  },
+  "그레이트그리즈몬": {
+    "id": "resolve"
+  },
+  "건드라몬": {
+    "id": "precision"
+  },
+  "가와파몬": {
+    "id": "swift"
+  },
+  "호루스몬": {
+    "id": "storm"
+  },
+  "블루우가몬": {
+    "id": "resolve"
+  },
+  "효코몬": {
+    "id": "brawler"
+  },
+  "황제드라몬[드래곤]": {
+    "id": "darkness"
+  },
+  "주엘비몬": {
+    "id": "elusive"
+  },
+  "점보가메몬": {
+    "id": "magic-ward"
+  },
+  "유피테르몬[래스 모드]": {
+    "id": "signature"
+  },
+  "카프리몬": {
+    "id": "steel"
+  },
+  "키위몬": {
+    "id": "storm"
+  },
+  "코쿠와몬": {
+    "id": "steel"
+  },
+  "코테몬": {
+    "id": "brawler"
+  },
+  "로코몬": {
+    "id": "steel"
+  },
+  "매그너키드몬": {
+    "id": "precision"
+  },
+  "마스터브링프몬": {
+    "id": "precision"
+  },
+  "메카노몬": {
+    "id": "steel"
+  },
+  "메디벌듀크몬": {
+    "id": "brawler"
+  },
+  "뽈뽈몬": {
+    "id": "steel"
+  },
+  "메르바몬": {
+    "id": "brawler"
+  },
+  "미노타몬": {
+    "id": "resolve"
+  },
+  "미스티몬": {
+    "id": "brawler"
+  },
+  "모털몬": {
+    "id": "resolve"
+  },
+  "미이라몬": {
+    "id": "precision"
+  },
+  "무사몬": {
+    "id": "brawler"
+  },
+  "네페르티몬": {
+    "id": "radiance"
+  },
+  "옥토몬": {
+    "id": "sorcerer"
+  },
+  "패럴렐몬": {
+    "id": "sorcerer"
+  },
+  "패롯몬": {
+    "id": "storm"
+  },
+  "페가수스몬": {
+    "id": "radiance"
+  },
+  "펭귄몬": {
+    "id": "receptive"
+  },
+  "푸쿠몬": {
+    "id": "resolve"
+  },
+  "라나몬": {
+    "id": "sorcerer"
+  },
+  "스콜피오몬": {
+    "id": "armor"
+  },
+  "샤크몬": {
+    "id": "precision"
+  },
+  "원시고부리몬": {
+    "id": "resolve"
+  },
+  "사우자몬": {
+    "id": "brawler"
+  },
+  "쉘몬": {
+    "id": "armor"
+  },
+  "수리몬": {
+    "id": "elusive"
+  },
+  "세이렌몬": {
+    "id": "healer"
+  },
+  "스컬벌키몬": {
+    "id": "ferocity"
+  },
+  "스컬맘몬": {
+    "id": "resolve"
+  },
+  "스컬시드라몬": {
+    "id": "sorcerer"
+  },
+  "슬래쉬엔젤몬": {
+    "id": "brawler"
+  },
+  "스나이몬": {
+    "id": "elusive"
+  },
+  "스노우고부리몬": {
+    "id": "resolve"
+  },
+  "잠수몬": {
+    "id": "precision"
+  },
+  "탱크드라몬": {
+    "id": "precision"
+  },
+  "웬디몬": {
+    "id": "resolve"
+  },
+  "위치몬": {
+    "id": "sorcerer"
+  },
+  "황금무사몬": {
+    "id": "brawler"
+  },
+  "좀비플루토몬": {
+    "id": "darkness"
+  },
+  "알로몬": {
+    "id": "ferocity"
+  },
+  "브롯사몬": {
+    "id": "regeneration"
+  },
+  "볼토바우타몬": {
+    "id": "sorcerer"
+  },
+  "브리웨루드라몬": {
+    "id": "magic-ward"
+  },
+  "할매몬": {
+    "id": "healer"
+  },
+  "캔들몬": {
+    "id": "flame"
+  },
+  "가재드라몬": {
+    "id": "resolve"
+  },
+  "도그몬": {
+    "id": "swift"
+  },
+  "째리몬": {
+    "id": "precision"
+  },
+  "손오공몬": {
+    "id": "brawler"
+  },
+  "그랑디스쿠가몬": {
+    "id": "elusive"
+  },
+  "쟈가몬": {
+    "id": "armor"
+  },
+  "제트실피드몬": {
+    "id": "storm"
+  },
+  "페어리몬": {
+    "id": "storm"
+  },
+  "코스파이더몬": {
+    "id": "sorcerer"
+  },
+  "블리자몬": {
+    "id": "resolve"
+  },
+  "챠크몬": {
+    "id": "precision"
+  },
+  "레베몬": {
+    "id": "brawler"
+  },
+  "마린데블몬": {
+    "id": "darkness"
+  },
+  "폰체스몬(흑)": {
+    "id": "armor"
+  },
+  "폰체스몬(백)": {
+    "id": "armor"
+  },
+  "포큐파몬": {
+    "id": "elusive"
+  },
+  "라이지루도몬": {
+    "id": "magic-ward"
+  },
+  "레드베지몬": {
+    "id": "regeneration"
+  },
+  "바알몬": {
+    "id": "precision"
+  },
+  "삼장몬": {
+    "id": "healer"
+  },
+  "티아루도몬": {
+    "id": "magic-ward"
+  },
+  "이블몬": {
+    "id": "sorcerer"
+  },
+  "배드퍼펫몬": {
+    "id": "resolve"
+  },
+  "슈츠몬": {
+    "id": "storm"
+  },
+  "아누비스몬": {
+    "id": "radiance"
+  },
+  "아수라몬": {
+    "id": "brawler"
+  },
+  "기기몬": {
+    "id": "ferocity"
+  },
+  "쟈리몬": {
+    "id": "flame"
+  },
+  "구미몬": {
+    "id": "healer"
+  },
+  "연체몬": {
+    "id": "sorcerer"
+  },
+  "초코몬": {
+    "id": "sorcerer"
+  },
+  "피치몬": {
+    "id": "healer"
+  },
+  "사이케몬": {
+    "id": "swift"
+  },
+  "유라몬": {
+    "id": "regeneration"
+  },
+  "제리몬": {
+    "id": "healer"
+  },
+  "팅커몬": {
+    "id": "elusive"
+  },
+  "빅토리그레이몬": {
+    "id": "brawler"
+  },
+  "블랙그라우몬": {
+    "id": "flame"
   }
 }

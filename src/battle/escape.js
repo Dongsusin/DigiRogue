@@ -26,8 +26,8 @@ export function getEscapeChance({ party = [], activeAllyIds, enemies = [], attem
   const enemySpeed = Math.max(...opponents.map(unit => positive(unit.speed)))
   const speedFactor = clamp((allySpeed / enemySpeed) ** .25, .65, 1.2)
   const retries = clamp(Math.floor(positive(attemptCount)) - 1, 0, 3)
-  // Equal forces start at 70%; retries help without making escape guaranteed.
-  return clamp(.7 * (allyStrength / enemyStrength) ** .7 * speedFactor + retries * .05, .1, .9)
+  // Equal forces start at 7%; retries help but every attempt remains capped at 10%.
+  return clamp(.07 * (allyStrength / enemyStrength) ** .7 * speedFactor + retries * .005, .01, .1)
 }
 
 export function rollRunAttempt(options, random = Math.random) {

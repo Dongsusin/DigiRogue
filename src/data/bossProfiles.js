@@ -1,3 +1,4 @@
+import { EXPANSION_LEGEND_PROFILES } from './expansionEncounters.js'
 // Wild Digimon lineages and regional bosses keep their stage-scaled evolution routes.
 // Trigger percentages and temporary powers are authored rules for this fan game.
 import { FINAL_BOSS_PROFILES } from './finalBossProfiles.js'
@@ -147,6 +148,7 @@ export const BOSS_PROFILES = Object.freeze([
   wild('plesio-mirage', '호수에 비친 고대의 환영', ['플레시오몬'], ['water', 'ice', 'ancient'], 80, 190,
     rule('mist-shell', '안개의 장막', hp(.5), { ...guard('special'), ...stats({ specialAttack: 1.15 }, 2) }, 'HP 50% 이하 · 특수 방벽과 파동 강화')),
   ...REGIONAL_BOSS_PROFILES,
+  ...EXPANSION_LEGEND_PROFILES,
   ...FINAL_BOSS_PROFILES.map(profile => ({ ...profile, themes: Object.values(BOSS_MAP_THEMES) })),
 ])
 

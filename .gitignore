@@ -39,3 +39,5 @@ logs/
 # Player saves remain outside version control
 /saves/
 /user-data/
+
+__pycache__/

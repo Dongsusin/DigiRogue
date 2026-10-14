@@ -1,3 +1,4 @@
+import { EXPANSION_BOSS_ROUTES, EXPANSION_MAP_BOSS_ROUTES } from './expansionEncounters.js'
 // These routes reuse shipped, fully animated Digimon. Identities and habitats
 // follow Digimon lore; phase thresholds and powers are rules for this fan game.
 const hp = ratio => ({ kind: 'hp', ratio })
@@ -43,25 +44,29 @@ export const REGIONAL_BOSS_ROUTES = Object.freeze([
   route('raven-sentinel', '숲과 산의 검은 파수꾼', ['팔코몬','펙크몬','야타가라몬','레이브몬'], ['forest','wind','dark'], swift('그림자 날개')),
 ])
 
+const ALL_REGIONAL_ROUTES = [...REGIONAL_BOSS_ROUTES, ...EXPANSION_BOSS_ROUTES]
+
 const shared = route => ({
   regionRoute: route.id, title: route.title, themes: route.themes, emblem: null,
+  ...(route.maps ? { maps: route.maps, entryStages: route.entryStages } : {}),
   source: null, speech: '영역의 우두머리가 길을 막아섰다.', rules: [route.rule],
   phaseLabel: '진화', finalPower: power({ attack: 1.15, specialAttack: 1.15 }),
 })
-export const REGIONAL_BOSS_PROFILES = Object.freeze(REGIONAL_BOSS_ROUTES.flatMap(route => [
+export const REGIONAL_BOSS_PROFILES = Object.freeze(ALL_REGIONAL_ROUTES.flatMap(route => [
   { ...shared(route), id: 'regional-' + route.id, kind: 'lineage', name: route.line[0],
-    line: route.line, minStage: 10, maxStage: 190 },
+    line: route.line, minStage: route.minStage ?? 10, maxStage: route.maxStage ?? 190 },
   { ...shared(route), id: 'regional-' + route.id + '-wild', kind: 'wild', name: route.title,
-    line: route.line.slice(1), minStage: 20, maxStage: 190 },
+    line: route.line.slice(1), minStage: route.entryStages?.[1] ?? 20, maxStage: route.maxStage ?? 190,
+    ...(route.entryStages ? { entryStages: route.entryStages.slice(1) } : {}) },
 ]))
-export const REGIONAL_RIVAL_PROFILES = Object.freeze(REGIONAL_BOSS_ROUTES.map(route => ({
+export const REGIONAL_RIVAL_PROFILES = Object.freeze(ALL_REGIONAL_ROUTES.map(route => ({
   ...shared(route), id: 'regional-' + route.id, kind: 'rival', name: route.line[0],
-  line: route.line, minStage: 8, maxStage: 199, title: '야생 라이벌', emblem: '라이벌',
+  line: route.line, minStage: route.minStage ? Math.max(8,route.minStage-2) : 8, maxStage: 199, title: '야생 라이벌', emblem: '라이벌',
 })))
 
 // Explicit habitats distinguish maps that share a broad biome. Each list has
 // multiple full routes, so early, late and endless-cycle encounters stay local.
-export const MAP_BOSS_ROUTES = Object.freeze({
+const BASE_MAP_BOSS_ROUTES = {
   '시작의마을': ['lion-guard','living-blade','factory-watch','star-patrol','gentle-guardian','taichi','mimi','takeru','security','bancho-justice','adventure-duo','scrap-crown'],
   '미하라시 산': ['lion-guard','raven-sentinel','sky-dragon','holy-beast','sora','ruki','insect-lord','valkyrie-watch','white-tiger','ceres-garden','sleipmon-trial','tohma','royal-wasp'],
   기어사바나: ['lion-guard','armored-saurian','goblin-chief','ground-dragon','taichi','masaru','etemon-show','white-tiger','dorubick-fire'],
@@ -96,4 +101,5 @@ export const MAP_BOSS_ROUTES = Object.freeze({
   용정궁: ['dragon-samurai','ground-dragon','sky-dragon','volcanic-drake','armored-saurian','taichi','azure','vermilion','huanglong'],
   사규산: ['armored-saurian','lion-guard','goblin-chief','ground-dragon','snow-beast','taichi','bancho-justice','white-tiger','huanglong'],
   황천: ['night-gunslinger','vampire-court','data-devourer','shadow-wolf','net-infection','hikari','vampire','clown','sleeping-demon'],
-})
+}
+export const MAP_BOSS_ROUTES = Object.freeze(Object.fromEntries(Object.entries(BASE_MAP_BOSS_ROUTES).map(([name,routes])=>[name,[...routes,...(EXPANSION_MAP_BOSS_ROUTES[name]??[])]])))

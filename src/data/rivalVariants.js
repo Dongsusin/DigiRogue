@@ -18,6 +18,12 @@ const burst = (id, from, themes, stats) => change(id, from, `${from}[버스트]`
   '버스트 진화', { atHp: .45, effect: { clearStatus: true, stats, turns: 3 } })
 
 export const RIVAL_VARIANTS = Object.freeze([
+  {...fusion('그레이스노바몬',['holy','ancient'],155),maps:['코즈믹 에리어','선공계','용정궁']},
+  {...fusion('볼토바우타몬',['dark'],135),maps:['나이트메어 솔저스','다크 에리어','황천']},
+  {...fusion('카오스몬',['machine','dark'],135),maps:['메탈 엠파이어','어셈블러 타워','다크 필드']},
+  {...fusion('제트메르바몬',['holy','wind'],135),maps:['윈드 가디언즈','선공계','가디언 팰리스']},
+  {...change('imperial-dragon-mode','황제드라몬[드래곤]','황제드라몬[파이터]',['ancient','water'],115,199,'모드 전환'),maps:['용정궁','겐시 대륙','아시노 섬']},
+  {...change('jupiter-wrath','유피테르몬','유피테르몬[래스 모드]',['holy'],155,199,'래스 모드 각성'),maps:['선공계','가디언 팰리스','코즈믹 에리어']},
   fusion('샤우트몬[X2]', ['fire', 'machine', 'town'], 15, 55),
   fusion('샤우트몬[X3]', ['earth', 'fire', 'wind'], 35, 95),
   fusion('샤우트몬[X4]', ['holy', 'town', 'wind'], 35, 95),

@@ -1,0 +1,70 @@
+{
+  "item-evolution-expansion7-chronomon-hm": {
+    "name": "성시의 크로노 코어",
+    "url": "/items/evolution/unique/chrono-holy.webp"
+  },
+  "item-evolution-expansion7-chronomon-dm": {
+    "name": "멸시의 크로노 코어",
+    "url": "/items/evolution/unique/chrono-destroy.webp"
+  },
+  "item-evolution-expansion7-gracenovamon": {
+    "name": "에보류터 · 그레이스노바몬",
+    "url": "/items/evolution/unique/gracenova.webp"
+  },
+  "item-evolution-expansion7-jupitermon-wm": {
+    "name": "분노의 케라우노스",
+    "url": "/items/evolution/unique/jupiter-wrath.webp"
+  },
+  "item-evolution-expansion7-medievalgallantmon": {
+    "name": "X항체 인자 · 메디벌듀크몬",
+    "url": "/items/evolution/unique/medieval.png"
+  },
+  "item-evolution-expansion7-parallelmon": {
+    "name": "평행세계 코어",
+    "url": "/items/evolution/unique/parallel.webp"
+  },
+  "item-evolution-expansion7-zombieplutomon": {
+    "name": "명계의 불멸 코어",
+    "url": "/items/evolution/unique/zombie-pluto.webp"
+  },
+  "item-evolution-expansion7-boltboutamon": {
+    "name": "에보류터 · 볼토바우타몬",
+    "url": "/items/evolution/unique/boltboutamon.webp"
+  },
+  "item-evolution-expansion7-grandiskuwagamon": {
+    "name": "그랑 킬러",
+    "url": "/items/evolution/unique/grandis.webp"
+  },
+  "item-evolution-expansion7-victorygreymon": {
+    "name": "드라몬 브레이커",
+    "url": "/items/evolution/unique/victory.png"
+  },
+  "item-evolution-investment-얼티메이트카오스몬": {
+    "name": "에보류터 · 얼티메이트카오스몬",
+    "url": "/items/evolution/unique/ultimate-chaos.webp"
+  },
+  "item-evolution-investment-지드밀레니엄몬": {
+    "name": "에보류터 · 지드밀레니엄몬",
+    "url": "/items/evolution/unique/zeed.webp"
+  },
+  "item-evolution-expansion7-aegiochusmon-blue": {
+    "name": "기계족 합성 코어",
+    "url": "/items/evolution/unique/aegio-blue.webp"
+  },
+  "item-evolution-expansion7-aegiochusmon-green": {
+    "name": "식물족 합성 코어",
+    "url": "/items/evolution/unique/aegio-green.webp"
+  },
+  "item-evolution-expansion7-aegiochusmon-dark": {
+    "name": "암흑 합성 코어",
+    "url": "/items/evolution/unique/aegio-dark.webp"
+  },
+  "item-evolution-expansion7-aegiochusmon-holy": {
+    "name": "성역 합성 코어",
+    "url": "/items/evolution/unique/aegio-holy.webp"
+  },
+  "item-evolution-expansion7-cerberusmon-wm": {
+    "name": "인랑의 인자",
+    "url": "/items/evolution/unique/werewolf-factor.webp"
+  }
+}

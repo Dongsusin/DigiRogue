@@ -1,0 +1,177 @@
+{
+  "verifiedAt": "2026-10-13",
+  "policy": "Reuse real item artwork when available. Generated art represents fan-game-only catalysts, not official item illustrations. Identical physical items share one inventory ID.",
+  "items": {
+    "item-evolution-expansion7-chronomon-hm": {
+      "name": "성시의 크로노 코어",
+      "url": "/items/evolution/unique/chrono-holy.webp",
+      "sourceKind": "generated-fan-item",
+      "tool": "imagegen",
+      "prompt": "Chronomon Holy Mode clockwork core with gold halo and white feathers",
+      "sha256": "8d75d43c1a96a48117c4d0054f861d362257275de5ddd5035135a524122abc1d",
+      "createdAt": "2026-10-13"
+    },
+    "item-evolution-expansion7-chronomon-dm": {
+      "name": "멸시의 크로노 코어",
+      "url": "/items/evolution/unique/chrono-destroy.webp",
+      "sourceKind": "generated-fan-item",
+      "tool": "imagegen",
+      "prompt": "Chronomon Destroy Mode evolution core: an angular dark purple and black mechanical hourglass with cracked crimson circular time dial, aggressive swept dark metallic fins, red sand-light suspended inside.",
+      "sha256": "c8e7713e462349ba6ff065849c55f046241d833cb36fbdb5ff6d55eb123f09e8",
+      "createdAt": "2026-10-13"
+    },
+    "item-evolution-expansion7-gracenovamon": {
+      "name": "에보류터 · 그레이스노바몬",
+      "url": "/items/evolution/unique/gracenova.webp",
+      "sourceKind": "generated-fan-item",
+      "tool": "imagegen",
+      "prompt": "GraceNovamon evolution catalyst: a two-part eclipse astrolabe relic with a blazing orange-gold sun and cool silver-blue crescent moon interlocking around a dark sapphire cosmic core, asymmetrical solar and lunar wings.",
+      "sha256": "dcf0de85c68565ec7ecf8931fb184b9668e1c57bfa9c12597e72a006f7afef74",
+      "createdAt": "2026-10-13"
+    },
+    "item-evolution-expansion7-jupitermon-wm": {
+      "name": "분노의 케라우노스",
+      "url": "/items/evolution/unique/jupiter-wrath.webp",
+      "sourceKind": "generated-fan-item",
+      "tool": "imagegen",
+      "prompt": "Jupitermon Wrath Mode Keraunos relic: a powerful gold double-ended lightning bolt scepter with dark red grip and a compact luminous white-blue thunder orb held in a pointed crown, gold electrical arcs.",
+      "sha256": "4f74c0b1be0e45fb21664e17e3552e51c6106797f5369881f6570dd72606998a",
+      "createdAt": "2026-10-13"
+    },
+    "item-evolution-expansion7-medievalgallantmon": {
+      "name": "X항체 인자 · 메디벌듀크몬",
+      "url": "/items/evolution/unique/medieval.png",
+      "sourceKind": "game-icon",
+      "sourcePage": "https://dmowiki.com/MedievalGallantmon",
+      "sourceImage": "https://cms.dmokb.info/media/X-Antibody_Factor_-_MedievalGallantmon.png",
+      "sha256": "9477ff86fc13645d3808743ce763049b3b70959455b2c04035dff340596ad3a6",
+      "createdAt": "2026-10-13"
+    },
+    "item-evolution-expansion7-parallelmon": {
+      "name": "평행세계 코어",
+      "url": "/items/evolution/unique/parallel.webp",
+      "sourceKind": "generated-fan-item",
+      "tool": "imagegen",
+      "prompt": "Parallelmon parallel-world evolution core: a freestanding tilted triangular dimension prism in dark emerald metal, violet luminous inner triangular portal, three asymmetric rotating corner brackets, cyan spacetime ribbons.",
+      "sha256": "f7622aff975f1955c6202e440f3aa23b8be29685930cf8ed78b2c4892de6cb0a",
+      "createdAt": "2026-10-13"
+    },
+    "item-evolution-expansion7-zombieplutomon": {
+      "name": "명계의 불멸 코어",
+      "url": "/items/evolution/unique/zombie-pluto.webp",
+      "sourceKind": "generated-fan-item",
+      "tool": "imagegen",
+      "prompt": "ZombiePlutomon underworld immortality core: a dark steel reliquary heart caged between three curved skeletal silver claws, eerie pale turquoise ghost flame rising from the heart, frayed small chains and bone motifs.",
+      "sha256": "87d79b4b826d07a6bfdc334d713c857e115f2487376ed3cb46bf04a951d38d9b",
+      "createdAt": "2026-10-13"
+    },
+    "item-evolution-expansion7-boltboutamon": {
+      "name": "에보류터 · 볼토바우타몬",
+      "url": "/items/evolution/unique/boltboutamon.webp",
+      "sourceKind": "generated-fan-item",
+      "tool": "imagegen",
+      "prompt": "Boltboutamon evolution catalyst: a black and crimson theatrical rapier relic crossed with a short silver curved dagger, purple crystal between the sword guards, elegant dark jester-like asymmetric flourish on hilt.",
+      "sha256": "f42adbbfeaf3864a75c7d730513ff83417fd1e5023f05384d7104db2aaff2cb6",
+      "createdAt": "2026-10-13"
+    },
+    "item-evolution-expansion7-grandiskuwagamon": {
+      "name": "그랑 킬러",
+      "url": "/items/evolution/unique/grandis.webp",
+      "sourceKind": "generated-fan-item",
+      "tool": "imagegen",
+      "prompt": "GrandisKuwagamon Grand Killer relic: a pair of huge dark green insect mandible blades folded into a claw artifact, serrated silver edges, luminous ruby central pivot, strongly insect-like segmented angular armor.",
+      "sha256": "09a496b1eb5c79ed20b940944b342b266b21b27c1927738c29922d26b1b1bf86",
+      "createdAt": "2026-10-13"
+    },
+    "item-evolution-expansion7-victorygreymon": {
+      "name": "드라몬 브레이커",
+      "url": "/items/evolution/unique/victory.png",
+      "sourceKind": "game-icon",
+      "sourcePage": "https://dmowiki.com/VictoryGreymon",
+      "sourceImage": "https://cms.dmokb.info/media/Dramon_Breaker.png",
+      "sha256": "ab069d0477137a37e4b3e0549c866262690c54b3949e1f5eea9f169f92bb9289",
+      "createdAt": "2026-10-13"
+    },
+    "item-evolution-investment-알파몬[왕룡검]": {
+      "name": "에보류터 · 알파몬[왕룡검]",
+      "url": "/items/evolution/unique/alphablade.webp",
+      "sourceKind": "generated-fan-item",
+      "tool": "imagegen",
+      "prompt": "Alphamon Ouryuken evolution relic: a single long black and gold dragon greatsword with pointed irregular black blade, luminous gold circuit runes without text, golden dragon-head guard with small purple jewel, graceful tapered weapon silhouette.",
+      "sha256": "01e5f51314498df1ddd725814c881c70cce8ba04cb0abdc5a806ee6167a20b5f",
+      "createdAt": "2026-10-13"
+    },
+    "item-evolution-investment-얼티메이트카오스몬": {
+      "name": "에보류터 · 얼티메이트카오스몬",
+      "url": "/items/evolution/unique/ultimate-chaos.webp",
+      "sourceKind": "generated-fan-item",
+      "tool": "imagegen",
+      "prompt": "UltimateChaosmon evolution catalyst: a massive asymmetrical fusion gauntlet relic formed from four different armored segments, white and gold central body, crimson cannon port on one side and dark purple crystalline claw on the other, bright magenta turbulent core.",
+      "sha256": "fbe9ea9f233c1099a26d7dffc80011b2089bc578141daf96ba3e0cade5fefe1c",
+      "createdAt": "2026-10-13"
+    },
+    "item-evolution-investment-오그도몬": {
+      "name": "에보류터 · 오그도몬",
+      "url": "/items/evolution/unique/ogudomon.webp",
+      "sourceKind": "generated-fan-item",
+      "tool": "imagegen",
+      "prompt": "Ogudomon evolution relic: a seven-pointed dark silver diabolical crown with seven distinct glowing small jewels around its rim and one deep violet suspended black orb inside, elaborate crimson and gold engraving, unmistakable seven radial points.",
+      "sha256": "5c9109e553cb27d34ef2c87c2fc5b1ccdf25baa9a56c4b76c17da58ca7ce9752",
+      "createdAt": "2026-10-13"
+    },
+    "item-evolution-investment-지드밀레니엄몬": {
+      "name": "에보류터 · 지드밀레니엄몬",
+      "url": "/items/evolution/unique/zeed.webp",
+      "sourceKind": "generated-fan-item",
+      "tool": "imagegen",
+      "prompt": "ZeedMillenniummon time-seal catalyst: two interlocking ancient gold sealing rings around a twisted twin purple spectral dragon horn-shaped core, green and violet time energy between the rings, compact infinity-like silhouette.",
+      "sha256": "016da842183f1970f5dbe666cc6c9aa4fbdda95d371dc50b3320ff3c7c3317d4",
+      "createdAt": "2026-10-13"
+    },
+    "item-evolution-expansion7-aegiochusmon-blue": {
+      "name": "기계족 합성 코어",
+      "url": "/items/evolution/unique/aegio-blue.webp",
+      "sourceKind": "generated-fan-item",
+      "tool": "imagegen",
+      "prompt": "Aegiochusmon Blue machine synthesis core: a cobalt blue cubical robotic processor, two squared mechanical jaws open around an electric cyan central crystal, visible silver articulated circuit plugs.",
+      "sha256": "0dac85deb8125178e11144e199117396d5c52e8f92d48c9b90eec5b5116f0ce2",
+      "createdAt": "2026-10-13"
+    },
+    "item-evolution-expansion7-aegiochusmon-green": {
+      "name": "식물족 합성 코어",
+      "url": "/items/evolution/unique/aegio-green.webp",
+      "sourceKind": "generated-fan-item",
+      "tool": "imagegen",
+      "prompt": "Aegiochusmon Green plant synthesis core: an asymmetrical green seed pod opened into three sculpted jade leaves, amber-gold center and pale luminous botanical veins, one curling tendril.",
+      "sha256": "5788dbb9d95c4c8886dc6bda0a1681f74bae2f6537e982fe0da9bcfa7b79caab",
+      "createdAt": "2026-10-13"
+    },
+    "item-evolution-expansion7-aegiochusmon-dark": {
+      "name": "암흑 합성 코어",
+      "url": "/items/evolution/unique/aegio-dark.webp",
+      "sourceKind": "generated-fan-item",
+      "tool": "imagegen",
+      "prompt": "Aegiochusmon Dark synthesis core: an obsidian crescent blade apparatus cradling a deep violet pulsing cube, two black segmented horns curving inward, magenta circuit light.",
+      "sha256": "f6b8627bac5119e728a22b87b7e7d4bf9068508b238abd82c128a83a39cd60c4",
+      "createdAt": "2026-10-13"
+    },
+    "item-evolution-expansion7-aegiochusmon-holy": {
+      "name": "성역 합성 코어",
+      "url": "/items/evolution/unique/aegio-holy.webp",
+      "sourceKind": "generated-fan-item",
+      "tool": "imagegen",
+      "prompt": "Aegiochusmon Holy sacred synthesis core: a white and turquoise hexagonal shrine capsule with four feather-shaped silver plates, small gold sun inlay, compact vertical cathedral-window silhouette.",
+      "sha256": "0afe41471b14631ec8cc3ac9f252d8c96c6ad27e4cc808349ada079b5d9233a3",
+      "createdAt": "2026-10-13"
+    },
+    "item-evolution-expansion7-cerberusmon-wm": {
+      "name": "인랑의 인자",
+      "url": "/items/evolution/unique/werewolf-factor.webp",
+      "sourceKind": "generated-fan-item",
+      "tool": "imagegen",
+      "prompt": "Cerberumon Werewolf Mode evolution factor: a steel triangular dog-tag reliquary with three black claw marks, red glowing central beast fang and a short heavy broken chain.",
+      "sha256": "de5be0c8c3ef2758b1031631d6770a61e79d377f12e0a7a27410b04325f580c4",
+      "createdAt": "2026-10-13"
+    }
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-12",
+  "verifiedAt": "2026-10-13",
   "source": "Digimon Encyclopedia (digimon.net), exact form identity checked against model provenance",
   "policy": "Official Attribute maps to game 타입. Variable uses the existing neutral 프리 gameplay bucket; Unknown and NO DATA map to 불명. Blank baby attributes retain existing 무/프리. Game element 속성 is a separate battle system.",
   "references": [
@@ -3055,6 +3055,915 @@
       "directory": "hippogriffomon",
       "officialName": "HippoGryphonmon",
       "attribute": "Data"
+    },
+    {
+      "name": "코로나몬",
+      "directory": "coronamon",
+      "officialName": "Coronamon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "아이기오몬",
+      "directory": "aegiomon",
+      "officialName": "Aegiomon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "아이기오투스몬",
+      "directory": "aegiochusmon",
+      "officialName": "Aegiochusmon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "아이기오투스몬[블루]",
+      "directory": "aegiochusmon:blue",
+      "officialName": "Aegiochusmon: Blue",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "아이기오투스몬[그린]",
+      "directory": "aegiochusmon:green",
+      "officialName": "Aegiochusmon: Green",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "아이기오투스몬[다크]",
+      "directory": "aegiochusmon:dark",
+      "officialName": "Aegiochusmon: Dark",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "아이기오투스몬[홀리]",
+      "directory": "aegiochusmon_holly",
+      "officialName": "Aegiochusmon: Holy",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "아루다몬",
+      "directory": "aldamon",
+      "officialName": "Aldamon",
+      "attribute": "Variable"
+    },
+    {
+      "name": "에이션트와이즈몬",
+      "directory": "ancientwisetmon",
+      "officialName": "AncientWisemon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "아폴로몬",
+      "directory": "apollomon",
+      "officialName": "Apollomon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "아라크네몬",
+      "directory": "archnemon",
+      "officialName": "Arukenimon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "아스타몬",
+      "directory": "astamon",
+      "officialName": "Astamon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "어벤지키드몬",
+      "directory": "avengekidmon",
+      "officialName": "AvengeKidmon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "바커스몬",
+      "directory": "bacchusmon",
+      "officialName": "Bacchusmon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "반쵸콩알몬",
+      "directory": "banchomamemon",
+      "officialName": "BanchoMamemon",
+      "attribute": "Data"
+    },
+    {
+      "name": "베오울프몬",
+      "directory": "beowolfmon",
+      "officialName": "BeoWolfmon",
+      "attribute": "Variable"
+    },
+    {
+      "name": "베르스타몬",
+      "directory": "beelstarmon",
+      "officialName": "BelleStarmon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "빅콩알몬",
+      "directory": "bigmamemon",
+      "officialName": "BigMamemon",
+      "attribute": "Data"
+    },
+    {
+      "name": "브링프몬",
+      "directory": "blimpmon",
+      "officialName": "Blimpmon",
+      "attribute": "Data"
+    },
+    {
+      "name": "브라키몬",
+      "directory": "brachiomon",
+      "officialName": "Brachiomon",
+      "attribute": "Data"
+    },
+    {
+      "name": "부라이몬",
+      "directory": "buraimon",
+      "officialName": "Buraimon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "부텐몬",
+      "directory": "butenmon",
+      "officialName": "Butenmon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "칼리스몬",
+      "directory": "callismon",
+      "officialName": "Callismon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "카르마라몬",
+      "directory": "calamaramon",
+      "officialName": "Calmaramon",
+      "attribute": "Variable"
+    },
+    {
+      "name": "켄터스몬",
+      "directory": "centalmon",
+      "officialName": "Centarumon",
+      "attribute": "Data"
+    },
+    {
+      "name": "케르베로스몬",
+      "directory": "cerberumon",
+      "officialName": "Cerberumon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "케르베로스몬[인랑]",
+      "directory": "cerberumon_werewolfmode",
+      "officialName": "Cerberumon Werewolf Mode",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "케레스몬[미디엄]",
+      "directory": "ceresmon",
+      "officialName": "Ceresmon Medium",
+      "attribute": "Data"
+    },
+    {
+      "name": "크로노몬[홀리 모드]",
+      "directory": "chronomon_holy",
+      "officialName": "Chronomon Holy Mode",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "크로노몬[디스트로이 모드]",
+      "directory": "chronomon_destroy",
+      "officialName": "Chronomon Destroy Mode",
+      "attribute": "Virus"
+    },
+    {
+      "name": "클라비스엔젤몬",
+      "directory": "clavisangemon",
+      "officialName": "ClavisAngemon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "크랩몬",
+      "directory": "ganimon",
+      "officialName": "Crabmon",
+      "attribute": "Data"
+    },
+    {
+      "name": "다크드라몬",
+      "directory": "darkdramon",
+      "officialName": "Darkdramon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "다크슈퍼스타몬",
+      "directory": "darksuperstarmon",
+      "officialName": "DarkSuperStarmon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "델타몬",
+      "directory": "deltamon",
+      "officialName": "Deltamon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "카우보이몬",
+      "directory": "revolmon",
+      "officialName": "Deputymon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "뿌띠몬",
+      "directory": "delumon",
+      "officialName": "Deramon",
+      "attribute": "Data"
+    },
+    {
+      "name": "디그몬",
+      "directory": "digmon",
+      "officialName": "Digmon",
+      "attribute": "Free"
+    },
+    {
+      "name": "다이버몬",
+      "directory": "hangyomon",
+      "officialName": "Divermon",
+      "attribute": "Data"
+    },
+    {
+      "name": "도베르몬",
+      "directory": "dobermon",
+      "officialName": "Dobermon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "스파이더몬",
+      "directory": "dokugumon",
+      "officialName": "Dokugumon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "두리몬",
+      "directory": "drimogemon",
+      "officialName": "Drimogemon",
+      "attribute": "Data"
+    },
+    {
+      "name": "크로스몬",
+      "directory": "crossmon",
+      "officialName": "Eaglemon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "안바르몬",
+      "directory": "enbarrmon",
+      "officialName": "Enbarrmon",
+      "attribute": "Data"
+    },
+    {
+      "name": "엑스티라노몬",
+      "directory": "ex-tyranomon",
+      "officialName": "ExTyrannomon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "파이라몬",
+      "directory": "firamon",
+      "officialName": "Firamon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "플레어몬",
+      "directory": "flaremon",
+      "officialName": "Flaremon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "플로라몬",
+      "directory": "floramon",
+      "officialName": "Floramon",
+      "attribute": "Data"
+    },
+    {
+      "name": "플라이몬",
+      "directory": "flymon",
+      "officialName": "Flymon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "푸가몬",
+      "directory": "fugamon",
+      "officialName": "Fugamon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "가비지몬",
+      "directory": "gerbemon",
+      "officialName": "Garbagemon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "기자몬",
+      "directory": "gizamon",
+      "officialName": "Gizamon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "그레이스노바몬",
+      "directory": "gracenovamon",
+      "officialName": "GraceNovamon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "그레이트그리즈몬",
+      "directory": "greatgryzmon",
+      "officialName": "GreatGrizzlymon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "건드라몬",
+      "directory": "gundramon",
+      "officialName": "Gundramon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "가와파몬",
+      "directory": "gawappamon",
+      "officialName": "Gwappamon",
+      "attribute": "Data"
+    },
+    {
+      "name": "호루스몬",
+      "directory": "holsmon",
+      "officialName": "Halsemon",
+      "attribute": "Free"
+    },
+    {
+      "name": "블루우가몬",
+      "directory": "hyougamon",
+      "officialName": "Hyogamon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "효코몬",
+      "directory": "hyokomon",
+      "officialName": "Hyokomon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "황제드라몬[드래곤]",
+      "directory": "imperialdramondragonmode",
+      "officialName": "Imperialdramon",
+      "attribute": "Free"
+    },
+    {
+      "name": "주엘비몬",
+      "directory": "jewelbeemon",
+      "officialName": "JewelBeemon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "점보가메몬",
+      "directory": "jumbogamemon",
+      "officialName": "JumboGamemon",
+      "attribute": "Data"
+    },
+    {
+      "name": "유피테르몬[래스 모드]",
+      "directory": "jupitermmon_wrath",
+      "officialName": "Jupitermon Wrath Mode",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "카프리몬",
+      "directory": "capromon",
+      "officialName": "Kapurimon",
+      "attribute": "",
+      "gameType": "무"
+    },
+    {
+      "name": "키위몬",
+      "directory": "kiwimon",
+      "officialName": "Kiwimon",
+      "attribute": "Data"
+    },
+    {
+      "name": "코쿠와몬",
+      "directory": "kokuwamon",
+      "officialName": "Kokuwamon",
+      "attribute": "Data"
+    },
+    {
+      "name": "코테몬",
+      "directory": "kotemon",
+      "officialName": "Kotemon",
+      "attribute": "Data"
+    },
+    {
+      "name": "로코몬",
+      "directory": "locomon",
+      "officialName": "Locomon",
+      "attribute": "Data"
+    },
+    {
+      "name": "매그너키드몬",
+      "directory": "magnakidmon",
+      "officialName": "MagnaKidmon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "마스터브링프몬",
+      "directory": "masterblimpmon",
+      "officialName": "MasterBlimpmon",
+      "attribute": "Data"
+    },
+    {
+      "name": "메카노몬",
+      "directory": "mechanorimon",
+      "officialName": "Mechanorimon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "메디벌듀크몬",
+      "directory": "medievaldukemon",
+      "officialName": "MedievalGallantmon",
+      "attribute": "Data"
+    },
+    {
+      "name": "뽈뽈몬",
+      "directory": "choromon",
+      "officialName": "MetalKoromon",
+      "attribute": "",
+      "gameType": "무"
+    },
+    {
+      "name": "메르바몬",
+      "directory": "mervamon",
+      "officialName": "Mervamon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "미노타몬",
+      "directory": "minotaurmon",
+      "officialName": "Minotarumon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "미스티몬",
+      "directory": "mistymon",
+      "officialName": "Mistymon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "모털몬",
+      "directory": "mojyamon",
+      "officialName": "Mojyamon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "미이라몬",
+      "directory": "mummymon",
+      "officialName": "Mummymon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "무사몬",
+      "directory": "musyamon",
+      "officialName": "Musyamon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "네페르티몬",
+      "directory": "nefertimon",
+      "officialName": "Nefertimon",
+      "attribute": "Free"
+    },
+    {
+      "name": "옥토몬",
+      "directory": "octmon",
+      "officialName": "Octomon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "패럴렐몬",
+      "directory": "parallelmon",
+      "officialName": "Parallelmon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "패롯몬",
+      "directory": "parrotmon",
+      "officialName": "Parrotmon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "페가수스몬",
+      "directory": "pegasmon",
+      "officialName": "Pegasusmon",
+      "attribute": "Free"
+    },
+    {
+      "name": "펭귄몬",
+      "directory": "penmon",
+      "officialName": "Penguinmon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "푸쿠몬",
+      "directory": "pukumon",
+      "officialName": "Pukumon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "라나몬",
+      "directory": "ranamon",
+      "officialName": "Ranamon",
+      "attribute": "Variable"
+    },
+    {
+      "name": "스콜피오몬",
+      "directory": "anomalocarimon",
+      "officialName": "Scorpiomon",
+      "attribute": "Data"
+    },
+    {
+      "name": "샤크몬",
+      "directory": "sharkmon",
+      "officialName": "Sharkmon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "원시고부리몬",
+      "directory": "shamamon",
+      "officialName": "Sharmamon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "사우자몬",
+      "directory": "shawujinmon",
+      "officialName": "Shawjamon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "쉘몬",
+      "directory": "shellmon",
+      "officialName": "Shellmon",
+      "attribute": "Data"
+    },
+    {
+      "name": "수리몬",
+      "directory": "shurimon",
+      "officialName": "Shurimon",
+      "attribute": "Free"
+    },
+    {
+      "name": "세이렌몬",
+      "directory": "sirenmon",
+      "officialName": "Sirenmon",
+      "attribute": "Data"
+    },
+    {
+      "name": "스컬벌키몬",
+      "directory": "skullbaluchimon",
+      "officialName": "SkullBaluchimon",
+      "attribute": "Data"
+    },
+    {
+      "name": "스컬맘몬",
+      "directory": "skullmammon",
+      "officialName": "SkullMammothmon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "스컬시드라몬",
+      "directory": "skullseadramon",
+      "officialName": "SkullSeadramon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "슬래쉬엔젤몬",
+      "directory": "slashangemon",
+      "officialName": "SlashAngemon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "스나이몬",
+      "directory": "snimon",
+      "officialName": "Snimon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "스노우고부리몬",
+      "directory": "snowgoburimon",
+      "officialName": "SnowGoburimon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "잠수몬",
+      "directory": "sabmarimon",
+      "officialName": "Submarimon",
+      "attribute": "Free"
+    },
+    {
+      "name": "탱크드라몬",
+      "directory": "tankdramon",
+      "officialName": "Tankdramon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "웬디몬",
+      "directory": "wendimon",
+      "officialName": "Wendigomon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "위치몬",
+      "directory": "witchmon",
+      "officialName": "Witchmon",
+      "attribute": "Data"
+    },
+    {
+      "name": "황금무사몬",
+      "directory": "zanbamon",
+      "officialName": "Zanbamon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "좀비플루토몬",
+      "directory": "zombieplutomon",
+      "officialName": "ZombiePlutomon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "알로몬",
+      "directory": "allomon",
+      "officialName": "Allomon",
+      "attribute": "Free"
+    },
+    {
+      "name": "브롯사몬",
+      "directory": "blossomon",
+      "officialName": "Blossomon",
+      "attribute": "Data"
+    },
+    {
+      "name": "볼토바우타몬",
+      "directory": "voltobautamon",
+      "officialName": "Boltboutamon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "브리웨루드라몬",
+      "directory": "bryweludramon",
+      "officialName": "BryweLudramon",
+      "attribute": "Data"
+    },
+    {
+      "name": "할매몬",
+      "directory": "babamon",
+      "officialName": "Babamon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "캔들몬",
+      "directory": "candmon",
+      "officialName": "Candlemon",
+      "attribute": "Data"
+    },
+    {
+      "name": "가재드라몬",
+      "directory": "ebidramon",
+      "officialName": "Ebidramon",
+      "attribute": "Data"
+    },
+    {
+      "name": "도그몬",
+      "directory": "dogmon",
+      "officialName": "Doggymon",
+      "attribute": "Data"
+    },
+    {
+      "name": "째리몬",
+      "directory": "giromon",
+      "officialName": "Giromon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "손오공몬",
+      "directory": "gokuwmon",
+      "officialName": "Gokuwmon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "그랑디스쿠가몬",
+      "directory": "grandiskuwagamon",
+      "officialName": "GrandisKuwagamon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "쟈가몬",
+      "directory": "jyagamon",
+      "officialName": "Jagamon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "제트실피드몬",
+      "directory": "jetsilphymon",
+      "officialName": "JetSilphymon",
+      "attribute": "Variable"
+    },
+    {
+      "name": "페어리몬",
+      "directory": "fairimon",
+      "officialName": "Kazemon",
+      "attribute": "Variable"
+    },
+    {
+      "name": "코스파이더몬",
+      "directory": "kodokugumon",
+      "officialName": "Kodokugumon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "블리자몬",
+      "directory": "blizzarmon",
+      "officialName": "Korikakumon",
+      "attribute": "Variable"
+    },
+    {
+      "name": "챠크몬",
+      "directory": "chackmon",
+      "officialName": "Kumamon",
+      "attribute": "Variable"
+    },
+    {
+      "name": "레베몬",
+      "directory": "louwemon",
+      "officialName": "Loweemon",
+      "attribute": "Variable"
+    },
+    {
+      "name": "마린데블몬",
+      "directory": "marindevimon",
+      "officialName": "MarineDevimon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "폰체스몬(흑)",
+      "directory": "paunchessmon",
+      "officialName": "PawnChessmon (Black)",
+      "attribute": "Virus"
+    },
+    {
+      "name": "폰체스몬(백)",
+      "directory": "paunchessmon-white",
+      "officialName": "PawnChessmon (White)",
+      "attribute": "Virus"
+    },
+    {
+      "name": "포큐파몬",
+      "directory": "porcupamon",
+      "officialName": "Porcupamon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "라이지루도몬",
+      "directory": "raijiludomon",
+      "officialName": "RaijiLudomon",
+      "attribute": "Data"
+    },
+    {
+      "name": "레드베지몬",
+      "directory": "redvegimon",
+      "officialName": "RedVegiemon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "바알몬",
+      "directory": "baalmon",
+      "officialName": "Reapmon",
+      "attribute": "Free"
+    },
+    {
+      "name": "삼장몬",
+      "directory": "sanzomon",
+      "officialName": "Sanzomon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "티아루도몬",
+      "directory": "tialudomon",
+      "officialName": "TiaLudomon",
+      "attribute": "Data"
+    },
+    {
+      "name": "이블몬",
+      "directory": "evilmon",
+      "officialName": "Vilemon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "배드퍼펫몬",
+      "directory": "warumonzaemon",
+      "officialName": "WaruMonzaemon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "슈츠몬",
+      "directory": "shutumon",
+      "officialName": "Zephyrmon",
+      "attribute": "Variable"
+    },
+    {
+      "name": "아누비스몬",
+      "directory": "anubimon",
+      "officialName": "Anubismon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "아수라몬",
+      "directory": "asuramon",
+      "officialName": "Asuramon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "기기몬",
+      "directory": "gigimon",
+      "officialName": "Gigimon",
+      "attribute": "",
+      "gameType": "무"
+    },
+    {
+      "name": "쟈리몬",
+      "directory": "jyarimon",
+      "officialName": "Jyarimon",
+      "attribute": "",
+      "gameType": "무"
+    },
+    {
+      "name": "구미몬",
+      "directory": "gummymon",
+      "officialName": "Gummymon",
+      "attribute": "",
+      "gameType": "무"
+    },
+    {
+      "name": "연체몬",
+      "directory": "gesomon",
+      "officialName": "Gesomon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "초코몬",
+      "directory": "chocomon",
+      "officialName": "Kokomon",
+      "attribute": "",
+      "gameType": "무"
+    },
+    {
+      "name": "피치몬",
+      "directory": "pitchmon",
+      "officialName": "Pichimon",
+      "attribute": "",
+      "gameType": "무"
+    },
+    {
+      "name": "사이케몬",
+      "directory": "psychemon",
+      "officialName": "Psychemon",
+      "attribute": "Data"
+    },
+    {
+      "name": "유라몬",
+      "directory": "yuramon",
+      "officialName": "Yuramon",
+      "attribute": "",
+      "gameType": "무"
+    },
+    {
+      "name": "제리몬",
+      "directory": "zerimon",
+      "officialName": "Zerimon",
+      "attribute": "",
+      "gameType": "무"
+    },
+    {
+      "name": "팅커몬",
+      "directory": "tinkermon",
+      "officialName": "Tinkermon",
+      "attribute": "Virus"
+    },
+    {
+      "name": "빅토리그레이몬",
+      "directory": "victorygreymon",
+      "officialName": "VictoryGreymon",
+      "attribute": "Vaccine"
+    },
+    {
+      "name": "블랙그라우몬",
+      "directory": "blackgrowmon",
+      "officialName": "BlackGrowlmon",
+      "attribute": "Virus"
     }
   ],
   "gameReferences": [

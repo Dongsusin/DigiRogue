@@ -18,7 +18,7 @@ export function buildItemDex(items, getRarity = item => item.rarity ?? 'common')
     entries.set(item.id, { id: item.id, name: item.name, imageUrl: item.imageUrl,
       rarity: rarityOrder.has(resolved) ? resolved : 'common',
       descriptions: item.description ? [item.description] : [],
-      kind: item.digiEggName ? '디지에그' : item.evolutionItemFor || item.jogressRecipes ? '진화' :
+      kind: item.battleItemKey && item.evolutionTargets?.length ? '장착 · 진화' : item.digiEggName ? '디지에그' : item.evolutionItemFor || item.jogressRecipes ? '진화' :
         item.cardCode ? '카드' : item.consumable ? '소비' :
         item.battleItemKey || item.typeUpKey || item.attributeUpKey || item.digicloneKey || item.recoveryProgramKey ? '장착' :
         item.buffStatKey ? '능력 강화' : '모험',

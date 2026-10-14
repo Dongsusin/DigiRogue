@@ -1,0 +1,40 @@
+{
+  "aliases": {
+    "item-evolution-용기의 디지멘탈 · 가트몬": "item-evolution-용기의 디지멘탈",
+    "item-evolution-우정의 디지멘탈 · 가트몬": "item-evolution-우정의 디지멘탈",
+    "item-evolution-빛의 디지멘탈 · 가트몬": "item-evolution-친절의 디지멘탈",
+    "item-evolution-용기의 디지멘탈 · 아르마몬": "item-evolution-용기의 디지멘탈",
+    "item-evolution-희망의 디지멘탈 · 아르마몬": "item-evolution-희망의 디지멘탈",
+    "item-evolution-희망의 디지멘탈 · 호크몬": "item-evolution-희망의 디지멘탈",
+    "item-evolution-빛의 디지멘탈 · 호크몬": "item-evolution-빛의 디지멘탈",
+    "item-evolution-사랑의 디지멘탈 · 추추몬": "item-evolution-사랑의 디지멘탈",
+    "item-evolution-친절의 디지멘탈 · 파닥몬": "item-evolution-친절의 디지멘탈",
+    "item-evolution-황금의 디지멘탈": "item-evolution-기적의 디지멘탈",
+    "item-evolution-희망의 디지멘탈 · 파닥몬": "item-evolution-희망의 디지멘탈",
+    "item-evolution-불꽃의 스피릿": "human-spirit-fire",
+    "item-evolution-빛의 스피릿": "human-spirit-light",
+    "item-evolution-블랑의 각성 인장": "item-evolution-awakening-evoluter",
+    "item-evolution-느와르의 각성 인장": "item-evolution-awakening-evoluter",
+    "item-evolution-expansion7-digmon": "item-evolution-지식의 디지멘탈",
+    "item-evolution-expansion7-submarimon": "item-evolution-성실의 디지멘탈",
+    "item-evolution-expansion7-halsemon": "item-evolution-사랑의 디지멘탈",
+    "item-evolution-expansion7-shurimon": "item-evolution-순수의 디지멘탈",
+    "item-evolution-expansion7-pegasusmon": "item-evolution-희망의 디지멘탈",
+    "item-evolution-expansion7-nefertimon": "item-evolution-빛의 디지멘탈",
+    "item-evolution-expansion7-allomon": "item-evolution-용기의 디지멘탈",
+    "item-evolution-expansion7-zephyrmon": "beast-spirit-wind",
+    "item-evolution-expansion7-korikakumon": "beast-spirit-ice",
+    "item-evolution-expansion7-calmaramon": "beast-spirit-water",
+    "item-evolution-expansion7-kazemon": "human-spirit-wind",
+    "item-evolution-expansion7-kumamon": "human-spirit-ice",
+    "item-evolution-expansion7-loweemon": "human-spirit-dark",
+    "item-evolution-expansion7-lanamon": "human-spirit-water",
+    "item-evolution-expansion7-imperialdramon-dm": "item-evolution-포지트론 레이저"
+  },
+  "retiredIds": [
+    "item-evolution-expansion7-ultimatebrachiomon",
+    "item-evolution-expansion7-bacchusmon-dm",
+    "item-evolution-expansion7-ordinemon",
+    "item-evolution-investment-알파몬[왕룡검]"
+  ]
+}

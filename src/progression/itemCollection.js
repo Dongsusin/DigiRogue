@@ -1,9 +1,10 @@
+import { canonicalItemId } from '../data/itemIdentity.js'
 import eggs from '../../data/디지몬/디지에그.json' with { type: 'json' }
 
 const validId = id => typeof id === 'string' && id.length > 0 && id.length < 200 && !['__proto__', 'constructor', 'prototype'].includes(id)
 export function normalizeItemDiscoveries(raw) {
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return {}
-  return Object.fromEntries(Object.entries(raw).filter(([id, seen]) => validId(id) && seen === true))
+  return Object.fromEntries(Object.entries(raw).filter(([id, seen]) => validId(id) && seen === true).map(([id])=>[canonicalItemId(id),true]).filter(([id])=>validId(id)))
 }
 export const hasDiscoveredItem = (collection, id) => Object.hasOwn(collection?.items ?? {}, id) && collection.items[id] === true
 
@@ -11,7 +12,7 @@ export function recordItemDiscoveries(collection, items = []) {
   const seen = { ...(collection.items ?? {}) }
   let changed = false
   for (const item of items) {
-    const id = typeof item === 'string' ? item : item?.id
+    const id = canonicalItemId(typeof item === 'string' ? item : item?.id)
     if (!validId(id) || seen[id] === true) continue
     seen[id] = true; changed = true
   }

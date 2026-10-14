@@ -369,7 +369,14 @@
       "model": "/models/digimon/princemamemon.glb",
       "directory": "princemamemon",
       "source": "https://digimon.net/reference_ko/detail.php?directory_name=princemamemon",
-      "overlapsExistingName": false
+      "overlapsExistingName": false,
+      "reusedBy": {
+        "english": "Deramon",
+        "directory": "deramon",
+        "model": "/models/digimon/deramon.glb",
+        "source": "https://digimon.net/reference_ko/detail.php?directory_name=deramon",
+        "addedAt": "2026-10-13"
+      }
     },
     {
       "from": "히사류우몬",

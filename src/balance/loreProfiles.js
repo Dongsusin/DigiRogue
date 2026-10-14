@@ -1,3 +1,4 @@
+import expansion7 from '../data/rosterExpansion7.json' with { type: 'json' }
 // These are authored fan-game ratings, not official numerical stats or a canonical ranking.
 // Stage is a growth classification; it never supplies a species' combat budget or cost.
 export const LORE_SOURCES = Object.freeze({
@@ -614,10 +615,10 @@ const rows = `
 지드밀레니엄몬|1250|calamity|expansion6_zeedmillenniumon
 `
 
-export const LORE_PROFILES = Object.freeze(Object.fromEntries(rows.trim().split('\n').map(row => {
+export const LORE_PROFILES = Object.freeze({ ...Object.fromEntries(rows.trim().split('\n').map(row => {
   const [name, total, build, source] = row.split('|')
   return [name, Object.freeze({ budget: Number(total), build, source: source ? LORE_SOURCES[source] : null })]
-})))
+})), ...Object.fromEntries(Object.entries(expansion7.combat).map(([name, profile]) => [name, Object.freeze(profile)])) })
 
 // Power, including cross-stage exceptions, determines the base cost. The weakest
 // current Perfect (515) costs 10; every further 25 points raises cost without a cap.

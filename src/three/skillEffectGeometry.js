@@ -244,10 +244,17 @@ export function makeImpactMarks(fx,plan) {
   } else if(k==='flame'||k==='darkBurst'||k==='explosion') {
     group.add(k==='darkBurst' ? makeEnergyObject(fx,{...plan,shape:'orb',motif:'shadow'}) : makeFlameObject(fx,plan.palette))
     if(k==='explosion')ring(.55,Math.PI/2)
+  } else if(k==='energyBurst') {
+    skillMesh(fx,group,g.sphere,core,[.3,.3,.3],[0,0,0],.5)
+    ring(.5);ring(.8,Math.PI/2)
+    for(let i=0;i<8;i++)skillMesh(fx,group,g.shard,color,[.035,.55,.035]).rotation.z=i*TAU/8
   } else if(k==='beam') {ring(.65);for(let i=0;i<5;i++)skillMesh(fx,group,g.shard,core,[.03,.45,.03]).rotation.z=i*TAU/5}
   else if(k==='shot') {for(let i=0;i<4;i++)skillMesh(fx,group,g.shard,core,[.025,.35,.025]).rotation.z=i*Math.PI/4}
   else if(k==='mist') {for(let i=0;i<6;i++){const m=fx.sprite(fx.textures.smoke,color,.8);m.position.set((i%3-1)*.35,(Math.floor(i/3)-.5)*.35,0);group.add(m)}}
-  else if(k==='water'||k==='sonic') {for(let i=0;i<3;i++){const m=ring(.4+i*.22);m.position.z=-i*.15}}
+  else if(k==='water'||k==='sonic') {
+    for(let i=0;i<3;i++){const m=ring(.4+i*.22);m.position.z=-i*.15}
+    if(k==='water')for(let i=0;i<8;i++){const a=i/8*TAU;skillMesh(fx,group,g.sphere,i%2?color:core,[.06,.14,.06],[Math.cos(a)*.5,Math.sin(a)*.5,0],.5).rotation.z=a}
+  }
   else if(k==='strike') {for(let i=0;i<6;i++)skillMesh(fx,group,g.shard,i%2?color:core,[.07,.4,.07]).rotation.z=i*TAU/6;ring(.3)}
   else {ring(.5);ring(.7,Math.PI/2)}
   group.userData.impactKind=k;return group

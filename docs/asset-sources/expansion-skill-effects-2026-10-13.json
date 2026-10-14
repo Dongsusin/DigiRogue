@@ -1,0 +1,625 @@
+{
+  "date": "2026-10-13",
+  "scope": {
+    "species": 150,
+    "signatures": 288
+  },
+  "policy": "Technique presentation is adapted from official descriptions; geometry, palette and visual timings are fan-game art direction. Damage formulas and original model animation data are unchanged.",
+  "references": {
+    "코로나몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=coronamon",
+      "verified": true
+    },
+    "아이기오투스몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=aegiochusmon",
+      "verified": true
+    },
+    "아이기오투스몬[블루]": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=aegiochusmon%3Ablue",
+      "verified": true
+    },
+    "아이기오몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=aegiomon",
+      "verified": true
+    },
+    "아이기오투스몬[다크]": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=aegiochusmon%3Adark",
+      "verified": true
+    },
+    "아이기오투스몬[홀리]": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=aegiochusmon_holly",
+      "verified": true
+    },
+    "아루다몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=aldamon",
+      "verified": true
+    },
+    "아이기오투스몬[그린]": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=aegiochusmon%3Agreen",
+      "verified": true
+    },
+    "에이션트와이즈몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=ancientwisetmon",
+      "verified": true
+    },
+    "아폴로몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=apollomon",
+      "verified": true
+    },
+    "아스타몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=astamon",
+      "verified": true
+    },
+    "아라크네몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=archnemon",
+      "verified": true
+    },
+    "어벤지키드몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=avengekidmon",
+      "verified": true
+    },
+    "반쵸콩알몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=banchomamemon",
+      "verified": true
+    },
+    "베오울프몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=beowolfmon",
+      "verified": true
+    },
+    "바커스몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=bacchusmon",
+      "verified": true
+    },
+    "베르스타몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=beelstarmon",
+      "verified": true
+    },
+    "빅콩알몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=bigmamemon",
+      "verified": true
+    },
+    "브링프몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=blimpmon",
+      "verified": true
+    },
+    "브라키몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=brachiomon",
+      "verified": true
+    },
+    "부라이몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=buraimon",
+      "verified": true
+    },
+    "카르마라몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=calamaramon",
+      "verified": true
+    },
+    "칼리스몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=callismon",
+      "verified": true
+    },
+    "부텐몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=butenmon",
+      "verified": true
+    },
+    "켄터스몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=centalmon",
+      "verified": true
+    },
+    "케르베로스몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=cerberumon",
+      "verified": true
+    },
+    "케레스몬[미디엄]": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=ceresmon",
+      "verified": true
+    },
+    "케르베로스몬[인랑]": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=cerberumon_werewolfmode",
+      "verified": true
+    },
+    "크로노몬[홀리 모드]": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=chronomon_holy",
+      "verified": true
+    },
+    "크로노몬[디스트로이 모드]": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=chronomon_destroy",
+      "verified": true
+    },
+    "크랩몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=ganimon",
+      "verified": true
+    },
+    "클라비스엔젤몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=clavisangemon",
+      "verified": true
+    },
+    "다크드라몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=darkdramon",
+      "verified": true
+    },
+    "다크슈퍼스타몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=darksuperstarmon",
+      "verified": true
+    },
+    "카우보이몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=revolmon",
+      "verified": true
+    },
+    "델타몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=deltamon",
+      "verified": true
+    },
+    "뿌띠몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=delumon",
+      "verified": true
+    },
+    "디그몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=digmon",
+      "verified": true
+    },
+    "다이버몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=hangyomon",
+      "verified": true
+    },
+    "도베르몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=dobermon",
+      "verified": true
+    },
+    "스파이더몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=dokugumon",
+      "verified": true
+    },
+    "두리몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=drimogemon",
+      "verified": true
+    },
+    "안바르몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=enbarrmon",
+      "verified": true
+    },
+    "크로스몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=crossmon",
+      "verified": true
+    },
+    "엑스티라노몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=ex-tyranomon",
+      "verified": true
+    },
+    "파이라몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=firamon",
+      "verified": true
+    },
+    "플로라몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=floramon",
+      "verified": true
+    },
+    "플레어몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=flaremon",
+      "verified": true
+    },
+    "플라이몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=flymon",
+      "verified": true
+    },
+    "푸가몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=fugamon",
+      "verified": true
+    },
+    "기자몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=gizamon",
+      "verified": true
+    },
+    "가비지몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=gerbemon",
+      "verified": true
+    },
+    "그레이스노바몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=gracenovamon",
+      "verified": true
+    },
+    "그레이트그리즈몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=greatgryzmon",
+      "verified": true
+    },
+    "가와파몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=gawappamon",
+      "verified": true
+    },
+    "건드라몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=gundramon",
+      "verified": true
+    },
+    "호루스몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=holsmon",
+      "verified": true
+    },
+    "블루우가몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=hyougamon",
+      "verified": true
+    },
+    "황제드라몬[드래곤]": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=imperialdramondragonmode",
+      "verified": true
+    },
+    "효코몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=hyokomon",
+      "verified": true
+    },
+    "주엘비몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=jewelbeemon",
+      "verified": true
+    },
+    "점보가메몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=jumbogamemon",
+      "verified": true
+    },
+    "카프리몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=capromon",
+      "verified": true
+    },
+    "유피테르몬[래스 모드]": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=jupitermmon_wrath",
+      "verified": true
+    },
+    "키위몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=kiwimon",
+      "verified": true
+    },
+    "코쿠와몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=kokuwamon",
+      "verified": true
+    },
+    "로코몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=locomon",
+      "verified": true
+    },
+    "코테몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=kotemon",
+      "verified": true
+    },
+    "매그너키드몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=magnakidmon",
+      "verified": true
+    },
+    "마스터브링프몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=masterblimpmon",
+      "verified": true
+    },
+    "메카노몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=mechanorimon",
+      "verified": true
+    },
+    "메디벌듀크몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=medievaldukemon",
+      "verified": true
+    },
+    "뽈뽈몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=choromon",
+      "verified": true
+    },
+    "메르바몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=mervamon",
+      "verified": true
+    },
+    "미노타몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=minotaurmon",
+      "verified": true
+    },
+    "미스티몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=mistymon",
+      "verified": true
+    },
+    "모털몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=mojyamon",
+      "verified": true
+    },
+    "미이라몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=mummymon",
+      "verified": true
+    },
+    "무사몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=musyamon",
+      "verified": true
+    },
+    "네페르티몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=nefertimon",
+      "verified": true
+    },
+    "옥토몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=octmon",
+      "verified": true
+    },
+    "패럴렐몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=parallelmon",
+      "verified": true
+    },
+    "패롯몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=parrotmon",
+      "verified": true
+    },
+    "페가수스몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=pegasmon",
+      "verified": true
+    },
+    "펭귄몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=penmon",
+      "verified": true
+    },
+    "푸쿠몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=pukumon",
+      "verified": true
+    },
+    "라나몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=ranamon",
+      "verified": true
+    },
+    "스콜피오몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=anomalocarimon",
+      "verified": true
+    },
+    "샤크몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=sharkmon",
+      "verified": true
+    },
+    "원시고부리몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=shamamon",
+      "verified": true
+    },
+    "사우자몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=shawujinmon",
+      "verified": true
+    },
+    "쉘몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=shellmon",
+      "verified": true
+    },
+    "수리몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=shurimon",
+      "verified": true
+    },
+    "세이렌몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=sirenmon",
+      "verified": true
+    },
+    "스컬벌키몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=skullbaluchimon",
+      "verified": true
+    },
+    "스컬맘몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=skullmammon",
+      "verified": true
+    },
+    "스컬시드라몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=skullseadramon",
+      "verified": true
+    },
+    "슬래쉬엔젤몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=slashangemon",
+      "verified": true
+    },
+    "스나이몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=snimon",
+      "verified": true
+    },
+    "스노우고부리몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=snowgoburimon",
+      "verified": true
+    },
+    "잠수몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=sabmarimon",
+      "verified": true
+    },
+    "탱크드라몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=tankdramon",
+      "verified": true
+    },
+    "위치몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=witchmon",
+      "verified": true
+    },
+    "웬디몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=wendimon",
+      "verified": true
+    },
+    "황금무사몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=zanbamon",
+      "verified": true
+    },
+    "좀비플루토몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=zombieplutomon",
+      "verified": true
+    },
+    "알로몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=allomon",
+      "verified": true
+    },
+    "브롯사몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=blossomon",
+      "verified": true
+    },
+    "볼토바우타몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=voltobautamon",
+      "verified": true
+    },
+    "브리웨루드라몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=bryweludramon",
+      "verified": true
+    },
+    "할매몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=babamon",
+      "verified": true
+    },
+    "가재드라몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=ebidramon",
+      "verified": true
+    },
+    "캔들몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=candmon",
+      "verified": true
+    },
+    "도그몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=dogmon",
+      "verified": true
+    },
+    "째리몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=giromon",
+      "verified": true
+    },
+    "손오공몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=gokuwmon",
+      "verified": true
+    },
+    "그랑디스쿠가몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=grandiskuwagamon",
+      "verified": true
+    },
+    "쟈가몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=jyagamon",
+      "verified": true
+    },
+    "코스파이더몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=kodokugumon",
+      "verified": true
+    },
+    "제트실피드몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=jetsilphymon",
+      "verified": true
+    },
+    "페어리몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=fairimon",
+      "verified": true
+    },
+    "블리자몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=blizzarmon",
+      "verified": true
+    },
+    "챠크몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=chackmon",
+      "verified": true
+    },
+    "레베몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=louwemon",
+      "verified": true
+    },
+    "마린데블몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=marindevimon",
+      "verified": true
+    },
+    "폰체스몬(흑)": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=paunchessmon",
+      "verified": true
+    },
+    "폰체스몬(백)": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=paunchessmon-white",
+      "verified": true
+    },
+    "포큐파몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=porcupamon",
+      "verified": true
+    },
+    "라이지루도몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=raijiludomon",
+      "verified": true
+    },
+    "레드베지몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=redvegimon",
+      "verified": true
+    },
+    "바알몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=baalmon",
+      "verified": true
+    },
+    "삼장몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=sanzomon",
+      "verified": true
+    },
+    "티아루도몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=tialudomon",
+      "verified": true
+    },
+    "이블몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=evilmon",
+      "verified": true
+    },
+    "배드퍼펫몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=warumonzaemon",
+      "verified": true
+    },
+    "슈츠몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=shutumon",
+      "verified": true
+    },
+    "아누비스몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=anubimon",
+      "verified": true
+    },
+    "아수라몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=asuramon",
+      "verified": true
+    },
+    "기기몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=gigimon",
+      "verified": true
+    },
+    "쟈리몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=jyarimon",
+      "verified": true
+    },
+    "구미몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=gummymon",
+      "verified": true
+    },
+    "연체몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=gesomon",
+      "verified": true
+    },
+    "피치몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=pitchmon",
+      "verified": true
+    },
+    "초코몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=chocomon",
+      "verified": true
+    },
+    "사이케몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=psychemon",
+      "verified": true
+    },
+    "유라몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=yuramon",
+      "verified": true
+    },
+    "팅커몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=tinkermon",
+      "verified": true
+    },
+    "빅토리그레이몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=victorygreymon",
+      "verified": true
+    },
+    "제리몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=zerimon",
+      "verified": true
+    },
+    "블랙그라우몬": {
+      "url": "https://digimon.net/reference_ko/detail.php?directory_name=blackgrowmon",
+      "verified": true
+    }
+  },
+  "runtimeRecipes": "src/data/expansionSkillEffects.json",
+  "nativeMetadataFixes": [
+    {
+      "name": "가비지몬",
+      "change": "Use shipped attack02 instead of nonexistent attack01"
+    },
+    {
+      "name": "도그몬",
+      "change": "Resolve mouth and body to Bip001 source skeleton"
+    },
+    {
+      "name": "브롯사몬",
+      "change": "Emit flower bombs above the source root at flower height"
+    }
+  ]
+}

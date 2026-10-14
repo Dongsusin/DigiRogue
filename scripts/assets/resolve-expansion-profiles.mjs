@@ -1,0 +1,14 @@
+import fs from 'node:fs/promises';
+const root='C:/Users/pdwea/Develop/digirouge',dir=root+'/.tmp-convert/roster-expansion-2026-10-13',file=dir+'/official-profiles.json';
+const profiles=JSON.parse(await fs.readFile(file)),bad=profiles.filter(p=>!p.verified),normalize=s=>s.toLowerCase().replace(/\(xantibody\)|xantibody/g,'x').replace(/[^a-z0-9]/g,''),strip=s=>s.replace(/<[^>]*>/g,' ').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();let next=0;
+const overrides={'Aegiochusmon: Holy':'aegiochusmon_holly','Jupitermon Wrath Mode':'jupitermmon_wrath','Arukenimon':'archnemon','Centarumon':'centalmon','Imperialdramon':'imperialdramondragonmode','Shawjamon':'shawujinmon','SnowGoburimon':'snowgoburimon','Sakuyamon Miko Mode':'sakuyamon:mikomode','Cherubimon (Evil) X':'cherubimondark_x','Reapmon':'baalmon','Cerberumon Werewolf Mode':'cerberumon_werewolfmode','Mechanorimon':'mechanorimon','Octomon':'octmon','SkullMammothmon':'skullmammon','Wendigomon':'wendimon'};
+await Promise.all(Array.from({length:8},async()=>{while(next<bad.length){const old=bad[next++];try{
+let id=overrides[old.english];
+if(!id){const url='https://digimon.net/reference_en/request.php?'+new URLSearchParams({digimon_name:old.english.replace(/ \(.*?\)|:.*| (?:Wrath|Deisui|Holy|Destroy|Werewolf) Mode$/g,''),name:'',digimon_level:'',attribute:'',type:'',next:'0',view_more:''});
+const response=await fetch(url,{headers:{'X-Requested-With':'XMLHttpRequest',Referer:'https://digimon.net/reference_en/'},signal:AbortSignal.timeout(15000)}),s=await response.text();const rows=s?JSON.parse(s)?.rows??[]:[];
+let match=rows.find(r=>normalize(r.name)===normalize(old.english));if(!match&&rows.length===1)match=rows[0];if(!match)continue;id=match.directory_name;}
+const url='https://digimon.net/reference_ko/detail.php?directory_name='+encodeURIComponent(id),h=await fetch(url,{signal:AbortSignal.timeout(15000)}).then(r=>r.text()),name=strip(h.match(/<title>([^<]+)\| 디지몬 도감/)?.[1]??'');if(!name)continue;
+const fact=label=>h.match(new RegExp('<dt[^>]*>\\s*'+label+'\\s*</dt>\\s*<dd[^>]*>([\\s\\S]*?)</dd>'))?.[1]??'';
+Object.assign(old,{directory:id,url,verified:true,name,stage:strip(fact('등급')),type:strip(fact('유형')),attribute:strip(fact('속성')),skills:fact('필살기').split(/<br\s*\/?>|・/).map(strip).filter(Boolean),profile:strip(h.match(/<p class="p-ref__txt -txtProfile">([\s\S]*?)<\/p>/)?.[1]??'')});
+}catch(e){old.searchError=String(e)}}}));
+await fs.writeFile(file,JSON.stringify(profiles,null,2));console.log(JSON.stringify({verified:profiles.filter(x=>x.verified).length,unverified:profiles.filter(x=>!x.verified).map(x=>x.english)}));

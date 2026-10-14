@@ -5,7 +5,7 @@ import { getLoreProfile, createLoreStats, costForPower } from './loreProfiles.js
 import { getDigimonTrainingStage } from '../data/digimonStages.js'
 
 // Raw species/animation names stay intact; this is the single gameplay tuning layer.
-export const BALANCE_REVISION = 5
+export const BALANCE_REVISION = 6
 export const STAGE_TUNING = {
   유아기: { level: 1 }, 유년기: { level: 3 },
   성장기: { level: 5 }, 성숙기: { level: 15 },
@@ -147,7 +147,9 @@ export function balanceSpecies(raw, stage, skills) {
   const signatureSkills = Object.fromEntries(Object.entries(encounterSkills).map(([name, skill]) => {
     if (!skill || skill.효과 || skill.분류 === '보조형' || !investment.statBonus) return [name, skill]
     const power = investment.skillPower?.[name] ?? Math.max(skill.데미지, Math.min(200, Math.round(skill.데미지 * investment.skillMultiplier / 5) * 5))
-    return [name, { ...skill, 데미지: power, cooldown: power >= 230 ? 4 : power >= 165 ? 3 : skill.cooldown }]
+    return [name, { ...skill, 데미지: power,
+      cooldown: Math.max(skill.cooldown, power >= 230 ? 4 : power >= 165 ? 3 : power >= 120 ? 2 : power >= 85 || skill.전체공격 ? 1 : 0),
+      명중률: power >= 120 ? '90%' : skill.명중률 }]
   }))
   const level = getEvolutionLevel(raw.이름, stage)
   // Support follows the species' combat identity rather than a name hash.

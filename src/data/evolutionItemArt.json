@@ -214,5 +214,41 @@
     "sha256": "438059f0964280e2a00d7fbe473ec9e6f06b020685c402220b604e2dbd950570",
     "modification": "none",
     "retrievedAt": "2026-09-30"
+  },
+  "knowledge": {
+    "name": "지식의 디지멘탈",
+    "url": "/items/evolution/canonical/knowledge.png",
+    "sourcePage": "https://digimon.net/profile/report012/",
+    "sourceImage": "https://digimon.net/profile/images/profile/labo2/img_labo2_05.png",
+    "sourceKind": "official-art",
+    "sha256": "f7d5bae39a54a0c87779a869511fca190c5ae88133b1ec3974154a8d4ef62181",
+    "modification": "none",
+    "retrievedAt": "2026-10-13",
+    "width": 420,
+    "height": 320
+  },
+  "reliability": {
+    "name": "성실의 디지멘탈",
+    "url": "/items/evolution/canonical/reliability.png",
+    "sourcePage": "https://digimon.net/profile/report012/",
+    "sourceImage": "https://digimon.net/profile/images/profile/labo2/img_labo2_06.png",
+    "sourceKind": "official-art",
+    "sha256": "9fff23f4d60849cd689359bd1cfb13c24a65193b3aa3e23b026c33f3c4bdcd69",
+    "modification": "none",
+    "retrievedAt": "2026-10-13",
+    "width": 420,
+    "height": 320
+  },
+  "purity": {
+    "name": "순수의 디지멘탈",
+    "url": "/items/evolution/canonical/purity.png",
+    "sourcePage": "https://digimon.net/profile/report012/",
+    "sourceImage": "https://digimon.net/profile/images/profile/labo2/img_labo2_04.png",
+    "sourceKind": "official-art",
+    "sha256": "9c96dcb1052db655a4c7274b1b114f34aa1cc91871ad8675186e6e9fe6230538",
+    "modification": "none",
+    "retrievedAt": "2026-10-13",
+    "width": 420,
+    "height": 320
   }
 }

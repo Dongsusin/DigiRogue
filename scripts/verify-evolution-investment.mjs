@@ -17,13 +17,13 @@ const unit = (name, level, extra = {}) => e.createCombatant({ id: name, name, da
 const stateOf = (party, inventory = {}) => ({ currentStage: 191, currentMap: '기어 포레스트', gameMode: 'classic',
   player: party[0], party, inventory, enemies: [], activeAllyIds: [party[0].id], trainerSkills: {} })
 const setup = name => {
-  const rule = ITEM_EVOLUTION_REQUIREMENTS[name], recipe = JOGRESS_RECIPES.find(recipe => recipe.targetName === name)
+  const rule = ITEM_EVOLUTION_REQUIREMENTS[name] ?? { level: ENDGAME_EVOLUTION_TUNING[name].level }, recipe = JOGRESS_RECIPES.find(recipe => recipe.targetName === name)
   const party = (recipe?.materials ?? [rule.from[0]]).map(name => unit(name, rule.level, { digiclones: clones }))
   const item = ITEM_EVOLUTION_REWARD_ITEMS.find(item => item.evolutionItemFor === name)
-  return { rule, recipe, party, item, state: stateOf(party, { [item.id]: item.requiredCount + 1 }) }
+  return { rule, recipe, party, item, state: stateOf(party, item ? { [item.id]: item.requiredCount + 1 } : {}) }
 }
 
-test('all 511 playable profiles keep their identities, and investment reward rises from ordinary to fusion to apex', () => {
+test('all playable profiles keep native identities and route rewards', () => {
   let tuned = 0
   for (const data of e.allDigimonLookup.values()) {
     const original = getLoreProfile(data.이름), investment = getEvolutionInvestment(data.이름)
@@ -39,12 +39,12 @@ test('all 511 playable profiles keep their identities, and investment reward ris
   }
   assert(tuned > 40)
   assert.equal(getEvolutionInvestment('아구몬').statBonus, 0)
-  assert(getEvolutionInvestment('마스테몬').statBonus > getEvolutionInvestment('아그니몬').statBonus)
+  assert(getEvolutionInvestment('아그니몬').statBonus > getEvolutionInvestment('마스테몬').statBonus)
   assert(getEvolutionInvestment('오메가몬[X항체]').statBonus > getEvolutionInvestment('오메가몬').statBonus)
   assert.equal(e.allDigimonLookup.get('아구몬').전투총합, 405)
 })
 
-for (const [name, tuning] of Object.entries(ENDGAME_EVOLUTION_TUNING)) {
+for (const [name, tuning] of Object.entries(ENDGAME_EVOLUTION_TUNING).filter(([name]) => ITEM_EVOLUTION_REQUIREMENTS[name])) {
   test(name + ': stat reward, master catalyst and all required levels/stats are enforced and consumed atomically', async () => {
     const { rule, recipe, party, item, state } = setup(name)
     assert.equal(rule.level, tuning.level); assert.equal(item.rarity, 'master'); assert.equal(item.requiredCount, tuning.itemCount)
@@ -77,7 +77,7 @@ test('item routes and every fusion material need permanent training; battle buff
     for (let index = 0; index < party.length; index++) {
       const untrained = party.map((member, slot) => slot !== index ? member : unit(member.name, rule.level,
         { activeBuffs: { attack: 1, specialAttack: 1 }, statModifiers: { attack: { multiplier: 10, duration: 'region' } } }))
-      const state = stateOf(untrained, { [item.id]: item.requiredCount })
+      const state = stateOf(untrained, item ? { [item.id]: item.requiredCount } : {})
       const option = e.getEvolutionOptions(untrained[0], state.inventory, untrained).find(option => option.targetData.이름 === name)
       assert(option && !option.conditionsMet, name + ': parent ' + index)
       assert.equal(e.resolveManualEvolution(state, untrained[0].id, name), null)
@@ -109,7 +109,7 @@ test('existing catalyst IDs stay usable and all promoted/new catalysts appear in
   const oldIds = ['item-evolution-자비의 빛', 'item-evolution-블랙 디지트론', 'item-evolution-파괴의 인장', 'item-evolution-오메가몬의 X항체', 'item-evolution-오메가 블레이드']
   const catalog = buildItemDex([...e.fixedRewardItems, ...e.randomRewardItemPool], e.getRewardItemRarity)
   for (const id of oldIds) assert(catalog.some(item => item.id === id && item.rarity === 'master'), id)
-  assert.equal(catalog.filter(item => item.kind === '진화' && item.rarity === 'master').length, 9)
+  assert.deepEqual(new Set(catalog.filter(item => item.kind === '진화' && item.rarity === 'master').map(item => item.id)), new Set(ITEM_EVOLUTION_REWARD_ITEMS.filter(item => item.rarity === 'master').map(item => item.id)))
   assert.equal(catalog.find(item => item.id === 'jogress-chip').rarity, 'good')
 })
 

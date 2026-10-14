@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { loadBattleEngine } from './lib/battle-engine-fixture.mjs'
+import manifest from '../src/data/digimonModelManifest.json' with { type: 'json' }
 import { writeSaveSlot, readSaveSlot } from '../src/progression/saveSlots.js'
 
 const engine = await loadBattleEngine()
@@ -119,8 +120,8 @@ test('separate party members each receive their own once-per-level learning oppo
   assert.deepEqual(advance(second.nextCombatant).skillLearnEvents, [])
 })
 
-test('all 512 real species stop proposing missing past skills after their final unlock', () => {
-  assert.equal(engine.allDigimonLookup.size, 512)
+test('all model-backed species stop proposing missing past skills after their final unlock', () => {
+  assert.equal(engine.allDigimonLookup.size, Object.keys(manifest).length)
   for (const data of engine.allDigimonLookup.values()) {
     const level = Math.max(1, ...(data.어티치먼트 ?? []).map(entry => Number(entry.레벨) || 0))
     const start = engine.createCombatant({ id: data.이름, name: data.이름, data, level })

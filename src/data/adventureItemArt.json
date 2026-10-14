@@ -271,7 +271,9 @@
     "url": "/items/adventure/d-terminal.jpg",
     "sha256": "977a266bf9db1c924c2b0b09c293cd718512cd6153e2e5bb40cb94747ffeda0e",
     "modification": "none",
-    "retrievedAt": "2026-09-30"
+    "retrievedAt": "2026-09-30",
+    "width": 440,
+    "height": 440
   },
   "digivice-ic": {
     "name": "디지바이스 iC",
@@ -518,5 +520,77 @@
     "sourceKind": "franchise-art",
     "modification": "none",
     "retrievedAt": "2026-10-13"
+  },
+  "human-spirit-dark": {
+    "name": "어둠의 휴먼 스피릿",
+    "url": "/items/adventure/human-spirit-dark.png",
+    "sourcePage": "https://digimon.net/profile/report014/",
+    "sourceImage": "https://digimon.net/profile/images/profile/kodai/img_kodai_20.png",
+    "sourceKind": "official-art",
+    "modification": "none",
+    "sha256": "e42d6975ca7596ad9320a5d7d16ef227d420a95fe1a7f77a87fb6bdaf600b09a",
+    "retrievedAt": "2026-10-13",
+    "width": 420,
+    "height": 320
+  },
+  "human-spirit-light": {
+    "name": "빛의 휴먼 스피릿",
+    "url": "/items/adventure/human-spirit-light.png",
+    "sourcePage": "https://digimon.net/profile/report014/",
+    "sourceImage": "https://digimon.net/profile/images/profile/kodai/img_kodai_03.png",
+    "sourceKind": "official-art",
+    "modification": "none",
+    "sha256": "66a30ba50a225f269ebc8758fe3c2976ffcd7df68389f34195ce8f171e1a2519",
+    "retrievedAt": "2026-10-13",
+    "width": 420,
+    "height": 320
+  },
+  "human-spirit-water": {
+    "name": "물의 휴먼 스피릿",
+    "url": "/items/adventure/human-spirit-water.png",
+    "sourcePage": "https://digimon.net/profile/report014/",
+    "sourceImage": "https://digimon.net/profile/images/profile/kodai/img_kodai_15.png",
+    "sourceKind": "official-art",
+    "modification": "none",
+    "sha256": "9045eae243f473707ad7876a158e70484716efe6c426f5d6a72ac6d953d249b6",
+    "retrievedAt": "2026-10-13",
+    "width": 420,
+    "height": 320
+  },
+  "human-spirit-fire": {
+    "name": "불꽃의 휴먼 스피릿",
+    "url": "/items/adventure/human-spirit-fire.png",
+    "sourcePage": "https://digimon.net/profile/report014/",
+    "sourceImage": "https://digimon.net/profile/images/profile/kodai/img_kodai_02.png",
+    "sourceKind": "official-art",
+    "modification": "none",
+    "sha256": "62b7b45b2f5ca6bb2f0be779d1e1a7c598e310a79bc689838f8745822f88d379",
+    "retrievedAt": "2026-10-13",
+    "width": 420,
+    "height": 320
+  },
+  "human-spirit-ice": {
+    "name": "얼음의 휴먼 스피릿",
+    "url": "/items/adventure/human-spirit-ice.png",
+    "sourcePage": "https://digimon.net/profile/report014/",
+    "sourceImage": "https://digimon.net/profile/images/profile/kodai/img_kodai_05.png",
+    "sourceKind": "official-art",
+    "modification": "none",
+    "sha256": "0019690da180f1d6a2092aa8d05d0c23e20314bb281a1ee9574ff830a7a656fd",
+    "retrievedAt": "2026-10-13",
+    "width": 420,
+    "height": 320
+  },
+  "human-spirit-wind": {
+    "name": "바람의 휴먼 스피릿",
+    "url": "/items/adventure/human-spirit-wind.png",
+    "sourcePage": "https://digimon.net/profile/report014/",
+    "sourceImage": "https://digimon.net/profile/images/profile/kodai/img_kodai_07.png",
+    "sourceKind": "official-art",
+    "modification": "none",
+    "sha256": "f159b7716aabdb81aee5f336f3700a0821bb652d08c258b23ec6e985323d19b5",
+    "retrievedAt": "2026-10-13",
+    "width": 420,
+    "height": 320
   }
 }

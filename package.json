@@ -33,7 +33,7 @@
     "test:hard": "node --test scripts/verify-hard-mode.mjs scripts/verify-simulation-policy.mjs",
     "simulate:hard": "node scripts/simulate-adventure-balance.mjs --hard",
     "test:dex": "node --test scripts/verify-digimon-dex.mjs scripts/verify-item-dex.mjs",
-    "test:effects": "node --test scripts/verify-canon-skill-effects.mjs scripts/verify-attack-attachment.mjs",
+    "test:effects": "node --test scripts/verify-canon-skill-effects.mjs scripts/verify-attack-attachment.mjs scripts/verify-expansion-skill-effects.mjs",
     "test:evolution-inspection": "node --test scripts/verify-evolution-inspection.mjs",
     "test:matchups": "node --test scripts/verify-matchup-balance.mjs",
     "test:download": "node --test scripts/verify-game-download.mjs",
@@ -44,8 +44,15 @@
     "test:canon": "node --test scripts/verify-canon-catalog.mjs",
     "test:skill-order": "node --test scripts/verify-skill-order.mjs",
     "test:master-rewards": "node --test scripts/verify-master-rewards.mjs",
-    "test:evolution-investment": "node --test scripts/verify-evolution-investment.mjs",
-    "test:anomalies": "node --test scripts/verify-anomaly-events.mjs"
+    "test:evolution-investment": "node --test scripts/verify-evolution-investment.mjs scripts/verify-evolution-item-tiers.mjs scripts/verify-evolution-route-balance.mjs",
+    "test:anomalies": "node --test scripts/verify-anomaly-events.mjs",
+    "test:roster": "node --test scripts/verify-roster-expansion7.mjs",
+    "test:model-motion": "node scripts/verify-expansion-motion.mjs",
+    "test:item-artwork": "node --test scripts/verify-item-artwork.mjs",
+    "test:faces": "node --test scripts/verify-face-textures.mjs",
+    "test:evolution-scenes": "node --test scripts/verify-expansion-evolution-scenes.mjs",
+    "test:ai": "node --test scripts/verify-tactical-ai.mjs",
+    "test:encounters": "node --test scripts/verify-expansion-encounters.mjs scripts/verify-encounter-patterns.mjs"
   },
   "dependencies": {
     "firebase": "^13.0.0",

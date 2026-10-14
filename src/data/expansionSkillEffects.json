@@ -1,0 +1,3443 @@
+{
+  "코로나몬": {
+    "코로너클": {
+      "style": "punch",
+      "palette": "solar",
+      "motif": "flameFist",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "flame",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "line",
+      "size": 0.8
+    },
+    "코로나 플레임": {
+      "style": "fireball",
+      "palette": "solar",
+      "motif": "coronaShell",
+      "anchor": "eyes",
+      "shots": 1,
+      "impact": "flame",
+      "bone": "J_head",
+      "emitterLift": 0.06,
+      "emitterReach": 0.13,
+      "size": 0.8
+    },
+    "쁘띠 프로미넌스": {
+      "style": "rush",
+      "palette": "solar",
+      "motif": "flameMantle",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "flame",
+      "bone": "J_root",
+      "size": 0.8
+    }
+  },
+  "아이기오몬": {
+    "어트랙트 에코": {
+      "style": "sound",
+      "palette": "holy",
+      "motif": "panFlute",
+      "anchor": "mouth",
+      "shots": 3,
+      "impact": "sonic",
+      "bone": "head",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "아이언 트러스트": {
+      "style": "punch",
+      "palette": "steel",
+      "motif": "hoofKick",
+      "anchor": "feet",
+      "shots": 1,
+      "impact": "strike",
+      "bone": "l_foot",
+      "secondBone": "r_foot",
+      "size": 0.8
+    },
+    "스턴 비트 블로우": {
+      "style": "punch",
+      "palette": "electric",
+      "motif": "thunderFist",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "lightning",
+      "bone": "l_hand_roll",
+      "secondBone": "r_hand_roll",
+      "formation": "line",
+      "size": 0.8
+    }
+  },
+  "아이기오투스몬": {
+    "볼트 라이트닝 녹다운": {
+      "style": "punch",
+      "palette": "electric",
+      "motif": "thunderFist",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "lightning",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "line",
+      "size": 0.8
+    },
+    "라이트닝 파일": {
+      "style": "lightning",
+      "palette": "electric",
+      "motif": "plasmaLance",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "lightning",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "size": 0.8
+    },
+    "차징 스트라이크": {
+      "style": "rush",
+      "palette": "electric",
+      "motif": "thunderRush",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "lightning",
+      "bone": "J_root",
+      "size": 0.8
+    }
+  },
+  "아이기오투스몬[블루]": {
+    "페네토 레이저": {
+      "style": "beam",
+      "palette": "plasma",
+      "motif": "plasmaLance",
+      "anchor": "cannon",
+      "shots": 1,
+      "impact": "beam",
+      "bone": "J_hand_r",
+      "beamWidth": 1,
+      "size": 0.8
+    },
+    "윙 커터": {
+      "style": "blade",
+      "palette": "steel",
+      "motif": "wingBlades",
+      "anchor": "wings",
+      "shots": 2,
+      "impact": "slice",
+      "bone": "J_wing_l",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "파워드 이그니션": {
+      "style": "rush",
+      "palette": "plasma",
+      "motif": "jetRush",
+      "anchor": "back",
+      "shots": 1,
+      "impact": "shockwave",
+      "bone": "J_spine01",
+      "size": 0.8
+    }
+  },
+  "아이기오투스몬[그린]": {
+    "브램블 바이트": {
+      "style": "whip",
+      "palette": "poison",
+      "motif": "thornJaw",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "vines",
+      "bone": "J_weapon01_l",
+      "size": 0.8
+    },
+    "플랜트 존 크레이들": {
+      "style": "ring",
+      "palette": "poison",
+      "motif": "thornCage",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "vines",
+      "bone": "J_root",
+      "size": 1.05
+    },
+    "차징 스트라이크": {
+      "style": "rush",
+      "palette": "electric",
+      "motif": "thunderRush",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "lightning",
+      "bone": "J_root",
+      "size": 0.8
+    }
+  },
+  "아이기오투스몬[다크]": {
+    "트라이앵글러": {
+      "style": "slash",
+      "palette": "redElectric",
+      "motif": "tripleScythe",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "slice",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "line",
+      "size": 0.8
+    },
+    "플라즈마 매드니스": {
+      "style": "lightning",
+      "palette": "redElectric",
+      "motif": "darkPlasma",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "lightning",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "데스 디너": {
+      "style": "bite",
+      "palette": "shadow",
+      "motif": "predatorFangs",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "bite",
+      "bone": "J_head",
+      "size": 0.8
+    }
+  },
+  "아이기오투스몬[홀리]": {
+    "라이트닝 샤워": {
+      "style": "lightning",
+      "palette": "holy",
+      "motif": "thunderRain",
+      "anchor": "overhead",
+      "shots": 4,
+      "impact": "lightning",
+      "bone": "J_head",
+      "formation": "rain",
+      "trajectory": "rain",
+      "size": 0.8
+    },
+    "썬더 슬래시": {
+      "style": "slash",
+      "palette": "holy",
+      "motif": "thunderSword",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "slice",
+      "bone": "J_weapon_l",
+      "size": 0.8
+    },
+    "서클렛 디펜스": {
+      "style": "ring",
+      "palette": "holy",
+      "motif": "aegisCircle",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "holy",
+      "bone": "J_root",
+      "size": 1.05
+    }
+  },
+  "아루다몬": {
+    "브라흐마 실": {
+      "style": "giantOrb",
+      "palette": "solar",
+      "motif": "sunCore",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "explosion",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "size": 1.25
+    },
+    "브라흐마 스트라": {
+      "style": "bullet",
+      "palette": "solar",
+      "motif": "solarRounds",
+      "anchor": "hands",
+      "shots": 8,
+      "impact": "flame",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "line",
+      "size": 0.34
+    }
+  },
+  "에이션트와이즈몬": {
+    "라플라스의 악마": {
+      "style": "portal",
+      "palette": "shadow",
+      "motif": "mirrorPrison",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "portal",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "size": 1.05
+    },
+    "엘더 사인": {
+      "style": "ring",
+      "palette": "holy",
+      "motif": "elderClock",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "glyph",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "size": 1.25
+    }
+  },
+  "아폴로몬": {
+    "솔 블래스터": {
+      "style": "beam",
+      "palette": "solar",
+      "motif": "solarBeam",
+      "anchor": "chest",
+      "shots": 1,
+      "impact": "flame",
+      "bone": "J_spine01",
+      "beamWidth": 1.8,
+      "size": 0.8
+    },
+    "포이보스 ･ 블로": {
+      "style": "punch",
+      "palette": "solar",
+      "motif": "sunFist",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "flame",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "line",
+      "size": 0.8
+    },
+    "애로 오브 아폴로": {
+      "style": "arrow",
+      "palette": "solar",
+      "motif": "sunArrow",
+      "anchor": "hands",
+      "shots": 5,
+      "impact": "flame",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "아라크네몬": {
+    "스파이더 스레드": {
+      "style": "web",
+      "palette": "bone",
+      "motif": "spiderWeb",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "vines",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "size": 0.8
+    },
+    "독 뿜기": {
+      "style": "mist",
+      "palette": "toxin",
+      "motif": "poisonCloud",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "mist",
+      "bone": "J_head",
+      "size": 1.05
+    }
+  },
+  "아스타몬": {
+    "헬 파이어": {
+      "style": "bullet",
+      "palette": "ember",
+      "motif": "infernalBullet",
+      "anchor": "weapon",
+      "shots": 6,
+      "impact": "shot",
+      "bone": "J_gun",
+      "formation": "line",
+      "size": 0.34
+    },
+    "매버릭": {
+      "style": "punch",
+      "palette": "shadow",
+      "motif": "demonKick",
+      "anchor": "feet",
+      "shots": 1,
+      "impact": "strike",
+      "bone": "J_foot_l",
+      "secondBone": "J_foot_r",
+      "size": 0.8
+    }
+  },
+  "어벤지키드몬": {
+    "미저리 불릿 레인": {
+      "style": "bullet",
+      "palette": "ember",
+      "motif": "ricochetBullet",
+      "anchor": "hands",
+      "shots": 8,
+      "impact": "shot",
+      "bone": "J_handcylinder_l",
+      "secondBone": "J_handcylinder_r",
+      "formation": "line",
+      "size": 0.34
+    },
+    "디스트럭션 트리거": {
+      "style": "bullet",
+      "palette": "solar",
+      "motif": "dragonRounds",
+      "anchor": "hands",
+      "shots": 6,
+      "impact": "explosion",
+      "bone": "J_handcylinder_l",
+      "secondBone": "J_handcylinder_r",
+      "formation": "line",
+      "size": 0.34
+    }
+  },
+  "바커스몬": {
+    "쿡 ･ 오브 ･ 더 ･ 헬": {
+      "style": "whip",
+      "palette": "shadow",
+      "motif": "devourHands",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "darkBurst",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "size": 0.8
+    },
+    "파티 ･ 오브 ･ 더 ･ 헤븐": {
+      "style": "breath",
+      "palette": "toxin",
+      "motif": "toxicWine",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "mist",
+      "bone": "J_head",
+      "beamWidth": 1,
+      "size": 0.8,
+      "shape": "mistJet"
+    },
+    "리버스 ･ 오브 ･ 더 ･ 데드": {
+      "style": "beam",
+      "palette": "violet",
+      "motif": "dataVomit",
+      "anchor": "chest",
+      "shots": 1,
+      "impact": "data",
+      "bone": "J_spine01",
+      "beamWidth": 1,
+      "size": 0.8
+    }
+  },
+  "반쵸콩알몬": {
+    "골든 러시": {
+      "style": "hammer",
+      "palette": "holy",
+      "motif": "goldenMallet",
+      "anchor": "weapon",
+      "shots": 3,
+      "impact": "strike",
+      "bone": "J_weapon01_l",
+      "formation": "line",
+      "size": 0.8
+    },
+    "천본폭쇄": {
+      "style": "metalBall",
+      "palette": "steel",
+      "motif": "blackHikky",
+      "anchor": "hands",
+      "shots": 6,
+      "impact": "explosion",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "특공 사나이탄": {
+      "style": "rush",
+      "palette": "steel",
+      "motif": "chainRush",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "shockwave",
+      "bone": "J_root",
+      "size": 0.8
+    }
+  },
+  "베오울프몬": {
+    "리히트 앙그리프": {
+      "style": "missile",
+      "palette": "holy",
+      "motif": "lichtMissiles",
+      "anchor": "cannon",
+      "shots": 6,
+      "impact": "explosion",
+      "bone": "J_handcover_l",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "츠바이헨더": {
+      "style": "slash",
+      "palette": "holy",
+      "motif": "doubleSword",
+      "anchor": "weapon",
+      "shots": 2,
+      "impact": "slice",
+      "bone": "J_sword_r",
+      "formation": "line",
+      "size": 0.8
+    }
+  },
+  "베르스타몬": {
+    "플라이 불릿": {
+      "style": "bullet",
+      "palette": "ember",
+      "motif": "guidedBullet",
+      "anchor": "hands",
+      "shots": 4,
+      "impact": "shot",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "line",
+      "size": 0.34
+    },
+    "더블 크로우": {
+      "style": "blade",
+      "palette": "shadow",
+      "motif": "ravenDaggers",
+      "anchor": "feet",
+      "shots": 2,
+      "impact": "slice",
+      "bone": "J_foot_l",
+      "secondBone": "J_foot_r",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "허리케인 스크류 샷": {
+      "style": "bullet",
+      "palette": "violet",
+      "motif": "spiralBullet",
+      "anchor": "hands",
+      "shots": 6,
+      "impact": "shot",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "spiral",
+      "trajectory": "spiral",
+      "size": 0.34
+    }
+  },
+  "빅콩알몬": {
+    "빅 스마일리 보머": {
+      "style": "bomb",
+      "palette": "steel",
+      "motif": "smileyBomb",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "explosion",
+      "bone": "J_center",
+      "size": 0.8
+    }
+  },
+  "브링프몬": {
+    "헬륨 봄": {
+      "style": "bomb",
+      "palette": "wind",
+      "motif": "heliumBomb",
+      "anchor": "back",
+      "shots": 3,
+      "impact": "explosion",
+      "bone": "J_hand01_r",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "제플린 익스플로젼": {
+      "style": "rush",
+      "palette": "steel",
+      "motif": "zeppelinRush",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "explosion",
+      "bone": "J_root",
+      "size": 0.8
+    }
+  },
+  "브라키몬": {
+    "브라키오 버블": {
+      "style": "bubble",
+      "palette": "water",
+      "motif": "deepBubble",
+      "anchor": "mouth",
+      "shots": 4,
+      "impact": "water",
+      "bone": "J_head",
+      "formation": "fan",
+      "size": 0.48
+    }
+  },
+  "부라이몬": {
+    "제비 두 장 뒤집기": {
+      "style": "slash",
+      "palette": "steel",
+      "motif": "crossSword",
+      "anchor": "weapon",
+      "shots": 2,
+      "impact": "slice",
+      "bone": "J_weapon_l",
+      "formation": "line",
+      "size": 0.8
+    },
+    "비검 ･ 나는 새 떨구기": {
+      "style": "slash",
+      "palette": "wind",
+      "motif": "risingSword",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "slice",
+      "bone": "J_weapon_l",
+      "size": 0.8
+    }
+  },
+  "부텐몬": {
+    "일륜의 춤": {
+      "style": "slash",
+      "palette": "solar",
+      "motif": "sunWheel",
+      "anchor": "weapon",
+      "shots": 3,
+      "impact": "slice",
+      "bone": "J_weapon",
+      "formation": "line",
+      "size": 0.8
+    },
+    "효광일섬": {
+      "style": "slash",
+      "palette": "solar",
+      "motif": "dawnSword",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "slice",
+      "bone": "J_weapon",
+      "size": 0.8
+    }
+  },
+  "칼리스몬": {
+    "딥 포레스트": {
+      "style": "claw",
+      "palette": "shadow",
+      "motif": "dataClaws",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "data",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "line",
+      "size": 0.8
+    },
+    "로데오 불릿": {
+      "style": "bullet",
+      "palette": "redElectric",
+      "motif": "homingRounds",
+      "anchor": "rightHand",
+      "shots": 3,
+      "impact": "shot",
+      "bone": "J_hand_r",
+      "formation": "line",
+      "size": 0.34
+    }
+  },
+  "카르마라몬": {
+    "네로 코로소": {
+      "style": "breath",
+      "palette": "ink",
+      "motif": "inkJet",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "mist",
+      "bone": "J_head",
+      "beamWidth": 1,
+      "size": 0.8,
+      "shape": "inkJet"
+    },
+    "타이타닉 차지": {
+      "style": "spin",
+      "palette": "water",
+      "motif": "squidDrill",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "water",
+      "bone": "J_root",
+      "size": 0.8
+    }
+  },
+  "켄터스몬": {
+    "헌팅 캐논": {
+      "style": "beam",
+      "palette": "solar",
+      "motif": "huntingLaser",
+      "anchor": "rightHand",
+      "shots": 1,
+      "impact": "beam",
+      "bone": "J_center",
+      "beamWidth": 1,
+      "size": 0.8
+    }
+  },
+  "케르베로스몬": {
+    "인페르노 게이트": {
+      "style": "portal",
+      "palette": "hellfire",
+      "motif": "tripleHellGate",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "darkBurst",
+      "bone": "J_head",
+      "size": 1.05
+    },
+    "헬 파이어": {
+      "style": "breath",
+      "palette": "hellfire",
+      "motif": "hellBreath",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "flame",
+      "bone": "J_head",
+      "beamWidth": 1,
+      "size": 0.8
+    }
+  },
+  "케르베로스몬[인랑]": {
+    "인페르노 디바이드": {
+      "style": "claw",
+      "palette": "hellfire",
+      "motif": "infernoClaws",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "flame",
+      "bone": "J_center",
+      "formation": "line",
+      "size": 0.8
+    },
+    "서버러스 이레이즈": {
+      "style": "punch",
+      "palette": "hellfire",
+      "motif": "infernoFist",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "flame",
+      "bone": "J_center",
+      "formation": "line",
+      "size": 0.8
+    },
+    "헬 파이어": {
+      "style": "breath",
+      "palette": "hellfire",
+      "motif": "hellBreath",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "flame",
+      "bone": "J_head",
+      "beamWidth": 1,
+      "size": 0.8
+    }
+  },
+  "케레스몬[미디엄]": {
+    "아일랜드 프리폴": {
+      "style": "rock",
+      "palette": "sand",
+      "motif": "islandFall",
+      "anchor": "overhead",
+      "shots": 1,
+      "impact": "earth",
+      "bone": "J_head",
+      "formation": "rain",
+      "trajectory": "rain",
+      "size": 0.8
+    },
+    "버닝 블러드 셸": {
+      "style": "fireball",
+      "palette": "solar",
+      "motif": "bloodShell",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "flame",
+      "bone": "J_center",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "푸르츠 플레셰트": {
+      "style": "seed",
+      "palette": "poison",
+      "motif": "fruitCluster",
+      "anchor": "body",
+      "shots": 5,
+      "impact": "nature",
+      "bone": "J_root",
+      "formation": "fan",
+      "size": 0.48
+    }
+  },
+  "크로노몬[홀리 모드]": {
+    "홀리 플레어": {
+      "style": "flame",
+      "palette": "holy",
+      "motif": "timeFlare",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "holy",
+      "bone": "J_hand01_r",
+      "secondBone": "J_hand01_l",
+      "beamWidth": 1.8,
+      "size": 1.25
+    },
+    "크로노스 크롭": {
+      "style": "slash",
+      "palette": "holy",
+      "motif": "chronoScythe",
+      "anchor": "wings",
+      "shots": 2,
+      "impact": "slice",
+      "bone": "J_wing01_l",
+      "formation": "line",
+      "size": 0.8
+    }
+  },
+  "크로노몬[디스트로이 모드]": {
+    "핑거 봄": {
+      "style": "ring",
+      "palette": "redElectric",
+      "motif": "dataDetonation",
+      "anchor": "hand",
+      "shots": 1,
+      "impact": "data",
+      "bone": "J_hand_r",
+      "size": 1.05
+    },
+    "홀리 플레어": {
+      "style": "flame",
+      "palette": "darkSolar",
+      "motif": "timeFlare",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "flame",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "beamWidth": 1.8,
+      "size": 1.25
+    },
+    "크로노 데볼루션": {
+      "style": "wave",
+      "palette": "shadow",
+      "motif": "chronoDecay",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "data",
+      "bone": "J_root",
+      "size": 1.05
+    }
+  },
+  "클라비스엔젤몬": {
+    "더 ･ 키": {
+      "style": "blade",
+      "palette": "holy",
+      "motif": "keyBlade",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "holy",
+      "bone": "J_weapon",
+      "size": 0.8
+    }
+  },
+  "크랩몬": {
+    "시저즈 엑스큐션": {
+      "style": "claw",
+      "palette": "water",
+      "motif": "crossClaws",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "slice",
+      "bone": "J_hand01_R",
+      "formation": "line",
+      "size": 0.8
+    }
+  },
+  "다크드라몬": {
+    "다크 로어": {
+      "style": "beam",
+      "palette": "shadow",
+      "motif": "darkRoar",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "darkBurst",
+      "bone": "J_head",
+      "beamWidth": 1,
+      "size": 0.8
+    },
+    "기가 스틱랜스": {
+      "style": "spear",
+      "palette": "plasma",
+      "motif": "gigaLance",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "pierce",
+      "bone": "J_weapon",
+      "size": 0.8
+    }
+  },
+  "다크슈퍼스타몬": {
+    "다크 익스플로젼": {
+      "style": "ring",
+      "palette": "shadow",
+      "motif": "blackStar",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "explosion",
+      "bone": "root",
+      "size": 1.05
+    },
+    "슈발츠 네벨": {
+      "style": "mist",
+      "palette": "shadow",
+      "motif": "blackNebula",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "mist",
+      "bone": "root",
+      "size": 1.05
+    },
+    "다크 홀": {
+      "style": "portal",
+      "palette": "shadow",
+      "motif": "blackHole",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "portal",
+      "bone": "L_hand",
+      "size": 1.05
+    }
+  },
+  "델타몬": {
+    "트리플렉스 포스": {
+      "style": "beam",
+      "palette": "plasma",
+      "motif": "tripleHeads",
+      "anchor": "mouth",
+      "shots": 3,
+      "impact": "beam",
+      "bone": "J_head",
+      "formation": "fan",
+      "beamWidth": 1,
+      "size": 0.8
+    },
+    "스컬 팡": {
+      "style": "bite",
+      "palette": "bone",
+      "motif": "skullFangs",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "bite",
+      "bone": "J_center",
+      "formation": "line",
+      "size": 0.8
+    }
+  },
+  "카우보이몬": {
+    "저스티스 블릿": {
+      "style": "bullet",
+      "palette": "steel",
+      "motif": "revolverRound",
+      "anchor": "weapon",
+      "shots": 6,
+      "impact": "shot",
+      "bone": "J_buki_L",
+      "formation": "line",
+      "size": 0.34
+    }
+  },
+  "뿌띠몬": {
+    "로열 너츠": {
+      "style": "seed",
+      "palette": "poison",
+      "motif": "royalNut",
+      "anchor": "back",
+      "shots": 4,
+      "impact": "nature",
+      "bone": "J_center",
+      "formation": "fan",
+      "size": 0.48
+    }
+  },
+  "디그몬": {
+    "빅 크랙": {
+      "style": "spike",
+      "palette": "sand",
+      "motif": "faultLine",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "earth",
+      "bone": "J_root",
+      "size": 1.05
+    },
+    "골드 러시": {
+      "style": "drill",
+      "palette": "holy",
+      "motif": "goldDrill",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "pierce",
+      "bone": "J_hand_r",
+      "size": 0.8
+    }
+  },
+  "다이버몬": {
+    "스트라이크 피싱": {
+      "style": "spear",
+      "palette": "water",
+      "motif": "fishingSpear",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "pierce",
+      "bone": "J_weapon",
+      "size": 0.8
+    }
+  },
+  "도베르몬": {
+    "그라우 레름": {
+      "style": "sound",
+      "palette": "shadow",
+      "motif": "sealingHowl",
+      "anchor": "mouth",
+      "shots": 3,
+      "impact": "sonic",
+      "bone": "J_head",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "슈바르츠 ･ 슈트랄": {
+      "style": "beam",
+      "palette": "shadow",
+      "motif": "blackRay",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "beam",
+      "bone": "J_head",
+      "beamWidth": 1,
+      "size": 0.8
+    }
+  },
+  "스파이더몬": {
+    "스팅거 포레이션": {
+      "style": "bite",
+      "palette": "toxin",
+      "motif": "toxicFangs",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "bite",
+      "bone": "J_center",
+      "size": 0.8
+    }
+  },
+  "두리몬": {
+    "드릴 스핀": {
+      "style": "drill",
+      "palette": "sand",
+      "motif": "earthDrill",
+      "anchor": "head",
+      "shots": 1,
+      "impact": "earth",
+      "bone": "J_center",
+      "size": 0.8
+    },
+    "크러셔 본": {
+      "style": "rock",
+      "palette": "bone",
+      "motif": "boneBoomerang",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "strike",
+      "bone": "J_center",
+      "size": 0.8
+    }
+  },
+  "크로스몬": {
+    "카이저 피닉스": {
+      "style": "rush",
+      "palette": "holy",
+      "motif": "goldenPhoenix",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "shockwave",
+      "bone": "J_root",
+      "size": 0.8
+    },
+    "미스틱 브레이크": {
+      "style": "beam",
+      "palette": "holy",
+      "motif": "whiteRay",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "holy",
+      "bone": "J_head",
+      "beamWidth": 1,
+      "size": 0.8
+    }
+  },
+  "안바르몬": {
+    "디스렌지 혼": {
+      "style": "rush",
+      "palette": "shadow",
+      "motif": "phantomHorn",
+      "anchor": "head",
+      "shots": 1,
+      "impact": "pierce",
+      "bone": "J_head",
+      "size": 0.8
+    },
+    "베인 앤서": {
+      "style": "punch",
+      "palette": "bone",
+      "motif": "hoofKick",
+      "anchor": "feet",
+      "shots": 1,
+      "impact": "strike",
+      "bone": "J_foot01_l",
+      "secondBone": "J_foot01_r",
+      "size": 0.8
+    }
+  },
+  "엑스티라노몬": {
+    "프리티 어택": {
+      "style": "punch",
+      "palette": "petal",
+      "motif": "puppetFist",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "strike",
+      "bone": "J_hand_R",
+      "size": 0.8
+    },
+    "블랙 매터": {
+      "style": "orb",
+      "palette": "shadow",
+      "motif": "blackMatter",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "darkBurst",
+      "bone": "J_hand_R",
+      "size": 0.8
+    }
+  },
+  "파이라몬": {
+    "플레임 다이브": {
+      "style": "rush",
+      "palette": "solar",
+      "motif": "flameDive",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "flame",
+      "bone": "J_root",
+      "size": 0.8
+    },
+    "파이라 클로": {
+      "style": "claw",
+      "palette": "solar",
+      "motif": "flameClaws",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "flame",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "line",
+      "size": 0.8
+    },
+    "파이라 봄": {
+      "style": "bomb",
+      "palette": "solar",
+      "motif": "fireBomb",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "explosion",
+      "bone": "J_head",
+      "size": 0.8
+    }
+  },
+  "플레어몬": {
+    "홍련수왕파": {
+      "style": "fist",
+      "palette": "solar",
+      "motif": "lionFlame",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "flame",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "size": 0.8
+    },
+    "홍 ･ 사자지무": {
+      "style": "punch",
+      "palette": "solar",
+      "motif": "lionCombo",
+      "anchor": "hands",
+      "shots": 4,
+      "impact": "flame",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "line",
+      "size": 0.8
+    },
+    "우렁찬 포효": {
+      "style": "sound",
+      "palette": "solar",
+      "motif": "flameRoar",
+      "anchor": "mouth",
+      "shots": 3,
+      "impact": "sonic",
+      "bone": "J_head",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "플로라몬": {
+    "꽃가루 뿌리기": {
+      "style": "mist",
+      "palette": "pollen",
+      "motif": "pollenCloud",
+      "anchor": "head",
+      "shots": 1,
+      "impact": "nature",
+      "bone": "J_head_l",
+      "size": 1.05
+    }
+  },
+  "플라이몬": {
+    "독침 발사": {
+      "style": "needle",
+      "palette": "toxin",
+      "motif": "venomNeedle",
+      "anchor": "tail",
+      "shots": 5,
+      "impact": "pierce",
+      "bone": "J_center",
+      "formation": "fan",
+      "size": 0.48
+    }
+  },
+  "푸가몬": {
+    "이빌 허리케인": {
+      "style": "vortex",
+      "palette": "shadow",
+      "motif": "evilCyclone",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "tornado",
+      "bone": "J_weapon",
+      "size": 0.8
+    }
+  },
+  "가비지몬": {
+    "응가 바주카": {
+      "style": "rock",
+      "palette": "sludge",
+      "motif": "sludgeShot",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "mist",
+      "bone": "J_weapon",
+      "size": 0.8
+    }
+  },
+  "기자몬": {
+    "스파이럴 엣지": {
+      "style": "spin",
+      "palette": "steel",
+      "motif": "dorsalBlades",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "slice",
+      "bone": "J_root_094",
+      "size": 0.8
+    }
+  },
+  "그레이스노바몬": {
+    "이클립스 핑거": {
+      "style": "punch",
+      "palette": "eclipse",
+      "motif": "eclipsePalm",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "darkBurst",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "size": 1.25
+    },
+    "칼리돈 아르쿠스": {
+      "style": "blade",
+      "palette": "eclipse",
+      "motif": "sunMoonBlades",
+      "anchor": "back",
+      "shots": 8,
+      "impact": "slice",
+      "bone": "J_spine01",
+      "formation": "spiral",
+      "trajectory": "spiral",
+      "size": 0.8
+    }
+  },
+  "그레이트그리즈몬": {
+    "투혼조": {
+      "style": "claw",
+      "palette": "solar",
+      "motif": "flameClaws",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "flame",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "line",
+      "size": 0.8
+    },
+    "폭무": {
+      "style": "breath",
+      "palette": "toxin",
+      "motif": "explosiveMist",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "explosion",
+      "bone": "J_head",
+      "beamWidth": 1,
+      "size": 0.8,
+      "shape": "mistJet"
+    },
+    "GGS": {
+      "style": "rush",
+      "palette": "solar",
+      "motif": "ringLariat",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "shockwave",
+      "bone": "J_root",
+      "size": 0.8
+    }
+  },
+  "건드라몬": {
+    "데어 블리츠": {
+      "style": "bullet",
+      "palette": "ember",
+      "motif": "revolverRound",
+      "anchor": "hands",
+      "shots": 6,
+      "impact": "shot",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "line",
+      "size": 0.34
+    },
+    "플라첸 크로이츠": {
+      "style": "bullet",
+      "palette": "ember",
+      "motif": "pointBlank",
+      "anchor": "feet",
+      "shots": 4,
+      "impact": "shot",
+      "bone": "J_foot_l",
+      "secondBone": "J_foot_r",
+      "formation": "line",
+      "size": 0.34
+    },
+    "게발트 슈베르머": {
+      "style": "bullet",
+      "palette": "ember",
+      "motif": "fullArsenal",
+      "anchor": "shoulders",
+      "shots": 8,
+      "impact": "explosion",
+      "bone": "J_spine01",
+      "bones": [
+        "J_bp_backgun_b",
+        "J_bp_upgun01_l",
+        "J_bp_upgun02_l",
+        "J_bp_gun_l",
+        "J_bp_upgun01_r",
+        "J_bp_upgun02_r",
+        "J_bp_gun_r"
+      ],
+      "formation": "line",
+      "size": 0.34
+    }
+  },
+  "가와파몬": {
+    "디제이 슈터": {
+      "style": "blade",
+      "palette": "plasma",
+      "motif": "musicDisc",
+      "anchor": "head",
+      "shots": 1,
+      "impact": "slice",
+      "bone": "J_head",
+      "size": 0.8
+    },
+    "가왓 펀치": {
+      "style": "punch",
+      "palette": "water",
+      "motif": "springFist",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "strike",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "line",
+      "size": 0.8
+    },
+    "가왓파 랩퍼": {
+      "style": "sound",
+      "palette": "water",
+      "motif": "rapNotes",
+      "anchor": "mouth",
+      "shots": 4,
+      "impact": "sonic",
+      "bone": "J_head",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "호루스몬": {
+    "마하 임펄스": {
+      "style": "air",
+      "palette": "wind",
+      "motif": "wingShock",
+      "anchor": "wings",
+      "shots": 2,
+      "impact": "sonic",
+      "bone": "J_wing_l",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "템페스트 윙": {
+      "style": "spin",
+      "palette": "wind",
+      "motif": "wingCyclone",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "tornado",
+      "bone": "J_root",
+      "size": 0.8
+    },
+    "우자트 게이즈": {
+      "style": "beam",
+      "palette": "redElectric",
+      "motif": "gazeRay",
+      "anchor": "eyes",
+      "shots": 1,
+      "impact": "beam",
+      "bone": "J_head",
+      "beamWidth": 1,
+      "size": 0.8
+    }
+  },
+  "블루우가몬": {
+    "스노 펀치": {
+      "style": "punch",
+      "palette": "frost",
+      "motif": "iceFist",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "frost",
+      "bone": "J_center",
+      "formation": "line",
+      "size": 0.8
+    }
+  },
+  "효코몬": {
+    "대나무 가르기": {
+      "style": "slash",
+      "palette": "steel",
+      "motif": "bambooSword",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "slice",
+      "bone": "J_sword01",
+      "size": 0.8
+    },
+    "비검 삐약삐약 베기": {
+      "style": "slash",
+      "palette": "steel",
+      "motif": "chickSword",
+      "anchor": "weapon",
+      "shots": 2,
+      "impact": "slice",
+      "bone": "J_sword01",
+      "formation": "line",
+      "size": 0.8
+    }
+  },
+  "황제드라몬[드래곤]": {
+    "메가 데스": {
+      "style": "beam",
+      "palette": "plasma",
+      "motif": "megaDeath",
+      "anchor": "cannon",
+      "shots": 1,
+      "impact": "energyBurst",
+      "bone": "J_center",
+      "beamWidth": 1.8,
+      "size": 1.25
+    }
+  },
+  "주엘비몬": {
+    "스파이크 버스터": {
+      "style": "blade",
+      "palette": "electroGreen",
+      "motif": "insectSpear",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "pierce",
+      "bone": "J_weapon",
+      "size": 0.8
+    }
+  },
+  "점보가메몬": {
+    "메가톤 하이드로 레이저": {
+      "style": "beam",
+      "palette": "water",
+      "motif": "hydroLaser",
+      "anchor": "cannon",
+      "shots": 1,
+      "impact": "water",
+      "bone": "J_center",
+      "beamWidth": 1.8,
+      "size": 0.8,
+      "shape": "waterJet"
+    },
+    "점보 크레이터": {
+      "style": "punch",
+      "palette": "steel",
+      "motif": "bunkerFist",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "earth",
+      "bone": "J_center",
+      "formation": "line",
+      "size": 0.8
+    },
+    "점보 제터": {
+      "style": "rush",
+      "palette": "water",
+      "motif": "jetRush",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "water",
+      "bone": "J_root",
+      "size": 0.8
+    }
+  },
+  "유피테르몬[래스 모드]": {
+    "케라우노스디바이드": {
+      "style": "blade",
+      "palette": "electric",
+      "motif": "keraunosBlade",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "lightning",
+      "bone": "J_weapon",
+      "size": 1.25
+    },
+    "라이트닝 비": {
+      "style": "lightning",
+      "palette": "electric",
+      "motif": "thunderRain",
+      "anchor": "hand",
+      "shots": 5,
+      "impact": "lightning",
+      "bone": "J_hand_r",
+      "formation": "rain",
+      "trajectory": "rain",
+      "size": 0.8
+    },
+    "디오스 썬더": {
+      "style": "blade",
+      "palette": "electric",
+      "motif": "skyKeraunos",
+      "anchor": "overhead",
+      "shots": 1,
+      "impact": "lightning",
+      "bone": "J_head",
+      "formation": "rain",
+      "trajectory": "rain",
+      "size": 1.25
+    }
+  },
+  "카프리몬": {
+    "하울링 헤르츠": {
+      "style": "sound",
+      "palette": "steel",
+      "motif": "metalHowl",
+      "anchor": "mouth",
+      "shots": 3,
+      "impact": "sonic",
+      "bone": "J_mouth",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "키위몬": {
+    "꼬마 키위탄": {
+      "style": "bird",
+      "palette": "poison",
+      "motif": "littleKiwi",
+      "anchor": "mouth",
+      "shots": 4,
+      "impact": "explosion",
+      "bone": "J_center",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "코쿠와몬": {
+    "시저 암즈 미니": {
+      "style": "claw",
+      "palette": "electric",
+      "motif": "scissorClaws",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "lightning",
+      "bone": "J_center",
+      "formation": "line",
+      "size": 0.8
+    }
+  },
+  "코테몬": {
+    "썬더 코테": {
+      "style": "punch",
+      "palette": "electric",
+      "motif": "thunderSword",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "lightning",
+      "bone": "J_bamboo_sword",
+      "size": 0.8
+    },
+    "파이어맨": {
+      "style": "slash",
+      "palette": "solar",
+      "motif": "flameSword",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "flame",
+      "bone": "J_bamboo_sword",
+      "size": 0.8
+    }
+  },
+  "로코몬": {
+    "스팀 봄": {
+      "style": "bomb",
+      "palette": "steel",
+      "motif": "steamBomb",
+      "anchor": "back",
+      "shots": 3,
+      "impact": "mist",
+      "bone": "J_spine",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "휠 그라인더": {
+      "style": "gear",
+      "palette": "steel",
+      "motif": "spikeWheel",
+      "anchor": "feet",
+      "shots": 3,
+      "impact": "slice",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "매그너키드몬": {
+    "바인드 레드 트리거": {
+      "style": "bullet",
+      "palette": "ember",
+      "motif": "bindRounds",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "shot",
+      "bone": "J_handcylinder_l",
+      "secondBone": "J_handcylinder_r",
+      "formation": "line",
+      "size": 0.34
+    },
+    "해피 불릿 샤워링": {
+      "style": "bullet",
+      "palette": "solar",
+      "motif": "bulletShower",
+      "anchor": "hands",
+      "shots": 8,
+      "impact": "explosion",
+      "bone": "J_handcylinder_l",
+      "secondBone": "J_handcylinder_r",
+      "formation": "rain",
+      "trajectory": "rain",
+      "size": 0.34
+    },
+    "케이오스 트라이 앵글러": {
+      "style": "beam",
+      "palette": "solar",
+      "motif": "triangleBeam",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "beam",
+      "bone": "J_handcylinder_l",
+      "secondBone": "J_handcylinder_r",
+      "formation": "fan",
+      "beamWidth": 1,
+      "size": 0.8
+    }
+  },
+  "마스터브링프몬": {
+    "체펠린 서커스": {
+      "style": "missile",
+      "palette": "steel",
+      "motif": "zeppelinMissiles",
+      "anchor": "shoulders",
+      "shots": 6,
+      "impact": "explosion",
+      "bone": "J_hand01_r",
+      "secondBone": "J_hand01_l",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "데어데블 브레이크": {
+      "style": "drill",
+      "palette": "steel",
+      "motif": "bowDrill",
+      "anchor": "head",
+      "shots": 1,
+      "impact": "pierce",
+      "bone": "J_hand01_r",
+      "size": 0.8
+    }
+  },
+  "메카노몬": {
+    "자이로 브레이크": {
+      "style": "punch",
+      "palette": "steel",
+      "motif": "gyroPunch",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "strike",
+      "bone": "J_center",
+      "size": 0.8
+    },
+    "트윙클 빔": {
+      "style": "beam",
+      "palette": "plasma",
+      "motif": "twinkleLens",
+      "anchor": "chest",
+      "shots": 1,
+      "impact": "beam",
+      "bone": "J_center",
+      "beamWidth": 1,
+      "size": 0.8
+    }
+  },
+  "메디벌듀크몬": {
+    "레이지 ･ 오브 ･ 와이번": {
+      "style": "beam",
+      "palette": "wind",
+      "motif": "wyvernLance",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "tornado",
+      "bone": "J_weapon",
+      "beamWidth": 1,
+      "size": 0.8
+    },
+    "파이널 ･ 크레스트": {
+      "style": "beam",
+      "palette": "holy",
+      "motif": "wyvernCrest",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "glyph",
+      "bone": "J_weapon",
+      "beamWidth": 1.8,
+      "size": 1.25
+    }
+  },
+  "뽈뽈몬": {
+    "재밍 파우더": {
+      "style": "mist",
+      "palette": "pollen",
+      "motif": "jammingPowder",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "mist",
+      "bone": "J_root",
+      "size": 1.05
+    }
+  },
+  "메르바몬": {
+    "나이트 스토커": {
+      "style": "whip",
+      "palette": "poison",
+      "motif": "serpentArm",
+      "anchor": "leftHand",
+      "shots": 1,
+      "impact": "bite",
+      "bone": "J_center",
+      "size": 0.8
+    },
+    "러브 포이즌": {
+      "style": "mist",
+      "palette": "toxin",
+      "motif": "loveVenom",
+      "anchor": "leftHand",
+      "shots": 1,
+      "impact": "mist",
+      "bone": "J_center",
+      "size": 1.05
+    },
+    "파이널 스트라이크 롤": {
+      "style": "spin",
+      "palette": "steel",
+      "motif": "swordRoll",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "slice",
+      "bone": "J_weapon",
+      "size": 0.8
+    },
+    "매드니스 메리 고 라운드DX": {
+      "style": "spin",
+      "palette": "shadow",
+      "motif": "swordCyclone",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "tornado",
+      "bone": "J_root",
+      "size": 0.8
+    }
+  },
+  "미노타몬": {
+    "다크사이드 퀘이크": {
+      "style": "hammer",
+      "palette": "sand",
+      "motif": "seismicFist",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "earth",
+      "bone": "J_hand_r",
+      "size": 0.8
+    }
+  },
+  "미스티몬": {
+    "코어 다트": {
+      "style": "crystal",
+      "palette": "violet",
+      "motif": "orbitCrystal",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "pierce",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "spiral",
+      "trajectory": "spiral",
+      "size": 0.8
+    },
+    "블래스트 화이어": {
+      "style": "slash",
+      "palette": "solar",
+      "motif": "flameSword",
+      "anchor": "weapon",
+      "shots": 3,
+      "impact": "flame",
+      "bone": "J_weapon_r",
+      "formation": "line",
+      "size": 0.8
+    }
+  },
+  "모털몬": {
+    "고드름 막대": {
+      "style": "hammer",
+      "palette": "frost",
+      "motif": "iceClub",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "frost",
+      "bone": "J_center",
+      "size": 0.8
+    },
+    "뼈다귀 부메랑": {
+      "style": "blade",
+      "palette": "bone",
+      "motif": "boneBoomerang",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "strike",
+      "bone": "J_center",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "미이라몬": {
+    "스네이크 밴디지": {
+      "style": "whip",
+      "palette": "bone",
+      "motif": "serpentBandage",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "vines",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "size": 0.8
+    },
+    "네크로포비아": {
+      "style": "bullet",
+      "palette": "shadow",
+      "motif": "necroBullet",
+      "anchor": "weapon",
+      "shots": 5,
+      "impact": "darkBurst",
+      "bone": "J_gun",
+      "formation": "line",
+      "size": 0.34
+    }
+  },
+  "무사몬": {
+    "장군검": {
+      "style": "slash",
+      "palette": "steel",
+      "motif": "shogunSword",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "slice",
+      "bone": "J_sword",
+      "size": 0.8
+    }
+  },
+  "네페르티몬": {
+    "여왕의 저주": {
+      "style": "beam",
+      "palette": "crimson",
+      "motif": "rubyGaze",
+      "anchor": "eyes",
+      "shots": 1,
+      "impact": "beam",
+      "bone": "J_head",
+      "beamWidth": 1,
+      "size": 0.8
+    },
+    "왕가의 비석": {
+      "style": "rock",
+      "palette": "sand",
+      "motif": "royalTablet",
+      "anchor": "overhead",
+      "shots": 3,
+      "impact": "earth",
+      "bone": "J_head",
+      "formation": "rain",
+      "trajectory": "rain",
+      "size": 0.8
+    }
+  },
+  "옥토몬": {
+    "카이메이 보쿠쥬": {
+      "style": "breath",
+      "palette": "ink",
+      "motif": "inkJet",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "mist",
+      "bone": "J_head",
+      "beamWidth": 1,
+      "size": 0.8,
+      "shape": "inkJet"
+    }
+  },
+  "패럴렐몬": {
+    "앱소번트 뱅": {
+      "style": "beam",
+      "palette": "violet",
+      "motif": "absorbRay",
+      "anchor": "eyes",
+      "shots": 1,
+      "impact": "portal",
+      "bone": "J_head",
+      "beamWidth": 1,
+      "size": 0.8
+    },
+    "엔드리스 트랜스": {
+      "style": "portal",
+      "palette": "violet",
+      "motif": "dimensionGates",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "portal",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "size": 1.05
+    }
+  },
+  "패롯몬": {
+    "소닉 디스트로이어": {
+      "style": "rush",
+      "palette": "wind",
+      "motif": "sonicDive",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "sonic",
+      "bone": "J_root",
+      "size": 0.8
+    },
+    "묠니르 썬더": {
+      "style": "lightning",
+      "palette": "electric",
+      "motif": "thunderRain",
+      "anchor": "head",
+      "shots": 3,
+      "impact": "lightning",
+      "bone": "J_center",
+      "formation": "rain",
+      "trajectory": "rain",
+      "size": 0.8
+    }
+  },
+  "페가수스몬": {
+    "로데오 갤럽": {
+      "style": "punch",
+      "palette": "holy",
+      "motif": "hoofKick",
+      "anchor": "feet",
+      "shots": 3,
+      "impact": "strike",
+      "bone": "J_ffoot_l",
+      "secondBone": "J_ffoot_r",
+      "formation": "line",
+      "size": 0.8
+    },
+    "실버 광선": {
+      "style": "beam",
+      "palette": "silver",
+      "motif": "silverRay",
+      "anchor": "eyes",
+      "shots": 1,
+      "impact": "holy",
+      "bone": "J_head",
+      "beamWidth": 1,
+      "size": 0.8
+    },
+    "슈팅 스타": {
+      "style": "meteor",
+      "palette": "holy",
+      "motif": "holyStars",
+      "anchor": "overhead",
+      "shots": 5,
+      "impact": "holy",
+      "bone": "J_head",
+      "formation": "rain",
+      "trajectory": "rain",
+      "size": 0.8
+    }
+  },
+  "펭귄몬": {
+    "무한 뺨 때리기": {
+      "style": "punch",
+      "palette": "water",
+      "motif": "flipperSlap",
+      "anchor": "hands",
+      "shots": 4,
+      "impact": "strike",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "line",
+      "size": 0.8
+    }
+  },
+  "푸쿠몬": {
+    "니들 스콜": {
+      "style": "needle",
+      "palette": "steel",
+      "motif": "needleSquall",
+      "anchor": "body",
+      "shots": 7,
+      "impact": "pierce",
+      "bone": "J_root",
+      "formation": "rain",
+      "trajectory": "rain",
+      "size": 0.48
+    }
+  },
+  "라나몬": {
+    "레인 스트림": {
+      "style": "wave",
+      "palette": "water",
+      "motif": "rainStream",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "water",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "rain",
+      "trajectory": "rain",
+      "size": 1.05
+    },
+    "젤러시 레인": {
+      "style": "mist",
+      "palette": "toxin",
+      "motif": "jealousyRain",
+      "anchor": "overhead",
+      "shots": 1,
+      "impact": "mist",
+      "bone": "J_head",
+      "formation": "rain",
+      "trajectory": "rain",
+      "size": 1.05
+    }
+  },
+  "스콜피오몬": {
+    "스팅거 서프라이즈": {
+      "style": "needle",
+      "palette": "toxin",
+      "motif": "scorpionSting",
+      "anchor": "tail",
+      "shots": 1,
+      "impact": "pierce",
+      "bone": "J_tail01",
+      "size": 0.48
+    }
+  },
+  "샤크몬": {
+    "일제포격": {
+      "style": "missile",
+      "palette": "steel",
+      "motif": "navalMissiles",
+      "anchor": "shoulders",
+      "shots": 6,
+      "impact": "explosion",
+      "bone": "J_spine01",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "플루토다몬": {
+      "style": "ring",
+      "palette": "water",
+      "motif": "seaMine",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "explosion",
+      "bone": "J_root",
+      "size": 1.05
+    },
+    "펑크차지": {
+      "style": "rush",
+      "palette": "water",
+      "motif": "sharkRush",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "water",
+      "bone": "J_root",
+      "size": 0.8
+    }
+  },
+  "원시고부리몬": {
+    "샤마 해머": {
+      "style": "hammer",
+      "palette": "sand",
+      "motif": "tribalHammer",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "earth",
+      "bone": "J_weapon_R",
+      "size": 0.8
+    }
+  },
+  "사우자몬": {
+    "강요장 파문의 진": {
+      "style": "ring",
+      "palette": "water",
+      "motif": "waterMandala",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "water",
+      "bone": "J_center",
+      "size": 1.05
+    },
+    "강요장 폭포의 진": {
+      "style": "beam",
+      "palette": "water",
+      "motif": "waterfallStaff",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "water",
+      "bone": "J_center",
+      "beamWidth": 1,
+      "size": 0.8,
+      "shape": "waterJet"
+    },
+    "월아참": {
+      "style": "blade",
+      "palette": "water",
+      "motif": "crescentBlade",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "slice",
+      "bone": "J_center",
+      "size": 0.8
+    }
+  },
+  "쉘몬": {
+    "하이드로 프레셔": {
+      "style": "beam",
+      "palette": "water",
+      "motif": "hydroJet",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "water",
+      "bone": "J_center",
+      "beamWidth": 1,
+      "size": 0.8,
+      "shape": "waterJet"
+    }
+  },
+  "수리몬": {
+    "모미지오로시": {
+      "style": "spin",
+      "palette": "wind",
+      "motif": "mapleSpin",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "slice",
+      "bone": "J_root",
+      "size": 0.8
+    },
+    "회전수리검": {
+      "style": "blade",
+      "palette": "steel",
+      "motif": "shuriken",
+      "anchor": "hands",
+      "shots": 4,
+      "impact": "slice",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "세이렌몬": {
+    "제1곡《폴리포니》": {
+      "style": "sound",
+      "palette": "petal",
+      "motif": "sopranoNotes",
+      "anchor": "mouth",
+      "shots": 4,
+      "impact": "sonic",
+      "bone": "J_head",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "제 2곡 《아리아》": {
+      "style": "sound",
+      "palette": "violet",
+      "motif": "bassNotes",
+      "anchor": "mouth",
+      "shots": 3,
+      "impact": "sonic",
+      "bone": "J_head",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "제 3곡 《캐논》": {
+      "style": "orb",
+      "palette": "holy",
+      "motif": "musicalNotes",
+      "anchor": "mouth",
+      "shots": 5,
+      "impact": "sonic",
+      "bone": "J_head",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "스컬벌키몬": {
+    "그레이브 본": {
+      "style": "hammer",
+      "palette": "bone",
+      "motif": "graveStomp",
+      "anchor": "feet",
+      "shots": 1,
+      "impact": "earth",
+      "bone": "J_foot01_l",
+      "secondBone": "J_foot01_r",
+      "size": 0.8
+    },
+    "데들리 피어": {
+      "style": "mist",
+      "palette": "shadow",
+      "motif": "deathFrost",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "frost",
+      "bone": "J_root",
+      "size": 1.05
+    }
+  },
+  "스컬맘몬": {
+    "스파이럴 본": {
+      "style": "missile",
+      "palette": "bone",
+      "motif": "spiralBone",
+      "anchor": "back",
+      "shots": 2,
+      "impact": "pierce",
+      "bone": "J_mune",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "스컬시드라몬": {
+    "번개창 날리기": {
+      "style": "lightning",
+      "palette": "electric",
+      "motif": "skullLightning",
+      "anchor": "head",
+      "shots": 1,
+      "impact": "lightning",
+      "bone": "J_head",
+      "size": 0.8
+    },
+    "데드롤": {
+      "style": "whip",
+      "palette": "bone",
+      "motif": "boneCoil",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "bite",
+      "bone": "J_root",
+      "size": 0.8
+    }
+  },
+  "슬래쉬엔젤몬": {
+    "홀리 에스파다": {
+      "style": "slash",
+      "palette": "holy",
+      "motif": "holyEspada",
+      "anchor": "hands",
+      "shots": 4,
+      "impact": "slice",
+      "bone": "J_center",
+      "formation": "line",
+      "size": 0.8
+    },
+    "헤븐즈 리퍼": {
+      "style": "blade",
+      "palette": "holy",
+      "motif": "wingSwords",
+      "anchor": "wings",
+      "shots": 6,
+      "impact": "holy",
+      "bone": "J_center",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "스나이몬": {
+    "섀도 ･ 시클": {
+      "style": "blade",
+      "palette": "poison",
+      "motif": "sickleWave",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "slice",
+      "bone": "J_hand02_r",
+      "secondBone": "J_hand02_l",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "스노우고부리몬": {
+    "스노 고브 볼트": {
+      "style": "rock",
+      "palette": "frost",
+      "motif": "snowball",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "frost",
+      "bone": "J_hand_R",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "잠수몬": {
+    "산소 어뢰": {
+      "style": "missile",
+      "palette": "water",
+      "motif": "oxygenTorpedo",
+      "anchor": "cannon",
+      "shots": 3,
+      "impact": "water",
+      "bone": "J_center",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "수중 발칸포": {
+      "style": "bullet",
+      "palette": "plasma",
+      "motif": "underwaterVulcan",
+      "anchor": "hands",
+      "shots": 6,
+      "impact": "shot",
+      "bone": "J_center",
+      "formation": "line",
+      "size": 0.34
+    }
+  },
+  "탱크드라몬": {
+    "스트라이버 캐논": {
+      "style": "beam",
+      "palette": "plasma",
+      "motif": "tankCannon",
+      "anchor": "cannon",
+      "shots": 1,
+      "impact": "explosion",
+      "bone": "J_gun01_l",
+      "beamWidth": 1,
+      "size": 0.8
+    },
+    "블래스트 개틀링": {
+      "style": "bullet",
+      "palette": "ember",
+      "motif": "gatling",
+      "anchor": "hands",
+      "shots": 8,
+      "impact": "shot",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "formation": "line",
+      "size": 0.34
+    }
+  },
+  "웬디몬": {
+    "공포의 포효": {
+      "style": "sound",
+      "palette": "shadow",
+      "motif": "terrorHowl",
+      "anchor": "mouth",
+      "shots": 3,
+      "impact": "sonic",
+      "bone": "J_hand_r",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "내려치기": {
+      "style": "hammer",
+      "palette": "bone",
+      "motif": "heavySlam",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "strike",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "size": 0.8
+    }
+  },
+  "위치몬": {
+    "바르루나 게일": {
+      "style": "vortex",
+      "palette": "wind",
+      "motif": "witchGale",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "tornado",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "size": 0.8
+    },
+    "아쿠아리 프레셔": {
+      "style": "beam",
+      "palette": "water",
+      "motif": "aquaPressure",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "water",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "beamWidth": 1,
+      "size": 0.8,
+      "shape": "waterJet"
+    }
+  },
+  "황금무사몬": {
+    "타수옥문": {
+      "style": "portal",
+      "palette": "shadow",
+      "motif": "hellGate",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "portal",
+      "bone": "J_sword_r",
+      "size": 1.05
+    },
+    "십자 베기": {
+      "style": "slash",
+      "palette": "steel",
+      "motif": "crossSword",
+      "anchor": "weapon",
+      "shots": 2,
+      "impact": "slice",
+      "bone": "J_sword_r",
+      "formation": "line",
+      "size": 0.8
+    }
+  },
+  "좀비플루토몬": {
+    "해저드 홀드": {
+      "style": "whip",
+      "palette": "toxin",
+      "motif": "devourHands",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "data",
+      "bone": "J_hand_r",
+      "secondBone": "J_hand_l",
+      "size": 0.8
+    },
+    "헬스 슬라이스": {
+      "style": "blade",
+      "palette": "toxin",
+      "motif": "xScythe",
+      "anchor": "leftHand",
+      "shots": 2,
+      "impact": "slice",
+      "bone": "J_hand_l",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "추악한 꼭두각시": {
+      "style": "bite",
+      "palette": "toxin",
+      "motif": "rottenFangs",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "bite",
+      "bone": "J_head",
+      "size": 0.8
+    }
+  },
+  "알로몬": {
+    "다이노 버스트": {
+      "style": "breath",
+      "palette": "solar",
+      "motif": "dinoFlame",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "flame",
+      "bone": "Bip001_Head",
+      "beamWidth": 1,
+      "size": 0.8
+    }
+  },
+  "브롯사몬": {
+    "꽃 폭탄": {
+      "style": "bomb",
+      "palette": "petal",
+      "motif": "flowerBomb",
+      "anchor": "head",
+      "shots": 3,
+      "impact": "petals",
+      "bone": "root",
+      "formation": "fan",
+      "size": 0.8,
+      "emitterLift": 0.65,
+      "emitterReach": 0.12
+    }
+  },
+  "볼토바우타몬": {
+    "팔라지 발차": {
+      "style": "blade",
+      "palette": "crimson",
+      "motif": "spectralSwords",
+      "anchor": "weapon",
+      "shots": 7,
+      "impact": "slice",
+      "bone": "Bip001_L_Hand",
+      "formation": "spiral",
+      "trajectory": "spiral",
+      "size": 0.8
+    },
+    "쿼치오네": {
+      "style": "bullet",
+      "palette": "shadow",
+      "motif": "phantomRounds",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "darkBurst",
+      "bone": "Bip001_L_Hand",
+      "formation": "line",
+      "size": 0.34
+    }
+  },
+  "브리웨루드라몬": {
+    "홍련 스톰": {
+      "style": "vortex",
+      "palette": "solar",
+      "motif": "infernoCyclone",
+      "anchor": "wings",
+      "shots": 1,
+      "impact": "flame",
+      "bone": "Bip001_L_Hand",
+      "size": 0.8
+    },
+    "블래스트 스매시": {
+      "style": "hammer",
+      "palette": "solar",
+      "motif": "blazingShield",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "explosion",
+      "bone": "Bip001_L_Hand",
+      "size": 0.8
+    }
+  },
+  "할매몬": {
+    "엠프레스 헤이즈": {
+      "style": "mist",
+      "palette": "holy",
+      "motif": "empressHaze",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "holy",
+      "bone": "Bip001_L_Hand",
+      "size": 1.05
+    }
+  },
+  "캔들몬": {
+    "화염폭탄": {
+      "style": "fireball",
+      "palette": "solar",
+      "motif": "candleFlame",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "flame",
+      "bone": "mouth",
+      "size": 0.8
+    }
+  },
+  "가재드라몬": {
+    "트윈 넵튠": {
+      "style": "claw",
+      "palette": "water",
+      "motif": "twinPincer",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "bite",
+      "bone": "Bip001_L_Hand",
+      "formation": "line",
+      "size": 0.8
+    }
+  },
+  "도그몬": {
+    "디스템 ･ 하울링": {
+      "style": "sound",
+      "palette": "violet",
+      "motif": "distemperHowl",
+      "anchor": "mouth",
+      "shots": 3,
+      "impact": "sonic",
+      "bone": "Bip001_Head",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "울트라 물어뜯기": {
+      "style": "bite",
+      "palette": "bone",
+      "motif": "dogFangs",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "bite",
+      "bone": "Bip001_Head",
+      "size": 0.8
+    }
+  },
+  "째리몬": {
+    "데들리 봄": {
+      "style": "bomb",
+      "palette": "steel",
+      "motif": "deadlyBomb",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "explosion",
+      "bone": "Bip001_R_Hand",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "손오공몬": {
+    "비기 ･ 몽현영": {
+      "style": "summon",
+      "palette": "holy",
+      "motif": "cloudClone",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "glyph",
+      "bone": "Bip001_L_Hand",
+      "size": 1.05
+    },
+    "질풍신뢰격": {
+      "style": "spear",
+      "palette": "holy",
+      "motif": "lightningStaff",
+      "anchor": "weapon",
+      "shots": 3,
+      "impact": "lightning",
+      "bone": "Bip001_L_Hand",
+      "formation": "line",
+      "size": 0.8
+    },
+    "초대전뇌광포": {
+      "style": "beam",
+      "palette": "electric",
+      "motif": "thunderCannon",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "lightning",
+      "bone": "Bip001_Head",
+      "beamWidth": 1.8,
+      "size": 0.8
+    }
+  },
+  "그랑디스쿠가몬": {
+    "그랑 킬러": {
+      "style": "claw",
+      "palette": "steel",
+      "motif": "grandClaws",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "slice",
+      "bone": "Bip001_L_Hand",
+      "formation": "line",
+      "size": 0.8
+    },
+    "그랑디스 시저": {
+      "style": "bite",
+      "palette": "steel",
+      "motif": "grandScissors",
+      "anchor": "head",
+      "shots": 1,
+      "impact": "bite",
+      "bone": "Bip001_Head",
+      "size": 0.8
+    }
+  },
+  "쟈가몬": {
+    "스매시 포테이토": {
+      "style": "rock",
+      "palette": "sand",
+      "motif": "potato",
+      "anchor": "hands",
+      "shots": 5,
+      "impact": "earth",
+      "bone": "Bip001_R_Hand",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "제트실피드몬": {
+    "제트 빈터": {
+      "style": "missile",
+      "palette": "wind",
+      "motif": "rocketFists",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "sonic",
+      "bone": "Bip001_R_Hand",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "울트라 터뷸런스": {
+      "style": "vortex",
+      "palette": "wind",
+      "motif": "turbineCyclone",
+      "anchor": "back",
+      "shots": 1,
+      "impact": "tornado",
+      "bone": "Bip001_Spine1",
+      "size": 0.8
+    }
+  },
+  "페어리몬": {
+    "토르나드 ･ 감바": {
+      "style": "punch",
+      "palette": "wind",
+      "motif": "tornadoKick",
+      "anchor": "feet",
+      "shots": 1,
+      "impact": "tornado",
+      "bone": "Bip001_L_Foot",
+      "size": 0.8
+    },
+    "로제오 ･ 템포라레": {
+      "style": "air",
+      "palette": "petal",
+      "motif": "roseStorm",
+      "anchor": "wings",
+      "shots": 3,
+      "impact": "petals",
+      "bone": "Bip001_L_Hand",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "코스파이더몬": {
+    "포이즌 네일": {
+      "style": "claw",
+      "palette": "toxin",
+      "motif": "poisonClaws",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "pierce",
+      "bone": "hand00",
+      "formation": "line",
+      "size": 0.8
+    }
+  },
+  "블리자몬": {
+    "아바란체 스텝": {
+      "style": "slash",
+      "palette": "frost",
+      "motif": "iceAxes",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "frost",
+      "bone": "Bip001_R_Hand",
+      "formation": "line",
+      "size": 0.8
+    },
+    "그렛챠 토르페이도": {
+      "style": "whip",
+      "palette": "frost",
+      "motif": "frozenHair",
+      "anchor": "head",
+      "shots": 1,
+      "impact": "pierce",
+      "bone": "Bip001_Head",
+      "size": 0.8
+    }
+  },
+  "챠크몬": {
+    "고드르르름": {
+      "style": "rush",
+      "palette": "frost",
+      "motif": "iceSpike",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "frost",
+      "bone": "Bip001_L_Hand",
+      "size": 0.8
+    },
+    "스노 봄버": {
+      "style": "rock",
+      "palette": "frost",
+      "motif": "snowball",
+      "anchor": "cannon",
+      "shots": 6,
+      "impact": "frost",
+      "bone": "Bip001_L_Hand",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "레베몬": {
+    "에비히 슐라프": {
+      "style": "spear",
+      "palette": "shadow",
+      "motif": "darkLance",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "pierce",
+      "bone": "Bip001_L_Hand",
+      "size": 0.8
+    },
+    "엔트리히 ･ 메테오르": {
+      "style": "beam",
+      "palette": "holy",
+      "motif": "lionRay",
+      "anchor": "chest",
+      "shots": 1,
+      "impact": "holy",
+      "bone": "Bip001_Spine1",
+      "beamWidth": 1,
+      "size": 0.8
+    }
+  },
+  "마린데블몬": {
+    "악마의 입김": {
+      "style": "breath",
+      "palette": "shadow",
+      "motif": "devilBreath",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "darkBurst",
+      "bone": "Bip001_Head",
+      "beamWidth": 1,
+      "size": 0.8
+    }
+  },
+  "폰체스몬(흑)": {
+    "폰 스피어": {
+      "style": "spear",
+      "palette": "steel",
+      "motif": "pawnLance",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "pierce",
+      "bone": "Bip001_R_Hand",
+      "size": 0.8
+    },
+    "폰 버클러": {
+      "style": "ring",
+      "palette": "silver",
+      "motif": "pawnShield",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "glyph",
+      "bone": "Bip001_R_Hand",
+      "size": 1.05
+    },
+    "피라미드 포메이션": {
+      "style": "ring",
+      "palette": "holy",
+      "motif": "pyramid",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "glyph",
+      "bone": "Bip001_R_Hand",
+      "size": 1.05
+    }
+  },
+  "폰체스몬(백)": {
+    "폰 스피어": {
+      "style": "spear",
+      "palette": "silver",
+      "motif": "pawnLance",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "pierce",
+      "bone": "Bip001_R_Hand",
+      "size": 0.8
+    },
+    "폰 버클러": {
+      "style": "ring",
+      "palette": "holy",
+      "motif": "pawnShield",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "glyph",
+      "bone": "Bip001_R_Hand",
+      "size": 1.05
+    },
+    "피라미드 포메이션": {
+      "style": "ring",
+      "palette": "silver",
+      "motif": "pyramid",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "glyph",
+      "bone": "Bip001_R_Hand",
+      "size": 1.05
+    }
+  },
+  "포큐파몬": {
+    "매드니스 브로치": {
+      "style": "needle",
+      "palette": "steel",
+      "motif": "needleArmor",
+      "anchor": "body",
+      "shots": 5,
+      "impact": "pierce",
+      "bone": "Bip001_L_Hand",
+      "formation": "fan",
+      "size": 0.48
+    },
+    "슬랩 앤 립": {
+      "style": "claw",
+      "palette": "steel",
+      "motif": "razorClaws",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "slice",
+      "bone": "Bip001_L_Hand",
+      "formation": "line",
+      "size": 0.8
+    }
+  },
+  "라이지루도몬": {
+    "라이트닝 버스터": {
+      "style": "lightning",
+      "palette": "electric",
+      "motif": "headThunder",
+      "anchor": "head",
+      "shots": 1,
+      "impact": "lightning",
+      "bone": "Bip001_Head",
+      "size": 0.8
+    },
+    "로켓 메서": {
+      "style": "missile",
+      "palette": "steel",
+      "motif": "rocketFists",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "explosion",
+      "bone": "Bip001_L_Hand",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "레드베지몬": {
+    "하자드 브레스": {
+      "style": "breath",
+      "palette": "toxin",
+      "motif": "toxicBreath",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "mist",
+      "bone": "Bip001_Head",
+      "beamWidth": 1,
+      "size": 0.8,
+      "shape": "mistJet"
+    }
+  },
+  "바알몬": {
+    "카미우치": {
+      "style": "lightning",
+      "palette": "electric",
+      "motif": "thunderWhip",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "lightning",
+      "bone": "Bip001_L_Hand",
+      "size": 0.8
+    },
+    "길티시": {
+      "style": "leaf",
+      "palette": "crimson",
+      "motif": "talismanCards",
+      "anchor": "back",
+      "shots": 6,
+      "impact": "glyph",
+      "bone": "Bip001_Spine",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "릭 인포메이션": {
+      "style": "ring",
+      "palette": "shadow",
+      "motif": "cursedBook",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "glyph",
+      "bone": "Bip001_L_Hand",
+      "size": 1.05
+    }
+  },
+  "삼장몬": {
+    "두자춘경": {
+      "style": "sound",
+      "palette": "holy",
+      "motif": "sutraNotes",
+      "anchor": "mouth",
+      "shots": 3,
+      "impact": "holy",
+      "bone": "Bip001_Head",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "호접몽경": {
+      "style": "summon",
+      "palette": "holy",
+      "motif": "butterflyDream",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "glyph",
+      "bone": "Bip001_L_Hand",
+      "size": 1.05
+    },
+    "무한탄막심경": {
+      "style": "orb",
+      "palette": "holy",
+      "motif": "prayerBeads",
+      "anchor": "hands",
+      "shots": 8,
+      "impact": "holy",
+      "bone": "Bip001_L_Hand",
+      "formation": "spiral",
+      "trajectory": "spiral",
+      "size": 0.8
+    }
+  },
+  "티아루도몬": {
+    "프리즈 빅커": {
+      "style": "blade",
+      "palette": "frost",
+      "motif": "frozenShield",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "frost",
+      "bone": "Bip001_L_Hand",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "어썰트 클로": {
+      "style": "claw",
+      "palette": "steel",
+      "motif": "dashClaws",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "slice",
+      "bone": "Bip001_L_Hand",
+      "formation": "line",
+      "size": 0.8
+    }
+  },
+  "이블몬": {
+    "나이트메어 쇼크": {
+      "style": "sound",
+      "palette": "shadow",
+      "motif": "nightmareWaves",
+      "anchor": "mouth",
+      "shots": 3,
+      "impact": "darkBurst",
+      "bone": "Bip001_Head",
+      "formation": "fan",
+      "size": 0.8
+    }
+  },
+  "배드퍼펫몬": {
+    "하트 브레이크 어택": {
+      "style": "punch",
+      "palette": "petal",
+      "motif": "brokenHeart",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "strike",
+      "bone": "Bip001_R_Hand",
+      "size": 0.8
+    }
+  },
+  "슈츠몬": {
+    "길가메시 슬라이서": {
+      "style": "blade",
+      "palette": "wind",
+      "motif": "wingRazors",
+      "anchor": "wings",
+      "shots": 5,
+      "impact": "slice",
+      "bone": "Bip001_L_Hand",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "윈드 오브 페인": {
+      "style": "vortex",
+      "palette": "wind",
+      "motif": "windOfPain",
+      "anchor": "wings",
+      "shots": 1,
+      "impact": "tornado",
+      "bone": "Bip001_L_Hand",
+      "size": 0.8
+    }
+  },
+  "아누비스몬": {
+    "피라미드 파워": {
+      "style": "ring",
+      "palette": "holy",
+      "motif": "pyramid",
+      "anchor": "hands",
+      "shots": 1,
+      "impact": "glyph",
+      "bone": "Bip001_L_Hand",
+      "size": 1.05
+    },
+    "어둠의 심판": {
+      "style": "beam",
+      "palette": "shadow",
+      "motif": "underworldJudgement",
+      "anchor": "eyes",
+      "shots": 1,
+      "impact": "darkBurst",
+      "bone": "Bip001_Head",
+      "beamWidth": 1,
+      "size": 0.8
+    }
+  },
+  "아수라몬": {
+    "아수라신권": {
+      "style": "punch",
+      "palette": "solar",
+      "motif": "asuraFists",
+      "anchor": "hands",
+      "shots": 6,
+      "impact": "strike",
+      "bone": "Bip001_L_Hand",
+      "formation": "line",
+      "size": 0.8
+    }
+  },
+  "기기몬": {
+    "핫 바이트": {
+      "style": "bite",
+      "palette": "solar",
+      "motif": "hotFangs",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "flame",
+      "bone": "J_head",
+      "size": 0.8
+    }
+  },
+  "쟈리몬": {
+    "열기를 띤 거품": {
+      "style": "bubble",
+      "palette": "solar",
+      "motif": "hotBubbles",
+      "anchor": "mouth",
+      "shots": 3,
+      "impact": "flame",
+      "bone": "J_head",
+      "formation": "fan",
+      "size": 0.48
+    }
+  },
+  "구미몬": {
+    "더블 버블": {
+      "style": "bubble",
+      "palette": "water",
+      "motif": "doubleBubble",
+      "anchor": "mouth",
+      "shots": 2,
+      "impact": "water",
+      "bone": "J_head",
+      "formation": "fan",
+      "size": 0.48
+    }
+  },
+  "연체몬": {
+    "데빌 배싱": {
+      "style": "whip",
+      "palette": "water",
+      "motif": "tentacleCombo",
+      "anchor": "hands",
+      "shots": 4,
+      "impact": "strike",
+      "bone": "hand_R01",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "데들리 셰이드": {
+      "style": "breath",
+      "palette": "ink",
+      "motif": "inkJet",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "mist",
+      "bone": "head01",
+      "beamWidth": 1,
+      "size": 0.8,
+      "shape": "inkJet"
+    }
+  },
+  "초코몬": {
+    "더블 버블": {
+      "style": "bubble",
+      "palette": "water",
+      "motif": "doubleBubble",
+      "anchor": "mouth",
+      "shots": 2,
+      "impact": "water",
+      "bone": "J_head",
+      "formation": "fan",
+      "size": 0.48
+    }
+  },
+  "피치몬": {
+    "비누 거품": {
+      "style": "bubble",
+      "palette": "water",
+      "motif": "soapBubble",
+      "anchor": "mouth",
+      "shots": 3,
+      "impact": "water",
+      "bone": "J_head",
+      "formation": "fan",
+      "size": 0.48
+    }
+  },
+  "사이케몬": {
+    "컬러풀 스파크": {
+      "style": "lightning",
+      "palette": "rainbow",
+      "motif": "rainbowSpark",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "lightning",
+      "bone": "J_hand2_r",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "화려화려 호른": {
+      "style": "lightning",
+      "palette": "rainbow",
+      "motif": "hornShot",
+      "anchor": "head",
+      "shots": 2,
+      "impact": "pierce",
+      "bone": "J_head",
+      "formation": "fan",
+      "size": 0.8
+    },
+    "원색의 춤": {
+      "style": "ring",
+      "palette": "rainbow",
+      "motif": "colorDance",
+      "anchor": "body",
+      "shots": 1,
+      "impact": "glyph",
+      "bone": "J_root",
+      "size": 1.05
+    }
+  },
+  "유라몬": {
+    "점성 거품": {
+      "style": "bubble",
+      "palette": "water",
+      "motif": "stickyBubble",
+      "anchor": "mouth",
+      "shots": 3,
+      "impact": "water",
+      "bone": "J_head",
+      "formation": "fan",
+      "size": 0.48
+    }
+  },
+  "제리몬": {
+    "산성 거품": {
+      "style": "bubble",
+      "palette": "toxin",
+      "motif": "acidBubble",
+      "anchor": "mouth",
+      "shots": 3,
+      "impact": "mist",
+      "bone": "J_head",
+      "formation": "fan",
+      "size": 0.48
+    }
+  },
+  "팅커몬": {
+    "스피드 나이트메어": {
+      "style": "spear",
+      "palette": "toxin",
+      "motif": "poisonHarpoon",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "pierce",
+      "bone": "Bip001_R_Hand",
+      "size": 0.8
+    },
+    "나이트메어 팬데믹": {
+      "style": "claw",
+      "palette": "violet",
+      "motif": "fairyClaws",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "lightning",
+      "bone": "Bip001_R_Hand",
+      "formation": "line",
+      "size": 0.8
+    },
+    "페어리 파우더": {
+      "style": "mist",
+      "palette": "petal",
+      "motif": "fairyDust",
+      "anchor": "wings",
+      "shots": 1,
+      "impact": "petals",
+      "bone": "Bip001_R_Hand",
+      "size": 1.05
+    },
+    "피터몬 신드롬": {
+      "style": "portal",
+      "palette": "holy",
+      "motif": "neverlandGate",
+      "anchor": "wings",
+      "shots": 1,
+      "impact": "portal",
+      "bone": "Bip001_R_Hand",
+      "size": 1.05
+    }
+  },
+  "빅토리그레이몬": {
+    "드라몬 브레이커": {
+      "style": "slash",
+      "palette": "solar",
+      "motif": "dramonSword",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "slice",
+      "bone": "Bip001_L_Hand",
+      "size": 0.8
+    },
+    "트라이던트 가이아": {
+      "style": "beam",
+      "palette": "solar",
+      "motif": "gaiaTrident",
+      "anchor": "hands",
+      "shots": 3,
+      "impact": "explosion",
+      "bone": "Bip001_L_Hand",
+      "formation": "fan",
+      "beamWidth": 1,
+      "size": 0.8
+    },
+    "빅토리 차지": {
+      "style": "slash",
+      "palette": "holy",
+      "motif": "swordParry",
+      "anchor": "weapon",
+      "shots": 1,
+      "impact": "strike",
+      "bone": "Bip001_L_Hand",
+      "size": 0.8
+    }
+  },
+  "블랙그라우몬": {
+    "번개검": {
+      "style": "slash",
+      "palette": "electric",
+      "motif": "thunderSword",
+      "anchor": "hands",
+      "shots": 2,
+      "impact": "lightning",
+      "bone": "Bip001_L_Hand",
+      "formation": "line",
+      "size": 0.8
+    },
+    "이그저스트 플레임": {
+      "style": "breath",
+      "palette": "blueFlame",
+      "motif": "exhaustFlame",
+      "anchor": "mouth",
+      "shots": 1,
+      "impact": "flame",
+      "bone": "Bip001_Head",
+      "beamWidth": 1,
+      "size": 0.8
+    }
+  }
+}

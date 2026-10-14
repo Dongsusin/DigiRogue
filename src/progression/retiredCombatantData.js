@@ -1,11 +1,13 @@
+import { canonicalItemId } from '../data/itemIdentity.js'
 // Compatibility only: older snapshots can retain removed stat rolls, equipment
 // or team bonuses. Strip them from every unit, reward and nested checkpoint.
-const retiredItems = new Set(['iv-detector', 'xros-loader'])
+const retiredItems = new Set(['iv-detector'])
 const retiredFields = new Set(['ivs', 'teamSynergies', ...retiredItems])
-const isRetiredItem = value => retiredItems.has(value) || retiredItems.has(value?.id) || retiredItems.has(value?.itemId)
+const isRetiredId = value => typeof value === 'string' && (retiredItems.has(value) || canonicalItemId(value) === null)
+const isRetiredItem = value => isRetiredId(value) || isRetiredId(value?.id) || isRetiredId(value?.itemId)
 
 export function cleanCombatantFields(combatant) {
-  return Object.fromEntries(Object.entries(combatant).filter(([key]) => !retiredFields.has(key)))
+  return Object.fromEntries(Object.entries(combatant).filter(([key]) => !retiredFields.has(key) && !isRetiredId(key)))
 }
 
 export function removeRetiredCombatantData(value) {

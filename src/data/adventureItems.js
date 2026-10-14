@@ -1,11 +1,20 @@
 import { isStatModifierActive } from '../battle/regionModifiers.js'
+import spiritEvolution from './spiritEvolution.json' with { type: 'json' }
 import art from './adventureItemArt.json' with { type: 'json' }
 
-const equipped = (id, description, rarity = 'good') => ({ id, name: art[id].name,
-  description,
-  imageUrl: art[id].url, battleItemKey: id, maxOwnedPerCombatant: 1, rarity })
+const equipped = (id, description, rarity = 'good') => {
+  const evolutionTargets = Object.entries({ ...spiritEvolution.humans, ...spiritEvolution.beasts }).filter(([,r])=>id===(Object.values(spiritEvolution.humans).includes(r)?'human':'beast')+'-spirit-'+r.element).map(([name])=>name)
+  return { id, name: art[id].name, description: description + (evolutionTargets.length ? '\n진화창에서 '+evolutionTargets.join(' / ')+' 진화에 사용할 수 있습니다. 사용 시 장착한 스피릿 1개가 소모됩니다.' : ''),
+    imageUrl: art[id].url, battleItemKey: id, maxOwnedPerCombatant: 1, rarity, ...(evolutionTargets.length?{evolutionTargets}:{}) }
+}
 
 export const ADVENTURE_BATTLE_ITEMS = [
+  equipped('human-spirit-fire', '화염 기술로 주는 피해가 12% 증가합니다.'),
+  equipped('human-spirit-light', '빛 기술로 주는 피해가 12% 증가합니다.'),
+  equipped('human-spirit-ice', '얼음 기술로 주는 피해가 12% 증가합니다.'),
+  equipped('human-spirit-wind', '바람 기술로 주는 피해가 12% 증가합니다.'),
+  equipped('human-spirit-water', '회복 기술로 받는 HP 회복량이 15% 증가합니다.'),
+  equipped('human-spirit-dark', '어둠 기술로 주는 피해가 12% 증가합니다.'),
   equipped('d-ark-ultimate', '주는 물리·특수 공격 피해가 50% 증가합니다.', 'master'),
   equipped('digivice-v', '받는 물리·특수 공격 피해를 35% 줄입니다.', 'master'),
   equipped('xros-loader', '승리 후 생존한 장착 디지몬의 최대 HP 25% 추가 회복 · 기술로 받는 회복량 50% 증가. 예비 파티에도 적용됩니다.', 'master'),
@@ -75,6 +84,7 @@ export const getItemStatusDamageMultiplier = unit => hasAdventureItem(unit, 'cre
 
 export function getItemHealingMultiplier(actor, target, scope) {
   let multiplier = hasAdventureItem(target, 'beast-spirit-wood') ? 1.25 : 1
+  if (hasAdventureItem(target, 'human-spirit-water')) multiplier *= 1.15
   if (hasAdventureItem(target, 'xros-loader')) multiplier *= 1.5
   if (scope === 'all' && hasAdventureItem(actor, 'crest-love')) multiplier *= 1.25
   if (scope !== 'all' && actor?.id !== target?.id && hasAdventureItem(actor, 'crest-friendship')) multiplier *= 1.3
@@ -102,6 +112,8 @@ export function getAdventureAttackModifiers({ attacker, defender, skillData, mat
   modify(attacker, 'crest-courage', attacker.currentHp <= attacker.maxHp / 3 ? 1.25 : 1)
   modify(attacker, 'beast-spirit-fire', physical ? 1.18 : 0.9)
   modify(attacker, 'beast-spirit-light', physical ? 0.9 : 1.18)
+  for (const [element, attribute] of Object.entries({fire:'화염',light:'빛',ice:'얼음',wind:'바람',dark:'어둠'}))
+    if (skillData.속성 === attribute) modify(attacker, 'human-spirit-' + element, 1.12)
   modify(attacker, 'beast-spirit-wind', skillData.전체공격 === true ? 1.2 : 0.9)
   modify(attacker, 'beast-spirit-thunder', attacker.speed > defender.speed ? 1.15 : 1)
   modify(attacker, 'beast-spirit-ice', Object.values(defender.statModifiers ?? {}).some(value => isStatModifierActive(value) && value.multiplier < 1) ? 1.2 : 1)

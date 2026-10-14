@@ -26,7 +26,7 @@ const eligibleProfile = (profile, stage, speciesLookup) => profile && stage >= p
 
 export function getBossCandidates(stage, mapName, speciesLookup, { kind } = {}) {
   if (stage < 10 || stage > 200 || stage % 10 !== 0) return []
-  const eligible = BOSS_PROFILES.filter(profile => eligibleProfile(profile, stage, speciesLookup))
+  const eligible = BOSS_PROFILES.filter(profile => eligibleProfile(profile, stage, speciesLookup) && (!profile.maps || profile.maps.includes(mapName)))
   if (stage === 200) return eligible.filter(profile => profile.kind === 'final')
   const desired = kind ?? (Math.floor(stage / 10) % 2 ? 'lineage' : 'wild')
   return regionalEncounterPool(eligible, mapName, BOSS_MAP_THEMES[mapName],
@@ -44,7 +44,7 @@ export function getBossProfile(stage, mapName, speciesLookup, { id, random = Mat
 }
 
 export function createBossPlan(profile, stage, { companionIds = [], support = false } = {}) {
-  const index = profile.kind === 'final' ? 0 : ['lineage', 'rival'].includes(profile.kind) ? Math.min(tierForStage(stage), profile.line.length - 1)
+  const index = profile.entryStages ? Math.max(0, profile.entryStages.findLastIndex(at => stage >= at)) : profile.kind === 'final' ? 0 : ['lineage', 'rival'].includes(profile.kind) ? Math.min(tierForStage(stage), profile.line.length - 1)
     : Math.min(Math.floor((stage - profile.minStage) / 40), profile.line.length - 1)
   const startIndex = profile.awakenActions ? 0 : index
   const name = support ? profile.companion : profile.line[startIndex]

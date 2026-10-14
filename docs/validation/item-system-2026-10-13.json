@@ -1,0 +1,117 @@
+{
+  "date": "2026-10-13",
+  "deployment": false,
+  "testUrl": "http://127.0.0.1:5174/.tmp-convert/all-digimon-test.html",
+  "scope": [
+    "Three requested species removed; Gizamon face UV0 bake corrected",
+    "Unique item artwork except shared X antibody; real item art preferred; 17 fan catalysts generated with built-in imagegen",
+    "Shared physical item inventory IDs and discovery migration",
+    "24 rogue Evoluter evolutions changed to level/stat routes",
+    "Human and Beast Spirits use one common-grade equipment/evolution item; fusion has no item",
+    "Paildramon uses one Positron Laser for either Imperialdramon mode; Dragon/Fighter switch freely"
+  ],
+  "changedCoreFiles": [
+    "src/App.jsx",
+    "src/data/evolutionRules.js",
+    "src/data/freeModeChanges.json",
+    "src/data/itemIdentity.js",
+    "src/data/itemIdentity.json",
+    "src/data/spiritEvolution.json",
+    "src/data/normalEvolutionRequirements.json",
+    "src/data/itemArtworkOverrides.json",
+    "src/data/adventureItems.js",
+    "src/data/adventureItemArt.json",
+    "src/data/evolutionItemArt.json",
+    "src/data/itemDex.js",
+    "src/progression/itemCollection.js",
+    "src/data/rosterExpansion7.json",
+    "src/data/retiredByRequestSpecies.json",
+    "src/data/speciesAvailability.js",
+    "scripts/assets/bake-dsts-faces.mjs",
+    "scripts/assets/import-dsts-models.mjs",
+    "scripts/assets/stabilize-dsts-motion.mjs",
+    "scripts/verify-item-artwork.mjs",
+    "scripts/verify-roster-expansion7.mjs",
+    "scripts/verify-expansion-motion.mjs",
+    "package.json"
+  ],
+  "checks": [
+    {
+      "name": "regression",
+      "command": "node --test scripts/verify-item-artwork.mjs scripts/verify-battle-items.mjs scripts/verify-adventure-items.mjs scripts/verify-jogress-inheritance.mjs scripts/verify-save-slots.mjs scripts/verify-roster-expansion7.mjs scripts/verify-digimon-dex.mjs scripts/verify-item-dex.mjs scripts/verify-canon-catalog.mjs scripts/verify-evolution-investment.mjs",
+      "exitCode": 0,
+      "tests": 204,
+      "pass": 204,
+      "fail": 0
+    },
+    {
+      "name": "gizamon-motion",
+      "command": "node scripts/verify-expansion-motion.mjs --only 기자몬",
+      "exitCode": 0,
+      "models": 1,
+      "poses": 170,
+      "flags": 0
+    },
+    {
+      "name": "resource-versions",
+      "command": "node scripts/generate-resource-versions.mjs",
+      "exitCode": 0
+    },
+    {
+      "name": "build",
+      "command": "node node_modules/vite/bin/vite.js build",
+      "exitCode": 0
+    },
+    {
+      "name": "download-package",
+      "command": "node scripts/prepare-game-download.mjs",
+      "exitCode": 0
+    },
+    {
+      "name": "runtime",
+      "command": "node scripts/verify-runtime.mjs",
+      "exitCode": 0
+    }
+  ],
+  "browser": {
+    "checks": [
+      "All 200 items discovered in every rarity; visible images load without broken files",
+      "16 common-grade human/beast spirit entries use recognizable official artwork",
+      "Fixed Gizamon 3D model loads in actual starter selection with front portrait",
+      "The three retired forms are absent from starter search",
+      "Isolated profile preserves 661 unlocks and all 200 item discoveries after reload without touching root collection"
+    ],
+    "errors": [],
+    "grades": {
+      "common": 21,
+      "good": 53,
+      "rare": 73,
+      "rogue": 31,
+      "master": 22
+    },
+    "exitCode": 0
+  },
+  "isolatedSeed": {
+    "passed": true,
+    "playable": 661,
+    "acquired": 661,
+    "excluded": [
+      "위그드라실 7D6"
+    ],
+    "items": 200,
+    "skillsChanged": false
+  },
+  "assets": {
+    "models": 662,
+    "playable": 661,
+    "clips": 5657,
+    "portraits": 1324,
+    "itemDex": 200
+  },
+  "knownLimitations": [
+    "A full manual 200-stage playthrough was not run.",
+    "Imperialdramon repeated switching is verified through the actual game resolver in Node; the complete UI cutscene sequence was not manually played.",
+    "Vite build succeeds with existing large-chunk warnings."
+  ],
+  "artworkSources": "../asset-sources/item-artwork-2026-10-13.json"
+}

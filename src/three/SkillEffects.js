@@ -1,3 +1,4 @@
+import { makeExpansionObject, makeSignatureContactAura, animateSignatureObject } from './expansionSkillGeometry.js'
 import * as THREE from 'three'
 import { clamp01 } from './battle3dMath.js'
 import { skillMesh, makeVortex, makeGlyph, makeEnergyObject, makeImpactMarks, makeFlameObject, makeFlameBreath, makeSpiralFlame, animateSkillObject } from './skillEffectGeometry.js'
@@ -17,6 +18,8 @@ export function makeSkillObject(fx, plan) {
   const g = fx.geometries
   g.dart ??= new THREE.ConeGeometry(.22, .65, 6).rotateX(Math.PI / 2)
   g.rod ??= new THREE.CylinderGeometry(.06, .06, 1, 8).rotateX(Math.PI / 2)
+  const signatureObject = makeExpansionObject(fx, plan)
+  if (signatureObject) { signatureObject.userData.shape = plan.shape; return signatureObject }
   if (!g.heart) {
     const s = new THREE.Shape()
     s.moveTo(0, -.42); s.bezierCurveTo(-.9, .04, -.5, .8, 0, .35); s.bezierCurveTo(.5, .8, .9, .04, 0, -.42)
@@ -152,6 +155,7 @@ export class SkillEffects {
   motion(emitter, center, target, plan, start, duration, scale, bodyDirection) {
     if (!plan.motionFx) return
     const fx=this.fx, group=new THREE.Group(),kind=plan.motionFx.kind,g=fx.geometries
+    g.rod ??= new THREE.CylinderGeometry(.06,.06,1,8).rotateX(Math.PI/2)
     group.name='skill-motion:'+kind
     let object
     if (['tornado','drill'].includes(kind)) {
@@ -176,6 +180,8 @@ export class SkillEffects {
         for(let i=0;i<4;i++){const mark=skillMesh(fx,object,g.shard,plan.palette.core,[.035,.035,.5],[(i%2-.5)*.25,(Math.floor(i/2)-.5)*.25,-.2]);mark.rotation.y=i*.1}
       }
     }
+    const signatureAura = makeSignatureContactAura(fx, plan)
+    if (signatureAura) { signatureAura.scale.setScalar(['rush','tornado','drill'].includes(kind) ? 2.1 : 1.25); object.add(signatureAura) }
     const onBody=['tornado','rush','nightmare'].includes(kind)
     fx.add({group,start,duration,update:p=>{
       const position=onBody?center():emitter()
@@ -191,6 +197,8 @@ export class SkillEffects {
       group.scale.setScalar(scale*(kind==='tornado'?.9:kind==='rush'?.42:.30)*gate)
       if(['tornado','drill'].includes(kind))object.quaternion.setFromAxisAngle(FORWARD,p*TAU*6).multiply(VORTEX_AXIS)
       else object.rotation.z=Math.sin(p*Math.PI)*.55
+      animateSkillObject(object,p)
+      animateSignatureObject(object,p)
       group.traverse(n=>{if(n.material){
         n.material.opacity=(n.userData.baseOpacity??.6)*gate*(n.userData.energyStreak!=null?.8+Math.sin(p*45+n.userData.energyStreak)*.2:1)
         if(n.material.userData.tornadoPhase)n.material.userData.tornadoPhase.value=p
@@ -202,16 +210,17 @@ export class SkillEffects {
     if (plan.motif === 'marchingFishes') plan = { ...plan, palette: { ...plan.palette, color: [0xf27f65, 0x61caff, 0xffd56a, 0xa8eb93, 0xbc9bff][index % 5] } }
     plan = strikePlan(plan, index)
     if (['contact', 'native'].includes(plan.delivery)) return
-    if (['beam', 'tether'].includes(plan.delivery)) return this.beam(emitter, target, plan, start, duration, scale)
+    if (['beam', 'tether'].includes(plan.delivery)) return this.beam(emitter, target, plan, start, duration, scale, index)
     if (plan.delivery === 'field') return this.field(target, plan, start, duration, scale)
     const fx = this.fx, group = new THREE.Group(), from = point(emitter), to = target.clone()
+    if (plan.trajectory === 'rain') from.copy(to).add(new THREE.Vector3((index - (plan.shots-1)/2)*scale*.22,scale*1.4,(index%2-.5)*scale*.3))
     group.name = 'skill-projectile:' + (plan.motif || plan.shape)
     const head = makeSkillObject(fx, plan)
     const size = scale * plan.size * (plan.shape === 'fireball' ? .33 : .25)
     head.scale.setScalar(size); group.add(head)
     if (['bullet', 'missile'].includes(plan.shape)) {
       const muzzle = new THREE.Group(); muzzle.position.copy(from)
-      const flash = fx.sprite(fx.textures.spark, ['freezeMissile', 'harpoon'].includes(plan.motif) ? plan.palette.core : 0xffdc8c, size * 3); muzzle.add(flash)
+      const flash = fx.sprite(fx.textures.spark, plan.effectSource === 'expansion-signature' || ['freezeMissile', 'harpoon'].includes(plan.motif) ? plan.palette.core : 0xffdc8c, size * 3); muzzle.add(flash)
       fx.add({ group: muzzle, start, duration: 90 * duration / plan.travelMs, update: p => { flash.scale.setScalar(size * (3 - p * 2)); flash.material.opacity = (1 - p) * .85 } })
     }
     const direction = to.clone().sub(from).normalize()
@@ -222,11 +231,25 @@ export class SkillEffects {
     })
     const arc = plan.trajectory === 'lob' ? scale * (.3 + index * .06) : plan.formation === 'rain' ? scale * 1.2 : 0
     const fan = plan.formation === 'fan' ? (index - (plan.shots - 1) / 2) * .16 : (index % 2 ? .06 : -.06)
-    const positionAt = p => from.clone().lerp(to, p).add(new THREE.Vector3(0, Math.sin(p * Math.PI) * (arc + Math.abs(fan) * scale * .35), Math.sin(p * Math.PI) * fan * scale))
+    const positionAt = p => {
+      const position = from.clone().lerp(to, p)
+      if (plan.trajectory === 'rain') return position
+      if (plan.trajectory === 'spiral') {
+        const angle = p * TAU * 1.5 + index * TAU / Math.max(1, plan.shots), radius = Math.sin(p*Math.PI)*scale*.35
+        return position.add(new THREE.Vector3(0,Math.cos(angle)*radius,Math.sin(angle)*radius))
+      }
+      return position.add(new THREE.Vector3(0, Math.sin(p * Math.PI) * (arc + Math.abs(fan) * scale * .35), Math.sin(p * Math.PI) * fan * scale))
+    }
     fx.add({ group, start, duration, update: p => {
       head.position.copy(positionAt(p)); head.quaternion.copy(facing)
+      if (plan.effectSource === 'expansion-signature') {
+        const tangent = positionAt(Math.min(1,p+.015)).sub(positionAt(Math.max(0,p-.015)))
+        if (tangent.lengthSq()>1e-8) head.quaternion.setFromUnitVectors(FORWARD,tangent.normalize())
+      }
+      if (plan.effectSource === 'expansion-signature' && /Notes|Disc|Wheel|shuriken|Shield|talismanCards|royalTablet|flowerBomb|roseStorm/.test(plan.motif)) head.quaternion.copy(fx.camera.quaternion)
       if ((['blade', 'gear', 'leaf', 'feather', 'web', 'vortex'].includes(plan.shape) || plan.motif === 'diamondStorm')) head.rotateZ(p * 7)
       animateSkillObject(head, p)
+      animateSignatureObject(head,p)
       for (const child of head.children) if (child.userData.wing) child.rotation.z = Math.sin(p * 25) * .5 * child.userData.wing
       trail.forEach((sprite, i) => {
         const t = Math.max(0, p - (i + 1) * .035)
@@ -235,38 +258,44 @@ export class SkillEffects {
     } })
   }
 
-  beam(emitter, to, plan, start, duration, scale) {
-    const fx=this.fx,group=new THREE.Group(),g=fx.geometries,size=scale*plan.size*.09
+  beam(emitter, to, plan, start, duration, scale, index = 0) {
+    const fx=this.fx,group=new THREE.Group(),g=fx.geometries,size=scale*plan.size*.09*(plan.beamWidth||1)
     const flame=plan.shape==='flame',frost=plan.shape==='frost',vine=plan.shape==='vine',electric=plan.shape==='lightning'
     const petals=plan.motif==='petals',data=plan.motif==='data',color=plan.palette.color
+    const water=plan.shape==='waterJet',mist=['inkJet','mistJet'].includes(plan.shape)
+    const energy=plan.effectSource==='expansion-signature'&&!flame&&!frost&&!vine&&!electric&&!water&&!mist
     group.name='skill-beam:'+ (plan.motif||plan.shape)
     g.breathCone??=new THREE.CylinderGeometry(1,.1,1,20,1,true).translate(0,.5,0)
-    const outer=flame ? makeFlameBreath(fx,plan.palette) : skillMesh(fx,group,frost?g.breathCone:g.cylinder,color,[1,1,1],[0,0,0],.25)
+    const outer=flame ? makeFlameBreath(fx,plan.palette) : skillMesh(fx,group,frost||water||mist?g.breathCone:g.cylinder,color,[1,1,1],[0,0,0],.25)
     if(flame)group.add(outer)
+    if(mist){outer.material.blending=THREE.NormalBlending;outer.material.opacity=.45}
+    if(energy){outer.material.blending=THREE.NormalBlending;outer.material.side=THREE.FrontSide;outer.material.toneMapped=false}
     const inner=skillMesh(fx,group,g.cylinder,plan.palette.core,[1,1,1],[0,0,0],electric?.18:.5)
+    if(energy){inner.material.side=THREE.FrontSide;inner.material.toneMapped=false}
     let bolts=[]
     if(electric||vine) {
       bolts=Array.from({length:electric?3:1},()=>{const b=fx.ribbon(Array.from({length:13},()=>new THREE.Vector3()),size*(electric?.35:.5),fx.additive(color,.8));group.add(b);return b})
       outer.visible=inner.visible=false
     }
-    const motes=Array.from({length:flame?0:frost||petals?10:6},(_,i)=>{
-      const geometry=frost?g.shard:petals?g.shard:data?g.cube:vine?g.spike:flame?g.shard:g.torus
+    const motes=Array.from({length:flame?0:frost||petals||water||mist?10:6},(_,i)=>{
+      const geometry=energy?g.shard:water?g.sphere:mist?g.sphere:frost?g.shard:petals?g.shard:data?g.cube:vine?g.spike:flame?g.shard:g.torus
       return skillMesh(fx,group,geometry,i%3?color:plan.palette.core,[1,1,1],[0,0,0],.6)
     })
+    const strands=energy?Array.from({length:2},()=>{const material=fx.additive(color,.62);material.blending=THREE.NormalBlending;material.forceSinglePass=true;material.toneMapped=false;const ribbon=fx.ribbon(Array.from({length:17},()=>new THREE.Vector3()),size*.18,material);group.add(ribbon);return ribbon}):[]
     // Tongues advect down a widening breath instead of a rigid glowing cylinder.
     const flames = flame ? Array.from({length:5},()=> { const f=makeFlameObject(fx,plan.palette,2); group.add(f); return f }) : []
-    if(flame) inner.visible = false
+    if(flame||mist) inner.visible = false
     const hand=plan.motif==='spectralHand'?makeSkillObject(fx,{...plan,shape:'fist'}):null
     if(hand)group.add(hand)
     fx.add({group,start,duration:duration+120,update:(p,dt,now)=>{
-      const t=clamp01((now-start)/Math.max(1,duration)),from=point(emitter),end=from.clone().lerp(to,t)
+      const t=clamp01((now-start)/Math.max(1,duration)),from=plan.formation==='rain'?to.clone().add(new THREE.Vector3((index-(plan.shots-1)/2)*scale*.18,scale*1.5,(index%2-.5)*scale*.15)):point(emitter),end=from.clone().lerp(to,t)
       const direction=end.clone().sub(from),length=direction.length(),axis=direction.clone().normalize()
       if(!length){group.visible=false;return}
       group.position.copy(from)
       const fade=1-clamp01((now-start-duration)/120),q=new THREE.Quaternion().setFromUnitVectors(UP,axis)
       for(const [i,m]of [outer,inner].entries()) {
-        m.quaternion.copy(q);const radius=size*(i?.28:flame||frost?3.2:1)
-        m.scale.set(radius,length,radius);m.material.opacity=(i?.55:flame?.62:.25)*fade
+        m.quaternion.copy(q);const radius=size*(i?.28:flame||frost||water||mist?3.2:1)
+        m.scale.set(radius,length,radius);m.material.opacity=(energy?(i?.30:.48):(i?.55:flame?.62:.25))*fade
       }
       animateSkillObject(outer,(now-start)/500)
       flames.forEach((f,i)=>{
@@ -287,16 +316,30 @@ export class SkillEffects {
         })
         fx.updateRibbon(b,pts);b.material.opacity=.8*fade
       })
+      if(energy){
+        const across=new THREE.Vector3().crossVectors(axis,UP)
+        if(across.lengthSq()<1e-6)across.set(1,0,0);else across.normalize()
+        const above=new THREE.Vector3().crossVectors(across,axis).normalize()
+        strands.forEach((ribbon,j)=>{
+          const points=Array.from({length:17},(_,i)=>{
+            const f=i/16,a=f*TAU*2-(now-start)*.018+j*Math.PI,r=size*.8*Math.sin(f*Math.PI)
+            return direction.clone().multiplyScalar(f).addScaledVector(across,Math.cos(a)*r).addScaledVector(above,Math.sin(a)*r)
+          })
+          fx.updateRibbon(ribbon,points);ribbon.material.opacity=.62*fade
+        })
+      }
       motes.forEach((m,i)=>{
         const f=((i/motes.length+(now-start)/380)%1)*t
         m.position.copy(to).sub(from).multiplyScalar(f)
         m.quaternion.setFromUnitVectors(FORWARD,axis)
         if (vine) { m.scale.set(size*.7,size*2,size*.7);m.rotation.z=i*.8 }
-        else if(flame||frost||petals) {
+        else if(flame||frost||petals||water||mist) {
           m.position.y+=Math.sin(i*2+now*.01)*size*f*2
           m.position.z+=Math.cos(i*3+now*.012)*size*f*2
-          m.scale.set(size*(.7+f*2),size*(flame?1+f*2.5:2),size*(flame?3: .5))
-        } else m.scale.setScalar(size*(data?.7:1.4))
+          m.scale.set(size*(.7+f*2),size*(water?1.2:flame?1+f*2.5:2),size*(water?1.2:flame?3:.5))
+          if(mist){m.material.blending=THREE.NormalBlending;m.material.opacity=.35*fade}
+        } else if(energy)m.scale.set(size*.09,size*.09,size*3.5)
+        else m.scale.setScalar(size*(data?.7:1.4))
         m.rotation.z+=i*.9;m.material.opacity=(flame?.18:.65)*fade
       })
       if(hand){hand.position.copy(direction);hand.quaternion.setFromUnitVectors(FORWARD,axis);hand.scale.setScalar(size*3)}
@@ -306,7 +349,10 @@ export class SkillEffects {
   field(to, plan, start, duration, scale) {
     const fx=this.fx,group=new THREE.Group(),g=fx.geometries,k=plan.shape
     group.name='skill-field:'+ (plan.motif||k);group.position.copy(to)
-    const glyph=['ring','portal','summon'].includes(k)?makeGlyph(fx,plan.palette,plan.motif):null
+    g.rod ??= new THREE.CylinderGeometry(.06,.06,1,8).rotateX(Math.PI/2)
+    const signatureArt=makeExpansionObject(fx,plan)
+    if(signatureArt)group.add(signatureArt)
+    const glyph=['ring','portal','summon'].includes(k)&&!signatureArt?makeGlyph(fx,plan.palette,plan.motif):null
     if(glyph){group.add(glyph);glyph.rotation.y=.2}
     let core=null
     if(k==='portal') {
@@ -326,6 +372,7 @@ export class SkillEffects {
       const gate=Math.sin(p*Math.PI),radius=scale*plan.size*(k==='portal'?.6:.5)
       if(glyph){glyph.scale.setScalar(radius*(.55+p*.45));glyph.rotation.z=p*.7;glyph.traverse(n=>{if(n.material)n.material.opacity=(n.userData.baseOpacity??.6)*gate})}
       if(core){core.scale.set(radius*gate,radius*gate,radius*.1);core.material.opacity=gate*.85}
+      if(signatureArt){signatureArt.scale.setScalar(radius*(.7+p*.3));animateSignatureObject(signatureArt,p);signatureArt.traverse(n=>{if(n.material){n.userData.baseOpacity??=n.material.opacity;n.material.opacity=n.userData.baseOpacity*gate;n.material.transparent=true}})}
       motes.forEach((m,i)=>{
         const a=i/motes.length*TAU+p*(k==='mist'?1:2)
         m.position.set(Math.cos(a)*radius,Math.sin(a)*radius,(i%3-1)*radius*.4)

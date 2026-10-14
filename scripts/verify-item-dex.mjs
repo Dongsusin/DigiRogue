@@ -9,6 +9,7 @@ import { access } from 'node:fs/promises'
 import { loadBattleEngine } from './lib/battle-engine-fixture.mjs'
 import { buildItemDex, filterItemDex, getItemDexDisplay } from '../src/data/itemDex.js'
 import { ITEM_RARITIES } from '../src/data/itemRarities.js'
+import { ITEM_EVOLUTION_REWARD_ITEMS } from '../src/data/evolutionItems.js'
 
 const engine = await loadBattleEngine()
 const source = [...engine.fixedRewardItems, ...engine.randomRewardItemPool]
@@ -35,7 +36,7 @@ test('all five grades partition the full catalog with the same lowered Jogress t
   assert.deepEqual(groups.flat().map(item => item.id), catalog.map(item => item.id))
   assert.equal(catalog.find(item => item.id === 'jogress-chip').rarity, 'good')
   assert.deepEqual(filterItemDex(catalog, 'master').filter(item => item.kind === '장착').map(item => item.id), ['d-ark-ultimate', 'digivice-v', 'xros-loader'])
-  assert.equal(filterItemDex(catalog, 'master').filter(item => item.kind === '진화').length, 9)
+  assert.deepEqual(new Set(filterItemDex(catalog, 'master').filter(item => item.kind === '진화').map(item => item.id)), new Set(ITEM_EVOLUTION_REWARD_ITEMS.filter(item => item.rarity === 'master').map(item => item.id)))
 })
 
 test('repeated evolution items keep every target description without altering gameplay definitions', () => {
@@ -74,7 +75,7 @@ test('undiscovered items expose only a question mark and are not revealed by nam
   const before = JSON.stringify(collection)
   assert.deepEqual(getItemDexDisplay(item, collection), { id: item.id, rarity: 'master', known: false, name: '?', imageUrl: '', description: '', kind: '', limit: '' })
   assert.deepEqual(filterItemDex(catalog, 'master', '크로스로더', collection), [])
-  assert.equal(filterItemDex(catalog, 'master', '', collection).length, 12)
+  assert.equal(filterItemDex(catalog, 'master', '', collection).length, filterItemDex(catalog, 'master').length)
   assert.equal(JSON.stringify(collection), before, 'opening the archive must not discover anything')
   const seen = recordItemDiscoveries(collection, [item.id])
   assert.equal(getItemDexDisplay(item, seen).imageUrl, item.imageUrl)

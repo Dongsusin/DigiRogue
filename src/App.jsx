@@ -1,3 +1,4 @@
+import { canonicalItemId, normalizeItemInventory, isSpiritItem, mergeRewardEntries, getEvolutionCatalystCount, consumeEvolutionCatalyst } from './data/itemIdentity.js'
 import { applyEncounterDrain, resolveEncounterPatterns } from './battle/encounterPatterns.js'
 import CommunityHub from './components/CommunityHub.jsx'
 import MainMenu from './components/MainMenu.jsx'
@@ -87,7 +88,7 @@ import { recordEncounterAnalysis as recordAnalysisEncounter, getAnalysisProgress
 import { getRemodelCandidates, getPendingPortalDestination } from './adventure/anomalyEvents.js'
 import { createExplorationEvent, resolveExplorationChoice, upgradeExplorationEvent } from './adventure/explorationEvents.js'
 import { completeStoryBattle, upgradeRegionalTrustMemory } from './adventure/storyEvents.js'
-import { attachRegionalSupport, isRegionalSupport, ownedBattleUnits, hasLivingOwnedAlly, regionalBattleContext, commitRegionalBattleState, getRegionalSupportSkill } from './battle/regionalSupport.js'
+import { attachRegionalSupport, isRegionalSupport, ownedBattleUnits, hasLivingOwnedAlly, regionalBattleContext, commitRegionalBattleState } from './battle/regionalSupport.js'
 import { buildEventBattle } from './adventure/eventBattles.js'
 import { createBossEncounter, resolveBossReactions, getBossIntroLogs, isBossSkillAllowed, spendBossRecovery, normalizeEncounterPresentation } from './battle/bossEncounters.js'
 import { withBossSegments, hydrateBossSegments, getBossSegmentCount, bossSegmentMarkers, resolveSegmentedBossDamage } from './battle/bossPhases.js'
@@ -110,7 +111,9 @@ import { BgmPlayer } from './audio/BgmPlayer.js'
 import { resolveBgmScene } from './audio/bgmScene.js'
 import { BALANCE_REVISION, BASIC_SKILLS, balanceSpecies, balanceSkill, GUARD_DESCRIPTIONS } from './balance/catalog.js'
 import { getSkillCooldown, startSkillCooldown, tickBattleTimers, getCommandSkillNames, getStatusDuration,
-  scoreSkill, chooseSkillTarget, recoverAfterVictory, CRITICAL_HIT_CHANCE, CRITICAL_HIT_MULTIPLIER } from './balance/combat.js'
+  scoreSkill, recoverAfterVictory, CRITICAL_HIT_CHANCE, CRITICAL_HIT_MULTIPLIER } from './balance/combat.js'
+import { chooseBattleCommand, planEnemyCommands } from './battle/tacticalAI.js'
+import { calculateAttackDamage } from './battle/attackDamage.js'
 import { typeAdvantageMap, attributeAdvantageMap, getMatchupResult } from './balance/matchups.js'
 import { DAMAGE_TEXT_MS } from './battle/damageFeedback.js'
 import { getDigimonPassive, getDigimonPassiveId } from './data/digimonPassives.js'
@@ -304,7 +307,7 @@ const parseSavedGameState = (rawSaveData) => {
     if (!player || lost(party, savedParty) || lost(refreshedEnemies, enemies)) {
       return null
     }
-    const inventory = { ...savedGameState.inventory }
+    const inventory = normalizeItemInventory(savedGameState.inventory)
     delete inventory['digi-egg-12']
     delete inventory['digi-egg-11']
 
@@ -674,7 +677,7 @@ const itemEvolutionRewardItemByTarget = new Map(
   ITEM_EVOLUTION_REWARD_ITEMS.map((item) => [item.evolutionItemFor, item])
 )
 
-const randomRewardItemPool = [
+const randomRewardItemPool = mergeRewardEntries([
   ...BATTLE_CONSUMABLES,
   ...ADVENTURE_UTILITY_ITEMS,
   {
@@ -838,7 +841,7 @@ const randomRewardItemPool = [
     imageUrl: '/아이템/진화/진화리턴.png',
   },
   JOGRESS_CHIP_REWARD_ITEM,
-  ...ITEM_EVOLUTION_REWARD_ITEMS,
+  ...ITEM_EVOLUTION_REWARD_ITEMS.filter(item => !isSpiritItem(item.id)),
   ...DIGI_EGG_REWARD_ITEMS,
   ...DIGICLONE_REWARD_ITEMS,
   ...ATTRIBUTE_POWER_UP_REWARD_ITEMS,
@@ -850,7 +853,7 @@ const randomRewardItemPool = [
     maxOwnedPerCombatant: TYPE_POWER_UP_MAX,
     imageUrl: `/아이템/타입업/${type}.png`,
   })),
-]
+])
 
 const rewardItemLookup = new Map(
   [...fixedRewardItems, ...randomRewardItemPool].map((item) => [item.id, item])
@@ -1299,11 +1302,13 @@ const getRewardRerollBaseCost = (stage) =>
   Math.max(80, Math.floor((getStageClearGoldReward(stage) * 0.4) / 10) * 10)
 const getRewardRerollCost = (stage, rerollCount = 0, inventory = {}) =>
   Math.max(1, Math.floor(getRewardRerollBaseCost(stage) * (Math.max(0, rerollCount) + 1) * getItemRerollDiscount(inventory)))
-const addInventoryItem = (inventory, itemId) => ({
-  ...(inventory ?? {}),
-  [itemId]: (inventory?.[itemId] ?? 0) + 1,
-})
+const addInventoryItem = (inventory, itemId) => {
+  const next = normalizeItemInventory(inventory), id = canonicalItemId(itemId)
+  return id ? { ...next, [id]: (next[id] ?? 0) + 1 } : next
+}
 const removeInventoryItem = (inventory, itemId, amount = 1) => {
+  inventory = normalizeItemInventory(inventory)
+  itemId = canonicalItemId(itemId)
   const currentCount = inventory?.[itemId] ?? 0
 
   if (currentCount <= amount) {
@@ -1846,12 +1851,8 @@ const isRewardItemUsableByCombatant = (item, combatant, levelCap = Infinity) => 
   }
 
   if (item.evolutionItemFor) {
-    const targetData = allDigimonLookup.get(item.evolutionItemFor)
-    return Boolean(
-      targetData &&
-        combatant.speciesData?.진화가능?.includes(item.evolutionItemFor) &&
-        targetData.이름 !== combatant.name
-    )
+    return (item.evolutionTargets ?? [item.evolutionItemFor]).some(targetName =>
+      allDigimonLookup.has(targetName) && combatant.speciesData?.진화가능?.includes(targetName) && targetName !== combatant.name)
   }
 
   if (item.typeUpKey) {
@@ -2884,7 +2885,7 @@ const getEvolutionTrainingStats = (combatant) => calculateBattleStats({
 })
 
 const getEvolutionRequirements = (targetData, combatant = null, route = null) => {
-  if (targetData?.stage === '유아기') return []
+  if (route?.freeModeChange || targetData?.stage === '유아기') return []
   const level = route?.level ?? Number(targetData?.진화조건?.레벨 ?? EVOLUTION_LEVELS[targetData?.stage] ?? 65)
   const requirements = [{ key: 'level', label: '레벨', current: unit => unit?.level ?? 0, required: level }]
   if (!combatant || getDigimonStageRank(targetData?.stage) < 2) return requirements
@@ -2914,7 +2915,8 @@ const getEvolutionOptions = (combatant, inventory = {}, party = [], evolutionMem
     .flatMap((targetData) => {
       const route = getEvolutionRoute(combatant.name, targetData.이름, targetData.stage)
       if (!route) return []
-      const itemRequirement = itemEvolutionRewardItemByTarget.get(targetData.이름) ?? null
+      const itemRequirement = route.freeModeChange ? null : itemEvolutionRewardItemByTarget.get(targetData.이름) ?? null
+      const itemCount = itemRequirement ? getEvolutionCatalystCount(combatant, inventory, itemRequirement.id) : 0
       const itemWaived = Boolean((itemRequirement || route.recipe) && hasTrainerEvolutionMemory(combatant.trainerSkills) &&
         hasEvolutionMemory(evolutionMemory, route.recipe?.materials ?? [combatant.name], targetData.이름))
       const jogressMembers = route.recipe ? getJogressEvolutionMembers(combatant, party, route.recipe) : []
@@ -2930,8 +2932,8 @@ const getEvolutionOptions = (combatant, inventory = {}, party = [], evolutionMem
         }
       })
       if (itemRequirement) requirements.push({ key: 'item', label: itemRequirement.name,
-        current: inventory[itemRequirement.id] ?? 0, required: itemRequirement.requiredCount,
-        isMet: itemWaived || (inventory[itemRequirement.id] ?? 0) >= itemRequirement.requiredCount, waived: itemWaived })
+        current: itemCount, required: itemRequirement.requiredCount,
+        isMet: itemWaived || itemCount >= itemRequirement.requiredCount, waived: itemWaived })
       if (route.recipe) {
         const partners = route.recipe.materials.filter(name => name !== combatant.name)
         for (const name of partners) {
@@ -2955,7 +2957,7 @@ const getEvolutionOptions = (combatant, inventory = {}, party = [], evolutionMem
         itemRequirement,
         itemWaived,
         partnerIds: jogressMembers.slice(1).map(member => member.id),
-        itemCount: itemRequirement ? inventory[itemRequirement.id] ?? 0 : 0,
+        itemCount,
         requirements,
         // Remembered Jogress still consumes every correctly leveled material Digimon.
         canEvolve: (route.kind !== 'jogress' || ((itemWaived || Boolean(itemRequirement)) && jogressMembers.length === route.recipe.materials.length)) && requirements.every((requirement) => requirement.isMet),
@@ -3039,10 +3041,11 @@ const resolveManualEvolution = (gameState, memberId, targetName, rewardState = n
     return members.length ? resolveJogressEvolution(gameState, members, selectedOption.recipe, false, rewardState) : null
   }
 
-  const evolvedMember = createEvolvedCombatant(selectedMember, selectedOption.targetData)
+  const consumed = consumeEvolutionCatalyst(selectedMember, gameState.inventory, selectedOption.itemWaived ? null : selectedOption.itemRequirement)
+  if (!consumed) return null
+  const evolvedMember = createEvolvedCombatant(consumed.combatant, selectedOption.targetData)
   const nextParty = replacePartyMember(currentParty, evolvedMember)
-  const nextInventory = selectedOption.itemRequirement && !selectedOption.itemWaived
-    ? removeInventoryItem(gameState.inventory, selectedOption.itemRequirement.id, selectedOption.itemRequirement.requiredCount) : gameState.inventory
+  const nextInventory = consumed.inventory
   const nextPlayer = getCombatantById(nextParty, gameState.player?.id)
     ?? getFirstLivingPartyMember(nextParty, gameState.activeAllyIds) ?? evolvedMember
   return { selectedMember, evolvedMember, nextGameState: {
@@ -3461,31 +3464,62 @@ const getBoostedExperienceAmount = (baseExperience, inventory = {}) =>
 
 const getLivingEnemyIndex = (enemies) => enemies.findIndex((enemy) => enemy.currentHp > 0)
 
-// Scripted enemies keep their existing targeting. Ordinary wildlife commits to
-// the same visible matchup/defense evaluation used to choose its technique.
-const getEnemySkillTarget = (enemy, skillData, opponents) => {
-  if (enemy.isBoss || enemy.rivalEncounter || enemy.specialQuest || enemy.bossEncounter) {
-    return getFinalBossTarget(enemy, opponents) ?? getRandomCombatant(opponents)?.id ?? null
+// The AI and actual attacks share floor order, equipment, passive and map modifiers.
+// Forecasting never rolls damage, mutates state or reads player commands.
+const calculateAttack = (attacker, skillData, defender, attackerSide, { randomFactor = 0.925, isCritical = false } = {}) => {
+  const special = skillData.분류 === '특수형'
+  const matchup = getMatchupResult({ attackerType: attacker.type, skillAttribute: skillData.속성,
+    defenderType: defender.type, defenderAttribute: defender.attribute }).multiplier
+  const power = (skillData.데미지 ?? 0) *
+    (attacker.statusEffect?.type === '화상' && !special ? 0.85 : 1) *
+    getTypePowerMultiplier(attacker) * getAttributePowerMultiplier(attacker, skillData.속성)
+  const equipment = getAdventureAttackModifiers({ attacker, defender, skillData,
+    matchup, isCritical, baseCritical: CRITICAL_HIT_MULTIPLIER })
+  const passiveModifiers = getPassiveAttackModifiers({ attacker, defender, skillData,
+    matchup, isCritical, criticalMultiplier: equipment.criticalMultiplier })
+  const guard = Math.min(defender.battleGuards?.taunt > 0 ? 0.75 : 1,
+    defender.battleGuards?.[special ? 'special' : 'physical'] > 0 ? 0.5 : 1)
+  const factors = [guard, passiveModifiers.criticalMultiplier, equipment.multiplier,
+    passiveModifiers.multiplier, getEnvironmentMultiplier(attacker, skillData),
+    getTrainerBossMultiplier(attacker, defender, skillData, attackerSide), getAnomalyDamage(attacker, skillData)]
+  const roll = factor => matchup === 0 ? 0 : calculateAttackDamage({
+    level: attacker.level, power, attack: special ? attacker.specialAttack : attacker.attack,
+    defense: special ? defender.specialDefense : defender.defense, multiplier: matchup, randomFactor: factor, factors })
+  return { damage: roll(randomFactor), minDamage: roll(0.85), maxDamage: roll(1),
+    accuracy: getModifiedAccuracyValue(skillData, attacker, defender, attackerSide) / 100,
+    equipment, passiveModifiers, criticalMultiplier: passiveModifiers.criticalMultiplier }
+}
+const getAttackForecast = (attacker, skillData, defender, side) => {
+  const result = calculateAttack(attacker, skillData, defender, side)
+  const cap = damage => {
+    let hp = Math.max(0, defender.currentHp - damage)
+    hp = resolveBossHpGate({ combatant: defender, rawNextHp: hp }).nextHp
+    const passive = getDigimonPassive(defender)
+    if (defender.currentHp > 1 && (defender.battleGuards?.endure > 0 ||
+      (passive?.endure && !defender.passiveState?.endureUsed))) hp = Math.max(1, hp)
+    return Math.max(0, defender.currentHp - hp)
   }
-  return chooseSkillTarget(enemy, skillData, opponents, (actor, skill, target) =>
-    getMatchupResult({ attackerType: actor.type, skillAttribute: skill.속성,
-      defenderType: target.type, defenderAttribute: target.attribute }).multiplier)?.id ?? null
+  return { ...result, damage: cap(result.damage), minDamage: cap(result.minDamage), maxDamage: cap(result.maxDamage) }
 }
-
-const getRandomEnemySkill = (enemy, allies = [enemy], opponents = []) => {
-  if (!enemy) return null
-  const finalMove = getFinalBossMove(enemy)
-  if (finalMove) return finalMove.skill.기술명
-  const options = getCommandSkillNames(enemy, name => getSkillData(name, enemy))
-    .filter(name => isBossSkillAllowed(enemy, getSkillData(name, enemy))).map(name => ({ name,
-    score: scoreSkill(enemy, getSkillData(name, enemy), allies, opponents, (actor, skill, target) =>
-      getMatchupResult({ attackerType: actor.type, skillAttribute: skill.속성,
-        defenderType: target.type, defenderAttribute: target.attribute }).multiplier) }))
-    .filter(option => getSkillCooldown(enemy, getSkillData(option.name, enemy)) === 0)
-  const best = Math.max(0, ...options.map(option => option.score))
-  const candidates = options.filter(option => best === 0 || option.score >= best * 0.8)
-  return candidates[Math.floor(Math.random() * candidates.length)]?.name ?? null
+const getTacticalOptions = (allies, opponents, side = 'enemy') => {
+  const ids = new Set(allies.map(unit => unit.id))
+  return { allies, opponents, getSkill: getSkillData,
+    estimateAttack: (actor, skill, target) => getAttackForecast(actor, skill, target,
+      ids.has(actor.id) ? side : side === 'enemy' ? 'ally' : 'enemy'),
+    estimateHealing: (actor, skill, target) => Math.max(1, Math.floor(target.maxHp *
+      (skill.효과?.healRatio ?? 0) * getItemHealingMultiplier(actor, target, skill.효과?.scope) *
+      getPassiveHealing(actor, target).multiplier * getAnomalyHealing(actor))),
+    statusChance: (actor, skill, target) => getPassiveStatusChance(actor,
+      getAnomalyStatusChance(actor, skill.효과.status, getItemStatusChance(actor, skill.효과.chance ?? 100))) /
+      100 * (target.isBoss ? 0.5 : 1) }
 }
+const getScriptedEnemyCommand = (enemy, opponents) => {
+  const move = getFinalBossMove(enemy)
+  return move ? { skillName: move.skill.기술명, targetId: getFinalBossTarget(enemy, opponents) ?? opponents[0]?.id ?? null } : null
+}
+const getEnemyCommand = (enemy, allies, opponents) =>
+  getScriptedEnemyCommand(enemy, opponents) ?? chooseBattleCommand(enemy, {
+    ...getTacticalOptions(allies, opponents), allowSkill: skill => isBossSkillAllowed(enemy, skill) })
 
 const refreshCombatantStats = (
   combatant,
@@ -3936,7 +3970,8 @@ const chooseSupportTarget = ({ actor, action, effect, party, enemies, activeAlly
   })
 
   if (effect?.kind === 'revive') {
-    return pool.find((target) => target && !target.isEgg && target.currentHp <= 0) ?? null
+    const eligible = pool.filter(target => target && !target.isEgg && target.currentHp <= 0)
+    return eligible.find(target => target.id === action.targetId) ?? eligible[0] ?? null
   }
 
   const livingTargets = pool.filter(isCombatantAbleToBattle)
@@ -4249,10 +4284,6 @@ const resolveAttackAction = ({
     }
   }
 
-  const attackStat =
-    skillData.분류 === '특수형' ? attacker.specialAttack : attacker.attack
-  const defenseStat =
-    skillData.분류 === '특수형' ? defender.specialDefense : defender.defense
   const matchupResult = getMatchupResult({
     attackerType: attacker.type,
     skillAttribute: skillData.속성,
@@ -4269,26 +4300,10 @@ const resolveAttackAction = ({
     }
   }
 
-  const boostedSkillPower =
-    (skillData.데미지 ?? 0) *
-    (attacker.statusEffect?.type === '화상' && skillData.분류 === '물리형' ? 0.85 : 1) *
-    getTypePowerMultiplier(attacker) *
-    getAttributePowerMultiplier(attacker, skillData.속성)
-  const scaledPower =
-    (((2 * Math.max(1, attacker.level)) / 5 + 2) * boostedSkillPower * Math.max(1, attackStat)) /
-    Math.max(1, defenseStat)
-  const baseDamage = Math.floor(scaledPower / 50) + 2
   const randomFactor = 0.85 + Math.random() * 0.15
   const isCritical = !instantDefeat && Math.random() < getPassiveCriticalChance(attacker, CRITICAL_HIT_CHANCE)
-  const equipment = getAdventureAttackModifiers({ attacker, defender, skillData,
-    matchup: finalMultiplier, isCritical, baseCritical: CRITICAL_HIT_MULTIPLIER })
-  const passiveModifiers = getPassiveAttackModifiers({ attacker, defender, skillData,
-    matchup: finalMultiplier, isCritical, criticalMultiplier: equipment.criticalMultiplier })
-  const criticalMultiplier = passiveModifiers.criticalMultiplier
-  const guardMultiplier = Math.min(defender.battleGuards?.taunt > 0 ? 0.75 : 1,
-    defender.battleGuards?.[skillData.분류 === '특수형' ? 'special' : 'physical'] > 0 ? 0.5 : 1)
-  const damage = Math.max(1, Math.floor(baseDamage * finalMultiplier * randomFactor * guardMultiplier * criticalMultiplier * equipment.multiplier * passiveModifiers.multiplier * getEnvironmentMultiplier(attacker, skillData) *
-    getTrainerBossMultiplier(attacker, defender, skillData, attackerSide) * getAnomalyDamage(attacker, skillData)))
+  const { damage, equipment, passiveModifiers, criticalMultiplier } = calculateAttack(
+    attacker, skillData, defender, attackerSide, { randomFactor, isCritical })
   const rawNextHp = instantDefeat ? 0 : Math.max(0, defender.currentHp - damage)
   const hpResult = resolveCombatantDamageHp({
     combatant: defender,
@@ -4457,12 +4472,11 @@ const resolveEnemyPartyActions = ({ enemies, party, activeAllyIds, inventory = {
     let afterStatus = []
     let targetAlly = nextParty.find(unit => activeAllyIds.includes(unit.id) && unit.currentHp > 0 && unit.battleGuards?.taunt > 0)
       ?? getFirstLivingPartyMember(nextParty, activeAllyIds)
-    const enemySkill = bossTurn.skill?.기술명 ?? getRandomEnemySkill(nextEnemy, nextEnemies, nextParty.filter(unit => activeAllyIds.includes(unit.id)))
+    const opponents = nextParty.filter(unit => activeAllyIds.includes(unit.id) && isCombatantAbleToBattle(unit))
+    const command = getEnemyCommand(nextEnemy, nextEnemies, opponents)
+    const enemySkill = bossTurn.skill?.기술명 ?? command?.skillName
     const enemySkillData = bossTurn.skill ?? (enemySkill ? getSkillData(enemySkill, nextEnemy) : null)
-    if (!nextEnemy.isBoss && !nextEnemy.rivalEncounter && !nextEnemy.specialQuest && !nextEnemy.bossEncounter) {
-      const candidates = nextParty.filter(unit => activeAllyIds.includes(unit.id) && isCombatantAbleToBattle(unit))
-      targetAlly = getCombatantById(nextParty, getEnemySkillTarget(nextEnemy, enemySkillData, candidates))
-    }
+    if (!isSupportSkill(enemySkillData)) targetAlly = getCombatantById(nextParty, command?.targetId) ?? targetAlly
     const isAreaAttack = isSkillAreaAttack(enemySkillData)
 
     if (!targetAlly) {
@@ -4487,7 +4501,7 @@ const resolveEnemyPartyActions = ({ enemies, party, activeAllyIds, inventory = {
             side: 'enemy',
             actorId: nextEnemy.id,
             skillName: enemySkill,
-            targetId: targetAlly.id,
+            targetId: command?.targetId ?? targetAlly.id,
           },
           actor: nextEnemy,
           party: nextParty,
@@ -4597,13 +4611,11 @@ const createRegionalSupportActions = ({ party, enemies, activeAllyIds, startOrde
   const actor = party.find(unit => isRegionalSupport(unit) && activeAllyIds.includes(unit.id) && isCombatantAbleToBattle(unit))
   const opponents = getLivingCombatants(enemies)
   if (!actor || !opponents.length) return []
-  const skillName = getRegionalSupportSkill(actor, getSkillData, skill => scoreSkill(actor, skill,
-    party.filter(unit => activeAllyIds.includes(unit.id)), opponents,
-    (attacker, move, target) => getMatchupResult({ attackerType: attacker.type, skillAttribute: move.속성,
-      defenderType: target.type, defenderAttribute: target.attribute }).multiplier))
-  const target = opponents.find(unit => unit.battleGuards?.taunt > 0) ?? opponents.reduce((best, unit) =>
-    unit.currentHp / unit.maxHp < best.currentHp / best.maxHp ? unit : best)
-  return [{ ...createBattleTurnAction({ side: 'ally', actor, skillName, targetId: target.id, order: startOrder }), automatic: true }]
+  const command = chooseBattleCommand(actor, { ...getTacticalOptions(
+    party.filter(unit => activeAllyIds.includes(unit.id)), opponents, 'ally'),
+    allowSkill: skill => !isSupportSkill(skill) })
+  return command ? [{ ...createBattleTurnAction({ side: 'ally', actor, skillName: command.skillName,
+    targetId: command.targetId, order: startOrder }), automatic: true }] : []
 }
 
 const createEnemyBattleTurnActions = ({ enemies, party, activeAllyIds, startOrder = 0 }) => {
@@ -4611,23 +4623,13 @@ const createEnemyBattleTurnActions = ({ enemies, party, activeAllyIds, startOrde
     .map((allyId) => getCombatantById(party, allyId))
     .filter(isCombatantAbleToBattle)
 
-  return getLivingCombatants(enemies)
-    .map((enemy, index) => {
-      const enemySkill = getRandomEnemySkill(enemy, enemies, livingActiveAllies)
-
-      if (!enemySkill || !livingActiveAllies.length) {
-        return null
-      }
-
-      return { ...createBattleTurnAction({
-        side: 'enemy',
-        actor: enemy,
-        skillName: enemySkill,
-        targetId: getEnemySkillTarget(enemy, getSkillData(enemySkill, enemy), livingActiveAllies),
-        order: startOrder + index,
-      }), bossPhase: enemy.bossEncounter?.phase }
-    })
-    .filter(Boolean)
+  if (!livingActiveAllies.length) return []
+  return planEnemyCommands(enemies, { ...getTacticalOptions(enemies, livingActiveAllies),
+    allowSkill: (enemy, skill) => isBossSkillAllowed(enemy, skill),
+    forcedCommand: enemy => getScriptedEnemyCommand(enemy, livingActiveAllies) })
+    .map(({ actor, skillName, targetId }, index) => ({ ...createBattleTurnAction({
+      side: 'enemy', actor, skillName, targetId, order: startOrder + index }),
+      bossPhase: actor.bossEncounter?.phase }))
 }
 
 const getBattleTurnActor = ({ action, party, enemies }) =>
@@ -4728,8 +4730,8 @@ const resolveBattleTurnActions = ({
         (getFinalBossMove(actor) ? getFinalBossMove(actor).skill.기술명 !== action.skillName : !actor.skills.includes(action.skillName)) ||
         !isBossSkillAllowed(actor, getSkillData(action.skillName, actor)))) {
       const opponents = nextParty.filter(unit => activeAllyIds.includes(unit.id) && isCombatantAbleToBattle(unit))
-      action = { ...action, skillName: getRandomEnemySkill(actor, nextEnemies,
-        opponents), targetId: getFinalBossTarget(actor, opponents) ?? action.targetId }
+      const command = getEnemyCommand(actor, nextEnemies, opponents)
+      action = { ...action, skillName: command?.skillName, targetId: command?.targetId }
     }
 
     if (bossTurn.skill) action = { ...action, skillName: bossTurn.skill.기술명, skillOverride: bossTurn.skill }

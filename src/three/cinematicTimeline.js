@@ -33,7 +33,7 @@ export function sampleCinematic(cinematic, elapsed, reducedMotion = false) {
     chain,
     assemble: smooth(x, r + 400, t),
     rise: pulse(c, c + chargeSpan * 0.6, x - 100, r, t),
-    flash: (pulse(x - 250, x + 50, x + 200, x + 650, t) * 0.65 + pulse(r - 260, r - 40, r + 60, r + 600, t) * 0.85) * (reducedMotion ? 0.12 : 1),
+    flash: (pulse(x - 250, x + 50, x + 200, x + 650, t) * 0.65 + pulse(r - 260, r - 40, r + 60, r + 600, t) * 0.85) * (reducedMotion ? 0.12 : 1) * clamp(cinematic.flashScale ?? 1),
     callout: pulse(150, 600, c + chargeSpan * 0.45, c + chargeSpan * 0.6, t),
     split: cinematic.template === 'jogress' || cinematic.template === 'xros' ? pulse(100, 500, c + 300, c + 900, t) : 0,
     nameCard: smooth(r + 500, r + 1100, t),

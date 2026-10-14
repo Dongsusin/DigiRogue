@@ -8913,7 +8913,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Ceresmon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/339861/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/339861/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "winged",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.216
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -8948,7 +8966,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Eosmon (Mega)",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/348665/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/348665/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "winged",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.36
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -8982,7 +9018,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "KingChessmon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/335388/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/335388/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.21
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9016,7 +9070,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Marsmon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/343800/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/343800/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.144
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9050,7 +9122,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Plutomon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342266/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342266/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.144
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9084,7 +9174,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "QueenChessmon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/335389/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/335389/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.132
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9118,7 +9226,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Rafflesimon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/327565/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/327565/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.198
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9153,7 +9279,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Raidenmon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/336809/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/336809/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.168
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9189,7 +9333,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Venusmon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/328635/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/328635/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.114
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9224,7 +9386,24 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "ZeedGarurumon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/333938/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/333938/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "beast",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.23
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9259,7 +9438,24 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Barbamon X",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/344562/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/344562/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.2601
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9294,7 +9490,24 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "BishopChessmon (White)",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/335390/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/335390/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.132
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9327,7 +9540,24 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Cherubimon (Good) X",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/341945/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/341945/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.2
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9359,7 +9589,24 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Dinotigermon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/341209/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/341209/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "beast",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.22
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9392,7 +9639,24 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Dorbickmon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/349381/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/349381/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.144
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9424,7 +9688,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Erlangmon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/349940/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/349940/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "idle",
+     "down"
+    ],
+    "baseIdle": "rig-rest",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.132
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9458,7 +9740,24 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Fujinmon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/336099/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/336099/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.132
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9491,7 +9790,24 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Gankoomon X",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342973/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342973/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.17
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9525,7 +9841,27 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "GigaSeadramon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/332680/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/332680/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "serpent",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.168
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0,
+    "downLean": [
+     0.12,
+     0.18
+    ]
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9561,7 +9897,24 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Goldramon X",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/346506/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/346506/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "winged",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.3
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9595,7 +9948,24 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Huankunmon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/339866/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/339866/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "serpent",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.168
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9627,7 +9997,24 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "JetMervamon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342268/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342268/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.24
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9661,7 +10048,24 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Junomon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/341207/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/341207/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.22
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9694,7 +10098,24 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Junomon Hysteric Mode",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342267/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342267/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.36
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9728,7 +10149,24 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Lilithmon X",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/344112/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/344112/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.18
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9762,7 +10200,24 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Megidramon X",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/349382/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/349382/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "winged",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.45
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9795,7 +10250,24 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Ogudomon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/349384/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/349384/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "beast",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.36
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9829,7 +10301,24 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Ophanimon X",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342265/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/342265/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.3
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9862,7 +10351,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Phoenixmon X",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/344563/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/344563/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "winged",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.6
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9896,7 +10403,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "RookChessmon (Black)",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/335391/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/335391/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "machine",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.2
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9931,7 +10456,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Rosemon X",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/347504/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/347504/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.5
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -9966,7 +10509,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Sakuyamon X",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/348928/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/348928/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.18
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -10000,7 +10561,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Suijinmon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/328693/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/328693/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.15
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -10035,7 +10614,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Takutoumon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/347871/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/347871/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.24
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -10069,7 +10666,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "UltimateChaosmon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/344564/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/344564/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.2849
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -10103,7 +10718,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Vulcanusmon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/334387/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/334387/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "biped",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.114
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -10138,7 +10771,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "Xiangpengmon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/339867/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/339867/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "winged",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.25
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -10172,7 +10823,25 @@
   "source": {
    "game": "Digimon New Century",
    "asset": "ZeedMillenniummon",
-   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/341947/"
+   "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/asset/341947/",
+   "authoredMotion": {
+    "version": "digirogue-authored-1",
+    "profile": "serpent",
+    "roles": [
+     "down"
+    ],
+    "baseIdle": "idle",
+    "hurtReference": {
+     "clip": "damage",
+     "time": 0.33
+    },
+    "method": "skeletal-pose-blend-grounded-articulation",
+    "poseNodes": "bones-and-object-transforms",
+    "nodeBindings": "unique",
+    "articulation": "semantic-joints",
+    "hurtBlend": 0.35,
+    "downLean": null
+   }
   },
   "authoredMotion": {
    "version": "digirogue-authored-1",
@@ -10191,6 +10860,3534 @@
    "articulation": "semantic-joints",
    "hurtBlend": 0.35,
    "downLean": null
+  }
+ },
+ "코로나몬": {
+  "url": "/models/digimon/coronamon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Coronamon",
+   "url": "https://nuffle.me/dsts-viewer?m=coronamon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "아이기오몬": {
+  "url": "/models/digimon/aegiomon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "special03",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Aegiomon",
+   "url": "https://nuffle.me/dsts-viewer?m=aegiomon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "아이기오투스몬": {
+  "url": "/models/digimon/aegiochusmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Aegiochusmon",
+   "url": "https://nuffle.me/dsts-viewer?m=aegiochusmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "아이기오투스몬[블루]": {
+  "url": "/models/digimon/aegiochusmon-blue.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Aegiochusmon: Blue",
+   "url": "https://nuffle.me/dsts-viewer?m=aegiochusmon-blue",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "아이기오투스몬[그린]": {
+  "url": "/models/digimon/aegiochusmon-green.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special02"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Aegiochusmon: Green",
+   "url": "https://nuffle.me/dsts-viewer?m=aegiochusmon-green",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "아이기오투스몬[다크]": {
+  "url": "/models/digimon/aegiochusmon-dark.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Aegiochusmon: Dark",
+   "url": "https://nuffle.me/dsts-viewer?m=aegiochusmon-dark",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "아이기오투스몬[홀리]": {
+  "url": "/models/digimon/aegiochusmon-holy.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Aegiochusmon: Holy",
+   "url": "https://nuffle.me/dsts-viewer?m=aegiochusmon-holy",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "아루다몬": {
+  "url": "/models/digimon/aldamon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Aldamon",
+   "url": "https://nuffle.me/dsts-viewer?m=aldamon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "에이션트와이즈몬": {
+  "url": "/models/digimon/ancientwisemon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "AncientWisemon",
+   "url": "https://nuffle.me/dsts-viewer?m=ancientwisemon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "아폴로몬": {
+  "url": "/models/digimon/apollomon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Apollomon",
+   "url": "https://nuffle.me/dsts-viewer?m=apollomon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "아라크네몬": {
+  "url": "/models/digimon/arukenimon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Arukenimon",
+   "url": "https://nuffle.me/dsts-viewer?m=arukenimon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "아스타몬": {
+  "url": "/models/digimon/astamon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Astamon",
+   "url": "https://nuffle.me/dsts-viewer?m=astamon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "어벤지키드몬": {
+  "url": "/models/digimon/avengekidmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "special03",
+   "special04",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "AvengeKidmon",
+   "url": "https://nuffle.me/dsts-viewer?m=avengekidmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "바커스몬": {
+  "url": "/models/digimon/bacchusmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Bacchusmon",
+   "url": "https://nuffle.me/dsts-viewer?m=bacchusmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "반쵸콩알몬": {
+  "url": "/models/digimon/banchomamemon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "BanchoMamemon",
+   "url": "https://nuffle.me/dsts-viewer?m=banchomamemon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "베오울프몬": {
+  "url": "/models/digimon/beowolfmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "BeoWolfmon",
+   "url": "https://nuffle.me/dsts-viewer?m=beowolfmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "베르스타몬": {
+  "url": "/models/digimon/beelstarmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "BelleStarmon",
+   "url": "https://nuffle.me/dsts-viewer?m=beelstarmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "빅콩알몬": {
+  "url": "/models/digimon/bigmamemon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "BigMamemon",
+   "url": "https://nuffle.me/dsts-viewer?m=bigmamemon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "브링프몬": {
+  "url": "/models/digimon/blimpmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special03",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Blimpmon",
+   "url": "https://nuffle.me/dsts-viewer?m=blimpmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "브라키몬": {
+  "url": "/models/digimon/brachiomon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Brachiomon",
+   "url": "https://nuffle.me/dsts-viewer?m=brachiomon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "부라이몬": {
+  "url": "/models/digimon/buraimon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Buraimon",
+   "url": "https://nuffle.me/dsts-viewer?m=buraimon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "부텐몬": {
+  "url": "/models/digimon/butenmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Butenmon",
+   "url": "https://nuffle.me/dsts-viewer?m=butenmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "칼리스몬": {
+  "url": "/models/digimon/callismon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Callismon",
+   "url": "https://nuffle.me/dsts-viewer?m=callismon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "카르마라몬": {
+  "url": "/models/digimon/calmaramon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Calmaramon",
+   "url": "https://nuffle.me/dsts-viewer?m=calmaramon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "켄터스몬": {
+  "url": "/models/digimon/centarumon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Centarumon",
+   "url": "https://nuffle.me/dsts-viewer?m=centarumon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "케르베로스몬": {
+  "url": "/models/digimon/cerberusmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Cerberumon",
+   "url": "https://nuffle.me/dsts-viewer?m=cerberusmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "케르베로스몬[인랑]": {
+  "url": "/models/digimon/cerberusmon-wm.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Cerberumon Werewolf Mode",
+   "url": "https://nuffle.me/dsts-viewer?m=cerberusmon-wm",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "케레스몬[미디엄]": {
+  "url": "/models/digimon/ceresmon-medium.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Ceresmon Medium",
+   "url": "https://nuffle.me/dsts-viewer?m=ceresmon-medium",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "크로노몬[홀리 모드]": {
+  "url": "/models/digimon/chronomon-hm.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Chronomon Holy Mode",
+   "url": "https://nuffle.me/dsts-viewer?m=chronomon-hm",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "크로노몬[디스트로이 모드]": {
+  "url": "/models/digimon/chronomon-dm.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Chronomon Destroy Mode",
+   "url": "https://nuffle.me/dsts-viewer?m=chronomon-dm",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "클라비스엔젤몬": {
+  "url": "/models/digimon/clavisangemon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "ClavisAngemon",
+   "url": "https://nuffle.me/dsts-viewer?m=clavisangemon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "크랩몬": {
+  "url": "/models/digimon/crabmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Crabmon",
+   "url": "https://nuffle.me/dsts-viewer?m=crabmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "다크드라몬": {
+  "url": "/models/digimon/darkdramon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Darkdramon",
+   "url": "https://nuffle.me/dsts-viewer?m=darkdramon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "다크슈퍼스타몬": {
+  "url": "/models/digimon/darksuperstarmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "DarkSuperStarmon",
+   "url": "https://nuffle.me/dsts-viewer?m=darksuperstarmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "델타몬": {
+  "url": "/models/digimon/deltamon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Deltamon",
+   "url": "https://nuffle.me/dsts-viewer?m=deltamon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "카우보이몬": {
+  "url": "/models/digimon/deputymon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Deputymon",
+   "url": "https://nuffle.me/dsts-viewer?m=deputymon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "뿌띠몬": {
+  "url": "/models/digimon/deramon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Deramon",
+   "url": "https://nuffle.me/dsts-viewer?m=deramon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "디그몬": {
+  "url": "/models/digimon/digmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Digmon",
+   "url": "https://nuffle.me/dsts-viewer?m=digmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "다이버몬": {
+  "url": "/models/digimon/divermon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Divermon",
+   "url": "https://nuffle.me/dsts-viewer?m=divermon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "도베르몬": {
+  "url": "/models/digimon/dobermon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Dobermon",
+   "url": "https://nuffle.me/dsts-viewer?m=dobermon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "스파이더몬": {
+  "url": "/models/digimon/dokugumon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Dokugumon",
+   "url": "https://nuffle.me/dsts-viewer?m=dokugumon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "두리몬": {
+  "url": "/models/digimon/drimogemon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Drimogemon",
+   "url": "https://nuffle.me/dsts-viewer?m=drimogemon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "크로스몬": {
+  "url": "/models/digimon/eaglemon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Eaglemon",
+   "url": "https://nuffle.me/dsts-viewer?m=eaglemon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "안바르몬": {
+  "url": "/models/digimon/enbarrmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Enbarrmon",
+   "url": "https://nuffle.me/dsts-viewer?m=enbarrmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "엑스티라노몬": {
+  "url": "/models/digimon/extyrannomon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "ExTyrannomon",
+   "url": "https://nuffle.me/dsts-viewer?m=extyrannomon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "파이라몬": {
+  "url": "/models/digimon/firamon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Firamon",
+   "url": "https://nuffle.me/dsts-viewer?m=firamon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "플레어몬": {
+  "url": "/models/digimon/flaremon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Flaremon",
+   "url": "https://nuffle.me/dsts-viewer?m=flaremon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "플로라몬": {
+  "url": "/models/digimon/floramon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Floramon",
+   "url": "https://nuffle.me/dsts-viewer?m=floramon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "플라이몬": {
+  "url": "/models/digimon/flymon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Flymon",
+   "url": "https://nuffle.me/dsts-viewer?m=flymon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "푸가몬": {
+  "url": "/models/digimon/fugamon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Fugamon",
+   "url": "https://nuffle.me/dsts-viewer?m=fugamon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "가비지몬": {
+  "url": "/models/digimon/garbagemon.glb",
+  "clips": [
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Garbagemon",
+   "url": "https://nuffle.me/dsts-viewer?m=garbagemon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "기자몬": {
+  "url": "/models/digimon/gizamon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Gizamon",
+   "url": "https://nuffle.me/dsts-viewer?m=gizamon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "그레이스노바몬": {
+  "url": "/models/digimon/gracenovamon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "GraceNovamon",
+   "url": "https://nuffle.me/dsts-viewer?m=gracenovamon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "그레이트그리즈몬": {
+  "url": "/models/digimon/greatgrizzlymon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "GreatGrizzlymon",
+   "url": "https://nuffle.me/dsts-viewer?m=greatgrizzlymon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "건드라몬": {
+  "url": "/models/digimon/gundramon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Gundramon",
+   "url": "https://nuffle.me/dsts-viewer?m=gundramon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "가와파몬": {
+  "url": "/models/digimon/gawappamon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Gwappamon",
+   "url": "https://nuffle.me/dsts-viewer?m=gawappamon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "호루스몬": {
+  "url": "/models/digimon/halsemon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Halsemon",
+   "url": "https://nuffle.me/dsts-viewer?m=halsemon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "블루우가몬": {
+  "url": "/models/digimon/hyogamon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Hyogamon",
+   "url": "https://nuffle.me/dsts-viewer?m=hyogamon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "효코몬": {
+  "url": "/models/digimon/hyokomon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Hyokomon",
+   "url": "https://nuffle.me/dsts-viewer?m=hyokomon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "황제드라몬[드래곤]": {
+  "url": "/models/digimon/imperialdramon-dm.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Imperialdramon",
+   "url": "https://nuffle.me/dsts-viewer?m=imperialdramon-dm",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "주엘비몬": {
+  "url": "/models/digimon/jewelbeemon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "JewelBeemon",
+   "url": "https://nuffle.me/dsts-viewer?m=jewelbeemon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "점보가메몬": {
+  "url": "/models/digimon/jumbogamemon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "JumboGamemon",
+   "url": "https://nuffle.me/dsts-viewer?m=jumbogamemon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "유피테르몬[래스 모드]": {
+  "url": "/models/digimon/jupitermon-wm.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Jupitermon Wrath Mode",
+   "url": "https://nuffle.me/dsts-viewer?m=jupitermon-wm",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "카프리몬": {
+  "url": "/models/digimon/kapurimon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Kapurimon",
+   "url": "https://nuffle.me/dsts-viewer?m=kapurimon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "키위몬": {
+  "url": "/models/digimon/kiwimon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Kiwimon",
+   "url": "https://nuffle.me/dsts-viewer?m=kiwimon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "코쿠와몬": {
+  "url": "/models/digimon/kokuwamon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Kokuwamon",
+   "url": "https://nuffle.me/dsts-viewer?m=kokuwamon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "코테몬": {
+  "url": "/models/digimon/kotemon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Kotemon",
+   "url": "https://nuffle.me/dsts-viewer?m=kotemon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "로코몬": {
+  "url": "/models/digimon/locomon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Locomon",
+   "url": "https://nuffle.me/dsts-viewer?m=locomon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "매그너키드몬": {
+  "url": "/models/digimon/magnakidmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "special03",
+   "special04",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "MagnaKidmon",
+   "url": "https://nuffle.me/dsts-viewer?m=magnakidmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "마스터브링프몬": {
+  "url": "/models/digimon/masterblimpmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special03",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "MasterBlimpmon",
+   "url": "https://nuffle.me/dsts-viewer?m=masterblimpmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "메카노몬": {
+  "url": "/models/digimon/mekanorimon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Mechanorimon",
+   "url": "https://nuffle.me/dsts-viewer?m=mekanorimon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "메디벌듀크몬": {
+  "url": "/models/digimon/medievalgallantmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "MedievalGallantmon",
+   "url": "https://nuffle.me/dsts-viewer?m=medievalgallantmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "뽈뽈몬": {
+  "url": "/models/digimon/choromon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "MetalKoromon",
+   "url": "https://nuffle.me/dsts-viewer?m=choromon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "메르바몬": {
+  "url": "/models/digimon/mervamon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Mervamon",
+   "url": "https://nuffle.me/dsts-viewer?m=mervamon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "미노타몬": {
+  "url": "/models/digimon/minotarumon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Minotarumon",
+   "url": "https://nuffle.me/dsts-viewer?m=minotarumon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "미스티몬": {
+  "url": "/models/digimon/mistymon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Mistymon",
+   "url": "https://nuffle.me/dsts-viewer?m=mistymon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "모털몬": {
+  "url": "/models/digimon/mojyamon.glb",
+  "clips": [
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Mojyamon",
+   "url": "https://nuffle.me/dsts-viewer?m=mojyamon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "미이라몬": {
+  "url": "/models/digimon/mummymon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Mummymon",
+   "url": "https://nuffle.me/dsts-viewer?m=mummymon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "무사몬": {
+  "url": "/models/digimon/musyamon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Musyamon",
+   "url": "https://nuffle.me/dsts-viewer?m=musyamon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "네페르티몬": {
+  "url": "/models/digimon/nefertimon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Nefertimon",
+   "url": "https://nuffle.me/dsts-viewer?m=nefertimon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "옥토몬": {
+  "url": "/models/digimon/octomon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Octomon",
+   "url": "https://nuffle.me/dsts-viewer?m=octomon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "패럴렐몬": {
+  "url": "/models/digimon/parallelmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Parallelmon",
+   "url": "https://nuffle.me/dsts-viewer?m=parallelmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "패롯몬": {
+  "url": "/models/digimon/parrotmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Parrotmon",
+   "url": "https://nuffle.me/dsts-viewer?m=parrotmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "페가수스몬": {
+  "url": "/models/digimon/pegasusmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Pegasusmon",
+   "url": "https://nuffle.me/dsts-viewer?m=pegasusmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "펭귄몬": {
+  "url": "/models/digimon/penmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Penguinmon",
+   "url": "https://nuffle.me/dsts-viewer?m=penmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "푸쿠몬": {
+  "url": "/models/digimon/pukumon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Pukumon",
+   "url": "https://nuffle.me/dsts-viewer?m=pukumon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "라나몬": {
+  "url": "/models/digimon/lanamon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Ranamon",
+   "url": "https://nuffle.me/dsts-viewer?m=lanamon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "스콜피오몬": {
+  "url": "/models/digimon/scorpiomon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Scorpiomon",
+   "url": "https://nuffle.me/dsts-viewer?m=scorpiomon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "샤크몬": {
+  "url": "/models/digimon/sharkmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Sharkmon",
+   "url": "https://nuffle.me/dsts-viewer?m=sharkmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "원시고부리몬": {
+  "url": "/models/digimon/shamamon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special03",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Sharmamon",
+   "url": "https://nuffle.me/dsts-viewer?m=shamamon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "사우자몬": {
+  "url": "/models/digimon/shaujinmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Shawjamon",
+   "url": "https://nuffle.me/dsts-viewer?m=shaujinmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "쉘몬": {
+  "url": "/models/digimon/shellmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Shellmon",
+   "url": "https://nuffle.me/dsts-viewer?m=shellmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "수리몬": {
+  "url": "/models/digimon/shurimon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Shurimon",
+   "url": "https://nuffle.me/dsts-viewer?m=shurimon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "세이렌몬": {
+  "url": "/models/digimon/sirenmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "special03",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Sirenmon",
+   "url": "https://nuffle.me/dsts-viewer?m=sirenmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "스컬벌키몬": {
+  "url": "/models/digimon/skullbaluchimon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "SkullBaluchimon",
+   "url": "https://nuffle.me/dsts-viewer?m=skullbaluchimon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "스컬맘몬": {
+  "url": "/models/digimon/skullmammothmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "SkullMammothmon",
+   "url": "https://nuffle.me/dsts-viewer?m=skullmammothmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "스컬시드라몬": {
+  "url": "/models/digimon/skullseadramon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "SkullSeadramon",
+   "url": "https://nuffle.me/dsts-viewer?m=skullseadramon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "슬래쉬엔젤몬": {
+  "url": "/models/digimon/slashangemon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "SlashAngemon",
+   "url": "https://nuffle.me/dsts-viewer?m=slashangemon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "스나이몬": {
+  "url": "/models/digimon/snimon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Snimon",
+   "url": "https://nuffle.me/dsts-viewer?m=snimon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "스노우고부리몬": {
+  "url": "/models/digimon/snowgoblimon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special03",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "SnowGoburimon",
+   "url": "https://nuffle.me/dsts-viewer?m=snowgoblimon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "잠수몬": {
+  "url": "/models/digimon/submarimon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Submarimon",
+   "url": "https://nuffle.me/dsts-viewer?m=submarimon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "탱크드라몬": {
+  "url": "/models/digimon/tankdramon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Tankdramon",
+   "url": "https://nuffle.me/dsts-viewer?m=tankdramon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "웬디몬": {
+  "url": "/models/digimon/wendigomon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Wendigomon",
+   "url": "https://nuffle.me/dsts-viewer?m=wendigomon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "위치몬": {
+  "url": "/models/digimon/witchmon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Witchmon",
+   "url": "https://nuffle.me/dsts-viewer?m=witchmon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "황금무사몬": {
+  "url": "/models/digimon/zanbamon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "Zanbamon",
+   "url": "https://nuffle.me/dsts-viewer?m=zanbamon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "좀비플루토몬": {
+  "url": "/models/digimon/zombieplutomon.glb",
+  "clips": [
+   "attack01",
+   "attack02",
+   "damage",
+   "down",
+   "guard",
+   "dodge",
+   "idle",
+   "move",
+   "special01",
+   "special02",
+   "victory"
+  ],
+  "source": {
+   "game": "Digimon Story: Time Stranger",
+   "asset": "ZombiePlutomon",
+   "url": "https://nuffle.me/dsts-viewer?m=zombieplutomon",
+   "creator": "Nuffle",
+   "modelOrigin": "Bandai Namco / Media.Vision"
+  }
+ },
+ "알로몬": {
+  "url": "/models/digimon/allomon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Allomon",
+   "url": "https://models.spriters-resource.com/media/assets/326/329133.zip?updated=1755507902",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "브롯사몬": {
+  "url": "/models/digimon/blossomon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Blossomon",
+   "url": "https://models.spriters-resource.com/media/assets/324/327538.zip?updated=1755507426",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "볼토바우타몬": {
+  "url": "/models/digimon/boltboutamon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Boltboutamon",
+   "url": "https://models.spriters-resource.com/media/assets/338/341208.zip?updated=1755511467",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "브리웨루드라몬": {
+  "url": "/models/digimon/bryweludramon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "BryweLudramon",
+   "url": "https://models.spriters-resource.com/media/assets/342/344980.zip?updated=1755512679",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "할매몬": {
+  "url": "/models/digimon/babamon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Babamon",
+   "url": "https://models.spriters-resource.com/media/assets/326/329135.zip?updated=1755507903",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "캔들몬": {
+  "url": "/models/digimon/candlemon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Candlemon",
+   "url": "https://web.archive.org/web/20230806121225id_/https://www.models-resource.com/download/44728/",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "가재드라몬": {
+  "url": "/models/digimon/ebidramon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Ebidramon",
+   "url": "https://web.archive.org/web/20230806120640id_/https://www.models-resource.com/download/44741/",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "도그몬": {
+  "url": "/models/digimon/doggymon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Doggymon",
+   "url": "https://models.spriters-resource.com/media/assets/341/343799.zip?updated=1755512283",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "째리몬": {
+  "url": "/models/digimon/giromon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Giromon",
+   "url": "https://models.spriters-resource.com/media/assets/324/327543.zip?updated=1755507428",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "손오공몬": {
+  "url": "/models/digimon/gokuwmon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Gokuwmon",
+   "url": "https://models.spriters-resource.com/media/assets/332/335382.zip?updated=1755509757",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "그랑디스쿠가몬": {
+  "url": "/models/digimon/grandiskuwagamon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "GrandisKuwagamon",
+   "url": "https://models.spriters-resource.com/media/assets/344/347281.zip?updated=1755513433",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "쟈가몬": {
+  "url": "/models/digimon/jagamon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Jagamon",
+   "url": "https://models.spriters-resource.com/media/assets/339/342263.zip?updated=1755511783",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "제트실피드몬": {
+  "url": "/models/digimon/jetsilphymon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "JetSilphymon",
+   "url": "https://models.spriters-resource.com/media/assets/324/327560.zip?updated=1755507433",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "페어리몬": {
+  "url": "/models/digimon/kazemon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Kazemon",
+   "url": "https://models.spriters-resource.com/media/assets/324/327562.zip?updated=1755507433",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "코스파이더몬": {
+  "url": "/models/digimon/kodokugumon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "KoDokugumon",
+   "url": "https://web.archive.org/web/20260316150305id_/https://models.spriters-resource.com/media/assets/324/327514.zip?updated=1755507419",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "블리자몬": {
+  "url": "/models/digimon/korikakumon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Korikakumon",
+   "url": "https://models.spriters-resource.com/media/assets/324/327544.zip?updated=1755507428",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "챠크몬": {
+  "url": "/models/digimon/kumamon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Kumamon",
+   "url": "https://models.spriters-resource.com/media/assets/324/327530.zip?updated=1755507423",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "레베몬": {
+  "url": "/models/digimon/loweemon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Loweemon",
+   "url": "https://models.spriters-resource.com/media/assets/333/336168.zip?updated=1755510003",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "마린데블몬": {
+  "url": "/models/digimon/marinedevimon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "MarineDevimon",
+   "url": "https://models.spriters-resource.com/media/assets/332/335383.zip?updated=1755509757",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "폰체스몬(흑)": {
+  "url": "/models/digimon/pawnchessmon-black-white-g153_d.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "PawnChessmon (Black White)",
+   "url": "https://models.spriters-resource.com/media/assets/332/335393.zip?updated=1755509760",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "폰체스몬(백)": {
+  "url": "/models/digimon/pawnchessmon-black-white-g146_d.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "PawnChessmon (Black White)",
+   "url": "https://models.spriters-resource.com/media/assets/332/335393.zip?updated=1755509760",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "포큐파몬": {
+  "url": "/models/digimon/porcupamon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Porcupamon",
+   "url": "https://models.spriters-resource.com/media/assets/339/342261.zip?updated=1755511782",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "라이지루도몬": {
+  "url": "/models/digimon/raijiludomon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "RaijiLudomon",
+   "url": "https://models.spriters-resource.com/media/assets/340/343138.zip?updated=1755512048",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "레드베지몬": {
+  "url": "/models/digimon/redvegimon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "RedVegimon",
+   "url": "https://models.spriters-resource.com/media/assets/324/327535.zip?updated=1755507425",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "바알몬": {
+  "url": "/models/digimon/reapmon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Reapmon",
+   "url": "https://models.spriters-resource.com/media/assets/324/327558.zip?updated=1755507432",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "삼장몬": {
+  "url": "/models/digimon/sanzomon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Sanzomon",
+   "url": "https://models.spriters-resource.com/media/assets/332/335386.zip?updated=1755509758",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "티아루도몬": {
+  "url": "/models/digimon/tialudomon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "TiaLudomon",
+   "url": "https://models.spriters-resource.com/media/assets/340/343137.zip?updated=1755512048",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "이블몬": {
+  "url": "/models/digimon/vilemon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Vilemon",
+   "url": "https://models.spriters-resource.com/media/assets/324/327537.zip?updated=1755507426",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "배드퍼펫몬": {
+  "url": "/models/digimon/warumonzaemon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "WaruMonzaemon",
+   "url": "https://web.archive.org/web/20230806123905id_/https://www.models-resource.com/download/52946/",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "슈츠몬": {
+  "url": "/models/digimon/zephyrmon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Zephyrmon",
+   "url": "https://models.spriters-resource.com/media/assets/324/327561.zip?updated=1755507433",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "아누비스몬": {
+  "url": "/models/digimon/anubismon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Anubismon",
+   "url": "https://web.archive.org/web/20230806120944id_/https://www.models-resource.com/download/44767/",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "아수라몬": {
+  "url": "/models/digimon/asuramon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Asuramon",
+   "url": "https://web.archive.org/web/20230806115806id_/https://www.models-resource.com/download/51604/",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "기기몬": {
+  "url": "/models/digimon/gigimon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "attack02",
+   "special01",
+   "damage",
+   "down",
+   "victory",
+   "guard",
+   "move"
+  ],
+  "source": {
+   "game": "Digimon ReArise",
+   "asset": "Gigimon",
+   "url": "https://web.archive.org/web/20230806121848id_/https://www.models-resource.com/download/44621/"
+  }
+ },
+ "쟈리몬": {
+  "url": "/models/digimon/jyarimon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "attack02",
+   "special01",
+   "damage",
+   "down",
+   "victory",
+   "guard"
+  ],
+  "source": {
+   "game": "Digimon ReArise",
+   "asset": "Jyarimon",
+   "url": "https://web.archive.org/web/20260316150107id_/https://models.spriters-resource.com/media/assets/324/327395.zip?updated=1755507383"
+  }
+ },
+ "구미몬": {
+  "url": "/models/digimon/gummymon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "attack02",
+   "special01",
+   "damage",
+   "down",
+   "victory",
+   "guard",
+   "move"
+  ],
+  "source": {
+   "game": "Digimon ReArise",
+   "asset": "Gummymon",
+   "url": "https://web.archive.org/web/20260916231247id_/https://models.spriters-resource.com/media/assets/324/327404.zip?updated=1755507386"
+  }
+ },
+ "연체몬": {
+  "url": "/models/digimon/gesomon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Gesomon",
+   "url": "https://web.archive.org/web/20230806123228id_/https://www.models-resource.com/download/44744/",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "초코몬": {
+  "url": "/models/digimon/kokomon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "attack02",
+   "special01",
+   "damage",
+   "down",
+   "victory",
+   "guard",
+   "move"
+  ],
+  "source": {
+   "game": "Digimon ReArise",
+   "asset": "Kokomon",
+   "url": "https://web.archive.org/web/20230806115751id_/https://www.models-resource.com/download/44623/"
+  }
+ },
+ "피치몬": {
+  "url": "/models/digimon/pichimon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "attack02",
+   "special01",
+   "damage",
+   "down",
+   "victory",
+   "guard",
+   "move"
+  ],
+  "source": {
+   "game": "Digimon ReArise",
+   "asset": "Pichimon",
+   "url": "https://web.archive.org/web/20230806121337id_/https://www.models-resource.com/download/44614/"
+  }
+ },
+ "사이케몬": {
+  "url": "/models/digimon/psychemon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "attack02",
+   "special01",
+   "damage",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon World: Next Order",
+   "asset": "Psychemon",
+   "url": "https://web.archive.org/web/20230806121152id_/https://www.models-resource.com/download/59362/"
+  }
+ },
+ "유라몬": {
+  "url": "/models/digimon/yuramon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "attack02",
+   "special01",
+   "damage",
+   "down",
+   "victory",
+   "guard",
+   "move"
+  ],
+  "source": {
+   "game": "Digimon ReArise",
+   "asset": "Yuramon",
+   "url": "https://web.archive.org/web/20230806122841id_/https://www.models-resource.com/download/44617/"
+  }
+ },
+ "제리몬": {
+  "url": "/models/digimon/zerimon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "attack02",
+   "special01",
+   "damage",
+   "down",
+   "victory",
+   "guard",
+   "move"
+  ],
+  "source": {
+   "game": "Digimon ReArise",
+   "asset": "Zerimon",
+   "url": "https://web.archive.org/web/20260422033904id_/https://models.spriters-resource.com/media/assets/324/327400.zip?updated=1755507385"
+  }
+ },
+ "팅커몬": {
+  "url": "/models/digimon/tinkermon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Tinkermon",
+   "url": "https://web.archive.org/web/20251126085604id_/https://models.spriters-resource.com/media/assets/324/327563.zip?updated=1755507433",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "빅토리그레이몬": {
+  "url": "/models/digimon/victorygreymon.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "special01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "VictoryGreymon",
+   "url": "https://web.archive.org/web/20230806121620id_/https://www.models-resource.com/download/57080/",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+  }
+ },
+ "블랙그라우몬": {
+  "url": "/models/digimon/growlmon-blackgrowlmon-m216_d.glb",
+  "clips": [
+   "idle",
+   "attack01",
+   "damage",
+   "victory",
+   "move",
+   "down"
+  ],
+  "source": {
+   "game": "Digimon New Century",
+   "asset": "Growlmon BlackGrowlmon",
+   "url": "https://web.archive.org/web/20260920153954id_/https://models.spriters-resource.com/media/assets/334/336997.zip?updated=1755510275",
+   "authoredMotion": {
+    "roles": [
+     "down"
+    ],
+    "reason": "Original idle pose held through terminal fade; native attack and hit retained"
+   }
+  },
+  "authoredMotion": {
+   "roles": [
+    "down"
+   ],
+   "reason": "Original idle pose held through terminal fade; native attack and hit retained"
   }
  }
 }

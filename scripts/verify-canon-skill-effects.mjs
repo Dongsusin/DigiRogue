@@ -1,3 +1,4 @@
+import expansionEffects from '../src/data/expansionSkillEffects.json' with { type: 'json' }
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import * as THREE from 'three'
@@ -100,7 +101,7 @@ test('every shipped signature retains its native clip and resolves a finite pres
   for (const [species,rig] of Object.entries(ATTACK_PROFILES)) for(const [skillName,signature] of Object.entries(rig.signature)) {
     const p=plan(species,skillName)
     assert.equal(p.clip,signature.clip,species+': '+skillName+' native clip')
-    assert.equal(p.emitter.role,signature.anchor,species+': '+skillName+' anatomy')
+    assert.equal(p.emitter.role,expansionEffects[species]?.[skillName]?.anchor ?? signature.anchor,species+': '+skillName+' anatomy')
     assert([p.size,p.releaseMs,p.impactMs,p.motionMs,p.palette.color,p.palette.core].every(Number.isFinite),species+': '+skillName)
     assert(p.strikes.length>0 && p.strikes.length===p.shots)
     for(let i=0;i<p.clock.length;i++)assert(i===0||p.clock[i].atMs>=p.clock[i-1].atMs)

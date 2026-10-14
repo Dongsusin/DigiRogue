@@ -164,6 +164,7 @@ export class CinematicEvolutionRenderer {
     const reduced = this.reducedMotion
     // Backdrop: an inward-facing cylinder whose texture streams past the camera.
     this.backdrop = createCinematicBackdrop(cinematic.backdrop, cinematic.palette)
+    if (cinematic.effectFocus) for (const key of ['uA', 'uB', 'uC']) this.backdrop.material.uniforms[key].value.multiplyScalar(.5)
     this.backdrop.material.uniforms.uMotion.value = reduced ? 0.15 : 1
     this.scene.add(this.backdrop)
 
@@ -180,14 +181,14 @@ export class CinematicEvolutionRenderer {
     this.scene.add(this.core)
 
     this.dummy = new THREE.Object3D()
-    const shardCount = reduced ? 40 : cinematic.motif ? 96 : 180
+    const shardCount = cinematic.effectFocus ? (reduced ? 8 : 24) : reduced ? 40 : cinematic.motif ? 96 : 180
     this.shards = new THREE.InstancedMesh(new THREE.TetrahedronGeometry(1), additive(palette[1], 0.9), shardCount)
     this.shards.frustumCulled = false; this.scene.add(this.shards)
     this.shardSeeds = Array.from({ length: shardCount }, (_, i) => {
       const random = seeded(i + 3)
       return { theta: random() * TAU, phi: Math.acos(2 * random() - 1), speed: 2 + random() * 6, size: 0.03 + random() * 0.07, spin: random() * 6 }
     })
-    const streakCount = reduced ? 16 : cinematic.motif ? 32 : 70
+    const streakCount = cinematic.effectFocus ? (reduced ? 4 : 12) : reduced ? 16 : cinematic.motif ? 32 : 70
     this.streaks = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 1, 1), additive(palette[0], 0.8), streakCount)
     this.streaks.frustumCulled = false; this.scene.add(this.streaks)
 
@@ -262,8 +263,8 @@ export class CinematicEvolutionRenderer {
         this.wingPivot.add(wing); return wing
       })
     }
-    if (cinematic.template === 'radiant') {
-      const count = reduced ? 20 : 90
+    if (cinematic.feathers || (!cinematic.effectFocus && cinematic.template === 'radiant')) {
+      const count = cinematic.effectFocus ? (reduced ? 6 : 20) : reduced ? 20 : 90
       const texture = this.wings ? this.wings[0].material.map : featherTexture()
       if (!this.wings) this.extraTextures.push(texture)
       this.feathers = new THREE.InstancedMesh(new THREE.PlaneGeometry(0.12, 0.36), additive(palette[1], 0, { map: texture, side: THREE.DoubleSide }), count)
@@ -394,6 +395,7 @@ export class CinematicEvolutionRenderer {
     const motion = this.reducedMotion ? 0.15 : 1
     const template = cinematic.template
     const bespoke = Boolean(this.motif)
+    const effectFocus = Boolean(cinematic.effectFocus)
     const resultHeight = this.result?.height ?? 2.6
     const center = new THREE.Vector3(0, 1.3, 0)
     const sourceCount = this.sourceActors.length
@@ -423,12 +425,12 @@ export class CinematicEvolutionRenderer {
       }
       actor.root.position.set(px, 0, pz)
       actor.root.rotation.y = assembly ? 0 : sourceCount > 1 ? -px * 0.2 : frame.silhouette * spinStart * 7 * motion * (cinematic.sourceSpin ?? 1)
-      if ((template === 'dark' || template === 'xantibody') && !this.reducedMotion) actor.root.position.x += Math.sin(seconds * 60) * 0.06 * frame.charge
+      if (!effectFocus && (template === 'dark' || template === 'xantibody') && !this.reducedMotion) actor.root.position.x += Math.sin(seconds * 60) * 0.06 * frame.charge
       // The source shrinks a touch as the cocoon tightens.
       actor.root.scale.setScalar(actor.scale * (assembly?.scale ?? (1 - 0.15 * frame.shell)))
       this.ground(actor, 0.03 + lift)
-      const flicker = !this.reducedMotion && frame.wire > 0 && Math.sin(seconds * 38) > 0.15 - frame.wire * 0.8
-      this.tintActor(actor, { opacity, glow: Math.min(1, frame.silhouette * (bespoke ? 0.55 : 0.92) + frame.charge * 0.08), wire: flicker })
+      const flicker = !effectFocus && !this.reducedMotion && frame.wire > 0 && Math.sin(seconds * 38) > 0.15 - frame.wire * 0.8
+      this.tintActor(actor, { opacity, glow: Math.min(1, frame.silhouette * (effectFocus ? 0.22 : bespoke ? 0.55 : 0.92) + frame.charge * 0.08), wire: flicker })
     }
 
     // Warp chain: the in-between forms flash past as silhouettes.
@@ -462,7 +464,7 @@ export class CinematicEvolutionRenderer {
         actor.root.scale.setScalar(actor.scale * (0.9 + 0.1 * frame.reveal) * pop)
         actor.root.rotation.y = (1 - frame.reveal) * -0.6 * motion
         this.ground(actor, 0.03)
-        this.tintActor(actor, { opacity: frame.toOpacity, glow: Math.pow(1 - frame.reveal, 1.4) * 0.95, wire: frame.reveal < 0.25 && Math.sin(seconds * 40) > 0.4 })
+        this.tintActor(actor, { opacity: frame.toOpacity, glow: Math.pow(1 - frame.reveal, 1.4) * 0.95, wire: !effectFocus && frame.reveal < 0.25 && Math.sin(seconds * 40) > 0.4 })
       }
     }
 
@@ -471,12 +473,12 @@ export class CinematicEvolutionRenderer {
     this.shell.position.copy(center).setY(resultHeight * 0.5 + frame.rise * 0.3)
     this.shell.scale.setScalar(Math.max(0.001, shellScale * (0.5 + frame.shell * 0.55)))
     this.shell.rotation.set(seconds * 0.6 * motion, seconds * 1.4 * motion, 0)
-    this.shell.material.opacity = frame.shell * (bespoke ? 0.18 : template === 'jogress' ? 0.3 : 0.75)
+    this.shell.material.opacity = frame.shell * (effectFocus ? 0.06 : bespoke ? 0.18 : template === 'jogress' ? 0.3 : 0.75)
     this.shellInner.material.opacity = frame.shell * (bespoke ? 0.04 : template === 'matrix' ? 0.35 : 0.16)
     this.core.position.copy(this.shell.position)
     const coreSize = (template === 'jogress' ? 1.2 + merge * 2.8 : 1.6) * frame.shell + frame.flash * 3
     this.core.scale.setScalar(Math.max(0.001, coreSize))
-    this.core.material.opacity = Math.min(1, frame.shell * (bespoke ? 0.18 : 0.6) + frame.flash)
+    this.core.material.opacity = Math.min(1, frame.shell * (effectFocus ? 0.08 : bespoke ? 0.18 : 0.6) + frame.flash)
 
     // Shards gather during charge, then explode at the reveal.
     for (let i = 0; i < this.shards.count; i++) {
@@ -491,7 +493,7 @@ export class CinematicEvolutionRenderer {
       this.dummy.updateMatrix(); this.shards.setMatrixAt(i, this.dummy.matrix)
     }
     this.shards.instanceMatrix.needsUpdate = true
-    this.shards.material.opacity = 0.25 + frame.charge * 0.6 + frame.burst * 0.4 - frame.reveal * 0.5
+    this.shards.material.opacity = Math.max(0, 0.25 + frame.charge * 0.6 + frame.burst * 0.4 - frame.reveal * 0.5) * (effectFocus ? 0.24 : 1)
 
     // Rising data streaks.
     for (let i = 0; i < this.streaks.count; i++) {
@@ -504,12 +506,12 @@ export class CinematicEvolutionRenderer {
       this.dummy.updateMatrix(); this.streaks.setMatrixAt(i, this.dummy.matrix)
     }
     this.streaks.instanceMatrix.needsUpdate = true
-    this.streaks.material.opacity = (0.15 + frame.charge * 0.75) * (1 - frame.reveal * 0.8)
+    this.streaks.material.opacity = (0.15 + frame.charge * 0.75) * (1 - frame.reveal * 0.8) * (effectFocus ? 0.2 : 1)
 
     // Backdrop streams; it fades up as the world falls away during the charge.
     const backdrop = this.backdrop.material.uniforms
     backdrop.uTime.value = seconds
-    backdrop.uCharge.value = frame.charge * (bespoke ? 0.65 : 1)
+    backdrop.uCharge.value = frame.charge * (effectFocus ? 0.3 : bespoke ? 0.65 : 1)
     backdrop.uReveal.value = frame.reveal
     backdrop.uFlash.value = frame.flash
     backdrop.uSpin.value = sampleCinematicCamera(cinematic, elapsed, this.reducedMotion).azimuth
@@ -627,7 +629,7 @@ export class CinematicEvolutionRenderer {
         }
       }
       this.bolts.geometry.attributes.position.needsUpdate = true
-      this.bolts.material.opacity = (frame.charge + frame.burst) * (random() < 0.6 ? 0.9 : 0.2) * (this.reducedMotion ? 0.3 : 1)
+      this.bolts.material.opacity = (frame.charge + frame.burst) * (effectFocus ? 0.25 : random() < 0.6 ? 0.9 : 0.2) * (this.reducedMotion ? 0.3 : 1)
     }
     if (this.blades) {
       const ring = THREE.MathUtils.smoothstep(elapsed, c, x - 500)
@@ -718,6 +720,9 @@ export class CinematicEvolutionRenderer {
     )
     this.camera.lookAt(0, cam.lookY * heightScale, 0)
     fitCinematicCamera(this.camera, this.actors.filter(actor => actor.root.visible).map(actor => actor.cameraBounds))
+    // Planar 3D emblems keep their readable face toward the moving camera.
+    // Their thickness and model-space positions are retained; shields remain volumetric.
+    if (this.motif?.facesCamera) this.motif.root.rotation.y = Math.atan2(this.camera.position.x, this.camera.position.z)
     this.composer.render()
   }
 

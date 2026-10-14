@@ -1,3 +1,4 @@
+import freeModeGroups from './freeModeChanges.json' with { type: 'json' }
 // Evolution relationships follow the cited games/profiles in docs/evolution-rules.md.
 // Levels and catalyst items are DigiRogue balancing choices, not official requirements.
 import expansion from './rosterExpansion.json' with { type: 'json' }
@@ -6,15 +7,24 @@ import expansion3 from './rosterExpansion3.json' with { type: 'json' }
 import expansion4 from './rosterExpansion4.json' with { type: 'json' }
 import expansion5 from './rosterExpansion5.json' with { type: 'json' }
 import expansion6 from './rosterExpansion6.json' with { type: 'json' }
+import expansion7 from './rosterExpansion7.json' with { type: 'json' }
+import { normalizeEvolutionItemRequirement } from './itemIdentity.js'
+import spiritEvolution from './spiritEvolution.json' with { type: 'json' }
+import adventureItemArt from './adventureItemArt.json' with { type: 'json' }
+import evolutionItemArt from './evolutionItemArt.json' with { type: 'json' }
+import normalEvolutionRequirements from './normalEvolutionRequirements.json' with { type: 'json' }
+import itemArtworkOverrides from './itemArtworkOverrides.json' with { type: 'json' }
 import treeConnections from './evolutionTreeConnections.json' with { type: 'json' }
 import { isPlayableDigimon } from './speciesAvailability.js'
 import { getDigimonTrainingStage } from './digimonStages.js'
 import { ENDGAME_EVOLUTION_TUNING, resolveEvolutionInvestment } from './evolutionInvestment.js'
+const freeModeTargets = Object.fromEntries(freeModeGroups.flatMap(group => group.map(source => [source, group.filter(target=>target!==source)])))
 export const EVOLUTION_LEVELS = { 유아기: 1, 유년기: 2, 성장기: 4, 성숙기: 10, 완전체: 25, 궁극체: 45, 초궁극체: 65, 아머체: 10, 하이브리드체: 10 }
 
 const levelOverrides = {
   ...expansion5.levels,
   ...expansion6.levels,
+  ...expansion7.levels,
   ...treeConnections.levels,
   엔젤몬: 12, 데블몬: 12, 가트몬: 12, 블랙가트몬: 12,
   도루가몬: 12, 긴류우몬: 12, 바오헉몬: 12,
@@ -30,6 +40,7 @@ export const JOGRESS_RECIPES = [
   ...expansion.jogress,
   ...expansion3.jogress,
   ...expansion6.jogress,
+  ...expansion7.jogress,
   ...treeConnections.jogress,
   { targetName: '파일드라몬', materials: ['엑스브이몬', '스팅몬'], level: 25 },
   { targetName: '실피드몬', materials: ['아큐라몬', '가트몬'], level: 25 },
@@ -58,23 +69,37 @@ const baseItemRequirements = {
   '오파니몬[폴다운]': { from: ['오파니몬'], itemName: '악의 근원', rarity: 'rare', level: 60, method: '모드 체인지' },
   '황제드라몬[파이터]': { from: ['파일드라몬'], itemName: '포지트론 레이저', rarity: 'rare', level: 60, method: '워프 진화' },
   '황제드라몬[팔라딘]': { from: ['황제드라몬[파이터]'], itemName: '오메가 블레이드', rarity: 'rogue', level: 70, method: '모드 체인지' },
+  ...expansion7.items,
+  ...Object.fromEntries([['human',spiritEvolution.humans],['beast',spiritEvolution.beasts]].flatMap(([kind,forms])=>Object.entries(forms).map(([target,r])=>{const itemId=kind+'-spirit-'+r.element;return[target,{from:r.from,level:r.level,itemId,itemName:adventureItemArt[itemId].name,imageUrl:adventureItemArt[itemId].url,rarity:'good',itemCount:1,method:'스피릿 진화'}]}))),
 }
 
-// Retain existing inventory IDs when promoting catalysts. New seals reuse the
-// franchise Evoluter artwork, with form-specific inventory keys.
-export const ITEM_EVOLUTION_REQUIREMENTS = {
+// Retain inventory IDs when promoting catalysts or replacing their artwork.
+const promotedItemRequirements = {
   ...Object.fromEntries(Object.entries(baseItemRequirements).map(([name, rule]) => [name,
     { ...rule, ...(ENDGAME_EVOLUTION_TUNING[name] ? { level: ENDGAME_EVOLUTION_TUNING[name].level,
       rarity: 'master', itemCount: ENDGAME_EVOLUTION_TUNING[name].itemCount } : {}) }])),
-  ...Object.fromEntries(['알파몬[왕룡검]', '얼티메이트카오스몬', '오그도몬', '지드밀레니엄몬'].map(name => [name, {
+  ...Object.fromEntries(['얼티메이트카오스몬', '지드밀레니엄몬'].map(name => [name, {
     from: JOGRESS_RECIPES.find(recipe => recipe.targetName === name)?.materials ??
-      (name === '오그도몬' ? ['리리스몬', '마왕몬', '발바몬'] : ['밀레니엄몬']),
+      ['밀레니엄몬'],
     itemName: '에보류터 · ' + name, itemId: 'item-evolution-investment-' + name,
     imageUrl: '/items/evolution/canonical/evoluter.png', rarity: 'master',
     level: ENDGAME_EVOLUTION_TUNING[name].level, itemCount: ENDGAME_EVOLUTION_TUNING[name].itemCount,
-    method: name === '지드밀레니엄몬' ? '워프 진화' : name === '오그도몬' ? '특수 진화' : '조그레스',
+    method: name === '지드밀레니엄몬' ? '워프 진화' : '조그레스',
   }])),
 }
+
+// Former Evoluter item routes now use the same level and permanent stat checks as
+// ordinary evolution. Keep their allowed ancestors explicit, including modes.
+export const NORMAL_EVOLUTION_REQUIREMENTS = Object.freeze(normalEvolutionRequirements)
+export const ITEM_EVOLUTION_REQUIREMENTS = Object.fromEntries(Object.entries(promotedItemRequirements)
+  .filter(([target]) => !NORMAL_EVOLUTION_REQUIREMENTS[target])
+  .map(([target, original]) => {
+    const rule=normalizeEvolutionItemRequirement(original)
+    const canonicalArt=Object.values(evolutionItemArt).find(a=>a.name===rule.itemName)
+    if(canonicalArt)rule.imageUrl=canonicalArt.url
+    const artwork = itemArtworkOverrides[rule.itemId ?? 'item-evolution-' + rule.itemName]
+    return [target, { ...rule, ...(artwork ? { imageUrl: artwork.url, itemName: artwork.name ?? rule.itemName } : {}) }]
+  }))
 
 const modeChanges = {
   '샤인그레이몬[루인]': { from: ['샤인그레이몬'], level: 60, method: '모드 체인지' },
@@ -83,6 +108,7 @@ const modeChanges = {
   ...expansion4.modes,
   ...expansion5.modes,
   ...expansion6.modes,
+  ...expansion7.modes,
   ...treeConnections.modes,
 }
 
@@ -123,16 +149,24 @@ export function getEvolutionInvestment(name) {
 
 export function getEvolutionLevel(name, stage) {
   if (ENDGAME_EVOLUTION_TUNING[name]) return ENDGAME_EVOLUTION_TUNING[name].level
-  return ITEM_EVOLUTION_REQUIREMENTS[name]?.level ?? modeChanges[name]?.level
+  return NORMAL_EVOLUTION_REQUIREMENTS[name]?.level ?? ITEM_EVOLUTION_REQUIREMENTS[name]?.level ?? modeChanges[name]?.level
     ?? JOGRESS_RECIPES.find(recipe => recipe.targetName === name)?.level
     ?? levelOverrides[name] ?? EVOLUTION_LEVELS[getDigimonTrainingStage(name, stage)] ?? 65
 }
 
 export function getEvolutionRoute(sourceName, targetName, targetStage) {
   if (!isPlayableDigimon(sourceName) || !isPlayableDigimon(targetName)) return null
+  if (spiritEvolution.blockedBranches[sourceName]?.includes(targetName)) return null
+  if (expansion7.retiredBranches?.[sourceName]?.includes(targetName)) return null
+  const permittedParents = expansion7.exclusiveParents[targetName]
+  if (permittedParents && !permittedParents.includes(sourceName)) return null
+  if (freeModeTargets[sourceName]?.includes(targetName)) return { method: '모드 전환', kind: 'mode', level: 0, freeModeChange: true }
   const recipe = JOGRESS_RECIPES.find(entry => entry.targetName === targetName)
   if (recipe) return recipe.materials.includes(sourceName)
     ? { method: recipe.method ?? '조그레스', kind: 'jogress', level: recipe.level, recipe } : null
+  const normal = NORMAL_EVOLUTION_REQUIREMENTS[targetName]
+  if (normal) return normal.from.includes(sourceName)
+    ? { method: '일반 진화', kind: 'level', level: normal.level } : null
   const special = ITEM_EVOLUTION_REQUIREMENTS[targetName] ?? modeChanges[targetName]
   if (special) return special.from.includes(sourceName)
     ? { method: special.method, kind: ITEM_EVOLUTION_REQUIREMENTS[targetName] ? 'item' : 'level', level: special.level } : null
@@ -144,9 +178,9 @@ export function getEvolutionTargets(raw) {
   const name = raw.이름
   const additional = [
     ...JOGRESS_RECIPES.filter(recipe => recipe.materials.includes(name)).map(recipe => recipe.targetName),
-    ...Object.entries({ ...ITEM_EVOLUTION_REQUIREMENTS, ...modeChanges }).filter(([, rule]) => rule.from.includes(name)).map(([target]) => target),
+    ...Object.entries({ ...ITEM_EVOLUTION_REQUIREMENTS, ...NORMAL_EVOLUTION_REQUIREMENTS, ...modeChanges }).filter(([, rule]) => rule.from.includes(name)).map(([target]) => target),
   ]
-  return [...new Set([...(EVOLUTION_BRANCH_OVERRIDES[name] ?? raw.진화가능 ?? []), ...(expansion.branches[name] ?? []), ...(expansion2.branches[name] ?? []), ...(expansion3.branches[name] ?? []), ...(expansion4.branches[name] ?? []), ...(expansion5.branches[name] ?? []), ...(expansion6.branches[name] ?? []), ...(treeConnections.branches[name] ?? []), ...additional])]
+  return [...new Set([...(EVOLUTION_BRANCH_OVERRIDES[name] ?? raw.진화가능 ?? []), ...(expansion.branches[name] ?? []), ...(expansion2.branches[name] ?? []), ...(expansion3.branches[name] ?? []), ...(expansion4.branches[name] ?? []), ...(expansion5.branches[name] ?? []), ...(expansion6.branches[name] ?? []), ...(expansion7.branches[name] ?? []), ...(treeConnections.branches[name] ?? []), ...(freeModeTargets[name] ?? []), ...additional])]
     .filter(target => target !== name && getEvolutionRoute(name, target))
 }
 

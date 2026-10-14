@@ -324,7 +324,6 @@
       "사이크로몬"
     ],
     "그레이드몬": [
-      "도루고라몬",
       "알파몬"
     ],
     "라프타드라몬": [
@@ -712,17 +711,6 @@
       "method": "유대 진화",
       "imageUrl": "/items/evolution/canonical/bond-friendship.png",
       "itemId": "item-evolution-우정의 유대"
-    },
-    "가이오몬[엄도의형]": {
-      "from": [
-        "가이오몬"
-      ],
-      "itemName": "에보류터 · 가이오몬",
-      "rarity": "rogue",
-      "level": 65,
-      "method": "모드 체인지",
-      "imageUrl": "/items/evolution/canonical/evoluter.png",
-      "itemId": "item-evolution-엄도의 인장"
     },
     "오메가몬[머시풀]": {
       "from": [

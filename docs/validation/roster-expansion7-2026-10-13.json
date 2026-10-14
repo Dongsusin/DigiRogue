@@ -1,0 +1,83 @@
+{
+  "verifiedAt": "2026-10-13",
+  "deployment": false,
+  "added": 153,
+  "playable": 664,
+  "models": 665,
+  "researched": 255,
+  "deferred": 102,
+  "tests": 423,
+  "checks": [
+    {
+      "name": "integration",
+      "exitCode": 0,
+      "tests": 67
+    },
+    {
+      "name": "dex-canon",
+      "exitCode": 0,
+      "tests": 46
+    },
+    {
+      "name": "evolution-effects",
+      "exitCode": 0,
+      "tests": 75
+    },
+    {
+      "name": "gameplay",
+      "exitCode": 0,
+      "tests": 161
+    },
+    {
+      "name": "bosses",
+      "exitCode": 0,
+      "tests": 53
+    },
+    {
+      "name": "runtime",
+      "exitCode": 0
+    },
+    {
+      "name": "resource-versions",
+      "exitCode": 0
+    },
+    {
+      "name": "build",
+      "exitCode": 0
+    },
+    {
+      "name": "download-package",
+      "exitCode": 0
+    },
+    {
+      "name": "download-tests",
+      "exitCode": 0,
+      "tests": 21
+    },
+    {
+      "name": "test-unlock",
+      "exitCode": 0
+    }
+  ],
+  "motion": {
+    "exitCode": 0,
+    "models": 153,
+    "samples": 23953,
+    "flagged": [],
+    "method": "CPU deformation using the production Three.js prepareModel and visible bounds; GPU thumbnails reviewed separately before terminal-pose correction"
+  },
+  "testServer": {
+    "url": "http://127.0.0.1:5174/.tmp-convert/all-digimon-test.html",
+    "htmlStatus": 200,
+    "scriptStatus": 200,
+    "seedStatus": 200,
+    "unlocked": 664,
+    "skillsChanged": false,
+    "storage": "isolated local test namespace"
+  },
+  "notVerified": [
+    "Complete manual battles for every new move",
+    "Full 200-stage manual playthrough",
+    "102 deferred candidates without a verified usable original animated asset"
+  ]
+}

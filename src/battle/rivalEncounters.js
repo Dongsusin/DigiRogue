@@ -20,7 +20,7 @@ const startingName = (profile, stage) => profile.variant
 
 export function getRivalCandidates(stage, mapName, speciesLookup) {
   if (!isRivalStage(stage)) return []
-  const candidates = RIVAL_PROFILES.filter(profile => stage >= profile.minStage && stage <= profile.maxStage &&
+  const candidates = RIVAL_PROFILES.filter(profile => stage >= profile.minStage && stage <= profile.maxStage && (!profile.maps || profile.maps.includes(mapName)) &&
     [...profile.line, ...(profile.formation ?? [])].every(name => speciesLookup.has(name) && completeModel(name)))
   return regionalEncounterPool(candidates, mapName, BOSS_MAP_THEMES[mapName],
     profile => Boolean(profile.variant) === (stage % 20 === 15), profile => startingName(profile, stage),

@@ -6,6 +6,7 @@ export const EVOLUTION_MOTIF_KINDS = Object.freeze([
   'magma', 'forge', 'resonance', 'crescent', 'crystal', 'tide', 'healing',
   'plasma', 'frost', 'drill', 'jet', 'assembly', 'scan', 'relic', 'stars',
   'thunder', 'forest', 'target', 'soul', 'deletion', 'program',
+  'solar', 'blade', 'score', 'chronos', 'web', 'blossom', 'shield',
 ])
 
 const TAU = Math.PI * 2
@@ -195,6 +196,65 @@ export function createEvolutionMotif(kind, palette, { variant, sourcePalettes = 
     case 'soul': cloud(new THREE.SphereGeometry(1, 12, 8), 22, 'soul', { opacity: .3 }); rings(3, 'vortex'); break
     case 'deletion': cloud(new THREE.BoxGeometry(1, 1, 1), 40, 'erased', { solid: true }); rings(3, 'vortex'); break
     case 'program': rings(5, 'hex'); cloud(new THREE.OctahedronGeometry(1), 30, 'node', { solid: true, opacity: .65 }); break
+    case 'solar': {
+      rings(2, 'sun-disc', palette[1])
+      const ray = polygon([[0,.2],[-.07,0],[0,-.12],[.07,0]], .025)
+      for(let i=0;i<density(16);i++) add(ray,'sun-ray',i,palette[i%2],{solid:true,opacity:.75})
+      if(variant==='eclipse') {
+        add(new THREE.TorusGeometry(.58,.045,8,64,Math.PI*1.4),'eclipse-moon',0,'#8b9dff',{solid:true,opacity:.8})
+        cloud(star(),12,'spark',{solid:true})
+      } else cloud(new THREE.IcosahedronGeometry(1,0),16,'ember',{solid:true,opacity:.65})
+      break
+    }
+    case 'blade': {
+      const blade = variant==='key'
+        ? polygon([[-.045,-.48],[.045,-.48],[.045,.1],[.2,.1],[.2,.18],[.1,.18],[.1,.28],[.22,.28],[.22,.36],[.045,.36],[.045,.55],[-.045,.55]],.045)
+        : variant==='shuriken' ? star()
+          : variant==='staff' ? new THREE.CylinderGeometry(.035,.035,1.4,8)
+            : variant==='lance' ? polygon([[-.025,-.7],[.025,-.7],[.025,.3],[.12,.38],[0,.75],[-.12,.38],[-.025,.3]],.04)
+              : polygon([[-.04,-.65],[.04,-.65],[.04,-.35],[.18,-.35],[.18,-.3],[.06,-.3],[.09,.45],[0,.7],[-.09,.45],[-.06,-.3],[-.18,-.3],[-.18,-.35],[-.04,-.35]],.045)
+      const count=variant==='dual'?2:variant==='wings'?6:variant==='shuriken'?4:variant==='small'?2:1
+      for(let i=0;i<count;i++)add(blade,'sig-blade',i,palette[i%2],{solid:true,opacity:.82})
+      rings(2,'orbit',palette[2]);break
+    }
+    case 'score': {
+      const note=polygon([[-.12,-.09],[-.08,-.16],[.03,-.14],[.1,-.05],[.1,.4],[.23,.29],[.23,.41],[.06,.52],[.04,-.03],[-.04,-.02]],.035)
+      cloud(note,variant==='choir'?18:12,'note',{solid:true,opacity:.8})
+      rings(3,'staff',palette[1]);break
+    }
+    case 'chronos': {
+      rings(2,'clock-rim',palette[1])
+      const tick=new THREE.BoxGeometry(.025,.12,.025)
+      for(let i=0;i<12;i++)add(tick,'clock-tick',i,palette[0],{solid:true,opacity:.8})
+      const hand=new THREE.BoxGeometry(.025,.56,.03);hand.translate(0,.28,0)
+      for(let i=0;i<2;i++)add(hand,'clock-hand',i,palette[1],{solid:true,opacity:.9})
+      cloud(new THREE.OctahedronGeometry(1,0),16,'time-shard',{solid:true,opacity:.65});break
+    }
+    case 'web': {
+      const points=[]
+      for(let i=0;i<12;i++){
+        const a=i*TAU/12,b=(i+1)*TAU/12
+        points.push(0,0,0,Math.cos(a),Math.sin(a),0)
+        for(let r=.25;r<=1;r+=.25)points.push(Math.cos(a)*r,Math.sin(a)*r,0,Math.cos(b)*r,Math.sin(b)*r,0)
+      }
+      const net=new THREE.BufferGeometry();net.setAttribute('position',new THREE.Float32BufferAttribute(points,3))
+      add(net,'web-net',0,palette[1],{line:true,opacity:.7})
+      cloud(new THREE.SphereGeometry(1,8,6),12,'web-node',{solid:true,opacity:.7});break
+    }
+    case 'blossom': {
+      const petal=leaf(),count=reducedMotion?3:5
+      for(let i=0;i<count*6;i++)add(petal,'petal',i,palette[i%2],{solid:true,opacity:.65})
+      for(let i=0;i<count;i++)add(new THREE.SphereGeometry(1,8,6),'pollen-core',i,palette[2],{solid:true,opacity:.8})
+      cloud(new THREE.OctahedronGeometry(1,0),12,'spark',{solid:true});break
+    }
+    case 'shield': {
+      const plate=polygon(Array.from({length:6},(_,i)=>[Math.cos(Math.PI/6+i*TAU/6),Math.sin(Math.PI/6+i*TAU/6)]),.08)
+      for(let i=0;i<(reducedMotion?3:6);i++)add(plate,'shield-plate',i,palette[i%2],{solid:true,opacity:.4})
+      if(variant==='ice')cloud(snowflake(),12,'snow',{line:true,opacity:.6})
+      else if(variant==='electric')cloud(lightning(),8,'arc')
+      else if(variant==='fire')cloud(new THREE.IcosahedronGeometry(1,0),16,'ember',{solid:true,opacity:.6})
+      rings(2,'ripple');break
+    }
   }
 
   function update(frame, seconds, height = 2.6) {
@@ -214,6 +274,57 @@ export function createEvolutionMotif(kind, palette, { variant, sourcePalettes = 
       mesh.scale.setScalar(.04 + seed * .065)
       let visibility = 1
       switch (role) {
+        case 'sun-disc':
+          mesh.position.set(variant==='eclipse'?-.18:0,.72,-.6);mesh.rotation.set(0,0,time*.15)
+          mesh.scale.setScalar(.58+i*.08+frame.charge*.06);visibility=.7;break
+        case 'sun-ray': {
+          const a=i*TAU/density(16)+time*.12,r=.75+frame.charge*.12
+          mesh.position.set(Math.cos(a)*r,.72+Math.sin(a)*r,-.6);mesh.rotation.set(0,0,a-Math.PI/2)
+          mesh.scale.setScalar(variant==='mane'?.65:1);break
+        }
+        case 'eclipse-moon':mesh.position.set(.42,.72,-.55);mesh.rotation.set(0,0,-time*.15);mesh.scale.setScalar(1);break
+        case 'sig-blade': {
+          const a=variant==='wings'?i*TAU/6:variant==='dual'?i*Math.PI:variant==='shuriken'?i*TAU/4:0
+          const distance=variant==='great'?.9:variant==='key'?.85:1.02
+          mesh.position.set(Math.cos(a)*distance,.6+Math.sin(a)*.4,-.25)
+          mesh.rotation.set(0,Math.sin(time*.3)*.12,variant==='shuriken'?time:variant==='wings'?a-Math.PI/2:Math.sin(time*.45+i)*.15)
+          mesh.scale.setScalar(variant==='great'?.9:variant==='small'?.4:variant==='wings'?.55:variant==='shuriken'?.2:.65)
+          visibility=smooth(frame.charge,.08,.5);break
+        }
+        case 'note':mesh.scale.setScalar(.22+seed*.13);mesh.position.set(Math.cos(angle)*(.8+seed*.25),.2+life*1.1,Math.sin(angle)*.55);mesh.rotation.set(0,angle*.15,Math.sin(time*.6+i)*.15);break
+        case 'staff':mesh.position.set(0,.3+i*.22,-.3);mesh.rotation.set(Math.PI/2,.08,0);mesh.scale.set(1.05,.55,1);visibility=.35;break
+        case 'clock-rim':mesh.position.set(0,.68,-.6);mesh.rotation.set(0,0,0);mesh.scale.setScalar(.65+i*.09);break
+        case 'clock-tick': {
+          const a=i*TAU/12;mesh.position.set(Math.sin(a)*.62,.68+Math.cos(a)*.62,-.58)
+          mesh.rotation.set(0,0,-a);mesh.scale.setScalar(1);break
+        }
+        case 'clock-hand': {
+          const sign=variant==='reverse'?-1:1
+          mesh.position.set(0,.68,-.54);mesh.rotation.set(0,0,sign*time*(i===0?.35:1.2));mesh.scale.setScalar(i===0?.75:1);break
+        }
+        case 'time-shard': {
+          const k=smooth(frame.charge,.25,.95),a=i*TAU/16+time*(variant==='reverse'?-.2:.2)
+          mesh.position.set(Math.cos(a)*(1.2-k*.4),.68+Math.sin(a)*(1.2-k*.4),-.6)
+          mesh.rotation.set(time*.2,0,a);mesh.scale.setScalar(.03+seed*.025);break
+        }
+        case 'web-net':mesh.position.set(0,.68,-.6);mesh.rotation.set(0,0,time*.06);mesh.scale.setScalar(variant==='small'?.75:1);break
+        case 'web-node':{
+          const a=i*TAU/12+time*.06;mesh.position.set(Math.cos(a)*.85,.68+Math.sin(a)*.85,-.6)
+          mesh.rotation.set(0,0,0);mesh.scale.setScalar(.025+seed*.015);break
+        }
+        case 'petal':case 'pollen-core': {
+          const flower=role==='petal'?Math.floor(i/6):i,a=flower*2.39996+time*.15
+          const cx=Math.cos(a)*(.75+frame.charge*.15),cy=.25+fract(flower*.23+time*.08)*1.05,cz=Math.sin(a)*.5
+          const open=.06+.06*smooth(frame.charge,.1,.8),petalAngle=(i%6)*TAU/6
+          mesh.position.set(cx+(role==='petal'?Math.sin(petalAngle)*open:0),cy+(role==='petal'?Math.cos(petalAngle)*open:0),cz)
+          mesh.rotation.set(0,0,role==='petal'?-petalAngle:0);mesh.scale.setScalar(role==='petal'?open:.04);break
+        }
+        case 'shield-plate': {
+          const count=reducedMotion?3:6,a=i*TAU/count+time*.08
+          mesh.position.set(Math.cos(a)*.9,.6+Math.sin(a)*.35,Math.sin(a)*.65)
+          mesh.rotation.set(0,Math.PI/2-a,0);mesh.scale.set(.25,.32,.25)
+          visibility=smooth(frame.charge,.1,.65);break
+        }
         case 'ember': mesh.position.y = life * (1.2 + frame.charge * .7); mesh.scale.setScalar(.02 + seed * .045); break
         case 'lava': case 'ripple': {
           mesh.position.set(0, .025 + i * .035, 0); mesh.rotation.set(Math.PI / 2, 0, 0)
@@ -295,5 +406,5 @@ export function createEvolutionMotif(kind, palette, { variant, sourcePalettes = 
     }
     root.updateMatrixWorld(true)
   }
-  return { root, parts, materials, update }
+  return { root, parts, materials, update, facesCamera: ['solar', 'blade', 'score', 'chronos', 'web', 'blossom'].includes(kind) }
 }

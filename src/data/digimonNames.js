@@ -8,7 +8,10 @@ export const DIGIMON_NAME_CORRECTIONS = Object.freeze(corrections.corrections.ma
 // revision-1 saves must not replay the ambiguous Geremon/Nanimon rename.
 export const DIGIMON_MODEL_ALIASES = Object.freeze({ '매그너가루몬': '매그너가루몬[SV]' })
 const legacyNames = new Map([...DIGIMON_NAME_CORRECTIONS.map(row => [row.from, row.to]), ...Object.entries(DIGIMON_MODEL_ALIASES)])
-const ambiguousNames = new Set(DIGIMON_NAME_CORRECTIONS.filter(row => row.overlapsExistingName).map(row => row.to))
+// Reintroduced official names must remain independent from older mislabeled forms.
+// Only pre-revision saves still translate the old PrinceMamemon label 뿌띠몬.
+const ambiguousNames = new Set([...DIGIMON_NAME_CORRECTIONS.filter(row => row.overlapsExistingName).map(row => row.to),
+  ...DIGIMON_NAME_CORRECTIONS.filter(row => row.reusedBy).map(row => row.from)])
 const currentAliases = new Map([...legacyNames].filter(([name]) => !ambiguousNames.has(name)))
 const trimName = value => typeof value === 'string' ? value.trim().normalize('NFC') : value
 

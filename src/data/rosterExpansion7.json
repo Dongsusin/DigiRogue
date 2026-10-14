@@ -1,0 +1,3895 @@
+{
+  "exclusiveParents": {
+    "유피테르몬": [
+      "아이기오투스몬[홀리]"
+    ],
+    "유피테르몬[래스 모드]": [
+      "유피테르몬"
+    ],
+    "크로노몬[홀리 모드]": [
+      "부텐몬"
+    ],
+    "크로노몬[디스트로이 모드]": [
+      "부텐몬"
+    ]
+  },
+  "addedAt": "2026-10-13",
+  "names": [
+    "코로나몬",
+    "아이기오몬",
+    "아이기오투스몬",
+    "아이기오투스몬[블루]",
+    "아이기오투스몬[그린]",
+    "아이기오투스몬[다크]",
+    "아이기오투스몬[홀리]",
+    "아루다몬",
+    "에이션트와이즈몬",
+    "아폴로몬",
+    "아라크네몬",
+    "아스타몬",
+    "어벤지키드몬",
+    "바커스몬",
+    "반쵸콩알몬",
+    "베오울프몬",
+    "베르스타몬",
+    "빅콩알몬",
+    "브링프몬",
+    "브라키몬",
+    "부라이몬",
+    "부텐몬",
+    "칼리스몬",
+    "카르마라몬",
+    "켄터스몬",
+    "케르베로스몬",
+    "케르베로스몬[인랑]",
+    "케레스몬[미디엄]",
+    "크로노몬[홀리 모드]",
+    "크로노몬[디스트로이 모드]",
+    "클라비스엔젤몬",
+    "크랩몬",
+    "다크드라몬",
+    "다크슈퍼스타몬",
+    "델타몬",
+    "카우보이몬",
+    "뿌띠몬",
+    "디그몬",
+    "다이버몬",
+    "도베르몬",
+    "스파이더몬",
+    "두리몬",
+    "크로스몬",
+    "안바르몬",
+    "엑스티라노몬",
+    "파이라몬",
+    "플레어몬",
+    "플로라몬",
+    "플라이몬",
+    "푸가몬",
+    "가비지몬",
+    "기자몬",
+    "그레이스노바몬",
+    "그레이트그리즈몬",
+    "건드라몬",
+    "가와파몬",
+    "호루스몬",
+    "블루우가몬",
+    "효코몬",
+    "황제드라몬[드래곤]",
+    "주엘비몬",
+    "점보가메몬",
+    "유피테르몬[래스 모드]",
+    "카프리몬",
+    "키위몬",
+    "코쿠와몬",
+    "코테몬",
+    "로코몬",
+    "매그너키드몬",
+    "마스터브링프몬",
+    "메카노몬",
+    "메디벌듀크몬",
+    "뽈뽈몬",
+    "메르바몬",
+    "미노타몬",
+    "미스티몬",
+    "모털몬",
+    "미이라몬",
+    "무사몬",
+    "네페르티몬",
+    "옥토몬",
+    "패럴렐몬",
+    "패롯몬",
+    "페가수스몬",
+    "펭귄몬",
+    "푸쿠몬",
+    "라나몬",
+    "스콜피오몬",
+    "샤크몬",
+    "원시고부리몬",
+    "사우자몬",
+    "쉘몬",
+    "수리몬",
+    "세이렌몬",
+    "스컬벌키몬",
+    "스컬맘몬",
+    "스컬시드라몬",
+    "슬래쉬엔젤몬",
+    "스나이몬",
+    "스노우고부리몬",
+    "잠수몬",
+    "탱크드라몬",
+    "웬디몬",
+    "위치몬",
+    "황금무사몬",
+    "좀비플루토몬",
+    "알로몬",
+    "브롯사몬",
+    "볼토바우타몬",
+    "브리웨루드라몬",
+    "할매몬",
+    "캔들몬",
+    "가재드라몬",
+    "도그몬",
+    "째리몬",
+    "손오공몬",
+    "그랑디스쿠가몬",
+    "쟈가몬",
+    "제트실피드몬",
+    "페어리몬",
+    "코스파이더몬",
+    "블리자몬",
+    "챠크몬",
+    "레베몬",
+    "마린데블몬",
+    "폰체스몬(흑)",
+    "폰체스몬(백)",
+    "포큐파몬",
+    "라이지루도몬",
+    "레드베지몬",
+    "바알몬",
+    "삼장몬",
+    "티아루도몬",
+    "이블몬",
+    "배드퍼펫몬",
+    "슈츠몬",
+    "아누비스몬",
+    "아수라몬",
+    "기기몬",
+    "쟈리몬",
+    "구미몬",
+    "연체몬",
+    "초코몬",
+    "피치몬",
+    "사이케몬",
+    "유라몬",
+    "제리몬",
+    "팅커몬",
+    "빅토리그레이몬",
+    "블랙그라우몬"
+  ],
+  "branches": {
+    "코로몬": [
+      "코로나몬",
+      "크랩몬",
+      "기자몬",
+      "원시고부리몬"
+    ],
+    "프스리몬": [
+      "코로나몬",
+      "캔들몬"
+    ],
+    "테이파몬": [
+      "아이기오몬",
+      "켄터스몬"
+    ],
+    "레나몬": [
+      "아이기오몬",
+      "위치몬"
+    ],
+    "루나몬": [
+      "아이기오몬"
+    ],
+    "아이기오몬": [
+      "아이기오투스몬",
+      "세이렌몬"
+    ],
+    "아이기오투스몬": [
+      "아이기오투스몬[블루]",
+      "아이기오투스몬[그린]",
+      "아이기오투스몬[다크]",
+      "아이기오투스몬[홀리]"
+    ],
+    "아그니몬": [
+      "브리트라몬"
+    ],
+    "브리트라몬": [
+      "아루다몬"
+    ],
+    "와이즈몬": [
+      "에이션트와이즈몬",
+      "패럴렐몬"
+    ],
+    "미스티몬": [
+      "에이션트와이즈몬",
+      "메디벌듀크몬"
+    ],
+    "플레어몬": [
+      "아폴로몬"
+    ],
+    "스파이더몬": [
+      "아라크네몬",
+      "미이라몬"
+    ],
+    "임프몬": [
+      "아스타몬",
+      "레베몬",
+      "이블몬"
+    ],
+    "데블몬": [
+      "아스타몬",
+      "바알몬"
+    ],
+    "도베르몬": [
+      "아스타몬",
+      "케르베로스몬"
+    ],
+    "카우보이몬": [
+      "어벤지키드몬",
+      "매그너키드몬",
+      "바알몬",
+      "삼장몬"
+    ],
+    "매그너키드몬": [
+      "어벤지키드몬"
+    ],
+    "아수라몬": [
+      "바커스몬",
+      "황금무사몬"
+    ],
+    "아스타몬": [
+      "바커스몬",
+      "베르스타몬",
+      "매그너키드몬",
+      "패럴렐몬"
+    ],
+    "바커스몬": [],
+    "빅콩알몬": [
+      "반쵸콩알몬"
+    ],
+    "메탈콩알몬": [
+      "반쵸콩알몬"
+    ],
+    "콩알몬": [
+      "반쵸콩알몬"
+    ],
+    "볼프몬": [
+      "가름몬"
+    ],
+    "가름몬": [
+      "베오울프몬"
+    ],
+    "레이디데블몬": [
+      "베르스타몬"
+    ],
+    "가드로몬": [
+      "빅콩알몬",
+      "로코몬",
+      "탱크드라몬",
+      "째리몬"
+    ],
+    "모야몬": [
+      "빅콩알몬"
+    ],
+    "톱니몬": [
+      "브링프몬",
+      "카우보이몬",
+      "메카노몬"
+    ],
+    "코쿠와몬": [
+      "브링프몬",
+      "메카노몬",
+      "티아루도몬"
+    ],
+    "시드라몬": [
+      "브라키몬",
+      "스컬시드라몬"
+    ],
+    "쉘몬": [
+      "브라키몬",
+      "스콜피오몬"
+    ],
+    "효코몬": [
+      "부라이몬"
+    ],
+    "부라이몬": [
+      "부텐몬"
+    ],
+    "그레이트그리즈몬": [
+      "칼리스몬"
+    ],
+    "팬더몬": [
+      "칼리스몬"
+    ],
+    "라나몬": [
+      "카르마라몬"
+    ],
+    "코테몬": [
+      "켄터스몬",
+      "카우보이몬",
+      "무사몬"
+    ],
+    "파피몬": [
+      "켄터스몬",
+      "도그몬"
+    ],
+    "가루몬": [
+      "케르베로스몬"
+    ],
+    "케르베로스몬": [
+      "케르베로스몬[인랑]",
+      "아누비스몬",
+      "플루토몬"
+    ],
+    "케레스몬": [
+      "케레스몬[미디엄]"
+    ],
+    "부텐몬": [
+      "크로노몬[홀리 모드]",
+      "크로노몬[디스트로이 모드]"
+    ],
+    "홀리엔젤몬": [
+      "클라비스엔젤몬",
+      "슬래쉬엔젤몬"
+    ],
+    "뽀글몬": [
+      "크랩몬",
+      "펭귄몬"
+    ],
+    "피치몬": [
+      "둥실몬"
+    ],
+    "탱크드라몬": [
+      "다크드라몬",
+      "건드라몬"
+    ],
+    "사이버드라몬": [
+      "다크드라몬"
+    ],
+    "스타몬": [
+      "다크슈퍼스타몬"
+    ],
+    "기자몬": [
+      "델타몬"
+    ],
+    "아구몬(흑)": [
+      "델타몬"
+    ],
+    "토이아구몬": [
+      "카우보이몬"
+    ],
+    "키위몬": [
+      "뿌띠몬",
+      "쟈가몬"
+    ],
+    "아르마몬": [
+      "디그몬",
+      "두리몬",
+      "잠수몬"
+    ],
+    "가재드라몬": [
+      "다이버몬",
+      "스콜피오몬"
+    ],
+    "연체몬": [
+      "다이버몬",
+      "마린데블몬"
+    ],
+    "파피몬(흑)": [
+      "도베르몬"
+    ],
+    "가오몬": [
+      "도베르몬",
+      "도그몬"
+    ],
+    "코스파이더몬": [
+      "스파이더몬"
+    ],
+    "추추몬": [
+      "스파이더몬",
+      "플라이몬",
+      "스나이몬"
+    ],
+    "울퉁몬": [
+      "두리몬"
+    ],
+    "패롯몬": [
+      "크로스몬"
+    ],
+    "가루다몬": [
+      "크로스몬"
+    ],
+    "유니몬": [
+      "안바르몬",
+      "스컬벌키몬"
+    ],
+    "레파몬": [
+      "안바르몬"
+    ],
+    "티라노몬": [
+      "엑스티라노몬"
+    ],
+    "퍼펫몬": [
+      "엑스티라노몬",
+      "배드퍼펫몬"
+    ],
+    "코로나몬": [
+      "파이라몬"
+    ],
+    "파이라몬": [
+      "플레어몬"
+    ],
+    "시드몬": [
+      "플로라몬",
+      "효코몬",
+      "코테몬"
+    ],
+    "모티몬": [
+      "플로라몬",
+      "코쿠와몬",
+      "코스파이더몬"
+    ],
+    "유라몬": [
+      "시드몬"
+    ],
+    "텐타몬": [
+      "플라이몬",
+      "스나이몬"
+    ],
+    "아기벌몬": [
+      "플라이몬",
+      "스나이몬"
+    ],
+    "원시고부리몬": [
+      "푸가몬",
+      "미노타몬"
+    ],
+    "고부리몬": [
+      "푸가몬",
+      "블루우가몬"
+    ],
+    "워매몬": [
+      "가비지몬",
+      "배드퍼펫몬"
+    ],
+    "스카몬": [
+      "가비지몬"
+    ],
+    "츠메몬": [
+      "기자몬",
+      "스노우고부리몬",
+      "코스파이더몬",
+      "사이케몬"
+    ],
+    "아폴로몬": [
+      "그레이스노바몬"
+    ],
+    "디아나몬": [
+      "그레이스노바몬"
+    ],
+    "그리즈몬": [
+      "그레이트그리즈몬"
+    ],
+    "레오몬": [
+      "그레이트그리즈몬"
+    ],
+    "안드로몬": [
+      "건드라몬"
+    ],
+    "메가드라몬": [
+      "건드라몬"
+    ],
+    "카메몬": [
+      "가와파몬"
+    ],
+    "호크몬": [
+      "호루스몬",
+      "수리몬",
+      "알로몬",
+      "페어리몬"
+    ],
+    "스노우고부리몬": [
+      "블루우가몬",
+      "모털몬",
+      "챠크몬"
+    ],
+    "토코몬": [
+      "효코몬",
+      "팅커몬"
+    ],
+    "파일드라몬": [
+      "황제드라몬[드래곤]",
+      "황제드라몬[파이터]"
+    ],
+    "스팅몬": [
+      "주엘비몬"
+    ],
+    "플라이몬": [
+      "주엘비몬"
+    ],
+    "사우자몬": [
+      "점보가메몬"
+    ],
+    "유피테르몬": [
+      "유피테르몬[래스 모드]"
+    ],
+    "뽈뽈몬": [
+      "카프리몬"
+    ],
+    "플로라몬": [
+      "키위몬",
+      "레드베지몬"
+    ],
+    "피요몬": [
+      "키위몬",
+      "페어리몬"
+    ],
+    "카프리몬": [
+      "코쿠와몬",
+      "코테몬",
+      "폰체스몬(흑)",
+      "폰체스몬(백)"
+    ],
+    "메카노몬": [
+      "로코몬",
+      "탱크드라몬",
+      "째리몬"
+    ],
+    "브링프몬": [
+      "마스터브링프몬"
+    ],
+    "그레이드몬": [
+      "메디벌듀크몬"
+    ],
+    "메가로그라우몬": [
+      "메디벌듀크몬"
+    ],
+    "미네르바몬": [
+      "메르바몬"
+    ],
+    "블루메라몬": [],
+    "베어몬": [
+      "미노타몬"
+    ],
+    "무사몬": [
+      "미스티몬",
+      "황금무사몬",
+      "삼장몬",
+      "아수라몬"
+    ],
+    "위자몬": [
+      "미스티몬"
+    ],
+    "펭귄몬": [
+      "모털몬",
+      "챠크몬"
+    ],
+    "고스몬": [
+      "미이라몬"
+    ],
+    "코에몬": [
+      "무사몬",
+      "손오공몬"
+    ],
+    "가트몬": [
+      "네페르티몬"
+    ],
+    "크랩몬": [
+      "옥토몬",
+      "쉘몬",
+      "가재드라몬"
+    ],
+    "베타몬": [
+      "옥토몬",
+      "라나몬",
+      "쉘몬",
+      "연체몬"
+    ],
+    "버드라몬": [
+      "패롯몬",
+      "세이렌몬"
+    ],
+    "파닥몬": [
+      "페가수스몬"
+    ],
+    "다이버몬": [
+      "푸쿠몬",
+      "샤크몬"
+    ],
+    "스콜피오몬": [
+      "푸쿠몬"
+    ],
+    "쉬라몬": [
+      "라나몬",
+      "연체몬"
+    ],
+    "옥토몬": [
+      "샤크몬"
+    ],
+    "꼬마몬": [
+      "원시고부리몬",
+      "스노우고부리몬"
+    ],
+    "가와파몬": [
+      "사우자몬"
+    ],
+    "켄터스몬": [
+      "스컬벌키몬"
+    ],
+    "맘몬": [
+      "스컬맘몬"
+    ],
+    "스컬벌키몬": [
+      "스컬맘몬"
+    ],
+    "아이스데블몬": [
+      "스컬시드라몬",
+      "마린데블몬"
+    ],
+    "나이트몬": [
+      "슬래쉬엔젤몬"
+    ],
+    "브라키몬": [],
+    "로프몬": [
+      "웬디몬",
+      "레베몬"
+    ],
+    "블랙가트몬": [
+      "위치몬"
+    ],
+    "플루토몬": [
+      "좀비플루토몬"
+    ],
+    "아구몬": [
+      "알로몬"
+    ],
+    "레드베지몬": [
+      "브롯사몬"
+    ],
+    "우드몬": [
+      "브롯사몬",
+      "쟈가몬"
+    ],
+    "니드몬": [
+      "브롯사몬"
+    ],
+    "피에몬": [
+      "볼토바우타몬"
+    ],
+    "묘티스몬": [
+      "볼토바우타몬"
+    ],
+    "라이지루도몬": [
+      "브리웨루드라몬"
+    ],
+    "도사몬": [
+      "할매몬"
+    ],
+    "메피스몬": [
+      "할매몬"
+    ],
+    "프스몬": [
+      "캔들몬"
+    ],
+    "샤코몬": [
+      "가재드라몬",
+      "포큐파몬"
+    ],
+    "타겟몬": [
+      "손오공몬"
+    ],
+    "그랜쿠가몬": [
+      "그랑디스쿠가몬"
+    ],
+    "페어리몬": [
+      "슈츠몬"
+    ],
+    "슈츠몬": [
+      "제트실피드몬"
+    ],
+    "챠크몬": [
+      "블리자몬"
+    ],
+    "에리스몬": [
+      "포큐파몬"
+    ],
+    "티아루도몬": [
+      "라이지루도몬"
+    ],
+    "팔몬": [
+      "레드베지몬"
+    ],
+    "즈바몬": [
+      "티아루도몬"
+    ],
+    "피코데블몬": [
+      "이블몬"
+    ],
+    "메라몬": [
+      "아수라몬"
+    ],
+    "쟈리몬": [
+      "기기몬"
+    ],
+    "제리몬": [
+      "구미몬",
+      "초코몬"
+    ],
+    "와냐몬": [
+      "사이케몬"
+    ],
+    "하얀몬": [],
+    "메탈그레이몬": [
+      "빅토리그레이몬"
+    ],
+    "워그레이몬": [
+      "빅토리그레이몬"
+    ],
+    "라이즈그레이몬": [
+      "빅토리그레이몬"
+    ],
+    "오파니몬[폴다운]": [],
+    "라구엘몬": [],
+    "길몬": [
+      "블랙그라우몬"
+    ],
+    "아이기오투스몬[그린]": [
+      "아이기오투스몬[블루]",
+      "아이기오투스몬[다크]",
+      "아이기오투스몬[홀리]"
+    ],
+    "아이기오투스몬[다크]": [
+      "아이기오투스몬[블루]",
+      "아이기오투스몬[그린]",
+      "아이기오투스몬[홀리]"
+    ],
+    "아이기오투스몬[홀리]": [
+      "아이기오투스몬[블루]",
+      "아이기오투스몬[그린]",
+      "아이기오투스몬[다크]",
+      "유피테르몬"
+    ],
+    "아이기오투스몬[블루]": [
+      "아이기오투스몬[그린]",
+      "아이기오투스몬[다크]",
+      "아이기오투스몬[홀리]"
+    ],
+    "황제드라몬[드래곤]": [
+      "황제드라몬[파이터]"
+    ],
+    "기기몬": [
+      "길몬"
+    ],
+    "구미몬": [
+      "테리어몬"
+    ],
+    "초코몬": [
+      "로프몬"
+    ],
+    "로코몬": [
+      "그랜드로코몬"
+    ],
+    "바알몬": [
+      "베르제브몬"
+    ],
+    "다크드라몬": [
+      "카오스몬"
+    ],
+    "캔들몬": [
+      "메라몬",
+      "위자몬"
+    ],
+    "블랙그라우몬": [
+      "블랙메가로그라우몬",
+      "메탈티라노몬"
+    ],
+    "웬디몬": [
+      "안티라몬"
+    ],
+    "케르베로스몬[인랑]": [
+      "플루토몬"
+    ],
+    "메르바몬": [
+      "제트메르바몬"
+    ],
+    "아루다몬": [
+      "카이젤그레이몬",
+      "에이션트그레이몬"
+    ],
+    "베오울프몬": [
+      "매그너가루몬[SV]",
+      "에이션트가루몬"
+    ],
+    "폰체스몬(흑)": [
+      "가드로몬",
+      "스타몬"
+    ],
+    "폰체스몬(백)": [
+      "가드로몬",
+      "스타몬"
+    ],
+    "사이케몬": [
+      "아스타몬"
+    ],
+    "팅커몬": [
+      "위치몬"
+    ],
+    "델타몬": [
+      "메가드라몬",
+      "키메라몬"
+    ],
+    "두리몬": [
+      "메탈콩알몬"
+    ],
+    "푸가몬": [
+      "아수라몬"
+    ],
+    "블루우가몬": [
+      "맘몬"
+    ],
+    "미노타몬": [
+      "아수라몬"
+    ],
+    "모털몬": [
+      "쥬드몬",
+      "퍼펫몬"
+    ],
+    "스나이몬": [
+      "주엘비몬"
+    ],
+    "위치몬": [
+      "미스티몬",
+      "레이디데블몬"
+    ],
+    "도그몬": [
+      "퍼펫몬"
+    ],
+    "포큐파몬": [
+      "마타돌몬"
+    ],
+    "이블몬": [
+      "스컬사탄몬"
+    ],
+    "아라크네몬": [
+      "리리스몬"
+    ],
+    "다크슈퍼스타몬": [
+      "블랙킹워매몬"
+    ],
+    "뿌띠몬": [
+      "그리포몬"
+    ],
+    "안바르몬": [
+      "그리포몬"
+    ],
+    "엑스티라노몬": [
+      "피노키몬"
+    ],
+    "가비지몬": [
+      "메탈에테몬"
+    ],
+    "주엘비몬": [
+      "반쵸스팅몬",
+      "그랜쿠가몬"
+    ],
+    "마스터브링프몬": [
+      "크로스몬"
+    ],
+    "미이라몬": [
+      "파라오몬"
+    ],
+    "샤크몬": [
+      "메탈시드라몬"
+    ],
+    "세이렌몬": [
+      "베누스몬"
+    ],
+    "스컬시드라몬": [
+      "메탈시드라몬"
+    ],
+    "브롯사몬": [
+      "로제몬",
+      "로터스몬"
+    ],
+    "째리몬": [
+      "하이안드로몬"
+    ],
+    "손오공몬": [
+      "간쿠몬"
+    ],
+    "쟈가몬": [
+      "피노키몬"
+    ],
+    "마린데블몬": [
+      "리바이어몬"
+    ],
+    "삼장몬": [
+      "샤크라몬"
+    ],
+    "배드퍼펫몬": [
+      "메탈에테몬"
+    ],
+    "둥실몬": [
+      "크랩몬",
+      "펭귄몬"
+    ],
+    "블리자몬": [
+      "왕펭귄몬"
+    ],
+    "제트실피드몬": [],
+    "왕펭귄몬": []
+  },
+  "directions": {
+    "코로나몬": [
+      {
+        "style": "punch",
+        "anchor": "hands"
+      },
+      {
+        "style": "breath",
+        "anchor": "mouth"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "아이기오몬": [
+      {
+        "style": "sound",
+        "anchor": "mouth"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "punch",
+        "anchor": "hands"
+      }
+    ],
+    "아이기오투스몬": [
+      {
+        "style": "punch",
+        "anchor": "hands"
+      },
+      {
+        "style": "lightning",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "아이기오투스몬[블루]": [
+      {
+        "style": "beam",
+        "anchor": "mouth"
+      },
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "아이기오투스몬[그린]": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "아이기오투스몬[다크]": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "아이기오투스몬[홀리]": [
+      {
+        "style": "lightning",
+        "anchor": "hands"
+      },
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "아루다몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "에이션트와이즈몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "아폴로몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "punch",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "아라크네몬": [
+      {
+        "style": "needle",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "아스타몬": [
+      {
+        "style": "breath",
+        "anchor": "mouth"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "어벤지키드몬": [
+      {
+        "style": "bullet",
+        "anchor": "weapon"
+      },
+      {
+        "style": "bullet",
+        "anchor": "weapon"
+      }
+    ],
+    "바커스몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "반쵸콩알몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "베오울프몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "베르스타몬": [
+      {
+        "style": "bullet",
+        "anchor": "weapon"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "vortex",
+        "anchor": "body"
+      }
+    ],
+    "빅콩알몬": [
+      {
+        "style": "bomb",
+        "anchor": "weapon"
+      }
+    ],
+    "브링프몬": [
+      {
+        "style": "bomb",
+        "anchor": "weapon"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "브라키몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "부라이몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      }
+    ],
+    "부텐몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      }
+    ],
+    "칼리스몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "bullet",
+        "anchor": "weapon"
+      }
+    ],
+    "카르마라몬": [
+      {
+        "style": "breath",
+        "anchor": "mouth"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "켄터스몬": [
+      {
+        "style": "beam",
+        "anchor": "cannon"
+      }
+    ],
+    "케르베로스몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "breath",
+        "anchor": "mouth"
+      }
+    ],
+    "케르베로스몬[인랑]": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "breath",
+        "anchor": "mouth"
+      }
+    ],
+    "케레스몬[미디엄]": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "크로노몬[홀리 모드]": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "크로노몬[디스트로이 모드]": [
+      {
+        "style": "bomb",
+        "anchor": "weapon"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "클라비스엔젤몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "크랩몬": [
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      }
+    ],
+    "다크드라몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "다크슈퍼스타몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "델타몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "카우보이몬": [
+      {
+        "style": "bullet",
+        "anchor": "weapon"
+      }
+    ],
+    "뿌띠몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "디그몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "다이버몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "도베르몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "스파이더몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "두리몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "크로스몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "안바르몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "엑스티라노몬": [
+      {
+        "style": "punch",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "파이라몬": [
+      {
+        "style": "breath",
+        "anchor": "mouth"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "bomb",
+        "anchor": "weapon"
+      }
+    ],
+    "플레어몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "sound",
+        "anchor": "mouth"
+      }
+    ],
+    "플로라몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "플라이몬": [
+      {
+        "style": "needle",
+        "anchor": "hands"
+      }
+    ],
+    "푸가몬": [
+      {
+        "style": "vortex",
+        "anchor": "body"
+      }
+    ],
+    "가비지몬": [
+      {
+        "style": "bullet",
+        "anchor": "weapon"
+      }
+    ],
+    "기자몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "그레이스노바몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "그레이트그리즈몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "건드라몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "가와파몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "punch",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "호루스몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "블루우가몬": [
+      {
+        "style": "punch",
+        "anchor": "hands"
+      }
+    ],
+    "효코몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      }
+    ],
+    "황제드라몬[드래곤]": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "주엘비몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "점보가메몬": [
+      {
+        "style": "beam",
+        "anchor": "mouth"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "유피테르몬[래스 모드]": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "lightning",
+        "anchor": "hands"
+      },
+      {
+        "style": "lightning",
+        "anchor": "hands"
+      }
+    ],
+    "카프리몬": [
+      {
+        "style": "sound",
+        "anchor": "mouth"
+      }
+    ],
+    "키위몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "코쿠와몬": [
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      }
+    ],
+    "코테몬": [
+      {
+        "style": "lightning",
+        "anchor": "hands"
+      },
+      {
+        "style": "breath",
+        "anchor": "mouth"
+      }
+    ],
+    "로코몬": [
+      {
+        "style": "bomb",
+        "anchor": "weapon"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "매그너키드몬": [
+      {
+        "style": "bullet",
+        "anchor": "weapon"
+      },
+      {
+        "style": "bullet",
+        "anchor": "weapon"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "마스터브링프몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "메카노몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "beam",
+        "anchor": "mouth"
+      }
+    ],
+    "메디벌듀크몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "뽈뽈몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "메르바몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "needle",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "미노타몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "미스티몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "breath",
+        "anchor": "mouth"
+      }
+    ],
+    "모털몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "미이라몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "무사몬": [
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      }
+    ],
+    "네페르티몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "옥토몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "패럴렐몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "패롯몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "lightning",
+        "anchor": "hands"
+      }
+    ],
+    "페가수스몬": [
+      {
+        "style": "punch",
+        "anchor": "hands"
+      },
+      {
+        "style": "beam",
+        "anchor": "mouth"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "펭귄몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "푸쿠몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "라나몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "스콜피오몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "샤크몬": [
+      {
+        "style": "beam",
+        "anchor": "cannon"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "원시고부리몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "사우자몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      }
+    ],
+    "쉘몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "수리몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      }
+    ],
+    "세이렌몬": [
+      {
+        "style": "sound",
+        "anchor": "mouth"
+      },
+      {
+        "style": "sound",
+        "anchor": "mouth"
+      },
+      {
+        "style": "beam",
+        "anchor": "cannon"
+      }
+    ],
+    "스컬벌키몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "스컬맘몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "스컬시드라몬": [
+      {
+        "style": "lightning",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "슬래쉬엔젤몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      }
+    ],
+    "스나이몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "스노우고부리몬": [
+      {
+        "style": "lightning",
+        "anchor": "hands"
+      }
+    ],
+    "잠수몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "탱크드라몬": [
+      {
+        "style": "beam",
+        "anchor": "cannon"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "웬디몬": [
+      {
+        "style": "sound",
+        "anchor": "mouth"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "위치몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "황금무사몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      }
+    ],
+    "좀비플루토몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "알로몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "브롯사몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "볼토바우타몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "브리웨루드라몬": [
+      {
+        "style": "vortex",
+        "anchor": "body"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "할매몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "캔들몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "가재드라몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "도그몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "째리몬": [
+      {
+        "style": "bomb",
+        "anchor": "weapon"
+      }
+    ],
+    "손오공몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "그랑디스쿠가몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      }
+    ],
+    "쟈가몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "제트실피드몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "페어리몬": [
+      {
+        "style": "vortex",
+        "anchor": "body"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "코스파이더몬": [
+      {
+        "style": "needle",
+        "anchor": "hands"
+      }
+    ],
+    "블리자몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "챠크몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "레베몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "마린데블몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "폰체스몬(흑)": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "폰체스몬(백)": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "포큐파몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "라이지루도몬": [
+      {
+        "style": "lightning",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "레드베지몬": [
+      {
+        "style": "breath",
+        "anchor": "mouth"
+      }
+    ],
+    "바알몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "삼장몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "티아루도몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "이블몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "배드퍼펫몬": [
+      {
+        "style": "punch",
+        "anchor": "hands"
+      }
+    ],
+    "슈츠몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "아누비스몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "아수라몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "기기몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "쟈리몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "구미몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "연체몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "초코몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "피치몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "사이케몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      },
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "유라몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "제리몬": [
+      {
+        "style": "orb",
+        "anchor": "hands"
+      }
+    ],
+    "팅커몬": [
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "빅토리그레이몬": [
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      },
+      {
+        "style": "claw",
+        "anchor": "hands"
+      }
+    ],
+    "블랙그라우몬": [
+      {
+        "style": "slash",
+        "anchor": "weapon"
+      },
+      {
+        "style": "breath",
+        "anchor": "mouth"
+      }
+    ]
+  },
+  "items": {
+    "크로노몬[홀리 모드]": {
+      "from": [
+        "부텐몬"
+      ],
+      "itemName": "성시의 크로노 코어",
+      "itemId": "item-evolution-expansion7-chronomon-hm",
+      "imageUrl": "/items/evolution/canonical/evoluter.png",
+      "rarity": "master",
+      "level": 85,
+      "itemCount": 1,
+      "method": "특수 진화"
+    },
+    "크로노몬[디스트로이 모드]": {
+      "from": [
+        "부텐몬"
+      ],
+      "itemName": "멸시의 크로노 코어",
+      "itemId": "item-evolution-expansion7-chronomon-dm",
+      "imageUrl": "/items/evolution/canonical/evoluter.png",
+      "rarity": "master",
+      "level": 85,
+      "itemCount": 1,
+      "method": "특수 진화"
+    },
+    "그레이스노바몬": {
+      "from": [
+        "아폴로몬",
+        "디아나몬"
+      ],
+      "itemName": "에보류터 · 그레이스노바몬",
+      "itemId": "item-evolution-expansion7-gracenovamon",
+      "imageUrl": "/items/evolution/canonical/evoluter.png",
+      "rarity": "master",
+      "level": 100,
+      "itemCount": 1,
+      "method": "특수 진화"
+    },
+    "유피테르몬[래스 모드]": {
+      "from": [
+        "유피테르몬"
+      ],
+      "itemName": "분노의 케라우노스",
+      "itemId": "item-evolution-expansion7-jupitermon-wm",
+      "imageUrl": "/items/evolution/canonical/evoluter.png",
+      "rarity": "master",
+      "level": 110,
+      "itemCount": 1,
+      "method": "모드 체인지"
+    },
+    "메디벌듀크몬": {
+      "from": [
+        "그레이드몬",
+        "메가로그라우몬",
+        "미스티몬"
+      ],
+      "itemName": "메디벌 듀나스",
+      "itemId": "item-evolution-expansion7-medievalgallantmon",
+      "imageUrl": "/items/evolution/canonical/evoluter.png",
+      "rarity": "master",
+      "level": 85,
+      "itemCount": 1,
+      "method": "특수 진화"
+    },
+    "패럴렐몬": {
+      "from": [
+        "와이즈몬",
+        "아스타몬"
+      ],
+      "itemName": "평행세계 코어",
+      "itemId": "item-evolution-expansion7-parallelmon",
+      "imageUrl": "/items/evolution/canonical/evoluter.png",
+      "rarity": "master",
+      "level": 100,
+      "itemCount": 1,
+      "method": "특수 진화"
+    },
+    "좀비플루토몬": {
+      "from": [
+        "플루토몬"
+      ],
+      "itemName": "명계의 불멸 코어",
+      "itemId": "item-evolution-expansion7-zombieplutomon",
+      "imageUrl": "/items/evolution/canonical/evoluter.png",
+      "rarity": "master",
+      "level": 105,
+      "itemCount": 1,
+      "method": "특수 진화"
+    },
+    "볼토바우타몬": {
+      "from": [
+        "피에몬",
+        "묘티스몬"
+      ],
+      "itemName": "에보류터 · 볼토바우타몬",
+      "itemId": "item-evolution-expansion7-boltboutamon",
+      "imageUrl": "/items/evolution/canonical/evoluter.png",
+      "rarity": "master",
+      "level": 90,
+      "itemCount": 1,
+      "method": "특수 진화"
+    },
+    "그랑디스쿠가몬": {
+      "from": [
+        "그랜쿠가몬"
+      ],
+      "itemName": "그랑 킬러",
+      "itemId": "item-evolution-expansion7-grandiskuwagamon",
+      "imageUrl": "/items/evolution/canonical/evoluter.png",
+      "rarity": "rogue",
+      "level": 85,
+      "itemCount": 1,
+      "method": "모드 체인지"
+    },
+    "빅토리그레이몬": {
+      "from": [
+        "메탈그레이몬",
+        "워그레이몬",
+        "라이즈그레이몬"
+      ],
+      "itemName": "드라몬 브레이커",
+      "itemId": "item-evolution-expansion7-victorygreymon",
+      "imageUrl": "/items/evolution/canonical/evoluter.png",
+      "rarity": "rogue",
+      "level": 85,
+      "itemCount": 1,
+      "method": "특수 진화"
+    },
+    "아이기오투스몬[블루]": {
+      "from": [
+        "아이기오투스몬",
+        "아이기오투스몬[그린]",
+        "아이기오투스몬[다크]",
+        "아이기오투스몬[홀리]"
+      ],
+      "itemName": "기계족 합성 코어",
+      "itemId": "item-evolution-expansion7-aegiochusmon-blue",
+      "imageUrl": "/items/evolution/canonical/evoluter.png",
+      "rarity": "rare",
+      "level": 35,
+      "itemCount": 1,
+      "method": "모드 체인지"
+    },
+    "아이기오투스몬[그린]": {
+      "from": [
+        "아이기오투스몬",
+        "아이기오투스몬[블루]",
+        "아이기오투스몬[다크]",
+        "아이기오투스몬[홀리]"
+      ],
+      "itemName": "식물족 합성 코어",
+      "itemId": "item-evolution-expansion7-aegiochusmon-green",
+      "imageUrl": "/items/evolution/canonical/evoluter.png",
+      "rarity": "rare",
+      "level": 35,
+      "itemCount": 1,
+      "method": "모드 체인지"
+    },
+    "아이기오투스몬[다크]": {
+      "from": [
+        "아이기오투스몬",
+        "아이기오투스몬[블루]",
+        "아이기오투스몬[그린]",
+        "아이기오투스몬[홀리]"
+      ],
+      "itemName": "암흑 합성 코어",
+      "itemId": "item-evolution-expansion7-aegiochusmon-dark",
+      "imageUrl": "/items/evolution/canonical/evoluter.png",
+      "rarity": "rare",
+      "level": 35,
+      "itemCount": 1,
+      "method": "모드 체인지"
+    },
+    "아이기오투스몬[홀리]": {
+      "from": [
+        "아이기오투스몬",
+        "아이기오투스몬[블루]",
+        "아이기오투스몬[그린]",
+        "아이기오투스몬[다크]"
+      ],
+      "itemName": "성역 합성 코어",
+      "itemId": "item-evolution-expansion7-aegiochusmon-holy",
+      "imageUrl": "/items/evolution/canonical/evoluter.png",
+      "rarity": "rare",
+      "level": 35,
+      "itemCount": 1,
+      "method": "모드 체인지"
+    },
+    "케르베로스몬[인랑]": {
+      "from": [
+        "케르베로스몬"
+      ],
+      "itemName": "인랑의 인자",
+      "itemId": "item-evolution-expansion7-cerberusmon-wm",
+      "imageUrl": "/items/evolution/canonical/evoluter.png",
+      "rarity": "rare",
+      "level": 40,
+      "itemCount": 1,
+      "method": "모드 체인지"
+    },
+    "황제드라몬[파이터]": {
+      "from": [
+        "파일드라몬"
+      ],
+      "itemName": "포지트론 레이저",
+      "itemId": "item-evolution-포지트론 레이저",
+      "imageUrl": "/아이템/진화/포지트론 레이저.png",
+      "rarity": "rare",
+      "level": 60,
+      "itemCount": 1,
+      "method": "워프 진화"
+    },
+    "디그몬": {
+      "from": [
+        "아르마몬"
+      ],
+      "itemName": "지식의 디지멘탈",
+      "itemId": "item-evolution-expansion7-digmon",
+      "imageUrl": "/items/evolution/canonical/evoluter.png",
+      "rarity": "rare",
+      "level": 15,
+      "itemCount": 1,
+      "method": "아머 진화"
+    },
+    "잠수몬": {
+      "from": [
+        "아르마몬"
+      ],
+      "itemName": "성실의 디지멘탈",
+      "itemId": "item-evolution-expansion7-submarimon",
+      "imageUrl": "/items/evolution/canonical/evoluter.png",
+      "rarity": "rare",
+      "level": 15,
+      "itemCount": 1,
+      "method": "아머 진화"
+    },
+    "호루스몬": {
+      "from": [
+        "호크몬"
+      ],
+      "itemName": "사랑의 디지멘탈",
+      "itemId": "item-evolution-expansion7-halsemon",
+      "imageUrl": "/items/evolution/canonical/love.png",
+      "rarity": "rare",
+      "level": 15,
+      "itemCount": 1,
+      "method": "아머 진화"
+    },
+    "수리몬": {
+      "from": [
+        "호크몬"
+      ],
+      "itemName": "순수의 디지멘탈",
+      "itemId": "item-evolution-expansion7-shurimon",
+      "imageUrl": "/items/evolution/canonical/evoluter.png",
+      "rarity": "rare",
+      "level": 15,
+      "itemCount": 1,
+      "method": "아머 진화"
+    },
+    "페가수스몬": {
+      "from": [
+        "파닥몬"
+      ],
+      "itemName": "희망의 디지멘탈",
+      "itemId": "item-evolution-expansion7-pegasusmon",
+      "imageUrl": "/items/evolution/canonical/hope.png",
+      "rarity": "rare",
+      "level": 15,
+      "itemCount": 1,
+      "method": "아머 진화"
+    },
+    "네페르티몬": {
+      "from": [
+        "가트몬"
+      ],
+      "itemName": "빛의 디지멘탈",
+      "itemId": "item-evolution-expansion7-nefertimon",
+      "imageUrl": "/items/evolution/canonical/light.png",
+      "rarity": "rare",
+      "level": 15,
+      "itemCount": 1,
+      "method": "아머 진화"
+    },
+    "알로몬": {
+      "from": [
+        "호크몬"
+      ],
+      "itemName": "용기의 디지멘탈",
+      "itemId": "item-evolution-expansion7-allomon",
+      "imageUrl": "/items/evolution/canonical/courage.png",
+      "rarity": "rare",
+      "level": 15,
+      "itemCount": 1,
+      "method": "아머 진화"
+    },
+    "슈츠몬": {
+      "from": [
+        "페어리몬"
+      ],
+      "level": 25,
+      "itemName": "바람의 비스트 스피릿",
+      "itemId": "beast-spirit-wind",
+      "imageUrl": "/items/adventure/beast-spirit-wind.png",
+      "rarity": "good",
+      "itemCount": 1,
+      "method": "스피릿 진화"
+    },
+    "블리자몬": {
+      "from": [
+        "챠크몬"
+      ],
+      "level": 25,
+      "itemName": "얼음의 비스트 스피릿",
+      "itemId": "beast-spirit-ice",
+      "imageUrl": "/items/adventure/beast-spirit-ice.png",
+      "rarity": "good",
+      "itemCount": 1,
+      "method": "스피릿 진화"
+    },
+    "카르마라몬": {
+      "from": [
+        "라나몬"
+      ],
+      "level": 25,
+      "itemName": "물의 비스트 스피릿",
+      "itemId": "beast-spirit-water",
+      "imageUrl": "/items/adventure/beast-spirit-water.png",
+      "rarity": "good",
+      "itemCount": 1,
+      "method": "스피릿 진화"
+    },
+    "페어리몬": {
+      "from": [
+        "피요몬",
+        "호크몬"
+      ],
+      "level": 15,
+      "itemName": "바람의 휴먼 스피릿",
+      "itemId": "human-spirit-wind",
+      "imageUrl": "/items/adventure/human-spirit-wind.png",
+      "rarity": "good",
+      "itemCount": 1,
+      "method": "스피릿 진화"
+    },
+    "챠크몬": {
+      "from": [
+        "스노우고부리몬",
+        "펭귄몬"
+      ],
+      "level": 15,
+      "itemName": "얼음의 휴먼 스피릿",
+      "itemId": "human-spirit-ice",
+      "imageUrl": "/items/adventure/human-spirit-ice.png",
+      "rarity": "good",
+      "itemCount": 1,
+      "method": "스피릿 진화"
+    },
+    "레베몬": {
+      "from": [
+        "로프몬",
+        "임프몬"
+      ],
+      "level": 15,
+      "itemName": "어둠의 휴먼 스피릿",
+      "itemId": "human-spirit-dark",
+      "imageUrl": "/items/adventure/human-spirit-dark.png",
+      "rarity": "good",
+      "itemCount": 1,
+      "method": "스피릿 진화"
+    },
+    "라나몬": {
+      "from": [
+        "쉬라몬",
+        "베타몬"
+      ],
+      "level": 15,
+      "itemName": "물의 휴먼 스피릿",
+      "itemId": "human-spirit-water",
+      "imageUrl": "/items/adventure/human-spirit-water.png",
+      "rarity": "good",
+      "itemCount": 1,
+      "method": "스피릿 진화"
+    },
+    "아그니몬": {
+      "from": [
+        "아구몬"
+      ],
+      "level": 15,
+      "itemName": "불꽃의 휴먼 스피릿",
+      "itemId": "human-spirit-fire",
+      "imageUrl": "/items/adventure/human-spirit-fire.png",
+      "rarity": "good",
+      "itemCount": 1,
+      "method": "스피릿 진화"
+    },
+    "볼프몬": {
+      "from": [
+        "파피몬"
+      ],
+      "level": 15,
+      "itemName": "빛의 휴먼 스피릿",
+      "itemId": "human-spirit-light",
+      "imageUrl": "/items/adventure/human-spirit-light.png",
+      "rarity": "good",
+      "itemCount": 1,
+      "method": "스피릿 진화"
+    },
+    "브리트라몬": {
+      "from": [
+        "아그니몬"
+      ],
+      "level": 25,
+      "itemName": "불의 비스트 스피릿",
+      "itemId": "beast-spirit-fire",
+      "imageUrl": "/items/adventure/beast-spirit-fire.png",
+      "rarity": "good",
+      "itemCount": 1,
+      "method": "스피릿 진화"
+    },
+    "가름몬": {
+      "from": [
+        "볼프몬"
+      ],
+      "level": 25,
+      "itemName": "빛의 비스트 스피릿",
+      "itemId": "beast-spirit-light",
+      "imageUrl": "/items/adventure/beast-spirit-light.png",
+      "rarity": "good",
+      "itemCount": 1,
+      "method": "스피릿 진화"
+    },
+    "황제드라몬[드래곤]": {
+      "from": [
+        "파일드라몬"
+      ],
+      "itemName": "포지트론 레이저",
+      "itemId": "item-evolution-포지트론 레이저",
+      "imageUrl": "/아이템/진화/포지트론 레이저.png",
+      "rarity": "rare",
+      "level": 60,
+      "itemCount": 1,
+      "method": "워프 진화"
+    }
+  },
+  "modes": {},
+  "levels": {},
+  "jogress": [
+    {
+      "targetName": "그레이스노바몬",
+      "materials": [
+        "아폴로몬",
+        "디아나몬"
+      ],
+      "level": 100
+    },
+    {
+      "targetName": "볼토바우타몬",
+      "materials": [
+        "피에몬",
+        "묘티스몬"
+      ],
+      "level": 90
+    }
+  ],
+  "combat": {
+    "코로나몬": {
+      "budget": 425,
+      "build": "flame",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=coronamon"
+    },
+    "아이기오몬": {
+      "budget": 580,
+      "build": "skirmisher",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=aegiomon"
+    },
+    "아이기오투스몬": {
+      "budget": 745,
+      "build": "hybrid",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=aegiochusmon"
+    },
+    "아이기오투스몬[블루]": {
+      "budget": 750,
+      "build": "artillery",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=aegiochusmon%3Ablue"
+    },
+    "아이기오투스몬[그린]": {
+      "budget": 740,
+      "build": "nature",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=aegiochusmon%3Agreen"
+    },
+    "아이기오투스몬[다크]": {
+      "budget": 765,
+      "build": "assassin",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=aegiochusmon%3Adark"
+    },
+    "아이기오투스몬[홀리]": {
+      "budget": 790,
+      "build": "holy",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=aegiochusmon_holly"
+    },
+    "아루다몬": {
+      "budget": 785,
+      "build": "flame",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=aldamon"
+    },
+    "에이션트와이즈몬": {
+      "budget": 990,
+      "build": "caster",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=ancientwisetmon"
+    },
+    "아폴로몬": {
+      "budget": 960,
+      "build": "flame",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=apollomon"
+    },
+    "아라크네몬": {
+      "budget": 680,
+      "build": "caster",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=archnemon"
+    },
+    "아스타몬": {
+      "budget": 740,
+      "build": "gunner",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=astamon"
+    },
+    "어벤지키드몬": {
+      "budget": 895,
+      "build": "gunner",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=avengekidmon"
+    },
+    "바커스몬": {
+      "budget": 925,
+      "build": "support",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=bacchusmon"
+    },
+    "반쵸콩알몬": {
+      "budget": 875,
+      "build": "bruiser",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=banchomamemon"
+    },
+    "베오울프몬": {
+      "budget": 785,
+      "build": "duelist",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=beowolfmon"
+    },
+    "베르스타몬": {
+      "budget": 925,
+      "build": "gunner",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=beelstarmon"
+    },
+    "빅콩알몬": {
+      "budget": 660,
+      "build": "tank",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=bigmamemon"
+    },
+    "브링프몬": {
+      "budget": 515,
+      "build": "artillery",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=blimpmon"
+    },
+    "브라키몬": {
+      "budget": 665,
+      "build": "tank",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=brachiomon"
+    },
+    "부라이몬": {
+      "budget": 585,
+      "build": "duelist",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=buraimon"
+    },
+    "부텐몬": {
+      "budget": 755,
+      "build": "duelist",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=butenmon"
+    },
+    "칼리스몬": {
+      "budget": 955,
+      "build": "bruiser",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=callismon"
+    },
+    "카르마라몬": {
+      "budget": 690,
+      "build": "caster",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=calamaramon"
+    },
+    "켄터스몬": {
+      "budget": 535,
+      "build": "gunner",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=centalmon"
+    },
+    "케르베로스몬": {
+      "budget": 725,
+      "build": "beast",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=cerberumon"
+    },
+    "케르베로스몬[인랑]": {
+      "budget": 770,
+      "build": "assassin",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=cerberumon_werewolfmode"
+    },
+    "케레스몬[미디엄]": {
+      "budget": 945,
+      "build": "support",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=ceresmon"
+    },
+    "크로노몬[홀리 모드]": {
+      "budget": 1080,
+      "build": "holy",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=chronomon_holy"
+    },
+    "크로노몬[디스트로이 모드]": {
+      "budget": 1100,
+      "build": "calamity",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=chronomon_destroy"
+    },
+    "클라비스엔젤몬": {
+      "budget": 955,
+      "build": "holy",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=clavisangemon"
+    },
+    "크랩몬": {
+      "budget": 365,
+      "build": "tank",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=ganimon"
+    },
+    "다크드라몬": {
+      "budget": 925,
+      "build": "gunner",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=darkdramon"
+    },
+    "다크슈퍼스타몬": {
+      "budget": 690,
+      "build": "caster",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=darksuperstarmon"
+    },
+    "델타몬": {
+      "budget": 565,
+      "build": "bruiser",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=deltamon"
+    },
+    "카우보이몬": {
+      "budget": 515,
+      "build": "gunner",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=revolmon"
+    },
+    "뿌띠몬": {
+      "budget": 625,
+      "build": "nature",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=delumon"
+    },
+    "디그몬": {
+      "budget": 550,
+      "build": "machine",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=digmon"
+    },
+    "다이버몬": {
+      "budget": 670,
+      "build": "duelist",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=hangyomon"
+    },
+    "도베르몬": {
+      "budget": 565,
+      "build": "assassin",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=dobermon"
+    },
+    "스파이더몬": {
+      "budget": 535,
+      "build": "caster",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=dokugumon"
+    },
+    "두리몬": {
+      "budget": 505,
+      "build": "bruiser",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=drimogemon"
+    },
+    "크로스몬": {
+      "budget": 880,
+      "build": "aerial",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=crossmon"
+    },
+    "안바르몬": {
+      "budget": 775,
+      "build": "beast",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=enbarrmon"
+    },
+    "엑스티라노몬": {
+      "budget": 690,
+      "build": "slime",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=ex-tyranomon"
+    },
+    "파이라몬": {
+      "budget": 585,
+      "build": "beast",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=firamon"
+    },
+    "플레어몬": {
+      "budget": 755,
+      "build": "flame",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=flaremon"
+    },
+    "플로라몬": {
+      "budget": 365,
+      "build": "nature",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=floramon"
+    },
+    "플라이몬": {
+      "budget": 530,
+      "build": "assassin",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=flymon"
+    },
+    "푸가몬": {
+      "budget": 540,
+      "build": "bruiser",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=fugamon"
+    },
+    "가비지몬": {
+      "budget": 625,
+      "build": "slime",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gerbemon"
+    },
+    "기자몬": {
+      "budget": 370,
+      "build": "assassin",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gizamon"
+    },
+    "그레이스노바몬": {
+      "budget": 1230,
+      "build": "hybrid",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gracenovamon"
+    },
+    "그레이트그리즈몬": {
+      "budget": 755,
+      "build": "bruiser",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=greatgryzmon"
+    },
+    "건드라몬": {
+      "budget": 990,
+      "build": "artillery",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gundramon"
+    },
+    "가와파몬": {
+      "budget": 540,
+      "build": "skirmisher",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gawappamon"
+    },
+    "호루스몬": {
+      "budget": 570,
+      "build": "aerial",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=holsmon"
+    },
+    "블루우가몬": {
+      "budget": 545,
+      "build": "bruiser",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=hyougamon"
+    },
+    "효코몬": {
+      "budget": 435,
+      "build": "duelist",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=hyokomon"
+    },
+    "황제드라몬[드래곤]": {
+      "budget": 900,
+      "build": "calamity",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=imperialdramondragonmode"
+    },
+    "주엘비몬": {
+      "budget": 740,
+      "build": "assassin",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=jewelbeemon"
+    },
+    "점보가메몬": {
+      "budget": 945,
+      "build": "fortress",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=jumbogamemon"
+    },
+    "유피테르몬[래스 모드]": {
+      "budget": 1240,
+      "build": "hybrid",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=jupitermmon_wrath"
+    },
+    "카프리몬": {
+      "budget": 315,
+      "build": "machine",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=capromon"
+    },
+    "키위몬": {
+      "budget": 500,
+      "build": "aerial",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=kiwimon"
+    },
+    "코쿠와몬": {
+      "budget": 380,
+      "build": "machine",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=kokuwamon"
+    },
+    "코테몬": {
+      "budget": 430,
+      "build": "duelist",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=kotemon"
+    },
+    "로코몬": {
+      "budget": 695,
+      "build": "machine",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=locomon"
+    },
+    "매그너키드몬": {
+      "budget": 930,
+      "build": "gunner",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=magnakidmon"
+    },
+    "마스터브링프몬": {
+      "budget": 720,
+      "build": "artillery",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=masterblimpmon"
+    },
+    "메카노몬": {
+      "budget": 510,
+      "build": "machine",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=mechanorimon"
+    },
+    "메디벌듀크몬": {
+      "budget": 1060,
+      "build": "duelist",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=medievaldukemon"
+    },
+    "뽈뽈몬": {
+      "budget": 235,
+      "build": "machine",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=choromon"
+    },
+    "메르바몬": {
+      "budget": 960,
+      "build": "duelist",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=mervamon"
+    },
+    "미노타몬": {
+      "budget": 545,
+      "build": "bruiser",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=minotaurmon"
+    },
+    "미스티몬": {
+      "budget": 745,
+      "build": "duelist",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=mistymon"
+    },
+    "모털몬": {
+      "budget": 505,
+      "build": "bruiser",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=mojyamon"
+    },
+    "미이라몬": {
+      "budget": 710,
+      "build": "gunner",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=mummymon"
+    },
+    "무사몬": {
+      "budget": 550,
+      "build": "duelist",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=musyamon"
+    },
+    "네페르티몬": {
+      "budget": 585,
+      "build": "holy",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=nefertimon"
+    },
+    "옥토몬": {
+      "budget": 525,
+      "build": "caster",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=octmon"
+    },
+    "패럴렐몬": {
+      "budget": 1120,
+      "build": "caster",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=parallelmon"
+    },
+    "패롯몬": {
+      "budget": 730,
+      "build": "aerial",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=parrotmon"
+    },
+    "페가수스몬": {
+      "budget": 575,
+      "build": "holy",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=pegasmon"
+    },
+    "펭귄몬": {
+      "budget": 360,
+      "build": "balance",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=penmon"
+    },
+    "푸쿠몬": {
+      "budget": 835,
+      "build": "bruiser",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=pukumon"
+    },
+    "라나몬": {
+      "budget": 555,
+      "build": "caster",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=ranamon"
+    },
+    "스콜피오몬": {
+      "budget": 695,
+      "build": "tank",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=anomalocarimon"
+    },
+    "샤크몬": {
+      "budget": 750,
+      "build": "gunner",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=sharkmon"
+    },
+    "원시고부리몬": {
+      "budget": 365,
+      "build": "bruiser",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=shamamon"
+    },
+    "사우자몬": {
+      "budget": 730,
+      "build": "duelist",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=shawujinmon"
+    },
+    "쉘몬": {
+      "budget": 495,
+      "build": "tank",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=shellmon"
+    },
+    "수리몬": {
+      "budget": 565,
+      "build": "assassin",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=shurimon"
+    },
+    "세이렌몬": {
+      "budget": 705,
+      "build": "support",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=sirenmon"
+    },
+    "스컬벌키몬": {
+      "budget": 720,
+      "build": "beast",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=skullbaluchimon"
+    },
+    "스컬맘몬": {
+      "budget": 875,
+      "build": "bruiser",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=skullmammon"
+    },
+    "스컬시드라몬": {
+      "budget": 740,
+      "build": "caster",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=skullseadramon"
+    },
+    "슬래쉬엔젤몬": {
+      "budget": 965,
+      "build": "duelist",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=slashangemon"
+    },
+    "스나이몬": {
+      "budget": 550,
+      "build": "assassin",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=snimon"
+    },
+    "스노우고부리몬": {
+      "budget": 370,
+      "build": "bruiser",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=snowgoburimon"
+    },
+    "잠수몬": {
+      "budget": 560,
+      "build": "gunner",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=sabmarimon"
+    },
+    "탱크드라몬": {
+      "budget": 750,
+      "build": "artillery",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=tankdramon"
+    },
+    "웬디몬": {
+      "budget": 580,
+      "build": "bruiser",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=wendimon"
+    },
+    "위치몬": {
+      "budget": 560,
+      "build": "caster",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=witchmon"
+    },
+    "황금무사몬": {
+      "budget": 985,
+      "build": "duelist",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=zanbamon"
+    },
+    "좀비플루토몬": {
+      "budget": 1190,
+      "build": "calamity",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=zombieplutomon"
+    },
+    "알로몬": {
+      "budget": 560,
+      "build": "beast",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=allomon"
+    },
+    "브롯사몬": {
+      "budget": 725,
+      "build": "nature",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=blossomon"
+    },
+    "볼토바우타몬": {
+      "budget": 1160,
+      "build": "caster",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=voltobautamon"
+    },
+    "브리웨루드라몬": {
+      "budget": 965,
+      "build": "fortress",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=bryweludramon"
+    },
+    "할매몬": {
+      "budget": 810,
+      "build": "support",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=babamon"
+    },
+    "캔들몬": {
+      "budget": 370,
+      "build": "flame",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=candmon"
+    },
+    "가재드라몬": {
+      "budget": 545,
+      "build": "bruiser",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=ebidramon"
+    },
+    "도그몬": {
+      "budget": 510,
+      "build": "skirmisher",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=dogmon"
+    },
+    "째리몬": {
+      "budget": 705,
+      "build": "artillery",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=giromon"
+    },
+    "손오공몬": {
+      "budget": 760,
+      "build": "striker",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gokuwmon"
+    },
+    "그랑디스쿠가몬": {
+      "budget": 1030,
+      "build": "assassin",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=grandiskuwagamon"
+    },
+    "쟈가몬": {
+      "budget": 665,
+      "build": "tank",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=jyagamon"
+    },
+    "제트실피드몬": {
+      "budget": 780,
+      "build": "aerial",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=jetsilphymon"
+    },
+    "페어리몬": {
+      "budget": 555,
+      "build": "aerial",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=fairimon"
+    },
+    "코스파이더몬": {
+      "budget": 360,
+      "build": "caster",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=kodokugumon"
+    },
+    "블리자몬": {
+      "budget": 700,
+      "build": "bruiser",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=blizzarmon"
+    },
+    "챠크몬": {
+      "budget": 565,
+      "build": "gunner",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=chackmon"
+    },
+    "레베몬": {
+      "budget": 600,
+      "build": "duelist",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=louwemon"
+    },
+    "마린데블몬": {
+      "budget": 750,
+      "build": "calamity",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=marindevimon"
+    },
+    "폰체스몬(흑)": {
+      "budget": 385,
+      "build": "tank",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=paunchessmon"
+    },
+    "폰체스몬(백)": {
+      "budget": 385,
+      "build": "tank",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=paunchessmon-white"
+    },
+    "포큐파몬": {
+      "budget": 560,
+      "build": "assassin",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=porcupamon"
+    },
+    "라이지루도몬": {
+      "budget": 755,
+      "build": "fortress",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=raijiludomon"
+    },
+    "레드베지몬": {
+      "budget": 535,
+      "build": "nature",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=redvegimon"
+    },
+    "바알몬": {
+      "budget": 770,
+      "build": "gunner",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=baalmon"
+    },
+    "삼장몬": {
+      "budget": 735,
+      "build": "support",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=sanzomon"
+    },
+    "티아루도몬": {
+      "budget": 590,
+      "build": "fortress",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=tialudomon"
+    },
+    "이블몬": {
+      "budget": 495,
+      "build": "caster",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=evilmon"
+    },
+    "배드퍼펫몬": {
+      "budget": 740,
+      "build": "bruiser",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=warumonzaemon"
+    },
+    "슈츠몬": {
+      "budget": 710,
+      "build": "aerial",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=shutumon"
+    },
+    "아누비스몬": {
+      "budget": 945,
+      "build": "holy",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=anubimon"
+    },
+    "아수라몬": {
+      "budget": 750,
+      "build": "striker",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=asuramon"
+    },
+    "기기몬": {
+      "budget": 330,
+      "build": "beast",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gigimon"
+    },
+    "쟈리몬": {
+      "budget": 245,
+      "build": "flame",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=jyarimon"
+    },
+    "구미몬": {
+      "budget": 310,
+      "build": "support",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gummymon"
+    },
+    "연체몬": {
+      "budget": 550,
+      "build": "caster",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gesomon"
+    },
+    "초코몬": {
+      "budget": 305,
+      "build": "caster",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=chocomon"
+    },
+    "피치몬": {
+      "budget": 225,
+      "build": "support",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=pitchmon"
+    },
+    "사이케몬": {
+      "budget": 405,
+      "build": "skirmisher",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=psychemon"
+    },
+    "유라몬": {
+      "budget": 225,
+      "build": "nature",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=yuramon"
+    },
+    "제리몬": {
+      "budget": 235,
+      "build": "support",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=zerimon"
+    },
+    "팅커몬": {
+      "budget": 395,
+      "build": "assassin",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=tinkermon"
+    },
+    "빅토리그레이몬": {
+      "budget": 1040,
+      "build": "duelist",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=victorygreymon"
+    },
+    "블랙그라우몬": {
+      "budget": 570,
+      "build": "flame",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=blackgrowmon"
+    }
+  },
+  "restoredLineages": {
+    "recipes": [
+      {
+        "target": "카오스몬",
+        "before": [
+          "반쵸레오몬",
+          "카오스드라몬"
+        ],
+        "after": [
+          "반쵸레오몬",
+          "다크드라몬"
+        ],
+        "source": "https://digimon.net/reference_en/detail.php?directory_name=chaosmon"
+      },
+      {
+        "target": "제트메르바몬",
+        "before": [
+          "미네르바몬",
+          "스패로우몬"
+        ],
+        "after": [
+          "메르바몬",
+          "스패로우몬"
+        ],
+        "source": "https://digimon.net/reference_en/detail.php?directory_name=jetmervamon"
+      }
+    ],
+    "branches": [
+      [
+        "캔들몬",
+        "메라몬"
+      ],
+      [
+        "캔들몬",
+        "위자몬"
+      ],
+      [
+        "블랙그라우몬",
+        "블랙메가로그라우몬"
+      ],
+      [
+        "블랙그라우몬",
+        "메탈티라노몬"
+      ],
+      [
+        "웬디몬",
+        "안티라몬"
+      ],
+      [
+        "케르베로스몬",
+        "플루토몬"
+      ],
+      [
+        "케르베로스몬[인랑]",
+        "플루토몬"
+      ],
+      [
+        "메르바몬",
+        "제트메르바몬"
+      ],
+      [
+        "아루다몬",
+        "카이젤그레이몬"
+      ],
+      [
+        "아루다몬",
+        "에이션트그레이몬"
+      ],
+      [
+        "베오울프몬",
+        "매그너가루몬[SV]"
+      ],
+      [
+        "베오울프몬",
+        "에이션트가루몬"
+      ],
+      [
+        "폰체스몬(흑)",
+        "가드로몬"
+      ],
+      [
+        "폰체스몬(흑)",
+        "스타몬"
+      ],
+      [
+        "폰체스몬(백)",
+        "가드로몬"
+      ],
+      [
+        "폰체스몬(백)",
+        "스타몬"
+      ],
+      [
+        "사이케몬",
+        "아스타몬"
+      ],
+      [
+        "팅커몬",
+        "위치몬"
+      ],
+      [
+        "델타몬",
+        "메가드라몬"
+      ],
+      [
+        "델타몬",
+        "키메라몬"
+      ],
+      [
+        "두리몬",
+        "메탈콩알몬"
+      ],
+      [
+        "푸가몬",
+        "아수라몬"
+      ],
+      [
+        "블루우가몬",
+        "맘몬"
+      ],
+      [
+        "미노타몬",
+        "아수라몬"
+      ],
+      [
+        "모털몬",
+        "쥬드몬"
+      ],
+      [
+        "모털몬",
+        "퍼펫몬"
+      ],
+      [
+        "스나이몬",
+        "주엘비몬"
+      ],
+      [
+        "위치몬",
+        "미스티몬"
+      ],
+      [
+        "위치몬",
+        "레이디데블몬"
+      ],
+      [
+        "도그몬",
+        "퍼펫몬"
+      ],
+      [
+        "포큐파몬",
+        "마타돌몬"
+      ],
+      [
+        "이블몬",
+        "스컬사탄몬"
+      ],
+      [
+        "아라크네몬",
+        "리리스몬"
+      ],
+      [
+        "다크슈퍼스타몬",
+        "블랙킹워매몬"
+      ],
+      [
+        "뿌띠몬",
+        "그리포몬"
+      ],
+      [
+        "안바르몬",
+        "그리포몬"
+      ],
+      [
+        "엑스티라노몬",
+        "피노키몬"
+      ],
+      [
+        "가비지몬",
+        "메탈에테몬"
+      ],
+      [
+        "주엘비몬",
+        "반쵸스팅몬"
+      ],
+      [
+        "주엘비몬",
+        "그랜쿠가몬"
+      ],
+      [
+        "마스터브링프몬",
+        "크로스몬"
+      ],
+      [
+        "미이라몬",
+        "파라오몬"
+      ],
+      [
+        "샤크몬",
+        "메탈시드라몬"
+      ],
+      [
+        "세이렌몬",
+        "베누스몬"
+      ],
+      [
+        "스컬시드라몬",
+        "메탈시드라몬"
+      ],
+      [
+        "브롯사몬",
+        "로제몬"
+      ],
+      [
+        "브롯사몬",
+        "로터스몬"
+      ],
+      [
+        "째리몬",
+        "하이안드로몬"
+      ],
+      [
+        "손오공몬",
+        "간쿠몬"
+      ],
+      [
+        "쟈가몬",
+        "피노키몬"
+      ],
+      [
+        "마린데블몬",
+        "리바이어몬"
+      ],
+      [
+        "삼장몬",
+        "샤크라몬"
+      ],
+      [
+        "배드퍼펫몬",
+        "메탈에테몬"
+      ],
+      [
+        "피치몬",
+        "둥실몬"
+      ]
+    ],
+    "removedSkippedStages": [
+      [
+        "피치몬",
+        "뽀글몬"
+      ],
+      [
+        "피치몬",
+        "크랩몬"
+      ],
+      [
+        "피치몬",
+        "펭귄몬"
+      ],
+      [
+        "유라몬",
+        "플로라몬"
+      ],
+      [
+        "하얀몬",
+        "팅커몬"
+      ],
+      [
+        "블루메라몬",
+        "메르바몬"
+      ]
+    ],
+    "classification": "Recipe materials follow cited profiles; ordinary optional branches are explicit DigiRogue adaptations.",
+    "correctedFamilies": [
+      {
+        "source": "그레이드몬",
+        "removed": "도루고라몬",
+        "retained": "알파몬"
+      },
+      {
+        "source": "도루그레몬",
+        "removed": "오류우몬",
+        "added": "도루고라몬",
+        "retained": "알파몬"
+      }
+    ]
+  },
+  "retiredBranches": {
+    "그레이드몬": [
+      "도루고라몬"
+    ],
+    "도루그레몬": [
+      "오류우몬"
+    ]
+  }
+}

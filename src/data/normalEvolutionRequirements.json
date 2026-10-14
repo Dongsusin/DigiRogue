@@ -1,0 +1,253 @@
+{
+  "가이오몬[엄도의형]": {
+    "from": [
+      "가이오몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-엄도의 인장"
+  },
+  "에이션트와이즈몬": {
+    "from": [
+      "와이즈몬",
+      "미스티몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-ancientwisemon"
+  },
+  "아폴로몬": {
+    "from": [
+      "플레어몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-apollomon"
+  },
+  "어벤지키드몬": {
+    "from": [
+      "카우보이몬",
+      "매그너키드몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-avengekidmon"
+  },
+  "바커스몬": {
+    "from": [
+      "아수라몬",
+      "아스타몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-bacchusmon"
+  },
+  "반쵸콩알몬": {
+    "from": [
+      "빅콩알몬",
+      "메탈콩알몬",
+      "콩알몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-banchomamemon"
+  },
+  "베르스타몬": {
+    "from": [
+      "레이디데블몬",
+      "아스타몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-beelstarmon"
+  },
+  "칼리스몬": {
+    "from": [
+      "그레이트그리즈몬",
+      "팬더몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-callismon"
+  },
+  "케레스몬[미디엄]": {
+    "from": [
+      "케레스몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-ceresmon-medium"
+  },
+  "클라비스엔젤몬": {
+    "from": [
+      "홀리엔젤몬"
+    ],
+    "level": 75,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-clavisangemon"
+  },
+  "다크드라몬": {
+    "from": [
+      "탱크드라몬",
+      "사이버드라몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-darkdramon"
+  },
+  "크로스몬": {
+    "from": [
+      "패롯몬",
+      "가루다몬",
+      "마스터브링프몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-eaglemon"
+  },
+  "건드라몬": {
+    "from": [
+      "탱크드라몬",
+      "안드로몬",
+      "메가드라몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-gundramon"
+  },
+  "점보가메몬": {
+    "from": [
+      "사우자몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-jumbogamemon"
+  },
+  "매그너키드몬": {
+    "from": [
+      "카우보이몬",
+      "아스타몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-magnakidmon"
+  },
+  "메르바몬": {
+    "from": [
+      "미네르바몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-mervamon"
+  },
+  "푸쿠몬": {
+    "from": [
+      "다이버몬",
+      "스콜피오몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-pukumon"
+  },
+  "스컬맘몬": {
+    "from": [
+      "맘몬",
+      "스컬벌키몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-skullmammothmon"
+  },
+  "슬래쉬엔젤몬": {
+    "from": [
+      "홀리엔젤몬",
+      "나이트몬"
+    ],
+    "level": 75,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-slashangemon"
+  },
+  "황금무사몬": {
+    "from": [
+      "아수라몬",
+      "무사몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-zanbamon"
+  },
+  "브리웨루드라몬": {
+    "from": [
+      "라이지루도몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-bryweludramon"
+  },
+  "할매몬": {
+    "from": [
+      "도사몬",
+      "메피스몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-babamon"
+  },
+  "아누비스몬": {
+    "from": [
+      "케르베로스몬"
+    ],
+    "level": 65,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-anubismon"
+  },
+  "유피테르몬": {
+    "from": [
+      "아이기오투스몬[홀리]"
+    ],
+    "level": 80,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-유피테르몬"
+  },
+  "아루다몬": {
+    "from": [
+      "브리트라몬"
+    ],
+    "level": 40,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-aldamon"
+  },
+  "베오울프몬": {
+    "from": [
+      "가름몬"
+    ],
+    "level": 40,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-beowolfmon"
+  },
+  "제트실피드몬": {
+    "from": [
+      "슈츠몬"
+    ],
+    "level": 40,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-expansion7-jetsilphymon"
+  },
+  "왕펭귄몬": {
+    "from": [
+      "블리자몬"
+    ],
+    "level": 40,
+    "method": "일반 진화"
+  },
+  "오그도몬": {
+    "from": [
+      "리리스몬",
+      "마왕몬",
+      "발바몬"
+    ],
+    "level": 120,
+    "method": "일반 진화",
+    "retiredItemId": "item-evolution-investment-오그도몬"
+  }
+}

@@ -102,15 +102,20 @@ export function getWildPowerCeiling(stage) {
 export function pickWildEncounterNames(pool, speciesLookup, count, stage, random = Math.random) {
   const ceiling = getWildPowerCeiling(stage)
   const all = [...new Set(pool)].filter(name => speciesLookup.has(name))
-  const timed = all.filter(name => speciesLookup.get(name).전투총합 <= ceiling)
-  const candidates = timed.length ? timed : all.sort((a, b) => speciesLookup.get(a).전투총합 - speciesLookup.get(b).전투총합).slice(0, 2)
+  // Investment rewards belong to player forms; wildlife timing uses native combat power.
+  const powerFor = name => {
+    const data = speciesLookup.get(name)
+    return data.야생전투설정?.전투총합 ?? data.전투총합
+  }
+  const timed = all.filter(name => powerFor(name) <= ceiling)
+  const candidates = timed.length ? timed : all.sort((a, b) => powerFor(a) - powerFor(b)).slice(0, 2)
   const chosen = []
   while (chosen.length < count && candidates.length) {
     // Preserve the learning bands, then gradually admit more map-legal strong
     // species. Identity and power ceilings never depend on the player's party.
     const pressure = Math.min(1, Math.max(0, (stageOf(stage) - 30) / 70))
     const weights = candidates.map(name => {
-      const weight = 1 - Math.max(0, speciesLookup.get(name).전투총합 - ceiling * .8) / (ceiling * .25)
+      const weight = 1 - Math.max(0, powerFor(name) - ceiling * .8) / (ceiling * .25)
       return Math.max(.08, weight ** 2) * (1 - pressure) + Math.max(.35, weight) * pressure
     })
     let roll = random() * weights.reduce((sum, value) => sum + value, 0)

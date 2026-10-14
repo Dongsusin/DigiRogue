@@ -855,6 +855,470 @@
     "signature": "스파이럴 레이븐 클로",
     "tactic": "agile"
   },
+  "코로나몬": {
+    "signature": "코로너클",
+    "tactic": "flame"
+  },
+  "파이라몬": {
+    "signature": "플레임 다이브",
+    "tactic": "ferocity"
+  },
+  "플레어몬": {
+    "signature": "홍련수왕파",
+    "tactic": "flame"
+  },
+  "아폴로몬": {
+    "signature": "솔 블래스터",
+    "tactic": "flame"
+  },
+  "아이기오몬": {
+    "signature": "어트랙트 에코",
+    "tactic": "agile"
+  },
+  "아이기오투스몬": {
+    "signature": "볼트 라이트닝 녹다운",
+    "tactic": "electric"
+  },
+  "아이기오투스몬[홀리]": {
+    "signature": "라이트닝 샤워",
+    "tactic": "purify"
+  },
+  "유피테르몬": {
+    "signature": "마볼트",
+    "tactic": "electric"
+  },
+  "효코몬": {
+    "signature": "대나무 가르기",
+    "tactic": "ferocity"
+  },
+  "부라이몬": {
+    "signature": "제비 두 장 뒤집기",
+    "tactic": "ferocity"
+  },
+  "부텐몬": {
+    "signature": "일륜의 춤",
+    "tactic": "ferocity"
+  },
+  "크로노몬[홀리 모드]": {
+    "signature": "홀리 플레어",
+    "tactic": "purify"
+  },
+  "코쿠와몬": {
+    "signature": "시저 암즈 미니",
+    "tactic": "physicalGuard"
+  },
+  "티아루도몬": {
+    "signature": "프리즈 빅커",
+    "tactic": "barrier"
+  },
+  "라이지루도몬": {
+    "signature": "라이트닝 버스터",
+    "tactic": "barrier"
+  },
+  "브리웨루드라몬": {
+    "signature": "홍련 스톰",
+    "tactic": "barrier"
+  },
+  "메카노몬": {
+    "signature": "자이로 브레이크",
+    "tactic": "physicalGuard"
+  },
+  "탱크드라몬": {
+    "signature": "스트라이버 캐논",
+    "tactic": "barrage"
+  },
+  "다크드라몬": {
+    "signature": "다크 로어",
+    "tactic": "barrage"
+  },
+  "브링프몬": {
+    "signature": "헬륨 봄",
+    "tactic": "barrage"
+  },
+  "마스터브링프몬": {
+    "signature": "체펠린 서커스",
+    "tactic": "barrage"
+  },
+  "크로스몬": {
+    "signature": "카이저 피닉스",
+    "tactic": "agile"
+  },
+  "코스파이더몬": {
+    "signature": "포이즌 네일",
+    "tactic": "barrage"
+  },
+  "스파이더몬": {
+    "signature": "스팅거 포레이션",
+    "tactic": "barrage"
+  },
+  "아라크네몬": {
+    "signature": "스파이더 스레드",
+    "tactic": "barrage"
+  },
+  "리리스몬": {
+    "signature": "팬텀 페인",
+    "tactic": "ferocity"
+  },
+  "플로라몬": {
+    "signature": "꽃가루 뿌리기",
+    "tactic": "poison"
+  },
+  "레드베지몬": {
+    "signature": "하자드 브레스",
+    "tactic": "poison"
+  },
+  "브롯사몬": {
+    "signature": "꽃 폭탄",
+    "tactic": "poison"
+  },
+  "크랩몬": {
+    "signature": "시저즈 엑스큐션",
+    "tactic": "physicalGuard"
+  },
+  "가재드라몬": {
+    "signature": "트윈 넵튠",
+    "tactic": "specialGuard"
+  },
+  "스콜피오몬": {
+    "signature": "스팅거 서프라이즈",
+    "tactic": "physicalGuard"
+  },
+  "푸쿠몬": {
+    "signature": "니들 스콜",
+    "tactic": "specialGuard"
+  },
+  "연체몬": {
+    "signature": "데빌 배싱",
+    "tactic": "barrage"
+  },
+  "마린데블몬": {
+    "signature": "악마의 입김",
+    "tactic": "dread"
+  },
+  "리바이어몬": {
+    "signature": "로스트룸",
+    "tactic": "dread"
+  },
+  "카메몬": {
+    "signature": "포인터 애로",
+    "tactic": "ferocity"
+  },
+  "가와파몬": {
+    "signature": "디제이 슈터",
+    "tactic": "agile"
+  },
+  "사우자몬": {
+    "signature": "강요장 파문의 진",
+    "tactic": "ferocity"
+  },
+  "점보가메몬": {
+    "signature": "메가톤 하이드로 레이저",
+    "tactic": "barrier"
+  },
+  "코테몬": {
+    "signature": "썬더 코테",
+    "tactic": "ferocity"
+  },
+  "무사몬": {
+    "signature": "장군검",
+    "tactic": "ferocity"
+  },
+  "미스티몬": {
+    "signature": "코어 다트",
+    "tactic": "ferocity"
+  },
+  "메디벌듀크몬": {
+    "signature": "레이지 ･ 오브 ･ 와이번",
+    "tactic": "ferocity"
+  },
+  "고스몬": {
+    "signature": "헬즈 핸드",
+    "tactic": "dread"
+  },
+  "미이라몬": {
+    "signature": "스네이크 밴디지",
+    "tactic": "barrage"
+  },
+  "파라오몬": {
+    "signature": "네크로미스트",
+    "tactic": "dread"
+  },
+  "그레이트그리즈몬": {
+    "signature": "투혼조",
+    "tactic": "ferocity"
+  },
+  "칼리스몬": {
+    "signature": "딥 포레스트",
+    "tactic": "dread"
+  },
+  "블랙그라우몬": {
+    "signature": "번개검",
+    "tactic": "flame"
+  },
+  "블랙메가로그라우몬": {
+    "signature": "양날검",
+    "tactic": "dread"
+  },
+  "카오스듀크몬": {
+    "signature": "데몬즈 디제스터",
+    "tactic": "dread"
+  },
+  "도베르몬": {
+    "signature": "그라우 레름",
+    "tactic": "dread"
+  },
+  "케르베로스몬": {
+    "signature": "인페르노 게이트",
+    "tactic": "ferocity"
+  },
+  "플루토몬": {
+    "signature": "해가드 클러스터",
+    "tactic": "dread"
+  },
+  "키위몬": {
+    "signature": "꼬마 키위탄",
+    "tactic": "agile"
+  },
+  "뿌띠몬": {
+    "signature": "로열 너츠",
+    "tactic": "poison"
+  },
+  "그리포몬": {
+    "signature": "슈퍼 소닉 보이스",
+    "tactic": "ferocity"
+  },
+  "다크슈퍼스타몬": {
+    "signature": "다크 익스플로젼",
+    "tactic": "barrage"
+  },
+  "스노우고부리몬": {
+    "signature": "스노 고브 볼트",
+    "tactic": "ferocity"
+  },
+  "블루우가몬": {
+    "signature": "스노 펀치",
+    "tactic": "ferocity"
+  },
+  "맘몬": {
+    "signature": "터스크 스트라이크",
+    "tactic": "ferocity"
+  },
+  "스컬맘몬": {
+    "signature": "스파이럴 본",
+    "tactic": "dread"
+  },
+  "페가수스몬": {
+    "signature": "로데오 갤럽",
+    "tactic": "purify"
+  },
+  "아그니몬": {
+    "signature": "버닝 샐러맨더",
+    "tactic": "ferocity"
+  },
+  "브리트라몬": {
+    "signature": "코로나 블래스터",
+    "tactic": "ferocity"
+  },
+  "아루다몬": {
+    "signature": "브라흐마 실",
+    "tactic": "flame"
+  },
+  "카이젤그레이몬": {
+    "signature": "염룡격",
+    "tactic": "ferocity"
+  },
+  "볼프몬": {
+    "signature": "리히트 ･ 지거",
+    "tactic": "ferocity"
+  },
+  "가름몬": {
+    "signature": "스피드 스타",
+    "tactic": "ferocity"
+  },
+  "베오울프몬": {
+    "signature": "리히트 앙그리프",
+    "tactic": "ferocity"
+  },
+  "매그너가루몬[SV]": {
+    "signature": "머신건 디스트로이",
+    "tactic": "specialGuard"
+  },
+  "호크몬": {
+    "signature": "부리 공격",
+    "tactic": "ferocity"
+  },
+  "페어리몬": {
+    "signature": "토르나드 ･ 감바",
+    "tactic": "agile"
+  },
+  "슈츠몬": {
+    "signature": "길가메시 슬라이서",
+    "tactic": "agile"
+  },
+  "제트실피드몬": {
+    "signature": "제트 빈터",
+    "tactic": "agile"
+  },
+  "펭귄몬": {
+    "signature": "무한 뺨 때리기",
+    "tactic": "ferocity"
+  },
+  "챠크몬": {
+    "signature": "고드르르름",
+    "tactic": "barrage"
+  },
+  "블리자몬": {
+    "signature": "아바란체 스텝",
+    "tactic": "ferocity"
+  },
+  "왕펭귄몬": {
+    "signature": "블루 하와이 데스",
+    "tactic": "ferocity"
+  },
+  "코에몬": {
+    "signature": "베이비 슬링",
+    "tactic": "ferocity"
+  },
+  "삼장몬": {
+    "signature": "두자춘경",
+    "tactic": "bloom"
+  },
+  "타겟몬": {
+    "signature": "덴게키 하구하구 스니커",
+    "tactic": "electric"
+  },
+  "손오공몬": {
+    "signature": "비기 ･ 몽현영",
+    "tactic": "ferocity"
+  },
+  "간쿠몬": {
+    "signature": "철권제재",
+    "tactic": "ferocity"
+  },
+  "안바르몬": {
+    "signature": "디스렌지 혼",
+    "tactic": "ferocity"
+  },
+  "팅커몬": {
+    "signature": "스피드 나이트메어",
+    "tactic": "ferocity"
+  },
+  "위치몬": {
+    "signature": "바르루나 게일",
+    "tactic": "barrage"
+  },
+  "에이션트와이즈몬": {
+    "signature": "라플라스의 악마",
+    "tactic": "barrage"
+  },
+  "웬디몬": {
+    "signature": "공포의 포효",
+    "tactic": "dread"
+  },
+  "케루비몬(악)": {
+    "signature": "빛나는 창",
+    "tactic": "ferocity"
+  },
+  "스나이몬": {
+    "signature": "섀도 ･ 시클",
+    "tactic": "ferocity"
+  },
+  "주엘비몬": {
+    "signature": "스파이크 버스터",
+    "tactic": "electric"
+  },
+  "그랑디스쿠가몬": {
+    "signature": "그랑 킬러",
+    "tactic": "ferocity"
+  },
+  "토이아구몬": {
+    "signature": "토이 플레임",
+    "tactic": "ferocity"
+  },
+  "카우보이몬": {
+    "signature": "저스티스 블릿",
+    "tactic": "barrage"
+  },
+  "바알몬": {
+    "signature": "카미우치",
+    "tactic": "barrage"
+  },
+  "가비지몬": {
+    "signature": "응가 바주카",
+    "tactic": "dread"
+  },
+  "다이버몬": {
+    "signature": "스트라이크 피싱",
+    "tactic": "ferocity"
+  },
+  "샤크몬": {
+    "signature": "일제포격",
+    "tactic": "barrage"
+  },
+  "미노타몬": {
+    "signature": "다크사이드 퀘이크",
+    "tactic": "ferocity"
+  },
+  "아수라몬": {
+    "signature": "아수라신권",
+    "tactic": "ferocity"
+  },
+  "바커스몬": {
+    "signature": "쿡 ･ 오브 ･ 더 ･ 헬",
+    "tactic": "bloom"
+  },
+  "슬래쉬엔젤몬": {
+    "signature": "홀리 에스파다",
+    "tactic": "ferocity"
+  },
+  "빅콩알몬": {
+    "signature": "빅 스마일리 보머",
+    "tactic": "physicalGuard"
+  },
+  "반쵸콩알몬": {
+    "signature": "골든 러시",
+    "tactic": "ferocity"
+  },
+  "사이케몬": {
+    "signature": "컬러풀 스파크",
+    "tactic": "agile"
+  },
+  "아스타몬": {
+    "signature": "헬 파이어",
+    "tactic": "barrage"
+  },
+  "베르스타몬": {
+    "signature": "플라이 불릿",
+    "tactic": "barrage"
+  },
+  "크로노몬[디스트로이 모드]": {
+    "signature": "핑거 봄",
+    "tactic": "dread"
+  },
+  "그레이스노바몬": {
+    "signature": "이클립스 핑거",
+    "tactic": "ferocity"
+  },
+  "유피테르몬[래스 모드]": {
+    "signature": "케라우노스디바이드",
+    "tactic": "electric"
+  },
+  "패럴렐몬": {
+    "signature": "앱소번트 뱅",
+    "tactic": "barrage"
+  },
+  "좀비플루토몬": {
+    "signature": "해저드 홀드",
+    "tactic": "dread"
+  },
+  "볼토바우타몬": {
+    "signature": "팔라지 발차",
+    "tactic": "barrage"
+  },
+  "빅토리그레이몬": {
+    "signature": "드라몬 브레이커",
+    "tactic": "ferocity"
+  },
   "브이몬": {
     "signature": "붕붕 펀치",
     "tactic": "ferocity"
@@ -869,18 +1333,6 @@
   },
   "황제드라몬[파이터]": {
     "signature": "포지트론 레이저",
-    "tactic": "ferocity"
-  },
-  "아그니몬": {
-    "signature": "버닝 샐러맨더",
-    "tactic": "ferocity"
-  },
-  "브리트라몬": {
-    "signature": "코로나 블래스터",
-    "tactic": "ferocity"
-  },
-  "카이젤그레이몬": {
-    "signature": "염룡격",
     "tactic": "ferocity"
   },
   "스사노오몬": {
@@ -971,6 +1423,26 @@
     "signature": "그레이 소드",
     "tactic": "barrier"
   },
+  "카오스몬": {
+    "signature": "패왕양단검",
+    "tactic": "dread"
+  },
+  "메르바몬": {
+    "signature": "나이트 스토커",
+    "tactic": "ferocity"
+  },
+  "제트메르바몬": {
+    "signature": "하트 브레이크 샷",
+    "tactic": "ferocity"
+  },
+  "스패로우몬": {
+    "signature": "크래시 붐",
+    "tactic": "ferocity"
+  },
+  "황제드라몬[드래곤]": {
+    "signature": "메가 데스",
+    "tactic": "dread"
+  },
   "바리스타몬": {
     "signature": "호른 브레이커",
     "tactic": "physicalGuard"
@@ -1026,10 +1498,6 @@
   "오메가몬[즈왈트]": {
     "signature": "가루루 캐논",
     "tactic": "barrier"
-  },
-  "매그너가루몬[SV]": {
-    "signature": "머신건 디스트로이",
-    "tactic": "specialGuard"
   },
   "키메라몬": {
     "signature": "히트 ･ 바이퍼",

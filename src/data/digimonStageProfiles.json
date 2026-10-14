@@ -1,7 +1,7 @@
 {
-  "revision": 2,
-  "verifiedAt": "2026-10-04",
-  "policy": "Official reference-book generations are the default. Game Ultra groups 19 selected ultimate fusions, final modes and exceptional endgame forms supported by official Card Game Lv.7 entries; card levels do not redefine their official reference-book generation. Arcadiamon forms follow the official Hacker's Memory form chart. Species training bands preserve authored balance.",
+  "revision": 3,
+  "verifiedAt": "2026-10-13",
+  "policy": "Official reference-book generations are the default. Game Ultra groups selected ultimate fusions, final modes and exceptional endgame forms supported by official Card Game Lv.7 entries; card levels do not redefine their official reference-book generation. Arcadiamon forms follow the official Hacker's Memory form chart. Species training bands preserve authored balance.",
   "profiles": {
     "그랜쿠가몬": {
       "stage": "궁극체",
@@ -2746,6 +2746,914 @@
         "source": "https://digimoncard.com/cards/?card_no=BT19-101",
         "note": "공식 도감 궁극체 중 Lv.7 카드와 합체·최종 형태 설정을 근거로 분류한 게임 초궁극체."
       }
+    },
+    "코로나몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "coronamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=coronamon"
+    },
+    "아이기오몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "aegiomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=aegiomon"
+    },
+    "아이기오투스몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "aegiochusmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=aegiochusmon"
+    },
+    "아이기오투스몬[블루]": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "aegiochusmon:blue",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=aegiochusmon%3Ablue"
+    },
+    "아이기오투스몬[그린]": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "aegiochusmon:green",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=aegiochusmon%3Agreen"
+    },
+    "아이기오투스몬[다크]": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "aegiochusmon:dark",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=aegiochusmon%3Adark"
+    },
+    "아이기오투스몬[홀리]": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "aegiochusmon_holly",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=aegiochusmon_holly"
+    },
+    "아루다몬": {
+      "stage": "하이브리드체",
+      "trainingStage": "완전체",
+      "directory": "aldamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=aldamon"
+    },
+    "에이션트와이즈몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "ancientwisetmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=ancientwisetmon"
+    },
+    "아폴로몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "apollomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=apollomon"
+    },
+    "아라크네몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "archnemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=archnemon"
+    },
+    "아스타몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "astamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=astamon"
+    },
+    "어벤지키드몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "avengekidmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=avengekidmon"
+    },
+    "바커스몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "bacchusmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=bacchusmon"
+    },
+    "반쵸콩알몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "banchomamemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=banchomamemon"
+    },
+    "베오울프몬": {
+      "stage": "하이브리드체",
+      "trainingStage": "완전체",
+      "directory": "beowolfmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=beowolfmon"
+    },
+    "베르스타몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "beelstarmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=beelstarmon"
+    },
+    "빅콩알몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "bigmamemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=bigmamemon"
+    },
+    "브링프몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "blimpmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=blimpmon"
+    },
+    "브라키몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "brachiomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=brachiomon"
+    },
+    "부라이몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "buraimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=buraimon"
+    },
+    "부텐몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "butenmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=butenmon"
+    },
+    "칼리스몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "callismon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=callismon"
+    },
+    "카르마라몬": {
+      "stage": "하이브리드체",
+      "trainingStage": "완전체",
+      "directory": "calamaramon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=calamaramon"
+    },
+    "켄터스몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "centalmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=centalmon"
+    },
+    "케르베로스몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "cerberumon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=cerberumon"
+    },
+    "케르베로스몬[인랑]": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "cerberumon_werewolfmode",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=cerberumon_werewolfmode"
+    },
+    "케레스몬[미디엄]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "ceresmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=ceresmon"
+    },
+    "크로노몬[홀리 모드]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "chronomon_holy",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=chronomon_holy"
+    },
+    "크로노몬[디스트로이 모드]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "chronomon_destroy",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=chronomon_destroy"
+    },
+    "클라비스엔젤몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "clavisangemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=clavisangemon"
+    },
+    "크랩몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "ganimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=ganimon"
+    },
+    "다크드라몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "darkdramon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=darkdramon"
+    },
+    "다크슈퍼스타몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "darksuperstarmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=darksuperstarmon"
+    },
+    "델타몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "deltamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=deltamon"
+    },
+    "카우보이몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "revolmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=revolmon"
+    },
+    "뿌띠몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "delumon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=delumon"
+    },
+    "디그몬": {
+      "stage": "아머체",
+      "trainingStage": "아머체",
+      "directory": "digmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=digmon"
+    },
+    "다이버몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "hangyomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=hangyomon"
+    },
+    "도베르몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "dobermon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=dobermon"
+    },
+    "스파이더몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "dokugumon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=dokugumon"
+    },
+    "두리몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "drimogemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=drimogemon"
+    },
+    "크로스몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "crossmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=crossmon"
+    },
+    "안바르몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "enbarrmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=enbarrmon"
+    },
+    "엑스티라노몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "ex-tyranomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=ex-tyranomon"
+    },
+    "파이라몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "firamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=firamon"
+    },
+    "플레어몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "flaremon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=flaremon"
+    },
+    "플로라몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "floramon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=floramon"
+    },
+    "플라이몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "flymon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=flymon"
+    },
+    "푸가몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "fugamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=fugamon"
+    },
+    "가비지몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "gerbemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gerbemon"
+    },
+    "기자몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "gizamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gizamon"
+    },
+    "그레이스노바몬": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "gracenovamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gracenovamon",
+      "classification": {
+        "source": "https://digimon.net/reference_ko/detail.php?directory_name=gracenovamon",
+        "note": "게임 내 최종 융합·최종 모드 분류; 공식 도감은 궁극체"
+      }
+    },
+    "그레이트그리즈몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "greatgryzmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=greatgryzmon"
+    },
+    "건드라몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "gundramon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gundramon"
+    },
+    "가와파몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "gawappamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gawappamon"
+    },
+    "호루스몬": {
+      "stage": "아머체",
+      "trainingStage": "아머체",
+      "directory": "holsmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=holsmon"
+    },
+    "블루우가몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "hyougamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=hyougamon"
+    },
+    "효코몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "hyokomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=hyokomon"
+    },
+    "황제드라몬[드래곤]": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "imperialdramondragonmode",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=imperialdramondragonmode"
+    },
+    "주엘비몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "jewelbeemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=jewelbeemon"
+    },
+    "점보가메몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "jumbogamemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=jumbogamemon"
+    },
+    "유피테르몬[래스 모드]": {
+      "stage": "초궁극체",
+      "trainingStage": "초궁극체",
+      "directory": "jupitermmon_wrath",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=jupitermmon_wrath",
+      "classification": {
+        "source": "https://digimon.net/reference_ko/detail.php?directory_name=jupitermmon_wrath",
+        "note": "게임 내 최종 융합·최종 모드 분류; 공식 도감은 궁극체"
+      }
+    },
+    "카프리몬": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "directory": "capromon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=capromon"
+    },
+    "키위몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "kiwimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=kiwimon"
+    },
+    "코쿠와몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "kokuwamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=kokuwamon"
+    },
+    "코테몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "kotemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=kotemon"
+    },
+    "로코몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "locomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=locomon"
+    },
+    "매그너키드몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "magnakidmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=magnakidmon"
+    },
+    "마스터브링프몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "masterblimpmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=masterblimpmon"
+    },
+    "메카노몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "mechanorimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=mechanorimon"
+    },
+    "메디벌듀크몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "medievaldukemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=medievaldukemon"
+    },
+    "뽈뽈몬": {
+      "stage": "유아기",
+      "trainingStage": "유아기",
+      "directory": "choromon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=choromon"
+    },
+    "메르바몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "mervamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=mervamon"
+    },
+    "미노타몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "minotaurmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=minotaurmon"
+    },
+    "미스티몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "mistymon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=mistymon"
+    },
+    "모털몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "mojyamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=mojyamon"
+    },
+    "미이라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "mummymon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=mummymon"
+    },
+    "무사몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "musyamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=musyamon"
+    },
+    "네페르티몬": {
+      "stage": "아머체",
+      "trainingStage": "아머체",
+      "directory": "nefertimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=nefertimon"
+    },
+    "옥토몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "octmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=octmon"
+    },
+    "패럴렐몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "parallelmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=parallelmon"
+    },
+    "패롯몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "parrotmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=parrotmon"
+    },
+    "페가수스몬": {
+      "stage": "아머체",
+      "trainingStage": "아머체",
+      "directory": "pegasmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=pegasmon"
+    },
+    "펭귄몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "penmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=penmon"
+    },
+    "푸쿠몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "pukumon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=pukumon"
+    },
+    "라나몬": {
+      "stage": "하이브리드체",
+      "trainingStage": "하이브리드체",
+      "directory": "ranamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=ranamon"
+    },
+    "스콜피오몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "anomalocarimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=anomalocarimon"
+    },
+    "샤크몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "sharkmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=sharkmon"
+    },
+    "원시고부리몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "shamamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=shamamon"
+    },
+    "사우자몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "shawujinmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=shawujinmon"
+    },
+    "쉘몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "shellmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=shellmon"
+    },
+    "수리몬": {
+      "stage": "아머체",
+      "trainingStage": "아머체",
+      "directory": "shurimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=shurimon"
+    },
+    "세이렌몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "sirenmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=sirenmon"
+    },
+    "스컬벌키몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "skullbaluchimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=skullbaluchimon"
+    },
+    "스컬맘몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "skullmammon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=skullmammon"
+    },
+    "스컬시드라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "skullseadramon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=skullseadramon"
+    },
+    "슬래쉬엔젤몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "slashangemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=slashangemon"
+    },
+    "스나이몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "snimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=snimon"
+    },
+    "스노우고부리몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "snowgoburimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=snowgoburimon"
+    },
+    "잠수몬": {
+      "stage": "아머체",
+      "trainingStage": "아머체",
+      "directory": "sabmarimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=sabmarimon"
+    },
+    "탱크드라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "tankdramon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=tankdramon"
+    },
+    "웬디몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "wendimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=wendimon"
+    },
+    "위치몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "witchmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=witchmon"
+    },
+    "황금무사몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "zanbamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=zanbamon"
+    },
+    "좀비플루토몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "zombieplutomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=zombieplutomon"
+    },
+    "알로몬": {
+      "stage": "아머체",
+      "trainingStage": "아머체",
+      "directory": "allomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=allomon"
+    },
+    "브롯사몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "blossomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=blossomon"
+    },
+    "볼토바우타몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "voltobautamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=voltobautamon"
+    },
+    "브리웨루드라몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "bryweludramon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=bryweludramon"
+    },
+    "할매몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "babamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=babamon"
+    },
+    "캔들몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "candmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=candmon"
+    },
+    "가재드라몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "ebidramon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=ebidramon"
+    },
+    "도그몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "dogmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=dogmon"
+    },
+    "째리몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "giromon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=giromon"
+    },
+    "손오공몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "gokuwmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gokuwmon"
+    },
+    "그랑디스쿠가몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "grandiskuwagamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=grandiskuwagamon"
+    },
+    "쟈가몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "jyagamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=jyagamon"
+    },
+    "제트실피드몬": {
+      "stage": "하이브리드체",
+      "trainingStage": "완전체",
+      "directory": "jetsilphymon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=jetsilphymon"
+    },
+    "페어리몬": {
+      "stage": "하이브리드체",
+      "trainingStage": "하이브리드체",
+      "directory": "fairimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=fairimon"
+    },
+    "코스파이더몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "kodokugumon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=kodokugumon"
+    },
+    "블리자몬": {
+      "stage": "하이브리드체",
+      "trainingStage": "완전체",
+      "directory": "blizzarmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=blizzarmon"
+    },
+    "챠크몬": {
+      "stage": "하이브리드체",
+      "trainingStage": "하이브리드체",
+      "directory": "chackmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=chackmon"
+    },
+    "레베몬": {
+      "stage": "하이브리드체",
+      "trainingStage": "하이브리드체",
+      "directory": "louwemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=louwemon"
+    },
+    "마린데블몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "marindevimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=marindevimon"
+    },
+    "폰체스몬(흑)": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "paunchessmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=paunchessmon"
+    },
+    "폰체스몬(백)": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "paunchessmon-white",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=paunchessmon-white"
+    },
+    "포큐파몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "porcupamon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=porcupamon"
+    },
+    "라이지루도몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "raijiludomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=raijiludomon"
+    },
+    "레드베지몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "redvegimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=redvegimon"
+    },
+    "바알몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "baalmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=baalmon"
+    },
+    "삼장몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "sanzomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=sanzomon"
+    },
+    "티아루도몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "tialudomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=tialudomon"
+    },
+    "이블몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "evilmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=evilmon"
+    },
+    "배드퍼펫몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "warumonzaemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=warumonzaemon"
+    },
+    "슈츠몬": {
+      "stage": "하이브리드체",
+      "trainingStage": "완전체",
+      "directory": "shutumon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=shutumon"
+    },
+    "아누비스몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "anubimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=anubimon"
+    },
+    "아수라몬": {
+      "stage": "완전체",
+      "trainingStage": "완전체",
+      "directory": "asuramon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=asuramon"
+    },
+    "기기몬": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "directory": "gigimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gigimon"
+    },
+    "쟈리몬": {
+      "stage": "유아기",
+      "trainingStage": "유아기",
+      "directory": "jyarimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=jyarimon"
+    },
+    "구미몬": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "directory": "gummymon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gummymon"
+    },
+    "연체몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "gesomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=gesomon"
+    },
+    "초코몬": {
+      "stage": "유년기",
+      "trainingStage": "유년기",
+      "directory": "chocomon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=chocomon"
+    },
+    "피치몬": {
+      "stage": "유아기",
+      "trainingStage": "유아기",
+      "directory": "pitchmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=pitchmon"
+    },
+    "사이케몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "psychemon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=psychemon"
+    },
+    "유라몬": {
+      "stage": "유아기",
+      "trainingStage": "유아기",
+      "directory": "yuramon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=yuramon"
+    },
+    "제리몬": {
+      "stage": "유아기",
+      "trainingStage": "유아기",
+      "directory": "zerimon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=zerimon"
+    },
+    "팅커몬": {
+      "stage": "성장기",
+      "trainingStage": "성장기",
+      "directory": "tinkermon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=tinkermon"
+    },
+    "빅토리그레이몬": {
+      "stage": "궁극체",
+      "trainingStage": "궁극체",
+      "directory": "victorygreymon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=victorygreymon"
+    },
+    "블랙그라우몬": {
+      "stage": "성숙기",
+      "trainingStage": "성숙기",
+      "directory": "blackgrowmon",
+      "source": "https://digimon.net/reference_ko/detail.php?directory_name=blackgrowmon"
     }
   }
 }

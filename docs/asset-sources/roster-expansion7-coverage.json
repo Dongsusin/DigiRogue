@@ -1,0 +1,3920 @@
+{
+  "verifiedAt": "2026-10-13",
+  "researched": 255,
+  "integrated": 150,
+  "notIntegrated": 102,
+  "candidates": [
+    {
+      "english": "Aegiochusmon",
+      "koreanName": "아이기오투스몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=aegiochusmon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Aegiochusmon: Blue",
+      "koreanName": "아이기오투스몬[블루]",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=aegiochusmon-blue"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Aegiochusmon: Dark",
+      "koreanName": "아이기오투스몬[다크]",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=aegiochusmon-dark"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Aegiochusmon: Green",
+      "koreanName": "아이기오투스몬[그린]",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=aegiochusmon-green"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Aegiochusmon: Holy",
+      "koreanName": "아이기오투스몬[홀리]",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=aegiochusmon-holy"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Aegiomon",
+      "koreanName": "아이기오몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=aegiomon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Aldamon",
+      "koreanName": "아루다몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=aldamon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Allomon",
+      "koreanName": "알로몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "AncientMermaidmon",
+      "koreanName": "에이션트머메이몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "AncientSphinxmon",
+      "koreanName": "에이션트스핑크스몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "에이션트스핑크스몬"
+    },
+    {
+      "english": "AncientTroiamon",
+      "koreanName": "에이션트트로이몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "AncientWisemon",
+      "koreanName": "에이션트와이즈몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=ancientwisemon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "에이션트와이즈몬"
+    },
+    {
+      "english": "Antylamon (Deva)",
+      "koreanName": "안티라몬(데바)",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Anubismon",
+      "koreanName": "아누비스몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Apemon",
+      "koreanName": "에이프몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Apollomon",
+      "koreanName": "아폴로몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=apollomon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Arbormon",
+      "koreanName": "알볼몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        },
+        {
+          "game": "TMR individual asset",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/291709/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Arukenimon",
+      "koreanName": "아라크네몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=arukenimon"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Astamon",
+      "koreanName": "아스타몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=astamon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Asuramon",
+      "koreanName": "아수라몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "AvengeKidmon",
+      "koreanName": "어벤지키드몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=avengekidmon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Babamon",
+      "koreanName": "할매몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Bacchusmon",
+      "koreanName": "바커스몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=bacchusmon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Bacchusmon Deisui Mode",
+      "koreanName": "바커스몬[만취 모드]",
+      "status": "removed-by-request",
+      "reason": "Removed at user request on 2026-10-13",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=bacchusmon-dm"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "바커스몬[만취 모드]"
+    },
+    {
+      "english": "BanchoMamemon",
+      "koreanName": "반쵸콩알몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=banchomamemon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Beetlemon",
+      "koreanName": "블리츠몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "BelleStarmon",
+      "koreanName": "베르스타몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=beelstarmon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "베르스타몬"
+    },
+    {
+      "english": "BeoWolfmon",
+      "koreanName": "베오울프몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=beowolfmon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "BigMamemon",
+      "koreanName": "빅콩알몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=bigmamemon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "BlackGrowlmon",
+      "koreanName": "블랙그라우몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "BlackMegaGargomon",
+      "koreanName": "블랙세인트가르고몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Blimpmon",
+      "koreanName": "브링프몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=blimpmon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Blossomon",
+      "koreanName": "브롯사몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Bokomon",
+      "koreanName": "보코몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Boltboutamon",
+      "koreanName": "볼토바우타몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "BomberNanimon",
+      "koreanName": "폭탄모야몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon ReArise",
+          "url": "https://models.spriters-resource.com/mobile/digimonrearise/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Brachiomon",
+      "koreanName": "브라키몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=brachiomon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "BryweLudramon",
+      "koreanName": "브리웨루드라몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Budmon",
+      "koreanName": "버드몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Buraimon",
+      "koreanName": "부라이몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=buraimon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Butenmon",
+      "koreanName": "부텐몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=butenmon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Callismon",
+      "koreanName": "칼리스몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=callismon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Calmaramon",
+      "koreanName": "카르마라몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=calmaramon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Calumon",
+      "koreanName": "동글몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Candlemon",
+      "koreanName": "캔들몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Centarumon",
+      "koreanName": "켄터스몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=centarumon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Cerberumon",
+      "koreanName": "케르베로스몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=cerberusmon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Cerberumon Werewolf Mode",
+      "koreanName": "케르베로스몬[인랑]",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=cerberusmon-wm"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Ceresmon Medium",
+      "koreanName": "케레스몬[미디엄]",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=ceresmon-medium"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "ChaosPiedmon",
+      "koreanName": "카오스피에몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Cherubimon (Evil) X",
+      "koreanName": "케루비몬(악)[X항체]",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "케루비몬(악)[X항체]"
+    },
+    {
+      "english": "ChoHakkaimon",
+      "koreanName": "초핫카이몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Chronomon Destroy Mode",
+      "koreanName": "크로노몬[디스트로이 모드]",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=chronomon-dm"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Chronomon Holy Mode",
+      "koreanName": "크로노몬[홀리 모드]",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=chronomon-hm"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "ClavisAngemon",
+      "koreanName": "클라비스엔젤몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=clavisangemon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "ClearAgumon",
+      "koreanName": "투명아구몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon World 2",
+          "url": "https://models.spriters-resource.com/playstation/digimonworld2/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Commandramon",
+      "koreanName": "코만드라몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Coronamon",
+      "koreanName": "코로나몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=coronamon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "TMR individual asset",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonstorytimestranger/asset/602611/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Crabmon",
+      "koreanName": "크랩몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=crabmon"
+        },
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonstorytimestranger/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Crusadermon X",
+      "koreanName": "로드나이트몬(X항체)",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "로드나이트몬[X항체]"
+    },
+    {
+      "english": "Daemon (Mantled)",
+      "koreanName": "마왕몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Darkdramon",
+      "koreanName": "다크드라몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=darkdramon"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "DarkLeomon",
+      "koreanName": "다크레오몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "DarkLizardmon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "DarkSuperStarmon",
+      "koreanName": "다크슈퍼스타몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=darksuperstarmon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Deltamon",
+      "koreanName": "델타몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=deltamon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        },
+        {
+          "game": "Digimon World 2",
+          "url": "https://models.spriters-resource.com/playstation/digimonworld2/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "DemiMeramon",
+      "koreanName": "푸치메라몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Deputymon",
+      "koreanName": "카우보이몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=deputymon"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Deramon",
+      "koreanName": "뿌띠몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=deramon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Devidramon",
+      "koreanName": "데블드라몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        },
+        {
+          "game": "Digimon World 2",
+          "url": "https://models.spriters-resource.com/playstation/digimonworld2/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "DexDorugamon",
+      "koreanName": "데크스도루가몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "DexDorugoramon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "DexDorugreymon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Digmon",
+      "koreanName": "디그몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=digmon"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "DiJiangmon",
+      "koreanName": "디지앙몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "디지앙몬"
+    },
+    {
+      "english": "Dinorexmon",
+      "koreanName": "다이노렉스몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "다이노렉스몬"
+    },
+    {
+      "english": "Divermon",
+      "koreanName": "다이버몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=divermon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Dobermon",
+      "koreanName": "도베르몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=dobermon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Doggymon",
+      "koreanName": "도그몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Dokugumon",
+      "koreanName": "스파이더몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=dokugumon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Dokunemon",
+      "koreanName": "도쿠네몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Doumon",
+      "koreanName": "도우몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon ReArise",
+          "url": "https://models.spriters-resource.com/mobile/digimonrearise/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Drimogemon",
+      "koreanName": "두리몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=drimogemon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Eaglemon",
+      "koreanName": "크로스몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=eaglemon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Ebidramon",
+      "koreanName": "가재드라몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Eldoradimon",
+      "koreanName": "엘도라디몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "엘도라디몬"
+    },
+    {
+      "english": "Elecmon (Violet)",
+      "koreanName": "에렉몬(보라)",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon ReArise",
+          "url": "https://models.spriters-resource.com/mobile/digimonrearise/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Enbarrmon",
+      "koreanName": "안바르몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=enbarrmon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "ExTyrannomon",
+      "koreanName": "엑스티라노몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=extyrannomon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Firamon",
+      "koreanName": "파이라몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=firamon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Flamemon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Flaremon",
+      "koreanName": "플레어몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=flaremon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Floramon",
+      "koreanName": "플로라몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=floramon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "TMR individual asset",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonstorytimestranger/asset/606469/"
+        }
+      ],
+      "previousRetirement": "플로라몬"
+    },
+    {
+      "english": "Flybeemon",
+      "koreanName": "플라몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Flymon",
+      "koreanName": "플라이몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=flymon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        },
+        {
+          "game": "Digimon World 2",
+          "url": "https://models.spriters-resource.com/playstation/digimonworld2/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Fugamon",
+      "koreanName": "푸가몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=fugamon"
+        },
+        {
+          "game": "Digimon ReArise",
+          "url": "https://models.spriters-resource.com/mobile/digimonrearise/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Gammamon",
+      "koreanName": "감마몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/363290/"
+        }
+      ],
+      "previousRetirement": "감마몬"
+    },
+    {
+      "english": "Garbagemon",
+      "koreanName": "가비지몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=garbagemon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Gargoylemon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Gesomon",
+      "koreanName": "연체몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Gigasmon",
+      "koreanName": "기가스몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Gigimon",
+      "koreanName": "기기몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon ReArise",
+          "url": "https://models.spriters-resource.com/mobile/digimonrearise/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Giromon",
+      "koreanName": "째리몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        },
+        {
+          "game": "Digimon World 2",
+          "url": "https://models.spriters-resource.com/playstation/digimonworld2/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Gizamon",
+      "koreanName": "기자몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=gizamon"
+        },
+        {
+          "game": "TMR individual asset",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonstorytimestranger/asset/607154/"
+        }
+      ],
+      "previousRetirement": "기자몬"
+    },
+    {
+      "english": "Gizumon AT",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Gizumon XT",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Gladimon",
+      "koreanName": "그라디몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Goatmon",
+      "koreanName": "고트몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Gokuwmon",
+      "koreanName": "손오공몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Gorillamon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "GraceNovamon",
+      "koreanName": "그레이스노바몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=gracenovamon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "그레이스노바몬"
+    },
+    {
+      "english": "GrandisKuwagamon",
+      "koreanName": "그랑디스쿠가몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "GreatGrizzlymon",
+      "koreanName": "그레이트그리즈몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=greatgrizzlymon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Grumblemon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Gummymon",
+      "koreanName": "구미몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon ReArise",
+          "url": "https://models.spriters-resource.com/mobile/digimonrearise/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Gundramon",
+      "koreanName": "건드라몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=gundramon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Gwappamon",
+      "koreanName": "가와파몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=gawappamon"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Halsemon",
+      "koreanName": "호루스몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=halsemon"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Harpymon",
+      "koreanName": "하피몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "HerculesKabuterimon X",
+      "koreanName": "헤라클레스캅테리몬(X항체)",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "헤라클레스캅테리몬[X항체]"
+    },
+    {
+      "english": "Hyogamon",
+      "koreanName": "블루우가몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=hyogamon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Hyokomon",
+      "koreanName": "효코몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=hyokomon"
+        },
+        {
+          "game": "TMR individual asset",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonstorytimestranger/asset/603468/"
+        }
+      ],
+      "previousRetirement": "효코몬"
+    },
+    {
+      "english": "Imperialdramon",
+      "koreanName": "황제드라몬[드래곤]",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=imperialdramon-dm"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        },
+        {
+          "game": "Digimon World 2",
+          "url": "https://models.spriters-resource.com/playstation/digimonworld2/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Jagamon",
+      "koreanName": "쟈가몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "JagerLoweemon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "JetSilphymon",
+      "koreanName": "제트실피드몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "JewelBeemon",
+      "koreanName": "주엘비몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=jewelbeemon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Jokermon",
+      "koreanName": "조커몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "JumboGamemon",
+      "koreanName": "점보가메몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=jumbogamemon"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Jupitermon Wrath Mode",
+      "koreanName": "유피테르몬[래스 모드]",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=jupitermon-wm"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Justimon X",
+      "koreanName": "저스티몬(X항체)",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "저스티몬[X항체]"
+    },
+    {
+      "english": "Jyarimon",
+      "koreanName": "쟈리몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon ReArise",
+          "url": "https://models.spriters-resource.com/mobile/digimonrearise/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Kapurimon",
+      "koreanName": "카프리몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=kapurimon"
+        },
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonstorytimestranger/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Kazemon",
+      "koreanName": "페어리몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Kiwimon",
+      "koreanName": "키위몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=kiwimon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "KnightChessmon (Black)",
+      "koreanName": "나이트체스몬(흑)",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": "나이트체스몬(흑)"
+    },
+    {
+      "english": "KnightChessmon (White)",
+      "koreanName": "나이트체스몬(백)",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": "나이트체스몬(백)"
+    },
+    {
+      "english": "Kodokugumon",
+      "koreanName": "코스파이더몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Kokatorimon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Kokomon",
+      "koreanName": "초코몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon ReArise",
+          "url": "https://models.spriters-resource.com/mobile/digimonrearise/"
+        },
+        {
+          "game": "Digimon ReArise",
+          "url": "https://models.spriters-resource.com/mobile/digimonrearise/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Kokuwamon",
+      "koreanName": "코쿠와몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=kokuwamon"
+        },
+        {
+          "game": "TMR individual asset",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonstorytimestranger/asset/605137/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Korikakumon",
+      "koreanName": "블리자몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Kotemon",
+      "koreanName": "코테몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=kotemon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        },
+        {
+          "game": "TMR individual asset",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonstorytimestranger/asset/605322/"
+        }
+      ],
+      "previousRetirement": "코테몬"
+    },
+    {
+      "english": "Kumamon",
+      "koreanName": "챠크몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonstorytimestranger/"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Kunemon",
+      "koreanName": "쿠네몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        },
+        {
+          "game": "Digimon World 2",
+          "url": "https://models.spriters-resource.com/playstation/digimonworld2/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Labramon",
+      "koreanName": "래브라몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Lampmon",
+      "koreanName": "램프몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "램프몬"
+    },
+    {
+      "english": "Lianpumon",
+      "koreanName": "리엔푸몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Locomon",
+      "koreanName": "로코몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=locomon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Loweemon",
+      "koreanName": "레베몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Lucemon Larva",
+      "koreanName": "루체몬[라르바]",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "MadLeomon (Final Mode)",
+      "koreanName": "매드레오몬[파이널]",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "MagnaKidmon",
+      "koreanName": "매그너키드몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=magnakidmon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "MarineDevimon",
+      "koreanName": "마린데블몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "MasterBlimpmon",
+      "koreanName": "마스터브링프몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=masterblimpmon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Mechanorimon",
+      "koreanName": "메카노몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=mekanorimon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "MedievalGallantmon",
+      "koreanName": "메디벌듀크몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=medievalgallantmon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "메디벌듀크몬"
+    },
+    {
+      "english": "Mercurymon",
+      "koreanName": "메르크리몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Mervamon",
+      "koreanName": "메르바몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=mervamon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "메르바몬"
+    },
+    {
+      "english": "MetalKabuterimon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "MetalKoromon",
+      "koreanName": "뽈뽈몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=choromon"
+        },
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonstorytimestranger/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Mikemon",
+      "koreanName": "미케몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Minervamon X",
+      "koreanName": "미네르바몬(X항체)",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "미네르바몬[X항체]"
+    },
+    {
+      "english": "Minotarumon",
+      "koreanName": "미노타몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=minotarumon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Mistymon",
+      "koreanName": "미스티몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=mistymon"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Mojyamon",
+      "koreanName": "모털몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=mojyamon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Mokumon",
+      "koreanName": "모크몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Mummymon",
+      "koreanName": "미이라몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=mummymon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Murmukusmon",
+      "koreanName": "무르무크스몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Musyamon",
+      "koreanName": "무사몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=musyamon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Neemon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Nefertimon",
+      "koreanName": "네페르티몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=nefertimon"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "NeoDevimon",
+      "koreanName": "네오데블몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "NeoMyotismon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Octomon",
+      "koreanName": "옥토몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=octomon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Omedamon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon ReArise",
+          "url": "https://models.spriters-resource.com/mobile/digimonrearise/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Ordinemon",
+      "koreanName": "오르디네몬",
+      "status": "removed-by-request",
+      "reason": "Removed at user request on 2026-10-13",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "오르디네몬"
+    },
+    {
+      "english": "Ornismon",
+      "koreanName": "오니스몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Parallelmon",
+      "koreanName": "패럴렐몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=parallelmon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Parasimon",
+      "koreanName": "패러사이몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Parrotmon",
+      "koreanName": "패롯몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=parrotmon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "PawnChessmon (Black)",
+      "koreanName": "폰체스몬(흑)",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": "폰체스몬(흑)"
+    },
+    {
+      "english": "PawnChessmon (White)",
+      "koreanName": "폰체스몬(백)",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": "폰체스몬(백)"
+    },
+    {
+      "english": "Pegasusmon",
+      "koreanName": "페가수스몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=pegasusmon"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Penguinmon",
+      "koreanName": "펭귄몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=penmon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "TMR individual asset",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonstorytimestranger/asset/603892/"
+        }
+      ],
+      "previousRetirement": "펭귄몬"
+    },
+    {
+      "english": "Persiamon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Petaldramon",
+      "koreanName": "페탈드라몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Phascomon",
+      "koreanName": "파스코몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Pichimon",
+      "koreanName": "피치몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon ReArise",
+          "url": "https://models.spriters-resource.com/mobile/digimonrearise/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Pickmon",
+      "koreanName": "픽크몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Ponchomon",
+      "koreanName": "판초몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Porcupamon",
+      "koreanName": "포큐파몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Psychemon",
+      "koreanName": "사이케몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        },
+        {
+          "game": "Digimon World 2",
+          "url": "https://models.spriters-resource.com/playstation/digimonworld2/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Pukumon",
+      "koreanName": "푸쿠몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=pukumon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "RaijiLudomon",
+      "koreanName": "라이지루도몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Raijinmon",
+      "koreanName": "뇌신몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "뇌신몬"
+    },
+    {
+      "english": "Ranamon",
+      "koreanName": "라나몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=lanamon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Reapmon",
+      "koreanName": "바알몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "RedVegiemon",
+      "koreanName": "레드베지몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Rhihimon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Roachmon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Saberdramon",
+      "koreanName": "블랙버드라몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Sakkakumon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Sakuyamon Miko Mode",
+      "koreanName": "샤크라몬[무녀 모드]",
+      "status": "not-integrated",
+      "reason": "Available FBX lacks original combat clips",
+      "sources": [
+        {
+          "game": "Digimon ReArise",
+          "url": "https://models.spriters-resource.com/mobile/digimonrearise/"
+        }
+      ],
+      "previousRetirement": "샤크라몬[무녀 모드]"
+    },
+    {
+      "english": "Sanzomon",
+      "koreanName": "삼장몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Scorpiomon",
+      "koreanName": "스콜피오몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=scorpiomon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon World 2",
+          "url": "https://models.spriters-resource.com/playstation/digimonworld2/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Sealsdramon",
+      "koreanName": "실즈드라몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "ShadowSeraphimon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Shakamon",
+      "koreanName": "샤카몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Sharkmon",
+      "koreanName": "샤크몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=sharkmon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Sharmamon",
+      "koreanName": "원시고부리몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=shamamon"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Shawjamon",
+      "koreanName": "사우자몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=shaujinmon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Shellmon",
+      "koreanName": "쉘몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=shellmon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Shoutmon + Starsword",
+      "koreanName": "샤우트몬[스타소드]",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Fusion Fighters",
+          "url": "https://models.spriters-resource.com/mobile/digimonfusionfighters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Shurimon",
+      "koreanName": "수리몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=shurimon"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Sirenmon",
+      "koreanName": "세이렌몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=sirenmon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Sistermon Ciel",
+      "koreanName": "시스터몬 시엘",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Story Cyber Sleuth: Complete Edition",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/"
+        },
+        {
+          "game": "TMR individual asset",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/asset/324399/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Sistermon Ciel (Awakened)",
+      "koreanName": "시스터몬 시엘[각성]",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Story Cyber Sleuth: Complete Edition",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonstorycybersleuthcompleteedition/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "SkullBaluchimon",
+      "koreanName": "스컬벌키몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=skullbaluchimon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "SkullMammothmon",
+      "koreanName": "스컬맘몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=skullmammothmon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "SkullSeadramon",
+      "koreanName": "스컬시드라몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=skullseadramon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "SlashAngemon",
+      "koreanName": "슬래쉬엔젤몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=slashangemon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Snimon",
+      "koreanName": "스나이몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=snimon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "SnowAgumon",
+      "koreanName": "스노우아구몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon ReArise",
+          "url": "https://models.spriters-resource.com/mobile/digimonrearise/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "SnowGoburimon",
+      "koreanName": "스노우고부리몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=snowgoblimon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Soulmon",
+      "koreanName": "소울몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        },
+        {
+          "game": "Digimon World 2",
+          "url": "https://models.spriters-resource.com/playstation/digimonworld2/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Submarimon",
+      "koreanName": "잠수몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=submarimon"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Swimmon",
+      "koreanName": "스윔몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Takutoumon Wrath Mode",
+      "koreanName": "탁탑몬: 래스 모드",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": "탁탑몬[래스 모드]"
+    },
+    {
+      "english": "Tankdramon",
+      "koreanName": "탱크드라몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=tankdramon"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Thundermon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "TiaLudomon",
+      "koreanName": "티아루도몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Tinkermon",
+      "koreanName": "팅커몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Toucanmon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Troopmon",
+      "koreanName": "트루프몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Tylomon",
+      "koreanName": "티로몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "UlforceVeedramon Future Mode",
+      "koreanName": "알포스브이드라몬[퓨처 모드]",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        },
+        {
+          "game": "TMR individual asset",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/333230/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "UltimateBrachiomon",
+      "koreanName": "얼티메이트브라키몬",
+      "status": "removed-by-request",
+      "reason": "Removed at user request on 2026-10-13",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=ultimatebrachiomon"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Upamon",
+      "koreanName": "우파몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "VictoryGreymon",
+      "koreanName": "빅토리그레이몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        },
+        {
+          "game": "TMR individual asset",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/asset/287764/"
+        }
+      ],
+      "previousRetirement": "빅토리그레이몬"
+    },
+    {
+      "english": "Vilemon",
+      "koreanName": "이블몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Volcdramon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "WaruMonzaemon",
+      "koreanName": "배드퍼펫몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Wendigomon",
+      "koreanName": "웬디몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=wendigomon"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Witchmon",
+      "koreanName": "위치몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=witchmon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Xingtianmon",
+      "koreanName": "싱티안몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Xiquemon",
+      "koreanName": "시취에몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Yaamon",
+      "koreanName": "야몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Yasyamon",
+      "koreanName": "",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Youkomon",
+      "koreanName": "요우코몬",
+      "status": "not-integrated",
+      "reason": "Original animated asset not yet obtained or validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Yuramon",
+      "koreanName": "유라몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon ReArise",
+          "url": "https://models.spriters-resource.com/mobile/digimonrearise/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Zanbamon",
+      "koreanName": "황금무사몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=zanbamon"
+        },
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Zephyrmon",
+      "koreanName": "슈츠몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon New Century",
+          "url": "https://models.spriters-resource.com/mobile/digimonnewcentury/"
+        },
+        {
+          "game": "Digimon Masters",
+          "url": "https://models.spriters-resource.com/pc_computer/digimonmasters/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "Zerimon",
+      "koreanName": "제리몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon ReArise",
+          "url": "https://models.spriters-resource.com/mobile/digimonrearise/"
+        }
+      ],
+      "previousRetirement": null
+    },
+    {
+      "english": "ZombiePlutomon",
+      "koreanName": "좀비플루토몬",
+      "status": "integrated",
+      "reason": "Native attack and model validated",
+      "sources": [
+        {
+          "game": "Digimon Story: Time Stranger",
+          "url": "https://nuffle.me/dsts-viewer?m=zombieplutomon"
+        }
+      ],
+      "previousRetirement": null
+    }
+  ],
+  "removedByRequest": 3
+}

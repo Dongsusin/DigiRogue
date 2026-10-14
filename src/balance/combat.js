@@ -76,13 +76,13 @@ export function scoreSkill(actor, skill, allies, opponents, matchup) {
   return skill.전체공격 ? scores.reduce((sum, value) => sum + value, 0) : Math.max(0, ...scores)
 }
 
-const canApplyStatus = (target, status) => {
+export const canApplyStatus = (target, status) => {
   const passive = getDigimonPassive(target)
   return status && !target.statusEffect && !target.battleGuards?.status &&
     !passive?.statusImmunities?.includes(status) && !(passive?.firstStatusWard && !target.passiveState?.wardUsed)
 }
 
-function statusUtility(actor, skill, target, damage) {
+export function statusUtility(actor, skill, target, damage) {
   const status = skill.상태이상, definition = getStatusEffectDefinition(status)
   if (!definition || !canApplyStatus(target, status) || damage >= target.currentHp) return 0
   const rawChance = Number.parseInt(skill.상태이상확률)

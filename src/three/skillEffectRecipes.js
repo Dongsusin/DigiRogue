@@ -1,6 +1,21 @@
+import expansionEffects from '../data/expansionSkillEffects.json' with { type: 'json' }
 // Technique art direction. Native clips and rig landmarks are resolved separately.
 // Shape, palette, flight path, attached motion and impact together distinguish a move.
-const PALETTES = {
+export const PALETTES = {
+  steel: { color: 0xa8bfd3, core: 0xeaf6ff, kind: 'energy' },
+  silver: { color: 0xd3e5f6, core: 0xffffff, kind: 'light' },
+  bone: { color: 0xc8b9a0, core: 0xf5eada, kind: 'earth' },
+  ember: { color: 0xffa135, core: 0xffe7a3, kind: 'fire' },
+  redElectric: { color: 0xef244d, core: 0xffc0c9, kind: 'electric' },
+  toxin: { color: 0x9972de, core: 0xd3f4a8, kind: 'nature' },
+  violet: { color: 0x9b67ef, core: 0xc8a7ff, kind: 'dark' },
+  ink: { color: 0x322244, core: 0x8e66b0, kind: 'dark' },
+  crimson: { color: 0xc9244c, core: 0xff9b92, kind: 'dark' },
+  sand: { color: 0xb98c55, core: 0xf2d5a2, kind: 'earth' },
+  pollen: { color: 0xe3c74a, core: 0xf6f2a7, kind: 'nature' },
+  sludge: { color: 0x6f5b39, core: 0xb89965, kind: 'earth' },
+  eclipse: { color: 0xe68e3a, core: 0xb9d7ff, kind: 'energy' },
+  rainbow: { color: 0xcf76ff, core: 0x9cefff, kind: 'electric' },
   blueFlame: { color: 0x1976ff, core: 0xa6e5ff, kind: 'fire' },
   spectralFlame: { color: 0xf15ac6, core: 0xffc7f0, kind: 'fire' },
   frost: { color: 0x58cfff, core: 0xd3f6ff, kind: 'ice' },
@@ -145,15 +160,16 @@ const impactByStyle = {
   vortex: 'tornado', wave: 'water', ring: 'glyph', portal: 'portal', summon: 'summon', mist: 'mist', spike: 'earth',
   hellfire: 'darkBurst',
 }
-export function getSkillEffectRecipe(skillName, styleId, attribute = '') {
-  const specific = byName.get(key(skillName)) || {}
+export function getSkillEffectRecipe(skillName, styleId, attribute = '', species = '') {
+  const authored = expansionEffects[species]?.[skillName]
+  const specific = { ...(byName.get(key(skillName)) || {}), ...authored }
   const style = specific.style || styleId
   const wind = ['vortex', 'spin', 'air'].includes(style) || /토네이도|타이푼|회오리|템페스트/.test(skillName)
   const water = /물|수중|water/i.test(attribute) && ['wave', 'bubble', 'fish', 'orb', 'breath'].includes(style)
   let motif = specific.motif || style
   if (style === 'orb' && !specific.motif) motif = /빛|신성/.test(attribute) ? 'holy' : /어둠/.test(attribute) ? 'souls' : /전기/.test(attribute) ? 'plasma' : 'energy'
   const motion = specific.motion || ({ spin: 'tornado', drill: 'drill', rush: 'rush', punch: 'strike', claw: 'claw', slash: 'slash', spear: 'thrust', hammer: 'slam', bite: 'bite', tail: 'slash', wingStrike: 'claw', native: 'nightmare' }[style])
-  return { ...specific, style, motif, impact: specific.impact || impactByStyle[style] || 'burst',
+  return { ...specific, ...(authored ? { source: 'expansion-signature' } : {}), style, motif, impact: specific.impact || impactByStyle[style] || 'burst',
     ...(motion ? { motion } : {}),
     palette: PALETTES[specific.palette] || (wind ? PALETTES.wind : water ? PALETTES.water : null),
     trajectory: specific.trajectory || (['rock', 'bomb', 'seed', 'meteor', 'missile'].includes(style) ? 'lob' : 'straight'),

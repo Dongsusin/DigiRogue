@@ -3,8 +3,8 @@ import profiles from '../data/attackProfiles.json' with { type: 'json' }
 
 // Resolve after sampling the source animation and updating world matrices.
 export function attackEmitter(actor, plan, target, shotIndex = 0) {
-  const { role, bone, secondBone } = plan.emitter
-  const selectedBone = shotIndex % 2 && secondBone ? secondBone : bone
+  const { role, bone, secondBone, bones } = plan.emitter
+  const selectedBone = bones?.length ? bones[shotIndex % bones.length] : shotIndex % 2 && secondBone ? secondBone : bone
   const joint = selectedBone && actor.model?.getObjectByName(selectedBone)
   const height = actor.height * (actor.modelHeight ?? 1)
   const localTip = shotIndex % 2 && secondBone ? plan.emitter.secondOffset : plan.emitter.offset
@@ -14,7 +14,9 @@ export function attackEmitter(actor, plan, target, shotIndex = 0) {
   if (role === 'overhead') origin.y = Math.max(origin.y + height * .3, actor.root.position.y + height * 1.22)
   const direction = target.clone().sub(origin).normalize()
   const offset = role === 'shoulders' ? .065 : role === 'mouth' ? .18 : ['hand', 'hands', 'leftHand', 'rightHand', 'cannon', 'bow', 'weapon'].includes(role) ? .14 : .02
-  return origin.addScaledVector(direction, height * offset)
+  origin.y += height * (Number.isFinite(plan.emitter.lift) ? Math.max(-.2, Math.min(.2, plan.emitter.lift)) : 0)
+  const reach = Number.isFinite(plan.emitter.reach) ? Math.max(0, Math.min(.3, plan.emitter.reach)) : offset
+  return origin.addScaledVector(direction, height * reach)
 }
 
 // The body-to-head axis follows the sampled skeleton in world space, including
