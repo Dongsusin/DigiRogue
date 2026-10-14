@@ -1,0 +1,479 @@
+{
+  "exitCode": 0,
+  "url": "https://digirouge.co.kr",
+  "version": "4a35a56d0bea5727",
+  "assets": 2287,
+  "models": 26,
+  "verifiedFiles": 78,
+  "bytes": 26412448,
+  "records": [
+    {
+      "path": "/models/digimon/thumbs/snowagumon.webp",
+      "status": 200,
+      "bytes": 14606,
+      "sha256": "5d1a16f50ee20ca6e7ef965eb305f2ccb0fa5817a0f8b596520d8ec0a661f73a"
+    },
+    {
+      "path": "/models/digimon/thumbs/elecmon-violet.webp",
+      "status": 200,
+      "bytes": 18964,
+      "sha256": "4fc55eea7796c1f1030c29b344b3ee9270614d5952d274a7671035774498e16d"
+    },
+    {
+      "path": "/models/digimon/previews/elecmon-violet.webp",
+      "status": 200,
+      "bytes": 18964,
+      "sha256": "4fc55eea7796c1f1030c29b344b3ee9270614d5952d274a7671035774498e16d"
+    },
+    {
+      "path": "/models/digimon/snowagumon.glb",
+      "status": 200,
+      "bytes": 593072,
+      "sha256": "2bff1dbe3e6a310587b9228defeae84aabe5b819d2785727393cc0c94b544acc"
+    },
+    {
+      "path": "/models/digimon/thumbs/bombernanimon.webp",
+      "status": 200,
+      "bytes": 23006,
+      "sha256": "f76dbc192ef775b259e5a92c11369323380bca68fcbe3365743fce8927267804"
+    },
+    {
+      "path": "/models/digimon/elecmon-violet.glb",
+      "status": 200,
+      "bytes": 437528,
+      "sha256": "c47aa86a1ec713372d70a4c4ae5af75f8ee2314ef880f26b8d6908b7533a14f3"
+    },
+    {
+      "path": "/models/digimon/previews/bombernanimon.webp",
+      "status": 200,
+      "bytes": 23006,
+      "sha256": "f76dbc192ef775b259e5a92c11369323380bca68fcbe3365743fce8927267804"
+    },
+    {
+      "path": "/models/digimon/previews/snowagumon.webp",
+      "status": 200,
+      "bytes": 14606,
+      "sha256": "5d1a16f50ee20ca6e7ef965eb305f2ccb0fa5817a0f8b596520d8ec0a661f73a"
+    },
+    {
+      "path": "/models/digimon/bombernanimon.glb",
+      "status": 200,
+      "bytes": 567184,
+      "sha256": "72cefbcdfa31bd4cd5514e763366bd6c3339f75d9e594288013ec8a5d991042e"
+    },
+    {
+      "path": "/models/digimon/thumbs/youkomon.webp",
+      "status": 200,
+      "bytes": 18712,
+      "sha256": "be238c66b560eea1f6bdc60600932b46c051c10c64bdf7c396ce644683882a0a"
+    },
+    {
+      "path": "/models/digimon/previews/youkomon.webp",
+      "status": 200,
+      "bytes": 18712,
+      "sha256": "be238c66b560eea1f6bdc60600932b46c051c10c64bdf7c396ce644683882a0a"
+    },
+    {
+      "path": "/models/digimon/youkomon.glb",
+      "status": 200,
+      "bytes": 700580,
+      "sha256": "da090df60de1a2a065af5d9484de9c364f6ce94140f3196bb9766b6f8a05ad46"
+    },
+    {
+      "path": "/models/digimon/previews/doumon.webp",
+      "status": 200,
+      "bytes": 13852,
+      "sha256": "9d690db73c43a507abcb312a7ce57a49c940791f995fe63d7603496544924baa"
+    },
+    {
+      "path": "/models/digimon/saberdramon.glb",
+      "status": 200,
+      "bytes": 586084,
+      "sha256": "18ef924df0b24df4dfaea6e84912951187e5a39006e13d56a8fc673864f4d24e"
+    },
+    {
+      "path": "/models/digimon/thumbs/saberdramon.webp",
+      "status": 200,
+      "bytes": 9428,
+      "sha256": "e92e2fc38e9467df09a66146e6313a5c4dbcbd08cbe007c8807dd0e37b833abd"
+    },
+    {
+      "path": "/models/digimon/previews/saberdramon.webp",
+      "status": 200,
+      "bytes": 9428,
+      "sha256": "e92e2fc38e9467df09a66146e6313a5c4dbcbd08cbe007c8807dd0e37b833abd"
+    },
+    {
+      "path": "/models/digimon/thumbs/doumon.webp",
+      "status": 200,
+      "bytes": 13852,
+      "sha256": "9d690db73c43a507abcb312a7ce57a49c940791f995fe63d7603496544924baa"
+    },
+    {
+      "path": "/models/digimon/doumon.glb",
+      "status": 200,
+      "bytes": 800992,
+      "sha256": "e84a71a466717cd101fe365f863c4835b54c1ce3c261f3b8f00bd668ce8a724e"
+    },
+    {
+      "path": "/models/digimon/thumbs/shoutmon-starsword.webp",
+      "status": 200,
+      "bytes": 21118,
+      "sha256": "5fd526d276533a91e63d484ce817df8e821a7cc5208f627a8f75cd955b5ed1c9"
+    },
+    {
+      "path": "/models/digimon/shoutmon-starsword.glb",
+      "status": 200,
+      "bytes": 244116,
+      "sha256": "2d11b961e309f82dee2477de4b2d4f1cd781bf6ce0b8e3d04cfda408b1254069"
+    },
+    {
+      "path": "/models/digimon/previews/shoutmon-starsword.webp",
+      "status": 200,
+      "bytes": 21118,
+      "sha256": "5fd526d276533a91e63d484ce817df8e821a7cc5208f627a8f75cd955b5ed1c9"
+    },
+    {
+      "path": "/models/digimon/thumbs/craniamon-enbarrmon.webp",
+      "status": 200,
+      "bytes": 35950,
+      "sha256": "1428d9ef58299f33b5c4b66f9a16ccb23faecdfce4ec88dfc8185721472504b9"
+    },
+    {
+      "path": "/models/digimon/previews/craniamon-enbarrmon.webp",
+      "status": 200,
+      "bytes": 35950,
+      "sha256": "1428d9ef58299f33b5c4b66f9a16ccb23faecdfce4ec88dfc8185721472504b9"
+    },
+    {
+      "path": "/models/digimon/thumbs/titamon-skullbaluchimon.webp",
+      "status": 200,
+      "bytes": 21204,
+      "sha256": "6cceb2d5e379dff9020221702a0961cb12c1f0104ac59c5446c7ea6aaa162132"
+    },
+    {
+      "path": "/models/digimon/previews/titamon-skullbaluchimon.webp",
+      "status": 200,
+      "bytes": 21204,
+      "sha256": "6cceb2d5e379dff9020221702a0961cb12c1f0104ac59c5446c7ea6aaa162132"
+    },
+    {
+      "path": "/models/digimon/thumbs/allomon.webp",
+      "status": 200,
+      "bytes": 22706,
+      "sha256": "143199d4103df61400c74fe6e06027aba5900863105afcab922b439138892a9b"
+    },
+    {
+      "path": "/models/digimon/craniamon-enbarrmon.glb",
+      "status": 200,
+      "bytes": 2339536,
+      "sha256": "100c1ddfe52a3fc4f963ffe82f0d82a3679bc80988ee6ee63fc5e240e908f794"
+    },
+    {
+      "path": "/models/digimon/previews/allomon.webp",
+      "status": 200,
+      "bytes": 22706,
+      "sha256": "143199d4103df61400c74fe6e06027aba5900863105afcab922b439138892a9b"
+    },
+    {
+      "path": "/models/digimon/allomon.glb",
+      "status": 200,
+      "bytes": 938064,
+      "sha256": "374325cbd6cf8bf127bcf0e86d333e33fa04f4669728ca789db10526cf23e545"
+    },
+    {
+      "path": "/models/digimon/previews/blossomon.webp",
+      "status": 200,
+      "bytes": 33560,
+      "sha256": "da88c600a2e07dd533ccd1cc1171c17d7daab4abb17ca512ebd4aca6f649e3df"
+    },
+    {
+      "path": "/models/digimon/titamon-skullbaluchimon.glb",
+      "status": 200,
+      "bytes": 3256484,
+      "sha256": "833ef5ae90892749d4b238d364883e1d0039ea655a0ea3838cbdc2703ae72258"
+    },
+    {
+      "path": "/models/digimon/thumbs/blossomon.webp",
+      "status": 200,
+      "bytes": 33560,
+      "sha256": "da88c600a2e07dd533ccd1cc1171c17d7daab4abb17ca512ebd4aca6f649e3df"
+    },
+    {
+      "path": "/models/digimon/thumbs/babamon.webp",
+      "status": 200,
+      "bytes": 18136,
+      "sha256": "de2c7e9017db6f6bca87a1ad0e6ad2d401aadf690251d0a58cd862a797d4b4b9"
+    },
+    {
+      "path": "/models/digimon/previews/babamon.webp",
+      "status": 200,
+      "bytes": 18136,
+      "sha256": "de2c7e9017db6f6bca87a1ad0e6ad2d401aadf690251d0a58cd862a797d4b4b9"
+    },
+    {
+      "path": "/models/digimon/blossomon.glb",
+      "status": 200,
+      "bytes": 868792,
+      "sha256": "bc07c94a7668a65d22c80a7f7e9946aa463ff5b266de087aa626ddfe8abb2cc5"
+    },
+    {
+      "path": "/models/digimon/thumbs/candlemon.webp",
+      "status": 200,
+      "bytes": 13614,
+      "sha256": "e2b8e6047551a7c1c4039ddc48c271042ed8a9ad2799b5c8d6b792b6bac1aad1"
+    },
+    {
+      "path": "/models/digimon/candlemon.glb",
+      "status": 200,
+      "bytes": 424600,
+      "sha256": "c748d310405ec28ea8ddbb1e5a28967444cc9ccea0386774198865425dc1b02c"
+    },
+    {
+      "path": "/models/digimon/previews/candlemon.webp",
+      "status": 200,
+      "bytes": 13614,
+      "sha256": "e2b8e6047551a7c1c4039ddc48c271042ed8a9ad2799b5c8d6b792b6bac1aad1"
+    },
+    {
+      "path": "/models/digimon/babamon.glb",
+      "status": 200,
+      "bytes": 1226400,
+      "sha256": "6c4f53833a2ff47174fc3370abb325943b026a4873ac00ed04202e718b333851"
+    },
+    {
+      "path": "/models/digimon/thumbs/ebidramon.webp",
+      "status": 200,
+      "bytes": 18530,
+      "sha256": "7a505f9a8d1c78582f5d6c790add8abdb9c65a11e9aded0a6d4d3fe494ebd612"
+    },
+    {
+      "path": "/models/digimon/previews/ebidramon.webp",
+      "status": 200,
+      "bytes": 18530,
+      "sha256": "7a505f9a8d1c78582f5d6c790add8abdb9c65a11e9aded0a6d4d3fe494ebd612"
+    },
+    {
+      "path": "/models/digimon/ebidramon.glb",
+      "status": 200,
+      "bytes": 1006928,
+      "sha256": "1168f45dd1f132f399ce3affd3bf4c4992fa11cd85f7de0e6b84834118770f3a"
+    },
+    {
+      "path": "/models/digimon/thumbs/giromon.webp",
+      "status": 200,
+      "bytes": 11226,
+      "sha256": "d1f54c0ccf17a8e0045ff090f820c7774883b30150f4ec3dd53eb43ce6820ff7"
+    },
+    {
+      "path": "/models/digimon/previews/giromon.webp",
+      "status": 200,
+      "bytes": 11226,
+      "sha256": "d1f54c0ccf17a8e0045ff090f820c7774883b30150f4ec3dd53eb43ce6820ff7"
+    },
+    {
+      "path": "/models/digimon/thumbs/kazemon.webp",
+      "status": 200,
+      "bytes": 13230,
+      "sha256": "49d6ceaa9b611edd4246e2cfe431b0b68b3b2c3b25461fae58ff630b01627aec"
+    },
+    {
+      "path": "/models/digimon/previews/kazemon.webp",
+      "status": 200,
+      "bytes": 13230,
+      "sha256": "49d6ceaa9b611edd4246e2cfe431b0b68b3b2c3b25461fae58ff630b01627aec"
+    },
+    {
+      "path": "/models/digimon/giromon.glb",
+      "status": 200,
+      "bytes": 635496,
+      "sha256": "e980e47fd003ead6fd5fe86cfc29a9fce3cce430ba90835be1e6d3fd31f4e170"
+    },
+    {
+      "path": "/models/digimon/kazemon.glb",
+      "status": 200,
+      "bytes": 1044552,
+      "sha256": "4d2414ab68d8f7ec6f106e3d930d6eee7827b5358e7297e7619db86589b97e66"
+    },
+    {
+      "path": "/models/digimon/previews/kodokugumon.webp",
+      "status": 200,
+      "bytes": 13074,
+      "sha256": "677ace8d3113807179579cb14981f75deeafd780ec7022e251869509f74ae980"
+    },
+    {
+      "path": "/models/digimon/thumbs/kodokugumon.webp",
+      "status": 200,
+      "bytes": 13074,
+      "sha256": "677ace8d3113807179579cb14981f75deeafd780ec7022e251869509f74ae980"
+    },
+    {
+      "path": "/models/digimon/kodokugumon.glb",
+      "status": 200,
+      "bytes": 725232,
+      "sha256": "48d126a6f6a97da5b42438cfad3ec87dd64465df67628acef0a723dfaaf4757e"
+    },
+    {
+      "path": "/models/digimon/previews/korikakumon.webp",
+      "status": 200,
+      "bytes": 21794,
+      "sha256": "75448254d979e1df31550d5c746e4c9c990fe8fb4b6fa110cbbd2cf8567afc16"
+    },
+    {
+      "path": "/models/digimon/thumbs/korikakumon.webp",
+      "status": 200,
+      "bytes": 21794,
+      "sha256": "75448254d979e1df31550d5c746e4c9c990fe8fb4b6fa110cbbd2cf8567afc16"
+    },
+    {
+      "path": "/models/digimon/thumbs/kumamon.webp",
+      "status": 200,
+      "bytes": 16976,
+      "sha256": "d326556af38efde65232693524a58824ed82973e0bd13b1aa115e30e0de0cdda"
+    },
+    {
+      "path": "/models/digimon/kumamon.glb",
+      "status": 200,
+      "bytes": 570824,
+      "sha256": "f531c3a469cd60c505189ed799ea47253c196333567bbf21ac5991797f1a7334"
+    },
+    {
+      "path": "/models/digimon/korikakumon.glb",
+      "status": 200,
+      "bytes": 941076,
+      "sha256": "f2a43f2aa18b8be662597f6f657155a1ea046a71be9c339dab096686630fc4f5"
+    },
+    {
+      "path": "/models/digimon/previews/kumamon.webp",
+      "status": 200,
+      "bytes": 16976,
+      "sha256": "d326556af38efde65232693524a58824ed82973e0bd13b1aa115e30e0de0cdda"
+    },
+    {
+      "path": "/models/digimon/thumbs/redvegimon.webp",
+      "status": 200,
+      "bytes": 14354,
+      "sha256": "326f25c6f8c17d687384085d42104c6413367168094c139614dce307cfe99c0c"
+    },
+    {
+      "path": "/models/digimon/previews/redvegimon.webp",
+      "status": 200,
+      "bytes": 14354,
+      "sha256": "326f25c6f8c17d687384085d42104c6413367168094c139614dce307cfe99c0c"
+    },
+    {
+      "path": "/models/digimon/redvegimon.glb",
+      "status": 200,
+      "bytes": 607304,
+      "sha256": "98c01067b1668131259bef96dbe99d8b293a90f1aea3ed437a3626399dec20fa"
+    },
+    {
+      "path": "/models/digimon/thumbs/reapmon.webp",
+      "status": 200,
+      "bytes": 18012,
+      "sha256": "b3643dbf0416a441809b214f9c52a1e456b1aff42beb5fe0900f34ae810c3186"
+    },
+    {
+      "path": "/models/digimon/previews/reapmon.webp",
+      "status": 200,
+      "bytes": 18012,
+      "sha256": "b3643dbf0416a441809b214f9c52a1e456b1aff42beb5fe0900f34ae810c3186"
+    },
+    {
+      "path": "/models/digimon/reapmon.glb",
+      "status": 200,
+      "bytes": 1200880,
+      "sha256": "1d12c7739d06f5fe857b73cb313cf1dbd80b458d38ae55086fb483a6162ba3ac"
+    },
+    {
+      "path": "/models/digimon/thumbs/vilemon.webp",
+      "status": 200,
+      "bytes": 18222,
+      "sha256": "8cbb1becd53be1038253469f82dc233f91368b3285e96a363ea9b57c5ca60a95"
+    },
+    {
+      "path": "/models/digimon/previews/vilemon.webp",
+      "status": 200,
+      "bytes": 18222,
+      "sha256": "8cbb1becd53be1038253469f82dc233f91368b3285e96a363ea9b57c5ca60a95"
+    },
+    {
+      "path": "/models/digimon/thumbs/zephyrmon.webp",
+      "status": 200,
+      "bytes": 16428,
+      "sha256": "4d3cc072fe357a936ca7f84c48df94ee9f80215083380f899afd83bc39501d7a"
+    },
+    {
+      "path": "/models/digimon/vilemon.glb",
+      "status": 200,
+      "bytes": 818240,
+      "sha256": "688acfdc1ade8d689b18838f33dc49140fc05ffd899fc0ceeb39c634d7aa59d5"
+    },
+    {
+      "path": "/models/digimon/thumbs/asuramon.webp",
+      "status": 200,
+      "bytes": 18668,
+      "sha256": "d6321fe5e6cdb09946d3edadd65cd47e437a2381e9ed6402ed1e61db38df6066"
+    },
+    {
+      "path": "/models/digimon/previews/zephyrmon.webp",
+      "status": 200,
+      "bytes": 16428,
+      "sha256": "4d3cc072fe357a936ca7f84c48df94ee9f80215083380f899afd83bc39501d7a"
+    },
+    {
+      "path": "/models/digimon/zephyrmon.glb",
+      "status": 200,
+      "bytes": 1239940,
+      "sha256": "1bb8aef6e5ca7d12f3937ceb08a6beceeda803f2a9001b2b8de29ea5b0ea927d"
+    },
+    {
+      "path": "/models/digimon/previews/asuramon.webp",
+      "status": 200,
+      "bytes": 18668,
+      "sha256": "d6321fe5e6cdb09946d3edadd65cd47e437a2381e9ed6402ed1e61db38df6066"
+    },
+    {
+      "path": "/models/digimon/thumbs/gesomon.webp",
+      "status": 200,
+      "bytes": 16276,
+      "sha256": "90e22311a9e38aca07f1e7ad530903b13c82d403613a9214b374455be1eb9271"
+    },
+    {
+      "path": "/models/digimon/previews/gesomon.webp",
+      "status": 200,
+      "bytes": 16276,
+      "sha256": "90e22311a9e38aca07f1e7ad530903b13c82d403613a9214b374455be1eb9271"
+    },
+    {
+      "path": "/models/digimon/gesomon.glb",
+      "status": 200,
+      "bytes": 526392,
+      "sha256": "afebf3e0481eb1f69cc4a6ed306b3716633ace5d0c34bb0e9c8c325f7d7f0479"
+    },
+    {
+      "path": "/models/digimon/asuramon.glb",
+      "status": 200,
+      "bytes": 2129512,
+      "sha256": "e9afbe4ff4139f26f72ba036a7ddcf5f7dbf2338f7b5f4980f4661b873f3cbbe"
+    },
+    {
+      "path": "/models/digimon/thumbs/tinkermon.webp",
+      "status": 200,
+      "bytes": 15900,
+      "sha256": "9b6c195a092ca5353649eeee271a115d3d05155e0c91ee9861679b60c0ef513d"
+    },
+    {
+      "path": "/models/digimon/previews/tinkermon.webp",
+      "status": 200,
+      "bytes": 15900,
+      "sha256": "9b6c195a092ca5353649eeee271a115d3d05155e0c91ee9861679b60c0ef513d"
+    },
+    {
+      "path": "/models/digimon/tinkermon.glb",
+      "status": 200,
+      "bytes": 1027548,
+      "sha256": "4d4ffeb6e5e518e62adfc91d5f1db07f6197cec181647669ed2534aa856862f8"
+    }
+  ]
+}

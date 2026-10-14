@@ -44,8 +44,23 @@
     "errors": 0
   },
   "release": {
-    "deployed": false,
-    "url": "https://digirouge.co.kr/"
+    "deployed": true,
+    "exitCode": 0,
+    "url": "https://digirouge.co.kr/",
+    "deploymentUrl": "https://digilog-web-preview-avdckfd1i-dongsusins-projects.vercel.app",
+    "deploymentId": "2yD3ZdEb3Ftr5o154uWKyidfFVVw",
+    "sourceCommit": "651d9591b29f26867b50d400b552063fe160c713",
+    "downloadVersion": "4a35a56d0bea5727",
+    "verifiedModels": 26,
+    "verifiedFiles": 78,
+    "sourceParity": true,
+    "browser": {
+      "exitCode": 0,
+      "guestEntry": true,
+      "googleEntry": true,
+      "scriptErrors": 0,
+      "failedRequests": 0
+    }
   },
   "unverified": [
     "200-stage long-session playthrough",
