@@ -2,7 +2,7 @@ import { HALL_STORAGE_KEY, requeueImportedHallLedger } from '../progression/hall
 
 export const PROFILE_PROGRESS_KEYS = Object.freeze([
   'digirogue-collection-v1', 'digirogue-scan-progress-v1', 'digirogue-trainer-skills-v1',
-  'digirogue-town-v1', 'digirogue-regional-trust-v1', 'digirogue-modes-v1',
+  'digirogue-town-v1', 'digirogue-achievement-pending-v1', 'digirogue-regional-trust-v1', 'digirogue-modes-v1',
   'digirogue-save-v1', ...[1, 2, 3].map(n => 'digirogue-save-slot-' + n + '-v1'),
   'digirogue-hall-of-fame-v1',
   'digirogue-settings-v1', 'digirogue-local-migration-v1',
@@ -11,10 +11,13 @@ export const accountStorageKey = (uid, key) => 'digirogue-account:' + encodeURIC
 // Linking a guest is an explicit migration. A returning Google profile always wins.
 export function importGuestProgress(storage, uid) {
   if (!storage || !uid) throw new Error('저장 공간을 준비하지 못했습니다.')
-  if (PROFILE_PROGRESS_KEYS.some(key => storage.getItem(accountStorageKey(uid, key)) !== null)) return { copied: false, reason: 'existing-account' }
+  const evidencePrefix = 'digirogue-achievement-evidence-v1:'
+  const storedKeys = Array.from({ length: storage.length ?? 0 }, (_, index) => storage.key(index)).filter(key => typeof key === 'string')
+  const keys = [...PROFILE_PROGRESS_KEYS, ...storedKeys.filter(key => key.startsWith(evidencePrefix))]
+  if (keys.some(key => storage.getItem(accountStorageKey(uid, key)) !== null) || storedKeys.some(key => key.startsWith(accountStorageKey(uid, evidencePrefix)))) return { copied: false, reason: 'existing-account' }
   const copied = []
   try {
-    for (const key of PROFILE_PROGRESS_KEYS) {
+    for (const key of keys) {
       const original = storage.getItem(key)
       if (original === null) continue
       const value = key === HALL_STORAGE_KEY ? requeueImportedHallLedger(original) : original

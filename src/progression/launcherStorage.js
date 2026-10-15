@@ -1,9 +1,10 @@
 const GUEST_KEY = 'digirogue-local-guest-v1'
 const keys = new Set(['digirogue-collection-v1', 'digirogue-scan-progress-v1', 'digirogue-trainer-skills-v1',
-  'digirogue-town-v1', 'digirogue-regional-trust-v1', 'digirogue-modes-v1', 'digirogue-save-v1', 'digirogue-save-slot-1-v1', 'digirogue-save-slot-2-v1',
+  'digirogue-town-v1', 'digirogue-achievement-pending-v1', 'digirogue-regional-trust-v1', 'digirogue-modes-v1', 'digirogue-save-v1', 'digirogue-save-slot-1-v1', 'digirogue-save-slot-2-v1',
   'digirogue-save-slot-3-v1', 'digirogue-settings-v1', 'digirogue-local-migration-v1', GUEST_KEY])
-const permitted = key => keys.has(key) || /^digirogue-local-recovery-v1:digirogue-[a-z0-9-]+(?::\d+)?$/.test(key) ||
-  /^digirogue-account:[^:]+:digirogue-(collection|scan-progress|trainer-skills|modes|save|save-slot-[1-3]|settings)-v1$/.test(key)
+const permitted = key => keys.has(key) || /^digirogue-achievement-evidence-v1:[\w-]+$/.test(key) ||
+  /^digirogue-account:[^:]+:digirogue-achievement-evidence-v1:[\w-]+$/.test(key) || /^digirogue-local-recovery-v1:digirogue-[a-z0-9-]+(?::\d+)?$/.test(key) ||
+  /^digirogue-account:[^:]+:digirogue-(collection|scan-progress|trainer-skills|achievement-pending|town|regional-trust|modes|save|save-slot-[1-3]|settings)-v1$/.test(key)
 
 export function createLauncherStorage(bridge, previousStorage) {
   if (bridge.version !== 1 || bridge.gameId !== 'digilog') throw new Error('런처를 최신 버전으로 업데이트해 주세요.')

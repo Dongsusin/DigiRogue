@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';import test from 'node:test';
 import {layoutTrainerSkills} from '../src/layout/trainerSkillLayout.js';
 import {TRAINER_SKILLS} from '../src/progression/trainerSkills.js';
-const views=[['cost',''],...['hp','attack','defense','specialAttack','specialDefense','speed','evolution','boss'].map(tab=>['stats',tab]),['items',''],['growth','exp'],['growth','scan']];
+const views=[['cost',''],...['hp','attack','defense','specialAttack','specialDefense','speed','evolution','boss'].map(tab=>['stats',tab]),['items',''],['growth','exp'],['growth','scan'],['growth','support']];
 const bounds=node=>({left:node.x-(node.group==='root'?52:40),right:node.x+(node.group==='root'?52:40),top:node.y-(node.group==='root'?66:52),bottom:node.y+(node.group==='root'?66:52)});
 const intersects=(a,b)=>Math.min(a.right,b.right)>Math.max(a.left,b.left)&&Math.min(a.bottom,b.bottom)>Math.max(a.top,b.top);
 function assertReachable(layout){const {nodes,width,height}=layout;assert(nodes.length>0);const boxes=nodes.map(bounds);for(let i=0;i<nodes.length;i++){assert(boxes[i].left>=0&&boxes[i].right<=width&&boxes[i].top>=0&&boxes[i].bottom<=height,'Node clipped by scroll canvas: '+nodes[i].id);for(let j=i+1;j<nodes.length;j++)assert(!intersects(boxes[i],boxes[j]),'Overlapping skills: '+nodes[i].id+' / '+nodes[j].id);}

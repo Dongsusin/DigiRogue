@@ -4,7 +4,7 @@ const items = [
   { key: 'new-game', label: '새로하기', subtitle: 'NEW GAME' },
   { key: 'continue', label: '이어하기', subtitle: 'CONTINUE' },
   { key: 'skills', label: '스킬' },
-  { key: 'town', label: '마을' },
+  { key: 'achievements', label: '업적' },
   { key: 'dex', label: '도감' },
   { key: 'hall-of-fame', label: '명예의 전당' },
   { key: 'settings', label: '설정' },
@@ -15,7 +15,7 @@ function MenuIcon({ kind }) {
     {kind === 'new-game' && <path d="M7 3.5 27 16 7 28.5Z" fill="currentColor" strokeWidth="1.5" />}
     {kind === 'continue' && <><path d="M7 3h12l7 7v19H7Z" /><path d="M19 3v8h7M12 16h9m-9 5h9" /></>}
     {kind === 'skills' && <><path d="m16 3 3.3 9.7L29 16l-9.7 3.3L16 29l-3.3-9.7L3 16l9.7-3.3Z" /><path d="m5 5 2 2m18-2-2 2M5 27l2-2m18 2-2-2" /></>}
-    {kind === 'town' && <><path d="m2 15 14-12 14 12M6 12v17h20V12" /><path d="M12 29V18h8v11M10 13h12" /></>}
+    {kind === 'achievements' && <><circle cx="16" cy="12" r="8" /><path d="m11 19-2 10 7-4 7 4-2-10M16 7l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5-2.5-2.5 3.5-.5Z" /></>}
     {kind === 'dex' && <><path d="M16 7C11 2 5 3 2 5v22c4-2 9-2 14 2 5-4 10-4 14-2V5c-3-2-9-3-14 2Z" /><path d="M16 7v22" /></>}
     {kind === 'hall-of-fame' && <><path d="M9 4h14v9a7 7 0 0 1-14 0V4ZM9 7H4v5c0 4 3 6 7 6M23 7h5v5c0 4-3 6-7 6M16 20v7M10 28h12" /></>}
     {kind === 'settings' && <><path d="m12 3-1 4-3 2-4-1-2 5 3 3v3l-3 3 3 5 4-1 3 2 1 3h6l1-3 3-2 4 1 3-5-3-3v-3l3-3-2-5-4 1-3-2-1-4Z" /><circle cx="16" cy="17" r="5" /></>}

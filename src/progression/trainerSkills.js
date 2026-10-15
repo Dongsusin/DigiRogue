@@ -1,5 +1,6 @@
 import { DIGIMON_TRAINING_TRAITS } from '../data/digimonTrainingTraits.js'
 import { normalizeEvolutionMemory, mergeEvolutionMemory } from './evolutionMemory.js'
+import { normalizeAchievementState } from './achievementState.js'
 import { resolveItemLuck } from './itemLuck.js'
 import { LEGACY_DIGIMON_STAGES } from '../data/digimonStages.js'
 
@@ -44,6 +45,7 @@ function createRankCosts(node) {
   else if (kind === 'boss') costs = category || finisher ? [3, 4, 5] : scope ? [1, 2, 3] : [2, 2, 3, 3, 4]
   else if (kind === 'evolutionRequirement') costs = [2, 2, 3, 4, 5]
   else if (kind === 'evolutionMemory') costs = [5]
+  else if (kind === 'departure') costs = [2, 3, 5]
   else if (kind === 'luck') costs = [[1, 1, 2, 2, 3], [2, 2, 3, 3, 4], [3, 4, 5], [4, 5, 5]][luckTier]
   else if (kind === 'experience') costs = reserve || boss ? [2, 3, 4] : scope ? [1, 2, 3] : [1, 1, 2, 2, 3]
   else if (kind === 'scan') costs = mode === 'card' ? [2, 3, 4] : scope || mode ? [1, 2, 3] : [1, 1, 2, 2, 3]
@@ -131,6 +133,16 @@ for (const [group, values] of [['stage', TRAINER_STAGES], ['attribute', TRAINER_
     { kind: 'scan', amount: .75, scope: { [group]: value } },
     { tab: 'scan', group, label: value, icon: 'scan', requires: [{ id: 'growth-scan', rank: 1 }] }))
 
+// Permanent departure benefits formerly provided by town facilities.
+for (const [id, name, description, icon] of [
+  ['gold', '출발 자금', '새 모험의 시작 골드 +150/단계. 최대 +450. 데일리 제외.', 'budget'],
+  ['food', '탐험 식량', '감자튀김 → 햄버거 → 치킨 콤보, 단계별 식량 2개를 보급합니다. 데일리 제외.', 'item'],
+  ['recovery', '회복 보급', '에너지필 A 1~3개. 3단계에서 디지소울 충전 1개 추가. 데일리 제외.', 'hp'],
+  ['tools', '탐색 장비', 'D-터미널 → D-스캐너 → 디지바이스 IC를 차례로 추가 보급합니다. 데일리 제외.', 'scan'],
+  ['egg-preparation', '부화 준비', '새 알의 부화를 1/1/2스테이지 단축. 2단계부터 디지바이스 IC 1개 보급. 데일리 제외.', 'evolution'],
+]) define(id === 'egg-preparation' ? 'growth-egg-preparation' : 'growth-start-' + id,
+  'growth', name, description, { kind: 'departure', amount: 1 }, { tab: 'support', icon })
+
 export const TRAINER_SKILLS = Object.freeze(definitions)
 export const TRAINER_SKILL_LOOKUP = Object.freeze(Object.assign(Object.create(null), Object.fromEntries(definitions.map(node => [node.id, node]))))
 const integer = (value, max = Number.MAX_SAFE_INTEGER) => Number.isSafeInteger(value) ? Math.max(0, Math.min(max, value)) : 0
@@ -173,7 +185,7 @@ export function normalizeTrainerProgress(value) {
   const endlessMilestones = normalizeEndlessMilestones(value?.endlessMilestones)
   const evolutionMemory = normalizeEvolutionMemory(value?.evolutionMemory)
   const extra = { ...(Object.keys(endlessMilestones).length ? { endlessMilestones } : {}),
-    ...(evolutionMemory.length ? { evolutionMemory } : {}) }
+    ...(evolutionMemory.length ? { evolutionMemory } : {}), achievements: normalizeAchievementState(value?.achievements) }
   if (getTrainerSpent(learned, paid) > earned) return { version: 2, earned, learned: { ...roots }, paid: {}, milestones: normalizeMilestones(value?.milestones), ...extra }
   return { version: 2, earned, learned, paid, milestones: normalizeMilestones(value?.milestones), ...extra }
 }
@@ -291,6 +303,6 @@ export function loadTrainerProgress(storage) {
   catch { return normalizeTrainerProgress(null) }
 }
 export function saveTrainerProgress(progress, storage) {
-  try { const target = storage ?? globalThis.localStorage; if (!target) return false; target.setItem(TRAINER_SKILLS_STORAGE_KEY, JSON.stringify(normalizeTrainerProgress(progress))); return true }
+  try { const target = storage ?? globalThis.localStorage; if (!target) return false; const raw = JSON.stringify(normalizeTrainerProgress(progress)); target.setItem(TRAINER_SKILLS_STORAGE_KEY, raw); return target.getItem(TRAINER_SKILLS_STORAGE_KEY) === raw }
   catch { return false }
 }

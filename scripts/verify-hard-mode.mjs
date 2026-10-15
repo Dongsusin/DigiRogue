@@ -4,7 +4,7 @@ import * as modes from '../src/progression/gameModes.js'
 import { normalizeModeProgress, recordModeVictory, loadModeProgress, saveModeProgress } from '../src/progression/modeProgress.js'
 import { getStageLevelCap, getStageEnemyLevelRange, getEnemyDifficultyModifiers } from '../src/progression/gameDifficulty.js'
 import { getEventBattlePreview, buildEventBattle } from '../src/adventure/eventBattles.js'
-import { applyTownStartingSupport, TOWN_BUILDINGS, normalizeTown } from '../src/progression/townProgress.js'
+import { applyTrainerStartingSupport } from '../src/progression/startingSupport.js'
 import { TRAINER_SKILLS, getTrainerCostLimit } from '../src/progression/trainerSkills.js'
 import { writeSaveSlot, readSaveSlot } from '../src/progression/saveSlots.js'
 import { loadBattleEngine } from './lib/battle-engine-fixture.mjs'
@@ -143,14 +143,14 @@ test('hard event preview and actual enemies agree on above-cap levels and diffic
   assert.equal(result.state.enemies[0].enemyGameMode, 'hard'); assert(result.state.enemies[0].specialQuest)
   assert.equal(getEventBattlePreview({ ...state, gameMode: 'classic' }, spec).level, 200)
 })
-test('hard retains scanning, eggs, max trainer ranks and the existing single town support choice', () => {
+test('hard retains scanning, eggs, max trainer ranks and departure skills', () => {
   assert(modes.allowsScanning({ gameMode: 'hard' }))
   assert(modes.isModeItemAllowed({ digiEggName: '용기' }, 'hard'))
   assert.equal(getTrainerCostLimit(ranks), 25)
-  const town = normalizeTown({ version: 1, buildings: Object.fromEntries(TOWN_BUILDINGS.map(building => [building.id, 3])), selectedSupport: 'market' })
-  const supported = applyTownStartingSupport({ gameMode: 'hard', currentStage: 1, inventory: {}, gold: 0 }, town)
-  assert.equal(supported.gold, 450); assert.equal(supported.townSupport.level, 3)
-  assert.equal(supported.townSupport.buildingId, 'market')
+  const supported = applyTrainerStartingSupport({ gameMode: 'hard', currentStage: 1, inventory: {}, gold: 0, trainerSkills: ranks })
+  assert.equal(supported.gold, 450)
+  assert.equal(supported.startingSupport.eggStageReduction, 2)
+  assert.equal(supported.inventory['d-terminal'], 1)
 })
 
 
@@ -165,7 +165,7 @@ test('hard pressure stays above casual for every stage and enemy role at the sam
       if (previous) assert(hard.hp >= previous.hp && hard.stats >= previous.stats)
       previous = hard
       assert.deepEqual(getEnemyDifficultyModifiers({ ...enemy, enemyGameMode: 'hard',
-        trainerSkills: ranks, townSupport: { buildingId: 'market', level: 3 }, wins: 999, losses: 999 }), hard)
+        trainerSkills: ranks, startingSupport: { eggStageReduction: 2 }, wins: 999, losses: 999 }), hard)
     }
   }
 })

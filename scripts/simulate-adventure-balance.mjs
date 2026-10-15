@@ -1,7 +1,7 @@
 import { SIMULATION_POLICY, simulationMoves, simulationSwitch, applySimulationSwitch } from './lib/adventure-simulation-policy.mjs';
 import { loadBattleEngine } from './lib/battle-engine-fixture.mjs';
 import { TRAINER_SKILLS, normalizeTrainerRanks, getTrainerCostLimit, getTrainerStarterCost } from '../src/progression/trainerSkills.js';
-import { TOWN_BUILDINGS, TOWN_RESIDENTS, normalizeTown, applyTownStartingSupport } from '../src/progression/townProgress.js';
+import { applyTrainerStartingSupport } from '../src/progression/startingSupport.js';
 import { recordRivalMeeting, recordRivalVictory } from '../src/battle/rivalEncounters.js';
 import { CASUAL_MODE_BALANCE, HARD_MODE_BALANCE } from '../src/progression/gameDifficulty.js';
 import { resolve } from 'node:path';
@@ -18,7 +18,6 @@ const seedStart=Math.max(0,Math.floor(Number(args.find(arg=>arg.startsWith('--se
 const out=resolve(positional[0]??(tmpdir()+'/digilog-adventure-balance.json')), count=Math.max(1,Math.min(300,Math.floor(Number(positional[1])||96)));
 const trainerSkills=maxProgression?normalizeTrainerRanks(Object.fromEntries(TRAINER_SKILLS.map(node=>[node.id,node.maxRank]))):{};
 const collection=maxProgression?{species:Object.fromEntries([...e.allDigimonLookup.keys()].map(name=>[name,{seen:true,unlocked:true}]))}:null;
-const town=maxProgression?normalizeTown({version:1,buildings:Object.fromEntries(TOWN_BUILDINGS.map(building=>[building.id,3])),residents:TOWN_RESIDENTS.map(resident=>resident.name),selectedSupport:'market'}):null;
 const living=u=>u&&!u.isEgg&&u.currentHp>0;
 const seedRandom=seed=>()=>{seed=(Math.imul(1664525,seed)+1013904223)>>>0;return seed/4294967296};
 const bestMove=(u,party,enemies,stalledTurns=0,ownedParty=party)=>simulationMoves(e,u,party,enemies,stalledTurns,ownedParty)[0];
@@ -26,7 +25,7 @@ const formPreferences={아구몬:['그레이몬','메탈그레이몬','워그레
 function evolve(party,inventory){return party.map(u=>{if(!living(u))return u;for(let step=0;step<4;step++){let opts=e.getEvolutionOptions(u,inventory,party).filter(o=>o.canEvolve&&o.evolutionType==='stat'&&o.targetData.전투총합>u.baseStatTotal);const preferred=formPreferences[[...(u.evolutionHistory??[]),u.name].find(n=>formPreferences[n])]??[];if(e.getEvolutionOptions(u,inventory,party).some(o=>preferred.includes(o.targetData.이름)))opts=opts.filter(o=>preferred.includes(o.targetData.이름));opts.sort((a,b)=>Number(preferred.includes(b.targetData.이름))-Number(preferred.includes(a.targetData.이름))||b.targetData.전투총합-a.targetData.전투총합);if(!opts.length)break;u=e.createEvolvedCombatant(u,opts[0].targetData)}return u})}
 function run(seed,names){Math.random=seedRandom(seed);let party=e.buildStartingParty(names,trainerSkills,collection),inventory={},gold=0,turns=0,faints=0,bossTurns=[],checkpoints=[],totalDrops=0,map=e.getMapNameForStage(1),routes=[map],rivalState={},history=[];
 if(party.length!==names.length)throw new Error('Illegal starting team: '+names.join(','));
-if(town){const support=applyTownStartingSupport({gameMode:mode,currentStage:1,inventory,gold},town);inventory=support.inventory;gold=support.gold}
+if(maxProgression){const support=applyTrainerStartingSupport({gameMode:mode,currentStage:1,inventory,gold,trainerSkills});inventory=support.inventory;gold=support.gold}
 for(let stage=1;stage<=200;stage++){
  const cap=e.getLevelCapForStage(stage,mode), moved=stage>1&&(stage-1)%10===0;
  if(moved){map=e.getRandomConnectedMapName(map,stage);routes.push(map)}
@@ -82,5 +81,5 @@ const teamCosts=teams.map(names=>names.reduce((sum,name)=>sum+getTrainerStarterC
 if(teamCosts.some(cost=>cost>getTrainerCostLimit(trainerSkills)))throw new Error('Starting cost exceeds the real budget');
 const results=[];
 for(let i=0;i<count;i++){results.push(run((i+seedStart)*7919+17,teams[(i+seedStart)%teams.length]));if((i+1)%12===0)console.log('Completed '+(i+1)+'/'+count+' runs: '+JSON.stringify({clears:results.filter(r=>r.outcome==='clear').length,defeats:results.filter(r=>r.outcome==='defeat').length,unresolved:results.filter(r=>r.outcome==='unresolved').length}))}
-const summary={policy:SIMULATION_POLICY,mode,maxProgression,solo,seedStart,roundLimit,baselineDir:baselineDir?resolve(baselineDir):undefined,difficultyFile:difficultyFile?resolve(difficultyFile):undefined,teamCosts,excludedTeams:args.includes('--legal-teams-only')?excludedTeams:[],casualProfile:mode==='classic'&&!difficultyFile&&!baselineDir?CASUAL_MODE_BALANCE:undefined,hardProfile:mode==='hard'&&!difficultyFile&&!baselineDir?HARD_MODE_BALANCE:undefined,trainerNodes:Object.keys(trainerSkills).length,townSupport:town?{buildings:town.buildings,selectedSupport:town.selectedSupport}:null,runs:count,clears:results.filter(r=>r.cleared===200).length,defeats:results.filter(r=>r.outcome==='defeat').length,unresolved:results.filter(r=>r.outcome==='unresolved').length,medianStage:results.map(r=>r.cleared).sort((a,b)=>a-b)[Math.floor(count/2)],earliestLoss:Math.min(...results.map(r=>r.cleared)),results};
+const summary={policy:SIMULATION_POLICY,mode,maxProgression,solo,seedStart,roundLimit,baselineDir:baselineDir?resolve(baselineDir):undefined,difficultyFile:difficultyFile?resolve(difficultyFile):undefined,teamCosts,excludedTeams:args.includes('--legal-teams-only')?excludedTeams:[],casualProfile:mode==='classic'&&!difficultyFile&&!baselineDir?CASUAL_MODE_BALANCE:undefined,hardProfile:mode==='hard'&&!difficultyFile&&!baselineDir?HARD_MODE_BALANCE:undefined,trainerNodes:Object.keys(trainerSkills).length,departureSkills:maxProgression,runs:count,clears:results.filter(r=>r.cleared===200).length,defeats:results.filter(r=>r.outcome==='defeat').length,unresolved:results.filter(r=>r.outcome==='unresolved').length,medianStage:results.map(r=>r.cleared).sort((a,b)=>a-b)[Math.floor(count/2)],earliestLoss:Math.min(...results.map(r=>r.cleared)),results};
 await writeFile(out,JSON.stringify(summary,null,2));console.log(JSON.stringify({...summary,results:undefined,report:out},null,2));

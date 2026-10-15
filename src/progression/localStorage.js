@@ -31,6 +31,12 @@ export function createLocalStorage(storage = browserStorage(), { namespace = nul
       if (!storage) return [...memory.keys()]
       return Array.from({ length: storage.length ?? 0 }, (_, index) => storage.key(index)).filter(Boolean)
     },
+    logicalKeys(prefix = '') {
+      if (!storage) return [...memory.keys()].filter(name => name.startsWith(prefix))
+      const physical = key(prefix)
+      return Array.from({ length: storage.length ?? 0 }, (_, index) => storage.key(index))
+        .filter(name => typeof name === 'string' && name.startsWith(physical)).map(name => prefix + name.slice(physical.length))
+    },
     subscribe(listener) { listeners.add(listener); return () => listeners.delete(listener) },
     getItem(name) {
       try {

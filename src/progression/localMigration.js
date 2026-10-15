@@ -5,7 +5,7 @@ import { normalizeAnalysis } from '../battle/digimonAnalysis.js'
 
 export const LOCAL_MIGRATION_KEY = 'digirogue-local-migration-v1'
 export const LOCAL_PROGRESS_KEYS = Object.freeze([
-  COLLECTION_STORAGE_KEY, SCAN_PROGRESS_STORAGE_KEY, 'digirogue-trainer-skills-v1', 'digirogue-modes-v1',
+  COLLECTION_STORAGE_KEY, SCAN_PROGRESS_STORAGE_KEY, 'digirogue-trainer-skills-v1', 'digirogue-achievement-pending-v1', 'digirogue-modes-v1',
   'digirogue-save-v1', ...[1, 2, 3].map(index => `digirogue-save-slot-${index}-v1`), 'digirogue-settings-v1',
 ])
 const object = value => value && typeof value === 'object' && !Array.isArray(value)
@@ -20,6 +20,8 @@ const valid = (key, data) => {
   if (key === COLLECTION_STORAGE_KEY) return data.version === 1 && object(data.species)
   if (key === SCAN_PROGRESS_STORAGE_KEY) return data.version === 1 && object(data.analysis)
   if (key === 'digirogue-trainer-skills-v1') return [1, 2].includes(data.version) && (object(data.learned) || object(data.ranks))
+  if (key.startsWith('digirogue-achievement-evidence-v1:')) return data.version === 1 && object(data.completed) && Array.isArray(data.items)
+  if (key === 'digirogue-achievement-pending-v1') return data.version === 1 && object(data.completed) && Array.isArray(data.items)
   if (key === 'digirogue-modes-v1') return data.version === 1
   return ['gameSpeed', 'masterVolume', 'sfxVolume', 'enabledBgmUrls'].some(field => Object.hasOwn(data, field))
 }
@@ -82,7 +84,7 @@ export function migrateLegacyLocalProfile(storage, now = Date.now) {
     const groups = new Map()
     for (const fullKey of storage.accountIsolation ? [] : storage.keys()) {
       const match = /^digirogue-account:([^:]+):(.+)$/.exec(fullKey)
-      if (!match || !LOCAL_PROGRESS_KEYS.includes(match[2])) continue
+      if (!match || !LOCAL_PROGRESS_KEYS.includes(match[2]) && !match[2].startsWith('digirogue-achievement-evidence-v1:')) continue
       let oldId
       try { oldId = decodeURIComponent(match[1]) } catch { continue }
       // Developer fixtures were never a player's progress.

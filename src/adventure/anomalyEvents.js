@@ -111,7 +111,7 @@ export function resolveAnomalyChoice(state, command, context = {}) {
     // Construct a fresh egg, rather than spreading the old combatant: equipment,
     // moves, training, statuses and history must not survive a failed rebuild.
     next = context.createEgg({ id: previous.id, eggName: egg.이름, hatchPool: egg.부화가능,
-      trainerSkills: state.trainerSkills, townSupport: state.townSupport })
+      trainerSkills: state.trainerSkills, startingSupport: state.startingSupport ?? state.townSupport })
   }
   if (!next || next === previous) return error('개조할 수 없는 디지몬입니다.')
   const party = state.party.map(unit => unit.id === previous.id ? next : unit)

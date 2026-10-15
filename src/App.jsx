@@ -6,9 +6,9 @@ import HallOfFame from './components/HallOfFame.jsx'
 import { useHallOfFame } from './hall/useHallOfFame.js'
 import { createRunStats, resumeRunStats, advanceRunTurn } from './progression/hallOfFame.js'
 import MenuBackdrop from './components/MenuBackdrop.jsx'
-import TownScreen from './components/TownScreen.jsx'
+import AchievementsScreen from './components/AchievementsScreen.jsx'
 import { versionedResourceUrl } from './data/resourceUrl.js'
-import { applyTownStartingSupport, getTownEggStages } from './progression/townProgress.js'
+import { applyTrainerStartingSupport, getTrainerEggStages } from './progression/startingSupport.js'
 import { hydrateRegionalTrust } from './progression/regionalTrustProgress.js'
 import { ITEM_EVOLUTION_REWARD_ITEMS } from './data/evolutionItems.js'
 ﻿import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -45,7 +45,7 @@ import ItemLuck from './components/ItemLuck.jsx'
 import { ITEM_RARITIES, getItemRarityLabel } from './data/itemRarities.js'
 import { buildItemDex } from './data/itemDex.js'
 import { pickLuckRewardRarity } from './progression/itemLuck.js'
-import { TRAINER_SKILLS_STORAGE_KEY, loadTrainerProgress, saveTrainerProgress, normalizeTrainerRanks,
+import { TRAINER_SKILLS_STORAGE_KEY, loadTrainerProgress, normalizeTrainerRanks,
   learnTrainerSkill, redistributeTrainerSkills, getTrainerPoints, createTrainerRun, awardTrainerVictory, applyTrainerStats,
   getTrainerExperienceMultiplier, getTrainerBossMultiplier, getTrainerScanGain,
   getTrainerLuck, pickTrainerRewardItem, getTrainerEvolutionRequirement,
@@ -3288,14 +3288,15 @@ const createDigiEggCombatant = ({
   hatchPool = [],
   trainerSkills = {},
   stagesRemaining = DIGI_EGG_HATCH_STAGE_COUNT + 1,
-  townSupport,
+  startingSupport,
+  townSupport, // Existing runs keep their serialized hatch-time reduction.
 }) => ({
   id,
   isEgg: true,
   trainerSkills: normalizeTrainerRanks(trainerSkills),
   eggName,
   eggHatchPool: hatchPool.filter(isPlayableDigimon),
-  eggStagesRemaining: getTownEggStages(stagesRemaining, townSupport),
+  eggStagesRemaining: getTrainerEggStages(stagesRemaining, startingSupport ?? townSupport),
   name: `${eggName} 디지에그`,
   imageUrl: `/아이템/디지에그/${eggName}.png`,
   speciesData: null,
@@ -5104,6 +5105,9 @@ function App() {
   const recordLocalItems = localProgress.recordItems
   const subscribeLocal = localProgress.subscribe
   const getLocalSnapshot = localProgress.getSnapshot
+  const configureLocalAchievements = localProgress.configureAchievements
+  const updateLocalTrainer = localProgress.updateTrainerProgress
+  useEffect(() => { configureLocalAchievements(itemDexCatalog) }, [configureLocalAchievements])
   const [screenMode, setScreenMode] = useState('menu')
   const [selectedMenuKey, setSelectedMenuKey] = useState('new-game')
   const [isHallOpen, setIsHallOpen] = useState(false)
@@ -5117,8 +5121,12 @@ function App() {
     if (!isBgmSettingsOpen || settingsTab !== 'audio' || screenMode !== 'settings' ||
       bgmPreviewUrl && !gameSettings.enabledBgmUrls.includes(bgmPreviewUrl)) setBgmPreviewUrl(null)
   }, [isBgmSettingsOpen, settingsTab, screenMode, bgmPreviewUrl, gameSettings.enabledBgmUrls])
-  const [trainerProgress, setTrainerProgress] = useState(() => loadTrainerProgress(progressStorage))
+  const [trainerProgress, setTrainerProgress] = useState(() => getLocalSnapshot().trainerProgress)
   const trainerProgressRef = useRef(trainerProgress)
+  useEffect(() => {
+    trainerProgressRef.current = localProgress.trainerProgress
+    setTrainerProgress(localProgress.trainerProgress)
+  }, [localProgress.trainerProgress])
   const [modeProgress, setModeProgress] = useState(() => loadModeProgress(progressStorage, trainerProgress))
   const modeProgressRef = useRef(modeProgress)
   const [selectedGameMode, setSelectedGameMode] = useState('classic')
@@ -5146,14 +5154,13 @@ function App() {
   const [gameState, setGameState] = useState(null)
   const hall = useHallOfFame({ state: gameState, storage: progressStorage, identity: authSession?.identity, itemsFor: getCombatantEquippedItems })
   const hallItemById = useMemo(() => new Map([...fixedRewardItems, ...randomRewardItemPool].map(item => [item.id, item])), [])
-  const persistEvolutionMemory = useCallback(memory => {
-    const progress = recordTrainerEvolutionMemory(trainerProgressRef.current, memory)
-    if (JSON.stringify(progress.evolutionMemory ?? []) === JSON.stringify(trainerProgressRef.current.evolutionMemory ?? [])) return true
-    if (!saveTrainerProgress(progress, progressStorage)) return false
-    trainerProgressRef.current = progress
-    setTrainerProgress(progress)
+  const persistEvolutionMemory = useCallback(async memory => {
+    const result = await updateLocalTrainer(progress => ({ ok: true, progress: recordTrainerEvolutionMemory(progress, memory) }))
+    if (!result?.ok) return false
+    trainerProgressRef.current = result.progress
+    setTrainerProgress(result.progress)
     return true
-  }, [progressStorage])
+  }, [updateLocalTrainer])
   const runEvolutionMemory = gameState?.evolutionMemory
   useEffect(() => { persistEvolutionMemory(runEvolutionMemory) }, [runEvolutionMemory, persistEvolutionMemory])
   const latestGameStateRef = useRef(null)
@@ -5351,20 +5358,17 @@ function App() {
     setSaveSlots(readSaveSlots(progressStorage, parseSavedGameState))
   }
 
-  const handleTrainerLearn = id => {
-    const result = learnTrainerSkill(trainerProgressRef.current, id)
-    if (!result.ok) return result
-    if (!saveTrainerProgress(result.progress, progressStorage)) return { ok: false, error: '스킬을 저장하지 못했습니다. 다시 시도해 주세요.' }
+  const handleTrainerLearn = async id => {
+    const result = await updateLocalTrainer(progress => learnTrainerSkill(progress, id))
+    if (!result?.ok) return result
     trainerProgressRef.current = result.progress
     setTrainerProgress(result.progress)
     return result
   }
 
-  const handleTrainerReset = () => {
-    const current = trainerProgressRef.current
-    const result = redistributeTrainerSkills(current)
-    if (!result.ok) return result
-    if (!saveTrainerProgress(result.progress, progressStorage)) return { ok: false, error: '스킬 리셋을 저장하지 못했습니다.' }
+  const handleTrainerReset = async () => {
+    const result = await updateLocalTrainer(progress => redistributeTrainerSkills(progress))
+    if (!result?.ok) return result
     trainerProgressRef.current = result.progress
     setTrainerProgress(result.progress)
     return result
@@ -5377,12 +5381,13 @@ function App() {
       modeProgressRef.current = nextModeProgress
       setModeProgress(nextModeProgress)
     }
-    const result = awardTrainerVictory(trainerProgressRef.current, state)
-    if (result.awarded && saveTrainerProgress(result.progress, progressStorage)) {
+    const grant = updateLocalTrainer(progress => ({ ok: true, ...awardTrainerVictory(progress, state) }))
+    Promise.resolve(grant).then(result => {
+      if (!result?.ok || !result.awarded) return
       trainerProgressRef.current = result.progress
       setTrainerProgress(result.progress)
-      logs.push(`${state.currentStage}스테이지 돌파! 스킬 포인트 +1 SP · 보유 ${getTrainerPoints(result.progress)} SP`)
-    }
+      logs.push(state.currentStage + '스테이지 돌파! 스킬 포인트 +1 SP · 보유 ' + getTrainerPoints(result.progress) + ' SP')
+    })
     return state
   }
 
@@ -6891,12 +6896,13 @@ function App() {
     if (screenMode !== 'adventure') setSaveDialog(current => current?.mode === 'exit' ? null : current)
   }, [screenMode])
 
-  const handleSaveAndExit = slotId => {
+  const handleSaveAndExit = async slotId => {
     if (!gameState || saveExitInFlightRef.current || getSaveTransitionBusy() || !SAVE_SLOTS.some(slot => slot.id === slotId && !slot.automatic)) return false
     saveExitInFlightRef.current = true
+    setSaveDialog(current => ({ ...current, saving: true, error: '' }))
     try {
       const current = recordRivalVictory(latestGameStateRef.current ?? gameState)
-      if (!recordLocalGame(current)) throw new Error('Progress save failed')
+      if (!await persistEvolutionMemory(current.evolutionMemory) || !await recordLocalGame(current)) throw new Error('Progress save failed')
       const profile = getLocalSnapshot()
       const state = { ...current, party: syncPartyMember(current.party, current.player),
         digimonAnalysis: profile.analysis, unlockedSpecies: profile.unlockedSpecies }
@@ -6913,7 +6919,7 @@ function App() {
       return true
     } catch {
       saveExitInFlightRef.current = false
-      setSaveDialog(current => ({ ...current, error: '저장하지 못했습니다. 저장 공간을 확인한 뒤 다시 시도해 주세요.' }))
+      setSaveDialog(current => ({ ...current, saving: false, error: '저장하지 못했습니다. 저장 공간을 확인한 뒤 다시 시도해 주세요.' }))
       return false
     }
   }
@@ -6984,7 +6990,7 @@ function App() {
   const handleMenuAction = (actionKey) => {
     setSelectedMenuKey(actionKey)
     if (actionKey === 'hall-of-fame') { setIsHallOpen(true); return }
-    if (actionKey === 'skills' || actionKey === 'town' || actionKey === 'dex') {
+    if (actionKey === 'skills' || actionKey === 'achievements' || actionKey === 'dex') {
       setScreenMode(actionKey)
       return
     }
@@ -7512,6 +7518,7 @@ function App() {
     const levelCap = gameState.levelCap ?? Infinity
     const effectiveRewardItem = getRewardItemWithInventoryModifiers(rewardItem, gameState.inventory)
     const finishRewardUse = (nextGameState, skillLearnEvents = [], evolution = null) => {
+      nextGameState = { ...nextGameState, acquiredItemIds: [...new Set([...(nextGameState.acquiredItemIds ?? []), rewardItem.id])] }
       const itemSound = effectiveRewardItem.reviveRatio ? 'revive'
         : effectiveRewardItem.healAmount || effectiveRewardItem.healFull || effectiveRewardItem.partyHealAmount || effectiveRewardItem.partyHealFull ? 'heal'
           : effectiveRewardItem.cureStatus ? 'cure' : 'item'
@@ -7574,7 +7581,7 @@ function App() {
         eggName: rewardItem.digiEggName,
         hatchPool: rewardItem.hatchPool ?? [],
         trainerSkills: gameState.trainerSkills,
-        townSupport: gameState.townSupport,
+        startingSupport: gameState.startingSupport ?? gameState.townSupport,
       })
       const admission = admitPartyMember({ ...gameState, party: currentParty }, nextEgg, replacementId)
       if (admission.requiresReplacement) {
@@ -7994,7 +8001,7 @@ function App() {
       })
     )
 
-    const initialGameState = applyTownStartingSupport(recordEncounterAnalysis(hydrateRegionalTrust({
+    const initialGameState = applyTrainerStartingSupport(recordEncounterAnalysis(hydrateRegionalTrust({
       ...trainerRun,
       runStats: createRunStats(),
       gameMode: selectedGameMode,
@@ -8018,7 +8025,7 @@ function App() {
       actedAllyIds: [],
       pendingAllyActions: [],
       escapeAttempts: 0,
-    }, getLocalSnapshot().regionalTrust)), getLocalSnapshot().town)
+    }, getLocalSnapshot().regionalTrust)))
 
     setGameState(initialGameState)
     saveStageGameState(initialGameState)
@@ -8282,7 +8289,7 @@ function App() {
           screenMode === 'new-game' ? 'playfield--selection' : '',
           screenMode === 'settings' ? 'playfield--settings' : '',
           screenMode === 'skills' ? 'playfield--skills' : '',
-          screenMode === 'town' ? 'playfield--town' : '',
+          screenMode === 'achievements' ? 'playfield--achievements' : '',
           screenMode === 'dex' ? 'playfield--dex' : '',
           screenMode === 'adventure' ? 'playfield--adventure' : '',
         ]
@@ -8297,7 +8304,7 @@ function App() {
             screenMode === 'new-game' ? 'playfield__content--selection' : '',
             screenMode === 'settings' ? 'playfield__content--settings' : '',
             screenMode === 'skills' ? 'playfield__content--skills' : '',
-            screenMode === 'town' ? 'playfield__content--town' : '',
+            screenMode === 'achievements' ? 'playfield__content--achievements' : '',
             screenMode === 'dex' ? 'playfield__content--dex' : '',
             screenMode === 'adventure' ? 'playfield__content--adventure' : '',
           ]
@@ -8308,8 +8315,8 @@ function App() {
             <MainMenu hasSaveData={hasSaveData} currentKey={currentMenuKey} skillPoints={getTrainerPoints(trainerProgress)} onSelect={setSelectedMenuKey} onAction={handleMenuAction} />
           ) : screenMode === 'skills' ? (
             <TrainerSkillTree progress={trainerProgress} onLearn={handleTrainerLearn} onReset={handleTrainerReset} onBack={() => setScreenMode('menu')} />
-          ) : screenMode === 'town' ? (
-            <TownScreen town={localProgress.town} trust={localProgress.regionalTrust} onAction={localProgress.actTown} onBack={() => setScreenMode('menu')} />
+          ) : screenMode === 'achievements' ? (
+            <AchievementsScreen progress={trainerProgress} collection={localProgress.collection} trust={localProgress.regionalTrust} modes={modeProgress} itemCatalog={itemDexCatalog} onBack={() => setScreenMode('menu')} />
           ) : screenMode === 'dex' ? (
             <DigimonDex eggs={digiEggData} lookup={allDigimonLookup} collection={localProgress.collection} items={itemDexCatalog} onBack={() => setScreenMode('menu')} />
           ) : screenMode === 'settings' ? (
@@ -9660,8 +9667,8 @@ function App() {
         key={partyAdmission.member.id} state={gameState} request={partyAdmission} error={partyAdmissionError}
         onReplace={handleConfirmPartyAdmission} onCancel={handleCancelPartyAdmission} onInspect={showCombatantTooltip} />}
       {saveDialog && <SaveSlotsDialog key={saveDialog.mode} mode={saveDialog.mode} slots={saveSlots}
-        currentState={gameState} busy={saveDialog.mode === 'exit' && getSaveTransitionBusy()} error={saveDialog.error}
-        onDelete={handleDeleteSaveSlot} onClose={() => setSaveDialog(null)} onConfirm={saveDialog.mode === 'exit' ? handleSaveAndExit : handleLoadSaveSlot} />}
+        currentState={gameState} busy={Boolean(saveDialog.saving) || saveDialog.mode === 'exit' && getSaveTransitionBusy()} saving={Boolean(saveDialog.saving)} error={saveDialog.error}
+        onDelete={handleDeleteSaveSlot} onClose={() => { if (!saveDialog.saving) setSaveDialog(null) }} onConfirm={saveDialog.mode === 'exit' ? handleSaveAndExit : handleLoadSaveSlot} />}
     </main>
   )
 }

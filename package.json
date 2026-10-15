@@ -16,7 +16,7 @@
     "test:escape": "node --test scripts/verify-escape.mjs",
     "test:regions": "node --test scripts/verify-regional-support.mjs",
     "test:quests": "node --test scripts/verify-quest-risk.mjs",
-    "test:town": "node --test scripts/verify-town.mjs",
+    "test:achievements": "node --test scripts/verify-achievements.mjs",
     "test:scan": "node --test scripts/verify-scan-rates.mjs",
     "test:saves": "node --test scripts/verify-save-slots.mjs",
     "test:auth": "node --test scripts/verify-auth.mjs scripts/verify-account-session.mjs",

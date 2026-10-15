@@ -38,6 +38,7 @@ export default function TrainerSkillTree({ progress, onLearn, onBack, onReset })
   const [tab, setTab] = useState('')
   const [selectedId, setSelectedId] = useState('cost-budget-1')
   const [feedback, setFeedback] = useState('')
+  const [learning, setLearning] = useState(false)
   const [tooltip, setTooltip] = useState(null)
   const tooltipId = useId()
   const backRef = useRef(null), nodeRefs = useRef(new Map()), tabsRef = useRef([])
@@ -68,9 +69,13 @@ export default function TrainerSkillTree({ progress, onLearn, onBack, onReset })
     }
     setSelectedId(node.id); setFeedback('')
   }
-  const learn = () => {
-    const result = onLearn(selected.id)
-    setFeedback(result.ok ? `${selected.name} ${result.progress.learned[selected.id]}단계를 배웠습니다. · ${result.price} SP 사용` : result.error)
+  const learn = async () => {
+    if (learning) return
+    setLearning(true)
+    try {
+      const result = await onLearn(selected.id)
+      setFeedback(result.ok ? `${selected.name} ${result.progress.learned[selected.id]}단계를 배웠습니다. · ${result.price} SP 사용` : result.error)
+    } finally { setLearning(false) }
   }
   const moveNode = (event, node) => {
     if (event.key === 'Escape' && tooltip) {
@@ -86,10 +91,10 @@ export default function TrainerSkillTree({ progress, onLearn, onBack, onReset })
         Math.hypot(b.x - node.x, b.y - node.y) - Math.abs((b.x - node.x) * dy - (b.y - node.y) * dx) * 2)[0]
     if (next) { selectNode(next); nodeRefs.current.get(next.id)?.focus() }
   }
-  const groupLabels = { budget: '팀 코스트 한도 · 공통 교감', general: category === 'items' ? '행운 훈련' : tab === 'evolution' ? '진화 훈련' : '공통 훈련',
+  const groupLabels = { budget: '팀 코스트 한도 · 공통 교감', general: category === 'items' ? '행운 훈련' : tab === 'evolution' ? '진화 훈련' : tab === 'support' ? '새 모험 준비' : '공통 훈련',
     stage: '진화 단계', attribute: '속성', type: '종족 · 타입' }
   const tabs = category === 'stats' ? [...Object.entries(TRAINER_STATS), ['evolution', '진화'], ['boss', '보스 피해']] :
-    category === 'growth' ? [['exp', '경험치'], ['scan', '스캔율']] : []
+    category === 'growth' ? [['exp', '경험치'], ['scan', '스캔율'], ['support', '출발 지원']] : []
   return <section className="trainer-skills" aria-label="테이머 스킬">
     <header className="trainer-skills__header">
       <button ref={backRef} type="button" className="trainer-skills__back" onClick={onBack}>◀ 뒤로</button>
@@ -138,7 +143,7 @@ export default function TrainerSkillTree({ progress, onLearn, onBack, onReset })
                 <small>{index + 1}</small><b>{cost}</b>
               </li>)}</ol>
           </div>}
-          <button className="trainer-skills__learn" type="button" onClick={learn} disabled={Boolean(blocker)}>
+          <button className="trainer-skills__learn" type="button" onClick={learn} disabled={Boolean(blocker) || learning}>
             {rank >= selected.maxRank ? '습득 완료' : <><span>{rank ? '다음 단계 배우기' : '스킬 배우기'}</span><b>{price} SP</b></>}
           </button>
           <p className="trainer-skills__feedback" role="status" aria-live="polite">{feedback || blocker || '연결된 스킬을 배워 나만의 팀을 키워보세요.'}</p>

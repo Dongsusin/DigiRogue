@@ -10,7 +10,7 @@ const savedTime = value => {
   return value && Number.isFinite(date.getTime()) ? date.toLocaleString('ko-KR', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) : '이전 저장'
 }
 
-export default function SaveSlotsDialog({ mode, slots, currentState, busy, error, onClose, onConfirm, onDelete }) {
+export default function SaveSlotsDialog({ mode, slots, currentState, busy, saving = false, error, onClose, onConfirm, onDelete }) {
   const [selectedId, setSelectedId] = useState(() => defaultSaveSlot(slots, mode))
   const [deleteId, setDeleteId] = useState(null)
   const [deleteError, setDeleteError] = useState('')
@@ -44,13 +44,13 @@ export default function SaveSlotsDialog({ mode, slots, currentState, busy, error
       ? getGameMode(deleteTarget.state.gameMode).name + ' · STAGE ' + deleteTarget.state.currentStage + ' · ' + deleteTarget.state.currentMap
       : '읽을 수 없는 저장'}</p>
     <p className="save-slots-dialog__delete-warning">삭제한 저장은 되돌릴 수 없습니다.</p>
-    <p className="save-slots-dialog__intro">도감·스캔·스킬·마을 기록은 유지됩니다.</p>
+    <p className="save-slots-dialog__intro">도감·스캔·스킬·업적·신뢰도 기록은 유지됩니다.</p>
     {deleteError && <p className="save-slots-dialog__error" role="alert">{deleteError}</p>}
   </GameDialog>
   return <GameDialog key="slots" title={exiting ? '저장하고 메인 화면으로 나갈까요?' : '어디서 이어할까요?'}
     eyebrow={exiting ? 'SAVE & RETURN' : 'CONTINUE'} className="save-slots-dialog" backdropClassName="save-slots-backdrop" onClose={onClose}
     footer={<>
-      <button className="game-dialog__secondary" type="button" onClick={onClose}>{exiting ? '계속 플레이' : '뒤로'}</button>
+      <button className="game-dialog__secondary" type="button" disabled={saving} onClick={onClose}>{exiting ? '계속 플레이' : '뒤로'}</button>
       <button className="game-dialog__primary" type="button" disabled={!canConfirm} onClick={() => onConfirm(selectedId)}>
         {exiting ? selected?.status === 'ready' ? '덮어쓰고 나가기' : '저장하고 나가기' : '이어서 시작'}
       </button>
@@ -92,7 +92,7 @@ export default function SaveSlotsDialog({ mode, slots, currentState, busy, error
       })}
     </div>
     {exiting && selected?.status === 'ready' && <p className="save-slots-dialog__notice">{selected.label}의 기존 저장을 덮어씁니다.</p>}
-    {busy && <p className="save-slots-dialog__notice" role="status">진행 중인 행동이 끝나면 저장할 수 있습니다.</p>}
+    {busy && <p className="save-slots-dialog__notice" role="status">{saving ? '저장 중입니다.' : '진행 중인 행동이 끝나면 저장할 수 있습니다.'}</p>}
     {error && <p className="save-slots-dialog__error" role="alert">{error}</p>}
   </GameDialog>
 }
