@@ -58,18 +58,31 @@ test('Xros Loader heals living active and reserve units after victory, never rev
   close(getItemHealingMultiplier(unit('a'), unit('plain'), 'single'), 1)
 })
 
-test('displayed probabilities match independently calculated dense-pool probabilities for all luck grades', () => {
-  for (const luck of ITEM_LUCK_GRADES) {
-    const p = luck.upgradeChance, total = 99.92
-    const expected = { common: 75 * (1 - p), good: (18 + 75 * p) * (1 - p),
-      rare: (4 + 18 * p) * (1 - p) + 75 * p * p,
-      rogue: (2.9 + 4 * p) * (1 - p * .02) + 18 * p * p,
-      master: .02 + 2.9 * p * .02 + 4 * p * p * .02 }
-    const actual = getLuckRewardProbabilities(ITEM_RARITIES, luck)
-    for (const key of Object.keys(expected)) close(actual[key], expected[key] / total, luck.grade + ':' + key)
-    close(Object.values(actual).reduce((a, b) => a + b, 0), 1)
-    assert(actual.master < .0004, 'master must stay below 0.04% with all tiers available')
+test('all grades improve rare rewards and SS is exactly 50/26/15/8/1 percent', () => {
+  // Hand-calculated percentages for the normal pool, in rarity order.
+  const expected = {
+    E: [66.66666666666667, 18, 9.944444444444445, 5.288888888888889, .1],
+    D: [64, 19.84, 10.344533333333334, 5.61014448017149, .20532218649517683],
+    C: [61.33333333333334, 21.46666666666667, 10.900355555555556, 5.974265666309396, .32537877813504823],
+    B: [58.66666666666667, 22.88, 11.611911111111112, 6.381252447302608, .4601697749196141],
+    A: [56, 24.08, 12.4792, 6.831104823151125, .6096951768488745],
+    S: [53.33333333333334, 25.06666666666667, 13.502222222222224, 7.323822793854948, .7739549839228295],
+    SS: [50, 26, 15, 8, 1],
   }
+  let previous = { rare: 0, rogue: 0, master: 0 }
+  for (const luck of ITEM_LUCK_GRADES) {
+    const actual = getLuckRewardProbabilities(ITEM_RARITIES, luck)
+    for (const [index, tier] of ITEM_RARITIES.entries()) close(actual[tier.key], expected[luck.grade][index] / 100, luck.grade + ':' + tier.key)
+    close(Object.values(actual).reduce((a, b) => a + b, 0), 1)
+    assert(actual.rare > previous.rare, 'Higher luck must improve the final rare chance')
+    assert(actual.rogue > previous.rogue, 'Higher luck must improve the final rogue chance')
+    assert(actual.master > previous.master, 'Higher luck must improve the final master chance')
+    previous = actual
+  }
+  const ss = getLuckRewardProbabilities(ITEM_RARITIES, resolveItemLuck(16))
+  close(ss.rare, .15)
+  close(ss.rogue, .08)
+  close(ss.master, .01)
 })
 
 test('all sparse candidate pools normalize to 100% without inventing unavailable rarities', () => {
@@ -83,26 +96,28 @@ test('all sparse candidate pools normalize to 100% without inventing unavailable
   assert.equal(pickLuckRewardRarity([], resolveItemLuck(), () => 0), null)
 })
 
-test('real draws use the two-success ceiling and suppressed master promotion, including missing tiers', () => {
+test('real draws retain the two-success ceiling and use revised master boundaries, including missing tiers', () => {
   const luck = resolveItemLuck(16)
   const roll = values => () => values.shift() ?? .99
   assert.equal(pickLuckRewardRarity(ITEM_RARITIES, luck, () => 0), 'rare')
-  const rogueRoll = (75 + 18 + 4 + 1) / 99.92
-  assert.equal(pickLuckRewardRarity(ITEM_RARITIES, luck, roll([rogueRoll, .0049])), 'master')
-  assert.equal(pickLuckRewardRarity(ITEM_RARITIES, luck, roll([rogueRoll, .0051])), 'rogue')
+  const rogueRoll = .959
+  assert.equal(pickLuckRewardRarity(ITEM_RARITIES, luck, roll([rogueRoll, 36 / 311 - 1e-8])), 'master')
+  assert.equal(pickLuckRewardRarity(ITEM_RARITIES, luck, roll([rogueRoll, 36 / 311])), 'rogue')
   const sparse = ITEM_RARITIES.filter(entry => ['common', 'master'].includes(entry.key))
-  assert.equal(pickLuckRewardRarity(sparse, luck, roll([0, .00007])), 'master')
-  assert.equal(pickLuckRewardRarity(sparse, luck, roll([0, .00009])), 'common')
+  assert.equal(pickLuckRewardRarity(sparse, luck, roll([0, 9 / 4976 - 1e-8])), 'master')
+  assert.equal(pickLuckRewardRarity(sparse, luck, roll([0, 9 / 4976])), 'common')
 })
 
-test('seeded draws agree with displayed odds and master frequency remains exceptional', () => {
+test('seeded draws match the displayed revised odds and SS master stays near one percent', () => {
   let seed = 39715
   const random = () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return seed / 4294967296 }
   const count = 200000, luck = resolveItemLuck(16), seen = Object.fromEntries(ITEM_RARITIES.map(tier => [tier.key, 0]))
   for (let index = 0; index < count; index++) seen[pickLuckRewardRarity(ITEM_RARITIES, luck, random)]++
   const expected = getLuckRewardProbabilities(ITEM_RARITIES, luck)
   for (const tier of ITEM_RARITIES) assert(Math.abs(seen[tier.key] / count - expected[tier.key]) < .004, tier.key)
-  assert(seen.master > 20 && seen.master < 150, 'master: ' + seen.master)
+  assert(Math.abs(seen.rare / count - .15) < .004, 'rare target: ' + seen.rare)
+  assert(Math.abs(seen.rogue / count - .08) < .004, 'rogue target: ' + seen.rogue)
+  assert(seen.master > 1800 && seen.master < 2200, 'master: ' + seen.master)
 })
 
 const engine = await loadBattleEngine()

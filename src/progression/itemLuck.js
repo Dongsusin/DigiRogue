@@ -11,8 +11,9 @@ export const ITEM_LUCK_GRADES = Object.freeze([
 ].map(Object.freeze))
 export const ITEM_LUCK_MAX = ITEM_LUCK_GRADES.at(-1).points
 export const ITEM_LUCK_MAX_UPGRADES = 2
-// Master artifacts stay exceptional even with SS luck. Other promotions are unchanged.
-export const MASTER_LUCK_PROMOTION_FACTOR = .02
+// With the normal 9000-weight pool, SS master mass is
+// 9 + (476 * .25 + 895 * .25 ** 2) * (144 / 311) = 90 (1%).
+export const MASTER_LUCK_PROMOTION_FACTOR = 144 / 311
 
 export function resolveItemLuck(value = 0) {
   const points = Number.isFinite(value) ? Math.max(0, Math.min(ITEM_LUCK_MAX, Math.floor(value))) : 0
