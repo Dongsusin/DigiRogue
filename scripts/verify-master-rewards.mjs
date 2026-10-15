@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import fs from 'node:fs'
 import crypto from 'node:crypto'
+import { TRAINER_SKILLS } from '../src/progression/trainerSkills.js'
 import { ITEM_RARITIES } from '../src/data/itemRarities.js'
 import { ITEM_LUCK_GRADES, resolveItemLuck, getLuckRewardProbabilities, pickLuckRewardRarity } from '../src/progression/itemLuck.js'
 import { ADVENTURE_BATTLE_ITEMS, getAdventureAttackModifiers, getItemHealingMultiplier } from '../src/data/adventureItems.js'
@@ -145,7 +146,8 @@ test('real random rewards include exactly three eligible masters and exclude the
     const a = member('아구몬'); a.currentHp = Math.max(1, Math.floor(a.maxHp / 2))
     const reward = engine.createRewardSelection({}, [a], Infinity, 10)
     assert.equal(reward.randomItems.length, 3)
-    assert.equal(reward.randomItems[1].rarity, 'master')
+    assert(reward.randomItems.every(item => item.rarity === 'master'), 'Every reward draw must use the same rarity pool')
+    assert.equal(new Set(reward.randomItems.map(item => item.id)).size, 3)
     const equipped = { ...a, battleItems: Object.fromEntries(masters.map(item => [item.id, 1])) }
     const noMasters = engine.createRewardSelection({}, [equipped], Infinity, 10)
     assert(noMasters.randomItems.every(item => item.rarity !== 'master'))
@@ -157,4 +159,30 @@ test('Jogress inherits new master items from both parents without exceeding the 
     battleItems: Object.fromEntries(masters.map(item => [item.id, 1])) }))
   const fused = engine.createJogressCombatant(parents[0], [parents[1]], engine.allDigimonLookup.get('오메가몬'))
   for (const item of masters) assert.equal(fused.battleItems[item.id], 1)
+})
+
+// Exercise the shipped reward builder rather than only its rarity helper.
+test('real SS reward selections follow 15/8/1 odds across all offered items', () => {
+  const originalRandom = Math.random
+  let seed = 51439
+  const seen = Object.fromEntries(ITEM_RARITIES.map(tier => [tier.key, 0]))
+  const a = member('아구몬')
+  a.currentHp = Math.max(1, Math.floor(a.maxHp / 2))
+  a.trainerSkills = Object.fromEntries(TRAINER_SKILLS.filter(node => node.effect.kind === 'luck').map(node => [node.id, node.maxRank]))
+  const selections = 6000, count = selections * 3
+  try {
+    Math.random = () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return seed / 4294967296 }
+    for (let index = 0; index < selections; index++) {
+      const items = engine.createRewardSelection({}, [a], Infinity, 10).randomItems
+      assert.equal(items.length, 3)
+      assert.equal(new Set(items.map(item => item.id)).size, 3)
+      for (const item of items) {
+        assert(engine.canRandomRewardItemAppear(item, {}, [a], Infinity, 'classic'))
+        seen[engine.getRewardItemRarity(item)]++
+      }
+    }
+  } finally { Math.random = originalRandom }
+  for (const [key, target] of Object.entries({ common: .50, good: .26, rare: .15, rogue: .08, master: .01 })) {
+    assert(Math.abs(seen[key] / count - target) < (key === 'master' ? .003 : .012), key + ': ' + seen[key] / count)
+  }
 })

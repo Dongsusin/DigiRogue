@@ -2123,7 +2123,7 @@ const createRewardSelection = (
   rerollCount = 0,
   gameMode = 'classic'
 ) => ({
-  randomItems: selectVariedRewardItems(
+  randomItems: selectRandomRewardItemsByRarity(
     randomRewardItemPool.filter((item) =>
       canRandomRewardItemAppear(item, inventory, rewardTarget, levelCap, gameMode)
     ),
@@ -2137,19 +2137,6 @@ const createRewardSelection = (
   rerollCount,
   rerollCost: getRewardRerollCost(currentStage, rerollCount, inventory),
 })
-
-const selectVariedRewardItems = (items, count = 3, trainerSkills = {}) => {
-  const growth = item => item.digicloneKey || item.levelUpAmount || item.partyLevelUpAmount
-  const recovery = item => item.healAmount || item.partyHealAmount || item.healFull || item.partyHealFull || item.reviveRatio
-  const categories = [growth, item => !growth(item) && !recovery(item), recovery]
-  const selected = []
-  for (const category of categories.slice(0, count)) {
-    const remaining = items.filter(item => !selected.some(chosen => chosen.id === item.id))
-    const pool = remaining.filter(category)
-    selected.push(...selectRandomRewardItemsByRarity(pool.length ? pool : remaining, 1, trainerSkills))
-  }
-  return selected
-}
 
 const mapBackgrounds = [
   '/맵/가디언 팰리스.png',
